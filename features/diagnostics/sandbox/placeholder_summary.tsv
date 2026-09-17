@@ -305,11 +305,9 @@ NR1L-DIAG-338	SWE1-Diagnostics-268	test_procedure	<unsupported SID>	DR-DIAG-6	CF
 NR1L-DIAG-338	SWE1-Diagnostics-268	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939869
 NR1L-DIAG-339	SWE1-Diagnostics-221	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940462
 NR1L-DIAG-339	SWE1-Diagnostics-221	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940462
-NR1L-DIAG-340	SWE1-Diagnostics-222	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940462
 NR1L-DIAG-341	SWE1-Diagnostics-222	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940462
 NR1L-DIAG-342	SWE1-Diagnostics-223	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940464
 NR1L-DIAG-342	SWE1-Diagnostics-223	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940464
-NR1L-DIAG-343	SWE1-Diagnostics-224	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940464
 NR1L-DIAG-344	SWE1-Diagnostics-224	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940464
 NR1L-DIAG-345	SWE1-Diagnostics-225	test_procedure	<Package Indication value>	DR-DIAG-8	CFTS004-4940466
 NR1L-DIAG-345	SWE1-Diagnostics-225	expected_result	<package select routine results>	DR-DIAG-5	CFTS004-4940466
@@ -393,3 +391,51 @@ NR1L-DIAG-428	SWE1-Diagnostics-322	expected_result	<unsupported SID>	DR-DIAG-6	C
 NR1L-DIAG-429	SWE1-Diagnostics-323	expected_result	<module version record>	DR-DIAG-5	CFTS004-4939864
 NR1L-DIAG-432	SWE1-Diagnostics-325	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939864
 NR1L-DIAG-432	SWE1-Diagnostics-325	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939864
+NR1L-DIAG-433	SWE1-Diagnostics-022	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939809
+NR1L-DIAG-436	SWE1-Diagnostics-024	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939809
+NR1L-DIAG-436	SWE1-Diagnostics-024	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939809
+NR1L-DIAG-437	SWE1-Diagnostics-025	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939822
+NR1L-DIAG-440	SWE1-Diagnostics-027	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939822
+NR1L-DIAG-440	SWE1-Diagnostics-027	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939822
+NR1L-DIAG-441	SWE1-Diagnostics-028	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939808
+NR1L-DIAG-442	SWE1-Diagnostics-028	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939808
+NR1L-DIAG-443	SWE1-Diagnostics-028	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939808
+NR1L-DIAG-444	SWE1-Diagnostics-028	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939808
+NR1L-DIAG-445	SWE1-Diagnostics-028	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939808
+NR1L-DIAG-448	SWE1-Diagnostics-030	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939808
+NR1L-DIAG-448	SWE1-Diagnostics-030	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939808
+NR1L-DIAG-449	SWE1-Diagnostics-161	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939836
+NR1L-DIAG-452	SWE1-Diagnostics-163	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939838
+NR1L-DIAG-455	SWE1-Diagnostics-165	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939835
+NR1L-DIAG-458	SWE1-Diagnostics-167	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939837
+NR1L-DIAG-461	SWE1-Diagnostics-169	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939834
+NR1L-DIAG-464	SWE1-Diagnostics-171	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939827
+NR1L-DIAG-467	SWE1-Diagnostics-173	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939833
+NR1L-DIAG-470	SWE1-Diagnostics-175	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939830
+NR1L-DIAG-473	SWE1-Diagnostics-177	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939832
+NR1L-DIAG-476	SWE1-Diagnostics-179	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939829
+NR1L-DIAG-479	SWE1-Diagnostics-181	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939831
+NR1L-DIAG-482	SWE1-Diagnostics-183	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939828
+NR1L-DIAG-485	SWE1-Diagnostics-185	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939823
+NR1L-DIAG-488	SWE1-Diagnostics-187	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939819
+NR1L-DIAG-493	SWE1-Diagnostics-191	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939820
+NR1L-DIAG-496	SWE1-Diagnostics-193	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939811
+NR1L-DIAG-499	SWE1-Diagnostics-195	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939810
+NR1L-DIAG-502	SWE1-Diagnostics-197	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939818
+NR1L-DIAG-505	SWE1-Diagnostics-199	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939817
+NR1L-DIAG-508	SWE1-Diagnostics-201	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939816
+NR1L-DIAG-511	SWE1-Diagnostics-203	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939815
+NR1L-DIAG-514	SWE1-Diagnostics-205	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939814
+NR1L-DIAG-517	SWE1-Diagnostics-207	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939813
+NR1L-DIAG-520	SWE1-Diagnostics-209	expected_result	<signal quality record>	DR-DIAG-5	CFTS004-4939812
+NR1L-DIAG-523	SWE1-Diagnostics-211	expected_result	<antenna and signal status record>	DR-DIAG-5	CFTS004-4939803
+NR1L-DIAG-526	SWE1-Diagnostics-213	expected_result	<antenna and signal status record>	DR-DIAG-5	CFTS004-4939800
+NR1L-DIAG-527	SWE1-Diagnostics-213	expected_result	<antenna and signal status record>	DR-DIAG-5	CFTS004-4939800
+NR1L-DIAG-530	SWE1-Diagnostics-215	expected_result	<antenna and signal status record>	DR-DIAG-5	CFTS004-4939802
+NR1L-DIAG-533	SWE1-Diagnostics-217	expected_result	<antenna and signal status record>	DR-DIAG-5	CFTS004-4939804
+NR1L-DIAG-536	SWE1-Diagnostics-219	expected_result	<antenna and signal status record>	DR-DIAG-5	CFTS004-4939801
+NR1L-DIAG-537	SWE1-Diagnostics-219	expected_result	<antenna and signal status record>	DR-DIAG-5	CFTS004-4939801
+NR1L-DIAG-538	SWE1-Diagnostics-219	expected_result	<antenna and signal status record>	DR-DIAG-5	CFTS004-4939801
+NR1L-DIAG-541	SWE1-Diagnostics-326	expected_result	<overlay signal quality record>	DR-DIAG-5	CFTS004-4939839
+NR1L-DIAG-544	SWE1-Diagnostics-328	test_procedure	<unsupported SID>	DR-DIAG-6	CFTS004-4939839
+NR1L-DIAG-544	SWE1-Diagnostics-328	expected_result	<unsupported SID>	DR-DIAG-6	CFTS004-4939839

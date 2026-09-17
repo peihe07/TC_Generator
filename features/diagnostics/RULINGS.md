@@ -287,6 +287,16 @@ R-DIAG21  上半摘句（canon §4.3.1 R-3 之本 feature 適用）
   其餘以 specification_reference 指回；lint L 不豁免。
 ```
 
+### R-DIAG22 — 長度軸 negative 之請求寫法（Pei 裁，2026-09-17）
+
+```text
+R-DIAG22  長度軸 negative 之請求寫法
+  「invalid length / incorrect format」軸之 Procedure 請求 = 該 DID／RID 之合法請求省去最後一個 byte；
+  描述行綴 `with the last byte omitted`；ER `7F <SID> 13 (incorrectMessageLengthOrInvalidFormat)`。
+  值域軸之請求保留完整長度，以 `<out-of-range value>` 或 CFTS004 明載之越界值填資料位元組。
+  lint NEG-DIAG：長度軸 negative 之請求串不得與同 DID／RID 之正向請求串相同。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

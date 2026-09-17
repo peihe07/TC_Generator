@@ -13,7 +13,7 @@
       "req_id": "SWE1-Diagnostics-232",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the CA Pellet, as reported by the Sirius XM chipset when requested by this DID. (read $2848, CA Pellet status)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the CA Pellet status\n   $ 22 28 48",
       "expected_result": "1. The positive response 62 28 48 <CA Pellet status record> is received, and the record contains the CA Pellet status as reported by the Sirius XM chipset",
@@ -26,7 +26,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939896（…as reported by the Sirius XM chipset）"
       ],
       "row037": 239
     },
@@ -35,9 +36,9 @@
       "req_id": "SWE1-Diagnostics-233",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the CA Pellet, as reported by the Sirius XM chipset when requested by this DID. ($2848, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the CA Pellet status and record as Pellet_initial\n   $ 22 28 48\n2. Send a request for DID $2848 with an invalid message length\n   $ 22 28 48\n3. Read the CA Pellet status\n   $ 22 28 48",
+      "test_procedure": "1. Read the CA Pellet status and record as Pellet_initial\n   $ 22 28 48\n2. Send a request for DID $2848 with the last byte omitted\n   $ 22 28\n3. Read the CA Pellet status\n   $ 22 28 48",
       "expected_result": "1. Pellet_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported CA Pellet status equals Pellet_initial",
       "specification_reference": "CFTS004-4939896",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -48,7 +49,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939896（…as reported by the Sirius XM chipset）"
       ],
       "row037": 240
     },
@@ -57,7 +59,7 @@
       "req_id": "SWE1-Diagnostics-233",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the CA Pellet, as reported by the Sirius XM chipset when requested by this DID. ($2848, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the CA Pellet status and record as Pellet_initial\n   $ 22 28 48\n2. Send a request for DID $2848 with a parameter value outside the supported range\n   $ 22 28 48\n3. Read the CA Pellet status\n   $ 22 28 48",
       "expected_result": "1. Pellet_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported CA Pellet status equals Pellet_initial",
@@ -70,7 +72,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939896（…as reported by the Sirius XM chipset）"
       ],
       "row037": 240
     },
@@ -79,7 +82,7 @@
       "req_id": "SWE1-Diagnostics-234",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the CA Pellet, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the CA Pellet status and record as Pellet_initial\n   $ 22 28 48\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 48\n3. Read the CA Pellet status\n   $ 22 28 48",
       "expected_result": "1. Pellet_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported CA Pellet status equals Pellet_initial",
@@ -92,7 +95,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939896（…as reported by the Sirius XM chipset）"
       ],
       "row037": 241
     },
@@ -192,7 +196,7 @@
       "req_id": "SWE1-Diagnostics-239",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the CA Pellet, as reported by the Sirius XM chipset when requested by this DID. (read $2846, CA Pellet validation status)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the CA Pellet validation status\n   $ 22 28 46",
       "expected_result": "1. The positive response 62 28 46 <CA Pellet validation status record> is received, and the record contains the CA Pellet validation status as reported by the Sirius XM chipset",
@@ -205,7 +209,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939885（…as reported by the Sirius XM chipset）"
       ],
       "row037": 246
     },
@@ -214,9 +219,9 @@
       "req_id": "SWE1-Diagnostics-240",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the CA Pellet, as reported by the Sirius XM chipset when requested by this DID. ($2846, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the CA Pellet validation status and record as Validation_initial\n   $ 22 28 46\n2. Send a request for DID $2846 with an invalid message length\n   $ 22 28 46\n3. Read the CA Pellet validation status\n   $ 22 28 46",
+      "test_procedure": "1. Read the CA Pellet validation status and record as Validation_initial\n   $ 22 28 46\n2. Send a request for DID $2846 with the last byte omitted\n   $ 22 28\n3. Read the CA Pellet validation status\n   $ 22 28 46",
       "expected_result": "1. Validation_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported CA Pellet validation status equals Validation_initial",
       "specification_reference": "CFTS004-4939885",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -227,7 +232,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939885（…as reported by the Sirius XM chipset）"
       ],
       "row037": 247
     },
@@ -236,7 +242,7 @@
       "req_id": "SWE1-Diagnostics-240",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the CA Pellet, as reported by the Sirius XM chipset when requested by this DID. ($2846, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the CA Pellet validation status and record as Validation_initial\n   $ 22 28 46\n2. Send a request for DID $2846 with a parameter value outside the supported range\n   $ 22 28 46\n3. Read the CA Pellet validation status\n   $ 22 28 46",
       "expected_result": "1. Validation_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported CA Pellet validation status equals Validation_initial",
@@ -249,7 +255,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939885（…as reported by the Sirius XM chipset）"
       ],
       "row037": 247
     },
@@ -258,7 +265,7 @@
       "req_id": "SWE1-Diagnostics-241",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the CA Pellet, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the CA Pellet validation status and record as Validation_initial\n   $ 22 28 46\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 46\n3. Read the CA Pellet validation status\n   $ 22 28 46",
       "expected_result": "1. Validation_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported CA Pellet validation status equals Validation_initial",
@@ -271,7 +278,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939885（…as reported by the Sirius XM chipset）"
       ],
       "row037": 248
     },
@@ -280,7 +288,7 @@
       "req_id": "SWE1-Diagnostics-242",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Event data, as reported by the Sirius XM chipset when requested by this DID. (read $2845, Event data)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Event data\n   $ 22 28 45",
       "expected_result": "1. The positive response 62 28 45 <Event data record> is received, and the record contains the Event data as reported by the Sirius XM chipset",
@@ -293,7 +301,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939881（…as reported by the Sirius XM chipset）"
       ],
       "row037": 249
     },
@@ -302,9 +311,9 @@
       "req_id": "SWE1-Diagnostics-243",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Event data, as reported by the Sirius XM chipset when requested by this DID. ($2845, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Event data and record as Event_initial\n   $ 22 28 45\n2. Send a request for DID $2845 with an invalid message length\n   $ 22 28 45\n3. Read the Event data\n   $ 22 28 45",
+      "test_procedure": "1. Read the Event data and record as Event_initial\n   $ 22 28 45\n2. Send a request for DID $2845 with the last byte omitted\n   $ 22 28\n3. Read the Event data\n   $ 22 28 45",
       "expected_result": "1. Event_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Event data equals Event_initial",
       "specification_reference": "CFTS004-4939881",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -315,7 +324,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939881（…as reported by the Sirius XM chipset）"
       ],
       "row037": 250
     },
@@ -324,7 +334,7 @@
       "req_id": "SWE1-Diagnostics-243",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Event data, as reported by the Sirius XM chipset when requested by this DID. ($2845, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Event data and record as Event_initial\n   $ 22 28 45\n2. Send a request for DID $2845 with a parameter value outside the supported range\n   $ 22 28 45\n3. Read the Event data\n   $ 22 28 45",
       "expected_result": "1. Event_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Event data equals Event_initial",
@@ -337,7 +347,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939881（…as reported by the Sirius XM chipset）"
       ],
       "row037": 250
     },
@@ -346,7 +357,7 @@
       "req_id": "SWE1-Diagnostics-244",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Event data, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Event data and record as Event_initial\n   $ 22 28 45\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 45\n3. Read the Event data\n   $ 22 28 45",
       "expected_result": "1. Event_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Event data equals Event_initial",
@@ -359,7 +370,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939881（…as reported by the Sirius XM chipset）"
       ],
       "row037": 251
     },
@@ -368,7 +380,7 @@
       "req_id": "SWE1-Diagnostics-245",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend year, as reported by the Sirius XM chipset when requested by this DID. (read $2844, Suspend year)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. The positive response 62 28 44 <Sirius XM subscription data record> is received, and the record contains the Suspend year as reported by the Sirius XM chipset",
@@ -381,7 +393,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939873（…as reported by the Sirius XM chipset）"
       ],
       "row037": 252
     },
@@ -390,9 +403,9 @@
       "req_id": "SWE1-Diagnostics-246",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend year, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with an invalid message length\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
+      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with the last byte omitted\n   $ 22 28\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
       "specification_reference": "CFTS004-4939873",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -403,7 +416,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939873（…as reported by the Sirius XM chipset）"
       ],
       "row037": 253
     },
@@ -412,7 +426,7 @@
       "req_id": "SWE1-Diagnostics-246",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend year, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with a parameter value outside the supported range\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -425,7 +439,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939873（…as reported by the Sirius XM chipset）"
       ],
       "row037": 253
     },
@@ -434,7 +449,7 @@
       "req_id": "SWE1-Diagnostics-247",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend year, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -447,7 +462,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939873（…as reported by the Sirius XM chipset）"
       ],
       "row037": 254
     },
@@ -456,7 +472,7 @@
       "req_id": "SWE1-Diagnostics-248",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend month, as reported by the Sirius XM chipset when requested by this DID. (read $2844, Suspend month)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. The positive response 62 28 44 <Sirius XM subscription data record> is received, and the record contains the Suspend month as reported by the Sirius XM chipset",
@@ -469,7 +485,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939872（…as reported by the Sirius XM chipset）"
       ],
       "row037": 255
     },
@@ -478,9 +495,9 @@
       "req_id": "SWE1-Diagnostics-249",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend month, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with an invalid message length\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
+      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with the last byte omitted\n   $ 22 28\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
       "specification_reference": "CFTS004-4939872",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -491,7 +508,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939872（…as reported by the Sirius XM chipset）"
       ],
       "row037": 256
     },
@@ -500,7 +518,7 @@
       "req_id": "SWE1-Diagnostics-249",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend month, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with a parameter value outside the supported range\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -513,7 +531,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939872（…as reported by the Sirius XM chipset）"
       ],
       "row037": 256
     },
@@ -522,7 +541,7 @@
       "req_id": "SWE1-Diagnostics-250",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend month, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -535,7 +554,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939872（…as reported by the Sirius XM chipset）"
       ],
       "row037": 257
     },
@@ -544,7 +564,7 @@
       "req_id": "SWE1-Diagnostics-251",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend day, as reported by the Sirius XM chipset when requested by this DID. (read $2844, Suspend day)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. The positive response 62 28 44 <Sirius XM subscription data record> is received, and the record contains the Suspend day as reported by the Sirius XM chipset",
@@ -557,7 +577,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939871（…as reported by the Sirius XM chipset）"
       ],
       "row037": 258
     },
@@ -566,9 +587,9 @@
       "req_id": "SWE1-Diagnostics-252",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend day, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with an invalid message length\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
+      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with the last byte omitted\n   $ 22 28\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
       "specification_reference": "CFTS004-4939871",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -579,7 +600,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939871（…as reported by the Sirius XM chipset）"
       ],
       "row037": 259
     },
@@ -588,7 +610,7 @@
       "req_id": "SWE1-Diagnostics-252",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend day, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with a parameter value outside the supported range\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -601,7 +623,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939871（…as reported by the Sirius XM chipset）"
       ],
       "row037": 259
     },
@@ -610,7 +633,7 @@
       "req_id": "SWE1-Diagnostics-253",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Suspend day, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -623,7 +646,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939871（…as reported by the Sirius XM chipset）"
       ],
       "row037": 260
     },
@@ -632,7 +656,7 @@
       "req_id": "SWE1-Diagnostics-254",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Reason Text, as reported by the Sirius XM chipset when requested by this DID. (read $2844, Reason Text)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. The positive response 62 28 44 <Sirius XM subscription data record> is received, and the record contains the Reason Text as reported by the Sirius XM chipset",
@@ -645,7 +669,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939874（…as reported by the Sirius XM chipset）"
       ],
       "row037": 261
     },
@@ -654,9 +679,9 @@
       "req_id": "SWE1-Diagnostics-255",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Reason Text, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with an invalid message length\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
+      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with the last byte omitted\n   $ 22 28\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
       "specification_reference": "CFTS004-4939874",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -667,7 +692,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939874（…as reported by the Sirius XM chipset）"
       ],
       "row037": 262
     },
@@ -676,7 +702,7 @@
       "req_id": "SWE1-Diagnostics-255",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Reason Text, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with a parameter value outside the supported range\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -689,7 +715,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939874（…as reported by the Sirius XM chipset）"
       ],
       "row037": 262
     },
@@ -698,7 +725,7 @@
       "req_id": "SWE1-Diagnostics-256",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Reason Text, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -711,7 +738,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939874（…as reported by the Sirius XM chipset）"
       ],
       "row037": 263
     },
@@ -720,7 +748,7 @@
       "req_id": "SWE1-Diagnostics-257",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Reason code, as reported by the Sirius XM chipset when requested by this DID. (read $2844, Reason code)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. The positive response 62 28 44 <Sirius XM subscription data record> is received, and the record contains the Reason code as reported by the Sirius XM chipset",
@@ -733,7 +761,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939870（…as reported by the Sirius XM chipset）"
       ],
       "row037": 264
     },
@@ -742,9 +771,9 @@
       "req_id": "SWE1-Diagnostics-258",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Reason code, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with an invalid message length\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
+      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with the last byte omitted\n   $ 22 28\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
       "specification_reference": "CFTS004-4939870",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -755,7 +784,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939870（…as reported by the Sirius XM chipset）"
       ],
       "row037": 265
     },
@@ -764,7 +794,7 @@
       "req_id": "SWE1-Diagnostics-258",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Reason code, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with a parameter value outside the supported range\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -777,7 +807,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939870（…as reported by the Sirius XM chipset）"
       ],
       "row037": 265
     },
@@ -786,7 +817,7 @@
       "req_id": "SWE1-Diagnostics-259",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Reason code, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -799,7 +830,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939870（…as reported by the Sirius XM chipset）"
       ],
       "row037": 266
     },
@@ -808,7 +840,7 @@
       "req_id": "SWE1-Diagnostics-260",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Radio ID, as reported by the Sirius XM chipset when requested by this DID. The Radio ID is reported as a string of 8 ASCII characters. (read $2844, Radio ID)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. The positive response 62 28 44 <Sirius XM subscription data record> is received, and the record contains the Radio ID as reported by the Sirius XM chipset, reported as a string of 8 ASCII characters",
@@ -821,7 +853,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939868（…as reported by the Sirius XM chipset）"
       ],
       "row037": 267
     },
@@ -830,9 +863,9 @@
       "req_id": "SWE1-Diagnostics-261",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Radio ID, as reported by the Sirius XM chipset when requested by this DID. The Radio ID is reported as a string of 8 ASCII characters. ($2844, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with an invalid message length\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
+      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with the last byte omitted\n   $ 22 28\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
       "specification_reference": "CFTS004-4939868",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -843,7 +876,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939868（…as reported by the Sirius XM chipset）"
       ],
       "row037": 268
     },
@@ -852,7 +886,7 @@
       "req_id": "SWE1-Diagnostics-261",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Radio ID, as reported by the Sirius XM chipset when requested by this DID. The Radio ID is reported as a string of 8 ASCII characters. ($2844, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with a parameter value outside the supported range\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -865,7 +899,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939868（…as reported by the Sirius XM chipset）"
       ],
       "row037": 268
     },
@@ -874,7 +909,7 @@
       "req_id": "SWE1-Diagnostics-262",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Radio ID, as reported by the Sirius XM chipset when requested by this DID. The Radio ID is reported as a string of 8 ASCII characters. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -887,7 +922,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939868（…as reported by the Sirius XM chipset）"
       ],
       "row037": 269
     },
@@ -896,7 +932,7 @@
       "req_id": "SWE1-Diagnostics-263",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Phone Number, as reported by the Sirius XM chipset when requested by this DID. (read $2844, Phone Number)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. The positive response 62 28 44 <Sirius XM subscription data record> is received, and the record contains the Phone Number as reported by the Sirius XM chipset",
@@ -909,7 +945,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939875（…as reported by the Sirius XM chipset）"
       ],
       "row037": 270
     },
@@ -918,9 +955,9 @@
       "req_id": "SWE1-Diagnostics-264",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Phone Number, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with an invalid message length\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
+      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with the last byte omitted\n   $ 22 28\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
       "specification_reference": "CFTS004-4939875",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -931,7 +968,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939875（…as reported by the Sirius XM chipset）"
       ],
       "row037": 271
     },
@@ -940,7 +978,7 @@
       "req_id": "SWE1-Diagnostics-264",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Phone Number, as reported by the Sirius XM chipset when requested by this DID. ($2844, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with a parameter value outside the supported range\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -953,7 +991,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939875（…as reported by the Sirius XM chipset）"
       ],
       "row037": 271
     },
@@ -962,7 +1001,7 @@
       "req_id": "SWE1-Diagnostics-265",
       "test_set": "SXM Subscription",
       "tc_title": "Unless otherwise noted, the HU shall report the status of the Phone Number, as reported by the Sirius XM chipset when requested by this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -975,7 +1014,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939875（…as reported by the Sirius XM chipset）"
       ],
       "row037": 272
     },
@@ -984,7 +1024,7 @@
       "req_id": "SWE1-Diagnostics-266",
       "test_set": "SXM Subscription",
       "tc_title": "Subscription status: Shall be reported as \"Not Subscribed\", \"Subscribed\", \"Suspend Alert\", or \"Suspended\". (read $2844, Subscription status)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. The positive response 62 28 44 <Sirius XM subscription data record> is received, and the record reports the Subscription status as \"Not Subscribed\", \"Subscribed\", \"Suspend Alert\" or \"Suspended\"",
@@ -997,7 +1037,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939869（…as reported by the Sirius XM chipset）"
       ],
       "row037": 273
     },
@@ -1006,9 +1047,9 @@
       "req_id": "SWE1-Diagnostics-267",
       "test_set": "SXM Subscription",
       "tc_title": "Subscription status: Shall be reported as \"Not Subscribed\", \"Subscribed\", \"Suspend Alert\", or \"Suspended\". ($2844, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with an invalid message length\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
+      "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with the last byte omitted\n   $ 22 28\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
       "specification_reference": "CFTS004-4939869",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -1019,7 +1060,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939869（…as reported by the Sirius XM chipset）"
       ],
       "row037": 274
     },
@@ -1028,7 +1070,7 @@
       "req_id": "SWE1-Diagnostics-267",
       "test_set": "SXM Subscription",
       "tc_title": "Subscription status: Shall be reported as \"Not Subscribed\", \"Subscribed\", \"Suspend Alert\", or \"Suspended\". ($2844, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a request for DID $2844 with a parameter value outside the supported range\n   $ 22 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -1041,7 +1083,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939869（…as reported by the Sirius XM chipset）"
       ],
       "row037": 274
     },
@@ -1050,7 +1093,7 @@
       "req_id": "SWE1-Diagnostics-268",
       "test_set": "SXM Subscription",
       "tc_title": "Subscription status: Shall be reported as \"Not Subscribed\", \"Subscribed\", \"Suspend Alert\", or \"Suspended\". (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the Sirius XM subscription data and record as Subscription_initial\n   $ 22 28 44\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 44\n3. Read the Sirius XM subscription data\n   $ 22 28 44",
       "expected_result": "1. Subscription_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Sirius XM subscription data equals Subscription_initial",
@@ -1063,7 +1106,8 @@
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939869（…as reported by the Sirius XM chipset）"
       ],
       "row037": 275
     },
@@ -1097,7 +1141,7 @@
       "tc_title": "When commanded to start this routine, the HU shall perform the steps of the package select process as defined in the Sirius XM specification SX-9830-0095, using the Package Indication value provided in the diagnostic command. ($0309, NRC 13 incorrectMessageLengthOrInvalidFormat)",
       "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the package select routine results and record as Select_initial\n   $ 31 03 03 09\n2. Start the routine $0309 with an invalid message length\n   $ 31 01 03 09 <Package Indication value>\n3. Read the package select routine results\n   $ 31 03 03 09",
+      "test_procedure": "1. Read the package select routine results and record as Select_initial\n   $ 31 03 03 09\n2. Start the routine $0309 with the last byte omitted\n   $ 31 01 03 09\n3. Read the package select routine results\n   $ 31 03 03 09",
       "expected_result": "1. Select_initial is recorded\n2. The negative response 7F 31 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported package select routine results equals Select_initial",
       "specification_reference": "CFTS004-4940462",
       "design_method": "負向測試 (Negative / Invalid)",
@@ -1166,7 +1210,7 @@
       "tc_title": "When commanded to return routine results, the HU shall respond with the Indication Code that represents the response from the Sirius XM module. Refer to CFTS004-1415 for valid Indication Codes, excepting that code $10 is invalid for the package select routine. ($0309, NRC 13 incorrectMessageLengthOrInvalidFormat)",
       "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Read the package select routine results and record as Select_initial\n   $ 31 03 03 09\n2. Start the routine $0309 with an invalid message length\n   $ 31 01 03 09 <Package Indication value>\n3. Read the package select routine results\n   $ 31 03 03 09",
+      "test_procedure": "1. Read the package select routine results and record as Select_initial\n   $ 31 03 03 09\n2. Start the routine $0309 with the last byte omitted\n   $ 31 01 03 09\n3. Read the package select routine results\n   $ 31 03 03 09",
       "expected_result": "1. Select_initial is recorded\n2. The negative response 7F 31 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported package select routine results equals Select_initial",
       "specification_reference": "CFTS004-4940464",
       "design_method": "負向測試 (Negative / Invalid)",

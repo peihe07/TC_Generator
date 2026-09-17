@@ -167,12 +167,54 @@ DIAG_RT_ROWS = _diag_ids(((148, 160), (221, 231), (346, 348)))
 #   (b) `$ 31 0<sub>` 後不足兩個 RID byte —— 缺 sub-function 或缺 RID byte；
 #   (c) sub-function 不在 01／02／03。
 RE_DIAG_RT_LINE = re.compile(r"^\s*\$ (?P<body>.+?)\s*$", re.M)
+# R-DIAG22 之長度軸描述行（其後之 `$` 行為刻意殘缺之請求，不受 R-DIAG20 四段式拘束）
+RE_DIAG_LEN_OMIT = re.compile(r"^\s*\d+\..*?\bwith the last byte omitted\b.*$", re.M)
 RE_DIAG_RT_BAD22 = re.compile(r"^22\s+(?:0[0-9A-F]|1[0-9A-F])\s+[0-9A-F]{2}\b")
 RE_DIAG_RT_OK31 = re.compile(r"^31\s+0(?P<sub>[123])\s+[0-9A-F]{2}\s+[0-9A-F]{2}(?:\s|$)")
 RE_DIAG_RT_ANY31 = re.compile(r"^31\b")
 
 DIAG_SEC_PC = "Security access 0x27 has been granted"
 RE_DIAG_FORBIDDEN_KEY = re.compile(r'"(Power|Dark)"')
+
+
+# --- R-DIAG22：長度軸 negative 之請求寫法 -------------------------------------
+# 本檢查**跨列**：母體是「同一 sheet 內 ER 不含 `7F` 之列」所用之請求串（＝正向請求）。
+# 逐列檢查做不到 —— 缺陷正是「長度軸之請求與正向逐字相同」，要有正向那一份才比得出來。
+RE_DIAG_DOLLAR = re.compile(r"^\s*\$ (.+?)\s*$", re.M)
+RE_DIAG_LEN_NRC = re.compile(r"7F [0-9A-F]{2} 13 \(incorrectMessageLengthOrInvalidFormat\)")
+RE_DIAG_LEN_DESC = re.compile(
+    r"^\s*\d+\..*?\bwith (?P<form>the last byte omitted|an invalid message length)\b.*$", re.M)
+
+
+def check_diag_neg(rows: list[tuple[int, str, str, str]]) -> list[Violation]:
+    """NEG-DIAG —— 長度軸 negative 之請求串（R-DIAG22）。
+
+    `rows` = (row_no, tc_id, proc, er)。兩判：
+      (a) 觸發步驟之請求串出現於正向請求集合 → 與合法請求無從區辨，FAIL；
+      (b) 描述行仍書 `with an invalid message length` → 未依條文改為 `with the last byte omitted`。
+    """
+    legal = {m.group(1) for _, _, proc, er in rows if "7F" not in er
+             for m in RE_DIAG_DOLLAR.finditer(proc)}
+    out: list[Violation] = []
+    for row_no, tc_id, proc, er in rows:
+        if not RE_DIAG_LEN_NRC.search(er):
+            continue
+        m = RE_DIAG_LEN_DESC.search(proc)
+        if m is None:
+            continue                       # 無長度軸描述行者不在母體（例：整行 PENDING）
+        if m.group("form") == "an invalid message length":
+            out.append(Violation(
+                "NEG-DIAG", row_no, tc_id, "proc",
+                "R-DIAG22：長度軸之描述行須綴 `with the last byte omitted`",
+                m.group(0).strip()[:50]))
+        tail = proc[m.end():]
+        d = RE_DIAG_DOLLAR.search(tail)
+        if d and d.group(1) in legal:
+            out.append(Violation(
+                "NEG-DIAG", row_no, tc_id, "proc",
+                "R-DIAG22：長度軸之請求串與同 DID／RID 之正向請求串相同 —— "
+                "須為合法請求省去最後一個 byte", d.group(1)[:40]))
+    return out
 
 
 def check_diag_routine(req_id: str, fields: dict, row_no: int, tc_id: str) -> list[Violation]:
@@ -187,8 +229,16 @@ def check_diag_routine(req_id: str, fields: dict, row_no: int, tc_id: str) -> li
         return []
     out: list[Violation] = []
     for field in ("proc", "er"):
-        for m in RE_DIAG_RT_LINE.finditer(fields.get(field, "")):
+        text = fields.get(field, "")
+        # R-DIAG22 之長度軸觸發行**刻意**是殘缺請求（合法請求省去最後一個 byte），
+        # 其 `$` 串必然不合 R-DIAG20 之四段式 —— 兩條文於此重疊，後出且專管長度軸之
+        # R-DIAG22 優先，故該行不入 RT-DIAG 母體（`[A-DIAG53]`）。
+        skip = {m.start() for d in RE_DIAG_LEN_OMIT.finditer(text)
+                if (m := RE_DIAG_DOLLAR.search(text, d.end()))}
+        for m in RE_DIAG_RT_LINE.finditer(text):
             body = m.group("body")
+            if m.start() in skip:
+                continue
             if body.startswith("<"):          # `<unsupported SID> …`，非 0x31 請求
                 continue
             if RE_DIAG_RT_BAD22.match(body):
@@ -401,6 +451,7 @@ CHECK_TITLES = {
     "KEY-DIAG": "按鍵狀態 DID 之觸發鍵為 Power／Dark（R-DIAG14，Diagnostics profile 專屬）",
     "PC-DIAG": "Pre-Condition 含動作詞（R-DIAG18，Diagnostics profile 專屬）",
     "RT-DIAG": "常式之位元組式不合 `31 0<sub> <RID>`（R-DIAG20，Diagnostics profile 專屬）",
+    "NEG-DIAG": "長度軸 negative 之請求串同於正向串／描述行未綴省末 byte（R-DIAG22，Diagnostics profile 專屬）",
     "SS": "Remarks 無 `source:` 標記／資產佔位之 `X-` 代號未載於 Remarks"
           "（R-SEC4(a)／R-SEC21(e)，Security profile 專屬）",
 }
@@ -436,6 +487,7 @@ CHECK_STATUS = {
     "KEY-DIAG": "未校準（R-DIAG14，CDD-04 新增）—— **feature 專屬**。",
     "PC-DIAG": "未校準（R-DIAG18，CDD-06 新增）—— **feature 專屬**；IN §4.4 之機械守門。",
     "RT-DIAG": "未校準（R-DIAG20，CDD-08 新增）—— **feature 專屬**；母體依 Routine 母節反查（27 列）。",
+    "NEG-DIAG": "未校準（R-DIAG22，CDD-09 新增）—— **feature 專屬**；**跨列**檢查，正向請求集合取自同 sheet。",
     "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
           "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"
           "**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot",
@@ -463,7 +515,7 @@ PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
 FEATURE_CHECKS: dict[str, list[str]] = {
     "camera": ["Z"], "security": ["SC", "SS"],
     "diagnostics": ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG", "SEC-DIAG", "KEY-DIAG",
-                    "PC-DIAG", "RT-DIAG"],
+                    "PC-DIAG", "RT-DIAG", "NEG-DIAG"],
 }
 # **feature 專屬之豁免**：某 profile 下不適用之 `PROFILE_CHECKS` 項。
 # R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
@@ -552,7 +604,7 @@ CHECK_GRANULARITY = {
     "P-DIAG": "每列每欄每 token", "U-DIAG": "每列每位元組串",
     "R1-DIAG": "每列", "RM-DIAG": "每列每段",
     "SEC-DIAG": "每列", "KEY-DIAG": "每列每次命中", "PC-DIAG": "每列每行",
-    "RT-DIAG": "每列每行",
+    "RT-DIAG": "每列每行", "NEG-DIAG": "每列每項",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
@@ -1313,6 +1365,7 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
 
     result = SheetResult(sheet=ws.title, header_row=header_row, data_rows=0)
     sibling_input: list[tuple[int, str, str, str]] = []
+    neg_input: list[tuple[int, str, str, str]] = []
     cross_input: list[tuple[int, str, str, str, str, str]] = []
 
     # Z 為 feature 專屬（FEATURE_CHECKS）。七欄不齊時整 sheet 記一筆，
@@ -1389,12 +1442,15 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
                             if remarks_idx is not None and remarks_idx < len(raw) else "")
             result.violations.extend(
                 check_security_source(fields, remarks_text, offset, tc_id))
+        neg_input.append((offset, tc_id, fields["proc"], fields["er"]))
         sibling_input.append((offset, tc_id, req_id, fields["test_item"]))
         test_set = (cell_text(raw[columns["test_set"]])
                     if "test_set" in columns else "")
         cross_input.append((offset, tc_id, req_id, test_set,
                             fields["proc"], fields["er"]))
 
+    if "NEG-DIAG" in enabled:         # R-DIAG22：跨列，故不在 check_row() 內
+        result.violations.extend(check_diag_neg(neg_input))
     result.violations.extend(check_sibling_parens(sibling_input))
     result.cross_rows = cross_input
     if "I-cross" in enabled:          # I-cross 為 profile 專屬（PROFILE_CHECKS），可被 FEATURE_EXEMPT 豁免
