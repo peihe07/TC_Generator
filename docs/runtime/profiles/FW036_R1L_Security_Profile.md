@@ -173,7 +173,7 @@ SWE1-ID ∈ 70 列（ECUCert 為其 13 個 SYSAD）」，不查章節錨。
 | `SET_ARCH_TYPE_MID` | `$ 2E 28 50 03` | 同上（Atl-Mid）|
 | `ADB_ROOT_READY` | `DUT is connected via ADB with root permission (Dev/Eng build)` | **R-SEC7(d)** |
 | `DIAG_SESSION_<xx>` | `Diagnostic session is <Extended (03) \| SystemSupplierSpecific (60)>` | **R-SEC7(d)**／R-SEC6(c) |
-| `CP_TEST_RUNNER_INSTALLED` | `Test runner CertProviderServiceManagerTest.apk is installed` | **R-SEC7(d)** |
+| `CP_TEST_RUNNER_INSTALLED` | `Test runner CertProviderAndroidInstrumentalTest.apk is installed` | **R-SEC7(d)**；**R-SEC24**（SEC-13 更正檔名，A-33）|
 
 **表內 4 列為雜訊候選，待 Pei 裁剔除**：`step_assets.tsv` 之
 `/cfgs`、`/odm`、`/write`、`/r/sites/newR1LAllMDmembers/_layouts/15/Doc.aspx`

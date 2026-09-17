@@ -770,3 +770,20 @@ R-SEC22(a) amend  C3（金鑰強度）之落點加 `NR1L-LOGENC-007`／`-008`（
 
 **執行層回報（SEC-12）**：`CONFLICT_NOTE` 加 `SWE1-LOGENC-004`；v06 → v07 之逐格 diff 即該兩 TC 之
 `remarks` 2 格。C3 之 `tc_ids_found` 6 筆自此全數帶註（A-30 為分析層自報之漏列）。
+
+---
+
+### R-SEC24 — CertProvider 測試 runner 之 apk 檔名（A-33 更正）（Pei 裁，2026-09-17；SEC-13 §1）
+
+```text
+R-SEC24  CertProvider 測試 runner 之 apk 檔名（A-33 更正）
+  §5.3 常數 `CP_TEST_RUNNER_INSTALLED` 改為 `Test runner CertProviderAndroidInstrumentalTest.apk is installed`
+  （檔名逐字取 `CCVR/To Validation team/Cert Val CS.98/CertProviderAndroidInstrumentalTest.apk`，MANIFEST 外部路徑登錄）。
+  `CertProviderServiceManagerTest` 仍為 instrumentation class 名，只出現於 `am instrument` 指令與 apk_pairing。
+  既有 19 TC 之 Pre-Condition 依 R-G72 Revise；profile §3 常數表同步。
+```
+
+**執行層回報（SEC-13）**：`gen_batch1.py`／`gen_batch2.py` 共用之 `RUNNER_READY` 常數改檔名；
+v07 → v08 之逐格 diff 為 19 格 `pre`。檔名之**在庫出處**為下放包 `down/20260916_SEC-01.md:125`
+之「不投遞」目錄清單（`sources/MANIFEST.tsv` 無該 apk 之列 —— 該檔未投遞，故只有外部路徑之記載）。
+`gen_pilot01.py`／`gen_pilot02.py` 之同名常數**未動**（pilot 本已被 batch1 取代，R-TM13 不回修）。

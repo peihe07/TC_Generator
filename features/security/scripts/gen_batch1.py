@@ -62,7 +62,8 @@ FAULT = "基礎故障注入 (Fault Injection Lite)"
 BVA = "邊界值分析 (Boundary Value Analysis, BVA)"
 
 ADB_ROOT = "DUT is connected via ADB with root permission (Dev/Eng build)"
-RUNNER_READY = "Test runner CertProviderServiceManagerTest.apk is installed"
+# R-SEC24（SEC-13）：apk 檔名逐字取 CCVR 外部目錄清單（A-33 更正；原值為類名接 .apk 之造值）。
+RUNNER_READY = "Test runner CertProviderAndroidInstrumentalTest.apk is installed"
 ASSETS = "SecurityAssets/oem-certs/cert-provider/"
 STORE = "/odm/etc/cert_store"
 FQCN = ("com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test"

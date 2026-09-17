@@ -4,7 +4,7 @@
   "test_group": "Cert Provider",
   "test_set": "Revocation",
   "test_item": "For non-ECU verification scenarios (e.g., SAM, FOTA, Second Party APKs), the system shall perform revocation checks using Certificate Revocation Lists (CRL) preinstalled in the secure storage of the /odm partition.\n(OpenSSL verification with the local revocation list on the host)",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. A revocation list \"CRL.r0\" is preinstalled in the /odm partition\n4. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. A revocation list \"CRL.r0\" is preinstalled in the /odm partition\n4. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
   "input": "NA",
   "proc": "1. Run the OpenSSL chain verification with the local revocation list on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem -untrusted CRL.pem SAMcert.pem",
   "er": "1. The openssl command prints \"certificate revoked\" on stdout",

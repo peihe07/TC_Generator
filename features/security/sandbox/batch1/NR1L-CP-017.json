@@ -4,7 +4,7 @@
   "test_group": "Cert Provider",
   "test_set": "Client Interface",
   "test_item": "The Cert Provider feature shall provide standardized client interfaces to support both Java and Native clients.\n(Java client invokes the Binder interface for certificate validation (document review + log observation))",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/\n4. Access to the RD build environment for Cert Provider is granted",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/\n4. Access to the RD build environment for Cert Provider is granted",
   "input": "NA",
   "proc": "1. <obtain the source code and dependency graph of the Java clients per RD>\n2. Review the source code and dependency graph of the Java clients against \"Verify they link against and invoke the CertProvider Binder interface for certificate validation\"\n3. Confirm the Logdog log after the previous step\n$ adb logcat -s Logdog",
   "er": "1. The source code and dependency graph of the Java clients are available for review\n2. The source code and dependency graph of the Java clients satisfy \"Verify they link against and invoke the CertProvider Binder interface for certificate validation\"\n3. <log keyword provided by RD (X-h)>",

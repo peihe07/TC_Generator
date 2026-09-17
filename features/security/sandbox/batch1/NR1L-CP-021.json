@@ -4,7 +4,7 @@
   "test_group": "Cert Provider",
   "test_set": "Service Robustness",
   "test_item": "The Cert Provider feature shall operate within the following resource and performance constraints:\n(resource usage stays within the estimated limits during repeated verification)",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
   "input": "NA",
   "proc": "1. Run the Cert Provider instrumentation test for fotaMcpuCertVerifyStressTest\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#fotaMcpuCertVerifyStressTest com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner\n2. Read the process resource usage on the DUT\n$ adb shell procrank",
   "er": "1. The instrumentation runner reports \"OK (1 test)\" for fotaMcpuCertVerifyStressTest\n2. The adb shell procrank output shows the Cert Provider RAM usage within the stated limit",

@@ -184,7 +184,10 @@ def main() -> int:
         (DATA / "layer2_assign.tsv").open(encoding="utf-8"), delimiter="\t")}
     bo = {r["swe1_id"]: r for r in csv.DictReader(
         (DATA / "batch_order.tsv").open(encoding="utf-8"), delimiter="\t")}
-    scope = {k for k, r in bo.items() if r["ccvr_batch"] == "2" and r["disposition"] != "D"}
+    # batch 2 之範圍 = CCVR 第二批且非 D；`CONVERT_DOC`（R-SEC23，SEC-11）之列由
+    # `gen_deferred.py` 產出 batch 3，不屬本批 —— 不排除會使本斷言誤報（SEC-13 §5 自報）。
+    scope = {k for k, r in bo.items() if r["ccvr_batch"] == "2"
+             and r["disposition"] not in ("D", "CONVERT_DOC")}
     planned = {s[0] for s in SPEC}
     assert planned == scope, f"範圍不符：只在計畫 {planned - scope}；只在 batch_order {scope - planned}"
 
