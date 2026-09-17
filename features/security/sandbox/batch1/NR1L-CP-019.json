@@ -14,7 +14,7 @@
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-009 Requirement Description and Verification Criteria\nPolarion: NRL-349392\nsibling axis: configuration version; rule 1,2 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "source: 037 SWE1-CertProvider-009 Requirement Description and Verification Criteria\nPolarion: NRL-349392\nsibling axis: configuration version; rule 1,2 of SEC-04 4.2\nchannel_feasible: Y/Y\nconflict: 543/546 vs 226; 517 vs 520 — root & CA lifecycle; unresolved per CCVR Mapping notes row 12",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",

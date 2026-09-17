@@ -1,9 +1,9 @@
 tc_id	swe1_id	design_method	remarks_has_scope_note	remarks_excerpt	er_overreach_lines
-NR1L-CP-002	SWE1-CertProvider-001	負向測試	N	source: 037 SWE1-CertProvider-001 Requirement Description and Verification Crite	
-NR1L-CP-004	SWE1-CertProvider-002	負向測試	N	source: 037 SWE1-CertProvider-002 Requirement Description and Verification Crite	
-NR1L-CP-006	SWE1-CertProvider-003	負向測試	N	source: 037 SWE1-CertProvider-003 Requirement Description and Verification Crite	
-NR1L-CP-007	SWE1-CertProvider-004	負向測試	N	source: 037 SWE1-CertProvider-004 Requirement Description and Verification Crite	
-NR1L-CP-008	SWE1-CertProvider-004	功能測試	N	source: 037 SWE1-CertProvider-004 Requirement Description and Verification Crite	
-NR1L-CP-009	SWE1-CertProvider-005	負向測試	N	source: 037 SWE1-CertProvider-005 Requirement Description and Verification Crite	
-NR1L-CP-010	SWE1-CertProvider-005	功能測試	N	source: 037 SWE1-CertProvider-005 Requirement Description and Verification Crite	
-NR1L-CP-023	SWE1-CertProvider-011	負向測試	N	source: 037 SWE1-CertProvider-011 Requirement Description and Verification Crite	
+NR1L-CP-002	SWE1-CertProvider-001	負向測試	Y	source: 037 SWE1-CertProvider-001 Requirement Description and Verification Crite	
+NR1L-CP-004	SWE1-CertProvider-002	負向測試	Y	source: 037 SWE1-CertProvider-002 Requirement Description and Verification Crite	
+NR1L-CP-006	SWE1-CertProvider-003	負向測試	Y	source: 037 SWE1-CertProvider-003 Requirement Description and Verification Crite	
+NR1L-CP-007	SWE1-CertProvider-004	負向測試	Y	source: 037 SWE1-CertProvider-004 Requirement Description and Verification Crite	
+NR1L-CP-008	SWE1-CertProvider-004	功能測試	Y	source: 037 SWE1-CertProvider-004 Requirement Description and Verification Crite	
+NR1L-CP-009	SWE1-CertProvider-005	負向測試	Y	source: 037 SWE1-CertProvider-005 Requirement Description and Verification Crite	
+NR1L-CP-010	SWE1-CertProvider-005	功能測試	Y	source: 037 SWE1-CertProvider-005 Requirement Description and Verification Crite	
+NR1L-CP-023	SWE1-CertProvider-011	負向測試	Y	source: 037 SWE1-CertProvider-011 Requirement Description and Verification Crite	

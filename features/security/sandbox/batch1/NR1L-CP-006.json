@@ -14,7 +14,7 @@
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-003 Requirement Description and Verification Criteria\nPolarion: NRL-349386\nsibling axis: issuer match; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-e — 3. PENDING: X-e wrong-issuer certificate + trigger\nasset: X-h — 3. PENDING: X-h log keyword",
+  "remarks": "source: 037 SWE1-CertProvider-003 Requirement Description and Verification Criteria\nPolarion: NRL-349386\nsibling axis: issuer match; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-e — 3. PENDING: X-e wrong-issuer certificate + trigger\nasset: X-h — 3. PENDING: X-h log keyword\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",

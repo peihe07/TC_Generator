@@ -679,3 +679,65 @@ R-SEC21  PENDING 之佔位化（適用 AWAIT_ASSET 96 行；X-i 依 R-SEC20）
 `U` 由 112 降為 **0**；新 `SS` 判項 **0**；`selfcheck` 九條 **0**。
 (a) 之「交付欄唯一允許之內部代號」為 **R-SEC15(c) 之例外擴充**，
 已於 `selfcheck_r_sec15.py` 之 (c) 判項加同一例外，否則兩條互斥。
+
+---
+
+### R-SEC20(amend) — 適用面之更正與引文豁免（Pei 准 SEC-08 review §一 #1／#3／#4，2026-09-17；SEC-10 §1）
+
+```text
+R-SEC20(amend)  適用面 = 037 VC 以 source code／build files／dependency graph 為受詞之列
+                （CP-006 全部 sibling、CP-008 前兩 THEN、KI-012 之 Android.bp／Static Analysis 兩 sibling）；
+                KI-013／CP-010 之 VC 為實機量測（procrank／df），不適用。混合型（CP-008）之 test_item 尾綴
+                `(document review + log observation)`。
+                (c) 補句：ER 引 037 逐字要件時，引文內之關係模糊語不受 IN §6 校準（lint `H` 對 `"…"` 內豁免，限 security）。
+```
+
+**執行層回報（SEC-10）**：8 TC 之適用面與 SEC-08 所執行者相同（A-25 為分析層計數錯登，條文於此更正）。
+`NR1L-CP-017`／`-018` 之 `test_item` 尾綴改 `(document review + log observation)`（2 格）。
+`H` 之豁免實作於 `FEATURE_EXEMPT["security"]`，**只吞落在 `"…"` 內之命中**，反例已驗（§SEC-10 上繳包 §3）。
+
+---
+
+### R-SEC7(amend2) — 通道與觀察面增列 DOC（Pei 准 SEC-08 review §一 #2，2026-09-17；SEC-10 §1）
+
+```text
+R-SEC7(a)(c) amend2  通道加 DOC：`<obtain <artifact> per RD>`／`Review <artifact> against "<要件>"`，免 `$` 行；
+                     觀察面加 DOC：`<artifact> are available for review`／`<artifact> satisfy "<要件>"`。
+                     出處：037 CP-006／008 VC `Inspect the build files`／`Inspect the source code`；KI-012 Verification Method `Document Review`。
+```
+
+**執行層回報（SEC-10）**：本條追認 SEC-08 已實作之 `SEC_DOC_STEP`（通道）與 `SEC_OBSERVE` 之 DOC 兩句式（觀察面），
+以及 `selfcheck_r_sec15.py` (b) 之同式豁免。條文落檔後兩者不再是「超出授權之改動」。
+
+---
+
+### R-SEC21(b)(amend) — 第四型「步驟型」（Pei 准 SEC-08 review §一 #5／#6，2026-09-17；SEC-10 §1）
+
+```text
+R-SEC21(b) amend  第四型「步驟型」：`<<性質> provided by RD (X-<n>)> is executed` ＋ 次行 `$ <command provided by RD (X-<n>)>`；
+                  「性質」逐字取原 PENDING 文字，不補 TC 語境；示例改為 `<log keyword provided by RD (X-h)>`。
+```
+
+**執行層回報（SEC-10）**：v04 之四型計數 觸發 30／步驟 **11**／結果 24／值 31 = 96，與本條相符；
+v05 不變（本包未改佔位）。
+
+---
+
+### R-SEC22 — CCVR 衝突與範圍之 Remarks 定式（Pei 裁，2026-09-17；SEC-09 review §一／SEC-10 §1）
+
+```text
+R-SEC22  CCVR 衝突與範圍之 Remarks 定式
+  (a) `conflict: <SYS2 對照> — <十字內短述>; unresolved per CCVR Mapping notes row <r>`
+      CP-007／009 全部 sibling（`NR1L-CP-015`／`-016`／`-019`／`-020`）：`conflict: 543/546 vs 226; 517 vs 520 — root & CA lifecycle; unresolved per CCVR Mapping notes row 12`
+      SWDL 全部（`NR1L-SWDL-001`~`-006`）：`conflict: 344 vs Auth-Prog item 7 — rollback; unresolved per CCVR Mapping notes row 13`
+      KI-009／010 全部 sibling（`NR1L-KI-016`~`-019`）：`conflict: 376/509/511 vs 510 vs 514 — key strength; unresolved per CCVR Mapping notes row 14`
+      CP-004／005 全部 sibling（`NR1L-CP-007`~`-010`）：`conflict: 529/383/532/539 — DCL not deployed; unresolved per CCVR Mapping notes row 10`
+      ECUCert EXPORTCSR（`NR1L-ECUC-010`）：`conflict: 562~565 — CSR format evidence pending; unresolved per CCVR Mapping notes row 15`
+  (b) `scope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)`
+      → `NR1L-CP-002`／`-004`／`-006`／`-007`／`-008`／`-009`／`-010`／`-023`
+  (c) CCVR 引用一律 `item <n>`；`NR1L-SWDL-005`／`-006` 之 `rows 3/5/6/7/8` → `items 3/5/6/7/8`。
+  (d) 皆為 Remarks 增行；lint 不新增判項。
+```
+
+**執行層回報（SEC-10）**：19 TC 加 `conflict:`（4＋6＋4＋4＋1）、8 TC 加 `scope:`、2 TC `rows`→`items`；
+合計 **29 TC** 之 Remarks 增／改行，交付欄不動。`NR1L-CP-007`~`-010` 同時落 (a) 與 (b)（兩行併存）。

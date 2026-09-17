@@ -178,6 +178,8 @@ DOC_REVIEW_PRE = {
     "SWE1-CertProvider-008": None,
     "SWE1-KeyInsyall-012": ["Access to the RD build environment for KeyInstall is granted"],
 }
+# R-SEC20(amend)：混合型（CP-008 第三步仍為 log 觀察）之 test_item 尾綴。
+DOC_SUFFIX_MIXED = {"SWE1-CertProvider-008"}
 DOC_REVIEW = {"SWE1-CertProvider-006|1", "SWE1-CertProvider-006|2",
               "SWE1-CertProvider-006|3", "SWE1-CertProvider-006|4",
               "SWE1-CertProvider-008|1", "SWE1-CertProvider-008|2",
@@ -503,6 +505,36 @@ def first_sentence(desc: str) -> str:
 
 
 
+# ---------------------------------------------------- R-SEC22：CCVR 衝突與範圍之 Remarks 定式
+# (a) 衝突註 —— 依 SWE1 列指派（CCVR `Mapping notes` 之未解衝突）。
+CONFLICT_NOTE: dict[str, str] = {
+    "SWE1-CertProvider-007": "conflict: 543/546 vs 226; 517 vs 520 — root & CA lifecycle; "
+                             "unresolved per CCVR Mapping notes row 12",
+    "SWE1-CertProvider-009": "conflict: 543/546 vs 226; 517 vs 520 — root & CA lifecycle; "
+                             "unresolved per CCVR Mapping notes row 12",
+    "SWE1-CertProvider-004": "conflict: 529/383/532/539 — DCL not deployed; "
+                             "unresolved per CCVR Mapping notes row 10",
+    "SWE1-CertProvider-005": "conflict: 529/383/532/539 — DCL not deployed; "
+                             "unresolved per CCVR Mapping notes row 10",
+    "SWE1-KeyInsyall-009": "conflict: 376/509/511 vs 510 vs 514 — key strength; "
+                           "unresolved per CCVR Mapping notes row 14",
+    "SWE1-KeyInsyall-010": "conflict: 376/509/511 vs 510 vs 514 — key strength; "
+                           "unresolved per CCVR Mapping notes row 14",
+    "SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF":
+        "conflict: 562~565 — CSR format evidence pending; "
+        "unresolved per CCVR Mapping notes row 15",
+}
+# SwdlSecureLib 全列（`NR1L-SWDL-001`~`-006`）
+for _swdl in ("001", "002", "003", "004", "005"):
+    CONFLICT_NOTE[f"SWE1-SRA-SECURITY-SWDL-{_swdl}"] = (
+        "conflict: 344 vs Auth-Prog item 7 — rollback; "
+        "unresolved per CCVR Mapping notes row 13")
+# (b) 範圍註 —— CP 之負向 sibling ＋ CP-004／005 全部 sibling（CCVR Cert Val CS.98 rationale）。
+SCOPE_NOTE = ("scope: service-level validation; reprogramming rejection owned by SWDL "
+              "(CCVR Cert Val CS.98 rationale)")
+SCOPE_ALL_SIBLINGS = ("SWE1-CertProvider-004", "SWE1-CertProvider-005")
+
+
 # ---------------------------------------------------- R-SEC21：PENDING → 描述性佔位
 # 供給方：多數為 RD；實體憑證鏈由 STLA 供（X-c／X-d 之 EXEC_ASSETS 所載）。
 PROVIDER = {"X-c": "STLA", "X-d": "STLA"}
@@ -623,6 +655,9 @@ def main() -> int:
         tc_id = f"NR1L-{ABBR[group]}-{counter[group]:03d}"
         key_sib = f'{swe1}|{s["sibling_no"]}'
         doc_rev = key_sib in DOC_REVIEW
+        doc_suffix = ("" if not doc_rev else
+                      " (document review + log observation)"
+                      if swe1 in DOC_SUFFIX_MIXED else " (document review)")
         steps = STEPS[key_sib]
         proc, er = [], []
         for i, (d, cmd, e) in enumerate(steps, 1):
@@ -652,7 +687,7 @@ def main() -> int:
             remarks.append("source: Z1 IntegrationTests/PythonTests/KeysInstallationTests/"
                            "test_java_integration.py (instrument command verbatim)")
         if "31 01 F0 00" in r_proc_probe(STEPS[f'{swe1}|{s["sibling_no"]}']):
-            remarks.append("source: CCVR Auth-Prog CS.93 evidence rows 3/5/6/7/8; "
+            remarks.append("source: CCVR Auth-Prog CS.93 evidence items 3/5/6/7/8; "  # R-SEC22(c)
                            "response byte 4 bit field per CS.00102 SYS-RA-CS00102-685")
         remarks += [
                    f'sibling axis: {s["axis"]}; rule {s["rule"]} of SEC-04 4.2',
@@ -664,10 +699,15 @@ def main() -> int:
         used = {m for m in re.findall(r"#([A-Za-z]+) ", " ".join(proc) + " ")}
         for meth in sorted(used):
             remarks.append(f"apk pairing: {meth} (apk_pairing.tsv)")
+        if swe1 in CONFLICT_NOTE:                                # R-SEC22(a)
+            remarks.append(CONFLICT_NOTE[swe1])
+        if group == "Cert Provider" and (NEG.split(" (")[0] in design
+                                         or swe1 in SCOPE_ALL_SIBLINGS):
+            remarks.append(SCOPE_NOTE)                           # R-SEC22(b)
         r = {"req_id": swe1, "tc_id": tc_id, "test_group": group,
              "test_set": l2[swe1]["test_set"],
              "test_item": f'{d_first[swe1]}\n({s["lower_half(English)"]}'
-                          f'{" (document review)" if doc_rev else ""})',
+                          f'{doc_suffix})',
              "pre": "\n".join(f"{i}. {x}" for i, x in enumerate(
                  (DOC_REVIEW_PRE.get(swe1) or
                   PRE[swe1] + ["Access to the RD build environment for "

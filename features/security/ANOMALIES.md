@@ -56,3 +56,11 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 
 Inline format in generated JSON reasoning: `[ASSUMPTION A-SEnn]`。
 Phase 2 生成前須先結 `[A-SE03]`。
+
+## 回饋 RD 之 ANOMALIES —— CCVR 落地審計（SEC-09 審計；SEC-10 落檔，2026-09-17）
+
+| 標記 | 事實（執行層複驗） | 影響 | 處置 |
+|---|---|---|---|
+| `[A-SEC-8]` | CCVR `NEW-CERT-02`（Audit minimal TLS CA list）要求「清出未使用／已到期／安全性過時之 root，並留定期稽核紀錄」；037 `SWE1-CertProvider-007`（Secure and Persistent Storage for Trusted Certificates）與 `-009`（Product and Application Dependent Configuration）之 Description／Verification Criteria **無到期、稽核、清理之語意**（逐字查無 `expire`／`audit`／`obsolete`）| 該軸（boundary：憑證到期／過時）在本 feature 無 037 依據，拆 sibling 即越 037（IN §8.4.2）| **不拆**；回饋 037 作者評估是否補 SWE1 要求 |
+| `[A-SEC-9]` | CCVR `NEW-ID-01`（Validate all identity-certificate installation fields）要求「recovery 之後仍不得生效」；對 ECUCert 037 **十三列**之 `Requirement Description` 與 `Verification Criteria` 逐列 grep `reboot`／`recovery`／`restart`／`power cycle`（大小寫不計）**命中 0** | 持久化／recovery 軸（IN §8.3）在 037 無載，無從逐字落地 | **不拆**（SEC-10 §3-4 之「無命中」分支）；回饋 037 作者 |
+| `[A-SEC-10]` | CCVR `New test cases` 47 條中 **12 條**落不到 037 任何列（`NEW-CERT-10` Apps signer validity period、`NEW-REV-05` revocation triggers／approvals、`NEW-BOOT-01` startup authentication scope、`NEW-DIAG-01` diagnostic role permissions、`NEW-NET-01` external TLS、`NEW-NET-02` server allowlist／URL、`NEW-FW-01`／`NEW-FW-02` firewall／anti-spoofing、`NEW-BT-01` Bluetooth、`NEW-WIFI-01` Wi-Fi AP、`NEW-DATA-01` user data 保護／抹除、`NEW-PROC-01` 驗證計畫治理）| 題域落在網路／藍牙／Wi-Fi／OS／診斷權限／流程治理，非 Security feature 六元件之射程；**SWE.1 層之覆蓋缺口**，不是 SWE.6 之漏寫 | 不由 Security 承接；整份清單回饋 RD／037 作者（`data/audit_ccvr/audit_newtc.tsv` 之 `class = NO_SWE1` 十二列）|

@@ -14,7 +14,7 @@
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-004 Requirement Description and Verification Criteria\nPolarion: NRL-349387\nsibling axis: revocation outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-e — 2. PENDING: X-e revoked certificate + trigger\nasset: X-h — 2. PENDING: X-h log keyword",
+  "remarks": "source: 037 SWE1-CertProvider-004 Requirement Description and Verification Criteria\nPolarion: NRL-349387\nsibling axis: revocation outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-e — 2. PENDING: X-e revoked certificate + trigger\nasset: X-h — 2. PENDING: X-h log keyword\nconflict: 529/383/532/539 — DCL not deployed; unresolved per CCVR Mapping notes row 10\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",

@@ -9,6 +9,7 @@
 """
 from __future__ import annotations
 
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -19,7 +20,9 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 from backend.xlsx_surgical import surgical_save          # noqa: E402
 
-SRC = ROOT / "features/security/sandbox/merged/security_v04.xlsx"
+# 來源版本與生成側同旗標（`SEC_VER`，預設 v05）。
+VER = os.environ.get("SEC_VER", "v05")
+SRC = ROOT / f"features/security/sandbox/merged/security_{VER}.xlsx"
 OUT_DIR = ROOT / "features/security/sandbox/delivery"
 # 檔名式（量測 SWC 0708／Home 0809 逐字）：
 #   FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_<Feature>_<YYYYMMDD>.xlsx

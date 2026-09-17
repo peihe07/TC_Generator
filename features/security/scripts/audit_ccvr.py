@@ -30,8 +30,10 @@ _s = importlib.util.spec_from_file_location("g1", Path(__file__).parent / "gen_b
 g1 = importlib.util.module_from_spec(_s)
 _s.loader.exec_module(g1)
 
-# 審計對象：最新 merged 本
-MERGED = ROOT / "features/security/sandbox/merged/security_v04.xlsx"
+# 審計對象：最新 merged 本（版本同生成側旗標）
+import os                                                    # noqa: E402
+MERGED = (ROOT / "features/security/sandbox/merged"
+          / f'security_{os.environ.get("SEC_VER", "v05")}.xlsx')
 
 # §1 六衝突（下放包 §1；C4 之涉及列由執行層依 notes 內容指定）
 CONFLICTS = [
@@ -83,6 +85,21 @@ COV_NEG = r"reject|fail|invalid|untrusted|wrong|mismatch|not identical|no |denie
 COV_BND = r"boundary|range|order|validity|counter|limit|target|uniqueness"
 COV_ENV = r"architecture|platform|media|path|environment|build|upgrade|reset|reboot|" \
           r"persistence|target|stage|location"
+
+
+# SEC-09 review §二（SEC-10 落地）：落點 SWE1 指錯者之改判 —— 追加真正覆蓋該軸之列。
+COVERED_BY_OTHER = {
+    # 跨簽 bus image 之拒絕 = KI-003 之 non-platform（R1LRefresh）負向 sibling
+    "NEW-BOOT-02": ["SWE1-KeyInsyall-003"],
+    # SELinux 關閉失敗 = `NR1L-KI-022`（KI-012 sibling 1，avc denied）
+    "NEW-OS-01": ["SWE1-KeyInsyall-012"],
+}
+# 已裁不拆者之處置（`ANOMALIES.md`）
+DISPOSITION = {
+    "NEW-CERT-02": "A-SEC-8 (037 無到期／稽核語意，不拆)",
+    "NEW-ID-01": "A-SEC-9 (ECUCert 037 十三列無 reboot／recovery／restart／power cycle，不拆)",
+    "NEW-NET-01": "A-26 (trace_matrix 指派已清除，改判 NO_SWE1)",
+}
 
 
 def sha16(p: Path) -> str:
@@ -198,7 +215,8 @@ def main() -> int:
     with (OUT / "audit_newtc.tsv").open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, delimiter="\t")
         w.writerow(["new_id", "title", "sys2", "swe1_ids", "class", "covering_tc_ids",
-                    "gap_axis", "swe1_via_sys2_only", "required_axes", "covered_axes"])
+                    "gap_axis", "swe1_via_sys2_only", "required_axes", "covered_axes",
+                    "disposition"])
         for r in rows:
             nid = (r[0] or "").strip()
             if not nid:
@@ -207,7 +225,10 @@ def main() -> int:
             sys2 = [x.strip() for x in str(r[2] or "").split("\n") if x.strip()]
             via_new = set(by_new.get(nid, set()))
             via_sys2 = set().union(*(by_sys2.get(i, set()) for i in sys2)) if sys2 else set()
-            swes = via_new or via_sys2
+            # 指派之權威面為 `new_test_ids`（分析層 SEC-01 建立）；SYS2 反查只作交叉驗證
+            # （SEC-09 §5-1：兩路一致，(b) 未增任何列）。A-26 清除後 `NEW-NET-01` 即無指派，
+            # 其 SYS2 交集屬偶然，不得回填 → 改判 `NO_SWE1`。
+            swes = set(via_new) | set(COVERED_BY_OTHER.get(nid, []))
             text = " ".join(str(x or "") for x in r[1:6])
             req_ax = axes_of(text)
             tc_ids = [t["tc_id"] for s in swes for t in by_swe.get(s, [])]
@@ -228,7 +249,8 @@ def main() -> int:
             w.writerow([nid, title, ";".join(sys2), ";".join(sorted(swes)), cls,
                         ";".join(sorted(set(tc_ids))), ";".join(gap),
                         ";".join(sorted(via_sys2 - via_new)),
-                        ";".join(sorted(req_ax)), ";".join(sorted(cov_ax))])
+                        ";".join(sorted(req_ax)), ";".join(sorted(cov_ax)),
+                        DISPOSITION.get(nid, "")])
 
     print(f"審計本：{MERGED.relative_to(ROOT)}  sha16 {sha16(MERGED)}")
     print(f"CCVR：{CCVR.name}  sha16 {sha16(CCVR)}")

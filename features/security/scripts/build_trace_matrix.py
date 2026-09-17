@@ -456,7 +456,13 @@ def main() -> int:
             md.append(m["md"])
             rel.append(m["existing_rel"])
             if m["new_test_ids"]:
-                newids.append(m["new_test_ids"])
+                # A-26（SEC-09 review）：`NEW-NET-01`（對外 TLS）之 SYS2 清單與
+                # SwdlSecureLib 諸列偶然交集，題域不同 —— 清除該指派（R-SEC22 併案）。
+                ids = [i for i in m["new_test_ids"].split()
+                       if not (i == "NEW-NET-01" and row["swe1_id"].startswith(
+                           "SWE1-SRA-SECURITY-SWDL-"))]
+                if ids:
+                    newids.append(" ".join(ids))
 
         ccvr_keys, apk = [], set()
         for s in secs_sorted:
