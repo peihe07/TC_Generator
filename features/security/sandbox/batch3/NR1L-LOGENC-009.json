@@ -1,0 +1,28 @@
+{
+  "req_id": "SWE1-LOGENC-005",
+  "tc_id": "NR1L-LOGENC-009",
+  "test_group": "Log Encrypt",
+  "test_set": "Encryption Services",
+  "test_item": "Log encryption should encrypt symmetric key by RSA symmetric encryption method.\n(the symmetric key is encrypted with the RSA key (document review))",
+  "pre": "1. Access to the RD build environment for Log Encryption is granted",
+  "input": "NA",
+  "proc": "1. <obtain the Log Encryption source code per RD>\n2. Review the Log Encryption source code against \"Log Encrypt will get RSA symmetric key to encrypt symmetric key\"",
+  "er": "1. The Log Encryption source code is available for review\n2. The Log Encryption source code satisfies \"Log Encrypt will get RSA symmetric key to encrypt symmetric key\"",
+  "spec": "SWE1_libLogEncrypt_FM-WI-FSM-037-A03_SWE1-LOGENC-005",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "verification: document review (R-SEC23; upstream DR-a/i/r pending)\nsource: 037 SWE1-LOGENC-005 Requirement Description and Verification Criteria\nsibling axis: asymmetric wrapping; rule R-SEC23(b) VC THEN 3.1\nchannel_feasible: N/N",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "placeholders": []
+}

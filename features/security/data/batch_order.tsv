@@ -23,7 +23,7 @@ SWE1-KeyInsyall-010	1	-	Cert Val CS.98、Secure Log CS.212	Mapping detail 落點
 SWE1-KeyInsyall-011	1	-	Cert Val CS.98	Mapping detail 落點：Cert Val CS.98
 SWE1-KeyInsyall-012	1	-	Cert Val CS.98、Secure Log CS.212	Mapping detail 落點：Cert Val CS.98；SWE1-direct（037 log 斷言，R-SEC5(a)）
 SWE1-KeyInsyall-013	1	-	Cert Val CS.98	Mapping detail 落點：Cert Val CS.98
-SWE1-SAM-0001	1	D	Auth-Prog CS.93	Mapping detail 落點：Auth-Prog CS.93
+SWE1-SAM-0001	1	CONVERT_DOC	Auth-Prog CS.93	Mapping detail 落點：Auth-Prog CS.93
 SWE1-SAM-0002	1	-	Auth-Prog CS.93	Mapping detail 落點：Auth-Prog CS.93
 SWE1-SAM-0003	2	-	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-SAM-0004	1	-	Secure Log CS.212	SWE1-direct（037 log 斷言，R-SEC5(a)）
@@ -41,31 +41,31 @@ SWE1-SAM-0015	1	-	Secure Log CS.212	SWE1-direct（037 log 斷言，R-SEC5(a)）
 SWE1-SAM-0016	2	-	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-SAM-0017	2	-	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-SAM-0018	1	-	Auth-Prog CS.93	Mapping detail 落點：Auth-Prog CS.93
-SWE1-SAM-0019	1	D	Auth-Prog CS.93	Mapping detail 落點：Auth-Prog CS.93
+SWE1-SAM-0019	1	CONVERT_DOC	Auth-Prog CS.93	Mapping detail 落點：Auth-Prog CS.93
 SYSAD_SEC_ECUCERT_ECUCERT_API	1	-	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
 SYSAD_SEC_ECUCERT_ECUCERT_SERVICE	1	-	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
-SYSAD_SEC_ECUCERT_ECUONLINE	1	D	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
+SYSAD_SEC_ECUCERT_ECUONLINE	1	CONVERT_DOC	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
 SYSAD_SEC_ECUCERT_DIAG	1	-	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
 SYSAD_SEC_ECUCERT_DEALER	1	-	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
-SYSAD_SEC_ECUCERT_ECUCERT_SERVICE_BINDER	1	D	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
-SYSAD_SEC_ECUCERT_ECUONLINE_BINDER	1	D	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
-SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO	1	D	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
-SYSAD_SEC_ECUCERT_ECUCERT_JNI	1	D	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
+SYSAD_SEC_ECUCERT_ECUCERT_SERVICE_BINDER	1	CONVERT_DOC	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
+SYSAD_SEC_ECUCERT_ECUONLINE_BINDER	1	CONVERT_DOC	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
+SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO	1	CONVERT_DOC	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
+SYSAD_SEC_ECUCERT_ECUCERT_JNI	1	CONVERT_DOC	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
 SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF	1	-	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
 SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCERT_INTF	1	-	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
 SYSAD_SEC_ECUCERT_ECUCERT_SRV_IMPORTCERT_INTF	1	-	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
-SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF	1	D	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
-SWE1-SRA-SECURITY-SWDL-001	1	D	Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98、ECU ID CS.165	Mapping detail 落點：Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98、ECU ID CS.165
-SWE1-SRA-SECURITY-SWDL-002	1	D	Auth-Prog CS.93、Cert Val CS.98	Mapping detail 落點：Auth-Prog CS.93、Cert Val CS.98
+SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF	1	CONVERT_DOC	ECU ID CS.165	Mapping detail 落點：ECU ID CS.165
+SWE1-SRA-SECURITY-SWDL-001	1	CONVERT_DOC	Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98、ECU ID CS.165	Mapping detail 落點：Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98、ECU ID CS.165
+SWE1-SRA-SECURITY-SWDL-002	1	CONVERT_DOC	Auth-Prog CS.93、Cert Val CS.98	Mapping detail 落點：Auth-Prog CS.93、Cert Val CS.98
 SWE1-SRA-SECURITY-SWDL-003	1	-	Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98	Mapping detail 落點：Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98
 SWE1-SRA-SECURITY-SWDL-004	1	-	Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98	Mapping detail 落點：Auth-Boot CS.93、Auth-Prog CS.93、Cert Val CS.98
-SWE1-SRA-SECURITY-SWDL-005	1	D	Auth-Prog CS.93、Cert Val CS.98	Mapping detail 落點：Auth-Prog CS.93、Cert Val CS.98
-SWE1-LOGENC-001	2	D	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-002	2	D	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-003	2	D	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-004	2	D	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-005	2	D	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-SRA-SECURITY-SWDL-005	1	CONVERT_DOC	Auth-Prog CS.93、Cert Val CS.98	Mapping detail 落點：Auth-Prog CS.93、Cert Val CS.98
+SWE1-LOGENC-001	2	CONVERT_DOC	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-002	2	CONVERT_DOC	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-003	2	CONVERT_DOC	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-004	2	CONVERT_DOC	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-005	2	CONVERT_DOC	-	未落 CCVR 五 test item；Mapping detail 無對應
 SWE1-LOGENC-006	2	-	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-007	2	D	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-008	2	D	-	未落 CCVR 五 test item；Mapping detail 無對應
-SWE1-LOGENC-009	2	D	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-007	2	CONVERT_DOC	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-008	2	CONVERT_DOC	-	未落 CCVR 五 test item；Mapping detail 無對應
+SWE1-LOGENC-009	2	CONVERT_DOC	-	未落 CCVR 五 test item；Mapping detail 無對應

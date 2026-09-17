@@ -741,3 +741,20 @@ R-SEC22  CCVR 衝突與範圍之 Remarks 定式
 
 **執行層回報（SEC-10）**：19 TC 加 `conflict:`（4＋6＋4＋4＋1）、8 TC 加 `scope:`、2 TC `rows`→`items`；
 合計 **29 TC** 之 Remarks 增／改行，交付欄不動。`NR1L-CP-007`~`-010` 同時落 (a) 與 (b)（兩行併存）。
+
+---
+
+### R-SEC23 — DEFERRED 列之產出（R-SEC11(b) 之解凍）（Pei 指示「請先繼續產出」，2026-09-17；SEC-11 §1）
+
+```text
+R-SEC23  DEFERRED 列之產出（R-SEC11(b) 之解凍）
+  (a) `disposition = D` 之 19 列（LOGENC 001/002/003/004/005/007/008/009；ECUCert SERVICE_BINDER／ECUONLINE_BINDER／
+      ECUCERT_JNI／STORAGE_IO／ECUONLINE／ECUONLINE_DOWNLOADCERT_INTF；SWDL 001/002/005；SAM 0001/0019）
+      依 R-SEC20 文件審查定式產出 TC；`disposition` 改 `CONVERT_DOC`。
+  (b) sibling：037 `Verification Criteria` 之每一可獨立審查之要件（THEN 子句或列舉項）= 1 TC；無 VC 而只有 Description 者，
+      以 Description 之每一 `shall` 子句為要件。artifact 依 037 受詞逐字（`source code`／`library`／`interface`／`build files`）。
+  (c) Priority 依 R-SEC16 = P2；Design Method `功能測試 (Functional based ; no specific technique)`；`test_item` 下半加 `(document review)`。
+  (d) Remarks 首行 `verification: document review (R-SEC23; upstream DR-a/i/r pending)`；ECUCert 六列之 ID 依 R-SEC3(b) 用 SYSAD 首值。
+  (e) 上游回覆後之處置：DR-a（ECUCert 補 SWE ID）→ Revise 只改 ID 欄；DR-i／r → 不影響本群；若 037 作者將任一列改為 Testing
+      且給出可執行 VC，該列依 R-SEC4 重寫，文件審查 TC 作廢（R-TM13 保留舊本）。
+```

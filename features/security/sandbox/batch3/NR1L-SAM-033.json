@@ -1,0 +1,28 @@
+{
+  "req_id": "SWE1-SAM-0019",
+  "tc_id": "NR1L-SAM-033",
+  "test_group": "SAM",
+  "test_set": "Service Environment",
+  "test_item": "Logdog interface for logging;\n(the assigned SW components are used (document review))",
+  "pre": "1. Access to the RD build environment for DebugAuth is granted",
+  "input": "NA",
+  "proc": "1. <obtain the DebugAuth source code about AuthData checking per RD>\n2. Review the DebugAuth source code about AuthData checking against \"DebugAuth is using assigned SW components\"",
+  "er": "1. The DebugAuth source code about AuthData checking is available for review\n2. The DebugAuth source code about AuthData checking satisfies \"DebugAuth is using assigned SW components\"",
+  "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0019",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "verification: document review (R-SEC23; upstream DR-a/i/r pending)\nsource: 037 SWE1-SAM-0019 Requirement Description and Verification Criteria\nsibling axis: external component usage; rule R-SEC23(b) VC THEN 3.1\nchannel_feasible: N/N",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "placeholders": []
+}

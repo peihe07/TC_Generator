@@ -31,7 +31,7 @@ OUT_XLSX = SB / "merged" / f"security_{g1.VER}.xlsx"
 def main() -> int:
     OUT_XLSX.parent.mkdir(parents=True, exist_ok=True)
     tcs = []
-    for d in (SB / "batch1", SB / "batch2"):
+    for d in (SB / "batch1", SB / "batch2", SB / "batch3"):   # batch3：SEC-11 之 DEFERRED 群
         for f in d.glob("NR1L-*.json"):
             tcs.append(json.loads(f.read_text(encoding="utf-8")))
 

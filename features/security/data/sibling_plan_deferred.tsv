@@ -1,0 +1,25 @@
+swe1_id	sibling_no	lower_half(English)	axis	trigger_channel	pending_expected	priority	rule	artifact	requirement(037 verbatim)
+SWE1-LOGENC-001	1	the source code is integrated with Android 14	build integration	DOC	N	P2	R-SEC23(b) VC THEN 3.	the Log Encrypt source code	the code is integrated with Android 14
+SWE1-LOGENC-002	1	logdog links to Log Encryption without link error	link integration	DOC	N	P2	R-SEC23(b) VC THEN 3.	the project build environment	logdog could link to Log Encryption without link error
+SWE1-LOGENC-003	1	the encryptLogFile API is provided for LogDog	API provision	DOC	N	P2	R-SEC23(b) VC item 1	the LogEncrypt library	LogEncrypt library should provide API for LogDog: encryptLogFile(const std::string& plainLogFilename, const std::string& protectedLogFilename, const std::string& protectedKeyFilename) to encrypt log files
+SWE1-LOGENC-004	1	AES is used for symmetric encryption	symmetric algorithm	DOC	N	P2	R-SEC23(b) VC THEN 3.1	the Log Encryption source code	AES is used for symmetric encryption of log files
+SWE1-LOGENC-004	2	unique AES-256 keys are generated with OpenSSL primitives	key generation source	DOC	N	P2	R-SEC23(b) VC trailing sentence (independent requirement outside THEN)	the Log Encryption source code	LogEncrypt feature uses OpenSSL library primitives for generating unique AES-256 symmetric keys to encrypt log files
+SWE1-LOGENC-005	1	the symmetric key is encrypted with the RSA key	asymmetric wrapping	DOC	N	P2	R-SEC23(b) VC THEN 3.1	the Log Encryption source code	Log Encrypt will get RSA symmetric key to encrypt symmetric key
+SWE1-LOGENC-007	1	the AES key is obtained from BoringSSL	AES key source	DOC	N	P2	R-SEC23(b) VC THEN 3.	the Log Encryption source code	AES key is get from BoringSSL
+SWE1-LOGENC-008	1	the key is obtained from KeyInstall	RSA key source	DOC	N	P2	R-SEC23(b) VC THEN 3.	the Log Encryption source code	AES key is get from KeyInstall
+SWE1-LOGENC-009	1	a file operation interface exists	file interface	DOC	N	P2	R-SEC23(b) VC THEN 3.	the Log Encryption source code	there exists a interface for file operation
+SWE1-SAM-0001	1	the source code is integrated with Android 14	build integration	DOC	N	P2	R-SEC23(b) VC THEN 3.1	the DebugAuth source code	the code is integrated with Android 14
+SWE1-SAM-0019	1	the assigned SW components are used	external component usage	DOC	N	P2	R-SEC23(b) VC THEN 3.1	the DebugAuth source code about AuthData checking	DebugAuth is using assigned SW components
+SWE1-SRA-SECURITY-SWDL-001	1	the SWDL configuration is kept	config retention	DOC	N	P2	R-SEC23(b) VC item 1	the SwdlSecureLib library	keep SWDL config
+SWE1-SRA-SECURITY-SWDL-001	2	the KEY / certificate interface is controlled	key and certificate control	DOC	N	P2	R-SEC23(b) VC item 2	the SwdlSecureLib library	control KEY / certificate interface
+SWE1-SRA-SECURITY-SWDL-002	1	the key and certificate provider is used	provider interaction	DOC	N	P2	R-SEC23(b) VC item 1	the key agent implementation	interact to KEY and certificate provider
+SWE1-SRA-SECURITY-SWDL-005	1	the current key is updated and the return value is checked	key update	DOC	N	P2	R-SEC23(b) VC item 1	the client-side key update interface	update current key and check the return value
+SWE1-SRA-SECURITY-SWDL-005	2	a different key is used for decryption	key mismatch handling	DOC	N	P2	R-SEC23(b) VC item 2	the client-side key update interface	use differ key to decrypt
+SYSAD_SEC_ECUCERT_ECUCERT_SERVICE_BINDER	1	the client communicates with the service through the binder	IPC provision	DOC	N	P2	R-SEC23(b) VC	the ECUCertService AIDL interface	Client can communicate to service through binder
+SYSAD_SEC_ECUCERT_ECUONLINE_BINDER	1	the client communicates with the service through the binder	IPC provision	DOC	N	P2	R-SEC23(b) VC	the ECUOnlineService AIDL interface	Client can communicate to service through binder
+SYSAD_SEC_ECUCERT_ECUCERT_JNI	1	the Java types are converted without memory leaks	type conversion	DOC	N	P2	R-SEC23(b) VC (English sentence)	the ECU Cert JNI layer	jbyteArray and jstring are correctly converted to uint8_t* and std::string without memory leaks
+SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO	1	the Java types are converted without memory leaks	type conversion	DOC	N	P2	R-SEC23(b) VC (English sentence; identical to the JNI row in 037 — see SEC-11 submission)	the Cert Store file path access implementation	jbyteArray and jstring are correctly converted to uint8_t* and std::string without memory leaks
+SYSAD_SEC_ECUCERT_ECUONLINE	1	the input parameter range is handled	parameter range	DOC	N	P2	R-SEC23(b) VC item 1	the ECU Online module	input parameter range test
+SYSAD_SEC_ECUCERT_ECUONLINE	2	both decrypt pass and decrypt failure are handled	decrypt outcome	DOC	N	P2	R-SEC23(b) VC item 2	the ECU Online module	test interface can handle decrypt data pass and failed
+SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF	1	the STLA connection is provided	backend connection	DOC	N	P2	R-SEC23(b) VC item 1	the certificate download interface	Connect to STLA
+SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF	2	the ECU ID download is provided	download	DOC	N	P2	R-SEC23(b) VC item 2	the certificate download interface	Download ECU ID
