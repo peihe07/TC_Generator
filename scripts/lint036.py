@@ -52,10 +52,60 @@ VEHICLE_MODEL_HEADERS: tuple[str, ...] = (
     "HDCC27", "DT27", "VF(ProMaster)637", "Commander (598)",
     "Regengade (5210)", "Toro(2261)", "Fastack (376)",
 )
-# R-CAM2(b)：兩車型已不支援，Camera 兩本一律 `0`
+# R-CAM2(b)：兩車型已不支援，Camera 兩本一律 `0`。
+# **R-G74（Pei 2026-09-17）由 Camera 升為全域**：FW036 全 feature 之此二欄一律 `0`。
 VEHICLE_MODEL_ZERO: frozenset[str] = frozenset(
     {"Commander (598)", "Regengade (5210)"})
 VEHICLE_MODEL_ALLOWED: frozenset[str] = frozenset({"0", "1"})
+
+# --- Diagnostics profile 專屬常數（R-DIAG5(amend)／R-DIAG1(a)／R-DIAG3(amend)／R-DIAG6）---
+# 白名單之**定義**為 `features/diagnostics/data/layer3_assign.tsv` 之 DID 集合
+# （下放包 CDD-01_A T4 括號內書「27 種」，該數為 CDD-01 3-5 之 037 token 種數，非本集合；
+#  依定義實測為 36 種 —— 見上繳包 §4）。白名單外之 `$`+4hex 即非本 feature 之 DID。
+DIAG_DID_WHITELIST: frozenset[str] = frozenset({
+    "$0307", "$0309", "$030A", "$0312", "$031B", "$1801", "$180C", "$1820",
+    "$1821", "$280C", "$2812", "$283F", "$2840", "$2841", "$2842", "$2843",
+    "$2844", "$2845", "$2846", "$2847", "$2848", "$2870", "$5000", "$5001",
+    "$5002", "$5003", "$5004", "$5005", "$5006", "$5008", "$5009", "$500A",
+    "$500B", "$500C", "$500D", "$5100",
+})
+# `$`+4hex，且**不以 `$` 結尾** —— `$MESSAGE.Signal$` 式維持檢查 P 原判（R-DIAG5(a)）
+RE_DIAG_DID = re.compile(r"\$[0-9A-Fa-f]{4}(?!\$)(?![0-9A-Za-z_.])")
+# R-DIAG5(amend)(d) 五碼之 ISO 名稱；U-DIAG 之 label 值域 = 本集合 ∪ CFTS004 原字
+DIAG_NRC_LABELS: frozenset[str] = frozenset({
+    "serviceNotSupported", "subFunctionNotSupported",
+    "incorrectMessageLengthOrInvalidFormat", "conditionsNotCorrect",
+    "requestOutOfRange",
+    # CFTS004 原字（up CDD-01 §7-1：帶值之 5 列所用者）
+    "Conditions Not Correct", "Request Out of Range",
+    # 037 定型句原字（R-DIAG5(amend)(d) 之觸發語，ER 引 037 逐字時用）
+    "Service Not Supported",
+})
+# UDS 位元組串之起點：`Send UDS request`／`positive response`／`negative response`。
+# **不在正則內貪婪吃完整串** —— 起點之後逐 token 走，遇第一個「非位元組候選」即止，
+# 否則 `… 22 28 3F via diagnostic tool` 之 `via`／`diag` 會被當成壞 byte 報出
+# （T4 自測實測之假陽性 3 例）。
+RE_UDS_START = re.compile(
+    r"(?:Send\s+UDS\s+request|positive\s+response|negative\s+response)\s+", re.I)
+# 位元組候選：純 hex 1–4 位，或帶 `0x` 前綴者（後者本身即違規，須被收進來才報得出）
+RE_UDS_CAND = re.compile(r"^(?:0[xX])?[0-9A-Fa-f]{1,4}$")
+RE_UDS_BYTE_OK = re.compile(r"^[0-9A-F]{2}$")
+# `7F <SID> <NRC> (<label>)`
+RE_DIAG_7F = re.compile(r"\b7F\s+(?P<sid>\S+)\s+(?P<nrc>\S+)(?P<tail>\s*\([^)]*\))?")
+# R-DIAG1(a)＋R-DIAG2：Requirement ID 欄單值
+RE_DIAG_REQ_ID = re.compile(r"^SWE1-Diagnostics-\d{3}(?:-00[12])?$")
+# R-DIAG2：037 之重號 ID。此二號**必帶** `-001`／`-002` 尾綴，裸號即違規
+# （T4 自測實測之假陰性 1 例：`(?:-00[12])?` 之 `?` 使裸號也通過）。
+DIAG_DUP_REQ_IDS: frozenset[str] = frozenset({"SWE1-Diagnostics-340"})
+# R-DIAG7(a)／R-DIAG3(amend)／R-DIAG6／R-DIAG5(amend)(d)(e) 之 Remarks 定型句
+RE_DIAG_REMARKS_OK = (
+    re.compile(r"^Harman Scope: (?:Need Rework|Need Clarification|Accepted)$"),
+    re.compile(r"^CFTS004 Category: Out of Scope$"),
+    re.compile(r"^037 VM blank; procedure derived from Description \+ CFTS004$"),
+    re.compile(r"^NRC per ISO 14229-1 \(037 unspecified\)$"),
+    re.compile(r"^SID per 037 SWE1-Diagnostics-\d{3}(?:-00[12])?$"),
+)
+DIAG_AUTHOR_FIELDS = ("test_item", "pre", "proc", "er")
 
 HEADER_ANCHOR = "Specification Reference"
 HEADER_SCAN_ROWS = 15
@@ -217,6 +267,10 @@ CHECK_TITLES = {
     "Y": "PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式）",
     "Z": "Vehicle Model 七欄 1／0（R-CAM2，Camera profile 專屬）",
     "SC": "步驟無執行通道／ER 無觀察手段（R-SEC7，Security profile 專屬）",
+    "P-DIAG": "`$XXXX` 非本 feature 之 DID 白名單（R-DIAG5(a)，Diagnostics profile 專屬）",
+    "U-DIAG": "UDS 位元組串格式／`7F` 後缺 `(<label>)`（R-DIAG5(b)，Diagnostics profile 專屬）",
+    "R1-DIAG": "Requirement ID 欄非單一 SWE1 ID（R-DIAG1(a)，Diagnostics profile 專屬）",
+    "RM-DIAG": "Remarks 非 R-DIAG 所定之五種定型句（Diagnostics profile 專屬）",
     "SS": "Remarks 無 `source:` 標記／資產佔位之 `X-` 代號未載於 Remarks"
           "（R-SEC4(a)／R-SEC21(e)，Security profile 專屬）",
 }
@@ -244,6 +298,10 @@ CHECK_STATUS = {
     "Y": "未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72",
     "Z": "未校準（R-CAM2，CAM-02 新增）—— **feature 專屬**，僅 `--profile camera` 啟用；"
          "既有八本無此七欄，未啟用即不檢查（`Z=0` 在未啟用時是沉默，不是核可）",
+    "P-DIAG": "未校準（R-DIAG5(a)，CDD-01_A 新增）—— **feature 專屬**，僅 `--profile diagnostics` 啟用。",
+    "U-DIAG": "未校準（R-DIAG5(b)，CDD-01_A 新增）—— **feature 專屬**。",
+    "R1-DIAG": "未校準（R-DIAG1(a)，CDD-01_A 新增）—— **feature 專屬**。",
+    "RM-DIAG": "未校準（R-DIAG3(amend)／R-DIAG6／R-DIAG7(a)，CDD-01_A 新增）—— **feature 專屬**。",
     "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
           "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"
           "**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot",
@@ -265,7 +323,13 @@ PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
 # R-SEC13(a)：`SC`／`SS` 只入 `FEATURE_CHECKS["security"]`，不入 `PROFILE_CHECKS`。
 # R-SEC13(b)：單字母 `C` 已為既有檢查（hedge）所佔，故取多字元代號 `SC`／`SS`
 # （多字元代號有既有先例 `I-cross`／`I-sibling`）。
-FEATURE_CHECKS: dict[str, list[str]] = {"camera": ["Z"], "security": ["SC", "SS"]}
+# CDD-01_A T4：Diagnostics 之五項。下放包書 `VM-DIAG`，其判準逐字即 R-CAM2(a)(b)(c)，
+# 與既有 `Z` 完全相同（R-G74 且已將 598／5210 升為全域），故**沿用 `Z` 不另立代號**——
+# 另立即為同一判準之第二份實作。`VM-DIAG` ≡ `Z`，記於 profile §4 與上繳包 §4。
+FEATURE_CHECKS: dict[str, list[str]] = {
+    "camera": ["Z"], "security": ["SC", "SS"],
+    "diagnostics": ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG"],
+}
 # **feature 專屬之豁免**：某 profile 下不適用之 `PROFILE_CHECKS` 項。
 # R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
 # `I-cross` 對其 10 列全報「窗未完整宣告」而非跨列衝突，故豁免。
@@ -308,6 +372,8 @@ CHECK_GRANULARITY = {
     "J": "每行", "K": "每列每欄", "L": "每列", "M": "每列每欄", "N": "每行",
     "P": "每次命中",
     "SC": "每編號步驟／每 ER 行", "SS": "每列",
+    "P-DIAG": "每列每欄每 token", "U-DIAG": "每列每位元組串",
+    "R1-DIAG": "每列", "RM-DIAG": "每列每段",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
@@ -446,7 +512,7 @@ def check_vehicle_model(raw: tuple, vm_columns: dict[str, int],
         elif name in VEHICLE_MODEL_ZERO and value != "0":
             out.append(Violation(
                 "Z", row_no, tc_id, f"vehicle_model[{name}]",
-                f"R-CAM2(b)：`{name}` 已不支援，Camera 兩本一律 `0`", value))
+                f"R-CAM2(b)／R-G74：`{name}` 已不支援，一律 `0`", value))
 
     active = [n for n in VEHICLE_MODEL_HEADERS
               if n not in VEHICLE_MODEL_ZERO]
@@ -1074,7 +1140,7 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
     # 不逐列複述 —— 缺欄是工作簿之事實，不是每一列各自的違規。
     enabled = check_order(profile)
     remarks_idx = (security_remarks_idx(list(rows[header_row - 1]))
-                   if "SS" in enabled else None)
+                   if ("SS" in enabled or "RM-DIAG" in enabled) else None)
     vm_columns: dict[str, int] = {}
     if "Z" in enabled:
         vm_columns = build_vehicle_model_columns(list(rows[header_row - 1]))
@@ -1100,6 +1166,19 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
         if vm_columns:
             result.violations.extend(
                 check_vehicle_model(raw, vm_columns, offset, tc_id))
+        # P-DIAG／U-DIAG／R1-DIAG／RM-DIAG 為 feature 專屬（FEATURE_CHECKS["diagnostics"]）；
+        # 同組之 VM-DIAG 沿用 `Z`，於上方 vm_columns 分支施檢。
+        if "P-DIAG" in enabled:
+            result.violations.extend(check_diag_did(fields, offset, tc_id))
+        if "U-DIAG" in enabled:
+            result.violations.extend(check_diag_uds(fields, offset, tc_id))
+        if "R1-DIAG" in enabled:
+            result.violations.extend(check_diag_req_id(req_id, offset, tc_id))
+        if "RM-DIAG" in enabled:
+            diag_remarks = (cell_text(raw[remarks_idx])
+                            if remarks_idx is not None and remarks_idx < len(raw) else "")
+            result.violations.extend(
+                check_diag_remarks(diag_remarks, offset, tc_id))
         # SC／SS 為 feature 專屬（FEATURE_CHECKS["security"]）
         if "SC" in enabled:
             result.violations.extend(
@@ -1304,6 +1383,97 @@ def check_security_channel(fields: dict[str, str], row_no: int,
                     "SC", row_no, tc_id, "er",
                     "SEC-04 §3：ER 所引之指令未出現於同編號之 Procedure 步驟",
                     phrase[:60]))
+    return out
+
+
+def check_diag_did(fields: dict[str, str], row_no: int, tc_id: str) -> list[Violation]:
+    """P-DIAG —— `$XXXX` 白名單（R-DIAG5(a)）。
+
+    作者側四欄出現白名單外之 `$`+4hex 即 FAIL。`$MESSAGE.Signal$` 式帶尾 `$`，
+    由 `RE_DIAG_DID` 之 negative lookahead 排除，維持檢查 P 原判。
+    """
+    out: list[Violation] = []
+    for key in DIAG_AUTHOR_FIELDS:
+        text = fields.get(key, "")
+        for m in RE_DIAG_DID.finditer(text):
+            token = m.group(0)
+            if token.upper() not in {d.upper() for d in DIAG_DID_WHITELIST}:
+                out.append(Violation(
+                    "P-DIAG", row_no, tc_id, key,
+                    "R-DIAG5(a)：`$XXXX` 須為本 feature 之 DID"
+                    "（`layer3_assign.tsv` 之 36 種）", token))
+    return out
+
+
+def check_diag_uds(fields: dict[str, str], row_no: int, tc_id: str) -> list[Violation]:
+    """U-DIAG —— UDS 位元組串格式（R-DIAG5(b)）。
+
+    (1) 每 byte 兩位大寫 hex、單空格分隔。
+    (2) `7F` 後兩 byte 必接 ` (<label>)`，label ∈ ISO 五名 ∪ CFTS004 原字。
+    """
+    out: list[Violation] = []
+    proc = fields.get("proc", "")
+    for m in RE_UDS_START.finditer(proc):
+        for tok in proc[m.end():].split():
+            if not RE_UDS_CAND.match(tok):
+                break            # 串已結束（`via`／`is`／`received` 等散文）
+            if not RE_UDS_BYTE_OK.match(tok):
+                out.append(Violation(
+                    "U-DIAG", row_no, tc_id, "proc",
+                    "R-DIAG5(b)：UDS 位元組須為兩位大寫 hex、單空格分隔", tok))
+    for m in RE_DIAG_7F.finditer(proc):
+        tail = m.group("tail")
+        if not tail:
+            out.append(Violation(
+                "U-DIAG", row_no, tc_id, "proc",
+                "R-DIAG5(b)：`7F <SID> <NRC>` 後須接 `(<label>)`",
+                m.group(0)[:60]))
+            continue
+        label = tail.strip()[1:-1].strip()
+        if label not in DIAG_NRC_LABELS:
+            out.append(Violation(
+                "U-DIAG", row_no, tc_id, "proc",
+                "R-DIAG5(amend)(d)：`(<label>)` 須為 ISO 14229-1 五名之一"
+                "或 CFTS004 原字", label[:40]))
+    return out
+
+
+def check_diag_req_id(req_id: str, row_no: int, tc_id: str) -> list[Violation]:
+    """R1-DIAG —— Requirement ID 欄單值（R-DIAG1(a)、R-DIAG2）。"""
+    value = req_id.replace("\xa0", " ").strip()
+    if not value:
+        return [Violation("R1-DIAG", row_no, tc_id, "req_id",
+                          "R-DIAG1(a)：Requirement ID 欄不得為空", "(空)")]
+    if not RE_DIAG_REQ_ID.match(value):
+        return [Violation(
+            "R1-DIAG", row_no, tc_id, "req_id",
+            "R-DIAG1(a)：只得一個 SWE1 ID，形式 `SWE1-Diagnostics-nnn`"
+            "（重號者 `-001`／`-002`，R-DIAG2）", value[:60])]
+    if value in DIAG_DUP_REQ_IDS:
+        return [Violation(
+            "R1-DIAG", row_no, tc_id, "req_id",
+            f"R-DIAG2：`{value}` 為 037 之重號，須帶 `-001`／`-002` 尾綴區分",
+            value)]
+    return []
+
+
+def check_diag_remarks(remarks: str, row_no: int, tc_id: str) -> list[Violation]:
+    """RM-DIAG —— Remarks 定型句（R-DIAG3(amend)／R-DIAG6／R-DIAG7(a)／R-DIAG5(amend)）。
+
+    Remarks 得為空（多數列無註）。非空者逐段（以 `;` 或換行分隔）須全數命中五式之一。
+    """
+    text = remarks.replace("\xa0", " ").strip()
+    if not text:
+        return []
+    out: list[Violation] = []
+    for seg in re.split(r"[;\n]+", text):
+        seg = seg.strip()
+        if not seg:
+            continue
+        if not any(rx.match(seg) for rx in RE_DIAG_REMARKS_OK):
+            out.append(Violation(
+                "RM-DIAG", row_no, tc_id, "remarks",
+                "R-DIAG：Remarks 須為所定五種定型句之一", seg[:60]))
     return out
 
 

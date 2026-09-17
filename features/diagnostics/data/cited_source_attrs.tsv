@@ -91,8 +91,6 @@ SYS-RA-DIAG-162	163	4939725	Functional Requirement	All	All		SW	Read/Write DID Re
 SYS-RA-DIAG-163	164	4939723	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
 SYS-RA-DIAG-165	166	4939726	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
 SYS-RA-DIAG-166	167	4939715	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	1
-SYS-RA-DIAG-167	168	4939716	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
-SYS-RA-DIAG-168	169	4939717	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
 SYS-RA-DIAG-186	187	4939688	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$280C - ECU Current Internal Settings (Read/Write)	2
 SYS-RA-DIAG-188	189	4939684	Functional Requirement	All	All		SW	Read/Write DID Requirements	$280C - ECU Current Internal Settings (Read/Write)	2
 SYS-RA-DIAG-189	190	4939689	Functional Requirement	All	All		SW	Read/Write DID Requirements	$280C - ECU Current Internal Settings (Read/Write)	1

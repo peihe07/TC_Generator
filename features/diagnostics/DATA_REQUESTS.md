@@ -12,6 +12,6 @@ Urgency 回報。
 
 | # | 檔案 — 全名 | Status | Leaves served | Batch impact | Anomaly | Urgency |
 |---|---|---|---|---|---|---|
-| 1 | **NRC／SID 值之權威來源** —— CFTS004 未載之 205 列 NRC 與 114 列 I/O Control SID（`0x2F`）。可為 (i) Harman 之 UDS 實作規格／NRC 對照表，(ii) CFTS004 之後續版本，或 (iii) Pei 對 R-DIAG5(c) 之適用裁定（DECISIONS §2 甲／乙／丙）| MISSING | 230（negative 135 ＋ unsupported 95）＋ I/O 母節 114 | **阻斷 CDD-02 pilot 之 negative／unsupported 全部批次**；positive 型 165 列不受影響 | DR-DIAG-1 | **HIGH** |
-| 2 | `SYS3_CFTS_004…SYSAD.docx` 之 UDS 序列補件 —— 現本無 UDS 請求／回應位元組表、無 NRC 表，唯一序列表為 DTC 流程（037 之 DTC 列 = 0）| PARTIAL | 全 394 產出列之 `test_procedure` | 位元組步驟改自 037／CFTS004 逐列推出，成本升高；不阻斷 | DR-DIAG-2 | MED |
-| 3 | CFTS004 未收之 50 條 FR（清單見 `data/cfts004_uncited_fr.tsv`）—— 供 RD 回饋，非本 feature 產出對象（R-DIAG8(a)）| N/A（不需取得）| 0 | 無 | FB-DIAG-d | LOW |
+| 1 | **NRC 值之權威來源** —— R-DIAG5(amend) 落地後之**殘餘 3 列**：`SWE1-Diagnostics-156`／`-157`（row 163/164，`$0312` AV Signal Detection，Description 為標題複製、未述失效型態）／`SWE1-Diagnostics-237`（row 244，`$2847`，只書「an appropriate NRC」，其 CFTS004 來源 `SYS-RA-DIAG-056` 亦只書「shall provide a negative response」）| MISSING | **3**（原 205） | **非阻斷** —— 226 列中 223 列已由 R-DIAG5(amend)(c′)(d) 解出；3 列於 pilot 寫 `PENDING: DR-DIAG-1` | A-DIAG01 | MED（原 HIGH）|
+| 2 | `SYS3_CFTS_004…SYSAD.docx` 之 UDS 序列補件 —— 現本無 UDS 請求／回應位元組表、無 NRC 表，唯一序列表為 DTC 流程（037 之 DTC 列 = 0）| PARTIAL | 全 388 產出列之 `test_procedure` | 位元組步驟改自 037／CFTS004 逐列推出，成本升高；不阻斷 | DR-DIAG-2 | MED |
+| 3 | CFTS004 未收之 **52** 條 FR（清單見 `data/cfts004_uncited_fr.tsv`；含 V1 (3) 刪列後回歸之 `SYS-RA-DIAG-167`／`-168`）—— 供 RD 回饋，非本 feature 產出對象（R-DIAG8(a)／R-DIAG8(amend)）| N/A（不需取得）| 0 | 無 | FB-DIAG-d | LOW |

@@ -16,7 +16,11 @@ import re
 # 否則子條會與母條同 id 而假性碰撞。
 RE_ANCHOR = re.compile(
     r"^(?P<hashes>#{2,4})\s*"
-    r"(?P<base>R-[A-Z]{0,3}\d+[A-Za-z]?)"
+    # R-G73（Pei 裁，2026-09-17，下放包 CDD-01_A §2）：上限由三字母放寬為四，
+    # 以收 `R-DIAG`。本常數為解析面與指紋面之唯一來源（R-G43(d)），一處改全面生效；
+    # 放寬前之 18 種既有前綴（R-PMH／R-VF／R-VS／R-TM／R-G／R-ICS／R-C／R-DD／R-VL／
+    # R-SEC／R-VT／R-POP／R-CAM／R-AM／R-PH／R-U／R-P／R-SU）全在新範圍內，指紋零變動。
+    r"(?P<base>R-[A-Z]{0,4}\d+[A-Za-z]?)"
     r"(?P<sub>(?:\s*之)?\s*\([0-9a-z]+\))?"
     r"(?P<prime>[′″‴]*)"
     r"(?P<qual>\s*(?:之補充|之修訂|之解釋|之更正|但書))?"

@@ -388,9 +388,3 @@ SWE1-Diagnostics-385	393	SYS-RA-DIAG-238	4939626	R/W	$1801 - Screen Test Pattern
 SWE1-Diagnostics-386	394	SYS-RA-DIAG-215	4939650	R/W	$1821 - Steering Wheel Module Interface (Read)	$1821	positive	Functional Requirement	All	
 SWE1-Diagnostics-387	395	SYS-RA-DIAG-215	4939650	R/W	$1821 - Steering Wheel Module Interface (Read)	$1821	negative	Functional Requirement	All	
 SWE1-Diagnostics-388	396	SYS-RA-DIAG-215	4939650	R/W	$1821 - Steering Wheel Module Interface (Read)	$1821	unsupported	Functional Requirement	All	
-SWE1-Diagnostics-389	397	SYS-RA-DIAG-167	4939716	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
-SWE1-Diagnostics-390	398	SYS-RA-DIAG-167	4939716	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
-SWE1-Diagnostics-391	399	SYS-RA-DIAG-167	4939716	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
-SWE1-Diagnostics-392	400	SYS-RA-DIAG-168	4939717	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
-SWE1-Diagnostics-393	401	SYS-RA-DIAG-168	4939717	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
-SWE1-Diagnostics-394	402	SYS-RA-DIAG-168	4939717	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	

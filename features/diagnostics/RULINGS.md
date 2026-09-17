@@ -102,6 +102,70 @@ R-DIAG9  Test Group、TC ID、Layer 2/3
       逐字，不入工作簿。
 ```
 
+### R-DIAG8(amend) — 母體依 037 V1 (3)（Pei 裁，2026-09-17）
+
+```text
+R-DIAG8(amend)  母體依 037 V1 (3)
+  母體為 V1 (3) 之 166 源 389 列。V1 (2) 之 SYS-RA-DIAG-167/168 六列不產；
+  167/168 回歸 CFTS004 未收 FR 清單（50 → 52），依 R-DIAG8(a) 不補產。
+```
+
+### R-DIAG5(amend) — SID／NRC 值之來源層級（Pei 裁，2026-09-17）
+
+```text
+R-DIAG5(amend)  SID／NRC 值之來源層級
+  (c′) SID／NRC 值依序取：CFTS004 原文 → 037 Description／Title 明載值 → ISO 14229-1 標準碼。
+       三者衝突時前者優先；衝突逐筆登 ANOMALIES。
+  (d)  取 ISO 14229-1 標準碼者，限下列五碼，且只在 037 已述其失效型態時使用
+       （IN §8.4.1 domain constant；CFTS004 自身以 $22／$31 引用同一標準）：
+         0x11 serviceNotSupported                    ← 037「Service Not Supported」
+         0x12 subFunctionNotSupported                ← 037「unsupported sub-function」
+         0x13 incorrectMessageLengthOrInvalidFormat  ← 037「invalid length」／「incorrect format」
+         0x22 conditionsNotCorrect                   ← 037「conditions not correct」
+         0x31 requestOutOfRange                      ← 037「unsupported DID」／「out of range」
+       ER 之 label 用 ISO 名稱；Remarks 註 `NRC per ISO 14229-1 (037 unspecified)`。
+       037 未述失效型態者仍 `PENDING: DR-DIAG-1`。
+  (e)  I/O Control 之 SID 0x2F 依 (c′) 第二層取 037 明載值（24 列），
+       同母節其餘 90 列以同一 DID 之 037 明載值類推，Remarks 註 `SID per 037 <SWE1-ID>`。
+```
+
+### R-DIAG9(amend) — Layer 2/3 之實測修正（Pei 裁，2026-09-17）
+
+```text
+R-DIAG9(amend)  Layer 2/3 之實測修正
+  (a) 被 037 引用之 Layer 3 為 42（R/W 23／I-O 14／Routine 5）；`$5007 - Mid-Range Settings` 未引用。
+  (b) Test Set #11 `Audio Output Settings`（單列 SWE1-056）併入 #14 `Audio Tone Settings`；
+      #21 `Clear Key Sense PIN` 維持獨立（§4.2 genuine outlier）。Layer 2 定為 20 個。
+  (c) 跨母節依 DID 合一者共 6 個：$5000／$5001／$5008／$5009／$500A／$500C；Layer 3 各保留母節。
+```
+
+### R-DIAG7(amend) — Region → Vehicle Model 填法（Pei 裁，2026-09-17）
+
+```text
+R-DIAG7(amend)  Region → Vehicle Model 填法
+  依 PROXI Market_Area 實測（up CDD-01 §7-2 表）：
+    Region = All   → HDCC27 1／DT27 1／637 1／598 0／5210 0／2261 1／376 1
+    Region = NAFTA → HDCC27 1／DT27 1／637 1／598 0／5210 0／2261 0／376 0
+  空值僅 SYS-RA-DIAG-248（Out of Scope 列），不產 TC。
+  `Toro_ATL_MI` Market_Area 之 Type = Not Used 記於 ANOMALIES，不影響填法。
+```
+
+### R-DIAG3(amend) — Out of Scope 列之處置欄（Pei 裁，2026-09-17）
+
+```text
+R-DIAG3(amend)  Out of Scope 列之處置欄
+  處置欄 = `AF` `Test Result 測試結果`，值 `Out of Scope`；`AH` Remarks 註 `CFTS004 Category: Out of Scope`。
+  該列 Requirement ID 照填 SWE1-057，TC ID 照序取號（不跳號），Test Set 依 L3 歸 #10 Screen Test Pattern。
+```
+
+## 承接之全域條（本 feature 適用）
+
+- **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。
+- **R-G74** Commander (598)／Regengade (5210) 全域一律 0 —— 由 R-CAM2(b) 升格，取代
+  R-DIAG7(b) 所引之「R-CAM 前例」；`[A-DIAG04]` 之前例衝突據此結案。
+
+兩條本體落 `docs/fw036/RULINGS_LEDGER.md`，此處只記承接，不複製本體（R-G52）。
+
 ---
 
 ## 執行層回報（CDD-01，2026-09-17）

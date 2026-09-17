@@ -14,13 +14,14 @@ test_group: "Diagnostics"          # framework-internal; workbook write per prof
 # 以 doc_id 引用（CDD-01 任務 2，2026-09-17 登錄）。
 paths:
   workbook: null                            # CDD-01 未建；CDD-02 起
-  a03_report: "sources/raw/diagnostics_037_swra_v1/SWE1_Diagnostics_V1 (2).xlsx"
+  a03_report: "sources/raw/diagnostics_037_swra_v1_3/SWE1_Diagnostics_V1 (3).xlsx"
   sys1_export: null                         # 本 feature 無 SYS1 匯出
   spec_pdf: null
   popup_list: null                          # 037 零引用
 
 sources:                                    # doc_id 引用（MANIFEST.tsv 為權威）
-  a03: "diagnostics_037_swra_v1"            # sha16 b985e09ac42cece7；395 列
+  a03: "diagnostics_037_swra_v1_3"          # sha16 d317a38f249b7bd8；389 列／166 源（R-DIAG8(amend)）
+  a03_superseded: "diagnostics_037_swra_v1" # sha16 b985e09ac42cece7；395 列；V1 (2)，不刪（append-only）
   spec_index: "sys2_cfts004_general_diag"   # sha16 ffcb202fff92007e；Basic Report 404 列
   sysad: "sys3_cfts004_general_diag_sysad"  # sha16 bc0bad3dbb0710a4；無 UDS 序列表（A-DIAG03）
 
@@ -73,16 +74,19 @@ lint:
   # profile: docs/runtime/profiles/FW036_R1L_Diagnostics_Profile.md
   # R-G71：P(v4) 與 X 一律啟用。以下 extra_rules 為該 profile §2–§6 之 [ADD]，
   # **CDD-01 尚未實作於 lint036.py**（--profile 只作真值使用，不讀 profile 內容）。
-  extra_rules: []                          # 待實作：uds_byte_string / did_dollar_whitelist
-                                           #         / req_id_single / vehicle_model_1_0 / remarks_format
+  # CDD-01_A T4 已實作於 lint036.py 之 FEATURE_CHECKS["diagnostics"]；
+  # `VM-DIAG` 沿用既有 `Z`（判準逐字同 R-CAM2，且 R-G74 已升為全域）。
+  extra_rules: ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG"]
 
 # CDD-01 實測母體（上繳包 §3 全表）
-recon:
-  a03_rows: 395
-  a03_unique_swe_ids: 394                  # SWE1-Diagnostics-340 重號 → -340-001/-002（R-DIAG2）
-  a03_sources: 168
-  source_resolution: "168/168 (100%)"
-  producible_rows: 394                     # 395 − 1（SWE1-Diagnostics-057，R-DIAG3）
-  layer2_test_sets: 21                     # 草案 21/21 吻合，合計 395
+recon:                                     # CDD-01_A 實測（037 V1 (3)）
+  a03_rows: 389
+  a03_unique_swe_ids: 388                  # SWE1-Diagnostics-340 重號 → -340-001/-002（R-DIAG2）
+  a03_sources: 166
+  source_resolution: "166/166 (100%)"
+  producible_rows: 388                     # 389 − 1（SWE1-Diagnostics-057，R-DIAG3）
+  layer2_test_sets: 20                     # R-DIAG9(amend)(b)：#11 併入 #14
   layer3_headings_cited: 42                # CFTS004 $XXXX Heading 共 63，被引用 42
-  row_kinds: {positive: 165, negative: 135, unsupported: 95}
+  row_kinds: {positive: 163, negative: 133, unsupported: 93}
+  nrc_coverage: {RESOLVED_CFTS004: 5, RESOLVED_037: 20, RESOLVED_ISO: 198, PENDING_DR1: 3}
+  cfts004_uncited_fr: 52                   # 50 + SYS-RA-DIAG-167/168 回歸

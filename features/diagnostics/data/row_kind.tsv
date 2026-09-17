@@ -388,9 +388,3 @@ row037	swe	kind	title_prefix	title
 394	SWE1-Diagnostics-386	positive	Steering Wheel	Steering Wheel - Report CAN signal status of steering wheel module interface buttons using this DID $1821
 395	SWE1-Diagnostics-387	negative	Steering Wheel	Steering Wheel - Handle the negative response while reporting the CAN signal status of steering wheel module interface buttons
 396	SWE1-Diagnostics-388	unsupported	Steering Wheel	Steering Wheel - Handle the Unsupported service requests while reporting the CAN signal status of steering wheel module interface buttons.
-397	SWE1-Diagnostics-389	positive	GPS	GPS - Report the Date - Month using this DID$2812
-398	SWE1-Diagnostics-390	negative	GPS	GPS - Handle the negative response while reporting the Date - Month
-399	SWE1-Diagnostics-391	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Date - Month.
-400	SWE1-Diagnostics-392	positive	GPS	GPS - Report the Date - Day using this DID$2812
-401	SWE1-Diagnostics-393	negative	GPS	GPS - Handle the negative response while reporting the Date - Day
-402	SWE1-Diagnostics-394	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Date - Day.

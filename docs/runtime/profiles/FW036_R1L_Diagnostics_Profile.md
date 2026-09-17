@@ -1,13 +1,14 @@
 # FW036 R1L Diagnostics — Profile（骨架）
 
-- 設立依據：下放包 **CDD-01 §4 任務 5**（`docs/fw036/handoff/down/20260917_CDD-01.md`）。
+- 設立依據：下放包 **CDD-01 §4 任務 5**（`docs/fw036/handoff/down/20260917_CDD-01.md`）；
+  **CDD-01_A 依 R-DIAG3/5/7/8/9(amend) ＋ R-G73／R-G74 更新**（`down/20260917_CDD-01_A.md`）。
 - 命名依既有慣例（CamelCase 無分隔，同 `VehicleCategory`／`PowerModing`）。
 - 本檔為 **Phase 0–1 之骨架**：只寫已有實測依據者，未鎖定之項一律標
   `[PROPOSED]` 或 `[PEI]`，不預先設計未來條款。
-- **母體標註**：本檔凡引用計數必標母體，限下列六者 ——
-  037 `395 列`（唯一 SWE1 ID `394`）／037 來源 `168 項`（解析 `168`，100%）／
+- **母體標註**：本檔凡引用計數必標母體，限下列六者（**CDD-01_A 起以 037 V1 (3) 為母體**，
+  R-DIAG8(amend)）—— 037 `389 列`（唯一 SWE1 ID `388`）／037 來源 `166 項`（解析 `166`，100%）／
   CFTS004 索引 `404 列`／CFTS004 `$XXXX` Heading `63`（被引用 `42`）／
-  negative＋unsupported `230 列`／Layer 2 候選 `21 組`。
+  negative＋unsupported `226 列`／Layer 2 `20 組`。
 
 ---
 
@@ -18,11 +19,11 @@
 | feature | `Diagnostics` | CDD-01 §4 任務 1 |
 | slug | `diagnostics` | 同上 |
 | `test_group`（工作簿 G 欄）| `Diagnostics` | **R-DIAG9(a)** |
-| Layer 2 Test Set（H 欄）| 21 組（草案 21/21 實測吻合，合計 395）| **[PEI]** 名稱歸 Pei，見 §5 |
+| Layer 2 Test Set（H 欄）| **20 組**（R-DIAG9(amend)(b)：#11 併入 #14）| **[PEI]** 名稱歸 Pei，見 §5 |
 | ABBR（TC ID `NR1L-{ABBR}-{nnn}`，R-G42）| `DIAG` | **R-DIAG9(a)** |
 | `spec_reference`（N 欄）| `CFTS004-{ObjectID}` 錨（IN §10.7(a)）；ObjectID 空值 `0` | 本包實測 |
-| 產出母體 | 395 列 − 1（Out of Scope，R-DIAG3）= **394 列** | 本包實測 |
-| spec_mode | **[PROPOSED]** 待 `intake.py` 判定 | — |
+| 產出母體 | 389 列 − 1（Out of Scope，R-DIAG3）= **388 列** | CDD-01_A 實測 |
+| spec_mode | **[PROPOSED] `D`** 待 `intake.py` 判定 | — |
 
 ---
 
@@ -71,19 +72,22 @@
 - `7F` 後必接兩 byte，再接 `(<label>)`：`7F 22 31 (Request Out of Range)`。
 - label 逐字取 CFTS004 用字（R-DIAG5(b)）。
 
-### 2.3 `[BLOCKED]` SID／NRC 值之來源 —— **見 DECISIONS §2**
+### 2.3 ~~`[BLOCKED]`~~ **已解** SID／NRC 值之來源 —— R-DIAG5(amend)
 
 R-DIAG5(c)「以 CFTS004 原文為準；原文未載者寫 `PENDING: DR-{n}`，
 不得引 ISO 14229 通用表補值」。本包實測其適用結果：
 
-| 項 | 母體 | CFTS004 有值 | 僅 037 有值 | 兩者皆無 |
-|---|---:|---:|---:|---:|
-| NRC（negative＋unsupported）| 230 | 5 | 20 | **205（89%）** |
-| I/O Control SID（`0x2F`）| 114 | **0** | 24 列明載 | — |
+**R-DIAG5(amend)（Pei 2026-09-17）落地後**（V3 母體 226 列）：
 
-依字面，205 列之 NRC 與 114 列之 I/O SID 全數 `PENDING`。
-**lint 之 `7F <SID> <NRC> (<label>)` 檢查在該裁定落地前無法啟用**（無值可檢）。
-DR-DIAG-1 已登。
+| 分類 | 列數 |
+|---|---:|
+| `RESOLVED_CFTS004` | 5 |
+| `RESOLVED_037` | 20 |
+| `RESOLVED_ISO`（五碼，037 已述失效型態）| **198** |
+| `PENDING_DR1` | **3** |
+
+I/O Control SID `0x2F` 依 (e) 全數 `RESOLVED_037`（114 列：24 列直接明載 ＋ 91 列同 DID 類推）。
+`U-DIAG` 之 `7F <SID> <NRC> (<label>)` 檢查**已可啟用**。逐列見 `data/nrc_coverage.tsv`。
 
 ---
 
@@ -112,28 +116,30 @@ DR-DIAG-1 已登。
 
 | CFTS004 Region | HDCC27 | DT27 | 637 | 598 | 5210 | 2261 | 376 | 037 列數 |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|---:|
-| `All`（89 源）| 1 | 1 | 1 | 0 | 0 | 1 | 1 | 212 |
+| `All`（89 源）| 1 | 1 | 1 | 0 | 0 | 1 | 1 | **206** |
 | `NAFTA` 系（78 源）| 1 | 1 | 1 | 0 | 0 | **0** | **0** | 182 |
 | （空，1 源）| — | — | — | — | — | — | — | 1（Out of Scope，不產 TC）|
 
 依據為 PROXI `Market_Area`（byte 160）逐平台實測，同 R-CAM5(c)′ 之證據型態：
 HDCC28/DT28/Promaster = `0 (NAFTA)`；Toro/Fastback = `2 (LATAM)`。
-**[PEI]** 此表為 [PROPOSED]，見 DECISIONS §3。
+**已裁**：R-DIAG7(amend)（Pei 2026-09-17）。598／5210 之 `0` 另由 **R-G74** 升為全域。
 
 ---
 
 ## 5. `[PEI]` Layer 2 Test Set（21 組草案）
 
-CDD-01 §5 之 21 組草案經本包逐列驗算，**21/21 列數全數吻合，合計 395，零差異**。
-名稱歸 Pei；`layer2_assign.tsv` 為逐列歸屬。
+CDD-01 §5 之 21 組草案經 CDD-01 逐列驗算 **21/21 吻合（V2 母體 395）**；
+**R-DIAG9(amend)(b)** 裁定 #11 `Audio Output Settings`（`$180C`）併入 #14 `Audio Tone Settings`，
+Layer 2 定為 **20 組**。V3 母體下合計 **389**，逐列歸屬見 `data/layer2_assign.tsv`，
+框架文件見 `features/diagnostics/docs/framework.md`（狀態 `DRAFT`）。
 
-§4.1.3 決策測試標記（< 3 或 > 80）：
-- **#11 `Audio Output Settings`（`$180C`）= 1 列** — 過小。
-- **#21 `Clear Key Sense PIN`（`$030A`）= 1 列** — 過小。
-- 4 列以下者另有 #10（`$1801`，4 列）／#18（`$500D`+`$5100`，5 列）／#20（`$031B`，3 列）。
+§4.1.3 決策測試（V3、20 組）：
+- **#20 `Clear Key Sense PIN`（`$030A`）= 1 列** —— §4.2 genuine outlier，R-DIAG9(amend)(b) 裁定維持獨立。
+- 4 列以下者：#10（`$1801`，4 列，實產 **3**）／#17（`$500D`+`$5100`，5 列）／#19（`$031B`，3 列）。
 - 無 > 80 者（最大 #2 `SXM Signal Quality` = 72）。
+- #5 `GPS Signal Data` 因 V1 (3) 刪列由 40 → **34**。
 
-合併建議見 DECISIONS §4。
+Layer 2 之 **20 組名稱**仍歸 Pei（framework.md Part IV）。
 
 ---
 
@@ -151,11 +157,23 @@ CDD-01 §5 之 21 組草案經本包逐列驗算，**21/21 列數全數吻合，
 
 ## 7. 未決項（本包不鎖定）
 
+CDD-01 之六項已於 CDD-01_A 全數處置：
+
+| # | 項 | 處置 |
+|---|---|---|
+| 1 | R-DIAG5(c) 之 NRC／SID 適用空白 | **已解** R-DIAG5(amend)；殘 3 列 → DR-DIAG-1（非阻斷）|
+| 2 | Region → Vehicle Model 歸屬表 | **已裁** R-DIAG7(amend) |
+| 3 | 單列 Test Set 之合併 | **已裁** R-DIAG9(amend)(b) |
+| 4 | Out of Scope 列之處置欄位名 | **已裁** R-DIAG3(amend)：`AF` `Test Result 測試結果` |
+| 5 | Layer 2 名稱 | **[PEI]** 仍未逐字簽核 |
+| 6 | `R-DIAG` 四字母前綴 | **已解** R-G73（正則放寬為 `{0,4}`）|
+
+CDD-01_A 後之未決項：
+
 | # | 項 | 去向 |
 |---|---|---|
-| 1 | R-DIAG5(c) 之 NRC／SID 適用空白（205＋114 列）| DECISIONS §2、DR-DIAG-1 |
-| 2 | Region → Vehicle Model 歸屬表 | DECISIONS §3 |
-| 3 | 單列 Test Set（#11／#21）之合併 | DECISIONS §4 |
-| 4 | Out of Scope 列之處置欄位名（依 SWC 0708 實測後定）| DECISIONS §5 |
-| 5 | Layer 2 之 21 組名稱 | **[PEI]** |
-| 6 | `R-DIAG` 四字母前綴不被全域錨點正則接受 | **升級 Pei**，見上繳包 §9 |
+| 1 | Layer 2 之 20 組名稱 | **[PEI]**，framework.md Part IV |
+| 2 | `PENDING_DR1` 3 列之 NRC（`-156`／`-157`／`-237`）| DR-DIAG-1 |
+| 3 | 五項 lint 之校準（現皆「未校準」，待 CDD-02 pilot 實本）| CDD-02 |
+| 4 | `docs/fw036/RULINGS.sha.tsv` 僅含 security 32 列而自稱全域檔（`--check` 動工前即 FAIL）| **全域待辦**，`[A-DIAG15]` |
+| 5 | `new_feature.py` 之 `feature[:2]` ABBR 缺陷 | **全域待辦**（審閱 §五-6，不阻斷）|

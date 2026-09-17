@@ -3,6 +3,9 @@
 來源：`sources/raw/sys3_cfts004_general_diag_sysad/SYS3_CFTS_004_General Diagnostics_System Architectural Design_SYSAD.docx`
 sha16 `bc0bad3dbb0710a4`；242 段落、24 表格。抽取日 2026-09-17（CDD-01 任務 3-9）。
 
+**CDD-01_A 更新**：037 列數改以 V1 (3)（389 列／166 源）為母體（R-DIAG8(amend)）；
+SID／NRC 之處置改依 R-DIAG5(amend)。SYSAD 本身之抽取內容（§1–§4 引文）**未改**。
+
 ---
 
 ## 結論（先行）
@@ -44,21 +47,21 @@ CFTS004 ↔ SYSAD 之 NRC 不一致清單因此為**空集**（SYSAD 側無值�
 
 | SYSAD SID | 服務 | CFTS004 母節 | 被引用 L3 數 | 037 列數 |
 |---|---|---|---:|---:|
-| `0x22` | ReadDataByIdentifier | Read/Write DID Requirements（讀向）| 23 | 254 |
+| `0x22` | ReadDataByIdentifier | Read/Write DID Requirements（讀向）| 23 | 248 |
 | `0x2E` | WriteDataByIdentifier | Read/Write DID Requirements（寫向）| 同上 | 同上 |
 | `0x31` | Routine Control | Diagnostic Routine ID Requirements | 5 | 27 |
 | **（SYSAD 無）** | **I-O Control（`0x2F` InputOutputControlByIdentifier）** | **I/O Control DID Requirements** | **14** | **114** |
 
-**缺口（更正）**：I/O Control 母節之 114 列所需之 SID，**SYSAD 未載、CFTS004 亦未載**
+**缺口**：I/O Control 母節之 114 列所需之 SID，**SYSAD 未載、CFTS004 亦未載**
 （CFTS004 全文 `0x2F`／`$2F` 零命中，僅四處出現 `I/O Control` 字面）。
 唯一載明者為 **037 自身之 24 列**，其寫法為
 `0x2F (InputOutputControlByIdentifier)` 或 `InputOutputControlByIdentifier (0x2F)`
 （母節分佈：I/O 23 列、Routine 1 列；逐列見 `row_kind.tsv` 與 `layer3_assign.tsv`）。
 
-依 R-DIAG5(c)「SID／NRC／sub-function 值以 CFTS004 原文為準；原文未載者寫
-`PENDING: DR-{n}`」之**字面**，037 所載之 `0x2F` 亦不得採用 —— 037 非 CFTS004 原文。
-其結果為 I/O 母節 114 列之 SID 全數 PENDING，而該值實際上在 037 內明載且無歧義。
-**此為條文之適用空白，非資料缺件**，已登 DR-DIAG-1 並列 DECISIONS §2 請 Pei 裁。
+**已解（R-DIAG5(amend)(e)，Pei 2026-09-17）**：I/O Control 之 SID `0x2F` 依 (c′) 第二層
+取 037 明載值 —— 24 列直接明載、其餘 90 列以同一 DID 之 037 明載值類推，
+Remarks 註 `SID per 037 <SWE1-ID>`。**I/O 母節 114 列之 SID PENDING 數為 0。**
+（CDD-01 原判「依 R-DIAG5(c) 字面全數 PENDING」已由該 amend 取代。）
 
 ---
 
@@ -115,5 +118,6 @@ CFTS004 側之 NRC 載值實測（全 404 列）：
   `"Request Out of Range", code $31` ×3（r267 SYS-RA-DIAG-266、r271 SYS-RA-DIAG-270、r372 SYS-RA-DIAG-371）
 - 無值者 2：r57 SYS-RA-DIAG-056「shall provide a negative response」（未指定）
 
-037 側需要 NRC 之列 **230**（negative 135 ＋ unsupported 95）。
-逐列覆蓋見 `nrc_coverage.tsv`：CFTS004 有值 5／僅 037 有值 20／**兩者皆無值 205**。
+037 側需要 NRC 之列 **226**（V3 母體：negative 133 ＋ unsupported 93）。
+逐列覆蓋見 `nrc_coverage.tsv`，依 **R-DIAG5(amend)(c′)(d)** 四類：
+`RESOLVED_CFTS004` 5／`RESOLVED_037` 20／`RESOLVED_ISO` 198／**`PENDING_DR1` 3**。
