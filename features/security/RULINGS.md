@@ -787,3 +787,5 @@ R-SEC24  CertProvider 測試 runner 之 apk 檔名（A-33 更正）
 v07 → v08 之逐格 diff 為 19 格 `pre`。檔名之**在庫出處**為下放包 `down/20260916_SEC-01.md:125`
 之「不投遞」目錄清單（`sources/MANIFEST.tsv` 無該 apk 之列 —— 該檔未投遞，故只有外部路徑之記載）。
 `gen_pilot01.py`／`gen_pilot02.py` 之同名常數**未動**（pilot 本已被 batch1 取代，R-TM13 不回修）。
+
+> **Note（SEC-13 review §一 #1；非 amend，不動 body sha）**：`A-33 reclassified: source exists in CCVR STEPS; R-SEC24 kept on physical-file evidence`。即原判「造值」撤回 —— `CertProviderServiceManagerTest.apk` 可溯 CCVR `Cert Val CS.98` STEPS item 2／5；本條仍以目錄實體檔案為準。CCVR 自身不一致登 `A-SEC-15`。

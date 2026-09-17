@@ -22,7 +22,9 @@ ASSET = {
     "X-e": ("CertProvider 六組憑證（valid／broken／revoked／wrong-subject／wrong-issuer／"
             "wrong-OID）＋ RD 預產 `dcl_baseline.json`、`dcl_revoked_l0~l3.json`", "Steven"),
     "X-f-2": ("**KeyInstall status test runner** —— Binder `getStatus()` 之可執行入口"
-              "（SEC-07 內查後僅餘 6 行）", "Steven／KeyInstall 負責人"),
+              "（SEC-07 內查後僅餘 6 行）。"
+              "Steven to confirm CertProvider apk file name (A-SEC-15)",
+              "Steven／KeyInstall 負責人"),
     "X-g": ("SAM 四 SAMType AuthData（`{SSN}_SAM_{SAMType}.json` ＋ `.sig` ＋ cert）；"
             "ValidityCounter `0`／`1`／`65535`；TimeStamp 舊於已裝者一組；SAM dongle",
             "SAM 負責人"),
@@ -77,8 +79,13 @@ Pei 2026-09-17 裁降為**文件審查**（R-SEC20）：原 16 行佔位全數�
 
 
 def main() -> int:
-    rows = list(csv.DictReader((DATA / "placeholder_summary.tsv").open(encoding="utf-8"),
-                               delimiter="\t"))
+    src = (DATA / "placeholder_summary_v09.tsv"
+           if (DATA / "placeholder_summary_v09.tsv").exists()
+           else DATA / "placeholder_summary.tsv")
+    rows = list(csv.DictReader(src.open(encoding="utf-8"), delimiter="\t"))
+    for r in rows:                       # R-SEC25(e)：TC 稱謂為 `<Component>/<新 ID>`
+        if r.get("workbook"):
+            r["tc_id"] = f'{r["workbook"]}/{r["tc_id"]}'
     by_tok: dict[str, list[dict]] = defaultdict(list)
     for r in rows:
         by_tok[r["x_token"]].append(r)

@@ -7,6 +7,8 @@
   ER 字面值 `"…"`（反引號與單引號兩本皆 0 次）。
 內容依 R-SEC15(a)~(j)、R-SEC7、R-SEC6、R-SEC10。
 """
+# superseded by gen_batch1.py (SEC-04); do not run — constants frozen per R-TM13
+# （SEC-15 review §三：apk 檔名常數停在 R-SEC24 之前，僅加註不改值、不刪檔）
 from __future__ import annotations
 
 import json
