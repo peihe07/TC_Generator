@@ -137,6 +137,38 @@ CASES["R-DIAG12 (I-cross 豁免)"] = dict(
 )
 
 
+# --- SEC-DIAG：I/O Control（0x2F）之 TC 須含 security PC（R-DIAG13）----------
+SECPC = "3. Security access 0x27 has been granted"
+CASES["SEC-DIAG"] = dict(
+    fn=lambda c: L.check_diag_security(c[0], {"pre": c[1]}, 1, "NR1L-DIAG-XXX"),
+    ok=[("SWE1-Diagnostics-112", f"1. x\n2. y\n{SECPC}"),       # I/O 且有 PC
+        ("SWE1-Diagnostics-340-001", f"1. x\n{SECPC}"),           # 三段式 I/O 且有 PC
+        ("SWE1-Diagnostics-004", "1. x\n2. y"),                   # R/W 讀，非母體
+        ("SWE1-Diagnostics-340-002", "1. x"),                      # 三段式但屬 R/W，非母體
+        ("SWE1-Diagnostics-272", "1. x")],                         # R/W 讀，非母體
+    ng=[("SWE1-Diagnostics-112", "1. x\n2. y"),                   # I/O 缺 PC
+        ("SWE1-Diagnostics-340-001", "1. x"),                      # 三段式 I/O 缺 PC
+        ("SWE1-Diagnostics-091", "1. x\n2. y"),                   # $5001 I/O 缺 PC
+        ("SWE1-Diagnostics-145", ""),                              # $5000 I/O 缺 PC
+        ("SWE1-Diagnostics-058", "1. Security access granted")],   # 措辭不合定型句
+)
+
+# --- KEY-DIAG：$1820／$1821 之觸發鍵（R-DIAG14）------------------------------
+CASES["KEY-DIAG"] = dict(
+    fn=lambda c: L.check_diag_key(c[0], {"proc": c[1], "er": ""}, 1, "NR1L-DIAG-XXX"),
+    ok=[("SWE1-Diagnostics-054", '2. Press and hold the "Up" push button'),
+        ("SWE1-Diagnostics-344", '2. Press and hold the "Select" push button'),
+        ("SWE1-Diagnostics-054", "1. Read the status"),            # 無觸發步驟
+        ("SWE1-Diagnostics-112", '2. Press the "Power" push button'),   # 非母體（I/O）
+        ("SWE1-Diagnostics-001", '2. Press the "Dark" push button')],   # 非母體（$283F）
+    ng=[("SWE1-Diagnostics-054", '2. Press and hold the "Power" push button'),
+        ("SWE1-Diagnostics-055", '2. Press the "Dark" push button'),
+        ("SWE1-Diagnostics-344", '2. Press and hold the "Power" push button'),
+        ("SWE1-Diagnostics-386", '2. Press the "Dark" push button'),
+        ("SWE1-Diagnostics-388", '2. Press the "Power" push button')],
+)
+
+
 def main() -> int:
     bad = 0
     print(f"{'check':16} {'正例(不得命中)':>16} {'反例(須命中)':>14}  判")

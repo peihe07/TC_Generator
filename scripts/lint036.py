@@ -109,6 +109,55 @@ RE_DIAG_REMARKS_OK = (
 )
 DIAG_AUTHOR_FIELDS = ("test_item", "pre", "proc", "er")
 
+# --- R-DIAG13／R-DIAG14 之母體（CDD-04 追補 A §一：**依母節反查，不依位元組串**）-------
+# 依位元組串會漏 —— pilot `-006` 之觸發步驟曾整行為 `PENDING`，無 `2F` 串而仍屬 0x2F 之 TC。
+# 兩表自 `features/diagnostics/data/layer3_assign.tsv` 導出，以號段書寫（逐一列出 114 個號無益於閱讀）。
+def _diag_ids(ranges: tuple) -> frozenset[str]:
+    out = set()
+    for lo, hi in ranges:
+        for n in range(lo, hi + 1):
+            out.add(f"SWE1-Diagnostics-{n:03d}")
+    return frozenset(out)
+
+
+# 母節 = I/O Control DIDs 之 037 列（114 列）
+DIAG_IO_ROWS = _diag_ids(((7, 12), (31, 43), (58, 147), (336, 340)))
+# `$1820`／`$1821` 之 037 列（7 列）
+DIAG_KEY_ROWS = _diag_ids(((54, 55), (344, 345), (386, 388)))
+# R-DIAG2 之三段式號：`-340-001` 屬 I/O（`$500D`）、`-340-002` 屬 R/W（`$280C`）
+DIAG_IO_SUFFIXED = frozenset({"SWE1-Diagnostics-340-001"})
+DIAG_SEC_PC = "Security access 0x27 has been granted"
+RE_DIAG_FORBIDDEN_KEY = re.compile(r'"(Power|Dark)"')
+
+
+def check_diag_security(req_id: str, fields: dict, row_no: int, tc_id: str) -> list[Violation]:
+    """SEC-DIAG —— I/O Control（0x2F）之 TC 須含 security Pre-Condition（R-DIAG13）。"""
+    rid = req_id.replace("\xa0", " ").strip()
+    if rid not in DIAG_IO_ROWS and rid not in DIAG_IO_SUFFIXED:
+        return []
+    if DIAG_SEC_PC in fields.get("pre", ""):
+        return []
+    return [Violation(
+        "SEC-DIAG", row_no, tc_id, "pre",
+        f"R-DIAG13：SID 0x2F 之 TC 須含 Pre-Condition `{DIAG_SEC_PC}`", rid)]
+
+
+def check_diag_key(req_id: str, fields: dict, row_no: int, tc_id: str) -> list[Violation]:
+    """KEY-DIAG —— 按鍵狀態 DID 之觸發鍵不得為 Power／Dark（R-DIAG14）。"""
+    rid = req_id.replace("\xa0", " ").strip()
+    if rid not in DIAG_KEY_ROWS:
+        return []
+    out: list[Violation] = []
+    for key in ("proc", "er"):
+        for m in RE_DIAG_FORBIDDEN_KEY.finditer(fields.get(key, "")):
+            out.append(Violation(
+                "KEY-DIAG", row_no, tc_id, key,
+                "R-DIAG14：觸發鍵不得選會改變 HU 電源或畫面狀態之鍵；優先選 Up／Down／Select",
+                m.group(0)))
+    return out
+
+
+
 HEADER_ANCHOR = "Specification Reference"
 HEADER_SCAN_ROWS = 15
 TC_SHEET_PREFIX = "Test Case Specification"
@@ -273,6 +322,8 @@ CHECK_TITLES = {
     "U-DIAG": "UDS 位元組串格式／`7F` 後缺 `(<label>)`（R-DIAG5(b)，Diagnostics profile 專屬）",
     "R1-DIAG": "Requirement ID 欄非單一 SWE1 ID（R-DIAG1(a)，Diagnostics profile 專屬）",
     "RM-DIAG": "Remarks 非 R-DIAG 所定之五種定型句（Diagnostics profile 專屬）",
+    "SEC-DIAG": "I/O Control（0x2F）之 TC 缺 security Pre-Condition（R-DIAG13，Diagnostics profile 專屬）",
+    "KEY-DIAG": "按鍵狀態 DID 之觸發鍵為 Power／Dark（R-DIAG14，Diagnostics profile 專屬）",
     "SS": "Remarks 無 `source:` 標記／資產佔位之 `X-` 代號未載於 Remarks"
           "（R-SEC4(a)／R-SEC21(e)，Security profile 專屬）",
 }
@@ -304,6 +355,8 @@ CHECK_STATUS = {
     "U-DIAG": "未校準（R-DIAG5(b)，CDD-01_A 新增）—— **feature 專屬**。",
     "R1-DIAG": "未校準（R-DIAG1(a)，CDD-01_A 新增）—— **feature 專屬**。",
     "RM-DIAG": "未校準（R-DIAG3(amend)／R-DIAG6／R-DIAG7(a)，CDD-01_A 新增）—— **feature 專屬**。",
+    "SEC-DIAG": "未校準（R-DIAG13，CDD-04 新增）—— **feature 專屬**；母體依母節反查（追補 A §一）。",
+    "KEY-DIAG": "未校準（R-DIAG14，CDD-04 新增）—— **feature 專屬**。",
     "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
           "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"
           "**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot",
@@ -330,7 +383,7 @@ PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
 # 另立即為同一判準之第二份實作。`VM-DIAG` ≡ `Z`，記於 profile §4 與上繳包 §4。
 FEATURE_CHECKS: dict[str, list[str]] = {
     "camera": ["Z"], "security": ["SC", "SS"],
-    "diagnostics": ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG"],
+    "diagnostics": ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG", "SEC-DIAG", "KEY-DIAG"],
 }
 # **feature 專屬之豁免**：某 profile 下不適用之 `PROFILE_CHECKS` 項。
 # R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
@@ -416,6 +469,7 @@ CHECK_GRANULARITY = {
     "SC": "每編號步驟／每 ER 行", "SS": "每列",
     "P-DIAG": "每列每欄每 token", "U-DIAG": "每列每位元組串",
     "R1-DIAG": "每列", "RM-DIAG": "每列每段",
+    "SEC-DIAG": "每列", "KEY-DIAG": "每列每次命中",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
@@ -1225,6 +1279,10 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
             result.violations.extend(check_diag_uds(fields, offset, tc_id))
         if "R1-DIAG" in enabled:
             result.violations.extend(check_diag_req_id(req_id, offset, tc_id))
+        if "SEC-DIAG" in enabled:
+            result.violations.extend(check_diag_security(req_id, fields, offset, tc_id))
+        if "KEY-DIAG" in enabled:
+            result.violations.extend(check_diag_key(req_id, fields, offset, tc_id))
         if "RM-DIAG" in enabled:
             diag_remarks = (cell_text(raw[remarks_idx])
                             if remarks_idx is not None and remarks_idx < len(raw) else "")

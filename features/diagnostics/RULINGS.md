@@ -201,6 +201,26 @@ R-DIAG10(amend)  Priority 值域對齊 SWC 0708
   P3 不用（SWC 0708 值域實測無 P3）；Out of Scope 佔列 Priority 留空。其餘不變。
 ```
 
+### R-DIAG13 — I/O Control TC 之 security 前提（Pei 裁，2026-09-17）
+
+```text
+R-DIAG13  I/O Control TC 之 security 前提
+  SID 0x2F 之 TC 一律含 Pre-Condition `Security access 0x27 has been granted`；
+  pc_sources 註 SYSAD §4.5 保守套用；SYSAD 作者回覆不需者，依 R-G72 於下一 Revise 移除。
+```
+
+> **判定法依 CDD-04 追補 A §一**：母體以 `layer3_assign.tsv` 之母節為 I/O Control DIDs
+> 反查，**不以 Procedure 有無 `$ 2F` 位元組串為條件** —— pilot `-006` 之觸發步驟整行為
+> `PENDING: DR-DIAG-4`，無位元組串而仍屬 `0x2F` 之 TC。
+
+### R-DIAG14 — 觸發鍵之選擇（Pei 裁，2026-09-17）
+
+```text
+R-DIAG14  觸發鍵之選擇
+  按鍵狀態類 DID（$1820／$1821）之觸發步驟不得選 Power／Dark 等會改變 HU 電源或畫面狀態之鍵；
+  優先選導航類鍵（Up／Down／Select）。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

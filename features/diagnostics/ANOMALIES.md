@@ -39,6 +39,12 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | `[A-DIAG28]` | execution | **`-331`／`-332` 之 Title 與所掛來源不符**：Title 書 `connected USB devices`（與 `-329`／`-330` 逐字相同），所掛 CFTS004-4939919 書 `detected USB Hub devices` | CDD-03 batch 1 | 037 Title 重複 | **已處置** — 依 IN §8.6 取 CFTS004；FB-DIAG-i |
 | `[A-DIAG29]` | execution | **`-333` 將 UDS NRC 與資料值混寫**：037 書「negative response – Service Not Supported $FF」；CFTS004-4939922 之 `$FF` 為 USB 偵測不可用時之**回報資料值**，非 NRC | CDD-03 batch 1 | 037 語意混寫 | **已處置** — 產為正向回報 TC；FB-DIAG-j |
 | `[A-DIAG30]` | execution | **6 條 TC 宣告 baseline 而未使用**（`rw_pair` 之寫向 5 條 ＋ `-052`）：Pre-Condition 立 `Setting_initial`／`Pattern_initial`，ER 只比對「寫入值 ↔ 讀回值」，初值未入 ER | canon §9-9 自檢實測 | 多餘前提（§8.5）| **RESOLVED** — 寫向不立 baseline |
+| `[A-DIAG31]` | execution | **`J`（行首大寫）與 R-DIAG4(a)（verbatim 照抄）衝突**：`SWE1-Diagnostics-048` 之 Description 以小寫 `when` 起首（037 原文 `1)when tester command to Read request…`），`test_item` 上半照抄即觸發 `J`。batch 2 命中 2 行（`-107`／`-108`）| batch 2 實跑 | 判準衝突 | **PENDING** — 建議 `J` 對 `test_item` 之 verbatim 上半豁免（下半括號仍檢）；本包不自改判準、不改寫 037 原文 |
+| `[A-DIAG32]` | execution | **`SEC-DIAG` 母體含 unsupported 型**：追補 A §一定母體為「I/O Control 母節之全部 TC」，而 unsupported 型送的是**不支援之 SID**、根本不發 `0x2F`，security access 於其語意不適用。batch 2 命中 **19 條**，全為 unsupported 型 | batch 2 實跑 | 判準範圍 | **PENDING** — 建議母體排除 unsupported 型；本包未為降紅補 19 條多餘前提（同 CDD-02 對 OOS 佔列之作法）|
+| `[A-DIAG33]` | execution | **CFTS004 引用 `$D013` 而無該章節**（r325／r327）；037 `-115`／`-116`／`-117` 據以寫成 `0x31 RoutineControl request for DID 0xD013`，而該要件在 CFTS004 置於 I/O Control 之 `$5000` 節 | batch 2 T2 回看 | 來源懸空參照 | **已處置** — 依 IN §8.6 以 `$5000` 為受測 DID；FB-DIAG-l |
+| `[A-DIAG34]` | execution | **`-048` 之 session 失效軸無 NRC**：CFTS004／037／SYSAD 三處皆未載，不為該軸產出 | batch 2 | 來源缺件 | **已處置** — 只產格式／長度與值域二軸；FB-DIAG-m |
+| `[A-DIAG35]` | execution | **baseline 宣告未用之缺陷重犯**：四象限 positive（`-110`／`-114`／`-121`／`-125`）再度於 PC 立 `Quadrant_initial` 而 ER 未用 —— 與 `[A-DIAG30]` 同因（模板複製時未檢視 ER）| canon §9 自檢 | 多餘前提（§8.5）| **RESOLVED** — 已移除；此為同一缺陷第二次，寫入 profile 之寫入型 TC 規則 |
+| `[A-DIAG36]` | execution | **profile 之 §1–§6 自 CDD-01_A 起未生效**：編輯以 `str.replace()` 為之而未加 assert，字串不符時靜默失敗，腳本仍印「已更新」，我據以在 `up/CDD-01_A` §6 與 `up/CDD-03` §11 回報成功而未複讀檔案。檔內至 CDD-04 仍寫「尚未實作任何一項」「待實作」「21 組草案」| CDD-04 提交前複查 | **回報不實** | **RESOLVED** — 已以逐處 assert 重寫；教訓：凡以字串比對改檔，先 assert 命中再寫，回報前複讀 |
 
 ## Assumption markers
 

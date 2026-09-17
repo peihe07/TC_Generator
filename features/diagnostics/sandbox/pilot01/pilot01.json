@@ -124,21 +124,22 @@
       "req_id": "SWE1-Diagnostics-112",
       "test_set": "Buzzer Control",
       "tc_title": "The DiagService shall interpret the received 0x2F (InputOutputControlByIdentifier) request for DID 0x5000 and extract the tone output level / volume reference parameter. (I-O $5000, SID 2F, level tracks radio volume)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. No specific tone output level is specified in the request",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. No specific tone output level is specified in the request",
       "input_test_data": "NA",
-      "test_procedure": "1. PENDING: DR-DIAG-4 $5000 controlOptionRecord encoding for tone selection\n2. Set the radio volume to a mid-range value and record the tone output level as Tone_initial\n3. Increase the radio volume\n4. Read the tone output level and record as Tone_after",
-      "expected_result": "1. PENDING: DR-DIAG-4 $5000 controlOptionRecord encoding for tone selection\n2. Tone_initial is recorded\n3. The radio volume is increased\n4. Tone_after is greater than Tone_initial",
+      "test_procedure": "1. Activate a buzzer control tone without specifying an output level\n   $ 2F 50 00 <buzzer control tone selection>\n2. Set the radio volume to a mid-range value and record the tone output level as Tone_initial\n3. Increase the radio volume\n4. Read the tone output level and record as Tone_after",
+      "expected_result": "1. The positive response 6F 50 00 is received\n2. Tone_initial is recorded\n3. The radio volume is increased\n4. Tone_after is greater than Tone_initial",
       "specification_reference": "CFTS004-4940297",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P0",
       "split_flag": false,
-      "split_reason": "",
+      "split_reason": "CDD-04 §2 T2 定 controlOptionRecord 未載時一律以 `<…>` 佔位（DR-DIAG-4），取代 CDD-02 §4 之整行 PENDING；本條同 batch 2 之 $5000 諸條對齊（見上繳包 §3.4）",
       "remarks": "SID per 037 SWE1-Diagnostics-112",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: CFTS004-4940297（Unless a specific output level is specified…）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
+        "PC-4: CFTS004-4940297（Unless a specific output level is specified…）"
       ]
     },
     {
@@ -146,7 +147,7 @@
       "req_id": "SWE1-Diagnostics-113",
       "test_set": "Buzzer Control",
       "tc_title": "The SW shall validate the received DID 0x5000 write request format and parameter values. (I-O $5000, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The current tone output state is recorded as Tone_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The current tone output state is recorded as Tone_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send an InputOutputControlByIdentifier request for DID $5000 with an invalid message length\n   $ 2F 50 00\n2. Read the current tone output state",
       "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The tone output state equals Tone_initial",
@@ -160,7 +161,8 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
+        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
       ]
     },
     {
@@ -168,7 +170,7 @@
       "req_id": "SWE1-Diagnostics-113",
       "test_set": "Buzzer Control",
       "tc_title": "The SW shall validate the received DID 0x5000 write request format and parameter values. (I-O $5000, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The current tone output state is recorded as Tone_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The current tone output state is recorded as Tone_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send an InputOutputControlByIdentifier request for DID $5000 with a parameter value outside the supported range\n   $ 2F 50 00 <out-of-range controlOptionRecord>\n2. Read the current tone output state",
       "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The tone output state equals Tone_initial",
@@ -182,7 +184,8 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
+        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
       ]
     },
     {
@@ -283,7 +286,7 @@
       "req_id": "SWE1-Diagnostics-340-001",
       "test_set": "Video Input",
       "tc_title": "If the new input source is not compatible with the radio, the radio shall return a \"Previous Out of Range\" negative response. (I-O $500D, NRC 31 Request Out of Range)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. A valid video input is active and recorded as Source_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. A valid video input is active and recorded as Source_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send a command to activate a video input that is not compatible with the radio\n   $ 2F 50 0D <incompatible video input>\n2. Read the currently active video input",
       "expected_result": "1. The negative response 7F 2F 31 (Request Out of Range) is received\n2. The currently active video input equals Source_initial",
@@ -297,7 +300,8 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: CFTS004-4940355（…the radio shall change to the new input contained in the command）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
+        "PC-4: CFTS004-4940355（…the radio shall change to the new input contained in the command）"
       ]
     },
     {

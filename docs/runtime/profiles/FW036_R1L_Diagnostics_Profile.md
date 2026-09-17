@@ -41,13 +41,48 @@
 呼叫形式：`python scripts/lint036.py --profile diagnostics <xlsx…>`。
 
 **現況如實回報**：`lint036.py` 之 `--profile` 只作真值使用，不讀本檔內容
-（Camera／VehicleCategory profile 皆已實測並記錄同一事實）。故 §2–§5 之
+（Camera／VehicleCategory profile 皆已實測並記錄同一事實）。故以下各節之
 新檢查項 **必須另行實作於 `lint036.py`** 才會生效，不會因寫在本檔而自動啟用。
-本包止於 Phase 0–1，**尚未實作任何一項**。
+
+### 1.1 feature 專屬檢查（`FEATURE_CHECKS["diagnostics"]`）—— **七項全數已實作**
+
+| 代號 | 判準 | 出處 | 立於 | 校準 |
+|---|---|---|---|---|
+| `P-DIAG` | `$XXXX` 白名單（36 種，`layer3_assign.tsv` 之 DID 集合）| R-DIAG5(a) | CDD-01_A | **已校準** |
+| `U-DIAG` | UDS 位元組串每 byte 兩位大寫 hex、單空格；`7F` 後兩 byte 必接 `(<label>)` | R-DIAG5(b)／(amend)(d) | CDD-01_A | **已校準** |
+| `R1-DIAG` | Requirement ID 單值 `SWE1-Diagnostics-nnn(-001/-002)`；`-340` 裸號違規 | R-DIAG1(a)／R-DIAG2 | CDD-01_A | **已校準** |
+| **`Z`** | Vehicle Model 七欄 1／0；598／5210 = 0；五有效欄至少一 `1` | R-CAM2／**R-G74** | 承接 Camera | 已校準 |
+| `RM-DIAG` | Remarks 五種定型句（多句以 `; ` 接合）| R-DIAG3(amend)／6／7(a)／5(amend) | CDD-01_A | **已校準** |
+| `SEC-DIAG` | I/O Control（`0x2F`）之 TC 須含 PC `Security access 0x27 has been granted` | R-DIAG13 | CDD-04 | 未校準 |
+| `KEY-DIAG` | `$1820`／`$1821` 之觸發鍵不得為 Power／Dark | R-DIAG14 | CDD-04 | 未校準 |
+
+**`VM-DIAG` ≡ `Z`**：下放包書 `VM-DIAG`，其判準逐字即 R-CAM2(a)(b)(c)，
+與既有 `Z` 完全相同，且 R-G74 已將 598／5210 升為全域 —— 另立代號即為同一判準之第二份實作。
+
+**`SEC-DIAG`／`KEY-DIAG` 之母體依母節反查**（CDD-04 追補 A §一），**不依 Procedure 有無位元組串** ——
+pilot `-006` 之觸發步驟曾整行為 `PENDING`，無 `2F` 串而仍屬 `0x2F` 之 TC。
+實作為 `lint036.py` 之 `DIAG_IO_ROWS`（114 列）／`DIAG_KEY_ROWS`（7 列）號段常數。
+
+### 1.2 列級豁免（R-DIAG11）與整項豁免（R-DIAG12）
+
+- **列級**：`AF` Test Result = `Out of Scope` 之列豁免 `I`／`M`／`R`／`Z`；
+  `R1-DIAG`／`RM-DIAG` 仍檢。實作為 `ROW_EXEMPT_OOS`（列級，非整項）。
+- **整項**：`I-cross` 入 `FEATURE_EXEMPT["diagnostics"]`，比照 R-SEC15(j)。
+
+### 1.3 自測
+
+`features/diagnostics/scripts/selfcheck_lint_diag.py` —— **九項，各 5 正例 ＋ 5 反例**。
+實跑校準母體：pilot01（14 列）、batch 1（47 列）、batch 2（81 列）、合併本（133 列）。
+
+### 1.4 寫入型 TC 不立 baseline
+
+`[A-DIAG30]`／`[A-DIAG35]`（同一缺陷已兩犯）：驗證對象為「寫入值 ↔ 讀回值」時，
+初值不入 ER，於 Pre-Condition 宣告 `*_initial` 即為 §8.5 之多餘前提。
+**canon §9-9 自檢可攔，lint 無此判準。**
 
 ---
 
-## 2. `[ADD]` UDS 記法（R-DIAG5）—— **待實作**
+## 2. `[ADD]` UDS 記法（R-DIAG5）—— **已實作**（`P-DIAG`／`U-DIAG`）
 
 ### 2.1 敘述層（`test_item` 上半、`pre_conditions`、`expected_result` 散文）
 
@@ -91,7 +126,7 @@ I/O Control SID `0x2F` 依 (e) 全數 `RESOLVED_037`（114 列：24 列直接明
 
 ---
 
-## 3. `[ADD]` Requirement ID 欄單值檢查（R-DIAG1(a)）—— **待實作**
+## 3. `[ADD]` Requirement ID 欄單值檢查（R-DIAG1(a)）—— **已實作**（`R1-DIAG`）
 
 - 工作簿 `Requirement or Design ID` 欄**每列只得一個 SWE1 ID**，不得逗號／換行並列。
 - 接受形式：`SWE1-Diagnostics-{nnn}`，以及 R-DIAG2 之
@@ -101,7 +136,7 @@ I/O Control SID `0x2F` 依 (e) 全數 `RESOLVED_037`（114 列：24 列直接明
 
 ---
 
-## 4. `[ADD]` Vehicle Model 七欄檢查（沿用 R-CAM2 條文）—— **待實作**
+## 4. `[ADD]` Vehicle Model 七欄檢查（沿用 R-CAM2 條文）—— **已實作**（`Z`）
 
 判準逐字承接 `features/camera/RULINGS.md` R-CAM2：
 
@@ -126,7 +161,7 @@ HDCC28/DT28/Promaster = `0 (NAFTA)`；Toro/Fastback = `2 (LATAM)`。
 
 ---
 
-## 5. `[PEI]` Layer 2 Test Set（21 組草案）
+## 5. `[PEI]` Layer 2 Test Set（**20 組**，R-DIAG9(amend)(b)）
 
 CDD-01 §5 之 21 組草案經 CDD-01 逐列驗算 **21/21 吻合（V2 母體 395）**；
 **R-DIAG9(amend)(b)** 裁定 #11 `Audio Output Settings`（`$180C`）併入 #14 `Audio Tone Settings`，
@@ -143,7 +178,7 @@ Layer 2 之 **20 組名稱**仍歸 Pei（framework.md Part IV）。
 
 ---
 
-## 6. `[ADD]` Remarks 欄格式檢查 —— **待實作**
+## 6. `[ADD]` Remarks 欄格式檢查 —— **已實作**（`RM-DIAG`）
 
 | 情形 | 固定句式 | 母體 |
 |---|---|---|
@@ -174,6 +209,7 @@ CDD-01_A 後之未決項：
 |---|---|---|
 | 1 | Layer 2 之 20 組名稱 | **[PEI]**，framework.md Part IV |
 | 2 | `PENDING_DR1` 3 列之 NRC（`-156`／`-157`／`-237`）| DR-DIAG-1 |
-| 3 | 五項 lint 之校準 —— CDD-02 pilot（14 列）＋ CDD-03 batch 1（47 列）實跑，**真違規 0**；`P-DIAG`／`U-DIAG`／`R1-DIAG`／`Z`／`RM-DIAG` 皆 0 | **已校準** |
+| 3 | 七項 lint —— 五項已校準（CDD-02 14 列／CDD-03 47 列／CDD-04 81 列實跑，真違規 0）；`SEC-DIAG`／`KEY-DIAG` 立於 CDD-04，未校準 | 見 §1.1 |
+| 6 | `J` 與 R-DIAG4(a) verbatim 衝突（`[A-DIAG31]`）；`SEC-DIAG` 母體含 unsupported 型（`[A-DIAG32]`）| **判準待調**，CDD-04 §5.2 |
 | 4 | `docs/fw036/RULINGS.sha.tsv` 僅含 security 32 列而自稱全域檔（`--check` 動工前即 FAIL）| **全域待辦**，`[A-DIAG15]` |
 | 5 | `new_feature.py` 之 `feature[:2]` ABBR 缺陷 | **全域待辦**（審閱 §五-6，不阻斷）|

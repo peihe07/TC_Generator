@@ -1,0 +1,62 @@
+l2_no	test_set	row037	swe1_id	tc_ids	tc_count	status
+11	Buzzer Control	57	SWE1-Diagnostics-050	NR1L-DIAG-056	1	COVERED
+11	Buzzer Control	116	SWE1-Diagnostics-109	NR1L-DIAG-057	1	COVERED
+11	Buzzer Control	117	SWE1-Diagnostics-110	NR1L-DIAG-058;NR1L-DIAG-059	2	COVERED
+11	Buzzer Control	118	SWE1-Diagnostics-111	NR1L-DIAG-060	1	COVERED
+11	Buzzer Control	119	SWE1-Diagnostics-112	NR1L-DIAG-006	1	COVERED
+11	Buzzer Control	120	SWE1-Diagnostics-113	NR1L-DIAG-007;NR1L-DIAG-008	2	COVERED
+11	Buzzer Control	121	SWE1-Diagnostics-114	NR1L-DIAG-061	1	COVERED
+11	Buzzer Control	122	SWE1-Diagnostics-115	NR1L-DIAG-062	1	COVERED
+11	Buzzer Control	123	SWE1-Diagnostics-116	NR1L-DIAG-063;NR1L-DIAG-064	2	COVERED
+11	Buzzer Control	124	SWE1-Diagnostics-117	NR1L-DIAG-065	1	COVERED
+11	Buzzer Control	125	SWE1-Diagnostics-118	NR1L-DIAG-066	1	COVERED
+11	Buzzer Control	126	SWE1-Diagnostics-119	NR1L-DIAG-067;NR1L-DIAG-068	2	COVERED
+11	Buzzer Control	127	SWE1-Diagnostics-120	NR1L-DIAG-069	1	COVERED
+11	Buzzer Control	128	SWE1-Diagnostics-121	NR1L-DIAG-070	1	COVERED
+11	Buzzer Control	129	SWE1-Diagnostics-122	NR1L-DIAG-071;NR1L-DIAG-072	2	COVERED
+11	Buzzer Control	130	SWE1-Diagnostics-123	NR1L-DIAG-073	1	COVERED
+11	Buzzer Control	131	SWE1-Diagnostics-124	NR1L-DIAG-074	1	COVERED
+11	Buzzer Control	132	SWE1-Diagnostics-125	NR1L-DIAG-075;NR1L-DIAG-076	2	COVERED
+11	Buzzer Control	133	SWE1-Diagnostics-126	NR1L-DIAG-077	1	COVERED
+11	Buzzer Control	134	SWE1-Diagnostics-127	NR1L-DIAG-078	1	COVERED
+11	Buzzer Control	135	SWE1-Diagnostics-128	NR1L-DIAG-079;NR1L-DIAG-080	2	COVERED
+11	Buzzer Control	136	SWE1-Diagnostics-129	NR1L-DIAG-081	1	COVERED
+11	Buzzer Control	137	SWE1-Diagnostics-130	NR1L-DIAG-082	1	COVERED
+11	Buzzer Control	138	SWE1-Diagnostics-131	NR1L-DIAG-083;NR1L-DIAG-084	2	COVERED
+11	Buzzer Control	139	SWE1-Diagnostics-132	NR1L-DIAG-085	1	COVERED
+11	Buzzer Control	140	SWE1-Diagnostics-133	NR1L-DIAG-086	1	COVERED
+11	Buzzer Control	141	SWE1-Diagnostics-134	NR1L-DIAG-087;NR1L-DIAG-088	2	COVERED
+11	Buzzer Control	142	SWE1-Diagnostics-135	NR1L-DIAG-089	1	COVERED
+11	Buzzer Control	143	SWE1-Diagnostics-136	NR1L-DIAG-090	1	COVERED
+11	Buzzer Control	144	SWE1-Diagnostics-137	NR1L-DIAG-091;NR1L-DIAG-092	2	COVERED
+11	Buzzer Control	145	SWE1-Diagnostics-138	NR1L-DIAG-093	1	COVERED
+11	Buzzer Control	146	SWE1-Diagnostics-139	NR1L-DIAG-094	1	COVERED
+11	Buzzer Control	147	SWE1-Diagnostics-140	NR1L-DIAG-095;NR1L-DIAG-096	2	COVERED
+11	Buzzer Control	148	SWE1-Diagnostics-141	NR1L-DIAG-097	1	COVERED
+11	Buzzer Control	149	SWE1-Diagnostics-142	NR1L-DIAG-098	1	COVERED
+11	Buzzer Control	150	SWE1-Diagnostics-143	NR1L-DIAG-099;NR1L-DIAG-100	2	COVERED
+11	Buzzer Control	151	SWE1-Diagnostics-144	NR1L-DIAG-101	1	COVERED
+11	Buzzer Control	152	SWE1-Diagnostics-145	NR1L-DIAG-102	1	COVERED
+11	Buzzer Control	153	SWE1-Diagnostics-146	NR1L-DIAG-103;NR1L-DIAG-104	2	COVERED
+11	Buzzer Control	154	SWE1-Diagnostics-147	NR1L-DIAG-105	1	COVERED
+12	Speaker Quadrant Selection	54	SWE1-Diagnostics-047	NR1L-DIAG-106	1	COVERED
+12	Speaker Quadrant Selection	55	SWE1-Diagnostics-048	NR1L-DIAG-107;NR1L-DIAG-108	2	COVERED
+12	Speaker Quadrant Selection	56	SWE1-Diagnostics-049	NR1L-DIAG-109	1	COVERED
+12	Speaker Quadrant Selection	98	SWE1-Diagnostics-091	NR1L-DIAG-110	1	COVERED
+12	Speaker Quadrant Selection	99	SWE1-Diagnostics-092	NR1L-DIAG-111;NR1L-DIAG-112	2	COVERED
+12	Speaker Quadrant Selection	100	SWE1-Diagnostics-093	NR1L-DIAG-113	1	COVERED
+12	Speaker Quadrant Selection	101	SWE1-Diagnostics-094	NR1L-DIAG-114	1	COVERED
+12	Speaker Quadrant Selection	102	SWE1-Diagnostics-095	NR1L-DIAG-115;NR1L-DIAG-116	2	COVERED
+12	Speaker Quadrant Selection	103	SWE1-Diagnostics-096	NR1L-DIAG-117	1	COVERED
+12	Speaker Quadrant Selection	104	SWE1-Diagnostics-097	NR1L-DIAG-118	1	COVERED
+12	Speaker Quadrant Selection	105	SWE1-Diagnostics-098	NR1L-DIAG-119;NR1L-DIAG-120	2	COVERED
+12	Speaker Quadrant Selection	106	SWE1-Diagnostics-099	NR1L-DIAG-129	1	COVERED
+12	Speaker Quadrant Selection	107	SWE1-Diagnostics-100	NR1L-DIAG-121	1	COVERED
+12	Speaker Quadrant Selection	108	SWE1-Diagnostics-101	NR1L-DIAG-122;NR1L-DIAG-123	2	COVERED
+12	Speaker Quadrant Selection	109	SWE1-Diagnostics-102	NR1L-DIAG-124	1	COVERED
+12	Speaker Quadrant Selection	110	SWE1-Diagnostics-103	NR1L-DIAG-125	1	COVERED
+12	Speaker Quadrant Selection	111	SWE1-Diagnostics-104	NR1L-DIAG-126;NR1L-DIAG-127	2	COVERED
+12	Speaker Quadrant Selection	112	SWE1-Diagnostics-105	NR1L-DIAG-128	1	COVERED
+12	Speaker Quadrant Selection	113	SWE1-Diagnostics-106	NR1L-DIAG-130	1	COVERED
+12	Speaker Quadrant Selection	114	SWE1-Diagnostics-107	NR1L-DIAG-131;NR1L-DIAG-132	2	COVERED
+12	Speaker Quadrant Selection	115	SWE1-Diagnostics-108	NR1L-DIAG-133	1	COVERED

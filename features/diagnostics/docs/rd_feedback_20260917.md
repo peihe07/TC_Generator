@@ -221,3 +221,74 @@ CFTS004 r47 原文：
 **測試側處置**：依來源規格勝出原則，產為「USB 偵測不可用時正向回報 `$FF`」之測試用例，
 非 negative response 測試。
 **建議 037 下一版拆為兩句，或刪去與本列來源無關之 `Service Not Supported`。**
+
+---
+
+## FB-DIAG-k　I/O Control（`$2F`）是否受 Security Access（`$27`）保護 —— 詢 SYSAD 作者
+
+`SYS3_CFTS_004_General Diagnostics_System Architectural Design_SYSAD.docx` §4.5
+「Session & Security Assumptions」逐字：
+
+> ECU starts in Default Session.
+> Security access (0x27) is required for:
+> - Write DID
+> - Routine execution
+> - DTC clearing
+
+**列舉未含 I/O Control（`$2F`，InputOutputControlByIdentifier）。**
+
+本 feature 之 CFTS004 有 **15 個 I-O Control DID 節、114 個 037 列**使用 `$2F`
+（`$5000` Buzzer Control、`$5001` Speaker Quadrant Selection、`$5002`–`$5006` Tone Settings、
+`$5008`／`$5009`／`$500A`–`$500D`、`$5100` 等），數量遠多於 Routine（27 列）。
+
+**問**：此為漏列，抑或 I/O Control 刻意不需 Security Access？
+
+**測試側現況**：`$2F` 之測試用例一律先取得 Security Access（保守寫法）。
+若實機不需要，此前提為多餘但無害；若實機需要而測試用例未寫，測試者會得到
+`7F 2F 33 (securityAccessDenied)` 並誤判為缺陷。**回覆後可據以移除或保留。**
+
+---
+
+## FB-DIAG-l　CFTS004 引用 `$D013` 而文件內無該章節
+
+| 引用處 | CFTS004 列 | ObjectID | 原文 |
+|---|---:|---|---|
+| `$5000 - Buzzer Control` | 325 | `4940296` | Tool controlled tones shall be output to each speaker output unless specific outputs are requested using **$D013** |
+| 同上 | 327 | `4940283` | Typically, this DID is used with **$D013** to direct test tones to specific speaker outputs |
+
+`$D013` 在 CFTS004 全文**無對應章節**，其功能、參數與編碼皆無處可查。
+
+037 之 `SWE1-Diagnostics-115`／`-116`／`-117`（row 122–124）據該引用寫成
+「`0x31 (RoutineControl)` request for DID `0xD013`」—— 但：
+
+1. `$D013` 在 CFTS004 無定義，無從得知其服務與參數；
+2. 037 稱其為 `0x31` RoutineControl，而 CFTS004 將該要件置於 **I/O Control 之 `$5000` 節**；
+3. 同段另一處（CFTS004-4940283）說 `$D013` 與 `$5000` **並用**，語意上更像另一個 I/O Control DID 而非常式。
+
+**測試側處置**：依來源規格勝出原則，以 CFTS004 所載之
+「未請求特定輸出時，tool-controlled tone 預設送至每個喇叭輸出」為驗證點，受測 DID 取 `$5000`。
+**建議**：(1) 確認 `$D013` 是否應收入 CFTS004；(2) 若不屬本文件，於引用處註明其出處文件。
+
+---
+
+## FB-DIAG-m　`SWE1-Diagnostics-048` 述「診斷 session 不支援」之失效而無 NRC
+
+| 037 列 | SWE-Requirement ID | Source Requirement ID | CFTS004 列 | ObjectID |
+|---:|---|---|---:|---|
+| 55 | `SWE1-Diagnostics-048` | `SYS-RA-DIAG-047` | 30 | `4939942` |
+
+037 之 Description 述**兩種**失效：
+
+> 2) IOC will validate the current diagnostic session for the DID and rerturn the negative response
+> if the **current diagnostic session is not supported**.
+> 4) if requested command is invalid format or invalid in length or invalid parameters then SW return
+> the Negative response
+
+第二種（格式／長度／參數）已依既有判準拆為兩條測試用例。
+第一種（**session 不支援**）之 NRC 在 CFTS004、037、SYSAD **三處皆未載**——
+SYSAD §4.5 只述「ECU starts in Default Session」而無對應碼。
+
+**測試側處置**：不為該軸產出測試用例（無可斷言之 NRC，產出即造值）。
+**建議**：037 或 CFTS004 補明該情形之 NRC。
+
+（另：本列 Description 之 `rerturn` 為 `return` 之誤，一併回報。）

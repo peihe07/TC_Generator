@@ -76,7 +76,7 @@ lint:
   # **CDD-01 尚未實作於 lint036.py**（--profile 只作真值使用，不讀 profile 內容）。
   # CDD-01_A T4 已實作於 lint036.py 之 FEATURE_CHECKS["diagnostics"]；
   # `VM-DIAG` 沿用既有 `Z`（判準逐字同 R-CAM2，且 R-G74 已升為全域）。
-  extra_rules: ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG"]
+  extra_rules: ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG", "SEC-DIAG", "KEY-DIAG"]
   # R-DIAG11：`AF` = "Out of Scope" 之列豁免 I／M／R／Z（lint036 ROW_EXEMPT_OOS）
   # R-DIAG12：I-cross 整項豁免（lint036 FEATURE_EXEMPT）
   row_exempt_out_of_scope: ["I", "M", "R", "Z"]
