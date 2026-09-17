@@ -59,6 +59,7 @@ SWE1-Diagnostics-101	108	negative	$5001 - Speaker Quadrant Selection	RESOLVED_IS
 SWE1-Diagnostics-102	109	unsupported	$5001 - Speaker Quadrant Selection	RESOLVED_ISO	0x11	ISO 14229-1	serviceNotSupported	service not supported
 SWE1-Diagnostics-104	111	negative	$5001 - Speaker Quadrant Selection	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
 SWE1-Diagnostics-105	112	unsupported	$5001 - Speaker Quadrant Selection	RESOLVED_ISO	0x11	ISO 14229-1	serviceNotSupported	service not supported
+SWE1-Diagnostics-106	113	negative	$5001 - Speaker Quadrant Selection	RESOLVED_CFTS004	$22	CFTS004	conditionsNotCorrect	conditions not correct
 SWE1-Diagnostics-107	114	negative	$5001 - Speaker Quadrant Selection	RESOLVED_CFTS004	$22	CFTS004	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
 SWE1-Diagnostics-108	115	unsupported	$5001 - Speaker Quadrant Selection	RESOLVED_CFTS004	$22	CFTS004	serviceNotSupported	service not supported
 SWE1-Diagnostics-110	117	negative	$5000 - Buzzer Control	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
@@ -92,8 +93,9 @@ SWE1-Diagnostics-150	157	unsupported	$031B - Audio Measure AC	RESOLVED_037	$11	0
 SWE1-Diagnostics-152	159	negative	$0312 - AV Signal Detection	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
 SWE1-Diagnostics-153	160	unsupported	$0312 - AV Signal Detection	RESOLVED_037	$11	037	serviceNotSupported	service not supported
 SWE1-Diagnostics-156	163	negative	$0312 - AV Signal Detection	PENDING_DR1		-		
-SWE1-Diagnostics-157	164	unsupported	$0312 - AV Signal Detection	PENDING_DR1		-		
+SWE1-Diagnostics-157	164	unsupported	$0312 - AV Signal Detection	RESOLVED_ISO	0x11	ISO 14229-1	serviceNotSupported	unsupported service request
 SWE1-Diagnostics-159	166	unsupported	$0312 - AV Signal Detection	RESOLVED_ISO	0x11	ISO 14229-1	serviceNotSupported	service not supported
+SWE1-Diagnostics-160	167	negative	$0312 - AV Signal Detection	RESOLVED_CFTS004	$31	CFTS004	requestOutOfRange	out of range
 SWE1-Diagnostics-162	169	negative	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
 SWE1-Diagnostics-164	171	negative	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
 SWE1-Diagnostics-166	173	negative	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
@@ -195,6 +197,7 @@ SWE1-Diagnostics-332	339	negative	$2870 - Media Hub Config (Read)	RESOLVED_ISO	0
 SWE1-Diagnostics-333	340	unsupported	$2870 - Media Hub Config (Read)	RESOLVED_ISO	0x11	ISO 14229-1	serviceNotSupported	service not supported
 SWE1-Diagnostics-335	342	negative	$280C - ECU Current Internal Settings (Read/Write)	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
 SWE1-Diagnostics-338	345	negative	$5100 - Video Input	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
+SWE1-Diagnostics-340-001	347	negative	$500D - Video Input Settings	RESOLVED_ISO	0x31	ISO 14229-1	requestOutOfRange	out of range
 SWE1-Diagnostics-341	349	negative	$280C - ECU Current Internal Settings (Read/Write)	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
 SWE1-Diagnostics-343	351	negative	$280C - ECU Current Internal Settings (Read/Write)	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did
 SWE1-Diagnostics-345	353	negative	$1821 - Steering Wheel Module Interface (Read)	RESOLVED_ISO	0x13,0x31	ISO 14229-1	incorrectMessageLengthOrInvalidFormat;requestOutOfRange	invalid length;unsupported did

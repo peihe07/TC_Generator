@@ -104,7 +104,7 @@ SWE1-Diagnostics-102	109	SYS-RA-DIAG-317	$5001	I/O	$5001 - Speaker Quadrant Sele
 SWE1-Diagnostics-103	110	SYS-RA-DIAG-318	$5001	I/O	$5001 - Speaker Quadrant Selection	positive	12	Speaker Quadrant Selection
 SWE1-Diagnostics-104	111	SYS-RA-DIAG-318	$5001	I/O	$5001 - Speaker Quadrant Selection	negative	12	Speaker Quadrant Selection
 SWE1-Diagnostics-105	112	SYS-RA-DIAG-318	$5001	I/O	$5001 - Speaker Quadrant Selection	unsupported	12	Speaker Quadrant Selection
-SWE1-Diagnostics-106	113	SYS-RA-DIAG-320	$5001	I/O	$5001 - Speaker Quadrant Selection	positive	12	Speaker Quadrant Selection
+SWE1-Diagnostics-106	113	SYS-RA-DIAG-320	$5001	I/O	$5001 - Speaker Quadrant Selection	negative	12	Speaker Quadrant Selection
 SWE1-Diagnostics-107	114	SYS-RA-DIAG-320	$5001	I/O	$5001 - Speaker Quadrant Selection	negative	12	Speaker Quadrant Selection
 SWE1-Diagnostics-108	115	SYS-RA-DIAG-320	$5001	I/O	$5001 - Speaker Quadrant Selection	unsupported	12	Speaker Quadrant Selection
 SWE1-Diagnostics-109	116	SYS-RA-DIAG-322	$5000	I/O	$5000 - Buzzer Control	positive	11	Buzzer Control
@@ -158,7 +158,7 @@ SWE1-Diagnostics-156	163	SYS-RA-DIAG-369	$0312	Routine	$0312 - AV Signal Detecti
 SWE1-Diagnostics-157	164	SYS-RA-DIAG-369	$0312	Routine	$0312 - AV Signal Detection	unsupported	18	AV Signal Detection
 SWE1-Diagnostics-158	165	SYS-RA-DIAG-370	$0312	Routine	$0312 - AV Signal Detection	positive	18	AV Signal Detection
 SWE1-Diagnostics-159	166	SYS-RA-DIAG-370	$0312	Routine	$0312 - AV Signal Detection	unsupported	18	AV Signal Detection
-SWE1-Diagnostics-160	167	SYS-RA-DIAG-371	$0312	Routine	$0312 - AV Signal Detection	positive	18	AV Signal Detection
+SWE1-Diagnostics-160	167	SYS-RA-DIAG-371	$0312	Routine	$0312 - AV Signal Detection	negative	18	AV Signal Detection
 SWE1-Diagnostics-161	168	SYS-RA-DIAG-104	$2842	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	positive	2	SXM Signal Quality
 SWE1-Diagnostics-162	169	SYS-RA-DIAG-104	$2842	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	negative	2	SXM Signal Quality
 SWE1-Diagnostics-163	170	SYS-RA-DIAG-105	$2842	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	positive	2	SXM Signal Quality
@@ -338,7 +338,7 @@ SWE1-Diagnostics-336	343	SYS-RA-DIAG-261	$5100	I/O	$5100 - Video Input	positive	
 SWE1-Diagnostics-337	344	SYS-RA-DIAG-262	$5100	I/O	$5100 - Video Input	positive	17	Video Input
 SWE1-Diagnostics-338	345	SYS-RA-DIAG-262	$5100	I/O	$5100 - Video Input	negative	17	Video Input
 SWE1-Diagnostics-339	346	SYS-RA-DIAG-264	$500D	I/O	$500D - Video Input Settings	positive	17	Video Input
-SWE1-Diagnostics-340-001	347	SYS-RA-DIAG-264	$500D	I/O	$500D - Video Input Settings	positive	17	Video Input
+SWE1-Diagnostics-340-001	347	SYS-RA-DIAG-264	$500D	I/O	$500D - Video Input Settings	negative	17	Video Input
 SWE1-Diagnostics-340-002	348	SYS-RA-DIAG-188	$280C	R/W	$280C - ECU Current Internal Settings (Read/Write)	positive	7	ECU Internal Settings
 SWE1-Diagnostics-341	349	SYS-RA-DIAG-188	$280C	R/W	$280C - ECU Current Internal Settings (Read/Write)	negative	7	ECU Internal Settings
 SWE1-Diagnostics-342	350	SYS-RA-DIAG-192	$280C	R/W	$280C - ECU Current Internal Settings (Read/Write)	positive	7	ECU Internal Settings

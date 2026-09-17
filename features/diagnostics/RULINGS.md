@@ -158,11 +158,33 @@ R-DIAG3(amend)  Out of Scope 列之處置欄
   該列 Requirement ID 照填 SWE1-057，TC ID 照序取號（不跳號），Test Set 依 L3 歸 #10 Screen Test Pattern。
 ```
 
+### R-DIAG5(amend2) — `0x11` 之 037 觸發語含標題句式（Pei 裁，2026-09-17）
+
+```text
+R-DIAG5(amend2)  0x11 之 037 觸發語含標題句式
+  R-DIAG5(amend)(d) 之 `0x11 serviceNotSupported` 觸發語，除 Description 之「Service Not Supported」外，
+  含標題句式「Unsupported service requests」。SWE1-Diagnostics-157 由 PENDING_DR1 改 RESOLVED_ISO；
+  DR-DIAG-1 餘 2 列（-156、-237）。
+```
+
+### R-DIAG10 — Priority 判準（草案，pilot 後 Pei 裁）（Pei 裁，2026-09-17）
+
+```text
+R-DIAG10  Priority 判準（草案，pilot 後 Pei 裁）
+  P0  I/O Control 寫入（0x2F）與 Routine Control（0x31）之正向 TC —— 直接改變車機輸出或狀態
+  P1  DID 讀（0x22）／寫（0x2E）之正向 TC；I/O、Routine 之 negative
+  P2  DID 讀寫之 negative、全部 unsupported（0x11）
+  P3  無
+  Out of Scope 列不填 Priority（依 SWC 0708 該列空白慣例，執行層實測後定）
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。
 - **R-G74** Commander (598)／Regengade (5210) 全域一律 0 —— 由 R-CAM2(b) 升格，取代
   R-DIAG7(b) 所引之「R-CAM 前例」；`[A-DIAG04]` 之前例衝突據此結案。
+- **R-G75** `RULINGS.sha.tsv` 之併發寫入過渡規則 —— 本 feature 每次動該檔皆依其 (a)(b) 行，
+  上繳包依 (c) 記三個列數。成因為本 feature 實測之三次覆寫（`[A-DIAG15]`）。
 
 兩條本體落 `docs/fw036/RULINGS_LEDGER.md`，此處只記承接，不複製本體（R-G52）。
 

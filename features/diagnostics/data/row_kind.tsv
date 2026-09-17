@@ -104,7 +104,7 @@ row037	swe	kind	title_prefix	title
 110	SWE1-Diagnostics-103	positive	Audio	Audio - Update the Front Left speaker output selection using this DID $5001
 111	SWE1-Diagnostics-104	negative	Audio	Audio - Handle the negative response while updating the Front Left speaker output selection
 112	SWE1-Diagnostics-105	unsupported	Audio	Audio - Handle the Unsupported service requests while updating the Front Left speaker output selection
-113	SWE1-Diagnostics-106	positive	Audio	Audio - Return NRC $22 Conditions Not Correct when external buzzer source is active during speaker quadrant selection using DID $5001
+113	SWE1-Diagnostics-106	negative	Audio	Audio - Return NRC $22 Conditions Not Correct when external buzzer source is active during speaker quadrant selection using DID $5001
 114	SWE1-Diagnostics-107	negative	Audio	Audio - Handle the negative response while processing speaker quadrant selection when external buzzer source is active
 115	SWE1-Diagnostics-108	unsupported	Audio	Audio - Handle the Unsupported service requests while processing speaker quadrant selection
 116	SWE1-Diagnostics-109	positive	Audio	Audio - Activate buzzer control tone and mute entertainment audio sources using DID $5000
@@ -158,7 +158,7 @@ row037	swe	kind	title_prefix	title
 164	SWE1-Diagnostics-157	unsupported	Audio	Audio - Handle unsupported service requests for expected audio test tone validation (1 kHz, 0 dB) for AV signal detection routine via DID $0312
 165	SWE1-Diagnostics-158	positive	Audio	Audio - Detect the AV signal for the specified AV Channel Number using DID $0312
 166	SWE1-Diagnostics-159	unsupported	Audio	Audio - Handle the Unsupported service requests while detecting the AV signal for the specified AV Channel Number
-167	SWE1-Diagnostics-160	positive	Audio	Audio - Return NRC 0x31 Request Out of Range when the AV Channel Number does not correspond to a valid audio or video input
+167	SWE1-Diagnostics-160	negative	Audio	Audio - Return NRC 0x31 Request Out of Range when the AV Channel Number does not correspond to a valid audio or video input
 168	SWE1-Diagnostics-161	positive	SiriusXM	SiriusXM - Report TWER Pipe 2A Status via DID Read
 169	SWE1-Diagnostics-162	negative	SiriusXM	SiriusXM - Handle Negative Response for TWER Pipe Status DID Read
 170	SWE1-Diagnostics-163	positive	SiriusXM	SiriusXM - Report TWER Pipe 1B Status via DID Read
@@ -338,7 +338,7 @@ row037	swe	kind	title_prefix	title
 344	SWE1-Diagnostics-337	positive	Audio	Audio - Switch radio audio source to normal operation when requested by DID 5100
 345	SWE1-Diagnostics-338	negative	Audio	Audio - Handle negative response while switching the source fails. 5100
 346	SWE1-Diagnostics-339	positive	Audio	Audio - Switch to a video input when commanded via DID 500D
-347	SWE1-Diagnostics-340-001	positive	Audio	"Audio - Handle incompatible new input source (""Previous Out of Range"") via DID 500D"
+347	SWE1-Diagnostics-340-001	negative	Audio	"Audio - Handle incompatible new input source (""Previous Out of Range"") via DID 500D"
 348	SWE1-Diagnostics-340-002	positive	Clock Defrost	Clock Defrost – Read/Write Clock Defrost data via DID $280C
 349	SWE1-Diagnostics-341	negative	Clock Defrost	Clock Defrost – Handle negative response for Read/Write for DID 280C
 350	SWE1-Diagnostics-342	positive	12/24 Time Selection	12/24 Time Selection – Read/Write 12/24 hour clock setting via DID $280C

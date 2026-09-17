@@ -104,7 +104,7 @@ SWE1-Diagnostics-102	109	SYS-RA-DIAG-317	4940303	I/O	$5001 - Speaker Quadrant Se
 SWE1-Diagnostics-103	110	SYS-RA-DIAG-318	4940302	I/O	$5001 - Speaker Quadrant Selection	$5001	positive	Functional Requirement	All	Need Rework
 SWE1-Diagnostics-104	111	SYS-RA-DIAG-318	4940302	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
 SWE1-Diagnostics-105	112	SYS-RA-DIAG-318	4940302	I/O	$5001 - Speaker Quadrant Selection	$5001	unsupported	Functional Requirement	All	Need Rework
-SWE1-Diagnostics-106	113	SYS-RA-DIAG-320	4940306	I/O	$5001 - Speaker Quadrant Selection	$5001	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-106	113	SYS-RA-DIAG-320	4940306	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
 SWE1-Diagnostics-107	114	SYS-RA-DIAG-320	4940306	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
 SWE1-Diagnostics-108	115	SYS-RA-DIAG-320	4940306	I/O	$5001 - Speaker Quadrant Selection	$5001	unsupported	Functional Requirement	All	Need Rework
 SWE1-Diagnostics-109	116	SYS-RA-DIAG-322	4940298	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
@@ -158,7 +158,7 @@ SWE1-Diagnostics-156	163	SYS-RA-DIAG-369	4940477	Routine	$0312 - AV Signal Detec
 SWE1-Diagnostics-157	164	SYS-RA-DIAG-369	4940477	Routine	$0312 - AV Signal Detection	$0312	unsupported	Functional Requirement	All	Accepted
 SWE1-Diagnostics-158	165	SYS-RA-DIAG-370	4940474	Routine	$0312 - AV Signal Detection	$0312	positive	Functional Requirement	All	Need Rework
 SWE1-Diagnostics-159	166	SYS-RA-DIAG-370	4940474	Routine	$0312 - AV Signal Detection	$0312	unsupported	Functional Requirement	All	Need Rework
-SWE1-Diagnostics-160	167	SYS-RA-DIAG-371	4940476	Routine	$0312 - AV Signal Detection	$0312	positive	Functional Requirement	All	
+SWE1-Diagnostics-160	167	SYS-RA-DIAG-371	4940476	Routine	$0312 - AV Signal Detection	$0312	negative	Functional Requirement	All	
 SWE1-Diagnostics-161	168	SYS-RA-DIAG-104	4939836	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
 SWE1-Diagnostics-162	169	SYS-RA-DIAG-104	4939836	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
 SWE1-Diagnostics-163	170	SYS-RA-DIAG-105	4939838	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
@@ -338,7 +338,7 @@ SWE1-Diagnostics-336	343	SYS-RA-DIAG-261	4940358	I/O	$5100 - Video Input	$5100	p
 SWE1-Diagnostics-337	344	SYS-RA-DIAG-262	4940359	I/O	$5100 - Video Input	$5100	positive	Functional Requirement	All	
 SWE1-Diagnostics-338	345	SYS-RA-DIAG-262	4940359	I/O	$5100 - Video Input	$5100	negative	Functional Requirement	All	
 SWE1-Diagnostics-339	346	SYS-RA-DIAG-264	4940355	I/O	$500D - Video Input Settings	$500D	positive	Functional Requirement	All	Need Rework
-SWE1-Diagnostics-340-001	347	SYS-RA-DIAG-264	4940355	I/O	$500D - Video Input Settings	$500D	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-340-001	347	SYS-RA-DIAG-264	4940355	I/O	$500D - Video Input Settings	$500D	negative	Functional Requirement	All	Need Rework
 SWE1-Diagnostics-340-002	348	SYS-RA-DIAG-188	4939684	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	positive	Functional Requirement	All	
 SWE1-Diagnostics-341	349	SYS-RA-DIAG-188	4939684	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	negative	Functional Requirement	All	
 SWE1-Diagnostics-342	350	SYS-RA-DIAG-192	4939687	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	positive	Functional Requirement	All	

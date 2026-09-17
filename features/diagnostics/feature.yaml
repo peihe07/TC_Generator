@@ -77,6 +77,7 @@ lint:
   # CDD-01_A T4 已實作於 lint036.py 之 FEATURE_CHECKS["diagnostics"]；
   # `VM-DIAG` 沿用既有 `Z`（判準逐字同 R-CAM2，且 R-G74 已升為全域）。
   extra_rules: ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG"]
+  column_map: "data/column_map.tsv"   # SWC 0708 33 欄實測對照（CDD-02 T0-3）
 
 # CDD-01 實測母體（上繳包 §3 全表）
 recon:                                     # CDD-01_A 實測（037 V1 (3)）
@@ -87,6 +88,6 @@ recon:                                     # CDD-01_A 實測（037 V1 (3)）
   producible_rows: 388                     # 389 − 1（SWE1-Diagnostics-057，R-DIAG3）
   layer2_test_sets: 20                     # R-DIAG9(amend)(b)：#11 併入 #14
   layer3_headings_cited: 42                # CFTS004 $XXXX Heading 共 63，被引用 42
-  row_kinds: {positive: 163, negative: 133, unsupported: 93}
-  nrc_coverage: {RESOLVED_CFTS004: 5, RESOLVED_037: 20, RESOLVED_ISO: 198, PENDING_DR1: 3}
+  row_kinds: {positive: 160, negative: 136, unsupported: 93}   # CDD-02 分類器修正（+3 negative）
+  nrc_coverage: {RESOLVED_CFTS004: 7, RESOLVED_037: 20, RESOLVED_ISO: 200, PENDING_DR1: 2}  # 母體 229
   cfts004_uncited_fr: 52                   # 50 + SYS-RA-DIAG-167/168 回歸

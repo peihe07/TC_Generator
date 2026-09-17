@@ -22,9 +22,17 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | `[A-DIAG11]` | analysis | 下放包以 V1 (2) 為母體發包；V1 (3) 已在同目錄（審閱 A6）| 同上 §1 | 非預見性 | **RESOLVED** — R-DIAG8(amend)；記事實，非責任 |
 | `[A-DIAG12]` | analysis | R-DIAG9(c) 條文書「43 個」實為 42（`$5007` 未引用計入，審閱 A7）| `features/diagnostics/RULINGS.md` R-DIAG9 | 條文與實測不符 | **RESOLVED** — 條文不改（R-TM13），R-DIAG9(amend)(a) 記 42 |
 | `[A-DIAG13]` | execution | `Toro_ATL_MI` 之 PROXI `Market_Area`（byte 160）Type 欄記為 `Not Used`，其餘五本為 `Table`；值 `2` 仍存在 | `forms/proxi/Toro_ATL_MI/…XLSM` `PROXI Write!F682` | 證據強度 | **記錄** — R-DIAG7(amend) 明文「不影響填法」|
-| `[A-DIAG14]` | execution | 下放包 CDD-01_A T4 書 `$XXXX` 白名單「27 種」，該數為 CDD-01 3-5 之 037 token 種數；依其自身定義（`layer3_assign.tsv` 之 DID 集合）實測為 **36 種** | `down/20260917_CDD-01_A.md` §3 T4 | 數字引用錯置 | **RESOLVED** — 依定義實作 36 種，見上繳包 §4 |
-| `[A-DIAG15]` | execution | `docs/fw036/RULINGS.sha.tsv` 表頭自稱「單一全域檔，重生一律掃描全部 canon 與各 feature」，實際只含 `features/security/RULINGS.md` 32 列；全 repo 重生為 837 錨點。`rulings_hash.py --check` 因而 FAIL —— **本包動工前即 FAIL**，非本包造成 | `docs/fw036/RULINGS.sha.tsv` | 全域檔過期 | **PENDING** — 非本 feature 所能決；全域待辦 |
+| `[A-DIAG14]` | execution | 下放包 CDD-01_A T4 書 `$XXXX` 白名單「27 種」，該數為 CDD-01 3-5 之 037 token 種數；依其自身定義（`layer3_assign.tsv` 之 DID 集合）實測為 **36 種** | `down/20260917_CDD-01_A.md` §3 T4 | 數字引用錯置 | **RESOLVED** — 依定義實作 36 種；追補 A §二**已追認** |
+| `[A-DIAG15]` | execution | `docs/fw036/RULINGS.sha.tsv` 表頭自稱「單一全域檔，重生一律掃描全部 canon 與各 feature」，實際只含 `features/security/RULINGS.md` 32 列；全 repo 重生為 837 錨點。`rulings_hash.py --check` 因而 FAIL —— **本包動工前即 FAIL**，非本包造成 | `docs/fw036/RULINGS.sha.tsv` | **併發覆寫** | **PENDING** — 追補 A §一升為併發覆寫事件。實測**兩次**（第二次在 `b432893` 提交後）；兩次皆已修復、**無資料損失**（50 列逐列對現行條文全數相符）。去向：GC-16 全 repo 重生＋`--check` 轉綠 |
+| `[A-DIAG17]` | execution | `VM-DIAG` 沿用既有 `Z` 而未另立代號（判準逐字同 R-CAM2，且 R-G74 已升為全域）| 上繳包 §4.1 | 偏離下放包字面 | **RESOLVED** — 追補 A §二**已追認** |
 | `[A-DIAG16]` | execution | CDD-01 上繳包 §2.2 之表標題書 `body sha8`，其值實為 `rulings_hash.py` 之 `sha8`（section_sha）欄；且 `R-DIAG9` 自算值 `802f0427` 與工具 `cc7b5200` 不符（手算未複製工具對章節尾界之處置）| `up/20260917_CDD-01.md` §2.2 | 自算代替工具 | **RESOLVED** — 本包以工具實跑取代自算，全表見上繳包 §3 |
+| `[A-DIAG18]` | execution | **列型態分類器只看標題**：3 列（`-106` row113／`-160` row167／`-340-001` row347）標題無 negative 關鍵字而描述主旨為拒絕，CDD-01 判為 positive。CDD-02 改為「標題無關鍵字時再看描述」，型態 163／133／93 → **160／136／93**，`nrc_coverage` 母體 226 → **229**（三列皆解出，PENDING 仍 2）| CDD-02 §3 之 #10 與 §3 表不符而查出 | recon 判準 | **RESOLVED** — 分類器已修，受影響之 4 檔 tsv ＋ framework.md ＋ feature.yaml 已重導 |
+| `[A-DIAG19]` | execution | **037 row 161（`-154`）之 Title 與 Description 互不相稱**：Title 述 NRC 31（其內容對應 `SYS-RA-DIAG-371`／CFTS004-4940476，即 037 row 167），Description 述三訊號偵測結果（與本列所掛之 `SYS-RA-DIAG-367`／CFTS004-4940482 一致）| CDD-02 pilot01 #8 | 037 欄位錯置 | **已處置** — 依 IN §8.6 與 R-SEC15(f) 取 Description ＋ 所掛來源產出正向 TC；登 RD 回饋 FB-DIAG-g |
+| `[A-DIAG20]` | execution | **037 row 347 書 `"Previous Out of Range"`**，而 CFTS004-4940356 書 `"Request Out of Range", code $31` | CDD-02 pilot01 #10 | 037 用字 | **已處置** — 依 IN §8.6 取 CFTS004 用字；登 RD 回饋 FB-DIAG-h |
+| `[A-DIAG21]` | execution | **`RM-DIAG` 實作缺陷**：R-DIAG6 之定型句 `037 VM blank; procedure derived from Description + CFTS004` **自身含 `; `**，而檢查以 `;` 切段後逐段比對，致該句永遠無法通過自己所規定之檢查 | pilot01 實跑之假陽性 2 例 | lint 實作 | **RESOLVED** — 改為自串首貪婪比對、以 `; ` 為接合符 |
+| `[A-DIAG22]` | execution | **lint 之 `I`／`M`／`R`／`Z` 對 Out of Scope 佔列全數誤報**（pilot01 row 23，共 12 行計）：該列依 R-DIAG3(amend) 不產 TC，其 test_item 無括號下半、四欄空白、Vehicle Model 無從填 | pilot01 實跑 | 判準待調 | **PENDING** — 建議四項對 `Test Result = "Out of Scope"` 之列豁免；本包不自改判準 |
+| `[A-DIAG23]` | execution | **`I-cross` 對本 feature 全列誤報「窗未完整宣告」**（14/14）：Diagnostics 之 ER 為 UDS 回應斷言，無 R-SU33/34 之觀測窗概念，與 Security 同形 | pilot01 實跑 | 判準待調 | **PENDING** — 建議比照 R-SEC15(j) 列入 `FEATURE_EXEMPT["diagnostics"]`；本包不自改判準 |
+| `[A-DIAG24]` | execution | **下放包 CDD-02 §5-2 書「canon §9 自檢 18 項」，canon 實為 17 項**（§9 之編號止於 17）| 逐項核對時查出 | 下放包數字 | **RESOLVED** — 依 canon 實數 17 項出表，17/17 全過 |
 
 ## Assumption markers
 

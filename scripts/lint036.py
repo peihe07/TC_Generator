@@ -98,12 +98,14 @@ RE_DIAG_REQ_ID = re.compile(r"^SWE1-Diagnostics-\d{3}(?:-00[12])?$")
 # （T4 自測實測之假陰性 1 例：`(?:-00[12])?` 之 `?` 使裸號也通過）。
 DIAG_DUP_REQ_IDS: frozenset[str] = frozenset({"SWE1-Diagnostics-340"})
 # R-DIAG7(a)／R-DIAG3(amend)／R-DIAG6／R-DIAG5(amend)(d)(e) 之 Remarks 定型句
+# 比對自串首起，不錨定串尾 —— 多句以 `; ` 接合時逐句消耗（見 check_diag_remarks）。
+# `037 VM blank; …` 一式自身含 `; `，故其必須排在其他式之前，先長後短。
 RE_DIAG_REMARKS_OK = (
-    re.compile(r"^Harman Scope: (?:Need Rework|Need Clarification|Accepted)$"),
-    re.compile(r"^CFTS004 Category: Out of Scope$"),
-    re.compile(r"^037 VM blank; procedure derived from Description \+ CFTS004$"),
-    re.compile(r"^NRC per ISO 14229-1 \(037 unspecified\)$"),
-    re.compile(r"^SID per 037 SWE1-Diagnostics-\d{3}(?:-00[12])?$"),
+    re.compile(r"^037 VM blank; procedure derived from Description \+ CFTS004"),
+    re.compile(r"^Harman Scope: (?:Need Rework|Need Clarification|Accepted)"),
+    re.compile(r"^CFTS004 Category: Out of Scope"),
+    re.compile(r"^NRC per ISO 14229-1 \(037 unspecified\)"),
+    re.compile(r"^SID per 037 SWE1-Diagnostics-\d{3}(?:-00[12])?"),
 )
 DIAG_AUTHOR_FIELDS = ("test_item", "pre", "proc", "er")
 
@@ -1466,14 +1468,28 @@ def check_diag_remarks(remarks: str, row_no: int, tc_id: str) -> list[Violation]
     if not text:
         return []
     out: list[Violation] = []
-    for seg in re.split(r"[;\n]+", text):
-        seg = seg.strip()
-        if not seg:
+    for line in text.split("\n"):
+        line = line.strip()
+        if not line:
             continue
-        if not any(rx.match(seg) for rx in RE_DIAG_REMARKS_OK):
-            out.append(Violation(
-                "RM-DIAG", row_no, tc_id, "remarks",
-                "R-DIAG：Remarks 須為所定五種定型句之一", seg[:60]))
+        # 定型句之一（R-DIAG6）**自身含 `; `**，故不得先以 `;` 切段再逐段比對 ——
+        # 那會把該句切成兩半，使其永遠不可能通過自己所規定之檢查
+        # （CDD-02 pilot 實測之假陽性 2 例）。改為自串首貪婪比對，以 `; ` 為接合符。
+        rest = line
+        while rest:
+            for rx in RE_DIAG_REMARKS_OK:
+                m = rx.match(rest)
+                if m:
+                    rest = rest[m.end():].lstrip()
+                    if rest.startswith(";"):
+                        rest = rest[1:].lstrip()
+                    break
+            else:
+                out.append(Violation(
+                    "RM-DIAG", row_no, tc_id, "remarks",
+                    "R-DIAG：Remarks 須為所定五種定型句之一（多句以 `; ` 接合）",
+                    rest[:60]))
+                break
     return out
 
 

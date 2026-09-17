@@ -130,3 +130,49 @@ CFTS004 側全 404 列中提及 negative response 者僅 7 列，帶值者 5 列
 **測試側處置**：此 6 列不產測試用例；以 V1 (3) 為母體。
 **建議確認：(1) 刪除是否有意；(2) 若有意，CFTS004 之 `SYS-RA-DIAG-167`／`-168`
 是否應同步改為 Out of Scope；(3) 修訂履歷未記此次變更，建議補一列。**
+
+---
+
+## FB-DIAG-g　`SWE1-Diagnostics-154` 之標題與描述互不相稱
+
+| 037 列 | SWE-Requirement ID | Source Requirement ID | CFTS004 列 | ObjectID |
+|---:|---|---|---:|---|
+| 161 | `SWE1-Diagnostics-154` | `SYS-RA-DIAG-367` | 368 | `4940482` |
+
+- **Title**：`Audio - Return NRC 0x31 Request Out of Range when the channel number does not correspond to a valid AV input using DID $0312`
+- **Description**：`Audio - Return detection result indication for Video, Audio Left, and Audio Right signals using DID $0312`
+
+兩者不是同一件事：
+
+- Description 與本列所掛之 `SYS-RA-DIAG-367`（CFTS004 r368：「The return results of this routine shall
+  indicate for each of the Video, Audio Left and Audio Right signals, whether a signal was detected or not supported.」）**一致**。
+- Title 之內容對應的是 **另一條** 需求 `SYS-RA-DIAG-371`（CFTS004 r372：「If the radio receives a channel number
+  that does not correspond to an audio or video input, it shall return a "Request Out of Range" negative response,
+  code $31.」），而該條在 037 已另有列 —— **row 167 `SWE1-Diagnostics-160`**。
+
+另：本列之 Description 為單一句、無編號步驟，與 037 其餘列之三段式體例不同，形似誤貼之標題。
+
+**測試側處置**：依來源規格勝出原則，取 Description ＋ 所掛之 `SYS-RA-DIAG-367` 產出正向結果回報測試用例。
+**建議修正 Title，使其與 Description 及所掛來源一致。**
+
+---
+
+## FB-DIAG-h　`SWE1-Diagnostics-340`（row 347）之 NRC 名稱與 CFTS004 不符
+
+| 037 列 | SWE-Requirement ID | Source Requirement ID | CFTS004 列 | ObjectID |
+|---:|---|---|---:|---|
+| 347 | `SWE1-Diagnostics-340` | `SYS-RA-DIAG-264` | 265 | `4940355` |
+
+037 之 Title 與 Description 皆書 **`"Previous Out of Range"`**：
+
+> 1. If the new input source is not compatible with the radio, the radio shall return a "Previous Out of Range" negative response.
+
+同一 `$500D - Video Input Settings` 節下之 CFTS004 r267（`SYS-RA-DIAG-266`，ObjectID `4940356`）書：
+
+> If the new input is not compatible with the radio, the radio shall return a "Request Out of Range" negative response, code $31.
+
+`"Previous Out of Range"` 在 ISO 14229-1 無對應之 NRC 名稱；`requestOutOfRange`（`$31`）才有。
+CFTS004 其餘三處（r267、r372、`SYS-RA-DIAG-270`）一律書 `"Request Out of Range"`。
+
+**測試側處置**：依來源規格勝出原則取 CFTS004 用字與 `$31`。
+**建議 037 下一版更正為 `"Request Out of Range"`。**
