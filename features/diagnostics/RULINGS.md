@@ -248,6 +248,21 @@ R-DIAG16  觀察不成步（IN §5.1 之本 feature 適用）
   保持步驟固定句 `Hold for <n> s`，ER 寫該期間之可觀察結果。
 ```
 
+### R-DIAG17 — lint `X` 之 Diagnostics 豁免（Pei 裁，2026-09-17）
+
+```text
+R-DIAG17  lint X 之 Diagnostics 豁免
+  比照 R-DIAG12：FEATURE_EXEMPT["diagnostics"] 加 `X`。理由：本 feature 不寫導航 hop，X 之命中皆為 DID 名／CFTS004 用詞之字面。
+```
+
+### R-DIAG18 — Pre-Condition 之機械守門（IN §4.4 之本 feature 實作）（Pei 裁，2026-09-17）
+
+```text
+R-DIAG18  Pre-Condition 之機械守門（IN §4.4 之本 feature 實作）
+  產生器與 lint `PC-DIAG`：Pre-Condition 行含 record／recorded／read／measure／send／sent／press／
+  by a diagnostic command 者 FAIL；`*_initial` 只得於 Procedure 宣告並於 ER 使用。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

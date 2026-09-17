@@ -177,6 +177,30 @@ CASES["KEY-DIAG"] = dict(
 )
 
 
+# --- PC-DIAG：Pre-Condition 之機械守門（R-DIAG18）---------------------------
+CASES["PC-DIAG"] = dict(
+    fn=lambda c: L.check_diag_pc({"pre": c}, 1, "NR1L-DIAG-XXX"),
+    ok=["1. The ECU is in the default diagnostic session",
+        "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the "
+        "OBD-II diagnostic connector",
+        "3. Security access 0x27 has been granted",
+        "4. A valid video input is active",
+        "3. No push button on the Push Button Control Interface is pressed"],
+    ng=["4. The tone output state is recorded as Tone_initial",
+        "4. The navigation in-motion menu items are enabled by a diagnostic command",
+        "3. The brightness level has been read",
+        "4. A diagnostic request has been sent",
+        "3. The \"Up\" push button is pressed"],
+)
+
+# --- R-DIAG17：`X` 之 Diagnostics 豁免 --------------------------------------
+CASES["R-DIAG17 (X 豁免)"] = dict(
+    fn=lambda c: (["hit"] if "X" in L.check_order(c) else []),
+    ok=["diagnostics", "diagnostics", "diagnostics", "diagnostics", "diagnostics"],
+    ng=["camera", "security", "amfm", "home", "power"],
+)
+
+
 def main() -> int:
     bad = 0
     print(f"{'check':16} {'正例(不得命中)':>16} {'反例(須命中)':>14}  判")

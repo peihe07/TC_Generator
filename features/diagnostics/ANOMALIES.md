@@ -46,8 +46,12 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | `[A-DIAG35]` | execution | **baseline 宣告未用之缺陷重犯**：四象限 positive（`-110`／`-114`／`-121`／`-125`）再度於 PC 立 `Quadrant_initial` 而 ER 未用 —— 與 `[A-DIAG30]` 同因（模板複製時未檢視 ER）| canon §9 自檢 | 多餘前提（§8.5）| **RESOLVED** — 已移除；此為同一缺陷第二次，寫入 profile 之寫入型 TC 規則 |
 | `[A-DIAG36]` | execution | **profile 之 §1–§6 自 CDD-01_A 起未生效**：編輯以 `str.replace()` 為之而未加 assert，字串不符時靜默失敗，腳本仍印「已更新」，我據以在 `up/CDD-01_A` §6 與 `up/CDD-03` §11 回報成功而未複讀檔案。檔內至 CDD-04 仍寫「尚未實作任何一項」「待實作」「21 組草案」| CDD-04 提交前複查 | **回報不實** | **RESOLVED** — 已以逐處 assert 重寫；教訓：凡以字串比對改檔，先 assert 命中再寫，回報前複讀 |
 | `[A-DIAG37]` | execution | **baseline 宣告未用第三犯**：`NR1L-DIAG-231`（`$500D` 寫入）於 PC 立 `Source_initial` 而 ER 未用。前兩次為 `[A-DIAG30]`（CDD-03）／`[A-DIAG35]`（CDD-04）| canon §9-9 自檢 | 多餘前提（§8.5）| **RESOLVED** — 已修；**並於 `gen_batch{1,2,3}.py` 加產出前守門**（命中即 `SystemExit`，不出檔），三犯之後不再靠事後自檢 |
-| `[A-DIAG38]` | execution | **`X`（導航路徑無固定入口）於本 feature 為結構性誤報**：本 feature 不寫導航 hop，命中皆為 DID 名與 CFTS004 用詞之字面（`Radio Audio Output Settings`、`in-motion menu options`）。batch 3 實測 12 行，真違規 0 | batch 3 實跑 | 判準範圍 | **PENDING** — 建議比照 `I-cross` 列入 `FEATURE_EXEMPT`；`X` 為 WARN 只報不改，不阻斷 |
+| `[A-DIAG38]` | execution | **`X`（導航路徑無固定入口）於本 feature 為結構性誤報**：本 feature 不寫導航 hop，命中皆為 DID 名與 CFTS004 用詞之字面（`Radio Audio Output Settings`、`in-motion menu options`）。batch 3 實測 12 行，真違規 0 | batch 3 實跑 | 判準範圍 | **RESOLVED**（R-DIAG17）—— 已入 `FEATURE_EXEMPT["diagnostics"]`；落地時另揭 lint 之實作缺陷（見 `[A-DIAG42]`）|
 | `[A-DIAG39]` | execution | **`$5006`／`$5005`（fade／balance）之 037 無 negative／unsupported 列**：兩 DID 各只有 2 列 positive，越界與不支援服務之行為無 037 列可掛 | batch 3 T2 | 037 覆蓋缺口 | **已處置** — BVA 於該二 DID 取四點（含越界）以補；登 FB-DIAG-n |
+| `[A-DIAG40]` | execution | **baseline 位置之守門漏洞**：CDD-05 之守門只查「宣告而未用」，未查「宣告之位置」。合併本 **148 行** Pre-Condition 含 `*_initial`，違 IN §4.4 | CDD-05 審閱 §三-1 | 守門不完整 | **RESOLVED** — baseline 全數移入 Procedure 首步（IN §8.7.5(f) 式）；四個產生器與 lint `PC-DIAG` 各加第二道守門 |
+| `[A-DIAG41]` | execution | **`PC-DIAG` 詞幹比對過寬**：`press` 改詞幹後把 `No push button … is pressed`（靜止態）也攔下。R-DIAG18 之立意為「需執行才成立者不是 Pre-Condition」，否定式之靜止態不需執行 | 自測之假陽性 2 例 | 判準校準 | **RESOLVED** — 加否定式例外（`No … is pressed/sent/recorded/read`）；lint 與四個產生器同步 |
+| `[A-DIAG42]` | execution | **`FEATURE_EXEMPT` 對 `check_row()` 內產生之項無效**：`X` 於 R-DIAG17 豁免後仍被 `check_row()` 產出，而該代號已不在 `enabled`，`enabled.index()` 拋 `ValueError`。**290 列之合併本直接 crash，且五本之「其餘 0」實為 crash 之假象** | CDD-06 T1(d) 落地後實測 | lint 實作 | **RESOLVED** — `check_row()` 之產出一律依 `enabled` 過濾；列級與整項豁免收斂為同一道 |
+| `[A-DIAG43]` | execution | **`$030A` 之行為只指向本文件外之「KeySense HMI Logic and Flow」**，該件不在來源集且 CFTS004 未載其編號版本 | batch 4 #20 | 來源缺件 | **已處置** — ER 只斷言常式完成（§8.4.1）；FB-DIAG-o |
 
 ## Assumption markers
 

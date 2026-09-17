@@ -84,10 +84,10 @@
       "req_id": "SWE1-Diagnostics-064",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for fade control step shall be from 9 front to 9 rear, including neutral. ($5006, fade control step = 10 front, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The fade control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the command to set the fade control step to 10 front\n   $ 2F 50 06 <fade control step = 10 front>\n2. Read the fade control step\n   $ 22 50 06",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported fade control step equals Setting_initial",
+      "test_procedure": "1. Read the fade control step and record as Setting_initial\n   $ 22 50 06\n2. Send the command to set the fade control step to 10 front\n   $ 2F 50 06 <fade control step = 10 front>\n3. Read the fade control step\n   $ 22 50 06",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported fade control step equals Setting_initial",
       "specification_reference": "CFTS004-4940326",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
       "priority": "P1",
@@ -98,8 +98,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 71
     },
@@ -108,10 +107,10 @@
       "req_id": "SWE1-Diagnostics-064",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for fade control step shall be from 9 front to 9 rear, including neutral. ($5006, fade control step = 10 rear, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The fade control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the command to set the fade control step to 10 rear\n   $ 2F 50 06 <fade control step = 10 rear>\n2. Read the fade control step\n   $ 22 50 06",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported fade control step equals Setting_initial",
+      "test_procedure": "1. Read the fade control step and record as Setting_initial\n   $ 22 50 06\n2. Send the command to set the fade control step to 10 rear\n   $ 2F 50 06 <fade control step = 10 rear>\n3. Read the fade control step\n   $ 22 50 06",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported fade control step equals Setting_initial",
       "specification_reference": "CFTS004-4940326",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
       "priority": "P1",
@@ -122,8 +121,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 71
     },
@@ -201,10 +199,10 @@
       "req_id": "SWE1-Diagnostics-066",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for balance control step shall be from 9 left to 9 right, including neutral. ($5005, balance control step = 10 left, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The balance control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the command to set the balance control step to 10 left\n   $ 2F 50 05 <balance control step = 10 left>\n2. Read the balance control step\n   $ 22 50 05",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported balance control step equals Setting_initial",
+      "test_procedure": "1. Read the balance control step and record as Setting_initial\n   $ 22 50 05\n2. Send the command to set the balance control step to 10 left\n   $ 2F 50 05 <balance control step = 10 left>\n3. Read the balance control step\n   $ 22 50 05",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported balance control step equals Setting_initial",
       "specification_reference": "CFTS004-4940322",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
       "priority": "P1",
@@ -215,8 +213,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 73
     },
@@ -225,10 +222,10 @@
       "req_id": "SWE1-Diagnostics-066",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for balance control step shall be from 9 left to 9 right, including neutral. ($5005, balance control step = 10 right, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The balance control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the command to set the balance control step to 10 right\n   $ 2F 50 05 <balance control step = 10 right>\n2. Read the balance control step\n   $ 22 50 05",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported balance control step equals Setting_initial",
+      "test_procedure": "1. Read the balance control step and record as Setting_initial\n   $ 22 50 05\n2. Send the command to set the balance control step to 10 right\n   $ 2F 50 05 <balance control step = 10 right>\n3. Read the balance control step\n   $ 22 50 05",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported balance control step equals Setting_initial",
       "specification_reference": "CFTS004-4940322",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
       "priority": "P1",
@@ -239,8 +236,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 73
     },
@@ -364,10 +360,10 @@
       "req_id": "SWE1-Diagnostics-071",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current treble tone control step when it receives a command from this DID. ($5004, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The treble tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5004 with an invalid message length\n   $ 2F 50 04\n2. Read the treble tone control step\n   $ 22 50 04",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported treble tone control step equals Setting_initial",
+      "test_procedure": "1. Read the treble tone control step and record as Setting_initial\n   $ 22 50 04\n2. Send a write request for DID $5004 with an invalid message length\n   $ 2F 50 04\n3. Read the treble tone control step\n   $ 22 50 04",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported treble tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940316",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -378,8 +374,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 78
     },
@@ -388,10 +383,10 @@
       "req_id": "SWE1-Diagnostics-071",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current treble tone control step when it receives a command from this DID. ($5004, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The treble tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5004 with a parameter value outside the supported range\n   $ 2F 50 04\n2. Read the treble tone control step\n   $ 22 50 04",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported treble tone control step equals Setting_initial",
+      "test_procedure": "1. Read the treble tone control step and record as Setting_initial\n   $ 22 50 04\n2. Send a write request for DID $5004 with a parameter value outside the supported range\n   $ 2F 50 04\n3. Read the treble tone control step\n   $ 22 50 04",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported treble tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940316",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -402,8 +397,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 78
     },
@@ -412,10 +406,10 @@
       "req_id": "SWE1-Diagnostics-072",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current treble tone control step when it receives a command from this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The treble tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 04\n2. Read the treble tone control step\n   $ 22 50 04",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported treble tone control step equals Setting_initial",
+      "test_procedure": "1. Read the treble tone control step and record as Setting_initial\n   $ 22 50 04\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 04\n3. Read the treble tone control step\n   $ 22 50 04",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported treble tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940316",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -425,8 +419,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 79
     },
@@ -481,10 +474,10 @@
       "req_id": "SWE1-Diagnostics-074",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for bass tone control step shall be from -9 to +9, including neutral. ($5003, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5003 with an invalid message length\n   $ 2F 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a write request for DID $5003 with an invalid message length\n   $ 2F 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940314",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -495,8 +488,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 81
     },
@@ -505,10 +497,10 @@
       "req_id": "SWE1-Diagnostics-074",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for bass tone control step shall be from -9 to +9, including neutral. ($5003, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5003 with a parameter value outside the supported range\n   $ 2F 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a write request for DID $5003 with a parameter value outside the supported range\n   $ 2F 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940314",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -519,8 +511,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 81
     },
@@ -529,10 +520,10 @@
       "req_id": "SWE1-Diagnostics-075",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for bass tone control step shall be from -9 to +9, including neutral. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940314",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -542,8 +533,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 82
     },
@@ -575,10 +565,10 @@
       "req_id": "SWE1-Diagnostics-077",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio shall change the current bass tone control step to the new value provided using this DID. ($5003, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5003 with an invalid message length\n   $ 2F 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a write request for DID $5003 with an invalid message length\n   $ 2F 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940313",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -589,8 +579,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 84
     },
@@ -599,10 +588,10 @@
       "req_id": "SWE1-Diagnostics-077",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio shall change the current bass tone control step to the new value provided using this DID. ($5003, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5003 with a parameter value outside the supported range\n   $ 2F 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a write request for DID $5003 with a parameter value outside the supported range\n   $ 2F 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940313",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -613,8 +602,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 84
     },
@@ -623,10 +611,10 @@
       "req_id": "SWE1-Diagnostics-078",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio shall change the current bass tone control step to the new value provided using this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940313",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -636,8 +624,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 85
     },
@@ -669,10 +656,10 @@
       "req_id": "SWE1-Diagnostics-080",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current bass tone control step when it receives a command from this DID. ($5003, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5003 with an invalid message length\n   $ 2F 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a write request for DID $5003 with an invalid message length\n   $ 2F 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940312",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -683,8 +670,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 87
     },
@@ -693,10 +679,10 @@
       "req_id": "SWE1-Diagnostics-080",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current bass tone control step when it receives a command from this DID. ($5003, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5003 with a parameter value outside the supported range\n   $ 2F 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a write request for DID $5003 with a parameter value outside the supported range\n   $ 2F 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940312",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -707,8 +693,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 87
     },
@@ -717,10 +702,10 @@
       "req_id": "SWE1-Diagnostics-081",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current bass tone control step when it receives a command from this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The bass tone control step is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 03\n2. Read the bass tone control step\n   $ 22 50 03",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported bass tone control step equals Setting_initial",
+      "test_procedure": "1. Read the bass tone control step and record as Setting_initial\n   $ 22 50 03\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 03\n3. Read the bass tone control step\n   $ 22 50 03",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported bass tone control step equals Setting_initial",
       "specification_reference": "CFTS004-4940312",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -730,8 +715,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 88
     },
@@ -786,10 +770,10 @@
       "req_id": "SWE1-Diagnostics-083",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for volume step shall be from 0 to 38. ($5002, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5002 with an invalid message length\n   $ 2F 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a write request for DID $5002 with an invalid message length\n   $ 2F 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940310",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -800,8 +784,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 90
     },
@@ -810,10 +793,10 @@
       "req_id": "SWE1-Diagnostics-083",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for volume step shall be from 0 to 38. ($5002, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5002 with a parameter value outside the supported range\n   $ 2F 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a write request for DID $5002 with a parameter value outside the supported range\n   $ 2F 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940310",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -824,8 +807,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 90
     },
@@ -834,10 +816,10 @@
       "req_id": "SWE1-Diagnostics-084",
       "test_set": "Audio Tone Settings",
       "tc_title": "Valid values for volume step shall be from 0 to 38. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940310",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -847,8 +829,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 91
     },
@@ -880,10 +861,10 @@
       "req_id": "SWE1-Diagnostics-086",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio shall change the current volume step to the new value provided using this DID. ($5002, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5002 with an invalid message length\n   $ 2F 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a write request for DID $5002 with an invalid message length\n   $ 2F 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940309",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -894,8 +875,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 93
     },
@@ -904,10 +884,10 @@
       "req_id": "SWE1-Diagnostics-086",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio shall change the current volume step to the new value provided using this DID. ($5002, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5002 with a parameter value outside the supported range\n   $ 2F 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a write request for DID $5002 with a parameter value outside the supported range\n   $ 2F 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940309",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -918,8 +898,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 93
     },
@@ -928,10 +907,10 @@
       "req_id": "SWE1-Diagnostics-087",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio shall change the current volume step to the new value provided using this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940309",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -941,8 +920,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 94
     },
@@ -974,10 +952,10 @@
       "req_id": "SWE1-Diagnostics-089",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current volume step when it receives a command from this DID. ($5002, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5002 with an invalid message length\n   $ 2F 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a write request for DID $5002 with an invalid message length\n   $ 2F 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940308",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -988,8 +966,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 96
     },
@@ -998,10 +975,10 @@
       "req_id": "SWE1-Diagnostics-089",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current volume step when it receives a command from this DID. ($5002, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5002 with a parameter value outside the supported range\n   $ 2F 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a write request for DID $5002 with a parameter value outside the supported range\n   $ 2F 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940308",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1012,8 +989,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 96
     },
@@ -1022,10 +998,10 @@
       "req_id": "SWE1-Diagnostics-090",
       "test_set": "Audio Tone Settings",
       "tc_title": "The radio modifies the current volume step when it receives a command from this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The volume step is recorded as Volume_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 02\n2. Read the volume step\n   $ 22 50 02",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported volume step equals Volume_initial",
+      "test_procedure": "1. Read the volume step and record as Volume_initial\n   $ 22 50 02\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 02\n3. Read the volume step\n   $ 22 50 02",
+      "expected_result": "1. Volume_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported volume step equals Volume_initial",
       "specification_reference": "CFTS004-4940308",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1035,8 +1011,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 97
     },
@@ -1067,10 +1042,10 @@
       "req_id": "SWE1-Diagnostics-014",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report the currently tuned SDAR channel number. ($500C, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The currently tuned SDAR channel number is recorded as Channel_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $500C with an invalid message length\n   $ 22 50 0C\n2. Read the currently tuned SDAR channel number\n   $ 22 50 0C",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported currently tuned SDAR channel number equals Channel_initial",
+      "test_procedure": "1. Read the currently tuned SDAR channel number and record as Channel_initial\n   $ 22 50 0C\n2. Send a read request for DID $500C with an invalid message length\n   $ 22 50 0C\n3. Read the currently tuned SDAR channel number\n   $ 22 50 0C",
+      "expected_result": "1. Channel_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported currently tuned SDAR channel number equals Channel_initial",
       "specification_reference": "CFTS004-4939959",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1080,8 +1055,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 21
     },
@@ -1090,10 +1064,10 @@
       "req_id": "SWE1-Diagnostics-014",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report the currently tuned SDAR channel number. ($500C, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The currently tuned SDAR channel number is recorded as Channel_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $500C with a parameter value outside the supported range\n   $ 22 50 0C\n2. Read the currently tuned SDAR channel number\n   $ 22 50 0C",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported currently tuned SDAR channel number equals Channel_initial",
+      "test_procedure": "1. Read the currently tuned SDAR channel number and record as Channel_initial\n   $ 22 50 0C\n2. Send a read request for DID $500C with a parameter value outside the supported range\n   $ 22 50 0C\n3. Read the currently tuned SDAR channel number\n   $ 22 50 0C",
+      "expected_result": "1. Channel_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported currently tuned SDAR channel number equals Channel_initial",
       "specification_reference": "CFTS004-4939959",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1103,8 +1077,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 21
     },
@@ -1113,10 +1086,10 @@
       "req_id": "SWE1-Diagnostics-015",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report the currently tuned SDAR channel number. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The currently tuned SDAR channel number is recorded as Channel_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0C\n2. Read the currently tuned SDAR channel number\n   $ 22 50 0C",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported currently tuned SDAR channel number equals Channel_initial",
+      "test_procedure": "1. Read the currently tuned SDAR channel number and record as Channel_initial\n   $ 22 50 0C\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0C\n3. Read the currently tuned SDAR channel number\n   $ 22 50 0C",
+      "expected_result": "1. Channel_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported currently tuned SDAR channel number equals Channel_initial",
       "specification_reference": "CFTS004-4939959",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1126,8 +1099,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 22
     },
@@ -1158,10 +1130,10 @@
       "req_id": "SWE1-Diagnostics-017",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report the frequency step of the currently tuned station. Refer to CFTS004-1316 for the method of determining the frequency step. ($5009, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The frequency step of the currently tuned station is recorded as Step_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $5009 with an invalid message length\n   $ 22 50 09\n2. Read the frequency step of the currently tuned station\n   $ 22 50 09",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported frequency step of the currently tuned station equals Step_initial",
+      "test_procedure": "1. Read the frequency step of the currently tuned station and record as Step_initial\n   $ 22 50 09\n2. Send a read request for DID $5009 with an invalid message length\n   $ 22 50 09\n3. Read the frequency step of the currently tuned station\n   $ 22 50 09",
+      "expected_result": "1. Step_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported frequency step of the currently tuned station equals Step_initial",
       "specification_reference": "CFTS004-4939949",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1171,8 +1143,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 24
     },
@@ -1181,10 +1152,10 @@
       "req_id": "SWE1-Diagnostics-017",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report the frequency step of the currently tuned station. Refer to CFTS004-1316 for the method of determining the frequency step. ($5009, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The frequency step of the currently tuned station is recorded as Step_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $5009 with a parameter value outside the supported range\n   $ 22 50 09\n2. Read the frequency step of the currently tuned station\n   $ 22 50 09",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported frequency step of the currently tuned station equals Step_initial",
+      "test_procedure": "1. Read the frequency step of the currently tuned station and record as Step_initial\n   $ 22 50 09\n2. Send a read request for DID $5009 with a parameter value outside the supported range\n   $ 22 50 09\n3. Read the frequency step of the currently tuned station\n   $ 22 50 09",
+      "expected_result": "1. Step_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported frequency step of the currently tuned station equals Step_initial",
       "specification_reference": "CFTS004-4939949",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1194,8 +1165,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 24
     },
@@ -1204,10 +1174,10 @@
       "req_id": "SWE1-Diagnostics-018",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report the frequency step of the currently tuned station. Refer to CFTS004-1316 for the method of determining the frequency step. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The frequency step of the currently tuned station is recorded as Step_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 09\n2. Read the frequency step of the currently tuned station\n   $ 22 50 09",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported frequency step of the currently tuned station equals Step_initial",
+      "test_procedure": "1. Read the frequency step of the currently tuned station and record as Step_initial\n   $ 22 50 09\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 09\n3. Read the frequency step of the currently tuned station\n   $ 22 50 09",
+      "expected_result": "1. Step_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported frequency step of the currently tuned station equals Step_initial",
       "specification_reference": "CFTS004-4939949",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1217,8 +1187,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 25
     },
@@ -1249,10 +1218,10 @@
       "req_id": "SWE1-Diagnostics-020",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report if the seek function is currently active. ($5008, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $5008 with an invalid message length\n   $ 22 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a read request for DID $5008 with an invalid message length\n   $ 22 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4939946",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1262,8 +1231,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 27
     },
@@ -1272,10 +1240,10 @@
       "req_id": "SWE1-Diagnostics-020",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report if the seek function is currently active. ($5008, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $5008 with a parameter value outside the supported range\n   $ 22 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a read request for DID $5008 with a parameter value outside the supported range\n   $ 22 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4939946",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1285,8 +1253,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 27
     },
@@ -1295,10 +1262,10 @@
       "req_id": "SWE1-Diagnostics-021",
       "test_set": "Tuner Control",
       "tc_title": "This DID shall report if the seek function is currently active. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4939946",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1308,8 +1275,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 28
     },
@@ -1341,10 +1307,10 @@
       "req_id": "SWE1-Diagnostics-032",
       "test_set": "Tuner Control",
       "tc_title": "When the command to change SDAR station is received, the radio shall change to the new channel number contained in the command. ($500C, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The SDAR station selection is recorded as Channel_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500C with an invalid message length\n   $ 2F 50 0C\n2. Read the SDAR station selection\n   $ 22 50 0C",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported SDAR station selection equals Channel_initial",
+      "test_procedure": "1. Read the SDAR station selection and record as Channel_initial\n   $ 22 50 0C\n2. Send a write request for DID $500C with an invalid message length\n   $ 2F 50 0C\n3. Read the SDAR station selection\n   $ 22 50 0C",
+      "expected_result": "1. Channel_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported SDAR station selection equals Channel_initial",
       "specification_reference": "CFTS004-4940351",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1355,8 +1321,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 39
     },
@@ -1365,10 +1330,10 @@
       "req_id": "SWE1-Diagnostics-032",
       "test_set": "Tuner Control",
       "tc_title": "When the command to change SDAR station is received, the radio shall change to the new channel number contained in the command. ($500C, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The SDAR station selection is recorded as Channel_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500C with a parameter value outside the supported range\n   $ 2F 50 0C\n2. Read the SDAR station selection\n   $ 22 50 0C",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported SDAR station selection equals Channel_initial",
+      "test_procedure": "1. Read the SDAR station selection and record as Channel_initial\n   $ 22 50 0C\n2. Send a write request for DID $500C with a parameter value outside the supported range\n   $ 2F 50 0C\n3. Read the SDAR station selection\n   $ 22 50 0C",
+      "expected_result": "1. Channel_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported SDAR station selection equals Channel_initial",
       "specification_reference": "CFTS004-4940351",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1379,8 +1344,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 39
     },
@@ -1389,10 +1353,10 @@
       "req_id": "SWE1-Diagnostics-033",
       "test_set": "Tuner Control",
       "tc_title": "When the command to change SDAR station is received, the radio shall change to the new channel number contained in the command. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The SDAR station selection is recorded as Channel_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0C\n2. Read the SDAR station selection\n   $ 22 50 0C",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported SDAR station selection equals Channel_initial",
+      "test_procedure": "1. Read the SDAR station selection and record as Channel_initial\n   $ 22 50 0C\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0C\n3. Read the SDAR station selection\n   $ 22 50 0C",
+      "expected_result": "1. Channel_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported SDAR station selection equals Channel_initial",
       "specification_reference": "CFTS004-4940351",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1402,8 +1366,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 40
     },
@@ -1412,10 +1375,10 @@
       "req_id": "SWE1-Diagnostics-034",
       "test_set": "Tuner Control",
       "tc_title": "If the new station number is not a valid station under the currently broadcast channel line-up, the radio shall return the \"Request Out of Range\" negative response, code $31. ($500C, NRC 31 Request Out of Range for an invalid station number)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The currently tuned SDAR channel number is recorded as Channel_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the command to change the SDAR station to a station number that is not valid under the currently broadcast channel line-up\n   $ 2F 50 0C <invalid station number>\n2. Read the currently tuned SDAR channel number\n   $ 22 50 0C",
-      "expected_result": "1. The negative response 7F 2F 31 (Request Out of Range) is received\n2. The reported currently tuned SDAR channel number equals Channel_initial",
+      "test_procedure": "1. Read the currently tuned SDAR channel number and record as Channel_initial\n   $ 22 50 0C\n2. Send the command to change the SDAR station to a station number that is not valid under the currently broadcast channel line-up\n   $ 2F 50 0C <invalid station number>\n3. Read the currently tuned SDAR channel number\n   $ 22 50 0C",
+      "expected_result": "1. Channel_initial is recorded\n2. The negative response 7F 2F 31 (Request Out of Range) is received\n3. The reported currently tuned SDAR channel number equals Channel_initial",
       "specification_reference": "CFTS004-4940351\nCFTS004-4940352",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",
@@ -1426,8 +1389,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 41
     },
@@ -1459,10 +1421,10 @@
       "req_id": "SWE1-Diagnostics-036",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall tune to a specific frequency when receiving a command from this DID. ($5009, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The tuned frequency is recorded as Frequency_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5009 with an invalid message length\n   $ 2F 50 09\n2. Read the tuned frequency\n   $ 22 50 09",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported tuned frequency equals Frequency_initial",
+      "test_procedure": "1. Read the tuned frequency and record as Frequency_initial\n   $ 22 50 09\n2. Send a write request for DID $5009 with an invalid message length\n   $ 2F 50 09\n3. Read the tuned frequency\n   $ 22 50 09",
+      "expected_result": "1. Frequency_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported tuned frequency equals Frequency_initial",
       "specification_reference": "CFTS004-4940337",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1473,8 +1435,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 43
     },
@@ -1483,10 +1444,10 @@
       "req_id": "SWE1-Diagnostics-036",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall tune to a specific frequency when receiving a command from this DID. ($5009, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The tuned frequency is recorded as Frequency_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5009 with a parameter value outside the supported range\n   $ 2F 50 09\n2. Read the tuned frequency\n   $ 22 50 09",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported tuned frequency equals Frequency_initial",
+      "test_procedure": "1. Read the tuned frequency and record as Frequency_initial\n   $ 22 50 09\n2. Send a write request for DID $5009 with a parameter value outside the supported range\n   $ 2F 50 09\n3. Read the tuned frequency\n   $ 22 50 09",
+      "expected_result": "1. Frequency_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported tuned frequency equals Frequency_initial",
       "specification_reference": "CFTS004-4940337",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1497,8 +1458,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 43
     },
@@ -1507,10 +1467,10 @@
       "req_id": "SWE1-Diagnostics-037",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall tune to a specific frequency when receiving a command from this DID. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The tuned frequency is recorded as Frequency_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 09\n2. Read the tuned frequency\n   $ 22 50 09",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported tuned frequency equals Frequency_initial",
+      "test_procedure": "1. Read the tuned frequency and record as Frequency_initial\n   $ 22 50 09\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 09\n3. Read the tuned frequency\n   $ 22 50 09",
+      "expected_result": "1. Frequency_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported tuned frequency equals Frequency_initial",
       "specification_reference": "CFTS004-4940337",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1520,8 +1480,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 44
     },
@@ -1553,10 +1512,10 @@
       "req_id": "SWE1-Diagnostics-039",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall stop a seek function when receiving the seek status = Not Set. ($5008, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5008 with an invalid message length\n   $ 2F 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a write request for DID $5008 with an invalid message length\n   $ 2F 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4940334",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1567,8 +1526,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 46
     },
@@ -1577,10 +1535,10 @@
       "req_id": "SWE1-Diagnostics-039",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall stop a seek function when receiving the seek status = Not Set. ($5008, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5008 with a parameter value outside the supported range\n   $ 2F 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a write request for DID $5008 with a parameter value outside the supported range\n   $ 2F 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4940334",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1591,8 +1549,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 46
     },
@@ -1601,10 +1558,10 @@
       "req_id": "SWE1-Diagnostics-040",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall stop a seek function when receiving the seek status = Not Set. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4940334",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1614,8 +1571,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 47
     },
@@ -1647,10 +1603,10 @@
       "req_id": "SWE1-Diagnostics-042",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall initiate a seek function when receiving the seek status = Set. ($5008, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5008 with an invalid message length\n   $ 2F 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a write request for DID $5008 with an invalid message length\n   $ 2F 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4940333",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1661,8 +1617,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 49
     },
@@ -1671,10 +1626,10 @@
       "req_id": "SWE1-Diagnostics-042",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall initiate a seek function when receiving the seek status = Set. ($5008, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5008 with a parameter value outside the supported range\n   $ 2F 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a write request for DID $5008 with a parameter value outside the supported range\n   $ 2F 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4940333",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1685,8 +1640,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 49
     },
@@ -1695,10 +1649,10 @@
       "req_id": "SWE1-Diagnostics-043",
       "test_set": "Tuner Control",
       "tc_title": "The radio shall initiate a seek function when receiving the seek status = Set. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The seek status is recorded as Seek_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 08\n2. Read the seek status\n   $ 22 50 08",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported seek status equals Seek_initial",
+      "test_procedure": "1. Read the seek status and record as Seek_initial\n   $ 22 50 08\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 08\n3. Read the seek status\n   $ 22 50 08",
+      "expected_result": "1. Seek_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported seek status equals Seek_initial",
       "specification_reference": "CFTS004-4940333",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1708,8 +1662,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 50
     },
@@ -1740,10 +1693,10 @@
       "req_id": "SWE1-Diagnostics-045",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 2\" portion of the DID shall report the current Entertainment audio source. Refer to CFTS019 for details of Entertainment sources. ($500A, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Mode 2 Entertainment audio source is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $500A with an invalid message length\n   $ 22 50 0A\n2. Read the Mode 2 Entertainment audio source\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported Mode 2 Entertainment audio source equals Mode_initial",
+      "test_procedure": "1. Read the Mode 2 Entertainment audio source and record as Mode_initial\n   $ 22 50 0A\n2. Send a read request for DID $500A with an invalid message length\n   $ 22 50 0A\n3. Read the Mode 2 Entertainment audio source\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Mode 2 Entertainment audio source equals Mode_initial",
       "specification_reference": "CFTS004-4939952",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1753,8 +1706,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 52
     },
@@ -1763,10 +1715,10 @@
       "req_id": "SWE1-Diagnostics-045",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 2\" portion of the DID shall report the current Entertainment audio source. Refer to CFTS019 for details of Entertainment sources. ($500A, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Mode 2 Entertainment audio source is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $500A with a parameter value outside the supported range\n   $ 22 50 0A\n2. Read the Mode 2 Entertainment audio source\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported Mode 2 Entertainment audio source equals Mode_initial",
+      "test_procedure": "1. Read the Mode 2 Entertainment audio source and record as Mode_initial\n   $ 22 50 0A\n2. Send a read request for DID $500A with a parameter value outside the supported range\n   $ 22 50 0A\n3. Read the Mode 2 Entertainment audio source\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Mode 2 Entertainment audio source equals Mode_initial",
       "specification_reference": "CFTS004-4939952",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1776,8 +1728,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 52
     },
@@ -1786,10 +1737,10 @@
       "req_id": "SWE1-Diagnostics-046",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 2\" portion of the DID shall report the current Entertainment audio source. Refer to CFTS019 for details of Entertainment sources. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Mode 2 Entertainment audio source is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0A\n2. Read the Mode 2 Entertainment audio source\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported Mode 2 Entertainment audio source equals Mode_initial",
+      "test_procedure": "1. Read the Mode 2 Entertainment audio source and record as Mode_initial\n   $ 22 50 0A\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0A\n3. Read the Mode 2 Entertainment audio source\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Mode 2 Entertainment audio source equals Mode_initial",
       "specification_reference": "CFTS004-4939952",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1799,8 +1750,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 53
     },
@@ -1832,10 +1782,10 @@
       "req_id": "SWE1-Diagnostics-059",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 2\" portion of the command shall permit selection of Entertainment audio sources. Refer to CTS19 for details of Entertainment sources. ($500A, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Mode 2 Entertainment audio source selection is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500A with an invalid message length\n   $ 2F 50 0A\n2. Read the Mode 2 Entertainment audio source selection\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported Mode 2 Entertainment audio source selection equals Mode_initial",
+      "test_procedure": "1. Read the Mode 2 Entertainment audio source selection and record as Mode_initial\n   $ 22 50 0A\n2. Send a write request for DID $500A with an invalid message length\n   $ 2F 50 0A\n3. Read the Mode 2 Entertainment audio source selection\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Mode 2 Entertainment audio source selection equals Mode_initial",
       "specification_reference": "CFTS004-4940342",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1846,8 +1796,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 66
     },
@@ -1856,10 +1805,10 @@
       "req_id": "SWE1-Diagnostics-059",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 2\" portion of the command shall permit selection of Entertainment audio sources. Refer to CTS19 for details of Entertainment sources. ($500A, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Mode 2 Entertainment audio source selection is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500A with a parameter value outside the supported range\n   $ 2F 50 0A\n2. Read the Mode 2 Entertainment audio source selection\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported Mode 2 Entertainment audio source selection equals Mode_initial",
+      "test_procedure": "1. Read the Mode 2 Entertainment audio source selection and record as Mode_initial\n   $ 22 50 0A\n2. Send a write request for DID $500A with a parameter value outside the supported range\n   $ 2F 50 0A\n3. Read the Mode 2 Entertainment audio source selection\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported Mode 2 Entertainment audio source selection equals Mode_initial",
       "specification_reference": "CFTS004-4940342",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1870,8 +1819,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 66
     },
@@ -1880,10 +1828,10 @@
       "req_id": "SWE1-Diagnostics-060",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 2\" portion of the command shall permit selection of Entertainment audio sources. Refer to CTS19 for details of Entertainment sources. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Mode 2 Entertainment audio source selection is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0A\n2. Read the Mode 2 Entertainment audio source selection\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported Mode 2 Entertainment audio source selection equals Mode_initial",
+      "test_procedure": "1. Read the Mode 2 Entertainment audio source selection and record as Mode_initial\n   $ 22 50 0A\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0A\n3. Read the Mode 2 Entertainment audio source selection\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Mode 2 Entertainment audio source selection equals Mode_initial",
       "specification_reference": "CFTS004-4940342",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1893,8 +1841,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 67
     },
@@ -1926,10 +1873,10 @@
       "req_id": "SWE1-Diagnostics-062",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 1\" portion of the command shall permit selection of Information audio sources. Refer to CTS19 for details of Information sources. ($500A, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Mode 1 Information audio source selection is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500A with an invalid message length\n   $ 2F 50 0A\n2. Read the Mode 1 Information audio source selection\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported Mode 1 Information audio source selection equals Mode_initial",
+      "test_procedure": "1. Read the Mode 1 Information audio source selection and record as Mode_initial\n   $ 22 50 0A\n2. Send a write request for DID $500A with an invalid message length\n   $ 2F 50 0A\n3. Read the Mode 1 Information audio source selection\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Mode 1 Information audio source selection equals Mode_initial",
       "specification_reference": "CFTS004-4940341",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1940,8 +1887,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 69
     },
@@ -1950,10 +1896,10 @@
       "req_id": "SWE1-Diagnostics-062",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 1\" portion of the command shall permit selection of Information audio sources. Refer to CTS19 for details of Information sources. ($500A, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Mode 1 Information audio source selection is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500A with a parameter value outside the supported range\n   $ 2F 50 0A\n2. Read the Mode 1 Information audio source selection\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported Mode 1 Information audio source selection equals Mode_initial",
+      "test_procedure": "1. Read the Mode 1 Information audio source selection and record as Mode_initial\n   $ 22 50 0A\n2. Send a write request for DID $500A with a parameter value outside the supported range\n   $ 2F 50 0A\n3. Read the Mode 1 Information audio source selection\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported Mode 1 Information audio source selection equals Mode_initial",
       "specification_reference": "CFTS004-4940341",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1964,8 +1910,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 69
     },
@@ -1974,10 +1919,10 @@
       "req_id": "SWE1-Diagnostics-063",
       "test_set": "Mode Selection",
       "tc_title": "The \"Mode 1\" portion of the command shall permit selection of Information audio sources. Refer to CTS19 for details of Information sources. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Mode 1 Information audio source selection is recorded as Mode_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0A\n2. Read the Mode 1 Information audio source selection\n   $ 22 50 0A",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported Mode 1 Information audio source selection equals Mode_initial",
+      "test_procedure": "1. Read the Mode 1 Information audio source selection and record as Mode_initial\n   $ 22 50 0A\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0A\n3. Read the Mode 1 Information audio source selection\n   $ 22 50 0A",
+      "expected_result": "1. Mode_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Mode 1 Information audio source selection equals Mode_initial",
       "specification_reference": "CFTS004-4940341",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -1987,8 +1932,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 70
     },
@@ -2021,10 +1965,10 @@
       "req_id": "SWE1-Diagnostics-008",
       "test_set": "In Motion Menu Control",
       "tc_title": "When the command to enable in-motion menu options is received, the radio shall enable each of the navigation in-motion menu items regardless of the status of current disable conditions. ($500B, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The in-motion menu item status is recorded as Menu_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500B with an invalid message length\n   $ 2F 50 0B\n2. Read the in-motion menu item status\n   $ 22 50 0B",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported in-motion menu item status equals Menu_initial",
+      "test_procedure": "1. Read the in-motion menu item status and record as Menu_initial\n   $ 22 50 0B\n2. Send a write request for DID $500B with an invalid message length\n   $ 2F 50 0B\n3. Read the in-motion menu item status\n   $ 22 50 0B",
+      "expected_result": "1. Menu_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported in-motion menu item status equals Menu_initial",
       "specification_reference": "CFTS004-4940346",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -2035,8 +1979,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 15
     },
@@ -2045,10 +1988,10 @@
       "req_id": "SWE1-Diagnostics-008",
       "test_set": "In Motion Menu Control",
       "tc_title": "When the command to enable in-motion menu options is received, the radio shall enable each of the navigation in-motion menu items regardless of the status of current disable conditions. ($500B, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The in-motion menu item status is recorded as Menu_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500B with a parameter value outside the supported range\n   $ 2F 50 0B\n2. Read the in-motion menu item status\n   $ 22 50 0B",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported in-motion menu item status equals Menu_initial",
+      "test_procedure": "1. Read the in-motion menu item status and record as Menu_initial\n   $ 22 50 0B\n2. Send a write request for DID $500B with a parameter value outside the supported range\n   $ 2F 50 0B\n3. Read the in-motion menu item status\n   $ 22 50 0B",
+      "expected_result": "1. Menu_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported in-motion menu item status equals Menu_initial",
       "specification_reference": "CFTS004-4940346",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -2059,8 +2002,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 15
     },
@@ -2069,10 +2011,10 @@
       "req_id": "SWE1-Diagnostics-009",
       "test_set": "In Motion Menu Control",
       "tc_title": "When the command to enable in-motion menu options is received, the radio shall enable each of the navigation in-motion menu items regardless of the status of current disable conditions. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The in-motion menu item status is recorded as Menu_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0B\n2. Read the in-motion menu item status\n   $ 22 50 0B",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported in-motion menu item status equals Menu_initial",
+      "test_procedure": "1. Read the in-motion menu item status and record as Menu_initial\n   $ 22 50 0B\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 50 0B\n3. Read the in-motion menu item status\n   $ 22 50 0B",
+      "expected_result": "1. Menu_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported in-motion menu item status equals Menu_initial",
       "specification_reference": "CFTS004-4940346",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -2082,8 +2024,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ],
       "row037": 16
     },
@@ -2092,10 +2033,10 @@
       "req_id": "SWE1-Diagnostics-010",
       "test_set": "In Motion Menu Control",
       "tc_title": "When the command to disable in-motion menu options is received, the radio shall return control of in-motion menu item status to the normal disable conditions. ($500B, control of in-motion menu item status returned to the radio)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The navigation in-motion menu items are enabled by a diagnostic command",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send the command to disable in-motion menu options\n   $ 2F 50 0B <disable in-motion menu>",
-      "expected_result": "1. The positive response 6F 50 0B is received, and control of the in-motion menu item status is returned to the radio",
+      "test_procedure": "1. Send the command to enable in-motion menu options\n   $ 2F 50 0B <enable in-motion menu>\n2. Send the command to disable in-motion menu options\n   $ 2F 50 0B <disable in-motion menu>",
+      "expected_result": "1. The positive response 6F 50 0B is received, and each of the navigation in-motion menu items is enabled\n2. The positive response 6F 50 0B is received, and control of the in-motion menu item status is returned to the radio",
       "specification_reference": "CFTS004-4940346\nCFTS004-4940347",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P0",
@@ -2106,8 +2047,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: CFTS004-4940346"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 17
     },
@@ -2116,10 +2056,10 @@
       "req_id": "SWE1-Diagnostics-011",
       "test_set": "In Motion Menu Control",
       "tc_title": "When the command to disable in-motion menu options is received, the radio shall return control of in-motion menu item status to the normal disable conditions. ($500B, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The in-motion menu item status is recorded as Menu_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500B with an invalid message length\n   $ 2F 50 0B\n2. Read the in-motion menu item status\n   $ 22 50 0B",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported in-motion menu item status equals Menu_initial",
+      "test_procedure": "1. Read the in-motion menu item status and record as Menu_initial\n   $ 22 50 0B\n2. Send a write request for DID $500B with an invalid message length\n   $ 2F 50 0B\n3. Read the in-motion menu item status\n   $ 22 50 0B",
+      "expected_result": "1. Menu_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported in-motion menu item status equals Menu_initial",
       "specification_reference": "CFTS004-4940347",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -2130,8 +2070,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 18
     },
@@ -2140,10 +2079,10 @@
       "req_id": "SWE1-Diagnostics-011",
       "test_set": "In Motion Menu Control",
       "tc_title": "When the command to disable in-motion menu options is received, the radio shall return control of in-motion menu item status to the normal disable conditions. ($500B, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The in-motion menu item status is recorded as Menu_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $500B with a parameter value outside the supported range\n   $ 2F 50 0B\n2. Read the in-motion menu item status\n   $ 22 50 0B",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported in-motion menu item status equals Menu_initial",
+      "test_procedure": "1. Read the in-motion menu item status and record as Menu_initial\n   $ 22 50 0B\n2. Send a write request for DID $500B with a parameter value outside the supported range\n   $ 2F 50 0B\n3. Read the in-motion menu item status\n   $ 22 50 0B",
+      "expected_result": "1. Menu_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported in-motion menu item status equals Menu_initial",
       "specification_reference": "CFTS004-4940347",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -2154,8 +2093,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 18
     },
@@ -2164,7 +2102,7 @@
       "req_id": "SWE1-Diagnostics-012",
       "test_set": "In Motion Menu Control",
       "tc_title": "If the radio does not receive a diagnostic command to enable park menu options for more than 5 seconds, the radio shall return control of in-motion menu item status to the normal disable conditions. ($500B, control returned after no enable command for more than 5 s)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The navigation in-motion menu items are enabled by a diagnostic command",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
       "test_procedure": "1. Send the command to enable in-motion menu options\n   $ 2F 50 0B <enable in-motion menu>\n2. Hold for 5 s\n3. Hold for 1 s",
       "expected_result": "1. The positive response 6F 50 0B is received, and each of the navigation in-motion menu items is enabled\n2. The in-motion menu items remain enabled for the 5 s during which no further enable command is sent\n3. Control of the in-motion menu item status is returned to the radio",
@@ -2178,8 +2116,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: CFTS004-4940346"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 19
     },
@@ -2236,10 +2173,10 @@
       "req_id": "SWE1-Diagnostics-338",
       "test_set": "Video Input",
       "tc_title": "When requested by this DID, the radio shall return to normal operation. ($5100, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The video input state is recorded as Source_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5100 with an invalid message length\n   $ 2F 51 00\n2. Read the video input state\n   $ 22 51 00",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported video input state equals Source_initial",
+      "test_procedure": "1. Read the video input state and record as Source_initial\n   $ 22 51 00\n2. Send a write request for DID $5100 with an invalid message length\n   $ 2F 51 00\n3. Read the video input state\n   $ 22 51 00",
+      "expected_result": "1. Source_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported video input state equals Source_initial",
       "specification_reference": "CFTS004-4940359",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -2250,8 +2187,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 345
     },
@@ -2260,10 +2196,10 @@
       "req_id": "SWE1-Diagnostics-338",
       "test_set": "Video Input",
       "tc_title": "When requested by this DID, the radio shall return to normal operation. ($5100, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The video input state is recorded as Source_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $5100 with a parameter value outside the supported range\n   $ 2F 51 00\n2. Read the video input state\n   $ 22 51 00",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The reported video input state equals Source_initial",
+      "test_procedure": "1. Read the video input state and record as Source_initial\n   $ 22 51 00\n2. Send a write request for DID $5100 with a parameter value outside the supported range\n   $ 2F 51 00\n3. Read the video input state\n   $ 22 51 00",
+      "expected_result": "1. Source_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The reported video input state equals Source_initial",
       "specification_reference": "CFTS004-4940359",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -2274,8 +2210,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ],
       "row037": 345
     },

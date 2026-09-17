@@ -108,6 +108,34 @@ RE_DIAG_REMARKS_OK = (
     re.compile(r"^SID per 037 SWE1-Diagnostics-\d{3}(?:-00[12])?"),
 )
 DIAG_AUTHOR_FIELDS = ("test_item", "pre", "proc", "er")
+# R-DIAG18（IN §4.4 之本 feature 實作）：Pre-Condition 只述狀態。
+# 需 do／check／record 者不是 Pre-Condition —— `*_initial` 只得於 Procedure 宣告並於 ER 使用。
+# R-DIAG18 所列之動作詞取**詞幹**比對 —— 條文書 `press`，而實文為 `is pressed`；
+# 僅以 `\bpress\b` 比對會漏（自測之假陰性 1 例）。
+RE_DIAG_PC_ACTION = re.compile(
+    r"\b(?:record(?:ed|s)?|read|measure(?:d|s)?|send|sent|press(?:ed|es)?)\b"
+    r"|by a diagnostic command|has been sent|was sent", re.I)
+
+
+# 否定式之靜止態不是動作 —— `No push button … is pressed` 描述初始狀態，
+# 無須 do／check／record 即成立（R-DIAG18 之立意為「需執行才成立者不是 Pre-Condition」）。
+# 詞幹比對若不設此例外，會攔下合法前提（CDD-06 自測之假陽性 2 例）。
+RE_DIAG_PC_NEGATED = re.compile(r"\bno\b[^.]*\b(?:pressed|sent|recorded|read)\b", re.I)
+
+
+def check_diag_pc(fields: dict, row_no: int, tc_id: str) -> list[Violation]:
+    """PC-DIAG —— Pre-Condition 之機械守門（R-DIAG18）。"""
+    out: list[Violation] = []
+    for line in fields.get("pre", "").split("\n"):
+        if RE_DIAG_PC_NEGATED.search(line):
+            continue
+        m = RE_DIAG_PC_ACTION.search(line)
+        if m:
+            out.append(Violation(
+                "PC-DIAG", row_no, tc_id, "pre",
+                "R-DIAG18：Pre-Condition 只述狀態，不得含動作詞；"
+                "`*_initial` 只得於 Procedure 宣告", m.group(0)))
+    return out
 
 # --- R-DIAG13／R-DIAG14 之母體（CDD-04 追補 A §一：**依母節反查，不依位元組串**）-------
 # 依位元組串會漏 —— pilot `-006` 之觸發步驟曾整行為 `PENDING`，無 `2F` 串而仍屬 0x2F 之 TC。
@@ -331,6 +359,7 @@ CHECK_TITLES = {
     "RM-DIAG": "Remarks 非 R-DIAG 所定之五種定型句（Diagnostics profile 專屬）",
     "SEC-DIAG": "I/O Control（0x2F）之 TC 缺 security Pre-Condition（R-DIAG13，Diagnostics profile 專屬）",
     "KEY-DIAG": "按鍵狀態 DID 之觸發鍵為 Power／Dark（R-DIAG14，Diagnostics profile 專屬）",
+    "PC-DIAG": "Pre-Condition 含動作詞（R-DIAG18，Diagnostics profile 專屬）",
     "SS": "Remarks 無 `source:` 標記／資產佔位之 `X-` 代號未載於 Remarks"
           "（R-SEC4(a)／R-SEC21(e)，Security profile 專屬）",
 }
@@ -364,6 +393,7 @@ CHECK_STATUS = {
     "RM-DIAG": "未校準（R-DIAG3(amend)／R-DIAG6／R-DIAG7(a)，CDD-01_A 新增）—— **feature 專屬**。",
     "SEC-DIAG": "未校準（R-DIAG13，CDD-04 新增；R-DIAG13(amend) 排除 unsupported 型）—— **feature 專屬**；母體依母節反查（追補 A §一）。",
     "KEY-DIAG": "未校準（R-DIAG14，CDD-04 新增）—— **feature 專屬**。",
+    "PC-DIAG": "未校準（R-DIAG18，CDD-06 新增）—— **feature 專屬**；IN §4.4 之機械守門。",
     "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
           "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"
           "**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot",
@@ -390,7 +420,8 @@ PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
 # 另立即為同一判準之第二份實作。`VM-DIAG` ≡ `Z`，記於 profile §4 與上繳包 §4。
 FEATURE_CHECKS: dict[str, list[str]] = {
     "camera": ["Z"], "security": ["SC", "SS"],
-    "diagnostics": ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG", "SEC-DIAG", "KEY-DIAG"],
+    "diagnostics": ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG", "SEC-DIAG", "KEY-DIAG",
+                    "PC-DIAG"],
 }
 # **feature 專屬之豁免**：某 profile 下不適用之 `PROFILE_CHECKS` 項。
 # R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
@@ -399,7 +430,9 @@ FEATURE_EXEMPT: dict[str, list[str]] = {"security": ["I-cross"],
                                         # R-DIAG12：比照 R-SEC15(j) —— Diagnostics 之 ER 為
                                         # UDS 請求／回應斷言，無 R-SU33/34 之觀測窗，
                                         # pilot01 實測 14/14 全報「窗未完整宣告」。
-                                        "diagnostics": ["I-cross"]}
+                                        # R-DIAG17：本 feature 不寫導航 hop，`X` 之命中皆為
+                                        # DID 名／CFTS004 用詞之字面（batch 3 實測 12 行，真違規 0）。
+                                        "diagnostics": ["I-cross", "X"]}
 # R-SEC20(amend)(c)（SEC-10）：**部分**豁免 —— 只吞「命中位置落於 `"…"` 內」者。
 # `FEATURE_EXEMPT` 之語意為整項移出 `check_order()`，無從表達位置條件
 # （整項豁免會連引號外之命中一起吞，違 SEC-10 §5 第二條），故另立本表。
@@ -476,7 +509,7 @@ CHECK_GRANULARITY = {
     "SC": "每編號步驟／每 ER 行", "SS": "每列",
     "P-DIAG": "每列每欄每 token", "U-DIAG": "每列每位元組串",
     "R1-DIAG": "每列", "RM-DIAG": "每列每段",
-    "SEC-DIAG": "每列", "KEY-DIAG": "每列每次命中",
+    "SEC-DIAG": "每列", "KEY-DIAG": "每列每次命中", "PC-DIAG": "每列每行",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
@@ -1272,9 +1305,14 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
         exempt_row = row_exempt(
             profile,
             cell_text(raw[tr_idx]) if tr_idx is not None and tr_idx < len(raw) else "")
+        # `check_row()` 內部不知道 FEATURE_EXEMPT —— 其產出之 `X` 等項於豁免後
+        # 仍會回傳，而該代號已不在 `enabled`，排序時 `enabled.index()` 會 ValueError
+        # （R-DIAG17 落地後於 290 列之合併本實測 crash）。故於此一併依 `enabled` 過濾：
+        # 列級豁免（exempt_row）與整項豁免（FEATURE_EXEMPT）在此收斂為同一道。
+        enabled_set = set(enabled)
         result.violations.extend(
             v for v in check_row(fields, offset, tc_id, length_limit, profile)
-            if v.check not in exempt_row)
+            if v.check not in exempt_row and v.check in enabled_set)
         if vm_columns and "Z" not in exempt_row:
             result.violations.extend(
                 check_vehicle_model(raw, vm_columns, offset, tc_id))
@@ -1290,6 +1328,8 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
             result.violations.extend(check_diag_security(req_id, fields, offset, tc_id))
         if "KEY-DIAG" in enabled:
             result.violations.extend(check_diag_key(req_id, fields, offset, tc_id))
+        if "PC-DIAG" in enabled:
+            result.violations.extend(check_diag_pc(fields, offset, tc_id))
         if "RM-DIAG" in enabled:
             diag_remarks = (cell_text(raw[remarks_idx])
                             if remarks_idx is not None and remarks_idx < len(raw) else "")

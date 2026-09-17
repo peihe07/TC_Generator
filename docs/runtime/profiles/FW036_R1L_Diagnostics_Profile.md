@@ -55,6 +55,7 @@
 | `RM-DIAG` | Remarks 五種定型句（多句以 `; ` 接合）| R-DIAG3(amend)／6／7(a)／5(amend) | CDD-01_A | **已校準** |
 | `SEC-DIAG` | I/O Control（`0x2F`）之 TC 須含 PC `Security access 0x27 has been granted`；**unsupported 型不在母體**（R-DIAG13(amend)）| R-DIAG13／(amend) | CDD-04 | **已校準** |
 | `KEY-DIAG` | `$1820`／`$1821` 之觸發鍵不得為 Power／Dark | R-DIAG14 | CDD-04 | **已校準** |
+| `PC-DIAG` | Pre-Condition 只述狀態 —— 不得含 record／read／measure／send／press 等動作詞；否定式之靜止態（`No … is pressed`）例外 | R-DIAG18 | CDD-06 | **已校準** |
 
 **`VM-DIAG` ≡ `Z`**：下放包書 `VM-DIAG`，其判準逐字即 R-CAM2(a)(b)(c)，
 與既有 `Z` 完全相同，且 R-G74 已將 598／5210 升為全域 —— 另立代號即為同一判準之第二份實作。
@@ -96,12 +97,26 @@ Procedure 只寫動作（送出／按壓／保持／讀取）；聽、看、觀�
 保持步驟固定句 `Hold for <n> s`，ER 寫該期間之可觀察結果。
 CDD-05 依此改 **16 行／13 條**（`Listen to …` 全數移入 ER）。
 
-### 1.7 `X`（導航路徑無固定入口）於本 feature 為結構性誤報
+### 1.8 Pre-Condition 之機械守門（R-DIAG18）
+
+`*_initial` **只得於 Procedure 宣告**（IN §8.7.5(f) 式：
+`n. Read <對象> and record as <Name>_initial` ＋ `$ 22 xx xx`，ER-n `<Name>_initial is recorded`），
+不得寫入 Pre-Condition。四個產生器與 lint `PC-DIAG` 各設一道守門；
+兩道合計攔下之缺陷：CDD-05 之 148 行位置錯置、CDD-06 產出時之 6 條漏網。
+
+**否定式例外**：`No push button … is pressed` 為靜止態，不需執行即成立，不算動作詞。
+
+### 1.7 ~~`X` 之結構性誤報~~ **已解**（R-DIAG17）
 
 `X` 為 WARN（只報不改）。本 feature **不寫導航 hop** —— HMI 入口不在其範圍，
 其命中皆為 DID 名與 CFTS004 用詞之字面（`Radio Audio Output **Settings**`、
 `in-motion **menu** options`）。batch 3 實測 **12 行**，真違規 0。
-建議比照 `I-cross` 列入 `FEATURE_EXEMPT`；本包未自改（`[A-DIAG38]`）。
+已依 **R-DIAG17** 列入 `FEATURE_EXEMPT["diagnostics"]`。
+
+> **落地時揭出 lint 之實作缺陷（`[A-DIAG42]`）**：`X` 於 `check_row()` 內產生，
+> 而 `FEATURE_EXEMPT` 只從 `check_order()` 移除 —— 豁免後該代號仍被產出卻已不在
+> `enabled`，`enabled.index()` 拋 `ValueError`，290 列之合併本直接 crash。
+> 已改為 `check_row()` 之產出一律依 `enabled` 過濾，**列級豁免與整項豁免收斂為同一道**。
 
 ---
 
@@ -232,7 +247,7 @@ CDD-01_A 後之未決項：
 |---|---|---|
 | 1 | Layer 2 之 20 組名稱 | **[PEI]**，framework.md Part IV |
 | 2 | `PENDING_DR1` 3 列之 NRC（`-156`／`-157`／`-237`）| DR-DIAG-1 |
-| 3 | 七項 lint **全數已校準**（CDD-02 14 列／CDD-03 47 列／CDD-04 81 列／CDD-05 99 列實跑，真違規 0）| 見 §1.1 |
-| 6 | ~~`J` 與 verbatim 衝突~~ **已解**（R-4，§1.5）；~~`SEC-DIAG` 含 unsupported~~ **已解**（R-DIAG13(amend)）；`X` 之結構性誤報（`[A-DIAG38]`）| §1.7，待 Pei |
+| 3 | **八項** lint 全數已校準（CDD-02 14 列／CDD-03 47／CDD-04 81／CDD-05 99／CDD-06 61 實跑，真違規 0）| 見 §1.1 |
+| 6 | ~~`J`~~／~~`SEC-DIAG`~~／~~`X`~~ 三項判準待調**全數已解**（R-4／R-DIAG13(amend)／R-DIAG17）| 無未決 |
 | 4 | `docs/fw036/RULINGS.sha.tsv` 僅含 security 32 列而自稱全域檔（`--check` 動工前即 FAIL）| **全域待辦**，`[A-DIAG15]` |
 | 5 | `new_feature.py` 之 `feature[:2]` ABBR 缺陷 | **全域待辦**（審閱 §五-6，不阻斷）|

@@ -321,3 +321,45 @@ CFTS004-4940322 明載 `from 9 left to 9 right` —— **值域存在，但 037 
 `$5004`／`$5003`／`$5002` 因已有 negative 列，只取有效邊界二點，避免重複。
 
 **建議**：037 下一版為 `$5006`／`$5005` 補 negative 與 unsupported 列，與同組其餘 DID 一致。
+
+---
+
+## FB-DIAG-o　`$030A - Clear Key Sense PIN` 之行為只指向本文件外之規格
+
+| 037 列 | SWE-Requirement ID | Source Requirement ID | CFTS004 列 | ObjectID |
+|---:|---|---|---:|---|
+| 354 | `SWE1-Diagnostics-346` | `SYS-RA-DIAG-373` | 374 | `4940469` |
+
+CFTS004 原文全句：
+
+> When commanded to perform this routine, the radio shall behave per the **KeySense HMI Logic and Flow**.
+
+該常式之**全部行為**指向「KeySense HMI Logic and Flow」，而：
+
+1. 該文件**不在本 feature 之來源集**（`sources/MANIFEST.tsv` 無此件，`REF/` 17 檔亦無）；
+2. CFTS004 未載其文件編號、版本或章節，無從索取；
+3. `$030A` 節下無其他條目可補其行為。
+
+**測試側處置**：依 §8.4.1（不造值），ER 只斷言常式回正回應且完成，
+不斷言任何 KeySense 行為。此為 Layer 2 #20 之唯一一列，故該組之測試深度受限於此。
+
+**建議**：(1) 提供「KeySense HMI Logic and Flow」之文件編號與版本；
+(2) 或於 CFTS004 補述該常式之可觀察結果。
+
+---
+
+## FB-DIAG-p　`SWE1-Diagnostics-154` 之 Title 與 `-160` 重複（batch 4 再度確認）
+
+CDD-02 已以 **FB-DIAG-g** 回報 `-154`（row 161）之 Title 與 Description 不相稱。
+batch 4 產出 `-160`（row 167）時確認：**`-154` 之 Title 與 `-160` 之 Title 為同一件事**——
+
+| 037 列 | SWE1 ID | Title（節錄）| 所掛來源 | CFTS004 原文 |
+|---:|---|---|---|---|
+| 161 | `-154` | `Return NRC 0x31 Request Out of Range when the channel number does not correspond to a valid AV input` | `SYS-RA-DIAG-367` | The return results … Video, Audio Left and Audio Right … |
+| 167 | `-160` | `Return NRC 0x31 Request Out of Range when the AV Channel Number does not correspond to a valid audio or video input` | `SYS-RA-DIAG-371` | If the radio receives a channel number that does not correspond … `"Request Out of Range"`, code `$31` |
+
+`-160` 之 Title 與其來源相稱；`-154` 之 Title 是**同一句話貼錯列**。
+兩列之 Description 與來源則各自正確。
+
+**建議**：`-154` 之 Title 改為與其 Description 及 `SYS-RA-DIAG-367` 一致
+（即三訊號之偵測結果回報），與 FB-DIAG-g 併處。

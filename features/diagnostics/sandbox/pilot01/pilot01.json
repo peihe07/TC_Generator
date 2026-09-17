@@ -34,10 +34,10 @@
       "req_id": "SWE1-Diagnostics-002",
       "test_set": "Camera Brightness",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. (write $283F, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $283F with an invalid message length\n   $ 2E 28 3F\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
-      "expected_result": "1. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported brightness level equals Brightness_initial",
+      "test_procedure": "1. Read the rearview camera brightness level and record as Brightness_initial\n   $ 22 28 3F\n2. Send a write request for DID $283F with an invalid message length\n   $ 2E 28 3F\n3. Read the rearview camera brightness level\n   $ 22 28 3F",
+      "expected_result": "1. Brightness_initial is recorded\n2. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported brightness level equals Brightness_initial",
       "specification_reference": "CFTS004-4939794",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -48,8 +48,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -57,10 +56,10 @@
       "req_id": "SWE1-Diagnostics-002",
       "test_set": "Camera Brightness",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. (write $283F, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $283F with a brightness value outside the supported range\n   $ 2E 28 3F <out-of-range brightness byte>\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
-      "expected_result": "1. The negative response 7F 2E 31 (requestOutOfRange) is received\n2. The reported brightness level equals Brightness_initial",
+      "test_procedure": "1. Read the rearview camera brightness level and record as Brightness_initial\n   $ 22 28 3F\n2. Send a write request for DID $283F with a brightness value outside the supported range\n   $ 2E 28 3F <out-of-range brightness byte>\n3. Read the rearview camera brightness level\n   $ 22 28 3F",
+      "expected_result": "1. Brightness_initial is recorded\n2. The negative response 7F 2E 31 (requestOutOfRange) is received\n3. The reported brightness level equals Brightness_initial",
       "specification_reference": "CFTS004-4939794",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -71,8 +70,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -80,10 +78,10 @@
       "req_id": "SWE1-Diagnostics-003",
       "test_set": "Camera Brightness",
       "tc_title": "SW shall ensure no internal state or functionality is affected by unsupported service requests and shall return the negative response - Service Not Supported. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 3F\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported brightness level equals Brightness_initial",
+      "test_procedure": "1. Read the rearview camera brightness level and record as Brightness_initial\n   $ 22 28 3F\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 3F\n3. Read the rearview camera brightness level\n   $ 22 28 3F",
+      "expected_result": "1. Brightness_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported brightness level equals Brightness_initial",
       "specification_reference": "CFTS004-4939794",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -94,8 +92,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -147,10 +144,10 @@
       "req_id": "SWE1-Diagnostics-113",
       "test_set": "Buzzer Control",
       "tc_title": "The SW shall validate the received DID 0x5000 write request format and parameter values. (I-O $5000, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The current tone output state is recorded as Tone_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send an InputOutputControlByIdentifier request for DID $5000 with an invalid message length\n   $ 2F 50 00\n2. Read the current tone output state",
-      "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The tone output state equals Tone_initial",
+      "test_procedure": "1. Read the current tone output state and record as Tone_initial\n   $ 22 50 00\n2. Send an InputOutputControlByIdentifier request for DID $5000 with an invalid message length\n   $ 2F 50 00\n3. Read the current tone output state",
+      "expected_result": "1. Tone_initial is recorded\n2. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The tone output state equals Tone_initial",
       "specification_reference": "CFTS004-4940297",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P1",
@@ -161,8 +158,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ]
     },
     {
@@ -170,10 +166,10 @@
       "req_id": "SWE1-Diagnostics-113",
       "test_set": "Buzzer Control",
       "tc_title": "The SW shall validate the received DID 0x5000 write request format and parameter values. (I-O $5000, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The current tone output state is recorded as Tone_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send an InputOutputControlByIdentifier request for DID $5000 with a parameter value outside the supported range\n   $ 2F 50 00 <out-of-range controlOptionRecord>\n2. Read the current tone output state",
-      "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The tone output state equals Tone_initial",
+      "test_procedure": "1. Read the current tone output state and record as Tone_initial\n   $ 22 50 00\n2. Send an InputOutputControlByIdentifier request for DID $5000 with a parameter value outside the supported range\n   $ 2F 50 00 <out-of-range controlOptionRecord>\n3. Read the current tone output state",
+      "expected_result": "1. Tone_initial is recorded\n2. The negative response 7F 2F 31 (requestOutOfRange) is received\n3. The tone output state equals Tone_initial",
       "specification_reference": "CFTS004-4940297",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P1",
@@ -184,8 +180,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5（保守套用；列舉未含 I/O Control）"
       ]
     },
     {
@@ -286,10 +281,10 @@
       "req_id": "SWE1-Diagnostics-340-001",
       "test_set": "Video Input",
       "tc_title": "If the new input source is not compatible with the radio, the radio shall return a \"Previous Out of Range\" negative response. (I-O $500D, NRC 31 Request Out of Range)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. A valid video input is active and recorded as Source_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. A valid video input is active",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a command to activate a video input that is not compatible with the radio\n   $ 2F 50 0D <incompatible video input>\n2. Read the currently active video input",
-      "expected_result": "1. The negative response 7F 2F 31 (Request Out of Range) is received\n2. The currently active video input equals Source_initial",
+      "test_procedure": "1. Read the currently active video input and record as Source_initial\n   $ 22 50 0D\n2. Send a command to activate a video input that is not compatible with the radio\n   $ 2F 50 0D <incompatible video input>\n3. Read the currently active video input",
+      "expected_result": "1. Source_initial is recorded\n2. The negative response 7F 2F 31 (Request Out of Range) is received\n3. The currently active video input equals Source_initial",
       "specification_reference": "CFTS004-4940355\nCFTS004-4940356",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P1",

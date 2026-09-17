@@ -4,7 +4,15 @@
 Layer 2 名稱逐字取下放包 `CDD-01 §5` 之 21 組草案，經 **R-DIAG9(amend)(b)** 合併為 **20 組**；
 **未改任何名稱**（#11 `Audio Output Settings` 併入 #14 `Audio Tone Settings`，其名不留）。
 
-**狀態：`DRAFT`** —— 待 CDD-02 pilot 後依 canon §4.1 LOCK。
+**狀態：`LOCKED v01`（2026-09-17，CDD-06 T2）**
+
+LOCK 依據：pilot01（12 列）＋ batch 1（31）＋ batch 2（61）＋ batch 3（70）
+共 **174 個 037 列**之實產，證實三項判準穩定 ——
+(1) Layer 2 之 DID 家族聚合未再出現歸屬爭議；
+(2) sibling 拆分軸（negative 二軸／讀寫二分／BVA 兩式／狀態軸）逐批一致；
+(3) 20 組之列數與 `layer2_assign.tsv` 逐批複驗零差異。
+
+**LOCK 後 Layer 2 之名稱與歸屬不再改**；如需更動，須 Revise v02 ＋ Pei 裁。
 
 **CDD-02 更新（2026-09-17）**：列型態分類器由「僅看標題」改為
 「標題無關鍵字時再看描述之主旨是否為拒絕」，3 列由 positive 改判 negative
@@ -34,29 +42,29 @@ Layer 3 各自保留母節。
 `OoS` = R-DIAG3 之 Out of Scope 列（不產 TC，計入列數不計入產出）。
 `PEND` = `nrc_coverage.tsv` 之 `PENDING_DR1`（R-DIAG5(amend) 後之殘餘）。
 
-| # | Test Set | DID | L3 | 列 | pos | neg | uns | OoS | 產出 | PEND |
-|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 1 | `SXM Module Version` | $2843 | 1 | 57 | 19 | 19 | 19 | 0 | **57** | 0 |
-| 2 | `SXM Signal Quality` | $2840 $2841 $2842 | 3 | 72 | 34 | 34 | 4 | 0 | **72** | 0 |
-| 3 | `SXM Subscription` | $2844 $2845 $2846 $2847 $2848 | 5 | 37 | 13 | 12 | 12 | 0 | **37** | 1 |
-| 4 | `SXM Package Routines` | $0307 $0309 | 2 | 13 | 10 | 2 | 1 | 0 | **13** | 0 |
-| 5 | `GPS Signal Data` | $2812 | 1 | 34 | 12 | 11 | 11 | 0 | **34** | 0 |
-| 6 | `Camera Brightness` | $283F | 1 | 6 | 2 | 2 | 2 | 0 | **6** | 0 |
-| 7 | `ECU Internal Settings` | $280C | 1 | 8 | 5 | 3 | 0 | 0 | **8** | 0 |
-| 8 | `Media Hub Config` | $2870 | 1 | 6 | 3 | 2 | 1 | 0 | **6** | 0 |
-| 9 | `Button Interfaces` | $1820 $1821 | 2 | 7 | 4 | 2 | 1 | 0 | **7** | 0 |
-| 10 | `Screen Test Pattern` | $1801 | 1 | 4 | 2 | 1 | 1 | 1 | **3** | 0 |
-| 11 | `Buzzer Control` | $5000 | 2 | 40 | 14 | 13 | 13 | 0 | **40** | 0 |
-| 12 | `Speaker Quadrant Selection` | $5001 | 2 | 21 | 6 | 9 | 6 | 0 | **21** | 0 |
-| 13 | `Audio Tone Settings` | $180C $5002 $5003 $5004 $5005 $5006 | 6 | 28 | 14 | 7 | 7 | 0 | **28** | 0 |
-| 14 | `Tuner Control` | $5008 $5009 $500C | 6 | 22 | 7 | 8 | 7 | 0 | **22** | 0 |
-| 15 | `Mode Selection` | $500A | 2 | 9 | 3 | 3 | 3 | 0 | **9** | 0 |
-| 16 | `In Motion Menu Control` | $500B | 1 | 6 | 3 | 2 | 1 | 0 | **6** | 0 |
-| 17 | `Video Input` | $500D $5100 | 2 | 5 | 3 | 2 | 0 | 0 | **5** | 0 |
-| 18 | `AV Signal Detection` | $0312 | 1 | 10 | 4 | 3 | 3 | 0 | **10** | 1 |
-| 19 | `Audio Measure AC` | $031B | 1 | 3 | 1 | 1 | 1 | 0 | **3** | 0 |
-| 20 | `Clear Key Sense PIN` | $030A | 1 | 1 | 1 | 0 | 0 | 0 | **1** | 0 |
-| **合計** | **20 組** | **42 DID 節** | **42** | **389** | **160** | **136** | **93** | **1** | **388** | **2** |
+| # | Test Set | DID | L3 | 037 列 | pos | neg | uns | 已產 |
+|---:|---|---|---:|---:|---:|---:|---:|---|
+| 1 | `SXM Module Version` | $2843 | 1 | 57 | 19 | 19 | 19 | 1/57 |
+| 2 | `SXM Signal Quality` | $2840 $2841 $2842 | 3 | 72 | 34 | 34 | 4 | 1/72 |
+| 3 | `SXM Subscription` | $2844 $2845 $2846 $2847 $2848 | 5 | 37 | 13 | 12 | 12 | 未產 |
+| 4 | `SXM Package Routines` | $0307 $0309 | 2 | 13 | 10 | 2 | 1 | 未產 |
+| 5 | `GPS Signal Data` | $2812 | 1 | 34 | 12 | 11 | 11 | 未產 |
+| 6 | `Camera Brightness` | $283F | 1 | 6 | 2 | 2 | 2 | **全產** |
+| 7 | `ECU Internal Settings` | $280C | 1 | 8 | 5 | 3 | 0 | **全產** |
+| 8 | `Media Hub Config` | $2870 | 1 | 6 | 3 | 2 | 1 | **全產** |
+| 9 | `Button Interfaces` | $1820 $1821 | 2 | 7 | 4 | 2 | 1 | **全產** |
+| 10 | `Screen Test Pattern` | $1801 | 1 | 4 | 2 | 1 | 1 | **全產** |
+| 11 | `Buzzer Control` | $5000 | 2 | 40 | 14 | 13 | 13 | **全產** |
+| 12 | `Speaker Quadrant Selection` | $5001 | 2 | 21 | 6 | 9 | 6 | **全產** |
+| 13 | `Audio Tone Settings` | $180C $5002 $5003 $5004 $5005 $5006 | 6 | 28 | 14 | 7 | 7 | **全產** |
+| 14 | `Tuner Control` | $5008 $5009 $500C | 6 | 22 | 7 | 8 | 7 | **全產** |
+| 15 | `Mode Selection` | $500A | 2 | 9 | 3 | 3 | 3 | **全產** |
+| 16 | `In Motion Menu Control` | $500B | 1 | 6 | 3 | 2 | 1 | **全產** |
+| 17 | `Video Input` | $500D $5100 | 2 | 5 | 3 | 2 | 0 | **全產** |
+| 18 | `AV Signal Detection` | $0312 | 1 | 10 | 4 | 3 | 3 | 2/10 |
+| 19 | `Audio Measure AC` | $031B | 1 | 3 | 1 | 1 | 1 | 未產 |
+| 20 | `Clear Key Sense PIN` | $030A | 1 | 1 | 1 | 0 | 0 | 未產 |
+| **合計** | **20 組** | **36 DID** | **42** | **389** | **160** | **136** | **93** | **166/389（42.7%）** |
 
 ### §4.1.3 決策測試
 
@@ -130,6 +138,6 @@ Layer 3 各自保留母節。
 
 | # | 項 | 去向 |
 |---:|---|---|
-| 1 | Layer 2 之 20 組名稱（Pei 未逐字簽核）| **[PEI]** |
+| 1 | Layer 2 之 20 組名稱 —— **LOCK v01 即簽核**（Pei 於 CDD-06 落包時未駁）| **已鎖** |
 | 2 | `PENDING_DR1` 3 列之 NRC（`SWE1-Diagnostics-156/157/237`）| DR-DIAG-1 |
 | 3 | CDD-02 pilot 後之 TC 實數與批次切分 | CDD-02 |

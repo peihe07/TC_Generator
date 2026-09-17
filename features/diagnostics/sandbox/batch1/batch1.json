@@ -16,10 +16,10 @@
       "req_id": "SWE1-Diagnostics-005",
       "test_set": "Camera Brightness",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($283F, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $283F with an invalid message length\n   $ 22 28 3F\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported rearview camera brightness level equals Brightness_initial",
+      "test_procedure": "1. Read the rearview camera brightness level and record as Brightness_initial\n   $ 22 28 3F\n2. Send a read request for DID $283F with an invalid message length\n   $ 22 28 3F\n3. Read the rearview camera brightness level\n   $ 22 28 3F",
+      "expected_result": "1. Brightness_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported rearview camera brightness level equals Brightness_initial",
       "specification_reference": "CFTS004-4939793",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -29,8 +29,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -38,10 +37,10 @@
       "req_id": "SWE1-Diagnostics-005",
       "test_set": "Camera Brightness",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($283F, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $283F with a parameter value outside the supported range\n   $ 22 28 3F\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported rearview camera brightness level equals Brightness_initial",
+      "test_procedure": "1. Read the rearview camera brightness level and record as Brightness_initial\n   $ 22 28 3F\n2. Send a read request for DID $283F with a parameter value outside the supported range\n   $ 22 28 3F\n3. Read the rearview camera brightness level\n   $ 22 28 3F",
+      "expected_result": "1. Brightness_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported rearview camera brightness level equals Brightness_initial",
       "specification_reference": "CFTS004-4939793",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -51,8 +50,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -60,10 +58,10 @@
       "req_id": "SWE1-Diagnostics-006",
       "test_set": "Camera Brightness",
       "tc_title": "SW shall ensure no internal state or functionality is affected by unsupported service requests and shall return the negative response - Service Not Supported. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 3F\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported rearview camera brightness level equals Brightness_initial",
+      "test_procedure": "1. Read the rearview camera brightness level and record as Brightness_initial\n   $ 22 28 3F\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 3F\n3. Read the rearview camera brightness level\n   $ 22 28 3F",
+      "expected_result": "1. Brightness_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported rearview camera brightness level equals Brightness_initial",
       "specification_reference": "CFTS004-4939793",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -73,8 +71,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -211,10 +208,10 @@
       "req_id": "SWE1-Diagnostics-335",
       "test_set": "ECU Internal Settings",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($280C, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Front Seat Video Playback state is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $280C with an invalid message length\n   $ 2E 28 0C\n2. Read the Front Seat Video Playback state\n   $ 22 28 0C",
-      "expected_result": "1. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported Front Seat Video Playback state equals Setting_initial",
+      "test_procedure": "1. Read the Front Seat Video Playback state and record as Setting_initial\n   $ 22 28 0C\n2. Send a write request for DID $280C with an invalid message length\n   $ 2E 28 0C\n3. Read the Front Seat Video Playback state\n   $ 22 28 0C",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Front Seat Video Playback state equals Setting_initial",
       "specification_reference": "CFTS004-4939688",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -225,8 +222,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -234,10 +230,10 @@
       "req_id": "SWE1-Diagnostics-335",
       "test_set": "ECU Internal Settings",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($280C, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Front Seat Video Playback state is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $280C with a parameter value outside the supported range\n   $ 2E 28 0C\n2. Read the Front Seat Video Playback state\n   $ 22 28 0C",
-      "expected_result": "1. The negative response 7F 2E 31 (requestOutOfRange) is received\n2. The reported Front Seat Video Playback state equals Setting_initial",
+      "test_procedure": "1. Read the Front Seat Video Playback state and record as Setting_initial\n   $ 22 28 0C\n2. Send a write request for DID $280C with a parameter value outside the supported range\n   $ 2E 28 0C\n3. Read the Front Seat Video Playback state\n   $ 22 28 0C",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2E 31 (requestOutOfRange) is received\n3. The reported Front Seat Video Playback state equals Setting_initial",
       "specification_reference": "CFTS004-4939688",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -248,8 +244,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -300,10 +295,10 @@
       "req_id": "SWE1-Diagnostics-341",
       "test_set": "ECU Internal Settings",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($280C, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Clock Defeat setting is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $280C with an invalid message length\n   $ 2E 28 0C\n2. Read the Clock Defeat setting\n   $ 22 28 0C",
-      "expected_result": "1. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported Clock Defeat setting equals Setting_initial",
+      "test_procedure": "1. Read the Clock Defeat setting and record as Setting_initial\n   $ 22 28 0C\n2. Send a write request for DID $280C with an invalid message length\n   $ 2E 28 0C\n3. Read the Clock Defeat setting\n   $ 22 28 0C",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Clock Defeat setting equals Setting_initial",
       "specification_reference": "CFTS004-4939684",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -314,8 +309,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -323,10 +317,10 @@
       "req_id": "SWE1-Diagnostics-341",
       "test_set": "ECU Internal Settings",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($280C, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The Clock Defeat setting is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $280C with a parameter value outside the supported range\n   $ 2E 28 0C\n2. Read the Clock Defeat setting\n   $ 22 28 0C",
-      "expected_result": "1. The negative response 7F 2E 31 (requestOutOfRange) is received\n2. The reported Clock Defeat setting equals Setting_initial",
+      "test_procedure": "1. Read the Clock Defeat setting and record as Setting_initial\n   $ 22 28 0C\n2. Send a write request for DID $280C with a parameter value outside the supported range\n   $ 2E 28 0C\n3. Read the Clock Defeat setting\n   $ 22 28 0C",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2E 31 (requestOutOfRange) is received\n3. The reported Clock Defeat setting equals Setting_initial",
       "specification_reference": "CFTS004-4939684",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -337,8 +331,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -389,10 +382,10 @@
       "req_id": "SWE1-Diagnostics-343",
       "test_set": "ECU Internal Settings",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($280C, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The 12/24 Time Selection setting is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $280C with an invalid message length\n   $ 2E 28 0C\n2. Read the 12/24 Time Selection setting\n   $ 22 28 0C",
-      "expected_result": "1. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported 12/24 Time Selection setting equals Setting_initial",
+      "test_procedure": "1. Read the 12/24 Time Selection setting and record as Setting_initial\n   $ 22 28 0C\n2. Send a write request for DID $280C with an invalid message length\n   $ 2E 28 0C\n3. Read the 12/24 Time Selection setting\n   $ 22 28 0C",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported 12/24 Time Selection setting equals Setting_initial",
       "specification_reference": "CFTS004-4939687",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -403,8 +396,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -412,10 +404,10 @@
       "req_id": "SWE1-Diagnostics-343",
       "test_set": "ECU Internal Settings",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($280C, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The 12/24 Time Selection setting is recorded as Setting_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $280C with a parameter value outside the supported range\n   $ 2E 28 0C\n2. Read the 12/24 Time Selection setting\n   $ 22 28 0C",
-      "expected_result": "1. The negative response 7F 2E 31 (requestOutOfRange) is received\n2. The reported 12/24 Time Selection setting equals Setting_initial",
+      "test_procedure": "1. Read the 12/24 Time Selection setting and record as Setting_initial\n   $ 22 28 0C\n2. Send a write request for DID $280C with a parameter value outside the supported range\n   $ 2E 28 0C\n3. Read the 12/24 Time Selection setting\n   $ 22 28 0C",
+      "expected_result": "1. Setting_initial is recorded\n2. The negative response 7F 2E 31 (requestOutOfRange) is received\n3. The reported 12/24 Time Selection setting equals Setting_initial",
       "specification_reference": "CFTS004-4939687",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -426,8 +418,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -501,10 +492,10 @@
       "req_id": "SWE1-Diagnostics-330",
       "test_set": "Media Hub Config",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($2870, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The enumerated USB device count is recorded as Count_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $2870 with an invalid message length\n   $ 22 28 70\n2. Read the enumerated USB device count\n   $ 22 28 70",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported enumerated USB device count equals Count_initial",
+      "test_procedure": "1. Read the enumerated USB device count and record as Count_initial\n   $ 22 28 70\n2. Send a read request for DID $2870 with an invalid message length\n   $ 22 28 70\n3. Read the enumerated USB device count\n   $ 22 28 70",
+      "expected_result": "1. Count_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported enumerated USB device count equals Count_initial",
       "specification_reference": "CFTS004-4939921",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -514,8 +505,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -523,10 +513,10 @@
       "req_id": "SWE1-Diagnostics-330",
       "test_set": "Media Hub Config",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($2870, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The enumerated USB device count is recorded as Count_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $2870 with a parameter value outside the supported range\n   $ 22 28 70\n2. Read the enumerated USB device count\n   $ 22 28 70",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported enumerated USB device count equals Count_initial",
+      "test_procedure": "1. Read the enumerated USB device count and record as Count_initial\n   $ 22 28 70\n2. Send a read request for DID $2870 with a parameter value outside the supported range\n   $ 22 28 70\n3. Read the enumerated USB device count\n   $ 22 28 70",
+      "expected_result": "1. Count_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported enumerated USB device count equals Count_initial",
       "specification_reference": "CFTS004-4939921",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -536,8 +526,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -567,10 +556,10 @@
       "req_id": "SWE1-Diagnostics-332",
       "test_set": "Media Hub Config",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($2870, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The detected USB Hub count is recorded as Count_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $2870 with an invalid message length\n   $ 22 28 70\n2. Read the detected USB Hub count\n   $ 22 28 70",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported detected USB Hub count equals Count_initial",
+      "test_procedure": "1. Read the detected USB Hub count and record as Count_initial\n   $ 22 28 70\n2. Send a read request for DID $2870 with an invalid message length\n   $ 22 28 70\n3. Read the detected USB Hub count\n   $ 22 28 70",
+      "expected_result": "1. Count_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported detected USB Hub count equals Count_initial",
       "specification_reference": "CFTS004-4939919",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -580,8 +569,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -589,10 +577,10 @@
       "req_id": "SWE1-Diagnostics-332",
       "test_set": "Media Hub Config",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($2870, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The detected USB Hub count is recorded as Count_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $2870 with a parameter value outside the supported range\n   $ 22 28 70\n2. Read the detected USB Hub count\n   $ 22 28 70",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported detected USB Hub count equals Count_initial",
+      "test_procedure": "1. Read the detected USB Hub count and record as Count_initial\n   $ 22 28 70\n2. Send a read request for DID $2870 with a parameter value outside the supported range\n   $ 22 28 70\n3. Read the detected USB Hub count\n   $ 22 28 70",
+      "expected_result": "1. Count_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported detected USB Hub count equals Count_initial",
       "specification_reference": "CFTS004-4939919",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -602,8 +590,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -699,10 +686,10 @@
       "req_id": "SWE1-Diagnostics-345",
       "test_set": "Button Interfaces",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($1821, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Steering Wheel Module Interface status is recorded as Status_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $1821 with an invalid message length\n   $ 22 18 21\n2. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported Steering Wheel Module Interface status equals Status_initial",
+      "test_procedure": "1. Read the Steering Wheel Module Interface status and record as Status_initial\n   $ 22 18 21\n2. Send a read request for DID $1821 with an invalid message length\n   $ 22 18 21\n3. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
+      "expected_result": "1. Status_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Steering Wheel Module Interface status equals Status_initial",
       "specification_reference": "CFTS004-4939651",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -712,8 +699,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -721,10 +707,10 @@
       "req_id": "SWE1-Diagnostics-345",
       "test_set": "Button Interfaces",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($1821, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Steering Wheel Module Interface status is recorded as Status_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $1821 with a parameter value outside the supported range\n   $ 22 18 21\n2. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported Steering Wheel Module Interface status equals Status_initial",
+      "test_procedure": "1. Read the Steering Wheel Module Interface status and record as Status_initial\n   $ 22 18 21\n2. Send a read request for DID $1821 with a parameter value outside the supported range\n   $ 22 18 21\n3. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
+      "expected_result": "1. Status_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Steering Wheel Module Interface status equals Status_initial",
       "specification_reference": "CFTS004-4939651",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -734,8 +720,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -765,10 +750,10 @@
       "req_id": "SWE1-Diagnostics-387",
       "test_set": "Button Interfaces",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($1821, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Steering Wheel Module Interface status is recorded as Status_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $1821 with an invalid message length\n   $ 22 18 21\n2. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
-      "expected_result": "1. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported Steering Wheel Module Interface status equals Status_initial",
+      "test_procedure": "1. Read the Steering Wheel Module Interface status and record as Status_initial\n   $ 22 18 21\n2. Send a read request for DID $1821 with an invalid message length\n   $ 22 18 21\n3. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
+      "expected_result": "1. Status_initial is recorded\n2. The negative response 7F 22 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported Steering Wheel Module Interface status equals Status_initial",
       "specification_reference": "CFTS004-4939650",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -778,8 +763,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -787,10 +771,10 @@
       "req_id": "SWE1-Diagnostics-387",
       "test_set": "Button Interfaces",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($1821, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Steering Wheel Module Interface status is recorded as Status_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a read request for DID $1821 with a parameter value outside the supported range\n   $ 22 18 21\n2. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
-      "expected_result": "1. The negative response 7F 22 31 (requestOutOfRange) is received\n2. The reported Steering Wheel Module Interface status equals Status_initial",
+      "test_procedure": "1. Read the Steering Wheel Module Interface status and record as Status_initial\n   $ 22 18 21\n2. Send a read request for DID $1821 with a parameter value outside the supported range\n   $ 22 18 21\n3. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
+      "expected_result": "1. Status_initial is recorded\n2. The negative response 7F 22 31 (requestOutOfRange) is received\n3. The reported Steering Wheel Module Interface status equals Status_initial",
       "specification_reference": "CFTS004-4939650",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -800,8 +784,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -809,10 +792,10 @@
       "req_id": "SWE1-Diagnostics-388",
       "test_set": "Button Interfaces",
       "tc_title": "SW shall ensure no internal state or functionality is affected by unsupported service requests and shall return the negative response - Service Not Supported. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Steering Wheel Module Interface status is recorded as Status_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 18 21\n2. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported Steering Wheel Module Interface status equals Status_initial",
+      "test_procedure": "1. Read the Steering Wheel Module Interface status and record as Status_initial\n   $ 22 18 21\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 18 21\n3. Read the Steering Wheel Module Interface status\n   $ 22 18 21",
+      "expected_result": "1. Status_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported Steering Wheel Module Interface status equals Status_initial",
       "specification_reference": "CFTS004-4939650",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -822,8 +805,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     },
     {
@@ -853,10 +835,10 @@
       "req_id": "SWE1-Diagnostics-384",
       "test_set": "Screen Test Pattern",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($1801, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The currently displayed test pattern is recorded as Pattern_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $1801 with an invalid message length\n   $ 2E 18 01\n2. Read the currently displayed test pattern\n   $ 22 18 01",
-      "expected_result": "1. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported currently displayed test pattern equals Pattern_initial",
+      "test_procedure": "1. Read the currently displayed test pattern and record as Pattern_initial\n   $ 22 18 01\n2. Send a write request for DID $1801 with an invalid message length\n   $ 2E 18 01\n3. Read the currently displayed test pattern\n   $ 22 18 01",
+      "expected_result": "1. Pattern_initial is recorded\n2. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n3. The reported currently displayed test pattern equals Pattern_initial",
       "specification_reference": "CFTS004-4939626",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -867,8 +849,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -876,10 +857,10 @@
       "req_id": "SWE1-Diagnostics-384",
       "test_set": "Screen Test Pattern",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. ($1801, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The currently displayed test pattern is recorded as Pattern_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a write request for DID $1801 with a parameter value outside the supported range\n   $ 2E 18 01\n2. Read the currently displayed test pattern\n   $ 22 18 01",
-      "expected_result": "1. The negative response 7F 2E 31 (requestOutOfRange) is received\n2. The reported currently displayed test pattern equals Pattern_initial",
+      "test_procedure": "1. Read the currently displayed test pattern and record as Pattern_initial\n   $ 22 18 01\n2. Send a write request for DID $1801 with a parameter value outside the supported range\n   $ 2E 18 01\n3. Read the currently displayed test pattern\n   $ 22 18 01",
+      "expected_result": "1. Pattern_initial is recorded\n2. The negative response 7F 2E 31 (requestOutOfRange) is received\n3. The reported currently displayed test pattern equals Pattern_initial",
       "specification_reference": "CFTS004-4939626",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -890,8 +871,7 @@
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
         "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
-        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
       ]
     },
     {
@@ -899,10 +879,10 @@
       "req_id": "SWE1-Diagnostics-385",
       "test_set": "Screen Test Pattern",
       "tc_title": "SW shall ensure no internal state or functionality is affected by unsupported service requests and shall return the negative response - Service Not Supported. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The currently displayed test pattern is recorded as Pattern_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
-      "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 18 01\n2. Read the currently displayed test pattern\n   $ 22 18 01",
-      "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported currently displayed test pattern equals Pattern_initial",
+      "test_procedure": "1. Read the currently displayed test pattern and record as Pattern_initial\n   $ 22 18 01\n2. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 18 01\n3. Read the currently displayed test pattern\n   $ 22 18 01",
+      "expected_result": "1. Pattern_initial is recorded\n2. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n3. The reported currently displayed test pattern equals Pattern_initial",
       "specification_reference": "CFTS004-4939626",
       "design_method": "負向測試 (Negative / Invalid)",
       "priority": "P2",
@@ -912,8 +892,7 @@
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
-        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
-        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
       ]
     }
   ]

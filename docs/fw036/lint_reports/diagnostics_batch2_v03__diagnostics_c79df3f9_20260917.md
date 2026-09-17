@@ -1,7 +1,7 @@
-# lint036 報告：diagnostics_v03.xlsx
+# lint036 報告：diagnostics_batch2_v03.xlsx
 
-- 來源：`features/diagnostics/sandbox/merged/diagnostics_v03.xlsx`（唯讀）
-- 資料列數：231
+- 來源：`features/diagnostics/sandbox/batch2/diagnostics_batch2_v03.xlsx`（唯讀）
+- 資料列數：81
 - sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
 - L 閾值：50 tokens
 - profile：`diagnostics`（P 採 R-1 v3；另跑 Q／R／T）
@@ -34,7 +34,6 @@
 | U | PENDING 佔位（四欄全掃，含 ER 側） | 0 | 0 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
 | V | 行首空白（IN §11） | 0 | 0 | 每行每欄 | 未校準（IN §11，27 包新增） |
 | W | ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6） | 0 | 0 | 每次命中 | **待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述 |
-| X | 導航路徑無固定入口（§5.8／R-G71） | 12 | 9 | 每行 | 未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改** |
 | Y | PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式） | 0 | 0 | 每行 | 未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72 |
 | P-DIAG | `$XXXX` 非本 feature 之 DID 白名單（R-DIAG5(a)，Diagnostics profile 專屬） | 0 | 0 | 每列每欄每 token | 未校準（R-DIAG5(a)，CDD-01_A 新增）—— **feature 專屬**，僅 `--profile diagnostics` 啟用。 |
 | U-DIAG | UDS 位元組串格式／`7F` 後缺 `(<label>)`（R-DIAG5(b)，Diagnostics profile 專屬） | 0 | 0 | 每列每位元組串 | 未校準（R-DIAG5(b)，CDD-01_A 新增）—— **feature 專屬**。 |
@@ -43,25 +42,9 @@
 | RM-DIAG | Remarks 非 R-DIAG 所定之五種定型句（Diagnostics profile 專屬） | 0 | 0 | 每列每段 | 未校準（R-DIAG3(amend)／R-DIAG6／R-DIAG7(a)，CDD-01_A 新增）—— **feature 專屬**。 |
 | SEC-DIAG | I/O Control（0x2F）之 TC 缺 security Pre-Condition（R-DIAG13，Diagnostics profile 專屬） | 0 | 0 | 每列 | 未校準（R-DIAG13，CDD-04 新增；R-DIAG13(amend) 排除 unsupported 型）—— **feature 專屬**；母體依母節反查（追補 A §一）。 |
 | KEY-DIAG | 按鍵狀態 DID 之觸發鍵為 Power／Dark（R-DIAG14，Diagnostics profile 專屬） | 0 | 0 | 每列每次命中 | 未校準（R-DIAG14，CDD-04 新增）—— **feature 專屬**。 |
+| PC-DIAG | Pre-Condition 含動作詞（R-DIAG18，Diagnostics profile 專屬） | 0 | 0 | 每列每行 | 未校準（R-DIAG18，CDD-06 新增）—— **feature 專屬**；IN §4.4 之機械守門。 |
 
-**總計：行計 12**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 0**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
-
-### X — 導航路徑無固定入口（§5.8／R-G71）（行計 12／列計 9）
-
-| 列 | TC ID | 欄位 | 說明 | 片段 |
-| ---: | --- | --- | --- | --- |
-| 143 | NR1L-DIAG-134 | proc | 導航標的 'Settings' 而同 TC 無固定入口 | 1. Read the Radio Audio Output Settings |
-| 228 | NR1L-DIAG-219 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 1. Send the command to enable in-motion menu options |
-| 228 | NR1L-DIAG-219 | proc | 導航標的 'menu' 而同 TC 無固定入口 | $ 2F 50 0B <enable in-motion menu> |
-| 229 | NR1L-DIAG-220 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 2. Read the in-motion menu item status |
-| 230 | NR1L-DIAG-221 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 2. Read the in-motion menu item status |
-| 231 | NR1L-DIAG-222 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 2. Read the in-motion menu item status |
-| 232 | NR1L-DIAG-223 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 1. Send the command to disable in-motion menu options |
-| 232 | NR1L-DIAG-223 | proc | 導航標的 'menu' 而同 TC 無固定入口 | $ 2F 50 0B <disable in-motion menu> |
-| 233 | NR1L-DIAG-224 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 2. Read the in-motion menu item status |
-| 234 | NR1L-DIAG-225 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 2. Read the in-motion menu item status |
-| 235 | NR1L-DIAG-226 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 1. Send the command to enable in-motion menu options |
-| 235 | NR1L-DIAG-226 | proc | 導航標的 'menu' 而同 TC 無固定入口 | $ 2F 50 0B <enable in-motion menu> |
 
