@@ -533,6 +533,15 @@ for _swdl in ("001", "002", "003", "004", "005"):
     CONFLICT_NOTE[f"SWE1-SRA-SECURITY-SWDL-{_swdl}"] = (
         "conflict: 344 vs Auth-Prog item 7 — rollback; "
         "unresolved per CCVR Mapping notes row 13")
+# ---------------------------------------------------- A-SEC-16（SEC-16 §4）：ECUCert 路徑兩說
+# TC 之 Procedure／ER 依 Test Steps PDF 20260826 不改；Remarks 註明 CCVR 工作中版之另一說。
+PATH_MARKERS = ("/mnt/vendor/oemkeys/ecu/state/ecucertstatus", "/data/misc/ecuidentity",
+                "/odm/etc/cert_store")
+PATH_NOTE = ("path per ECU Cert Test Steps PDF 20260826; CCVR v2.7 working note 20260915 "
+             "states /mnt/vendor/ecuidentity/... as primary — confirm with Samuel (A-SEC-16)")
+L0_NOTE = ("L0 chain path per CCVR note 20260915: /odm/etc/cert_store/ecu_chain "
+           "— confirm (A-SEC-16)")
+
 # (b) 範圍註 —— CP 之負向 sibling ＋ CP-004／005 全部 sibling（CCVR Cert Val CS.98 rationale）。
 SCOPE_NOTE = ("scope: service-level validation; reprogramming rejection owned by SWDL "
               "(CCVR Cert Val CS.98 rationale)")
@@ -708,6 +717,11 @@ def main() -> int:
         if group == "Cert Provider" and (NEG.split(" (")[0] in design
                                          or swe1 in SCOPE_ALL_SIBLINGS):
             remarks.append(SCOPE_NOTE)                           # R-SEC22(b)
+        blob = "\n".join(proc) + "\n" + "\n".join(er)          # A-SEC-16（SEC-16 §4）
+        if group == "ECU Cert" and any(m in blob for m in PATH_MARKERS):
+            remarks.append(PATH_NOTE)
+        if group == "Cert Provider" and "/odm/etc/cert_store" in blob:
+            remarks.append(L0_NOTE)
         r = {"req_id": swe1, "tc_id": tc_id, "test_group": group,
              "test_set": l2[swe1]["test_set"],
              "test_item": f'{d_first[swe1]}\n({s["lower_half(English)"]}'

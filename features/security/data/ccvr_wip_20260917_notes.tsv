@@ -1,0 +1,12 @@
+row	text
+r25	、網路連上 → 重驗已裝憑證 → 驗不過判 CERT_4_INVALID → 落入重試四種狀態之一 → 啟動線上 GSDP 服務重新下載
+r30	、cert chain path :
+r31	L0 : /odm/etc/cert_store/ecu_chain
+r32	L1, L2 : /mnt/vendor/ecuidentity/data/ecu.cacert,  /data/misc/ecuidentity/ecu.cacert (back-up)
+r33	L3 : /mnt/vendor/ecuidentity/data/ecu.crt, /data/misc/ecuidentity/ecu.crt  (back-up)
+r34	、Check installation status : adb shell od -An -t u1 /mnt/vendor/ecuidentity/state/ecucertstatus
+r35	、確認 DUT 跟 版本 (r5 or r6) 後，用 test.ecu.serialnumber 寫入 serial number 。跟 STLA 申請由 GCSP 下載鍊。
+r38	、adb pull ：for key blob, certification chain
+r39	、adb root ：for install , push , setfenforce 0 , setprop
+r41	Precautions
+r42	、QFil will erase all partiion. Use fastboot only.

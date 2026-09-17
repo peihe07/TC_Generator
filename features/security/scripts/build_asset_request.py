@@ -18,7 +18,9 @@ OUT = ROOT / "features" / "security" / "sandbox" / "delivery" / "asset_request.m
 # 缺什麼／找誰 —— 取自 EXEC_ASSETS.md 之指派（R-G11：非執行層查證）
 ASSET = {
     "X-c": ("NR1L 正確 OID 之 Code Signing 憑證（leaf ＋ L1 PEM）", "STLA 經 Steven"),
-    "X-d": ("本機 SSN 之 ECU certificate chain（`ecu.cacert`）", "STLA 經 Samuel"),
+    "X-d": ("本機 SSN 之 ECU certificate chain（`ecu.cacert`）。"
+            "Samuel: also confirm ECU cert partition paths (A-SEC-16) and "
+            "item 1/10/11/13/14 scope (A-SEC-17)", "STLA 經 Samuel"),
     "X-e": ("CertProvider 六組憑證（valid／broken／revoked／wrong-subject／wrong-issuer／"
             "wrong-OID）＋ RD 預產 `dcl_baseline.json`、`dcl_revoked_l0~l3.json`", "Steven"),
     "X-f-2": ("**KeyInstall status test runner** —— Binder `getStatus()` 之可執行入口"

@@ -14,7 +14,7 @@
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-005 Requirement Description and Verification Criteria\nPolarion: NRL-349388\nsibling axis: storage side effect; rule 1 of SEC-04 4.2\nchannel_feasible: Y/Y\nconflict: 529/383/532/539 — DCL not deployed; unresolved per CCVR Mapping notes row 10\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)",
+  "remarks": "source: 037 SWE1-CertProvider-005 Requirement Description and Verification Criteria\nPolarion: NRL-349388\nsibling axis: storage side effect; rule 1 of SEC-04 4.2\nchannel_feasible: Y/Y\nconflict: 529/383/532/539 — DCL not deployed; unresolved per CCVR Mapping notes row 10\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)\nL0 chain path per CCVR note 20260915: /odm/etc/cert_store/ecu_chain — confirm (A-SEC-16)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",

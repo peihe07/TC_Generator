@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import os
 import json
 import re
 import shutil
@@ -123,7 +124,7 @@ def main() -> int:
         reports[comp] = write_book(rows, out, comp)
         shas[comp] = _sha16(out)
         print(f"  {comp:14s} {len(rows):3d} TC → {out.name}")
-    all_out = SB / "merged" / "security_v09_all.xlsx"
+    all_out = SB / "merged" / f'security_{os.environ.get("SEC_VER", "v09")}_all.xlsx'
     reports["_all"] = write_book(tcs, all_out, None)
     shas["_all"] = _sha16(all_out)
     print(f"  {'_all':14s} {len(tcs):3d} TC → {all_out.relative_to(ROOT)}")

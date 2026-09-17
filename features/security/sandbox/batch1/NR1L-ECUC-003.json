@@ -14,7 +14,7 @@
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SYSAD_SEC_ECUCERT_ECUCERT_SERVICE Requirement Description and Verification Criteria\nsibling axis: verification status; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "source: 037 SYSAD_SEC_ECUCERT_ECUCERT_SERVICE Requirement Description and Verification Criteria\nsibling axis: verification status; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\npath per ECU Cert Test Steps PDF 20260826; CCVR v2.7 working note 20260915 states /mnt/vendor/ecuidentity/... as primary — confirm with Samuel (A-SEC-16)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
