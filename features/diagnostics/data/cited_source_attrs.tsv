@@ -1,0 +1,169 @@
+src_id	cfts004_row	object_id	cat	region_raw	region_norm	harman_status	sw_hw_system	parent	l3	n_037_rows
+SYS-RA-DIAG-013	14	4939959	Functional Requirement	NAFTA - United States, NAFTA - Mexico, NAFTA, NAFTA - Canada	NAFTA	Accepted	System	Read/Write DID Requirements	$500C - SDAR Station Selection (Read)	3
+SYS-RA-DIAG-021	22	4939952	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$500A - Mode Selection (Read)	3
+SYS-RA-DIAG-023	24	4939949	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$5009 - Frequency Step Selection (Read)	3
+SYS-RA-DIAG-026	27	4939946	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$5008 - Seek Status (Read)	3
+SYS-RA-DIAG-029	30	4939942	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$5001 - Speaker Quadrant Selection (Read)	2
+SYS-RA-DIAG-031	32	4939943	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$5001 - Speaker Quadrant Selection (Read)	1
+SYS-RA-DIAG-033	34	4939939	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$5000 - Buzzer Control (Read)	1
+SYS-RA-DIAG-042	43	4939923	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$2870 - Media Hub Config (Read)	1
+SYS-RA-DIAG-043	44	4939921	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2870 - Media Hub Config (Read)	2
+SYS-RA-DIAG-045	46	4939919	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2870 - Media Hub Config (Read)	2
+SYS-RA-DIAG-046	47	4939922	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2870 - Media Hub Config (Read)	1
+SYS-RA-DIAG-051	52	4939896	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA - United States, NAFTA	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2848 - X65 Package Indication Select (Read)	3
+SYS-RA-DIAG-054	55	4939890	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA, NAFTA - United States	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2847 - X65 Index ID (Read/Write)	2
+SYS-RA-DIAG-056	57	4939892	Functional Requirement	NAFTA, NAFTA - Canada, NAFTA - United States, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2847 - X65 Index ID (Read/Write)	1
+SYS-RA-DIAG-057	58	4939891	Functional Requirement	NAFTA - Canada, NAFTA, NAFTA - United States, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2847 - X65 Index ID (Read/Write)	1
+SYS-RA-DIAG-060	61	4939885	Functional Requirement	NAFTA - United States, NAFTA - Mexico, NAFTA, NAFTA - Canada	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2846 - X65 Package Indication Validate (Read)	3
+SYS-RA-DIAG-064	65	4939881	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - Canada, NAFTA - United States	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2845 - X65 Event Indication (Read)	3
+SYS-RA-DIAG-067	68	4939873	Functional Requirement	NAFTA, NAFTA - United States, NAFTA - Canada, NAFTA - Mexico	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2844 - X65 Subscription Status (Read)	3
+SYS-RA-DIAG-068	69	4939872	Functional Requirement	NAFTA - United States, NAFTA, NAFTA - Mexico, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2844 - X65 Subscription Status (Read)	3
+SYS-RA-DIAG-069	70	4939871	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - United States, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2844 - X65 Subscription Status (Read)	3
+SYS-RA-DIAG-070	71	4939874	Functional Requirement	NAFTA - Canada, NAFTA - United States, NAFTA, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2844 - X65 Subscription Status (Read)	3
+SYS-RA-DIAG-071	72	4939870	Functional Requirement	NAFTA - United States, NAFTA, NAFTA - Mexico, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2844 - X65 Subscription Status (Read)	3
+SYS-RA-DIAG-072	73	4939868	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - United States, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2844 - X65 Subscription Status (Read)	3
+SYS-RA-DIAG-073	74	4939875	Functional Requirement	NAFTA - Mexico, NAFTA - United States, NAFTA, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2844 - X65 Subscription Status (Read)	3
+SYS-RA-DIAG-076	77	4939869	Functional Requirement	NAFTA - Canada, NAFTA, NAFTA - Mexico, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2844 - X65 Subscription Status (Read)	3
+SYS-RA-DIAG-078	79	4939853	Functional Requirement	NAFTA - Canada, NAFTA, NAFTA - Mexico, NAFTA - United States	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-079	80	4939852	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - United States, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-080	81	4939854	Functional Requirement	NAFTA - Mexico, NAFTA - United States, NAFTA, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-081	82	4939862	Functional Requirement	NAFTA - United States, NAFTA, NAFTA - Mexico, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-082	83	4939861	Functional Requirement	NAFTA, NAFTA - Canada, NAFTA - Mexico, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-083	84	4939863	Functional Requirement	NAFTA, NAFTA - United States, NAFTA - Canada, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-084	85	4939845	Functional Requirement	NAFTA - Mexico, NAFTA - United States, NAFTA, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-085	86	4939844	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - United States, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-086	87	4939843	Functional Requirement	NAFTA - Mexico, NAFTA - United States, NAFTA - Canada, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-087	88	4939848	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - United States, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-088	89	4939847	Functional Requirement	NAFTA - Mexico, NAFTA - Canada, NAFTA - United States, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-089	90	4939846	Functional Requirement	NAFTA, NAFTA - Canada, NAFTA - United States, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-090	91	4939850	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-091	92	4939849	Functional Requirement	NAFTA - Mexico, NAFTA - United States, NAFTA - Canada, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-092	93	4939851	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-093	94	4939859	Functional Requirement	NAFTA, NAFTA - United States, NAFTA - Canada, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-094	95	4939858	Functional Requirement	NAFTA - Canada, NAFTA, NAFTA - Mexico, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-095	96	4939860	Functional Requirement	NAFTA - United States, NAFTA - Canada, NAFTA, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-097	98	4939864	Functional Requirement	NAFTA - United States, NAFTA - Mexico, NAFTA - Canada, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2843 - X65 Module Version (Read)	3
+SYS-RA-DIAG-103	104	4939839	Functional Requirement	NAFTA - United States, NAFTA, NAFTA - Canada, NAFTA - Mexico	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	3
+SYS-RA-DIAG-104	105	4939836	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-105	106	4939838	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA - United States, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-106	107	4939835	Functional Requirement	NAFTA - Mexico, NAFTA - Canada, NAFTA, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-107	108	4939837	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA - United States, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-108	109	4939834	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-109	110	4939827	Functional Requirement	NAFTA - Canada, NAFTA - United States, NAFTA, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-110	111	4939833	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-111	112	4939830	Functional Requirement	NAFTA - Canada, NAFTA, NAFTA - United States, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-112	113	4939832	Functional Requirement	NAFTA - United States, NAFTA - Mexico, NAFTA - Canada, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-113	114	4939829	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - United States, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-114	115	4939831	Functional Requirement	NAFTA - Mexico, NAFTA - United States, NAFTA - Canada, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-115	116	4939828	Functional Requirement	NAFTA - United States, NAFTA - Canada, NAFTA, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-119	120	4939809	Functional Requirement	NAFTA - Mexico, NAFTA - Canada, NAFTA - United States, NAFTA	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	3
+SYS-RA-DIAG-120	121	4939822	Functional Requirement	NAFTA - United States, NAFTA - Mexico, NAFTA - Canada, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	3
+SYS-RA-DIAG-121	122	4939808	Functional Requirement	NAFTA - United States, NAFTA - Mexico, NAFTA - Canada, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	3
+SYS-RA-DIAG-122	123	4939823	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - United States, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-123	124	4939819	Functional Requirement	NAFTA - Canada, NAFTA, NAFTA - Mexico, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-124	125	4939821	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-125	126	4939820	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-126	127	4939811	Functional Requirement	NAFTA, NAFTA - Canada, NAFTA - Mexico, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-127	128	4939810	Functional Requirement	NAFTA - United States, NAFTA, NAFTA - Canada, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-128	129	4939818	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-129	130	4939817	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA - United States, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-130	131	4939816	Functional Requirement	NAFTA - Mexico, NAFTA - Canada, NAFTA - United States, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-131	132	4939815	Functional Requirement	NAFTA, NAFTA - Canada, NAFTA - Mexico, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-132	133	4939814	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-133	134	4939813	Functional Requirement	NAFTA - Canada, NAFTA, NAFTA - Mexico, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-134	135	4939812	Functional Requirement	NAFTA, NAFTA - Canada, NAFTA - Mexico, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2841 - X65 Signal Quality Diagnostics (Read)	2
+SYS-RA-DIAG-138	139	4939803	Functional Requirement	NAFTA - Mexico, NAFTA, NAFTA - Canada, NAFTA - United States	NAFTA	Need Rework	SW	Read/Write DID Requirements	$2840 - X65 Antenna Status Diagnostics (Read)	2
+SYS-RA-DIAG-139	140	4939800	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - Canada, NAFTA - United States	NAFTA		SW	Read/Write DID Requirements	$2840 - X65 Antenna Status Diagnostics (Read)	2
+SYS-RA-DIAG-140	141	4939802	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA - United States, NAFTA	NAFTA		SW	Read/Write DID Requirements	$2840 - X65 Antenna Status Diagnostics (Read)	2
+SYS-RA-DIAG-142	143	4939804	Functional Requirement	NAFTA - Mexico, NAFTA - United States, NAFTA, NAFTA - Canada	NAFTA		SW	Read/Write DID Requirements	$2840 - X65 Antenna Status Diagnostics (Read)	2
+SYS-RA-DIAG-143	144	4939801	Functional Requirement	NAFTA - United States, NAFTA, NAFTA - Canada, NAFTA - Mexico	NAFTA		SW	Read/Write DID Requirements	$2840 - X65 Antenna Status Diagnostics (Read)	2
+SYS-RA-DIAG-146	147	4939794	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$283F - Camera Level Brightness (Read/Write)	3
+SYS-RA-DIAG-147	148	4939793	Functional Requirement	All	All		SW	Read/Write DID Requirements	$283F - Camera Level Brightness (Read/Write)	3
+SYS-RA-DIAG-154	155	4939727	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-155	156	4939720	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-156	157	4939719	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-157	158	4939718	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-158	159	4939724	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-159	160	4939728	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-160	161	4939722	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-161	162	4939721	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-162	163	4939725	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-163	164	4939723	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-165	166	4939726	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-166	167	4939715	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	1
+SYS-RA-DIAG-167	168	4939716	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-168	169	4939717	Functional Requirement	All	All		SW	Read/Write DID Requirements	$2812 - GPS Signal Data 1 (Read)	3
+SYS-RA-DIAG-186	187	4939688	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$280C - ECU Current Internal Settings (Read/Write)	2
+SYS-RA-DIAG-188	189	4939684	Functional Requirement	All	All		SW	Read/Write DID Requirements	$280C - ECU Current Internal Settings (Read/Write)	2
+SYS-RA-DIAG-189	190	4939689	Functional Requirement	All	All		SW	Read/Write DID Requirements	$280C - ECU Current Internal Settings (Read/Write)	1
+SYS-RA-DIAG-190	191	4939685	Functional Requirement	All	All		SW	Read/Write DID Requirements	$280C - ECU Current Internal Settings (Read/Write)	1
+SYS-RA-DIAG-192	193	4939687	Functional Requirement	All	All		SW	Read/Write DID Requirements	$280C - ECU Current Internal Settings (Read/Write)	2
+SYS-RA-DIAG-214	215	4939651	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$1821 - Steering Wheel Module Interface (Read)	2
+SYS-RA-DIAG-215	216	4939650	Functional Requirement	All	All		SW	Read/Write DID Requirements	$1821 - Steering Wheel Module Interface (Read)	3
+SYS-RA-DIAG-218	219	4939646	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$1820 - Push Button Control Interface (Read)	1
+SYS-RA-DIAG-220	221	4939647	Functional Requirement	All	All		SW	Read/Write DID Requirements	$1820 - Push Button Control Interface (Read)	1
+SYS-RA-DIAG-222	223	4939643	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$180C - Radio Audio Output Settings	1
+SYS-RA-DIAG-238	239	4939626	Functional Requirement	All	All	Need Rework	SW	Read/Write DID Requirements	$1801 - Screen Test Pattern (Read/Write)	3
+SYS-RA-DIAG-248	249	4940710	Out of  Scope		(空)	Need Clarification	Out of  Scope	Read/Write DID Requirements	$1801 - Screen Test Pattern (Read/Write)	1
+SYS-RA-DIAG-261	262	4940358	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5100 - Video Input	1
+SYS-RA-DIAG-262	263	4940359	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5100 - Video Input	2
+SYS-RA-DIAG-264	265	4940355	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$500D - Video Input Settings	2
+SYS-RA-DIAG-268	269	4940351	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$500C - SDAR Station Selection	3
+SYS-RA-DIAG-270	271	4940352	Functional Requirement	All	All		SW	I/O Control DID Requirements	$500C - SDAR Station Selection	1
+SYS-RA-DIAG-272	273	4940346	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$500B - In Motion Menu Control	3
+SYS-RA-DIAG-273	274	4940347	Functional Requirement	All	All		SW	I/O Control DID Requirements	$500B - In Motion Menu Control	2
+SYS-RA-DIAG-276	277	4940348	Functional Requirement	All	All		SW	I/O Control DID Requirements	$500B - In Motion Menu Control	1
+SYS-RA-DIAG-279	280	4940342	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$500A - Mode Selection	3
+SYS-RA-DIAG-280	281	4940341	Functional Requirement	All	All		SW	I/O Control DID Requirements	$500A - Mode Selection	3
+SYS-RA-DIAG-283	284	4940337	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5009 - Frequency Step Selection	3
+SYS-RA-DIAG-286	287	4940334	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5008 - Seek Status	3
+SYS-RA-DIAG-287	288	4940333	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5008 - Seek Status	3
+SYS-RA-DIAG-294	295	4940326	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5006 - Fade Settings	1
+SYS-RA-DIAG-295	296	4940325	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5006 - Fade Settings	1
+SYS-RA-DIAG-298	299	4940322	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5005 - Balance Settings	1
+SYS-RA-DIAG-299	300	4940321	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5005 - Balance Settings	1
+SYS-RA-DIAG-302	303	4940318	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5004 - Treble Settings	1
+SYS-RA-DIAG-303	304	4940317	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5004 - Treble Settings	1
+SYS-RA-DIAG-304	305	4940316	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5004 - Treble Settings	3
+SYS-RA-DIAG-306	307	4940314	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5003 - Bass Settings	3
+SYS-RA-DIAG-307	308	4940313	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5003 - Bass Settings	3
+SYS-RA-DIAG-308	309	4940312	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5003 - Bass Settings	3
+SYS-RA-DIAG-310	311	4940310	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5002 - Radio Volume	3
+SYS-RA-DIAG-311	312	4940309	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5002 - Radio Volume	3
+SYS-RA-DIAG-312	313	4940308	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5002 - Radio Volume	3
+SYS-RA-DIAG-314	315	4940305	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5001 - Speaker Quadrant Selection	3
+SYS-RA-DIAG-315	316	4940304	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5001 - Speaker Quadrant Selection	3
+SYS-RA-DIAG-316	317	4940300	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5001 - Speaker Quadrant Selection	3
+SYS-RA-DIAG-317	318	4940303	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5001 - Speaker Quadrant Selection	3
+SYS-RA-DIAG-318	319	4940302	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5001 - Speaker Quadrant Selection	3
+SYS-RA-DIAG-320	321	4940306	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5001 - Speaker Quadrant Selection	3
+SYS-RA-DIAG-322	323	4940298	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-323	324	4940297	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-324	325	4940296	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-325	326	4940294	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-329	330	4940292	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-330	331	4940291	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-331	332	4940290	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-332	333	4940289	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-333	334	4940285	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-334	335	4940288	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-335	336	4940287	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-336	337	4940286	Functional Requirement	All	All		SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-337	338	4940295	Functional Requirement	All	All	Need Rework	SW	I/O Control DID Requirements	$5000 - Buzzer Control	3
+SYS-RA-DIAG-360	361	4940485	Functional Requirement	All	All	Need Rework	SW	Diagnostic Routine ID Requirements	$031B - Audio Measure AC	3
+SYS-RA-DIAG-363	364	4940473	Functional Requirement	All	All	Need Rework	SW	Diagnostic Routine ID Requirements	$0312 - AV Signal Detection	3
+SYS-RA-DIAG-367	368	4940482	Functional Requirement	All	All	Need Rework	SW	Diagnostic Routine ID Requirements	$0312 - AV Signal Detection	1
+SYS-RA-DIAG-369	370	4940477	Functional Requirement	All	All	Accepted	System	Diagnostic Routine ID Requirements	$0312 - AV Signal Detection	3
+SYS-RA-DIAG-370	371	4940474	Functional Requirement	All	All	Need Rework	SW	Diagnostic Routine ID Requirements	$0312 - AV Signal Detection	2
+SYS-RA-DIAG-371	372	4940476	Functional Requirement	All	All		SW	Diagnostic Routine ID Requirements	$0312 - AV Signal Detection	1
+SYS-RA-DIAG-373	374	4940469	Functional Requirement	All	All	Need Rework	SW	Diagnostic Routine ID Requirements	$030A - Clear Key Sense PIN	1
+SYS-RA-DIAG-375	376	4940463	Functional Requirement	NAFTA - Mexico, NAFTA - United States, NAFTA, NAFTA - Canada	NAFTA	Need Rework	SW	Diagnostic Routine ID Requirements	$0309 - X65 MPFA Select Routine	2
+SYS-RA-DIAG-376	377	4940462	Functional Requirement	NAFTA, NAFTA - United States, NAFTA - Mexico, NAFTA - Canada	NAFTA	Need Rework	SW	Diagnostic Routine ID Requirements	$0309 - X65 MPFA Select Routine	2
+SYS-RA-DIAG-377	378	4940464	Functional Requirement	NAFTA - United States, NAFTA - Mexico, NAFTA - Canada, NAFTA	NAFTA	Need Rework	SW	Diagnostic Routine ID Requirements	$0309 - X65 MPFA Select Routine	2
+SYS-RA-DIAG-379	380	4940466	Functional Requirement	NAFTA, NAFTA - Canada, NAFTA - United States, NAFTA - Mexico	NAFTA		SW	Diagnostic Routine ID Requirements	$0309 - X65 MPFA Select Routine	1
+SYS-RA-DIAG-380	381	4940465	Functional Requirement	NAFTA, NAFTA - Mexico, NAFTA - United States, NAFTA - Canada	NAFTA		SW	Diagnostic Routine ID Requirements	$0309 - X65 MPFA Select Routine	1
+SYS-RA-DIAG-385	386	4940452	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA, NAFTA - United States	NAFTA	Need Rework	SW	Diagnostic Routine ID Requirements	$0307 - X65 MPFA Validate Routine	1
+SYS-RA-DIAG-386	387	4940451	Functional Requirement	NAFTA, NAFTA - United States, NAFTA - Canada, NAFTA - Mexico	NAFTA	Need Rework	SW	Diagnostic Routine ID Requirements	$0307 - X65 MPFA Validate Routine	1
+SYS-RA-DIAG-387	388	4940453	Functional Requirement	NAFTA - Canada, NAFTA - Mexico, NAFTA - United States, NAFTA	NAFTA	Need Rework	SW	Diagnostic Routine ID Requirements	$0307 - X65 MPFA Validate Routine	1
+SYS-RA-DIAG-390	391	4940455	Functional Requirement	NAFTA - United States, NAFTA, NAFTA - Canada, NAFTA - Mexico	NAFTA		SW	Diagnostic Routine ID Requirements	$0307 - X65 MPFA Validate Routine	1
+SYS-RA-DIAG-391	392	4940454	Functional Requirement	NAFTA - Canada, NAFTA - United States, NAFTA, NAFTA - Mexico	NAFTA		SW	Diagnostic Routine ID Requirements	$0307 - X65 MPFA Validate Routine	1

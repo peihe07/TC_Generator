@@ -1,0 +1,52 @@
+row037	swe	issue	detail
+8	SWE1-Diagnostics-001	misspelling	bightness
+9	SWE1-Diagnostics-002	misspelling	Caemera
+10	SWE1-Diagnostics-003	misspelling	Caemera
+11	SWE1-Diagnostics-004	misspelling	diagnopstic
+11	SWE1-Diagnostics-004	misspelling	bightness
+12	SWE1-Diagnostics-005	misspelling	Caemera
+13	SWE1-Diagnostics-006	misspelling	Caemera
+15	SWE1-Diagnostics-008	misspelling	senario
+15	SWE1-Diagnostics-008	whitespace_title	'Handle the Negative senario while enabling the navigation in'
+16	SWE1-Diagnostics-009	misspelling	recevied
+18	SWE1-Diagnostics-011	misspelling	senario
+18	SWE1-Diagnostics-011	whitespace_title	'Handle the Negative senario while disable the navigation in-'
+19	SWE1-Diagnostics-012	whitespace_desc	'1)SW shall monitor the Enable Park Menu Options diagnostic r'
+34	SWE1-Diagnostics-027	whitespace_title	'AM/FM - Handle Unsupported Service to report the Tuner Carri'
+55	SWE1-Diagnostics-048	misspelling	senario
+62	SWE1-Diagnostics-055	whitespace_desc	' SW shall report the status of unsupported or non-compatible'
+63	SWE1-Diagnostics-056	whitespace_desc	' 1) SW shall support DID $180C to report the current radio a'
+101	SWE1-Diagnostics-094	whitespace_src	'SYS-RA-DIAG-315   '
+102	SWE1-Diagnostics-095	whitespace_src	'SYS-RA-DIAG-315   '
+103	SWE1-Diagnostics-096	whitespace_src	'SYS-RA-DIAG-315   '
+170	SWE1-Diagnostics-163	whitespace_title	'SiriusXM - Report TWER Pipe 1B Status via DID Read\n'
+172	SWE1-Diagnostics-165	whitespace_title	'SiriusXM - Report TWER Pipe 1A Status via DID Read\n'
+174	SWE1-Diagnostics-167	whitespace_title	'SiriusXM - Report TWER Pipe 0B Status via DID Read\n'
+176	SWE1-Diagnostics-169	whitespace_title	'SiriusXM - Report TWER Pipe 0A Status via DID Read\n'
+178	SWE1-Diagnostics-171	whitespace_title	'SiriusXM - Report the  Status of Receiver State via DID Read'
+180	SWE1-Diagnostics-173	whitespace_title	'SiriusXM - Report the  Status of OBER TB via DID Read\n'
+182	SWE1-Diagnostics-175	whitespace_title	'SiriusXM - Report the  Status of OBER TA via DID Read\n'
+196	SWE1-Diagnostics-189	vm_blank	Verification Method 空白
+197	SWE1-Diagnostics-190	vm_blank	Verification Method 空白
+198	SWE1-Diagnostics-191	vm_blank	Verification Method 空白
+199	SWE1-Diagnostics-192	vm_blank	Verification Method 空白
+200	SWE1-Diagnostics-193	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+202	SWE1-Diagnostics-195	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+204	SWE1-Diagnostics-197	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+206	SWE1-Diagnostics-199	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+208	SWE1-Diagnostics-201	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+210	SWE1-Diagnostics-203	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+212	SWE1-Diagnostics-205	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+214	SWE1-Diagnostics-207	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+216	SWE1-Diagnostics-209	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+218	SWE1-Diagnostics-211	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+220	SWE1-Diagnostics-213	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+222	SWE1-Diagnostics-215	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+224	SWE1-Diagnostics-217	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+226	SWE1-Diagnostics-219	whitespace_desc	' 1. DiagService shall validate the DID requested and if it i'
+228	SWE1-Diagnostics-221	whitespace_desc	' 1. DiagService shall validate the RID requested and if it i'
+230	SWE1-Diagnostics-223	whitespace_desc	' 1. DiagService shall validate the RID requested and if it i'
+233	SWE1-Diagnostics-226	whitespace_desc	' If retries are performed as shown on the flowchart, and the'
+236	SWE1-Diagnostics-229	whitespace_desc	'When commanded to return routine results, the DiagService sh'
+348	SWE1-Diagnostics-340	whitespace_title	'Clock Defrost – Read/Write Clock Defrost data via DID $280C '
+354	SWE1-Diagnostics-346	whitespace_title	'KeySense PIN – Execute KeySense PIN stop and flow routine wh'

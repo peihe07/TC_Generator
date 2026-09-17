@@ -1,0 +1,88 @@
+# feature.yaml — pipeline configuration for Diagnostics
+# All feature-specific constants live HERE; shared scripts read this file
+# and contain no per-feature literals. Regenerate nothing by editing code.
+#
+# 本表之 `workbook.*` 為 R-G1 母本
+# （forms/FM-WI-FSM-036-A01 …_SWQT_20260817_ext.xlsx）第 9 列之實測值
+# （R-G48，2026-09-05 量測）。**接手 feature 仍須對其副本重測** ——
+# 母本實測不代表副本；副本之欄序得因 ext 而異。
+
+feature: "Diagnostics"
+test_group: "Diagnostics"          # framework-internal; workbook write per profile
+
+# R-G66 來源集中制：原檔落 sources/raw/<doc_id>/，feature 端不存副本，
+# 以 doc_id 引用（CDD-01 任務 2，2026-09-17 登錄）。
+paths:
+  workbook: null                            # CDD-01 未建；CDD-02 起
+  a03_report: "sources/raw/diagnostics_037_swra_v1/SWE1_Diagnostics_V1 (2).xlsx"
+  sys1_export: null                         # 本 feature 無 SYS1 匯出
+  spec_pdf: null
+  popup_list: null                          # 037 零引用
+
+sources:                                    # doc_id 引用（MANIFEST.tsv 為權威）
+  a03: "diagnostics_037_swra_v1"            # sha16 b985e09ac42cece7；395 列
+  spec_index: "sys2_cfts004_general_diag"   # sha16 ffcb202fff92007e；Basic Report 404 列
+  sysad: "sys3_cfts004_general_diag_sysad"  # sha16 bc0bad3dbb0710a4；無 UDS 序列表（A-DIAG03）
+
+spec_mode: "D"        # [PROPOSED] 追溯母體為 SYS2 Polarion 匯出，無 SYS1 spec export；CDD-02 由 intake.py 複判
+spec_reference_template: "CFTS004-{ObjectID}"   # IN §10.7(a)；ObjectID 空值 0/404
+
+workbook:
+  # R-G48：以下為母本第 9 列實測。2026-09-05 前之模板值有四處為誤 ——
+  # sheet `Test Case Specification&Result`（該名不在 R-G1 母本內；惟為另一真實變體，
+  # 全 repo 145 本 FW036 工作簿實測 24 本帶該名，含 features/power 之在效輸入 ——
+  # docs/reports/tc_sheetname_census_20260905.tsv，A-GC10；接手 feature 必實測其副本之 sheetnames）、design_method `Q`
+  # （實為 R；Q 為 Estimated Test Time）、functional_safety `R`（實為 S）、
+  # author `Z`（實為 AA；Z 為車型欄 Fastack (376)）。
+  sheet: "Test Case Specification 測試用例規範"
+  header_row: 9
+  # column letters, verified by recon header match — do not guess
+  columns:
+    req_id: "D"
+    test_group: "G"
+    test_set: "H"
+    test_item: "I"
+    pre_conditions: "J"
+    input_test_data: "K"
+    test_procedure: "L"
+    expected_result: "M"
+    spec_reference: "N"
+    tc_ref_id: "O"
+    priority: "P"
+    design_method: "R"
+    functional_safety: "S"
+    author: "AA"
+    remarks: "AH"      # verify at recon; dropping it drops BLOCKED notes
+
+done_region:
+  # detection: "author" (author-cell match) or "rows" (explicit ranges)
+  # CDD-01 實測：工作簿尚未建立，workbook_state = BLANK，無 done region。
+  detection: "author"
+  author_value: "Arif"
+  # invariant: "content_hash" (interleaved-safe) or "positional"
+  invariant: "content_hash"
+
+write_back:
+  author_value: "PeiPYHsu"
+  tc_ref_id_value: "NEW"
+  fill_test_group_set: false     # true only under BLANK per FO §2
+
+lint:
+  design_method_source: "dropdown_sheet"   # exact-string vocabulary
+  popup_ids: []                            # 037 零引用
+  # profile: docs/runtime/profiles/FW036_R1L_Diagnostics_Profile.md
+  # R-G71：P(v4) 與 X 一律啟用。以下 extra_rules 為該 profile §2–§6 之 [ADD]，
+  # **CDD-01 尚未實作於 lint036.py**（--profile 只作真值使用，不讀 profile 內容）。
+  extra_rules: []                          # 待實作：uds_byte_string / did_dollar_whitelist
+                                           #         / req_id_single / vehicle_model_1_0 / remarks_format
+
+# CDD-01 實測母體（上繳包 §3 全表）
+recon:
+  a03_rows: 395
+  a03_unique_swe_ids: 394                  # SWE1-Diagnostics-340 重號 → -340-001/-002（R-DIAG2）
+  a03_sources: 168
+  source_resolution: "168/168 (100%)"
+  producible_rows: 394                     # 395 − 1（SWE1-Diagnostics-057，R-DIAG3）
+  layer2_test_sets: 21                     # 草案 21/21 吻合，合計 395
+  layer3_headings_cited: 42                # CFTS004 $XXXX Heading 共 63，被引用 42
+  row_kinds: {positive: 165, negative: 135, unsupported: 95}

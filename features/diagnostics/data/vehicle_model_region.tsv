@@ -1,0 +1,8 @@
+vehicle_model_column	proxi_platform	market_area_byte160	market_area_decoded	country_code_byte107	region_all	region_nafta	evidence_cell
+HDCC27 Atl-Hi	HDCC28_ATL_HI	0	NAFTA	2=United States of America	1	1	Sheet1!A677
+DT27 Atl-Hi	DT28_ATL_HI	0	NAFTA	2=United States of America	1	1	Sheet1!A677
+VF(ProMaster)637 Atl-Mi	Promaster_ATL_MI	0	NAFTA	2=USA	1	1	PROXI Write_Read!F682
+Commander (598) Atl-Mi	(無)				0	0	R-CAM2(b) 已不支援
+Regengade (5210) Atl-Mi	(無)				0	0	R-CAM2(b) 已不支援
+Toro(2261) Atl-Mi	Toro_ATL_MI	2	LATAM	15	1	0	PROXI Write!F682（Type 欄記 Not Used）
+Fastack (376) Atl-Mi	Fastback_ATL_MI	2	LATAM	15	1	0	PROXI Write_Read!F682

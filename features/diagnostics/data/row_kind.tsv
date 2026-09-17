@@ -1,0 +1,396 @@
+row037	swe	kind	title_prefix	title
+8	SWE1-Diagnostics-001	positive	Camera	Camera - Update the brightness level of Rear view camera using this DID$283F
+9	SWE1-Diagnostics-002	negative	Caemera	Caemera - Handle the negative response while updating the brightness of Rear view Camera
+10	SWE1-Diagnostics-003	unsupported	Caemera	Caemera - Handle the Unsupported service requests while updating the brightness level of Rear view Camera.
+11	SWE1-Diagnostics-004	positive	Camera	Camera - Report the brightness level of Rear view camera
+12	SWE1-Diagnostics-005	negative	Caemera	Caemera - Handle the negative response while reporting the brightness of Rear view Camera
+13	SWE1-Diagnostics-006	unsupported	Caemera	Caemera - Handle the Unsupported service requests while reporting the brightness level of Rear view Camera.
+14	SWE1-Diagnostics-007	positive	(無前綴)	Enable each of the navigation in-motion menu items regardless of the status of current disable conditions When command received from DID $500B
+15	SWE1-Diagnostics-008	negative	(無前綴)	Handle the Negative senario while enabling the navigation in-motion menu items regardless of the status
+16	SWE1-Diagnostics-009	unsupported	(無前綴)	Handle the unsupported service request when recevied the navigation in-motion menu items regardless of the status
+17	SWE1-Diagnostics-010	positive	(無前綴)	When the command to disable in-motion menu options is received, the radio shall return control of in-motion menu item status to the normal disable conditions.
+18	SWE1-Diagnostics-011	negative	(無前綴)	Handle the Negative senario while disable the navigation in-motion menu items regardless of the status
+19	SWE1-Diagnostics-012	positive	(無前綴)	If the radio does not receive a diagnostic command to enable park menu options for more than 5 seconds, the radio shall return control of in-motion menu item status to the normal disable conditions.
+20	SWE1-Diagnostics-013	positive	AM/FM	AM/FM -This DID shall report the currently tuned SDAR channel number.
+21	SWE1-Diagnostics-014	negative	AM/FM	AM/FM - Handle Negative response for reporting Tuned SDAR channel number
+22	SWE1-Diagnostics-015	unsupported	AM/FM	AM/FM - Handle Unsupported Service for reporting Tuned SDAR channel number
+23	SWE1-Diagnostics-016	positive	AM/FM	AM/FM - This DID shall report the frequency step of the currently tuned station.
+24	SWE1-Diagnostics-017	negative	AM/FM	AM/FM - Handle Negative response to report the frequency step of the currently tuned station.
+25	SWE1-Diagnostics-018	unsupported	AM/FM	AM/FM - Handle Unsupported Service for reporting the frequency step of the currently tuned station.
+26	SWE1-Diagnostics-019	positive	AM/FM	AM/FM - This DID shall report if the seek function is currently active.
+27	SWE1-Diagnostics-020	negative	AM/FM	AM/FM - Handle Negative response to report if the seek function is currently active.
+28	SWE1-Diagnostics-021	unsupported	AM/FM	AM/FM - Handle Unsupported Service for reporting the seek function is currently active.
+29	SWE1-Diagnostics-022	positive	AM/FM	AM/FM - When requested by this DID , the HU shall report the Tuner status.
+30	SWE1-Diagnostics-023	negative	AM/FM	AM/FM - Handle Negative response to report the Tuner status.
+31	SWE1-Diagnostics-024	unsupported	AM/FM	AM/FM - Handle Unsupported Service for report the Tuner status.
+32	SWE1-Diagnostics-025	positive	AM/FM	AM/FM - When requested by this DID, the HU shall report the Tuner Carrier Freq Offset.
+33	SWE1-Diagnostics-026	negative	AM/FM	AM/FM - Handle Negative response to report the Tuner Carrier Freq Offset.
+34	SWE1-Diagnostics-027	unsupported	AM/FM	AM/FM - Handle Unsupported Service to report the Tuner Carrier Freq Offset.
+35	SWE1-Diagnostics-028	positive	AM/FM	"AM/FM - When requested by this DID, the HU shall report the status of the Signal Strength. The status can be either ""No signal"", ""Very weak"", ""Weak signal"", ""Marginal signal"", or ""Good signal""."
+36	SWE1-Diagnostics-029	negative	AM/FM	AM/FM - Handle Negative response to report the status of the Signal Strength
+37	SWE1-Diagnostics-030	unsupported	AM/FM	AM/FM - Handle Unsupported Service to report the status of the Signal Strength.
+38	SWE1-Diagnostics-031	positive	AM/FM	AM/FM - When the command to change SDAR station is received, the radio shall change to the new channel number contained in the command.
+39	SWE1-Diagnostics-032	negative	AM/FM	AM/FM - Handle Negative response to change to the new channel number contained in the command.
+40	SWE1-Diagnostics-033	unsupported	AM/FM	AM/FM - Handle Unsupported Service to change to the new channel number contained in the command.
+41	SWE1-Diagnostics-034	negative	AM/FM	"AM/FM - If the new station number is not a valid station under the currently broadcast channel line-up, the radio shall return the ""Request Out of Range"" negative response, code $31."
+42	SWE1-Diagnostics-035	positive	AM/FM	AM/FM - The radio shall tune to a specific frequency when receiving a command from this DID.
+43	SWE1-Diagnostics-036	negative	AM/FM	AM/FM - Handle Negative response to tune to a specific frequency when receiving a command from this DID.
+44	SWE1-Diagnostics-037	unsupported	AM/FM	AM/FM - Handle Unsupported Service to change to the new channel number contained in the command.
+45	SWE1-Diagnostics-038	positive	AM/FM	AM/FM - The radio shall stop a seek function when receiving the seek status = Not Set.
+46	SWE1-Diagnostics-039	negative	AM/FM	AM/FM - Handle Negative response to stop a seek function when receiving the seek status
+47	SWE1-Diagnostics-040	unsupported	AM/FM	AM/FM - Handle Unsupported Service to change to the new channel number contained in the command.
+48	SWE1-Diagnostics-041	positive	AM/FM	AM/FM - The radio shall initiate a seek function when receiving the seek status = Set.
+49	SWE1-Diagnostics-042	negative	AM/FM	AM/FM - Handle Negative response to seek a function when receiving the seek status = set
+50	SWE1-Diagnostics-043	unsupported	AM/FM	AM/FM - Handle Unsupported Service to change to the new channel number contained in the command.
+51	SWE1-Diagnostics-044	positive	Audio	Audio - Read the current Entertainment audio source mode using this DID $500A
+52	SWE1-Diagnostics-045	negative	Audio	Audio - Handle the negative response while reading the current Entertainment audio source mode
+53	SWE1-Diagnostics-046	unsupported	Audio	Audio - Handle the Unsupported service requests while reading the current Entertainment audio source mode
+54	SWE1-Diagnostics-047	positive	(無前綴)	This DID shall report the currently selected active speaker output.
+55	SWE1-Diagnostics-048	negative	(無前綴)	negative senario for This DID shall report the currently selected active speaker output.
+56	SWE1-Diagnostics-049	negative	(無前綴)	If the speaker outputs are functioning normally, meaning each output is active, the radio shall provide the negative response $22, Conditions Not Correct.
+57	SWE1-Diagnostics-050	positive	(無前綴)	This DID shall report the current status of the Buzzer output.
+58	SWE1-Diagnostics-051	positive	(無前綴)	This DID shall report the current state of the Aux input detect switch: inserted or not inserted.
+59	SWE1-Diagnostics-052	positive	(無前綴)	The Cabin EQ Curve Number Currently Used By Radio shall be readable from and writeable to this DID. The number will show the status of the radio's current Cabin EQ curve number setting.
+60	SWE1-Diagnostics-053	positive	(無前綴)	The Automated Loudness data shall be readable from and writeable to this DID. The Automated Loudness shows the status of the radio's loudness setting.
+61	SWE1-Diagnostics-054	positive	(無前綴)	When requested by this DID, the radio shall report the status of the following push buttons: Power, Up, Down, Select, Dark, Mute, Back, Radio, Player, Nav, Phone and More.
+62	SWE1-Diagnostics-055	positive	(無前綴)	For each push button the radio is not compatible with, the radio shall report the status as Not Pressed.
+63	SWE1-Diagnostics-056	positive	(無前綴)	This DID shall report the current volume step setting from 0 to 38, Base, Treble, Mid, Balance and Fade settings from -9 to 9.
+64	SWE1-Diagnostics-057	positive	(無前綴)	AMP shall process any chimes, and the HU shall switch phone call to cell phone.
+65	SWE1-Diagnostics-058	positive	Audio	Audio - Update the Entertainment (Mode 2) audio source selection using DID $500A
+66	SWE1-Diagnostics-059	negative	Audio	Audio - Handle negative response while processing Entertainment (Mode 2) audio source selection via DID $500A
+67	SWE1-Diagnostics-060	unsupported	Audio	Audio - Handle unsupported service requests for Entertainment (Mode 2) audio source selection via DID $500A
+68	SWE1-Diagnostics-061	positive	Audio	Audio - Update the Information (Mode 1) audio source selection using DID $500A
+69	SWE1-Diagnostics-062	negative	Audio	Audio - Handle negative response while processing Information (Mode 1) audio source selection via DID $500A
+70	SWE1-Diagnostics-063	unsupported	Audio	Audio - Handle unsupported service requests for Information (Mode 1) audio source selection via DID $500A
+71	SWE1-Diagnostics-064	positive	(無前綴)	Valid values for fade control step shall be from 9 front to 9 rear, including neutral.
+72	SWE1-Diagnostics-065	positive	(無前綴)	The radio shall change the current fade control step to the new value provided using this DID.
+73	SWE1-Diagnostics-066	positive	(無前綴)	Valid values for balance control step shall be from 9 left to 9 right, including neutral.
+74	SWE1-Diagnostics-067	positive	(無前綴)	The radio shall change the current balance control step to the new value provided using this DID.
+75	SWE1-Diagnostics-068	positive	(無前綴)	Valid values for treble tone control step shall be from -9 to +9, including neutral.
+76	SWE1-Diagnostics-069	positive	(無前綴)	The radio shall change the current treble tone control step to the new value provided using this DID.
+77	SWE1-Diagnostics-070	positive	Audio	Audio - Write the treble tone control step value using DID $5004
+78	SWE1-Diagnostics-071	negative	Audio	Audio - Handle negative response while processing treble tone control step via DID $5004
+79	SWE1-Diagnostics-072	unsupported	Audio	Audio - Handle unsupported service requests for treble tone control step via DID $5004
+80	SWE1-Diagnostics-073	positive	Audio	Audio - Validate the bass tone control step value is within the supported range (-9 to +9) for DID $5003
+81	SWE1-Diagnostics-074	negative	Audio	Audio - Handle the negative response while validating the bass tone control step value for DID $5003
+82	SWE1-Diagnostics-075	unsupported	Audio	Audio - Handle the Unsupported service requests while processing the bass tone control step value for DID $5003
+83	SWE1-Diagnostics-076	positive	Audio	Audio - Update the current bass tone control step to the new value provided using this DID $5003
+84	SWE1-Diagnostics-077	negative	Audio	Audio - Handle the negative response while updating the bass tone control step value
+85	SWE1-Diagnostics-078	unsupported	Audio	Audio - Handle the Unsupported service requests while updating the bass tone control step value
+86	SWE1-Diagnostics-079	positive	Audio	Audio - Write the bass tone control step value using DID $5003
+87	SWE1-Diagnostics-080	negative	Audio	Audio - Handle negative response while processing bass tone control step via DID $5003
+88	SWE1-Diagnostics-081	unsupported	Audio	Audio - Handle unsupported service requests for bass tone control step via DID $5003
+89	SWE1-Diagnostics-082	positive	Audio	Audio - Validate the volume step value is within the supported range (0 to 38) for DID $5002
+90	SWE1-Diagnostics-083	negative	Audio	Audio - Handle the negative response while validating the volume step value for DID $5002
+91	SWE1-Diagnostics-084	unsupported	Audio	Audio - Handle the Unsupported service requests while processing the volume step value for DID $5002
+92	SWE1-Diagnostics-085	positive	Audio	Audio - Update the current volume step to the new value provided using this DID $5002
+93	SWE1-Diagnostics-086	negative	Audio	Audio - Handle the negative response while updating the current volume step value
+94	SWE1-Diagnostics-087	unsupported	Audio	Audio - Handle the Unsupported service requests while updating the current volume step value
+95	SWE1-Diagnostics-088	positive	Audio	Audio - Write the radio volume step value using DID $5002
+96	SWE1-Diagnostics-089	negative	Audio	Audio - Handle negative response while processing radio volume step via DID $5002
+97	SWE1-Diagnostics-090	unsupported	Audio	Audio - Handle unsupported service requests for radio volume step via DID $5002
+98	SWE1-Diagnostics-091	positive	Audio	Audio - Update the Rear Right speaker output selection using this DID $5001
+99	SWE1-Diagnostics-092	negative	Audio	Audio - Handle the negative response while updating the Rear Right speaker output selection
+100	SWE1-Diagnostics-093	unsupported	Audio	Audio - Handle the Unsupported service requests while updating the Rear Right speaker output selection
+101	SWE1-Diagnostics-094	positive	Audio	Audio - Update the Rear Left speaker output selection using this DID $5001
+102	SWE1-Diagnostics-095	negative	Audio	Audio - Handle the negative response while updating the Rear Left speaker output selection
+103	SWE1-Diagnostics-096	unsupported	Audio	Audio - Handle the Unsupported service requests while updating the Rear Left speaker output selection
+104	SWE1-Diagnostics-097	positive	Audio	Audio - Enable the specified speaker output selection for test tone routing using DID $5001
+105	SWE1-Diagnostics-098	negative	Audio	Audio - Handle negative response while processing speaker output selection for test tone routing via DID $5001
+106	SWE1-Diagnostics-099	unsupported	Audio	Audio - Handle unsupported service requests for speaker output selection for test tone routing via DID $5001
+107	SWE1-Diagnostics-100	positive	Audio	Audio - Update the Front Right speaker output selection using this DID $5001
+108	SWE1-Diagnostics-101	negative	Audio	Audio - Handle the negative response while updating the Front Right speaker output selection
+109	SWE1-Diagnostics-102	unsupported	Audio	Audio - Handle the Unsupported service requests while updating the Front Right speaker output selection
+110	SWE1-Diagnostics-103	positive	Audio	Audio - Update the Front Left speaker output selection using this DID $5001
+111	SWE1-Diagnostics-104	negative	Audio	Audio - Handle the negative response while updating the Front Left speaker output selection
+112	SWE1-Diagnostics-105	unsupported	Audio	Audio - Handle the Unsupported service requests while updating the Front Left speaker output selection
+113	SWE1-Diagnostics-106	positive	Audio	Audio - Return NRC $22 Conditions Not Correct when external buzzer source is active during speaker quadrant selection using DID $5001
+114	SWE1-Diagnostics-107	negative	Audio	Audio - Handle the negative response while processing speaker quadrant selection when external buzzer source is active
+115	SWE1-Diagnostics-108	unsupported	Audio	Audio - Handle the Unsupported service requests while processing speaker quadrant selection
+116	SWE1-Diagnostics-109	positive	Audio	Audio - Activate buzzer control tone and mute entertainment audio sources using DID $5000
+117	SWE1-Diagnostics-110	negative	Audio	Audio - Handle negative response while processing buzzer control tone activation with entertainment mute via DID $5000
+118	SWE1-Diagnostics-111	unsupported	Audio	Audio - Handle unsupported service requests for buzzer control tone activation with entertainment mute via DID $5000
+119	SWE1-Diagnostics-112	positive	Audio	Audio - Control tone output level according to radio volume when no specific level is defined using DID $5000
+120	SWE1-Diagnostics-113	negative	Audio	Audio - Handle negative response while processing tone output level linked to radio volume via DID $5000
+121	SWE1-Diagnostics-114	unsupported	Audio	Audio - Handle unsupported service requests for tone output level linked to radio volume via DID $5000
+122	SWE1-Diagnostics-115	positive	Audio	Audio - Route tool-controlled tones to all speaker outputs unless specific outputs are requested using DID $D013
+123	SWE1-Diagnostics-116	negative	Audio	Audio - Handle negative response while processing tool-controlled tone routing to all or specified speaker outputs via DID $D013
+124	SWE1-Diagnostics-117	unsupported	Audio	Audio - Handle unsupported service requests for tool-controlled tone routing to all or specified speaker outputs via DID $D013
+125	SWE1-Diagnostics-118	positive	Audio	Audio - Select the Tones Off option to deactivate all active tones using DID $5000
+126	SWE1-Diagnostics-119	negative	Audio	Audio - Handle negative response while processing Tones Off option via DID $5000
+127	SWE1-Diagnostics-120	unsupported	Audio	Audio - Handle unsupported service requests for Tones Off option via DID $5000
+128	SWE1-Diagnostics-121	positive	Audio	Audio - Select and output the 7 kHz tool-controlled tone using DID $5000
+129	SWE1-Diagnostics-122	negative	Audio	Audio - Handle negative response while processing 7 kHz tool-controlled tone selection and output via DID $5000
+130	SWE1-Diagnostics-123	unsupported	Audio	Audio - Handle unsupported service requests for 7 kHz tool-controlled tone selection and output via DID $5000
+131	SWE1-Diagnostics-124	positive	Audio	Audio - Select and output the 7 kHz radio-controlled tone using DID $5000
+132	SWE1-Diagnostics-125	negative	Audio	Audio - Handle negative response while processing 7 kHz radio-controlled tone selection and output via DID $5000
+133	SWE1-Diagnostics-126	unsupported	Audio	Audio - Handle unsupported service requests for 7 kHz radio-controlled tone selection and output via DID $5000
+134	SWE1-Diagnostics-127	positive	Audio	Audio - Select and output the 60 Hz tool-controlled tone using DID $5000
+135	SWE1-Diagnostics-128	negative	Audio	Audio - Handle negative response while processing 60 Hz tool-controlled tone selection and output via DID $5000
+136	SWE1-Diagnostics-129	unsupported	Audio	Audio - Handle unsupported service requests for 60 Hz tool-controlled tone selection and output via DID $5000
+137	SWE1-Diagnostics-130	positive	Audio	Audio - Select and output the 60 Hz radio-controlled tone applied via AV1 analog input to all speaker quadrants using DID $5000
+138	SWE1-Diagnostics-131	negative	Audio	Audio - Handle negative response while processing 60 Hz radio-controlled tone via AV1 analog input routed to all four speaker quadrants via DID $5000
+139	SWE1-Diagnostics-132	unsupported	Audio	Audio - Handle unsupported service requests for 60 Hz radio-controlled tone via AV1 analog input routed to all four speaker quadrants via DID $5000
+140	SWE1-Diagnostics-133	positive	Audio	Audio - Select and output the 200 Hz 120 mV tool-controlled tone using DID $5000
+141	SWE1-Diagnostics-134	negative	Audio	Audio - Handle negative response while processing 200 Hz 120 mV tool-controlled tone selection and output via DID $5000
+142	SWE1-Diagnostics-135	unsupported	Audio	Audio - Handle unsupported service requests for 200 Hz 120 mV tool-controlled tone selection and output via DID $5000
+143	SWE1-Diagnostics-136	positive	Audio	Audio - Select and output the 200 Hz tool-controlled tone using DID $5000
+144	SWE1-Diagnostics-137	negative	Audio	Audio - Handle negative response while processing 200 Hz tool-controlled tone selection and output via DID $5000
+145	SWE1-Diagnostics-138	unsupported	Audio	Audio - Handle unsupported service requests for 200 Hz tool-controlled tone selection and output via DID $5000
+146	SWE1-Diagnostics-139	positive	Audio	Audio - Select and output the 200 Hz radio-controlled tone using DID $5000
+147	SWE1-Diagnostics-140	negative	Audio	Audio - Handle negative response while processing 200 Hz radio-controlled tone selection and output via DID $5000
+148	SWE1-Diagnostics-141	unsupported	Audio	Audio - Handle unsupported service requests for 200 Hz radio-controlled tone selection and output via DID $5000
+149	SWE1-Diagnostics-142	positive	Audio	Audio - Select and output the 1 kHz 120 mV tool-controlled tone using DID $5000
+150	SWE1-Diagnostics-143	negative	Audio	Audio - Handle negative response while processing 1 kHz 120 mV tool-controlled tone selection and output via DID $5000
+151	SWE1-Diagnostics-144	unsupported	Audio	Audio - Handle unsupported service requests for 1 kHz 120 mV tool-controlled tone selection and output via DID $5000
+152	SWE1-Diagnostics-145	positive	Audio	Audio - Output radio-controlled tones sequentially through speaker outputs in clockwise rotation with a 10-second hold per output and continue the sequence until disabled using DID 0x5000.
+153	SWE1-Diagnostics-146	negative	Audio	Audio - Handle the negative response while executing the sequential clockwise speaker tone routine
+154	SWE1-Diagnostics-147	unsupported	Audio	Audio - Handle the Unsupported service requests while executing the sequential clockwise speaker tone routine
+155	SWE1-Diagnostics-148	positive	Audio	Audio - Configure the frequency and amplitude parameters for AC audio measurement using DID $031B
+156	SWE1-Diagnostics-149	negative	Audio	Audio - Handle negative response while processing audio measurement AC frequency and amplitude parameter configuration via DID $031B
+157	SWE1-Diagnostics-150	unsupported	Audio	Audio - Handle unsupported service requests for audio measurement AC frequency and amplitude parameter configuration via DID $031B
+158	SWE1-Diagnostics-151	positive	Audio	Audio - Initiate AV signal detection for audio test tone and/or video test pattern on the specified channel input using DID $0312
+159	SWE1-Diagnostics-152	negative	Audio	Audio - Handle negative response while processing AV signal detection routine for audio test tone and/or video test pattern on a specified channel via DID $0312
+160	SWE1-Diagnostics-153	unsupported	Audio	Audio - Handle unsupported service requests for AV signal detection routine for audio test tone and/or video test pattern on a specified channel via DID $0312
+161	SWE1-Diagnostics-154	positive	Audio	Audio - Return NRC 0x31 Request Out of Range when the channel number does not correspond to a valid AV input using DID $0312
+162	SWE1-Diagnostics-155	positive	Audio	Audio - Validate that the expected audio test tone frequency is 1 kHz and amplitude is 0 dB using DID $0312
+163	SWE1-Diagnostics-156	negative	Audio	Audio - Handle negative response while processing expected audio test tone validation (1 kHz, 0 dB) for AV signal detection routine via DID $0312
+164	SWE1-Diagnostics-157	unsupported	Audio	Audio - Handle unsupported service requests for expected audio test tone validation (1 kHz, 0 dB) for AV signal detection routine via DID $0312
+165	SWE1-Diagnostics-158	positive	Audio	Audio - Detect the AV signal for the specified AV Channel Number using DID $0312
+166	SWE1-Diagnostics-159	unsupported	Audio	Audio - Handle the Unsupported service requests while detecting the AV signal for the specified AV Channel Number
+167	SWE1-Diagnostics-160	positive	Audio	Audio - Return NRC 0x31 Request Out of Range when the AV Channel Number does not correspond to a valid audio or video input
+168	SWE1-Diagnostics-161	positive	SiriusXM	SiriusXM - Report TWER Pipe 2A Status via DID Read
+169	SWE1-Diagnostics-162	negative	SiriusXM	SiriusXM - Handle Negative Response for TWER Pipe Status DID Read
+170	SWE1-Diagnostics-163	positive	SiriusXM	SiriusXM - Report TWER Pipe 1B Status via DID Read
+171	SWE1-Diagnostics-164	negative	SiriusXM	SiriusXM - Handle Negative Response for TWER Pipe Status DID Read
+172	SWE1-Diagnostics-165	positive	SiriusXM	SiriusXM - Report TWER Pipe 1A Status via DID Read
+173	SWE1-Diagnostics-166	negative	SiriusXM	SiriusXM - Handle Negative Response for TWER Pipe Status DID Read
+174	SWE1-Diagnostics-167	positive	SiriusXM	SiriusXM - Report TWER Pipe 0B Status via DID Read
+175	SWE1-Diagnostics-168	negative	SiriusXM	SiriusXM - Handle Negative Response for TWER Pipe Status DID Read
+176	SWE1-Diagnostics-169	positive	SiriusXM	SiriusXM - Report TWER Pipe 0A Status via DID Read
+177	SWE1-Diagnostics-170	negative	SiriusXM	SiriusXM - Handle Negative Response for TWER Pipe Status DID Read
+178	SWE1-Diagnostics-171	positive	SiriusXM	SiriusXM - Report the Status of Receiver State via DID Read
+179	SWE1-Diagnostics-172	negative	SiriusXM	SiriusXM - Handle Negative Response for Receiver State status DID Read
+180	SWE1-Diagnostics-173	positive	SiriusXM	SiriusXM - Report the Status of OBER TB via DID Read
+181	SWE1-Diagnostics-174	negative	SiriusXM	SiriusXM - Handle Negative Response for OBER TB status DID Read
+182	SWE1-Diagnostics-175	positive	SiriusXM	SiriusXM - Report the Status of OBER TA via DID Read
+183	SWE1-Diagnostics-176	negative	SiriusXM	SiriusXM - Handle Negative Response for OBER TA status DID Read
+184	SWE1-Diagnostics-177	positive	SiriusXM	SiriusXM - Report the Status of OBER S2B via DID Read
+185	SWE1-Diagnostics-178	negative	SiriusXM	SiriusXM - Handle Negative Response for OBER S2B status DID Read
+186	SWE1-Diagnostics-179	positive	SiriusXM	SiriusXM - Report the Status of OBER S2A via DID Read
+187	SWE1-Diagnostics-180	negative	SiriusXM	SiriusXM - Handle Negative Response for OBER S2A status DID Read
+188	SWE1-Diagnostics-181	positive	SiriusXM	SiriusXM - Report the Status of OBER S1B via DID Read
+189	SWE1-Diagnostics-182	negative	SiriusXM	SiriusXM - Handle Negative Response for OBER S1B status DID Read
+190	SWE1-Diagnostics-183	positive	SiriusXM	SiriusXM - Report the Status of OBER S1A via DID Read
+191	SWE1-Diagnostics-184	negative	SiriusXM	SiriusXM - Handle Negative Response for OBER S1A status DID Read
+192	SWE1-Diagnostics-185	positive	SiriusXM	SiriusXM - Report RSSI via DID Read
+193	SWE1-Diagnostics-186	negative	SiriusXM	SiriusXM - Handle Negative Response for RSSI DID Read
+194	SWE1-Diagnostics-187	positive	SiriusXM	SiriusXM - Report RSErrs Words via DID Read
+195	SWE1-Diagnostics-188	negative	SiriusXM	SiriusXM - Handle Negative Response for RSErrs Words DID Read
+196	SWE1-Diagnostics-189	positive	SiriusXM	SiriusXM - Report RSErrs Terr Symbol via DID Read
+197	SWE1-Diagnostics-190	negative	SiriusXM	SiriusXM - Handle Negative Response for RSErrs Terr Symbol DID Read
+198	SWE1-Diagnostics-191	positive	SiriusXM	SiriusXM - Report report the RSErrs Sat Symbol via DID Read
+199	SWE1-Diagnostics-192	negative	SiriusXM	SiriusXM - Handle Negative Response for report the RSErrs Sat Symbol DID Read
+200	SWE1-Diagnostics-193	positive	SiriusXM	SiriusXM - Report report the report the ENSB Lock status via DID Read
+201	SWE1-Diagnostics-194	negative	SiriusXM	SiriusXM - Handle Negative Response to report the ENSB Lock status DID Read
+202	SWE1-Diagnostics-195	positive	SiriusXM	SiriusXM - Report report the report the ENSA Lock status via DID Read
+203	SWE1-Diagnostics-196	negative	SiriusXM	SiriusXM - Handle Negative Response to report the ENSA Lock status DID Read
+204	SWE1-Diagnostics-197	positive	SiriusXM	SiriusXM - Report the C/N S2B via DID
+205	SWE1-Diagnostics-198	negative	SiriusXM	SiriusXM - Handle Negative Response to report the C/N S2B via DID
+206	SWE1-Diagnostics-199	positive	SiriusXM	SiriusXM - Report the C/N S2A via DID
+207	SWE1-Diagnostics-200	negative	SiriusXM	SiriusXM - Handle Negative Response to report the C/N S2A via DID
+208	SWE1-Diagnostics-201	positive	SiriusXM	SiriusXM - Report the C/N S1B via DID
+209	SWE1-Diagnostics-202	negative	SiriusXM	SiriusXM - Handle Negative Response to report the C/N S1B via DID
+210	SWE1-Diagnostics-203	positive	SiriusXM	SiriusXM - Report the C/N S1A via DID
+211	SWE1-Diagnostics-204	negative	SiriusXM	SiriusXM - Handle Negative Response to report the C/N S1A via DID
+212	SWE1-Diagnostics-205	positive	SiriusXM	SiriusXM - Report the BER T via DID
+213	SWE1-Diagnostics-206	negative	SiriusXM	SiriusXM - Handle Negative Response to report the BER T via DID
+214	SWE1-Diagnostics-207	positive	SiriusXM	SiriusXM - Report the BER S2 via DID
+215	SWE1-Diagnostics-208	negative	SiriusXM	SiriusXM - Handle Negative Response to report the BER S2 via DID
+216	SWE1-Diagnostics-209	positive	SiriusXM	SiriusXM - Report the BER S1 via DID
+217	SWE1-Diagnostics-210	negative	SiriusXM	SiriusXM - Handle Negative Response to report the BER S1 via DID
+218	SWE1-Diagnostics-211	positive	SiriusXM	SiriusXM - Report the Terrestrial Signal via DID
+219	SWE1-Diagnostics-212	negative	SiriusXM	SiriusXM - Handle Negative Response to report the Terrestrial Signal via DID
+220	SWE1-Diagnostics-213	positive	SiriusXM	SiriusXM - Report the Status of the signal via DID
+221	SWE1-Diagnostics-214	negative	SiriusXM	SiriusXM - Handle Negative Response to report the Status of the Signal via DID
+222	SWE1-Diagnostics-215	positive	SiriusXM	SiriusXM - Report the Status of the Satellite signal via DID
+223	SWE1-Diagnostics-216	negative	SiriusXM	SiriusXM - Handle Negative Response to report the Status of the Satellite Signal via DID
+224	SWE1-Diagnostics-217	positive	SiriusXM	SiriusXM - Report the Status of the Audio Decoder bitrate via DID
+225	SWE1-Diagnostics-218	negative	SiriusXM	SiriusXM - Handle Negative Response to report the Status of the Audio Decoder bitrate via DID
+226	SWE1-Diagnostics-219	positive	SiriusXM	SiriusXM - Report the Status of the Antenna via DID
+227	SWE1-Diagnostics-220	negative	SiriusXM	SiriusXM - Handle Negative Response to report the Status of the Antenna via DID
+228	SWE1-Diagnostics-221	positive	SiriusXM	SiriusXM - Package Select Routine Control
+229	SWE1-Diagnostics-222	negative	SiriusXM	SiriusXM - Handle Negative Response for Package Select Routine Control
+230	SWE1-Diagnostics-223	positive	SiriusXM	SiriusXM - Package Validation Routine Control
+231	SWE1-Diagnostics-224	negative	SiriusXM	SiriusXM - Handle Negative Response for Package Validation Routine Control
+232	SWE1-Diagnostics-225	positive	SiriusXM	SiriusXM - Package Validation Routine Control
+233	SWE1-Diagnostics-226	positive	SiriusXM	SiriusXM - Package Validation Routine Control
+234	SWE1-Diagnostics-227	positive	SiriusXM	SiriusXM - Package Validation Routine Control
+235	SWE1-Diagnostics-228	positive	SiriusXM	SiriusXM - Package Validation Routine Control
+236	SWE1-Diagnostics-229	positive	SiriusXM	SiriusXM - Package Validation Routine Control
+237	SWE1-Diagnostics-230	positive	SiriusXM	SiriusXM - Package Validation Routine Control
+238	SWE1-Diagnostics-231	positive	SiriusXM	SiriusXM - Package Validation Routine Control
+239	SWE1-Diagnostics-232	positive	SiriusXM	SiriusXM - Read CA Pellet status via DID $2848
+240	SWE1-Diagnostics-233	negative	SiriusXM	SiriusXM - Handle negative response while reading CA Pellet status via DID $2848
+241	SWE1-Diagnostics-234	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading CA Pellet status via DID $2848
+242	SWE1-Diagnostics-235	positive	SiriusXM	SiriusXM - Apply requested Sirius XM package ID via DID $2847 write
+243	SWE1-Diagnostics-236	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while applying Sirius XM package ID via DID $2847
+244	SWE1-Diagnostics-237	negative	SiriusXM	SiriusXM - Return negative response when Sirius XM package ID application fails via DID $2847
+245	SWE1-Diagnostics-238	positive	SiriusXM	SiriusXM - Return positive response when Sirius XM package ID application succeeds via DID $2847
+246	SWE1-Diagnostics-239	positive	SiriusXM	SiriusXM - Read CA Pellet validation status via DID $2846
+247	SWE1-Diagnostics-240	negative	SiriusXM	SiriusXM - Handle negative response while reading CA Pellet validation status via DID $2846
+248	SWE1-Diagnostics-241	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading CA Pellet validation status via DID $2846
+249	SWE1-Diagnostics-242	positive	SiriusXM	SiriusXM - Read Event Indication data via DID $2845
+250	SWE1-Diagnostics-243	negative	SiriusXM	SiriusXM - Handle negative response while reading Event Indication data via DID $2845
+251	SWE1-Diagnostics-244	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Event Indication data via DID $2845
+252	SWE1-Diagnostics-245	positive	SiriusXM	SiriusXM - Read Subscription Suspend Year via DID $2844
+253	SWE1-Diagnostics-246	negative	SiriusXM	SiriusXM - Handle negative response while reading Subscription Suspend Year via DID $2844
+254	SWE1-Diagnostics-247	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Subscription Suspend Year via DID $2844
+255	SWE1-Diagnostics-248	positive	SiriusXM	SiriusXM - Read Subscription Suspend Month via DID $2844
+256	SWE1-Diagnostics-249	negative	SiriusXM	SiriusXM - Handle negative response while reading Subscription Suspend Month via DID $2844
+257	SWE1-Diagnostics-250	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Subscription Suspend Month via DID $2844
+258	SWE1-Diagnostics-251	positive	SiriusXM	SiriusXM - Read Subscription Suspend Day via DID $2844
+259	SWE1-Diagnostics-252	negative	SiriusXM	SiriusXM - Handle negative response while reading Subscription Suspend Day via DID $2844
+260	SWE1-Diagnostics-253	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Subscription Suspend Day via DID $2844
+261	SWE1-Diagnostics-254	positive	SiriusXM	SiriusXM - Read Subscription Reason Text via DID $2844
+262	SWE1-Diagnostics-255	negative	SiriusXM	SiriusXM - Handle negative response while reading Subscription Reason Text via DID $2844
+263	SWE1-Diagnostics-256	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Subscription Reason Text via DID $2844
+264	SWE1-Diagnostics-257	positive	SiriusXM	SiriusXM - Read Subscription Reason Code via DID $2844
+265	SWE1-Diagnostics-258	negative	SiriusXM	SiriusXM - Handle negative response while reading Subscription Reason Code via DID $2844
+266	SWE1-Diagnostics-259	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Subscription Reason Code via DID $2844
+267	SWE1-Diagnostics-260	positive	SiriusXM	SiriusXM - Read Radio ID (8 ASCII characters) via DID $2844
+268	SWE1-Diagnostics-261	negative	SiriusXM	SiriusXM - Handle negative response while reading Radio ID via DID $2844
+269	SWE1-Diagnostics-262	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Radio ID via DID $2844
+270	SWE1-Diagnostics-263	positive	SiriusXM	SiriusXM - Read Subscription Phone Number via DID $2844
+271	SWE1-Diagnostics-264	negative	SiriusXM	SiriusXM - Handle negative response while reading Subscription Phone Number via DID $2844
+272	SWE1-Diagnostics-265	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Subscription Phone Number via DID $2844
+273	SWE1-Diagnostics-266	positive	SiriusXM	SiriusXM - Read Subscription Status (Not Subscribed / Subscribed / Suspend Alert / Suspended) via DID $2844
+274	SWE1-Diagnostics-267	negative	SiriusXM	SiriusXM - Handle negative response while reading Subscription Status via DID $2844
+275	SWE1-Diagnostics-268	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Subscription Status via DID $2844
+276	SWE1-Diagnostics-269	positive	SiriusXM	SiriusXM - Read SXI Rev Minor version via DID $2843
+277	SWE1-Diagnostics-270	negative	SiriusXM	SiriusXM - Handle negative response while reading SXI Rev Minor via DID $2843
+278	SWE1-Diagnostics-271	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading SXI Rev Minor via DID $2843
+279	SWE1-Diagnostics-272	positive	SiriusXM	SiriusXM - Read SXI Rev Major version via DID $2843
+280	SWE1-Diagnostics-273	negative	SiriusXM	SiriusXM - Handle negative response while reading SXI Rev Major via DID $2843
+281	SWE1-Diagnostics-274	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading SXI Rev Major via DID $2843
+282	SWE1-Diagnostics-275	positive	SiriusXM	SiriusXM - Read SXI Rev Incremental version via DID $2843
+283	SWE1-Diagnostics-276	negative	SiriusXM	SiriusXM - Handle negative response while reading SXI Rev Inc via DID $2843
+284	SWE1-Diagnostics-277	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading SXI Rev Inc via DID $2843
+285	SWE1-Diagnostics-278	positive	SiriusXM	SiriusXM - Read RF Rev Minor version via DID $2843
+286	SWE1-Diagnostics-279	negative	SiriusXM	SiriusXM - Handle negative response while reading RF Rev Minor via DID $2843
+287	SWE1-Diagnostics-280	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading RF Rev Minor via DID $2843
+288	SWE1-Diagnostics-281	positive	SiriusXM	SiriusXM - Read RF Rev Major version via DID $2843
+289	SWE1-Diagnostics-282	negative	SiriusXM	SiriusXM - Handle negative response while reading RF Rev Major via DID $2843
+290	SWE1-Diagnostics-283	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading RF Rev Major via DID $2843
+291	SWE1-Diagnostics-284	positive	SiriusXM	SiriusXM - Read RF Rev Incremental version via DID $2843
+292	SWE1-Diagnostics-285	negative	SiriusXM	SiriusXM - Handle negative response while reading RF Rev Inc via DID $2843
+293	SWE1-Diagnostics-286	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading RF Rev Inc via DID $2843
+294	SWE1-Diagnostics-287	positive	SiriusXM	SiriusXM - Read Module Type ID C via DID $2843
+295	SWE1-Diagnostics-288	negative	SiriusXM	SiriusXM - Handle negative response while reading Module Type ID C via DID $2843
+296	SWE1-Diagnostics-289	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Module Type ID C
+297	SWE1-Diagnostics-290	positive	SiriusXM	SiriusXM - Read Module Type ID C via DID $2843
+298	SWE1-Diagnostics-291	negative	SiriusXM	SiriusXM - Handle negative response while reading Module Type ID C via DID $2843
+299	SWE1-Diagnostics-292	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Module Type ID C
+300	SWE1-Diagnostics-293	positive	SiriusXM	SiriusXM - Read Module Type ID A via DID $2843
+301	SWE1-Diagnostics-294	negative	SiriusXM	SiriusXM - Handle negative response while reading Module Type ID A via DID $2843
+302	SWE1-Diagnostics-295	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Module Type ID A
+303	SWE1-Diagnostics-296	positive	SiriusXM	SiriusXM - Read Module HW Type C via DID $2843
+304	SWE1-Diagnostics-297	negative	SiriusXM	SiriusXM - Handle negative response while reading Module HW Type C via DID $2843
+305	SWE1-Diagnostics-298	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Module HW Type C
+306	SWE1-Diagnostics-299	positive	SiriusXM	SiriusXM - Read Module HW Type B via DID $2843
+307	SWE1-Diagnostics-300	negative	SiriusXM	SiriusXM - Handle negative response while reading Module HW Type B via DID $2843
+308	SWE1-Diagnostics-301	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Module HW Type B
+309	SWE1-Diagnostics-302	positive	SiriusXM	SiriusXM - Read Module HW Rev A via DID $2843
+310	SWE1-Diagnostics-303	negative	SiriusXM	SiriusXM - Handle negative response while reading Module HW Rev A via DID $2843
+311	SWE1-Diagnostics-304	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Module HW Rev A
+312	SWE1-Diagnostics-305	positive	SiriusXM	SiriusXM - Read Mod SW Rev Minor via DID $2843
+313	SWE1-Diagnostics-306	negative	SiriusXM	SiriusXM - Handle negative response while reading Mod SW Rev Minor via DID $2843
+314	SWE1-Diagnostics-307	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Mod SW Rev Minor
+315	SWE1-Diagnostics-308	positive	SiriusXM	SiriusXM - Read Mod SW Rev Major via DID $2843
+316	SWE1-Diagnostics-309	negative	SiriusXM	SiriusXM - Handle negative response while reading Mod SW Rev Major via DID $2843
+317	SWE1-Diagnostics-310	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Mod SW Rev Major
+318	SWE1-Diagnostics-311	positive	SiriusXM	SiriusXM - Read Mod SW Rev Inc via DID $2843
+319	SWE1-Diagnostics-312	negative	SiriusXM	SiriusXM - Handle negative response while reading Mod SW Rev Inc via DID $2843
+320	SWE1-Diagnostics-313	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Mod SW Rev Inc
+321	SWE1-Diagnostics-314	positive	SiriusXM	SiriusXM - Read HDEC Rev Minor via DID $2843
+322	SWE1-Diagnostics-315	negative	SiriusXM	SiriusXM - Handle negative response while reading HDEC Rev Minor via DID $2843
+323	SWE1-Diagnostics-316	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading HDEC Rev Minor
+324	SWE1-Diagnostics-317	positive	SiriusXM	SiriusXM - Read HDEC Rev Major via DID $2843
+325	SWE1-Diagnostics-318	negative	SiriusXM	SiriusXM - Handle negative response while reading HDEC Rev Major via DID $2843
+326	SWE1-Diagnostics-319	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading HDEC Rev Major
+327	SWE1-Diagnostics-320	positive	SiriusXM	SiriusXM - Read HDEC Rev Inc via DID $2843
+328	SWE1-Diagnostics-321	negative	SiriusXM	SiriusXM - Handle negative response while reading HDEC Rev Inc via DID $2843
+329	SWE1-Diagnostics-322	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading HDEC Rev Inc
+330	SWE1-Diagnostics-323	positive	SiriusXM	SiriusXM - Read Capability via DID $2843
+331	SWE1-Diagnostics-324	negative	SiriusXM	SiriusXM - Handle negative response while reading Capability via DID $2843
+332	SWE1-Diagnostics-325	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading Capability
+333	SWE1-Diagnostics-326	positive	SiriusXM	SiriusXM - Read TWER Pipe 2B via DID $2843
+334	SWE1-Diagnostics-327	negative	SiriusXM	SiriusXM - Handle negative response while reading TWER Pipe 2B via DID $2843
+335	SWE1-Diagnostics-328	unsupported	SiriusXM	SiriusXM - Handle unsupported service requests while reading TWER Pipe 2B
+336	SWE1-Diagnostics-329	positive	USB	USB - Report current number of connected USB devices the current number of enumerated USB devices, excluding Hubs and SD Card readers via DID 2870
+337	SWE1-Diagnostics-330	negative	USB	USB - Handle negative response while reporting connected USB device count 2870
+338	SWE1-Diagnostics-331	positive	USB	USB - Report current number of connected USB devices via DID 2870
+339	SWE1-Diagnostics-332	negative	USB	USB - Handle negative response while reporting connected USB device count 2870
+340	SWE1-Diagnostics-333	unsupported	(無前綴)	USB service not supported. 2870
+341	SWE1-Diagnostics-334	positive	Front Seat Video	Front Seat Video - Report / control Front Seat Video Playback state via DID 280C
+342	SWE1-Diagnostics-335	negative	Front Seat Video	Front Seat Video - Handle negative response while report/control Video Playback 280C
+343	SWE1-Diagnostics-336	positive	Audio	Audio - Switch radio audio source to selected video input when requested by DID 5100
+344	SWE1-Diagnostics-337	positive	Audio	Audio - Switch radio audio source to normal operation when requested by DID 5100
+345	SWE1-Diagnostics-338	negative	Audio	Audio - Handle negative response while switching the source fails. 5100
+346	SWE1-Diagnostics-339	positive	Audio	Audio - Switch to a video input when commanded via DID 500D
+347	SWE1-Diagnostics-340-001	positive	Audio	"Audio - Handle incompatible new input source (""Previous Out of Range"") via DID 500D"
+348	SWE1-Diagnostics-340-002	positive	Clock Defrost	Clock Defrost – Read/Write Clock Defrost data via DID $280C
+349	SWE1-Diagnostics-341	negative	Clock Defrost	Clock Defrost – Handle negative response for Read/Write for DID 280C
+350	SWE1-Diagnostics-342	positive	12/24 Time Selection	12/24 Time Selection – Read/Write 12/24 hour clock setting via DID $280C
+351	SWE1-Diagnostics-343	negative	12/24 Time Selection	12/24 Time Selection – Handle negative response for Read/Write for DID $280C
+352	SWE1-Diagnostics-344	positive	Steering Wheel	Steering Wheel – Report status of hardwired steering wheel control interface buttons via DID $1821
+353	SWE1-Diagnostics-345	negative	Steering Wheel	Steering Wheel – Handle negative response while reporting button status for DID $1821
+354	SWE1-Diagnostics-346	positive	KeySense PIN	KeySense PIN – Execute KeySense PIN stop and flow routine when commanded via DID $030A
+355	SWE1-Diagnostics-347	positive	KeySense PIN	KeySense PIN – Do not interrupt the routine when stop is commanded; allow it to run to completion
+356	SWE1-Diagnostics-348	unsupported	KeySense PIN	KeySense PIN – Handle negative response and unsupported service for the routine
+357	SWE1-Diagnostics-349	positive	GPS	GPS - Report the Visible Satellites using this DID$2812
+358	SWE1-Diagnostics-350	negative	GPS	GPS - Handle the negative response while reporting the Visible Satellites
+359	SWE1-Diagnostics-351	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Visible Satellites.
+360	SWE1-Diagnostics-352	positive	GPS	GPS - Report the Time - UTC - Seconds using this DID$2812
+361	SWE1-Diagnostics-353	negative	GPS	GPS - Handle the negative response while reporting the Time - UTC - Seconds
+362	SWE1-Diagnostics-354	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Time - UTC - Seconds.
+363	SWE1-Diagnostics-355	positive	GPS	GPS - Report the Time - UTC - Minutes using this DID$2812
+364	SWE1-Diagnostics-356	negative	GPS	GPS - Handle the negative response while reporting the Time - UTC - Minutes
+365	SWE1-Diagnostics-357	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Time - UTC - Minutes.
+366	SWE1-Diagnostics-358	positive	GPS	GPS - Report the Time - UTC - Hours using this DID$2812
+367	SWE1-Diagnostics-359	negative	GPS	GPS - Handle the negative response while reporting the Time - UTC - Hours
+368	SWE1-Diagnostics-360	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Time - UTC - Hours.
+369	SWE1-Diagnostics-361	positive	GPS	GPS - Report the Speed using this DID$2812
+370	SWE1-Diagnostics-362	negative	GPS	GPS - Handle the negative response while reporting the Speed
+371	SWE1-Diagnostics-363	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Speed.
+372	SWE1-Diagnostics-364	positive	GPS	GPS - Report the Satellites Currently Tracked using this DID$2812
+373	SWE1-Diagnostics-365	negative	GPS	GPS - Handle the negative response while reporting the Satellites Currently Tracked
+374	SWE1-Diagnostics-366	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Satellites Currently Tracked.
+375	SWE1-Diagnostics-367	positive	GPS	GPS - Report the Longitude using this DID$2812
+376	SWE1-Diagnostics-368	negative	GPS	GPS - Handle the negative response while reporting the Longitude
+377	SWE1-Diagnostics-369	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Longitude.
+378	SWE1-Diagnostics-370	positive	GPS	GPS - Report the Latitude using this DID$2812
+379	SWE1-Diagnostics-371	negative	GPS	GPS - Handle the negative response while reporting the Latitude
+380	SWE1-Diagnostics-372	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Latitude.
+381	SWE1-Diagnostics-373	positive	GPS	GPS - Report the Heading using this DID$2812
+382	SWE1-Diagnostics-374	negative	GPS	GPS - Handle the negative response while reporting the Heading
+383	SWE1-Diagnostics-375	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Heading.
+384	SWE1-Diagnostics-376	positive	GPS	GPS - Report the GPS Fix using this DID$2812
+385	SWE1-Diagnostics-377	negative	GPS	GPS - Handle the negative response while reporting the GPS Fix
+386	SWE1-Diagnostics-378	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the GPS Fix.
+387	SWE1-Diagnostics-379	positive	GPS	GPS - Report the Ellipsoid Height using this DID$2812
+388	SWE1-Diagnostics-380	negative	GPS	GPS - Handle the negative response while reporting the Ellipsoid Height
+389	SWE1-Diagnostics-381	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Ellipsoid Height.
+390	SWE1-Diagnostics-382	positive	GPS	GPS - Report the Date - Year using this DID$2812
+391	SWE1-Diagnostics-383	positive	Display	Display - Initiate Screen Test Pattern using this DID $1801
+392	SWE1-Diagnostics-384	negative	Display	Display - Handle the negative response while initiating the Screen Test Pattern
+393	SWE1-Diagnostics-385	unsupported	Display	Display - Handle the Unsupported service requests while initiating the Screen Test Pattern.
+394	SWE1-Diagnostics-386	positive	Steering Wheel	Steering Wheel - Report CAN signal status of steering wheel module interface buttons using this DID $1821
+395	SWE1-Diagnostics-387	negative	Steering Wheel	Steering Wheel - Handle the negative response while reporting the CAN signal status of steering wheel module interface buttons
+396	SWE1-Diagnostics-388	unsupported	Steering Wheel	Steering Wheel - Handle the Unsupported service requests while reporting the CAN signal status of steering wheel module interface buttons.
+397	SWE1-Diagnostics-389	positive	GPS	GPS - Report the Date - Month using this DID$2812
+398	SWE1-Diagnostics-390	negative	GPS	GPS - Handle the negative response while reporting the Date - Month
+399	SWE1-Diagnostics-391	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Date - Month.
+400	SWE1-Diagnostics-392	positive	GPS	GPS - Report the Date - Day using this DID$2812
+401	SWE1-Diagnostics-393	negative	GPS	GPS - Handle the negative response while reporting the Date - Day
+402	SWE1-Diagnostics-394	unsupported	GPS	GPS - Handle the Unsupported service requests while reporting the Date - Day.

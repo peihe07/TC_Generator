@@ -1,0 +1,231 @@
+swe	row037	kind	nrc_in_cfts004	nrc_in_037	status
+SWE1-Diagnostics-002	9	negative	-	-	兩者皆無值
+SWE1-Diagnostics-003	10	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-005	12	negative	-	-	兩者皆無值
+SWE1-Diagnostics-006	13	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-008	15	negative	-	-	兩者皆無值
+SWE1-Diagnostics-009	16	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-011	18	negative	-	-	兩者皆無值
+SWE1-Diagnostics-014	21	negative	-	-	兩者皆無值
+SWE1-Diagnostics-015	22	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-017	24	negative	-	-	兩者皆無值
+SWE1-Diagnostics-018	25	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-020	27	negative	-	-	兩者皆無值
+SWE1-Diagnostics-021	28	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-023	30	negative	-	-	兩者皆無值
+SWE1-Diagnostics-024	31	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-026	33	negative	-	-	兩者皆無值
+SWE1-Diagnostics-027	34	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-029	36	negative	-	-	兩者皆無值
+SWE1-Diagnostics-030	37	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-032	39	negative	-	-	兩者皆無值
+SWE1-Diagnostics-033	40	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-034	41	negative	31	31	CFTS004 有值
+SWE1-Diagnostics-036	43	negative	-	-	兩者皆無值
+SWE1-Diagnostics-037	44	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-039	46	negative	-	-	兩者皆無值
+SWE1-Diagnostics-040	47	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-042	49	negative	-	-	兩者皆無值
+SWE1-Diagnostics-043	50	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-045	52	negative	-	-	兩者皆無值
+SWE1-Diagnostics-046	53	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-048	55	negative	-	-	兩者皆無值
+SWE1-Diagnostics-049	56	negative	22	22	CFTS004 有值
+SWE1-Diagnostics-059	66	negative	-	-	兩者皆無值
+SWE1-Diagnostics-060	67	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-062	69	negative	-	-	兩者皆無值
+SWE1-Diagnostics-063	70	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-071	78	negative	-	-	兩者皆無值
+SWE1-Diagnostics-072	79	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-074	81	negative	-	-	兩者皆無值
+SWE1-Diagnostics-075	82	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-077	84	negative	-	-	兩者皆無值
+SWE1-Diagnostics-078	85	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-080	87	negative	-	-	兩者皆無值
+SWE1-Diagnostics-081	88	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-083	90	negative	-	-	兩者皆無值
+SWE1-Diagnostics-084	91	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-086	93	negative	-	-	兩者皆無值
+SWE1-Diagnostics-087	94	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-089	96	negative	-	-	兩者皆無值
+SWE1-Diagnostics-090	97	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-092	99	negative	-	-	兩者皆無值
+SWE1-Diagnostics-093	100	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-095	102	negative	-	-	兩者皆無值
+SWE1-Diagnostics-096	103	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-098	105	negative	-	-	兩者皆無值
+SWE1-Diagnostics-099	106	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-101	108	negative	-	-	兩者皆無值
+SWE1-Diagnostics-102	109	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-104	111	negative	-	-	兩者皆無值
+SWE1-Diagnostics-105	112	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-107	114	negative	22	-	CFTS004 有值
+SWE1-Diagnostics-108	115	unsupported	22	-	CFTS004 有值
+SWE1-Diagnostics-110	117	negative	-	-	兩者皆無值
+SWE1-Diagnostics-111	118	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-113	120	negative	-	-	兩者皆無值
+SWE1-Diagnostics-114	121	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-116	123	negative	-	-	兩者皆無值
+SWE1-Diagnostics-117	124	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-119	126	negative	-	-	兩者皆無值
+SWE1-Diagnostics-120	127	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-122	129	negative	-	-	兩者皆無值
+SWE1-Diagnostics-123	130	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-125	132	negative	-	-	兩者皆無值
+SWE1-Diagnostics-126	133	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-128	135	negative	-	-	兩者皆無值
+SWE1-Diagnostics-129	136	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-131	138	negative	-	-	兩者皆無值
+SWE1-Diagnostics-132	139	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-134	141	negative	-	-	兩者皆無值
+SWE1-Diagnostics-135	142	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-137	144	negative	-	-	兩者皆無值
+SWE1-Diagnostics-138	145	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-140	147	negative	-	-	兩者皆無值
+SWE1-Diagnostics-141	148	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-143	150	negative	-	-	兩者皆無值
+SWE1-Diagnostics-144	151	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-146	153	negative	-	-	兩者皆無值
+SWE1-Diagnostics-147	154	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-149	156	negative	-	-	兩者皆無值
+SWE1-Diagnostics-150	157	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-152	159	negative	-	-	兩者皆無值
+SWE1-Diagnostics-153	160	unsupported	-	11	僅 037 有值
+SWE1-Diagnostics-156	163	negative	-	-	兩者皆無值
+SWE1-Diagnostics-157	164	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-159	166	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-162	169	negative	-	-	兩者皆無值
+SWE1-Diagnostics-164	171	negative	-	-	兩者皆無值
+SWE1-Diagnostics-166	173	negative	-	-	兩者皆無值
+SWE1-Diagnostics-168	175	negative	-	-	兩者皆無值
+SWE1-Diagnostics-170	177	negative	-	-	兩者皆無值
+SWE1-Diagnostics-172	179	negative	-	-	兩者皆無值
+SWE1-Diagnostics-174	181	negative	-	-	兩者皆無值
+SWE1-Diagnostics-176	183	negative	-	-	兩者皆無值
+SWE1-Diagnostics-178	185	negative	-	-	兩者皆無值
+SWE1-Diagnostics-180	187	negative	-	-	兩者皆無值
+SWE1-Diagnostics-182	189	negative	-	-	兩者皆無值
+SWE1-Diagnostics-184	191	negative	-	-	兩者皆無值
+SWE1-Diagnostics-186	193	negative	-	-	兩者皆無值
+SWE1-Diagnostics-188	195	negative	-	-	兩者皆無值
+SWE1-Diagnostics-190	197	negative	-	-	兩者皆無值
+SWE1-Diagnostics-192	199	negative	-	-	兩者皆無值
+SWE1-Diagnostics-194	201	negative	-	-	兩者皆無值
+SWE1-Diagnostics-196	203	negative	-	-	兩者皆無值
+SWE1-Diagnostics-198	205	negative	-	-	兩者皆無值
+SWE1-Diagnostics-200	207	negative	-	-	兩者皆無值
+SWE1-Diagnostics-202	209	negative	-	-	兩者皆無值
+SWE1-Diagnostics-204	211	negative	-	-	兩者皆無值
+SWE1-Diagnostics-206	213	negative	-	-	兩者皆無值
+SWE1-Diagnostics-208	215	negative	-	-	兩者皆無值
+SWE1-Diagnostics-210	217	negative	-	-	兩者皆無值
+SWE1-Diagnostics-212	219	negative	-	-	兩者皆無值
+SWE1-Diagnostics-214	221	negative	-	-	兩者皆無值
+SWE1-Diagnostics-216	223	negative	-	-	兩者皆無值
+SWE1-Diagnostics-218	225	negative	-	-	兩者皆無值
+SWE1-Diagnostics-220	227	negative	-	-	兩者皆無值
+SWE1-Diagnostics-222	229	negative	-	-	兩者皆無值
+SWE1-Diagnostics-224	231	negative	10	-	CFTS004 有值
+SWE1-Diagnostics-233	240	negative	-	-	兩者皆無值
+SWE1-Diagnostics-234	241	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-236	243	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-237	244	negative	-	-	兩者皆無值
+SWE1-Diagnostics-240	247	negative	-	-	兩者皆無值
+SWE1-Diagnostics-241	248	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-243	250	negative	-	-	兩者皆無值
+SWE1-Diagnostics-244	251	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-246	253	negative	-	-	兩者皆無值
+SWE1-Diagnostics-247	254	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-249	256	negative	-	-	兩者皆無值
+SWE1-Diagnostics-250	257	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-252	259	negative	-	-	兩者皆無值
+SWE1-Diagnostics-253	260	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-255	262	negative	-	-	兩者皆無值
+SWE1-Diagnostics-256	263	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-258	265	negative	-	-	兩者皆無值
+SWE1-Diagnostics-259	266	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-261	268	negative	-	-	兩者皆無值
+SWE1-Diagnostics-262	269	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-264	271	negative	-	-	兩者皆無值
+SWE1-Diagnostics-265	272	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-267	274	negative	-	-	兩者皆無值
+SWE1-Diagnostics-268	275	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-270	277	negative	-	-	兩者皆無值
+SWE1-Diagnostics-271	278	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-273	280	negative	-	-	兩者皆無值
+SWE1-Diagnostics-274	281	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-276	283	negative	-	-	兩者皆無值
+SWE1-Diagnostics-277	284	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-279	286	negative	-	-	兩者皆無值
+SWE1-Diagnostics-280	287	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-282	289	negative	-	-	兩者皆無值
+SWE1-Diagnostics-283	290	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-285	292	negative	-	-	兩者皆無值
+SWE1-Diagnostics-286	293	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-288	295	negative	-	-	兩者皆無值
+SWE1-Diagnostics-289	296	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-291	298	negative	-	-	兩者皆無值
+SWE1-Diagnostics-292	299	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-294	301	negative	-	-	兩者皆無值
+SWE1-Diagnostics-295	302	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-297	304	negative	-	-	兩者皆無值
+SWE1-Diagnostics-298	305	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-300	307	negative	-	-	兩者皆無值
+SWE1-Diagnostics-301	308	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-303	310	negative	-	-	兩者皆無值
+SWE1-Diagnostics-304	311	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-306	313	negative	-	-	兩者皆無值
+SWE1-Diagnostics-307	314	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-309	316	negative	-	-	兩者皆無值
+SWE1-Diagnostics-310	317	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-312	319	negative	-	-	兩者皆無值
+SWE1-Diagnostics-313	320	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-315	322	negative	-	-	兩者皆無值
+SWE1-Diagnostics-316	323	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-318	325	negative	-	-	兩者皆無值
+SWE1-Diagnostics-319	326	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-321	328	negative	-	-	兩者皆無值
+SWE1-Diagnostics-322	329	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-324	331	negative	-	-	兩者皆無值
+SWE1-Diagnostics-325	332	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-327	334	negative	-	-	兩者皆無值
+SWE1-Diagnostics-328	335	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-330	337	negative	-	-	兩者皆無值
+SWE1-Diagnostics-332	339	negative	-	-	兩者皆無值
+SWE1-Diagnostics-333	340	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-335	342	negative	-	-	兩者皆無值
+SWE1-Diagnostics-338	345	negative	-	-	兩者皆無值
+SWE1-Diagnostics-341	349	negative	-	-	兩者皆無值
+SWE1-Diagnostics-343	351	negative	-	-	兩者皆無值
+SWE1-Diagnostics-345	353	negative	-	-	兩者皆無值
+SWE1-Diagnostics-348	356	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-350	358	negative	-	-	兩者皆無值
+SWE1-Diagnostics-351	359	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-353	361	negative	-	-	兩者皆無值
+SWE1-Diagnostics-354	362	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-356	364	negative	-	-	兩者皆無值
+SWE1-Diagnostics-357	365	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-359	367	negative	-	-	兩者皆無值
+SWE1-Diagnostics-360	368	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-362	370	negative	-	-	兩者皆無值
+SWE1-Diagnostics-363	371	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-365	373	negative	-	-	兩者皆無值
+SWE1-Diagnostics-366	374	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-368	376	negative	-	-	兩者皆無值
+SWE1-Diagnostics-369	377	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-371	379	negative	-	-	兩者皆無值
+SWE1-Diagnostics-372	380	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-374	382	negative	-	-	兩者皆無值
+SWE1-Diagnostics-375	383	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-377	385	negative	-	-	兩者皆無值
+SWE1-Diagnostics-378	386	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-380	388	negative	-	-	兩者皆無值
+SWE1-Diagnostics-381	389	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-384	392	negative	-	-	兩者皆無值
+SWE1-Diagnostics-385	393	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-387	395	negative	-	-	兩者皆無值
+SWE1-Diagnostics-388	396	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-390	398	negative	-	-	兩者皆無值
+SWE1-Diagnostics-391	399	unsupported	-	-	兩者皆無值
+SWE1-Diagnostics-393	401	negative	-	-	兩者皆無值
+SWE1-Diagnostics-394	402	unsupported	-	-	兩者皆無值

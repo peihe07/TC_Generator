@@ -1,0 +1,169 @@
+src_id_raw	src_id_strip	n_037_rows	resolved	cfts004_row	object_id	anchor	cat	l3
+SYS-RA-DIAG-013	SYS-RA-DIAG-013	3	Y	14	4939959	CFTS004-4939959	Functional Requirement	$500C - SDAR Station Selection (Read)
+SYS-RA-DIAG-021	SYS-RA-DIAG-021	3	Y	22	4939952	CFTS004-4939952	Functional Requirement	$500A - Mode Selection (Read)
+SYS-RA-DIAG-023	SYS-RA-DIAG-023	3	Y	24	4939949	CFTS004-4939949	Functional Requirement	$5009 - Frequency Step Selection (Read)
+SYS-RA-DIAG-026	SYS-RA-DIAG-026	3	Y	27	4939946	CFTS004-4939946	Functional Requirement	$5008 - Seek Status (Read)
+SYS-RA-DIAG-029	SYS-RA-DIAG-029	2	Y	30	4939942	CFTS004-4939942	Functional Requirement	$5001 - Speaker Quadrant Selection (Read)
+SYS-RA-DIAG-031	SYS-RA-DIAG-031	1	Y	32	4939943	CFTS004-4939943	Functional Requirement	$5001 - Speaker Quadrant Selection (Read)
+SYS-RA-DIAG-033	SYS-RA-DIAG-033	1	Y	34	4939939	CFTS004-4939939	Functional Requirement	$5000 - Buzzer Control (Read)
+SYS-RA-DIAG-042	SYS-RA-DIAG-042	1	Y	43	4939923	CFTS004-4939923	Functional Requirement	$2870 - Media Hub Config (Read)
+SYS-RA-DIAG-043	SYS-RA-DIAG-043	2	Y	44	4939921	CFTS004-4939921	Functional Requirement	$2870 - Media Hub Config (Read)
+SYS-RA-DIAG-045	SYS-RA-DIAG-045	2	Y	46	4939919	CFTS004-4939919	Functional Requirement	$2870 - Media Hub Config (Read)
+SYS-RA-DIAG-046	SYS-RA-DIAG-046	1	Y	47	4939922	CFTS004-4939922	Functional Requirement	$2870 - Media Hub Config (Read)
+SYS-RA-DIAG-051	SYS-RA-DIAG-051	3	Y	52	4939896	CFTS004-4939896	Functional Requirement	$2848 - X65 Package Indication Select (Read)
+SYS-RA-DIAG-054	SYS-RA-DIAG-054	2	Y	55	4939890	CFTS004-4939890	Functional Requirement	$2847 - X65 Index ID (Read/Write)
+SYS-RA-DIAG-056	SYS-RA-DIAG-056	1	Y	57	4939892	CFTS004-4939892	Functional Requirement	$2847 - X65 Index ID (Read/Write)
+SYS-RA-DIAG-057	SYS-RA-DIAG-057	1	Y	58	4939891	CFTS004-4939891	Functional Requirement	$2847 - X65 Index ID (Read/Write)
+SYS-RA-DIAG-060	SYS-RA-DIAG-060	3	Y	61	4939885	CFTS004-4939885	Functional Requirement	$2846 - X65 Package Indication Validate (Read)
+SYS-RA-DIAG-064	SYS-RA-DIAG-064	3	Y	65	4939881	CFTS004-4939881	Functional Requirement	$2845 - X65 Event Indication (Read)
+SYS-RA-DIAG-067	SYS-RA-DIAG-067	3	Y	68	4939873	CFTS004-4939873	Functional Requirement	$2844 - X65 Subscription Status (Read)
+SYS-RA-DIAG-068	SYS-RA-DIAG-068	3	Y	69	4939872	CFTS004-4939872	Functional Requirement	$2844 - X65 Subscription Status (Read)
+SYS-RA-DIAG-069	SYS-RA-DIAG-069	3	Y	70	4939871	CFTS004-4939871	Functional Requirement	$2844 - X65 Subscription Status (Read)
+SYS-RA-DIAG-070	SYS-RA-DIAG-070	3	Y	71	4939874	CFTS004-4939874	Functional Requirement	$2844 - X65 Subscription Status (Read)
+SYS-RA-DIAG-071	SYS-RA-DIAG-071	3	Y	72	4939870	CFTS004-4939870	Functional Requirement	$2844 - X65 Subscription Status (Read)
+SYS-RA-DIAG-072	SYS-RA-DIAG-072	3	Y	73	4939868	CFTS004-4939868	Functional Requirement	$2844 - X65 Subscription Status (Read)
+SYS-RA-DIAG-073	SYS-RA-DIAG-073	3	Y	74	4939875	CFTS004-4939875	Functional Requirement	$2844 - X65 Subscription Status (Read)
+SYS-RA-DIAG-076	SYS-RA-DIAG-076	3	Y	77	4939869	CFTS004-4939869	Functional Requirement	$2844 - X65 Subscription Status (Read)
+SYS-RA-DIAG-078	SYS-RA-DIAG-078	3	Y	79	4939853	CFTS004-4939853	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-079	SYS-RA-DIAG-079	3	Y	80	4939852	CFTS004-4939852	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-080	SYS-RA-DIAG-080	3	Y	81	4939854	CFTS004-4939854	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-081	SYS-RA-DIAG-081	3	Y	82	4939862	CFTS004-4939862	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-082	SYS-RA-DIAG-082	3	Y	83	4939861	CFTS004-4939861	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-083	SYS-RA-DIAG-083	3	Y	84	4939863	CFTS004-4939863	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-084	SYS-RA-DIAG-084	3	Y	85	4939845	CFTS004-4939845	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-085	SYS-RA-DIAG-085	3	Y	86	4939844	CFTS004-4939844	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-086	SYS-RA-DIAG-086	3	Y	87	4939843	CFTS004-4939843	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-087	SYS-RA-DIAG-087	3	Y	88	4939848	CFTS004-4939848	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-088	SYS-RA-DIAG-088	3	Y	89	4939847	CFTS004-4939847	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-089	SYS-RA-DIAG-089	3	Y	90	4939846	CFTS004-4939846	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-090	SYS-RA-DIAG-090	3	Y	91	4939850	CFTS004-4939850	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-091	SYS-RA-DIAG-091	3	Y	92	4939849	CFTS004-4939849	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-092	SYS-RA-DIAG-092	3	Y	93	4939851	CFTS004-4939851	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-093	SYS-RA-DIAG-093	3	Y	94	4939859	CFTS004-4939859	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-094	SYS-RA-DIAG-094	3	Y	95	4939858	CFTS004-4939858	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-095	SYS-RA-DIAG-095	3	Y	96	4939860	CFTS004-4939860	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-097	SYS-RA-DIAG-097	3	Y	98	4939864	CFTS004-4939864	Functional Requirement	$2843 - X65 Module Version (Read)
+SYS-RA-DIAG-103	SYS-RA-DIAG-103	3	Y	104	4939839	CFTS004-4939839	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-104	SYS-RA-DIAG-104	2	Y	105	4939836	CFTS004-4939836	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-105	SYS-RA-DIAG-105	2	Y	106	4939838	CFTS004-4939838	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-106	SYS-RA-DIAG-106	2	Y	107	4939835	CFTS004-4939835	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-107	SYS-RA-DIAG-107	2	Y	108	4939837	CFTS004-4939837	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-108	SYS-RA-DIAG-108	2	Y	109	4939834	CFTS004-4939834	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-109	SYS-RA-DIAG-109	2	Y	110	4939827	CFTS004-4939827	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-110	SYS-RA-DIAG-110	2	Y	111	4939833	CFTS004-4939833	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-111	SYS-RA-DIAG-111	2	Y	112	4939830	CFTS004-4939830	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-112	SYS-RA-DIAG-112	2	Y	113	4939832	CFTS004-4939832	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-113	SYS-RA-DIAG-113	2	Y	114	4939829	CFTS004-4939829	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-114	SYS-RA-DIAG-114	2	Y	115	4939831	CFTS004-4939831	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-115	SYS-RA-DIAG-115	2	Y	116	4939828	CFTS004-4939828	Functional Requirement	$2842 - X65 Overlay Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-119	SYS-RA-DIAG-119	3	Y	120	4939809	CFTS004-4939809	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-120	SYS-RA-DIAG-120	3	Y	121	4939822	CFTS004-4939822	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-121	SYS-RA-DIAG-121	3	Y	122	4939808	CFTS004-4939808	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-122	SYS-RA-DIAG-122	2	Y	123	4939823	CFTS004-4939823	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-123	SYS-RA-DIAG-123	2	Y	124	4939819	CFTS004-4939819	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-124	SYS-RA-DIAG-124	2	Y	125	4939821	CFTS004-4939821	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-125	SYS-RA-DIAG-125	2	Y	126	4939820	CFTS004-4939820	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-126	SYS-RA-DIAG-126	2	Y	127	4939811	CFTS004-4939811	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-127	SYS-RA-DIAG-127	2	Y	128	4939810	CFTS004-4939810	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-128	SYS-RA-DIAG-128	2	Y	129	4939818	CFTS004-4939818	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-129	SYS-RA-DIAG-129	2	Y	130	4939817	CFTS004-4939817	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-130	SYS-RA-DIAG-130	2	Y	131	4939816	CFTS004-4939816	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-131	SYS-RA-DIAG-131	2	Y	132	4939815	CFTS004-4939815	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-132	SYS-RA-DIAG-132	2	Y	133	4939814	CFTS004-4939814	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-133	SYS-RA-DIAG-133	2	Y	134	4939813	CFTS004-4939813	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-134	SYS-RA-DIAG-134	2	Y	135	4939812	CFTS004-4939812	Functional Requirement	$2841 - X65 Signal Quality Diagnostics (Read)
+SYS-RA-DIAG-138	SYS-RA-DIAG-138	2	Y	139	4939803	CFTS004-4939803	Functional Requirement	$2840 - X65 Antenna Status Diagnostics (Read)
+SYS-RA-DIAG-139	SYS-RA-DIAG-139	2	Y	140	4939800	CFTS004-4939800	Functional Requirement	$2840 - X65 Antenna Status Diagnostics (Read)
+SYS-RA-DIAG-140	SYS-RA-DIAG-140	2	Y	141	4939802	CFTS004-4939802	Functional Requirement	$2840 - X65 Antenna Status Diagnostics (Read)
+SYS-RA-DIAG-142	SYS-RA-DIAG-142	2	Y	143	4939804	CFTS004-4939804	Functional Requirement	$2840 - X65 Antenna Status Diagnostics (Read)
+SYS-RA-DIAG-143	SYS-RA-DIAG-143	2	Y	144	4939801	CFTS004-4939801	Functional Requirement	$2840 - X65 Antenna Status Diagnostics (Read)
+SYS-RA-DIAG-146	SYS-RA-DIAG-146	3	Y	147	4939794	CFTS004-4939794	Functional Requirement	$283F - Camera Level Brightness (Read/Write)
+SYS-RA-DIAG-147	SYS-RA-DIAG-147	3	Y	148	4939793	CFTS004-4939793	Functional Requirement	$283F - Camera Level Brightness (Read/Write)
+SYS-RA-DIAG-154	SYS-RA-DIAG-154	3	Y	155	4939727	CFTS004-4939727	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-155	SYS-RA-DIAG-155	3	Y	156	4939720	CFTS004-4939720	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-156	SYS-RA-DIAG-156	3	Y	157	4939719	CFTS004-4939719	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-157	SYS-RA-DIAG-157	3	Y	158	4939718	CFTS004-4939718	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-158	SYS-RA-DIAG-158	3	Y	159	4939724	CFTS004-4939724	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-159	SYS-RA-DIAG-159	3	Y	160	4939728	CFTS004-4939728	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-160	SYS-RA-DIAG-160	3	Y	161	4939722	CFTS004-4939722	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-161	SYS-RA-DIAG-161	3	Y	162	4939721	CFTS004-4939721	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-162	SYS-RA-DIAG-162	3	Y	163	4939725	CFTS004-4939725	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-163	SYS-RA-DIAG-163	3	Y	164	4939723	CFTS004-4939723	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-165	SYS-RA-DIAG-165	3	Y	166	4939726	CFTS004-4939726	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-166	SYS-RA-DIAG-166	1	Y	167	4939715	CFTS004-4939715	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-167	SYS-RA-DIAG-167	3	Y	168	4939716	CFTS004-4939716	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-168	SYS-RA-DIAG-168	3	Y	169	4939717	CFTS004-4939717	Functional Requirement	$2812 - GPS Signal Data 1 (Read)
+SYS-RA-DIAG-186	SYS-RA-DIAG-186	2	Y	187	4939688	CFTS004-4939688	Functional Requirement	$280C - ECU Current Internal Settings (Read/Write)
+SYS-RA-DIAG-188	SYS-RA-DIAG-188	2	Y	189	4939684	CFTS004-4939684	Functional Requirement	$280C - ECU Current Internal Settings (Read/Write)
+SYS-RA-DIAG-189	SYS-RA-DIAG-189	1	Y	190	4939689	CFTS004-4939689	Functional Requirement	$280C - ECU Current Internal Settings (Read/Write)
+SYS-RA-DIAG-190	SYS-RA-DIAG-190	1	Y	191	4939685	CFTS004-4939685	Functional Requirement	$280C - ECU Current Internal Settings (Read/Write)
+SYS-RA-DIAG-192	SYS-RA-DIAG-192	2	Y	193	4939687	CFTS004-4939687	Functional Requirement	$280C - ECU Current Internal Settings (Read/Write)
+SYS-RA-DIAG-214	SYS-RA-DIAG-214	2	Y	215	4939651	CFTS004-4939651	Functional Requirement	$1821 - Steering Wheel Module Interface (Read)
+SYS-RA-DIAG-215	SYS-RA-DIAG-215	3	Y	216	4939650	CFTS004-4939650	Functional Requirement	$1821 - Steering Wheel Module Interface (Read)
+SYS-RA-DIAG-218	SYS-RA-DIAG-218	1	Y	219	4939646	CFTS004-4939646	Functional Requirement	$1820 - Push Button Control Interface (Read)
+SYS-RA-DIAG-220	SYS-RA-DIAG-220	1	Y	221	4939647	CFTS004-4939647	Functional Requirement	$1820 - Push Button Control Interface (Read)
+SYS-RA-DIAG-222	SYS-RA-DIAG-222	1	Y	223	4939643	CFTS004-4939643	Functional Requirement	$180C - Radio Audio Output Settings
+SYS-RA-DIAG-238	SYS-RA-DIAG-238	3	Y	239	4939626	CFTS004-4939626	Functional Requirement	$1801 - Screen Test Pattern (Read/Write)
+SYS-RA-DIAG-248	SYS-RA-DIAG-248	1	Y	249	4940710	CFTS004-4940710	Out of  Scope	$1801 - Screen Test Pattern (Read/Write)
+SYS-RA-DIAG-261	SYS-RA-DIAG-261	1	Y	262	4940358	CFTS004-4940358	Functional Requirement	$5100 - Video Input
+SYS-RA-DIAG-262	SYS-RA-DIAG-262	2	Y	263	4940359	CFTS004-4940359	Functional Requirement	$5100 - Video Input
+SYS-RA-DIAG-264	SYS-RA-DIAG-264	2	Y	265	4940355	CFTS004-4940355	Functional Requirement	$500D - Video Input Settings
+SYS-RA-DIAG-268	SYS-RA-DIAG-268	3	Y	269	4940351	CFTS004-4940351	Functional Requirement	$500C - SDAR Station Selection
+SYS-RA-DIAG-270	SYS-RA-DIAG-270	1	Y	271	4940352	CFTS004-4940352	Functional Requirement	$500C - SDAR Station Selection
+SYS-RA-DIAG-272	SYS-RA-DIAG-272	3	Y	273	4940346	CFTS004-4940346	Functional Requirement	$500B - In Motion Menu Control
+SYS-RA-DIAG-273	SYS-RA-DIAG-273	2	Y	274	4940347	CFTS004-4940347	Functional Requirement	$500B - In Motion Menu Control
+SYS-RA-DIAG-276	SYS-RA-DIAG-276	1	Y	277	4940348	CFTS004-4940348	Functional Requirement	$500B - In Motion Menu Control
+SYS-RA-DIAG-279	SYS-RA-DIAG-279	3	Y	280	4940342	CFTS004-4940342	Functional Requirement	$500A - Mode Selection
+SYS-RA-DIAG-280	SYS-RA-DIAG-280	3	Y	281	4940341	CFTS004-4940341	Functional Requirement	$500A - Mode Selection
+SYS-RA-DIAG-283	SYS-RA-DIAG-283	3	Y	284	4940337	CFTS004-4940337	Functional Requirement	$5009 - Frequency Step Selection
+SYS-RA-DIAG-286	SYS-RA-DIAG-286	3	Y	287	4940334	CFTS004-4940334	Functional Requirement	$5008 - Seek Status
+SYS-RA-DIAG-287	SYS-RA-DIAG-287	3	Y	288	4940333	CFTS004-4940333	Functional Requirement	$5008 - Seek Status
+SYS-RA-DIAG-294	SYS-RA-DIAG-294	1	Y	295	4940326	CFTS004-4940326	Functional Requirement	$5006 - Fade Settings
+SYS-RA-DIAG-295	SYS-RA-DIAG-295	1	Y	296	4940325	CFTS004-4940325	Functional Requirement	$5006 - Fade Settings
+SYS-RA-DIAG-298	SYS-RA-DIAG-298	1	Y	299	4940322	CFTS004-4940322	Functional Requirement	$5005 - Balance Settings
+SYS-RA-DIAG-299	SYS-RA-DIAG-299	1	Y	300	4940321	CFTS004-4940321	Functional Requirement	$5005 - Balance Settings
+SYS-RA-DIAG-302	SYS-RA-DIAG-302	1	Y	303	4940318	CFTS004-4940318	Functional Requirement	$5004 - Treble Settings
+SYS-RA-DIAG-303	SYS-RA-DIAG-303	1	Y	304	4940317	CFTS004-4940317	Functional Requirement	$5004 - Treble Settings
+SYS-RA-DIAG-304	SYS-RA-DIAG-304	3	Y	305	4940316	CFTS004-4940316	Functional Requirement	$5004 - Treble Settings
+SYS-RA-DIAG-306	SYS-RA-DIAG-306	3	Y	307	4940314	CFTS004-4940314	Functional Requirement	$5003 - Bass Settings
+SYS-RA-DIAG-307	SYS-RA-DIAG-307	3	Y	308	4940313	CFTS004-4940313	Functional Requirement	$5003 - Bass Settings
+SYS-RA-DIAG-308	SYS-RA-DIAG-308	3	Y	309	4940312	CFTS004-4940312	Functional Requirement	$5003 - Bass Settings
+SYS-RA-DIAG-310	SYS-RA-DIAG-310	3	Y	311	4940310	CFTS004-4940310	Functional Requirement	$5002 - Radio Volume
+SYS-RA-DIAG-311	SYS-RA-DIAG-311	3	Y	312	4940309	CFTS004-4940309	Functional Requirement	$5002 - Radio Volume
+SYS-RA-DIAG-312	SYS-RA-DIAG-312	3	Y	313	4940308	CFTS004-4940308	Functional Requirement	$5002 - Radio Volume
+SYS-RA-DIAG-314	SYS-RA-DIAG-314	3	Y	315	4940305	CFTS004-4940305	Functional Requirement	$5001 - Speaker Quadrant Selection
+SYS-RA-DIAG-315   	SYS-RA-DIAG-315	3	Y	316	4940304	CFTS004-4940304	Functional Requirement	$5001 - Speaker Quadrant Selection
+SYS-RA-DIAG-316	SYS-RA-DIAG-316	3	Y	317	4940300	CFTS004-4940300	Functional Requirement	$5001 - Speaker Quadrant Selection
+SYS-RA-DIAG-317	SYS-RA-DIAG-317	3	Y	318	4940303	CFTS004-4940303	Functional Requirement	$5001 - Speaker Quadrant Selection
+SYS-RA-DIAG-318	SYS-RA-DIAG-318	3	Y	319	4940302	CFTS004-4940302	Functional Requirement	$5001 - Speaker Quadrant Selection
+SYS-RA-DIAG-320	SYS-RA-DIAG-320	3	Y	321	4940306	CFTS004-4940306	Functional Requirement	$5001 - Speaker Quadrant Selection
+SYS-RA-DIAG-322	SYS-RA-DIAG-322	3	Y	323	4940298	CFTS004-4940298	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-323	SYS-RA-DIAG-323	3	Y	324	4940297	CFTS004-4940297	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-324	SYS-RA-DIAG-324	3	Y	325	4940296	CFTS004-4940296	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-325	SYS-RA-DIAG-325	3	Y	326	4940294	CFTS004-4940294	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-329	SYS-RA-DIAG-329	3	Y	330	4940292	CFTS004-4940292	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-330	SYS-RA-DIAG-330	3	Y	331	4940291	CFTS004-4940291	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-331	SYS-RA-DIAG-331	3	Y	332	4940290	CFTS004-4940290	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-332	SYS-RA-DIAG-332	3	Y	333	4940289	CFTS004-4940289	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-333	SYS-RA-DIAG-333	3	Y	334	4940285	CFTS004-4940285	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-334	SYS-RA-DIAG-334	3	Y	335	4940288	CFTS004-4940288	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-335	SYS-RA-DIAG-335	3	Y	336	4940287	CFTS004-4940287	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-336	SYS-RA-DIAG-336	3	Y	337	4940286	CFTS004-4940286	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-337	SYS-RA-DIAG-337	3	Y	338	4940295	CFTS004-4940295	Functional Requirement	$5000 - Buzzer Control
+SYS-RA-DIAG-360	SYS-RA-DIAG-360	3	Y	361	4940485	CFTS004-4940485	Functional Requirement	$031B - Audio Measure AC
+SYS-RA-DIAG-363	SYS-RA-DIAG-363	3	Y	364	4940473	CFTS004-4940473	Functional Requirement	$0312 - AV Signal Detection
+SYS-RA-DIAG-367	SYS-RA-DIAG-367	1	Y	368	4940482	CFTS004-4940482	Functional Requirement	$0312 - AV Signal Detection
+SYS-RA-DIAG-369	SYS-RA-DIAG-369	3	Y	370	4940477	CFTS004-4940477	Functional Requirement	$0312 - AV Signal Detection
+SYS-RA-DIAG-370	SYS-RA-DIAG-370	2	Y	371	4940474	CFTS004-4940474	Functional Requirement	$0312 - AV Signal Detection
+SYS-RA-DIAG-371	SYS-RA-DIAG-371	1	Y	372	4940476	CFTS004-4940476	Functional Requirement	$0312 - AV Signal Detection
+SYS-RA-DIAG-373	SYS-RA-DIAG-373	1	Y	374	4940469	CFTS004-4940469	Functional Requirement	$030A - Clear Key Sense PIN
+SYS-RA-DIAG-375	SYS-RA-DIAG-375	2	Y	376	4940463	CFTS004-4940463	Functional Requirement	$0309 - X65 MPFA Select Routine
+SYS-RA-DIAG-376	SYS-RA-DIAG-376	2	Y	377	4940462	CFTS004-4940462	Functional Requirement	$0309 - X65 MPFA Select Routine
+SYS-RA-DIAG-377	SYS-RA-DIAG-377	2	Y	378	4940464	CFTS004-4940464	Functional Requirement	$0309 - X65 MPFA Select Routine
+SYS-RA-DIAG-379	SYS-RA-DIAG-379	1	Y	380	4940466	CFTS004-4940466	Functional Requirement	$0309 - X65 MPFA Select Routine
+SYS-RA-DIAG-380	SYS-RA-DIAG-380	1	Y	381	4940465	CFTS004-4940465	Functional Requirement	$0309 - X65 MPFA Select Routine
+SYS-RA-DIAG-385	SYS-RA-DIAG-385	1	Y	386	4940452	CFTS004-4940452	Functional Requirement	$0307 - X65 MPFA Validate Routine
+SYS-RA-DIAG-386	SYS-RA-DIAG-386	1	Y	387	4940451	CFTS004-4940451	Functional Requirement	$0307 - X65 MPFA Validate Routine
+SYS-RA-DIAG-387	SYS-RA-DIAG-387	1	Y	388	4940453	CFTS004-4940453	Functional Requirement	$0307 - X65 MPFA Validate Routine
+SYS-RA-DIAG-390	SYS-RA-DIAG-390	1	Y	391	4940455	CFTS004-4940455	Functional Requirement	$0307 - X65 MPFA Validate Routine
+SYS-RA-DIAG-391	SYS-RA-DIAG-391	1	Y	392	4940454	CFTS004-4940454	Functional Requirement	$0307 - X65 MPFA Validate Routine

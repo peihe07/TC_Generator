@@ -1,0 +1,396 @@
+swe	row037	src	objid	parent	l3	did	kind	cat	region	harman
+SWE1-Diagnostics-001	8	SYS-RA-DIAG-146	4939794	R/W	$283F - Camera Level Brightness (Read/Write)	$283F	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-002	9	SYS-RA-DIAG-146	4939794	R/W	$283F - Camera Level Brightness (Read/Write)	$283F	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-003	10	SYS-RA-DIAG-146	4939794	R/W	$283F - Camera Level Brightness (Read/Write)	$283F	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-004	11	SYS-RA-DIAG-147	4939793	R/W	$283F - Camera Level Brightness (Read/Write)	$283F	positive	Functional Requirement	All	
+SWE1-Diagnostics-005	12	SYS-RA-DIAG-147	4939793	R/W	$283F - Camera Level Brightness (Read/Write)	$283F	negative	Functional Requirement	All	
+SWE1-Diagnostics-006	13	SYS-RA-DIAG-147	4939793	R/W	$283F - Camera Level Brightness (Read/Write)	$283F	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-007	14	SYS-RA-DIAG-272	4940346	I/O	$500B - In Motion Menu Control	$500B	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-008	15	SYS-RA-DIAG-272	4940346	I/O	$500B - In Motion Menu Control	$500B	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-009	16	SYS-RA-DIAG-272	4940346	I/O	$500B - In Motion Menu Control	$500B	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-010	17	SYS-RA-DIAG-273	4940347	I/O	$500B - In Motion Menu Control	$500B	positive	Functional Requirement	All	
+SWE1-Diagnostics-011	18	SYS-RA-DIAG-273	4940347	I/O	$500B - In Motion Menu Control	$500B	negative	Functional Requirement	All	
+SWE1-Diagnostics-012	19	SYS-RA-DIAG-276	4940348	I/O	$500B - In Motion Menu Control	$500B	positive	Functional Requirement	All	
+SWE1-Diagnostics-013	20	SYS-RA-DIAG-013	4939959	R/W	$500C - SDAR Station Selection (Read)	$500C	positive	Functional Requirement	NAFTA	Accepted
+SWE1-Diagnostics-014	21	SYS-RA-DIAG-013	4939959	R/W	$500C - SDAR Station Selection (Read)	$500C	negative	Functional Requirement	NAFTA	Accepted
+SWE1-Diagnostics-015	22	SYS-RA-DIAG-013	4939959	R/W	$500C - SDAR Station Selection (Read)	$500C	unsupported	Functional Requirement	NAFTA	Accepted
+SWE1-Diagnostics-016	23	SYS-RA-DIAG-023	4939949	R/W	$5009 - Frequency Step Selection (Read)	$5009	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-017	24	SYS-RA-DIAG-023	4939949	R/W	$5009 - Frequency Step Selection (Read)	$5009	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-018	25	SYS-RA-DIAG-023	4939949	R/W	$5009 - Frequency Step Selection (Read)	$5009	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-019	26	SYS-RA-DIAG-026	4939946	R/W	$5008 - Seek Status (Read)	$5008	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-020	27	SYS-RA-DIAG-026	4939946	R/W	$5008 - Seek Status (Read)	$5008	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-021	28	SYS-RA-DIAG-026	4939946	R/W	$5008 - Seek Status (Read)	$5008	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-022	29	SYS-RA-DIAG-119	4939809	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-023	30	SYS-RA-DIAG-119	4939809	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-024	31	SYS-RA-DIAG-119	4939809	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-025	32	SYS-RA-DIAG-120	4939822	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-026	33	SYS-RA-DIAG-120	4939822	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-027	34	SYS-RA-DIAG-120	4939822	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-028	35	SYS-RA-DIAG-121	4939808	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-029	36	SYS-RA-DIAG-121	4939808	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-030	37	SYS-RA-DIAG-121	4939808	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-031	38	SYS-RA-DIAG-268	4940351	I/O	$500C - SDAR Station Selection	$500C	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-032	39	SYS-RA-DIAG-268	4940351	I/O	$500C - SDAR Station Selection	$500C	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-033	40	SYS-RA-DIAG-268	4940351	I/O	$500C - SDAR Station Selection	$500C	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-034	41	SYS-RA-DIAG-270	4940352	I/O	$500C - SDAR Station Selection	$500C	negative	Functional Requirement	All	
+SWE1-Diagnostics-035	42	SYS-RA-DIAG-283	4940337	I/O	$5009 - Frequency Step Selection	$5009	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-036	43	SYS-RA-DIAG-283	4940337	I/O	$5009 - Frequency Step Selection	$5009	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-037	44	SYS-RA-DIAG-283	4940337	I/O	$5009 - Frequency Step Selection	$5009	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-038	45	SYS-RA-DIAG-286	4940334	I/O	$5008 - Seek Status	$5008	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-039	46	SYS-RA-DIAG-286	4940334	I/O	$5008 - Seek Status	$5008	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-040	47	SYS-RA-DIAG-286	4940334	I/O	$5008 - Seek Status	$5008	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-041	48	SYS-RA-DIAG-287	4940333	I/O	$5008 - Seek Status	$5008	positive	Functional Requirement	All	
+SWE1-Diagnostics-042	49	SYS-RA-DIAG-287	4940333	I/O	$5008 - Seek Status	$5008	negative	Functional Requirement	All	
+SWE1-Diagnostics-043	50	SYS-RA-DIAG-287	4940333	I/O	$5008 - Seek Status	$5008	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-044	51	SYS-RA-DIAG-021	4939952	R/W	$500A - Mode Selection (Read)	$500A	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-045	52	SYS-RA-DIAG-021	4939952	R/W	$500A - Mode Selection (Read)	$500A	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-046	53	SYS-RA-DIAG-021	4939952	R/W	$500A - Mode Selection (Read)	$500A	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-047	54	SYS-RA-DIAG-029	4939942	R/W	$5001 - Speaker Quadrant Selection (Read)	$5001	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-048	55	SYS-RA-DIAG-029	4939942	R/W	$5001 - Speaker Quadrant Selection (Read)	$5001	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-049	56	SYS-RA-DIAG-031	4939943	R/W	$5001 - Speaker Quadrant Selection (Read)	$5001	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-050	57	SYS-RA-DIAG-033	4939939	R/W	$5000 - Buzzer Control (Read)	$5000	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-051	58	SYS-RA-DIAG-042	4939923	R/W	$2870 - Media Hub Config (Read)	$2870	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-052	59	SYS-RA-DIAG-189	4939689	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	positive	Functional Requirement	All	
+SWE1-Diagnostics-053	60	SYS-RA-DIAG-190	4939685	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	positive	Functional Requirement	All	
+SWE1-Diagnostics-054	61	SYS-RA-DIAG-218	4939646	R/W	$1820 - Push Button Control Interface (Read)	$1820	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-055	62	SYS-RA-DIAG-220	4939647	R/W	$1820 - Push Button Control Interface (Read)	$1820	positive	Functional Requirement	All	
+SWE1-Diagnostics-056	63	SYS-RA-DIAG-222	4939643	R/W	$180C - Radio Audio Output Settings	$180C	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-057	64	SYS-RA-DIAG-248	4940710	R/W	$1801 - Screen Test Pattern (Read/Write)	$1801	positive	Out of  Scope	(空)	Need Clarification
+SWE1-Diagnostics-058	65	SYS-RA-DIAG-279	4940342	I/O	$500A - Mode Selection	$500A	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-059	66	SYS-RA-DIAG-279	4940342	I/O	$500A - Mode Selection	$500A	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-060	67	SYS-RA-DIAG-279	4940342	I/O	$500A - Mode Selection	$500A	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-061	68	SYS-RA-DIAG-280	4940341	I/O	$500A - Mode Selection	$500A	positive	Functional Requirement	All	
+SWE1-Diagnostics-062	69	SYS-RA-DIAG-280	4940341	I/O	$500A - Mode Selection	$500A	negative	Functional Requirement	All	
+SWE1-Diagnostics-063	70	SYS-RA-DIAG-280	4940341	I/O	$500A - Mode Selection	$500A	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-064	71	SYS-RA-DIAG-294	4940326	I/O	$5006 - Fade Settings	$5006	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-065	72	SYS-RA-DIAG-295	4940325	I/O	$5006 - Fade Settings	$5006	positive	Functional Requirement	All	
+SWE1-Diagnostics-066	73	SYS-RA-DIAG-298	4940322	I/O	$5005 - Balance Settings	$5005	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-067	74	SYS-RA-DIAG-299	4940321	I/O	$5005 - Balance Settings	$5005	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-068	75	SYS-RA-DIAG-302	4940318	I/O	$5004 - Treble Settings	$5004	positive	Functional Requirement	All	
+SWE1-Diagnostics-069	76	SYS-RA-DIAG-303	4940317	I/O	$5004 - Treble Settings	$5004	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-070	77	SYS-RA-DIAG-304	4940316	I/O	$5004 - Treble Settings	$5004	positive	Functional Requirement	All	
+SWE1-Diagnostics-071	78	SYS-RA-DIAG-304	4940316	I/O	$5004 - Treble Settings	$5004	negative	Functional Requirement	All	
+SWE1-Diagnostics-072	79	SYS-RA-DIAG-304	4940316	I/O	$5004 - Treble Settings	$5004	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-073	80	SYS-RA-DIAG-306	4940314	I/O	$5003 - Bass Settings	$5003	positive	Functional Requirement	All	
+SWE1-Diagnostics-074	81	SYS-RA-DIAG-306	4940314	I/O	$5003 - Bass Settings	$5003	negative	Functional Requirement	All	
+SWE1-Diagnostics-075	82	SYS-RA-DIAG-306	4940314	I/O	$5003 - Bass Settings	$5003	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-076	83	SYS-RA-DIAG-307	4940313	I/O	$5003 - Bass Settings	$5003	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-077	84	SYS-RA-DIAG-307	4940313	I/O	$5003 - Bass Settings	$5003	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-078	85	SYS-RA-DIAG-307	4940313	I/O	$5003 - Bass Settings	$5003	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-079	86	SYS-RA-DIAG-308	4940312	I/O	$5003 - Bass Settings	$5003	positive	Functional Requirement	All	
+SWE1-Diagnostics-080	87	SYS-RA-DIAG-308	4940312	I/O	$5003 - Bass Settings	$5003	negative	Functional Requirement	All	
+SWE1-Diagnostics-081	88	SYS-RA-DIAG-308	4940312	I/O	$5003 - Bass Settings	$5003	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-082	89	SYS-RA-DIAG-310	4940310	I/O	$5002 - Radio Volume	$5002	positive	Functional Requirement	All	
+SWE1-Diagnostics-083	90	SYS-RA-DIAG-310	4940310	I/O	$5002 - Radio Volume	$5002	negative	Functional Requirement	All	
+SWE1-Diagnostics-084	91	SYS-RA-DIAG-310	4940310	I/O	$5002 - Radio Volume	$5002	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-085	92	SYS-RA-DIAG-311	4940309	I/O	$5002 - Radio Volume	$5002	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-086	93	SYS-RA-DIAG-311	4940309	I/O	$5002 - Radio Volume	$5002	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-087	94	SYS-RA-DIAG-311	4940309	I/O	$5002 - Radio Volume	$5002	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-088	95	SYS-RA-DIAG-312	4940308	I/O	$5002 - Radio Volume	$5002	positive	Functional Requirement	All	
+SWE1-Diagnostics-089	96	SYS-RA-DIAG-312	4940308	I/O	$5002 - Radio Volume	$5002	negative	Functional Requirement	All	
+SWE1-Diagnostics-090	97	SYS-RA-DIAG-312	4940308	I/O	$5002 - Radio Volume	$5002	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-091	98	SYS-RA-DIAG-314	4940305	I/O	$5001 - Speaker Quadrant Selection	$5001	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-092	99	SYS-RA-DIAG-314	4940305	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-093	100	SYS-RA-DIAG-314	4940305	I/O	$5001 - Speaker Quadrant Selection	$5001	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-094	101	SYS-RA-DIAG-315	4940304	I/O	$5001 - Speaker Quadrant Selection	$5001	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-095	102	SYS-RA-DIAG-315	4940304	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-096	103	SYS-RA-DIAG-315	4940304	I/O	$5001 - Speaker Quadrant Selection	$5001	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-097	104	SYS-RA-DIAG-316	4940300	I/O	$5001 - Speaker Quadrant Selection	$5001	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-098	105	SYS-RA-DIAG-316	4940300	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-099	106	SYS-RA-DIAG-316	4940300	I/O	$5001 - Speaker Quadrant Selection	$5001	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-100	107	SYS-RA-DIAG-317	4940303	I/O	$5001 - Speaker Quadrant Selection	$5001	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-101	108	SYS-RA-DIAG-317	4940303	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-102	109	SYS-RA-DIAG-317	4940303	I/O	$5001 - Speaker Quadrant Selection	$5001	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-103	110	SYS-RA-DIAG-318	4940302	I/O	$5001 - Speaker Quadrant Selection	$5001	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-104	111	SYS-RA-DIAG-318	4940302	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-105	112	SYS-RA-DIAG-318	4940302	I/O	$5001 - Speaker Quadrant Selection	$5001	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-106	113	SYS-RA-DIAG-320	4940306	I/O	$5001 - Speaker Quadrant Selection	$5001	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-107	114	SYS-RA-DIAG-320	4940306	I/O	$5001 - Speaker Quadrant Selection	$5001	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-108	115	SYS-RA-DIAG-320	4940306	I/O	$5001 - Speaker Quadrant Selection	$5001	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-109	116	SYS-RA-DIAG-322	4940298	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-110	117	SYS-RA-DIAG-322	4940298	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-111	118	SYS-RA-DIAG-322	4940298	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-112	119	SYS-RA-DIAG-323	4940297	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-113	120	SYS-RA-DIAG-323	4940297	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-114	121	SYS-RA-DIAG-323	4940297	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-115	122	SYS-RA-DIAG-324	4940296	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-116	123	SYS-RA-DIAG-324	4940296	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-117	124	SYS-RA-DIAG-324	4940296	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-118	125	SYS-RA-DIAG-325	4940294	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-119	126	SYS-RA-DIAG-325	4940294	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-120	127	SYS-RA-DIAG-325	4940294	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-121	128	SYS-RA-DIAG-329	4940292	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-122	129	SYS-RA-DIAG-329	4940292	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-123	130	SYS-RA-DIAG-329	4940292	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-124	131	SYS-RA-DIAG-330	4940291	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-125	132	SYS-RA-DIAG-330	4940291	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-126	133	SYS-RA-DIAG-330	4940291	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-127	134	SYS-RA-DIAG-331	4940290	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-128	135	SYS-RA-DIAG-331	4940290	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-129	136	SYS-RA-DIAG-331	4940290	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-130	137	SYS-RA-DIAG-332	4940289	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-131	138	SYS-RA-DIAG-332	4940289	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-132	139	SYS-RA-DIAG-332	4940289	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-133	140	SYS-RA-DIAG-333	4940285	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-134	141	SYS-RA-DIAG-333	4940285	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-135	142	SYS-RA-DIAG-333	4940285	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-136	143	SYS-RA-DIAG-334	4940288	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-137	144	SYS-RA-DIAG-334	4940288	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-138	145	SYS-RA-DIAG-334	4940288	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-139	146	SYS-RA-DIAG-335	4940287	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-140	147	SYS-RA-DIAG-335	4940287	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-141	148	SYS-RA-DIAG-335	4940287	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-142	149	SYS-RA-DIAG-336	4940286	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	
+SWE1-Diagnostics-143	150	SYS-RA-DIAG-336	4940286	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	
+SWE1-Diagnostics-144	151	SYS-RA-DIAG-336	4940286	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-145	152	SYS-RA-DIAG-337	4940295	I/O	$5000 - Buzzer Control	$5000	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-146	153	SYS-RA-DIAG-337	4940295	I/O	$5000 - Buzzer Control	$5000	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-147	154	SYS-RA-DIAG-337	4940295	I/O	$5000 - Buzzer Control	$5000	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-148	155	SYS-RA-DIAG-360	4940485	Routine	$031B - Audio Measure AC	$031B	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-149	156	SYS-RA-DIAG-360	4940485	Routine	$031B - Audio Measure AC	$031B	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-150	157	SYS-RA-DIAG-360	4940485	Routine	$031B - Audio Measure AC	$031B	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-151	158	SYS-RA-DIAG-363	4940473	Routine	$0312 - AV Signal Detection	$0312	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-152	159	SYS-RA-DIAG-363	4940473	Routine	$0312 - AV Signal Detection	$0312	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-153	160	SYS-RA-DIAG-363	4940473	Routine	$0312 - AV Signal Detection	$0312	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-154	161	SYS-RA-DIAG-367	4940482	Routine	$0312 - AV Signal Detection	$0312	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-155	162	SYS-RA-DIAG-369	4940477	Routine	$0312 - AV Signal Detection	$0312	positive	Functional Requirement	All	Accepted
+SWE1-Diagnostics-156	163	SYS-RA-DIAG-369	4940477	Routine	$0312 - AV Signal Detection	$0312	negative	Functional Requirement	All	Accepted
+SWE1-Diagnostics-157	164	SYS-RA-DIAG-369	4940477	Routine	$0312 - AV Signal Detection	$0312	unsupported	Functional Requirement	All	Accepted
+SWE1-Diagnostics-158	165	SYS-RA-DIAG-370	4940474	Routine	$0312 - AV Signal Detection	$0312	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-159	166	SYS-RA-DIAG-370	4940474	Routine	$0312 - AV Signal Detection	$0312	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-160	167	SYS-RA-DIAG-371	4940476	Routine	$0312 - AV Signal Detection	$0312	positive	Functional Requirement	All	
+SWE1-Diagnostics-161	168	SYS-RA-DIAG-104	4939836	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-162	169	SYS-RA-DIAG-104	4939836	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-163	170	SYS-RA-DIAG-105	4939838	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-164	171	SYS-RA-DIAG-105	4939838	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-165	172	SYS-RA-DIAG-106	4939835	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-166	173	SYS-RA-DIAG-106	4939835	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-167	174	SYS-RA-DIAG-107	4939837	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-168	175	SYS-RA-DIAG-107	4939837	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-169	176	SYS-RA-DIAG-108	4939834	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-170	177	SYS-RA-DIAG-108	4939834	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-171	178	SYS-RA-DIAG-109	4939827	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-172	179	SYS-RA-DIAG-109	4939827	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-173	180	SYS-RA-DIAG-110	4939833	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-174	181	SYS-RA-DIAG-110	4939833	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-175	182	SYS-RA-DIAG-111	4939830	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-176	183	SYS-RA-DIAG-111	4939830	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-177	184	SYS-RA-DIAG-112	4939832	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-178	185	SYS-RA-DIAG-112	4939832	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-179	186	SYS-RA-DIAG-113	4939829	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-180	187	SYS-RA-DIAG-113	4939829	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-181	188	SYS-RA-DIAG-114	4939831	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-182	189	SYS-RA-DIAG-114	4939831	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-183	190	SYS-RA-DIAG-115	4939828	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-184	191	SYS-RA-DIAG-115	4939828	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-185	192	SYS-RA-DIAG-122	4939823	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-186	193	SYS-RA-DIAG-122	4939823	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-187	194	SYS-RA-DIAG-123	4939819	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-188	195	SYS-RA-DIAG-123	4939819	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-189	196	SYS-RA-DIAG-124	4939821	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-190	197	SYS-RA-DIAG-124	4939821	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-191	198	SYS-RA-DIAG-125	4939820	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-192	199	SYS-RA-DIAG-125	4939820	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-193	200	SYS-RA-DIAG-126	4939811	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-194	201	SYS-RA-DIAG-126	4939811	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-195	202	SYS-RA-DIAG-127	4939810	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-196	203	SYS-RA-DIAG-127	4939810	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-197	204	SYS-RA-DIAG-128	4939818	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-198	205	SYS-RA-DIAG-128	4939818	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-199	206	SYS-RA-DIAG-129	4939817	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-200	207	SYS-RA-DIAG-129	4939817	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-201	208	SYS-RA-DIAG-130	4939816	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-202	209	SYS-RA-DIAG-130	4939816	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-203	210	SYS-RA-DIAG-131	4939815	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-204	211	SYS-RA-DIAG-131	4939815	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-205	212	SYS-RA-DIAG-132	4939814	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-206	213	SYS-RA-DIAG-132	4939814	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-207	214	SYS-RA-DIAG-133	4939813	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-208	215	SYS-RA-DIAG-133	4939813	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-209	216	SYS-RA-DIAG-134	4939812	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-210	217	SYS-RA-DIAG-134	4939812	R/W	$2841 - X65 Signal Quality Diagnostics (Read)	$2841	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-211	218	SYS-RA-DIAG-138	4939803	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-212	219	SYS-RA-DIAG-138	4939803	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-213	220	SYS-RA-DIAG-139	4939800	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-214	221	SYS-RA-DIAG-139	4939800	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-215	222	SYS-RA-DIAG-140	4939802	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-216	223	SYS-RA-DIAG-140	4939802	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-217	224	SYS-RA-DIAG-142	4939804	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-218	225	SYS-RA-DIAG-142	4939804	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-219	226	SYS-RA-DIAG-143	4939801	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-220	227	SYS-RA-DIAG-143	4939801	R/W	$2840 - X65 Antenna Status Diagnostics (Read)	$2840	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-221	228	SYS-RA-DIAG-376	4940462	Routine	$0309 - X65 MPFA Select Routine	$0309	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-222	229	SYS-RA-DIAG-376	4940462	Routine	$0309 - X65 MPFA Select Routine	$0309	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-223	230	SYS-RA-DIAG-377	4940464	Routine	$0309 - X65 MPFA Select Routine	$0309	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-224	231	SYS-RA-DIAG-377	4940464	Routine	$0309 - X65 MPFA Select Routine	$0309	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-225	232	SYS-RA-DIAG-379	4940466	Routine	$0309 - X65 MPFA Select Routine	$0309	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-226	233	SYS-RA-DIAG-380	4940465	Routine	$0309 - X65 MPFA Select Routine	$0309	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-227	234	SYS-RA-DIAG-385	4940452	Routine	$0307 - X65 MPFA Validate Routine	$0307	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-228	235	SYS-RA-DIAG-386	4940451	Routine	$0307 - X65 MPFA Validate Routine	$0307	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-229	236	SYS-RA-DIAG-387	4940453	Routine	$0307 - X65 MPFA Validate Routine	$0307	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-230	237	SYS-RA-DIAG-390	4940455	Routine	$0307 - X65 MPFA Validate Routine	$0307	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-231	238	SYS-RA-DIAG-391	4940454	Routine	$0307 - X65 MPFA Validate Routine	$0307	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-232	239	SYS-RA-DIAG-051	4939896	R/W	$2848 - X65 Package Indication Select (Read)	$2848	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-233	240	SYS-RA-DIAG-051	4939896	R/W	$2848 - X65 Package Indication Select (Read)	$2848	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-234	241	SYS-RA-DIAG-051	4939896	R/W	$2848 - X65 Package Indication Select (Read)	$2848	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-235	242	SYS-RA-DIAG-054	4939890	R/W	$2847 - X65 Index ID (Read/Write)	$2847	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-236	243	SYS-RA-DIAG-054	4939890	R/W	$2847 - X65 Index ID (Read/Write)	$2847	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-237	244	SYS-RA-DIAG-056	4939892	R/W	$2847 - X65 Index ID (Read/Write)	$2847	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-238	245	SYS-RA-DIAG-057	4939891	R/W	$2847 - X65 Index ID (Read/Write)	$2847	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-239	246	SYS-RA-DIAG-060	4939885	R/W	$2846 - X65 Package Indication Validate (Read)	$2846	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-240	247	SYS-RA-DIAG-060	4939885	R/W	$2846 - X65 Package Indication Validate (Read)	$2846	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-241	248	SYS-RA-DIAG-060	4939885	R/W	$2846 - X65 Package Indication Validate (Read)	$2846	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-242	249	SYS-RA-DIAG-064	4939881	R/W	$2845 - X65 Event Indication (Read)	$2845	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-243	250	SYS-RA-DIAG-064	4939881	R/W	$2845 - X65 Event Indication (Read)	$2845	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-244	251	SYS-RA-DIAG-064	4939881	R/W	$2845 - X65 Event Indication (Read)	$2845	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-245	252	SYS-RA-DIAG-067	4939873	R/W	$2844 - X65 Subscription Status (Read)	$2844	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-246	253	SYS-RA-DIAG-067	4939873	R/W	$2844 - X65 Subscription Status (Read)	$2844	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-247	254	SYS-RA-DIAG-067	4939873	R/W	$2844 - X65 Subscription Status (Read)	$2844	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-248	255	SYS-RA-DIAG-068	4939872	R/W	$2844 - X65 Subscription Status (Read)	$2844	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-249	256	SYS-RA-DIAG-068	4939872	R/W	$2844 - X65 Subscription Status (Read)	$2844	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-250	257	SYS-RA-DIAG-068	4939872	R/W	$2844 - X65 Subscription Status (Read)	$2844	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-251	258	SYS-RA-DIAG-069	4939871	R/W	$2844 - X65 Subscription Status (Read)	$2844	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-252	259	SYS-RA-DIAG-069	4939871	R/W	$2844 - X65 Subscription Status (Read)	$2844	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-253	260	SYS-RA-DIAG-069	4939871	R/W	$2844 - X65 Subscription Status (Read)	$2844	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-254	261	SYS-RA-DIAG-070	4939874	R/W	$2844 - X65 Subscription Status (Read)	$2844	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-255	262	SYS-RA-DIAG-070	4939874	R/W	$2844 - X65 Subscription Status (Read)	$2844	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-256	263	SYS-RA-DIAG-070	4939874	R/W	$2844 - X65 Subscription Status (Read)	$2844	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-257	264	SYS-RA-DIAG-071	4939870	R/W	$2844 - X65 Subscription Status (Read)	$2844	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-258	265	SYS-RA-DIAG-071	4939870	R/W	$2844 - X65 Subscription Status (Read)	$2844	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-259	266	SYS-RA-DIAG-071	4939870	R/W	$2844 - X65 Subscription Status (Read)	$2844	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-260	267	SYS-RA-DIAG-072	4939868	R/W	$2844 - X65 Subscription Status (Read)	$2844	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-261	268	SYS-RA-DIAG-072	4939868	R/W	$2844 - X65 Subscription Status (Read)	$2844	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-262	269	SYS-RA-DIAG-072	4939868	R/W	$2844 - X65 Subscription Status (Read)	$2844	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-263	270	SYS-RA-DIAG-073	4939875	R/W	$2844 - X65 Subscription Status (Read)	$2844	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-264	271	SYS-RA-DIAG-073	4939875	R/W	$2844 - X65 Subscription Status (Read)	$2844	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-265	272	SYS-RA-DIAG-073	4939875	R/W	$2844 - X65 Subscription Status (Read)	$2844	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-266	273	SYS-RA-DIAG-076	4939869	R/W	$2844 - X65 Subscription Status (Read)	$2844	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-267	274	SYS-RA-DIAG-076	4939869	R/W	$2844 - X65 Subscription Status (Read)	$2844	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-268	275	SYS-RA-DIAG-076	4939869	R/W	$2844 - X65 Subscription Status (Read)	$2844	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-269	276	SYS-RA-DIAG-078	4939853	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-270	277	SYS-RA-DIAG-078	4939853	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-271	278	SYS-RA-DIAG-078	4939853	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-272	279	SYS-RA-DIAG-079	4939852	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-273	280	SYS-RA-DIAG-079	4939852	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-274	281	SYS-RA-DIAG-079	4939852	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-275	282	SYS-RA-DIAG-080	4939854	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-276	283	SYS-RA-DIAG-080	4939854	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-277	284	SYS-RA-DIAG-080	4939854	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-278	285	SYS-RA-DIAG-081	4939862	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-279	286	SYS-RA-DIAG-081	4939862	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-280	287	SYS-RA-DIAG-081	4939862	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-281	288	SYS-RA-DIAG-082	4939861	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-282	289	SYS-RA-DIAG-082	4939861	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-283	290	SYS-RA-DIAG-082	4939861	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-284	291	SYS-RA-DIAG-083	4939863	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-285	292	SYS-RA-DIAG-083	4939863	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-286	293	SYS-RA-DIAG-083	4939863	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-287	294	SYS-RA-DIAG-084	4939845	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-288	295	SYS-RA-DIAG-084	4939845	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-289	296	SYS-RA-DIAG-084	4939845	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-290	297	SYS-RA-DIAG-085	4939844	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-291	298	SYS-RA-DIAG-085	4939844	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-292	299	SYS-RA-DIAG-085	4939844	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-293	300	SYS-RA-DIAG-086	4939843	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-294	301	SYS-RA-DIAG-086	4939843	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-295	302	SYS-RA-DIAG-086	4939843	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-296	303	SYS-RA-DIAG-087	4939848	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-297	304	SYS-RA-DIAG-087	4939848	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-298	305	SYS-RA-DIAG-087	4939848	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-299	306	SYS-RA-DIAG-088	4939847	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-300	307	SYS-RA-DIAG-088	4939847	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-301	308	SYS-RA-DIAG-088	4939847	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-302	309	SYS-RA-DIAG-089	4939846	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-303	310	SYS-RA-DIAG-089	4939846	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-304	311	SYS-RA-DIAG-089	4939846	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-305	312	SYS-RA-DIAG-090	4939850	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-306	313	SYS-RA-DIAG-090	4939850	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-307	314	SYS-RA-DIAG-090	4939850	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-308	315	SYS-RA-DIAG-091	4939849	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-309	316	SYS-RA-DIAG-091	4939849	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-310	317	SYS-RA-DIAG-091	4939849	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-311	318	SYS-RA-DIAG-092	4939851	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-312	319	SYS-RA-DIAG-092	4939851	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-313	320	SYS-RA-DIAG-092	4939851	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-314	321	SYS-RA-DIAG-093	4939859	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-315	322	SYS-RA-DIAG-093	4939859	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-316	323	SYS-RA-DIAG-093	4939859	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-317	324	SYS-RA-DIAG-094	4939858	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-318	325	SYS-RA-DIAG-094	4939858	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-319	326	SYS-RA-DIAG-094	4939858	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-320	327	SYS-RA-DIAG-095	4939860	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-321	328	SYS-RA-DIAG-095	4939860	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-322	329	SYS-RA-DIAG-095	4939860	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-323	330	SYS-RA-DIAG-097	4939864	R/W	$2843 - X65 Module Version (Read)	$2843	positive	Functional Requirement	NAFTA	
+SWE1-Diagnostics-324	331	SYS-RA-DIAG-097	4939864	R/W	$2843 - X65 Module Version (Read)	$2843	negative	Functional Requirement	NAFTA	
+SWE1-Diagnostics-325	332	SYS-RA-DIAG-097	4939864	R/W	$2843 - X65 Module Version (Read)	$2843	unsupported	Functional Requirement	NAFTA	
+SWE1-Diagnostics-326	333	SYS-RA-DIAG-103	4939839	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-327	334	SYS-RA-DIAG-103	4939839	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	negative	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-328	335	SYS-RA-DIAG-103	4939839	R/W	$2842 - X65 Overlay Signal Quality Diagnostics (Read)	$2842	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-329	336	SYS-RA-DIAG-043	4939921	R/W	$2870 - Media Hub Config (Read)	$2870	positive	Functional Requirement	All	
+SWE1-Diagnostics-330	337	SYS-RA-DIAG-043	4939921	R/W	$2870 - Media Hub Config (Read)	$2870	negative	Functional Requirement	All	
+SWE1-Diagnostics-331	338	SYS-RA-DIAG-045	4939919	R/W	$2870 - Media Hub Config (Read)	$2870	positive	Functional Requirement	All	
+SWE1-Diagnostics-332	339	SYS-RA-DIAG-045	4939919	R/W	$2870 - Media Hub Config (Read)	$2870	negative	Functional Requirement	All	
+SWE1-Diagnostics-333	340	SYS-RA-DIAG-046	4939922	R/W	$2870 - Media Hub Config (Read)	$2870	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-334	341	SYS-RA-DIAG-186	4939688	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-335	342	SYS-RA-DIAG-186	4939688	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-336	343	SYS-RA-DIAG-261	4940358	I/O	$5100 - Video Input	$5100	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-337	344	SYS-RA-DIAG-262	4940359	I/O	$5100 - Video Input	$5100	positive	Functional Requirement	All	
+SWE1-Diagnostics-338	345	SYS-RA-DIAG-262	4940359	I/O	$5100 - Video Input	$5100	negative	Functional Requirement	All	
+SWE1-Diagnostics-339	346	SYS-RA-DIAG-264	4940355	I/O	$500D - Video Input Settings	$500D	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-340-001	347	SYS-RA-DIAG-264	4940355	I/O	$500D - Video Input Settings	$500D	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-340-002	348	SYS-RA-DIAG-188	4939684	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	positive	Functional Requirement	All	
+SWE1-Diagnostics-341	349	SYS-RA-DIAG-188	4939684	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	negative	Functional Requirement	All	
+SWE1-Diagnostics-342	350	SYS-RA-DIAG-192	4939687	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	positive	Functional Requirement	All	
+SWE1-Diagnostics-343	351	SYS-RA-DIAG-192	4939687	R/W	$280C - ECU Current Internal Settings (Read/Write)	$280C	negative	Functional Requirement	All	
+SWE1-Diagnostics-344	352	SYS-RA-DIAG-214	4939651	R/W	$1821 - Steering Wheel Module Interface (Read)	$1821	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-345	353	SYS-RA-DIAG-214	4939651	R/W	$1821 - Steering Wheel Module Interface (Read)	$1821	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-346	354	SYS-RA-DIAG-373	4940469	Routine	$030A - Clear Key Sense PIN	$030A	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-347	355	SYS-RA-DIAG-375	4940463	Routine	$0309 - X65 MPFA Select Routine	$0309	positive	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-348	356	SYS-RA-DIAG-375	4940463	Routine	$0309 - X65 MPFA Select Routine	$0309	unsupported	Functional Requirement	NAFTA	Need Rework
+SWE1-Diagnostics-349	357	SYS-RA-DIAG-154	4939727	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-350	358	SYS-RA-DIAG-154	4939727	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-351	359	SYS-RA-DIAG-154	4939727	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-352	360	SYS-RA-DIAG-155	4939720	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-353	361	SYS-RA-DIAG-155	4939720	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-354	362	SYS-RA-DIAG-155	4939720	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-355	363	SYS-RA-DIAG-156	4939719	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-356	364	SYS-RA-DIAG-156	4939719	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-357	365	SYS-RA-DIAG-156	4939719	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-358	366	SYS-RA-DIAG-157	4939718	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-359	367	SYS-RA-DIAG-157	4939718	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-360	368	SYS-RA-DIAG-157	4939718	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-361	369	SYS-RA-DIAG-158	4939724	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-362	370	SYS-RA-DIAG-158	4939724	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-363	371	SYS-RA-DIAG-158	4939724	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-364	372	SYS-RA-DIAG-159	4939728	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-365	373	SYS-RA-DIAG-159	4939728	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-366	374	SYS-RA-DIAG-159	4939728	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-367	375	SYS-RA-DIAG-160	4939722	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-368	376	SYS-RA-DIAG-160	4939722	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-369	377	SYS-RA-DIAG-160	4939722	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-370	378	SYS-RA-DIAG-161	4939721	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-371	379	SYS-RA-DIAG-161	4939721	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-372	380	SYS-RA-DIAG-161	4939721	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-373	381	SYS-RA-DIAG-162	4939725	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-374	382	SYS-RA-DIAG-162	4939725	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-375	383	SYS-RA-DIAG-162	4939725	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-376	384	SYS-RA-DIAG-163	4939723	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-377	385	SYS-RA-DIAG-163	4939723	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-378	386	SYS-RA-DIAG-163	4939723	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-379	387	SYS-RA-DIAG-165	4939726	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-380	388	SYS-RA-DIAG-165	4939726	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-381	389	SYS-RA-DIAG-165	4939726	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-382	390	SYS-RA-DIAG-166	4939715	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-383	391	SYS-RA-DIAG-238	4939626	R/W	$1801 - Screen Test Pattern (Read/Write)	$1801	positive	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-384	392	SYS-RA-DIAG-238	4939626	R/W	$1801 - Screen Test Pattern (Read/Write)	$1801	negative	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-385	393	SYS-RA-DIAG-238	4939626	R/W	$1801 - Screen Test Pattern (Read/Write)	$1801	unsupported	Functional Requirement	All	Need Rework
+SWE1-Diagnostics-386	394	SYS-RA-DIAG-215	4939650	R/W	$1821 - Steering Wheel Module Interface (Read)	$1821	positive	Functional Requirement	All	
+SWE1-Diagnostics-387	395	SYS-RA-DIAG-215	4939650	R/W	$1821 - Steering Wheel Module Interface (Read)	$1821	negative	Functional Requirement	All	
+SWE1-Diagnostics-388	396	SYS-RA-DIAG-215	4939650	R/W	$1821 - Steering Wheel Module Interface (Read)	$1821	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-389	397	SYS-RA-DIAG-167	4939716	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-390	398	SYS-RA-DIAG-167	4939716	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-391	399	SYS-RA-DIAG-167	4939716	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
+SWE1-Diagnostics-392	400	SYS-RA-DIAG-168	4939717	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	positive	Functional Requirement	All	
+SWE1-Diagnostics-393	401	SYS-RA-DIAG-168	4939717	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	negative	Functional Requirement	All	
+SWE1-Diagnostics-394	402	SYS-RA-DIAG-168	4939717	R/W	$2812 - GPS Signal Data 1 (Read)	$2812	unsupported	Functional Requirement	All	
