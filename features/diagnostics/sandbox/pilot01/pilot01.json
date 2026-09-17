@@ -12,7 +12,7 @@
       "req_id": "SWE1-Diagnostics-001",
       "test_set": "Camera Brightness",
       "tc_title": "The MDTDiagService shall interpret the received DID 0x283F request and extract the brightness level parameter. (write $283F, SID 2E, valid brightness)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The rearview camera display is active on the radio screen",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted",
       "input_test_data": "NA",
       "test_procedure": "1. Read the current rearview camera brightness level\n   $ 22 28 3F\n2. Record the reported brightness level as Brightness_initial\n3. Write a new brightness level within the supported range\n   $ 2E 28 3F <brightness byte>\n4. Read the rearview camera brightness level again\n   $ 22 28 3F",
       "expected_result": "1. The positive response 62 28 3F <brightness byte> is received\n2. Brightness_initial is recorded\n3. The positive response 6E 28 3F is received\n4. The positive response 62 28 3F <brightness byte> is received, and the reported brightness byte is the value\nwritten in step 3",
@@ -22,14 +22,19 @@
       "split_flag": false,
       "split_reason": "",
       "remarks": "Harman Scope: Need Rework",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-002",
       "req_id": "SWE1-Diagnostics-002",
       "test_set": "Camera Brightness",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. (write $283F, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The rearview camera brightness level is recorded as Brightness_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send a write request for DID $283F with an invalid message length\n   $ 2E 28 3F\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
       "expected_result": "1. The negative response 7F 2E 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The reported brightness level equals Brightness_initial",
@@ -39,14 +44,20 @@
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為長度軸，區分 token 為 NRC 13",
       "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
+        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-003",
       "req_id": "SWE1-Diagnostics-002",
       "test_set": "Camera Brightness",
       "tc_title": "The SW shall validate the received diagnostic request format and parameters. (write $283F, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The rearview camera brightness level is recorded as Brightness_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send a write request for DID $283F with a brightness value outside the supported range\n   $ 2E 28 3F <out-of-range brightness byte>\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
       "expected_result": "1. The negative response 7F 2E 31 (requestOutOfRange) is received\n2. The reported brightness level equals Brightness_initial",
@@ -56,14 +67,20 @@
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：同 NR1L-DIAG-002 之來源列，本條為值域軸，區分 token 為 NRC 31",
       "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
+        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-004",
       "req_id": "SWE1-Diagnostics-003",
       "test_set": "Camera Brightness",
       "tc_title": "SW shall ensure no internal state or functionality is affected by unsupported service requests and shall return the negative response - Service Not Supported. (unsupported SID, NRC 11 serviceNotSupported)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The rearview camera brightness level is recorded as Brightness_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. The rearview camera brightness level is recorded as Brightness_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send a diagnostic request carrying a service identifier that the radio does not support\n   $ <unsupported SID> 28 3F\n2. Read the rearview camera brightness level\n   $ 22 28 3F",
       "expected_result": "1. The negative response 7F <unsupported SID> 11 (serviceNotSupported) is received\n2. The reported brightness level equals Brightness_initial",
@@ -73,14 +90,20 @@
       "split_flag": false,
       "split_reason": "",
       "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
+        "PC-4: R-11(f) baseline 前例（IN §8.7.5(f)）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-005",
       "req_id": "SWE1-Diagnostics-004",
       "test_set": "Camera Brightness",
       "tc_title": "SW shall support a diagnopstic request to read the brightness level of the Rear View Camera using DID 0x283F. (read $283F, SID 22)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The rearview camera display is active on the radio screen",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector",
       "input_test_data": "NA",
       "test_procedure": "1. Read the rearview camera brightness level\n   $ 22 28 3F",
       "expected_result": "1. The positive response 62 28 3F <brightness byte> is received, and the reported brightness byte is the level\ncurrently applied to the rearview camera display on the radio screen",
@@ -90,14 +113,18 @@
       "split_flag": false,
       "split_reason": "",
       "remarks": "",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-006",
       "req_id": "SWE1-Diagnostics-112",
       "test_set": "Buzzer Control",
       "tc_title": "The DiagService shall interpret the received 0x2F (InputOutputControlByIdentifier) request for DID 0x5000 and extract the tone output level / volume reference parameter. (I-O $5000, SID 2F, level tracks radio volume)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. No specific tone output level is specified in the request",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. No specific tone output level is specified in the request",
       "input_test_data": "NA",
       "test_procedure": "1. PENDING: DR-DIAG-4 $5000 controlOptionRecord encoding for tone selection\n2. Set the radio volume to a mid-range value and record the tone output level as Tone_initial\n3. Increase the radio volume\n4. Read the tone output level and record as Tone_after",
       "expected_result": "1. PENDING: DR-DIAG-4 $5000 controlOptionRecord encoding for tone selection\n2. Tone_initial is recorded\n3. The radio volume is increased\n4. Tone_after is greater than Tone_initial",
@@ -107,14 +134,19 @@
       "split_flag": false,
       "split_reason": "",
       "remarks": "SID per 037 SWE1-Diagnostics-112",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4940297（Unless a specific output level is specified…）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-007",
       "req_id": "SWE1-Diagnostics-113",
       "test_set": "Buzzer Control",
       "tc_title": "The SW shall validate the received DID 0x5000 write request format and parameter values. (I-O $5000, NRC 13 incorrectMessageLengthOrInvalidFormat)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The current tone output state is recorded as Tone_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The current tone output state is recorded as Tone_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send an InputOutputControlByIdentifier request for DID $5000 with an invalid message length\n   $ 2F 50 00\n2. Read the current tone output state",
       "expected_result": "1. The negative response 7F 2F 13 (incorrectMessageLengthOrInvalidFormat) is received\n2. The tone output state equals Tone_initial",
@@ -124,14 +156,19 @@
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態，本條為長度軸，區分 token 為 NRC 13",
       "remarks": "SID per 037 SWE1-Diagnostics-112; NRC per ISO 14229-1 (037 unspecified)",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-008",
       "req_id": "SWE1-Diagnostics-113",
       "test_set": "Buzzer Control",
       "tc_title": "The SW shall validate the received DID 0x5000 write request format and parameter values. (I-O $5000, NRC 31 requestOutOfRange)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The current tone output state is recorded as Tone_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The current tone output state is recorded as Tone_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send an InputOutputControlByIdentifier request for DID $5000 with a parameter value outside the supported range\n   $ 2F 50 00 <out-of-range controlOptionRecord>\n2. Read the current tone output state",
       "expected_result": "1. The negative response 7F 2F 31 (requestOutOfRange) is received\n2. The tone output state equals Tone_initial",
@@ -141,48 +178,68 @@
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：同 NR1L-DIAG-007 之來源列，本條為值域軸，區分 token 為 NRC 31",
       "remarks": "SID per 037 SWE1-Diagnostics-112; NRC per ISO 14229-1 (037 unspecified)",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: R-11(f) baseline 前例（IN §8.7.5(f)）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-009",
       "req_id": "SWE1-Diagnostics-151",
       "test_set": "AV Signal Detection",
       "tc_title": "The DiagService shall interpret the received 0x31 (RoutineControl) request for DID 0x0312 and extract the channel input selection parameter. (routine $0312, SID 31, startRoutine)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. An audio test tone of 1 kHz at 0 dB is applied to the channel input under test\n5. The video test pattern \"Screen 3: 10 step\" is applied to the channel input under test",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. An audio test tone of 1 kHz at 0 dB is applied to the channel input under test\n5. The video test pattern \"Screen 3: 10 step\" is applied to the channel input under test",
       "input_test_data": "NA",
       "test_procedure": "1. Start the AV signal detection routine on the channel input under test\n   $ 31 01 03 12 <AV Channel Number>\n2. Request the results of the AV signal detection routine\n   $ 31 03 03 12",
       "expected_result": "1. The positive response 71 01 03 12 is received\n2. The positive response 71 03 03 12 <routine results> is received, and the results indicate that a signal was\ndetected on the channel input under test",
-      "specification_reference": "CFTS004-4940473\nCFTS004-4940478\nCFTS004-4940477\nCFTS004-4940474",
+      "specification_reference": "CFTS004-4940473\nCFTS004-4940474\nCFTS004-4940477\nCFTS004-4940478",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P0",
       "split_flag": false,
       "split_reason": "",
       "remarks": "Harman Scope: Need Rework; SID per 037 SWE1-Diagnostics-151",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
+        "PC-4: CFTS004-4940477（The expected audio test tones shall be 1 kHz and 0 dB）",
+        "PC-5: CFTS004-4940478（The expected video test pattern shall be the \"Screen 3: 10 step\" screen）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-010",
       "req_id": "SWE1-Diagnostics-154",
       "test_set": "AV Signal Detection",
       "tc_title": "Audio - Return detection result indication for Video, Audio Left, and Audio Right signals using DID $0312 (routine $0312, results for three signals)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. An audio test tone of 1 kHz at 0 dB is applied to the Audio Left input of the channel under test\n5. No signal is applied to the Audio Right input of the channel under test\n6. The video test pattern \"Screen 3: 10 step\" is applied to the Video input of the channel under test",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. Security access 0x27 has been granted\n4. An audio test tone of 1 kHz at 0 dB is applied to the Audio Left input of the channel under test\n5. No signal is applied to the Audio Right input of the channel under test\n6. The video test pattern \"Screen 3: 10 step\" is applied to the Video input of the channel under test",
       "input_test_data": "NA",
       "test_procedure": "1. Start the AV signal detection routine on the channel input under test\n   $ 31 01 03 12 <AV Channel Number>\n2. Request the results of the AV signal detection routine\n   $ 31 03 03 12",
       "expected_result": "1. The positive response 71 01 03 12 is received\n2. The positive response 71 03 03 12 <routine results> is received, and the results indicate:\n   a. Video\n      - a signal was detected\n   b. Audio Left\n      - a signal was detected\n   c. Audio Right\n      - a signal was not detected",
-      "specification_reference": "CFTS004-4940482\nCFTS004-4940478\nCFTS004-4940477",
+      "specification_reference": "CFTS004-4940477\nCFTS004-4940478\nCFTS004-4940482",
       "design_method": "決策表 (Decision Table Testing)",
       "priority": "P0",
       "split_flag": false,
       "split_reason": "037 Title 述 NRC 31，其內容屬 SYS-RA-DIAG-371（037 row 167，不在 pilot 範圍）；本 TC 依 Description 與本列所掛之 SYS-RA-DIAG-367 產出（IN §8.6：來源規格勝出）",
       "remarks": "Harman Scope: Need Rework",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: SYSAD §4.5 Session & Security Assumptions（Security access (0x27) is required for: Write DID / Routine execution / DTC clearing）",
+        "PC-4: CFTS004-4940477",
+        "PC-5: CFTS004-4940482（…whether a signal was detected or not supported）",
+        "PC-6: CFTS004-4940478"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-011",
       "req_id": "SWE1-Diagnostics-272",
       "test_set": "SXM Module Version",
       "tc_title": "The Diag Service shall interpret the received ReadDataByIdentifier (0x22) request for DID 0x2843. (read $2843, SID 22, SXI Rev Major)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The Sirius XM chipset is powered and responding",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the X65 module version information\n   $ 22 28 43",
       "expected_result": "1. The positive response 62 28 43 <module version record> is received, and the record contains the SXI Rev Major\nreported by the Sirius XM chipset",
@@ -192,14 +249,19 @@
       "split_flag": false,
       "split_reason": "",
       "remarks": "",
-      "vehicle_model": "NAFTA"
+      "vehicle_model": "NAFTA",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939852（…as reported by the Sirius XM chipset）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-012",
       "req_id": "SWE1-Diagnostics-189",
       "test_set": "SXM Signal Quality",
       "tc_title": "DiagService shall validate the DID requested and if it is valid it shall pass to SirusXM to get the reponse. (read $2841, SID 22, RSErrs Terr Symbol)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. The Sirius XM chipset is powered and responding",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. The Sirius XM chipset is powered and responding",
       "input_test_data": "NA",
       "test_procedure": "1. Read the X65 signal quality diagnostics\n   $ 22 28 41",
       "expected_result": "1. The positive response 62 28 41 <signal quality record> is received, and the record contains the RSErrs Terr\nSymbol reported by the Sirius XM chipset",
@@ -209,14 +271,19 @@
       "split_flag": false,
       "split_reason": "",
       "remarks": "037 VM blank; procedure derived from Description + CFTS004",
-      "vehicle_model": "NAFTA"
+      "vehicle_model": "NAFTA",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4939821（…as reported by the Sirius XM chipset）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-013",
       "req_id": "SWE1-Diagnostics-340-001",
       "test_set": "Video Input",
       "tc_title": "If the new input source is not compatible with the radio, the radio shall return a \"Previous Out of Range\" negative response. (I-O $500D, NRC 31 Request Out of Range)",
-      "pre_conditions": "1. The vehicle is in Ignition ON state\n2. The diagnostic tool is connected to the OBD-II connector\n3. PENDING: DR-DIAG-3 diagnostic session prerequisite\n4. A valid video input is active and recorded as Source_initial",
+      "pre_conditions": "1. The ECU is in the default diagnostic session\n2. The diagnostic tool is connected to the OBD-II diagnostic connector\n3. A valid video input is active and recorded as Source_initial",
       "input_test_data": "NA",
       "test_procedure": "1. Send a command to activate a video input that is not compatible with the radio\n   $ 2F 50 0D <incompatible video input>\n2. Read the currently active video input",
       "expected_result": "1. The negative response 7F 2F 31 (Request Out of Range) is received\n2. The currently active video input equals Source_initial",
@@ -226,7 +293,12 @@
       "split_flag": false,
       "split_reason": "037 書 \"Previous Out of Range\"，CFTS004-4940356 書 \"Request Out of Range\", code $31；依 IN §8.6 取 CFTS004 用字，NRC 值 31 不變",
       "remarks": "Harman Scope: Need Rework; SID per 037 SWE1-Diagnostics-340-001",
-      "vehicle_model": "All"
+      "vehicle_model": "All",
+      "pc_sources": [
+        "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
+        "PC-2: SYSAD §4.5 Hardware Dependencies（Diagnostic connector (OBD-II)）",
+        "PC-3: CFTS004-4940355（…the radio shall change to the new input contained in the command）"
+      ]
     },
     {
       "tc_id": "NR1L-DIAG-014",

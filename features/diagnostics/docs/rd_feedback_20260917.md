@@ -176,3 +176,48 @@ CFTS004 其餘三處（r267、r372、`SYS-RA-DIAG-270`）一律書 `"Request Out
 
 **測試側處置**：依來源規格勝出原則取 CFTS004 用字與 `$31`。
 **建議 037 下一版更正為 `"Request Out of Range"`。**
+
+---
+
+## FB-DIAG-i　`SWE1-Diagnostics-331`／`-332` 之標題與所掛來源不符
+
+| 037 列 | SWE-Requirement ID | Source Requirement ID | CFTS004 列 | ObjectID | CFTS004 原文 |
+|---:|---|---|---:|---|---|
+| 336 | `SWE1-Diagnostics-329` | `SYS-RA-DIAG-043` | 44 | `4939921` | This DID shall report the current number of **enumerated USB devices, excluding Hubs and SD Card readers** |
+| 338 | `SWE1-Diagnostics-331` | `SYS-RA-DIAG-045` | 46 | `4939919` | This DID shall report the current number of **detected USB Hub devices** |
+
+兩列之 037 Title 幾乎相同：
+
+- row 336：`USB - Report current number of connected USB devices the current number of enumerated USB devices, excluding Hubs and SD Card`
+- row 338：`USB - Report current number of connected USB devices via DID 2870`
+
+row 338 之 Title 與 Description 皆未提及 **Hub**，而其所掛之 `SYS-RA-DIAG-045` 正是 Hub 數。
+其 negative 對應列（row 337 `-330`／row 339 `-332`）之 Title 亦逐字相同，無法由 Title 區辨所驗對象。
+
+**測試側處置**：依來源規格勝出原則，row 338 產為「detected USB Hub devices」之測試用例。
+**建議修正 row 338／339 之 Title，使其標明 USB Hub。**
+
+---
+
+## FB-DIAG-j　`SWE1-Diagnostics-333` 將 UDS 負回應與資料值混寫
+
+| 037 列 | SWE-Requirement ID | Source Requirement ID | CFTS004 列 | ObjectID |
+|---:|---|---|---:|---|
+| 340 | `SWE1-Diagnostics-333` | `SYS-RA-DIAG-046` | 47 | `4939922` |
+
+037 之 Description：
+
+> SW shall ensure no internal state or functionality is affected by unsupported service requests and shall
+> return the negative response – **Service Not Supported $FF** as the result if the USB detection is not available.
+
+CFTS004 r47 原文：
+
+> The radio shall report **$FF as the result** if the USB detection is not available.
+
+`$FF` 在 CFTS004 是 **USB 偵測不可用時之回報資料值**，不是 UDS 負回應碼；
+而 `Service Not Supported` 在 ISO 14229-1 為 NRC `$11`。037 將兩件事寫進同一句，
+使該列既像 unsupported-service 測試又像資料值回報測試。
+
+**測試側處置**：依來源規格勝出原則，產為「USB 偵測不可用時正向回報 `$FF`」之測試用例，
+非 negative response 測試。
+**建議 037 下一版拆為兩句，或刪去與本列來源無關之 `Service Not Supported`。**

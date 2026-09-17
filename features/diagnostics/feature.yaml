@@ -77,6 +77,10 @@ lint:
   # CDD-01_A T4 已實作於 lint036.py 之 FEATURE_CHECKS["diagnostics"]；
   # `VM-DIAG` 沿用既有 `Z`（判準逐字同 R-CAM2，且 R-G74 已升為全域）。
   extra_rules: ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG"]
+  # R-DIAG11：`AF` = "Out of Scope" 之列豁免 I／M／R／Z（lint036 ROW_EXEMPT_OOS）
+  # R-DIAG12：I-cross 整項豁免（lint036 FEATURE_EXEMPT）
+  row_exempt_out_of_scope: ["I", "M", "R", "Z"]
+  feature_exempt: ["I-cross"]
   column_map: "data/column_map.tsv"   # SWC 0708 33 欄實測對照（CDD-02 T0-3）
 
 # CDD-01 實測母體（上繳包 §3 全表）

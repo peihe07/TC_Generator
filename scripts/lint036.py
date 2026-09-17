@@ -335,7 +335,11 @@ FEATURE_CHECKS: dict[str, list[str]] = {
 # **feature 專屬之豁免**：某 profile 下不適用之 `PROFILE_CHECKS` 項。
 # R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
 # `I-cross` 對其 10 列全報「窗未完整宣告」而非跨列衝突，故豁免。
-FEATURE_EXEMPT: dict[str, list[str]] = {"security": ["I-cross"]}
+FEATURE_EXEMPT: dict[str, list[str]] = {"security": ["I-cross"],
+                                        # R-DIAG12：比照 R-SEC15(j) —— Diagnostics 之 ER 為
+                                        # UDS 請求／回應斷言，無 R-SU33/34 之觀測窗，
+                                        # pilot01 實測 14/14 全報「窗未完整宣告」。
+                                        "diagnostics": ["I-cross"]}
 # R-SEC20(amend)(c)（SEC-10）：**部分**豁免 —— 只吞「命中位置落於 `"…"` 內」者。
 # `FEATURE_EXEMPT` 之語意為整項移出 `check_order()`，無從表達位置條件
 # （整項豁免會連引號外之命中一起吞，違 SEC-10 §5 第二條），故另立本表。
@@ -344,6 +348,42 @@ FEATURE_EXEMPT: dict[str, list[str]] = {"security": ["I-cross"]}
 # 改寫即造值 —— 故豁免限於引文內。
 # 施檢面之判定沿用檢查 B 之同一機制（`quoted_spans()` ＋ `inside_spans()`）。
 FEATURE_EXEMPT_QUOTED: dict[str, list[str]] = {"security": ["H"]}
+
+
+# **列級**豁免（R-DIAG11，Pei 2026-09-17）：與 FEATURE_EXEMPT（整項移出 check_order）不同 ——
+# 本表所列之項只對**符合條件之列**不施檢，其餘列照檢。
+# 立此結構之由（CDD-02 pilot01 實測）：R-DIAG3(amend) 之 Out of Scope 佔列不產 TC，
+# 其 test_item 無括號下半、四欄空白、Pre-Condition 無編號行、Vehicle Model 無從填，
+# `I`／`M`／`R`／`Z` 恆紅 12 行計，且**無論如何填寫皆不可能同時滿足**
+# （`Z` 之 R-CAM2(a) 要求填 0／1，而 (c) 要求五有效欄至少一個 `1`；該列 Region 為空，
+#  填 `1` 即斷言其適用於該車型，為 §8.4.1 之造值）。
+# `R1-DIAG`／`RM-DIAG` **不在豁免內** —— Requirement ID 仍須單值，
+# Remarks 仍須含 `CFTS004 Category: Out of Scope`。
+ROW_EXEMPT_OOS: dict[str, list[str]] = {"diagnostics": ["I", "M", "R", "Z"]}
+# 判別條件：`Test Result 測試結果` 欄之值（去空白後）
+ROW_EXEMPT_OOS_VALUE = "Out of Scope"
+TEST_RESULT_HEADER = "Test Result"
+
+
+def test_result_idx(header_values: list) -> int | None:
+    """`Test Result 測試結果` 欄之 0-based 索引。
+
+    R-G48 母本第 9 列為 `AF`。以 startswith 比對英文段，與 FIELD_HEADERS 同機制。
+    母本另有 r7 之區塊標題 `Test Result 測試結果`（合併儲存格），但其不在第 9 列，不受影響。
+    """
+    for idx, value in enumerate(header_values):
+        if value is not None and str(value).strip().startswith(TEST_RESULT_HEADER):
+            return idx
+    return None
+
+
+def row_exempt(profile: str | None, test_result: str) -> set[str]:
+    """本列所豁免之檢查代號（R-DIAG11）。"""
+    if not profile:
+        return set()
+    if test_result.replace("\xa0", " ").strip() != ROW_EXEMPT_OOS_VALUE:
+        return set()
+    return set(ROW_EXEMPT_OOS.get(profile, []))
 
 
 def check_order(profile: str | None) -> list[str]:
@@ -1143,6 +1183,9 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
     enabled = check_order(profile)
     remarks_idx = (security_remarks_idx(list(rows[header_row - 1]))
                    if ("SS" in enabled or "RM-DIAG" in enabled) else None)
+    # R-DIAG11 列級豁免所需之 `Test Result` 欄
+    tr_idx = (test_result_idx(list(rows[header_row - 1]))
+              if ROW_EXEMPT_OOS.get(profile or "") else None)
     vm_columns: dict[str, int] = {}
     if "Z" in enabled:
         vm_columns = build_vehicle_model_columns(list(rows[header_row - 1]))
@@ -1163,9 +1206,15 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
         tc_id = cell_text(raw[columns["tc_id"]]) if "tc_id" in columns else ""
         req_id = cell_text(raw[columns["req_id"]]) if "req_id" in columns else ""
         result.data_rows += 1
+        # R-DIAG11：本列之豁免集（Out of Scope 佔列）。`I`／`M`／`R` 由 check_row 產出，
+        # 於此濾除；`Z` 於下方分支跳過。整項豁免請用 FEATURE_EXEMPT，不要走這裡。
+        exempt_row = row_exempt(
+            profile,
+            cell_text(raw[tr_idx]) if tr_idx is not None and tr_idx < len(raw) else "")
         result.violations.extend(
-            check_row(fields, offset, tc_id, length_limit, profile))
-        if vm_columns:
+            v for v in check_row(fields, offset, tc_id, length_limit, profile)
+            if v.check not in exempt_row)
+        if vm_columns and "Z" not in exempt_row:
             result.violations.extend(
                 check_vehicle_model(raw, vm_columns, offset, tc_id))
         # P-DIAG／U-DIAG／R1-DIAG／RM-DIAG 為 feature 專屬（FEATURE_CHECKS["diagnostics"]）；

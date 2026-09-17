@@ -115,6 +115,28 @@ CASES["VM-DIAG (= Z)"] = dict(
 )
 
 
+# --- R-DIAG11：Out of Scope 佔列之列級豁免 -------------------------------
+def oos(test_result: str):
+    """R-DIAG11 之列級豁免集。正例＝該列豁免 I/M/R/Z；反例＝不豁免。"""
+    return L.row_exempt("diagnostics", test_result)
+
+
+CASES["R-DIAG11 (列級豁免)"] = dict(
+    fn=lambda c: (["hit"] if oos(c) == {"I", "M", "R", "Z"} else []),
+    # fn 回傳非空 ＝「本列取得豁免」。故 ok ＝ 不該豁免之值、ng ＝ 該豁免之值。
+    ok=["", "NA", "Pass", "Fail", "out of scope"],          # 空／一般值／大小寫不符 → 不豁免
+    ng=["Out of Scope", " Out of Scope ", "Out of Scope\xa0",
+        "Out of Scope\n", "\xa0Out of Scope"],             # 含前後空白／NBSP → 仍豁免
+)
+
+CASES["R-DIAG12 (I-cross 豁免)"] = dict(
+    # fn 回傳非空 ＝「該 profile **仍跑** I-cross」，與其他項之「命中＝有問題」同向。
+    fn=lambda c: (["hit"] if "I-cross" in L.check_order(c) else []),
+    ok=["diagnostics", "security"],                          # 已豁免 → 不跑 → 不得命中
+    ng=["camera", "amfm", "home"],                           # 未豁免 → 仍跑 → 須命中
+)
+
+
 def main() -> int:
     bad = 0
     print(f"{'check':16} {'正例(不得命中)':>16} {'反例(須命中)':>14}  判")
@@ -128,7 +150,8 @@ def main() -> int:
         if not ok:
             for c in spec["ok"]:
                 for v in spec["fn"](c):
-                    print(f"    假陽性: {v.detail} | {v.snippet!r}")
+                    # 多數項回傳 Violation；豁免類項回傳字串標記，兩者皆須可印
+                    print(f"    假陽性: {getattr(v, 'detail', v)} | {c!r}")
             for c in spec["ng"]:
                 if not spec["fn"](c):
                     print(f"    假陰性: {c!r}")

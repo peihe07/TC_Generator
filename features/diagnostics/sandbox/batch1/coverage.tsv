@@ -1,0 +1,32 @@
+l2_no	test_set	row037	swe1_id	tc_ids	tc_count	status
+6	Camera Brightness	8	SWE1-Diagnostics-001	NR1L-DIAG-001	1	COVERED
+6	Camera Brightness	9	SWE1-Diagnostics-002	NR1L-DIAG-002;NR1L-DIAG-003	2	COVERED
+6	Camera Brightness	10	SWE1-Diagnostics-003	NR1L-DIAG-004	1	COVERED
+6	Camera Brightness	11	SWE1-Diagnostics-004	NR1L-DIAG-005	1	COVERED
+6	Camera Brightness	12	SWE1-Diagnostics-005	NR1L-DIAG-015;NR1L-DIAG-016	2	COVERED
+6	Camera Brightness	13	SWE1-Diagnostics-006	NR1L-DIAG-017	1	COVERED
+7	ECU Internal Settings	59	SWE1-Diagnostics-052	NR1L-DIAG-018;NR1L-DIAG-019	2	COVERED
+7	ECU Internal Settings	60	SWE1-Diagnostics-053	NR1L-DIAG-020;NR1L-DIAG-021	2	COVERED
+7	ECU Internal Settings	341	SWE1-Diagnostics-334	NR1L-DIAG-022;NR1L-DIAG-023	2	COVERED
+7	ECU Internal Settings	342	SWE1-Diagnostics-335	NR1L-DIAG-024;NR1L-DIAG-025	2	COVERED
+7	ECU Internal Settings	348	SWE1-Diagnostics-340-002	NR1L-DIAG-026;NR1L-DIAG-027	2	COVERED
+7	ECU Internal Settings	349	SWE1-Diagnostics-341	NR1L-DIAG-028;NR1L-DIAG-029	2	COVERED
+7	ECU Internal Settings	350	SWE1-Diagnostics-342	NR1L-DIAG-030;NR1L-DIAG-031	2	COVERED
+7	ECU Internal Settings	351	SWE1-Diagnostics-343	NR1L-DIAG-032;NR1L-DIAG-033	2	COVERED
+8	Media Hub Config	58	SWE1-Diagnostics-051	NR1L-DIAG-034;NR1L-DIAG-035	2	COVERED
+8	Media Hub Config	336	SWE1-Diagnostics-329	NR1L-DIAG-036	1	COVERED
+8	Media Hub Config	337	SWE1-Diagnostics-330	NR1L-DIAG-037;NR1L-DIAG-038	2	COVERED
+8	Media Hub Config	338	SWE1-Diagnostics-331	NR1L-DIAG-039	1	COVERED
+8	Media Hub Config	339	SWE1-Diagnostics-332	NR1L-DIAG-040;NR1L-DIAG-041	2	COVERED
+8	Media Hub Config	340	SWE1-Diagnostics-333	NR1L-DIAG-042	1	COVERED
+9	Button Interfaces	61	SWE1-Diagnostics-054	NR1L-DIAG-043	1	COVERED
+9	Button Interfaces	62	SWE1-Diagnostics-055	NR1L-DIAG-044	1	COVERED
+9	Button Interfaces	352	SWE1-Diagnostics-344	NR1L-DIAG-045	1	COVERED
+9	Button Interfaces	353	SWE1-Diagnostics-345	NR1L-DIAG-046;NR1L-DIAG-047	2	COVERED
+9	Button Interfaces	394	SWE1-Diagnostics-386	NR1L-DIAG-048	1	COVERED
+9	Button Interfaces	395	SWE1-Diagnostics-387	NR1L-DIAG-049;NR1L-DIAG-050	2	COVERED
+9	Button Interfaces	396	SWE1-Diagnostics-388	NR1L-DIAG-051	1	COVERED
+10	Screen Test Pattern	64	SWE1-Diagnostics-057	NR1L-DIAG-014	1	OUT_OF_SCOPE
+10	Screen Test Pattern	391	SWE1-Diagnostics-383	NR1L-DIAG-052	1	COVERED
+10	Screen Test Pattern	392	SWE1-Diagnostics-384	NR1L-DIAG-053;NR1L-DIAG-054	2	COVERED
+10	Screen Test Pattern	393	SWE1-Diagnostics-385	NR1L-DIAG-055	1	COVERED

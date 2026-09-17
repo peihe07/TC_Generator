@@ -178,6 +178,29 @@ R-DIAG10  Priority 判準（草案，pilot 後 Pei 裁）
   Out of Scope 列不填 Priority（依 SWC 0708 該列空白慣例，執行層實測後定）
 ```
 
+### R-DIAG11 — Out of Scope 佔列之 lint 豁免（Pei 裁，2026-09-17）
+
+```text
+R-DIAG11  Out of Scope 佔列之 lint 豁免
+  `AF` Test Result = `Out of Scope` 之列，lint `I`／`M`／`R`／`Z` 豁免；`R1-DIAG`、`RM-DIAG` 仍檢
+  （Requirement ID 須單值、Remarks 須含 `CFTS004 Category: Out of Scope`）。
+  實作為 FEATURE_EXEMPT 之列級條件（非全 feature），供其他 feature 之 OOS 列沿用。
+```
+
+### R-DIAG12 — `I-cross` 之 Diagnostics 豁免（Pei 裁，2026-09-17）
+
+```text
+R-DIAG12  `I-cross` 之 Diagnostics 豁免
+  比照 R-SEC15(j)：`FEATURE_EXEMPT["diagnostics"]` 加 `I-cross`。理由：ER 為 UDS 請求／回應斷言，無觀測窗。
+```
+
+### R-DIAG10(amend) — Priority 值域對齊 SWC 0708（Pei 裁，2026-09-17）
+
+```text
+R-DIAG10(amend)  Priority 值域對齊 SWC 0708
+  P3 不用（SWC 0708 值域實測無 P3）；Out of Scope 佔列 Priority 留空。其餘不變。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

@@ -174,6 +174,6 @@ CDD-01_A 後之未決項：
 |---|---|---|
 | 1 | Layer 2 之 20 組名稱 | **[PEI]**，framework.md Part IV |
 | 2 | `PENDING_DR1` 3 列之 NRC（`-156`／`-157`／`-237`）| DR-DIAG-1 |
-| 3 | 五項 lint 之校準（現皆「未校準」，待 CDD-02 pilot 實本）| CDD-02 |
+| 3 | 五項 lint 之校準 —— CDD-02 pilot（14 列）＋ CDD-03 batch 1（47 列）實跑，**真違規 0**；`P-DIAG`／`U-DIAG`／`R1-DIAG`／`Z`／`RM-DIAG` 皆 0 | **已校準** |
 | 4 | `docs/fw036/RULINGS.sha.tsv` 僅含 security 32 列而自稱全域檔（`--check` 動工前即 FAIL）| **全域待辦**，`[A-DIAG15]` |
 | 5 | `new_feature.py` 之 `feature[:2]` ABBR 缺陷 | **全域待辦**（審閱 §五-6，不阻斷）|
