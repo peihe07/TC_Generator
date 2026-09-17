@@ -37,25 +37,9 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 
 - `[ASSUMPTION A-SE03]` —— SAM-0017 之 Verification Method 以同群推定，未經 Pei 裁。
 
-| `[A-SE09]` | PENDING | `_D` §1.1 記 F000 回應碼表為 `image249.png`；實測該圖掛在 `SYS-RA-CS00102-698`（**FF01**），F000 之圖為 `image247.png`。且 **xlsx 之 `xl/media/` 為 0 件**，全機查無同名檔 | 「解圖」任務不可執行 | 改自 `SYS2 System-HW` 欄之 RQMT 文字取得語意（byte 4 bit field），見 DATA_REQUESTS；DR-SEC-l 部分結案 |
-| `[A-SE10]` | PENDING | `R1L_Diag_Software_Qualification_Test_Design.xlsx` **同名異體**：`Desktop/` 本 954,818 B sha `96a06f0d50d33c1b`（＝_C §1 所載）；`01_Project_R1L/.../M-CPU(Diag)/SW_test_design/` 本 1,012,479 B sha `29e12844bb52d2a6` | 取錯本即取到不同之 DID 值 | 以 `_C` §1 所載 sha 之 `Desktop/` 本為準，已登錄 |
-
-| `[A-SE11]` | PENDING | CCVR `Auth-Prog CS.93` 之 r7 與 r8 **同稱「Flashing lower rollback id」而回值不同** —— r7 回 `0x71 01 F0 00 01`（已遞增版本後回刷舊版），r8 回 `0x71 01 F0 00 02`（未遞增版本後回刷舊版）| R-SEC8(i) 之「`02`（lower rollback id）」若不帶列號，同一敘述會對到兩個值 | 引用時一律連 `per CCVR Auth-Prog CS.93 evidence, row <n>` 標明（R-SEC8(i) 本已要求標 row，本項只是說明其必要性）|
-
-| `[A-SE12]` | PENDING | SEC-01 審閱 三-1 之規則文字為「只計 **THEN**／`3.x`／`THEN.` 子句內之命中」，惟其所列 7 列含 `SWE1-CertProvider-005` —— 該列命中在 **WHEN**（`Monitor system logs during verification`），THEN 無命中 | 逐字照規則得 6 列，照所列集合得 7 列 | 取 **WHEN ∪ THEN** 以重現審閱指名之集合；**兩解不改 batch 總數**（005 本有 CS.98 落點）。請分析層於 SEC-02 明示 |
-
-## 回饋 RD 之 ANOMALIES（`_D` §1.3，非裁定）
-
-| 標記 | 事實（執行層複驗） | 影響 |
-|---|---|---|
-| `[A-SEC-1]` | CCVR `DID CS.102`／`Cyber DIDs R&P-CS.102` 之「`2951` Certificate Store UUID」**不見於 CS.00102**（731 個 SYS2 ID 全表現查，無 2951）。R1L Diag SWQT 之 2951 = **Software Inventory** | Cert Val 第 1 項之 DID 面改以 `2955`／`295D`／`295E`；DR-SEC-p 結案 |
-| `[A-SEC-2]` | `SWE1_Diagnostics_V1 (2).xlsx`（037，`b985e09ac42cece7`）**不含任何 Security DID**（`2965`／`2031`／`2955`／`2966`／`F1B6` 等） | 此類 DID 之 SWE1 歸屬（ECUCert R12 DIAG service？）待 RD 說明。本檔**不投遞** |
-| `[A-SEC-3]` | R1L SWQT `2965` 回 **≤2048 bytes**；CS.00102 `2965` 為 **1000 bytes** | ECUCert R18 之 ER 長度斷言；併入 DR-SEC-n 之實作選項 |
-
-## Assumption markers
-
 Inline format in generated JSON reasoning: `[ASSUMPTION A-SEnn]`。
 Phase 2 生成前須先結 `[A-SE03]`。
+
 
 ## 回饋 RD 之 ANOMALIES —— CCVR 落地審計（SEC-09 審計；SEC-10 落檔，2026-09-17）
 

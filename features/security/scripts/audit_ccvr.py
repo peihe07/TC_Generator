@@ -241,10 +241,12 @@ def main() -> int:
                 cls = "DEFERRED"
             else:
                 gap = req_ax - cov_ax
-                cls = "AXIS_GAP" if gap else "COVERED"
+                # SEC-10 review §一 #2：軸未拆但**已裁不拆**且有 A-SEC 號者歸 `ACCEPTED_GAP`。
+                cls = ("COVERED" if not gap else
+                       "ACCEPTED_GAP" if nid in DISPOSITION else "AXIS_GAP")
             gap = sorted(req_ax - cov_ax) if swes and tc_ids else []
-            if cls == "AXIS_GAP":
-                gaps.append((nid, ";".join(gap)))
+            if cls in ("AXIS_GAP", "ACCEPTED_GAP"):
+                gaps.append((nid, cls, ";".join(gap)))
             cls_count[cls] += 1
             w.writerow([nid, title, ";".join(sys2), ";".join(sorted(swes)), cls,
                         ";".join(sorted(set(tc_ids))), ";".join(gap),
@@ -261,7 +263,7 @@ def main() -> int:
     for tc, ln in over:
         print("   越權:", tc, ln[:90])
     print(f"§3 NEW {sum(cls_count.values())} 條:", dict(cls_count))
-    print("   AXIS_GAP:", gaps)
+    print("   軸未拆:", gaps)
     return 0
 
 
