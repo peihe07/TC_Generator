@@ -41,10 +41,16 @@ Inline format in generated JSON reasoning: `[ASSUMPTION A-SEnn]`。
 Phase 2 生成前須先結 `[A-SE03]`。
 
 
-## 回饋 RD 之 ANOMALIES —— CCVR 落地審計（SEC-09 審計；SEC-10 落檔，2026-09-17）
+## 回饋 RD 之 ANOMALIES —— CCVR 落地審計與 037 內部矛盾（SEC-09／SEC-11 查得；SEC-10／SEC-12 落檔，2026-09-17）
+
+`A-SEC-8`~`-11` 為 CCVR `New test cases` 之落地缺口；`A-SEC-12`~`-14` 為 037 自身之內部矛盾。
 
 | 標記 | 事實（執行層複驗） | 影響 | 處置 |
 |---|---|---|---|
 | `[A-SEC-8]` | CCVR `NEW-CERT-02`（Audit minimal TLS CA list）要求「清出未使用／已到期／安全性過時之 root，並留定期稽核紀錄」；037 `SWE1-CertProvider-007`（Secure and Persistent Storage for Trusted Certificates）與 `-009`（Product and Application Dependent Configuration）之 Description／Verification Criteria **無到期、稽核、清理之語意**（逐字查無 `expire`／`audit`／`obsolete`）| 該軸（boundary：憑證到期／過時）在本 feature 無 037 依據，拆 sibling 即越 037（IN §8.4.2）| **不拆**；回饋 037 作者評估是否補 SWE1 要求 |
 | `[A-SEC-9]` | CCVR `NEW-ID-01`（Validate all identity-certificate installation fields）要求「recovery 之後仍不得生效」；對 ECUCert 037 **十三列**之 `Requirement Description` 與 `Verification Criteria` 逐列 grep `reboot`／`recovery`／`restart`／`power cycle`（大小寫不計）**命中 0** | 持久化／recovery 軸（IN §8.3）在 037 無載，無從逐字落地 | **不拆**（SEC-10 §3-4 之「無命中」分支）；回饋 037 作者 |
 | `[A-SEC-10]` | CCVR `New test cases` 47 條中 **12 條**落不到 037 任何列（`NEW-CERT-10` Apps signer validity period、`NEW-REV-05` revocation triggers／approvals、`NEW-BOOT-01` startup authentication scope、`NEW-DIAG-01` diagnostic role permissions、`NEW-NET-01` external TLS、`NEW-NET-02` server allowlist／URL、`NEW-FW-01`／`NEW-FW-02` firewall／anti-spoofing、`NEW-BT-01` Bluetooth、`NEW-WIFI-01` Wi-Fi AP、`NEW-DATA-01` user data 保護／抹除、`NEW-PROC-01` 驗證計畫治理）| 題域落在網路／藍牙／Wi-Fi／OS／診斷權限／流程治理，非 Security feature 六元件之射程；**SWE.1 層之覆蓋缺口**，不是 SWE.6 之漏寫 | 不由 Security 承接；整份清單回饋 RD／037 作者（`data/audit_ccvr/audit_newtc.tsv` 之 `class = NO_SWE1` 十二列）|
+| `[A-SEC-11]` | CCVR `NEW-UPD-01`（Reject forbidden software and key rollback）要求拒絕禁止之 software／key rollback；037 `SWE1-SRA-SECURITY-SWDL-001` 之 Verification Criteria（`keep SWDL config`／`control KEY / certificate interface`）**無負向要件** | 負向軸在 037 無依據，拆即越 037（IN §8.4.2）；`audit_newtc.tsv` 計 `ACCEPTED_GAP` | **不拆**；回饋 037 作者（Pei 裁，SEC-11 review §一 #2）|
+| `[A-SEC-12]` | 037 `SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO` 之 `Verification Criteria` 與 `SYSAD_SEC_ECUCERT_ECUCERT_JNI` **逐字相同**（`jbyteArray 與 jstring 能正確轉換為 C++ 型別，且無記憶體洩漏`），與其 Description（`The system shall access certificates stored in the Cert Store via file paths.`）不符；疑複製貼上 | 該列之要件無法反映其 Description | TC 依 VC 逐字產出（**`NR1L-ECUC-017`**；下放包 SEC-12 §1 記為 `NR1L-ECUC-019`，實測為 `-017`）；請 037 作者確認 STORAGE_IO 之正確 VC |
+| `[A-SEC-13]` | 037 `SWE1-LOGENC-008` Description 稱 KeyInstall 為 **RSA** key 之來源，VC 之 THEN 卻寫 `**AES** key is get from KeyInstall` | 要件之金鑰型別自相矛盾 | TC 依 VC 逐字（`NR1L-LOGENC-011`），括號下半以中性語 `the key is obtained from KeyInstall`；請 037 作者定 RSA／AES |
+| `[A-SEC-14]` | 037 `SWE1-LOGENC-005` VC 寫 `Log Encrypt will get **RSA symmetric key** to encrypt symmetric key` —— RSA 為非對稱演算法 | 措辭矛盾 | 逐字引用未改（`NR1L-LOGENC-009`）；請 037 作者更正措辭 |

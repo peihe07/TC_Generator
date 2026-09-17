@@ -520,6 +520,9 @@ CONFLICT_NOTE: dict[str, str] = {
                            "unresolved per CCVR Mapping notes row 14",
     "SWE1-KeyInsyall-010": "conflict: 376/509/511 vs 510 vs 514 — key strength; "
                            "unresolved per CCVR Mapping notes row 14",
+    # R-SEC22(a) amend（SEC-12）：C3 之落點加 LOGENC-004 兩 sibling
+    "SWE1-LOGENC-004": "conflict: 376/509/511 vs 510 vs 514 — key strength; "
+                       "unresolved per CCVR Mapping notes row 14",
     "SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF":
         "conflict: 562~565 — CSR format evidence pending; "
         "unresolved per CCVR Mapping notes row 15",

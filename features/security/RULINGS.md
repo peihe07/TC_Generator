@@ -758,3 +758,15 @@ R-SEC23  DEFERRED 列之產出（R-SEC11(b) 之解凍）
   (e) 上游回覆後之處置：DR-a（ECUCert 補 SWE ID）→ Revise 只改 ID 欄；DR-i／r → 不影響本群；若 037 作者將任一列改為 Testing
       且給出可執行 VC，該列依 R-SEC4 重寫，文件審查 TC 作廢（R-TM13 保留舊本）。
 ```
+
+---
+
+### R-SEC22(a)(amend) — C3 落點加 LOGENC-004 兩 sibling（Pei 准 SEC-11 review §一 #1，2026-09-17；SEC-12 §1）
+
+```text
+R-SEC22(a) amend  C3（金鑰強度）之落點加 `NR1L-LOGENC-007`／`-008`（SWE1-LOGENC-004 之兩 sibling）；
+                  Remarks 增 `conflict: 376/509/511 vs 510 vs 514 — key strength; unresolved per CCVR Mapping notes row 14`。
+```
+
+**執行層回報（SEC-12）**：`CONFLICT_NOTE` 加 `SWE1-LOGENC-004`；v06 → v07 之逐格 diff 即該兩 TC 之
+`remarks` 2 格。C3 之 `tc_ids_found` 6 筆自此全數帶註（A-30 為分析層自報之漏列）。

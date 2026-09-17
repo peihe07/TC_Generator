@@ -99,6 +99,8 @@ DISPOSITION = {
     "NEW-CERT-02": "A-SEC-8 (037 無到期／稽核語意，不拆)",
     "NEW-ID-01": "A-SEC-9 (ECUCert 037 十三列無 reboot／recovery／restart／power cycle，不拆)",
     "NEW-NET-01": "A-26 (trace_matrix 指派已清除，改判 NO_SWE1)",
+    # SEC-11 review §一 #2（SEC-12 落地）：SWDL-001 之 037 VC 無 rollback 負向要件，不拆。
+    "NEW-UPD-01": "A-SEC-11 (037 SWDL-001 VC 無負向要件，不拆)",
 }
 
 
