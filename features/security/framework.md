@@ -3,7 +3,7 @@
 規範依據：IN §4.1（三層框架）、IN §4.2（Test Set）、FO §0（Tier 2：Test Set derivation 屬 Pei 簽核）。
 本檔依 **R-SEC10** 鎖定；Test Set 名稱逐字取下放包 `SEC-01 §5` 之案 A 表，**未改任何名稱**。
 
-**LOCKED 2026-09-16 (R-SEC10)** → **LOCKED v02 2026-09-16 (R-SEC17)**
+**LOCKED 2026-09-16 (R-SEC10)** → **LOCKED v02 (R-SEC17)** → **LOCKED v03 2026-09-16 (R-SEC17 Revise)**
 
 ---
 
@@ -107,6 +107,23 @@ Layer 2 名稱之 CJK 字元計數：**5 → 0**（六個名稱皆為能力層�
 > **`SWE1-SAM-0008`（Format of AuthData should follow SAM package definition）為資料格式需求，
 > 非執行環境或部署前提**，與該 Test Set 之能力面不合。依條文回報，**不自行移組**。
 
-**LOCKED v02 2026-09-16 (R-SEC17)** —— 此後之變更一律走 R-G72 Revise。
+**LOCKED v02 2026-09-16 (R-SEC17)** —— v02 之鎖定。
+
+## REVISE v03 2026-09-16 (R-SEC17 Revise)
+
+依 **R-G72** 解鎖一次，**只移一列**；Test Set 名稱、Layer 1、Layer 3 皆不動。
+
+成因（A-17，分析層）：SEC-01 §5 之 `(環境)` 群把 `SWE1-SAM-0008` 誤放 ——
+該列為 **AuthData 之資料格式**需求（manifest 檔名 `<SSN>_SAM_<SAMType>.json`、簽章、憑證），
+非執行環境或部署前提。執行層於 SEC-05 §1-1 依 R-SEC17 之指定複核時回報，Pei 裁定移組。
+
+| SWE1 | old Test Set | **new Test Set** | leaf 變動 |
+|---|---|---|---|
+| `SWE1-SAM-0008` | `Service Environment` | **`AuthData Verification`** | `Service Environment` 4 → **3**；`AuthData Verification` 5 → **6** |
+
+**leaf 總數 70 不變**；Test Set 組數 **29 不變**。
+
+**LOCKED v03 2026-09-16 (R-SEC17 Revise)** —— 此後之變更一律走 R-G72 Revise。
+
 
 

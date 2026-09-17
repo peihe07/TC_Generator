@@ -6,15 +6,15 @@
   "test_item": "The KeyInstall feature shall restrict access to installed keys, allowing only a predefined list of authorized applications to perform cryptographic operations.\n(unauthorized application; the request is refused and a security violation is logged)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)",
   "input": "NA",
-  "proc": "1. PENDING: X-f-2 KeyInstall status test runner\n2. Confirm the KeyInstall log after the previous step\n$ adb logcat -s KeyInstall",
-  "er": "1. PENDING: X-f-2 KeyInstall status test runner\n2. PENDING: X-h log keyword",
+  "proc": "1. <KeyInstall status test runner provided by RD (X-f-2)> is executed\n$ <command provided by RD (X-f-2)>\n2. Confirm the KeyInstall log after the previous step\n$ adb logcat -s KeyInstall",
+  "er": "1. <KeyInstall status test runner provided by RD (X-f-2)>\n2. <log keyword provided by RD (X-h)>",
   "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-010",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-KeyInsyall-010 Requirement Description and Verification Criteria\nsibling axis: client authorization; rule 1,3,4 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "source: 037 SWE1-KeyInsyall-010 Requirement Description and Verification Criteria\nsibling axis: client authorization; rule 1,3,4 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-f-2 — 1. PENDING: X-f-2 KeyInstall status test runner\nasset: X-f-2 — 1. PENDING: X-f-2 KeyInstall status test runner\nasset: X-h — 2. PENDING: X-h log keyword",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,34 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": [
+    {
+      "field": "proc",
+      "line": 1,
+      "x_token": "X-f-2",
+      "original_pending": "1. PENDING: X-f-2 KeyInstall status test runner",
+      "placeholder": "1. <KeyInstall status test runner provided by RD (X-f-2)> is executed",
+      "kind": "exec",
+      "converted_to": "1. <KeyInstall status test runner provided by RD (X-f-2)> is executed ⏎ $ <command provided by RD (X-f-2)>"
+    },
+    {
+      "field": "er",
+      "line": 1,
+      "x_token": "X-f-2",
+      "original_pending": "1. PENDING: X-f-2 KeyInstall status test runner",
+      "placeholder": "1. <KeyInstall status test runner provided by RD (X-f-2)>",
+      "kind": "value",
+      "converted_to": "1. <KeyInstall status test runner provided by RD (X-f-2)>"
+    },
+    {
+      "field": "er",
+      "line": 2,
+      "x_token": "X-h",
+      "original_pending": "2. PENDING: X-h log keyword",
+      "placeholder": "2. <log keyword provided by RD (X-h)>",
+      "kind": "value",
+      "converted_to": "2. <log keyword provided by RD (X-h)>"
+    }
+  ]
 }

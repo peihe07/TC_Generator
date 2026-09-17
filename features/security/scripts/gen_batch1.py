@@ -12,6 +12,7 @@ from __future__ import annotations
 import csv
 import importlib.util
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -32,7 +33,10 @@ TEMPLATE = ROOT / "forms" / ("FM-WI-FSM-036-A01 STLA 測試用例規範與結果
 SHEET = "Test Case Specification 測試用例規範"
 DATA = ROOT / "features" / "security" / "data"
 OUT_DIR = ROOT / "features" / "security" / "sandbox" / "batch1"
-OUT_XLSX = OUT_DIR / "security_batch1_v02.xlsx"
+# 版本旗標：`SEC_VER=v03` 可重建 SEC-07 形態（R-SEC20／21 之前），供既有本復原；預設 v04。
+VER = os.environ.get("SEC_VER", "v04")
+SEC08 = VER != "v03"
+OUT_XLSX = OUT_DIR / f"security_batch1_{VER}.xlsx"
 FIRST_ROW = 10
 
 COLS = {"req_id": "D", "tc_id": "F", "test_group": "G", "test_set": "H",
@@ -67,6 +71,31 @@ RUNNER = ("com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviders
           "/androidx.test.runner.AndroidJUnitRunner")
 SSL_VERIFY = ("$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem "
               "-untrusted L2.pem -untrusted L3.pem SAMcert.pem")
+
+# ---- SEC-07 內查（Z1 = KeyInstall_IntegrationTests.zip）之逐字素材 ----
+# source: Z1 IntegrationTests/PythonTests/common/keys_install_helper.py L50-L51
+INSTALLSTATE = "/mnt/vendor/oemkeys/installstate"
+KI_DIAG_RUNNER = (
+    "$ adb shell am instrument -w -e class "
+    "com.mitsubishielectric.ahu.efw.lib.testkeyinstalldiagservicemanager"
+    ".KeyInstallDiagServiceManagerTests#getInstalledKeysStatus "
+    "com.mitsubishielectric.ahu.efw.lib.testkeyinstalldiagservicemanager"
+    "/androidx.test.runner.AndroidJUnitRunner")
+KM_AES_RUNNER = (
+    "$ adb shell am instrument -w -e class "
+    "com.mitsubishielectric.ahu.efw.lib.testkeymasterwrapper.aes.KeyMasterWrapperAesTests"
+    "#encryptDecryptNormalFlow "
+    "com.mitsubishielectric.ahu.efw.lib.testkeymasterwrapper.aes"
+    "/androidx.test.runner.AndroidJUnitRunner")
+
+
+def ki_status(er="The instrumentation runner reports \u0022OK (1 test)\u0022 for getInstalledKeysStatus"):
+    return ("Query the installed keys status through the DIAG service interface", KI_DIAG_RUNNER, er)
+
+
+def km_aes():
+    return ("Run the KeyMaster wrapper AES encrypt and decrypt normal flow", KM_AES_RUNNER,
+            "The instrumentation runner reports \u0022OK (1 test)\u0022 for encryptDecryptNormalFlow")
 
 
 # ---------------------------------------------------------------- builders
@@ -113,6 +142,59 @@ def phys(text, er):
     return (text, None, er)
 
 
+# ---------------------------------------------------- R-SEC20：X-i 文件審查定式
+# 取得方式 037 未載 → 整步為佔位（R-SEC20(b)）；不自擬 `$ grep`／`$ cat`。
+PLURAL_ARTIFACT: set[str] = set()          # 複數主詞（動詞需一致）
+VERB_PL = {"satisfies": "satisfy", "contains": "contain", "declares": "declare"}
+
+
+def _agree(artifact: str, verb: str) -> str:
+    """複數主詞取原形（避免 `files satisfies`）。"""
+    return VERB_PL[verb] if artifact in PLURAL_ARTIFACT else verb
+
+
+def _cap(text: str) -> str:
+    return text[0].upper() + text[1:]
+
+
+def doc_obtain(artifact: str) -> tuple[str, str, str]:
+    be = "are" if artifact in PLURAL_ARTIFACT else "is"
+    return (f"<obtain {artifact} per RD>", "",
+            f"{_cap(artifact)} {be} available for review")
+
+
+def doc_review(artifact: str, req: str, verb: str = "satisfies") -> tuple[str, str, str]:
+    """`req` 為 037 Verification Criteria 之逐字要件。"""
+    return (f'Review {artifact} against "{req}"', "",
+            f'{_cap(artifact)} {_agree(artifact, verb)} "{req}"')
+
+
+# R-SEC20：受本定式重寫之 sibling（鍵同 STEPS）；(d) Pre-Condition、(e) test_item 尾綴依此判。
+# R-SEC20(d) 之 `<component>`：用 037 Requirement Title 之元件寫法（`Cert Provider`／`KeyInstall`）。
+DOC_COMPONENT = {"CertProvider": "Cert Provider", "KeyInstall": "KeyInstall"}
+DOC_REVIEW_PRE = {
+    "SWE1-CertProvider-006": ["Access to the RD build environment for Cert Provider is granted"],
+    # CP-008 之第三步仍為 logcat（037 第三個 THEN），故保留原 DUT 前提再加建置環境。
+    "SWE1-CertProvider-008": None,
+    "SWE1-KeyInsyall-012": ["Access to the RD build environment for KeyInstall is granted"],
+}
+DOC_REVIEW = {"SWE1-CertProvider-006|1", "SWE1-CertProvider-006|2",
+              "SWE1-CertProvider-006|3", "SWE1-CertProvider-006|4",
+              "SWE1-CertProvider-008|1", "SWE1-CertProvider-008|2",
+              "SWE1-KeyInsyall-012|2", "SWE1-KeyInsyall-012|3"}
+
+# R-SEC20(b)：每一要件一步。artifact 與要件皆取 037 CP-006／CP-008／KI-012 VC 逐字。
+_CP_BUILD = "the Cert Provider build files"
+_CP_SRCLOG = "the Cert Provider source code and logs"
+_CP_ONSTART = "the onStartCommand implementation in the Cert Provider Service"
+_CP_SCAN = "the Cert Provider security scan report"
+_CP_JAVA = "the source code and dependency graph of the Java clients"
+_CP_NATIVE = "the Native client implementations"
+_KI_SRC = "the KeyInstall source code"
+_KI_CODE = "the KeyInstall code implementation"
+PLURAL_ARTIFACT.update({_CP_BUILD, _CP_SRCLOG, _CP_JAVA, _CP_NATIVE})
+
+
 # ------------------------------------------- 逐 sibling 之步驟（key = swe1_id|sibling_no）
 LOGDOG_PEND = "X-h log keyword"
 STEPS: dict[str, list] = {
@@ -148,19 +230,27 @@ STEPS: dict[str, list] = {
  "SWE1-CertProvider-005|1": [pend("X-e revoked certificate at the distribution point + trigger", LOGDOG_PEND)],
  "SWE1-CertProvider-005|2": [
    ls(STORE, f'The adb shell ls -l {STORE} output lists no revocation list file written during verification')],
- "SWE1-CertProvider-006|1": [pend("X-i Cert Provider source and build environment")],
- "SWE1-CertProvider-006|2": [pend("X-i Cert Provider source and build environment")],
- "SWE1-CertProvider-006|3": [pend("X-i Cert Provider source and build environment")],
- "SWE1-CertProvider-006|4": [pend("X-i Cert Provider source and build environment")],
+ "SWE1-CertProvider-006|1": [doc_obtain(_CP_BUILD), doc_review(_CP_BUILD, "Android.bp must be used instead of legacy Makefiles", "satisfies")],
+ "SWE1-CertProvider-006|2": [doc_obtain(_CP_SRCLOG), doc_review(_CP_SRCLOG, "logs must align with Logdog requirements (Error-level only for defects)", "satisfies")],
+ "SWE1-CertProvider-006|3": [doc_obtain(_CP_ONSTART), doc_review(_CP_ONSTART, "It must return START_STICKY", "satisfies")],
+ "SWE1-CertProvider-006|4": [doc_obtain(_CP_SCAN), doc_review(_CP_SCAN, "The module must be free of vulnerabilities listed in CWE/SANS Top 25 and OWASP Top 10", "satisfies")],
  "SWE1-CertProvider-007|1": [
    ls(STORE, f'The adb shell ls -l {STORE} output lists the trusted certificate chain files')],
  "SWE1-CertProvider-007|2": [
    ls(STORE, f'The adb shell ls -l {STORE} output lists the trusted certificate chain files'),
    ssl_verify(True),
    pend("X-e valid leaf certificate + trigger", LOGDOG_PEND)],
- "SWE1-CertProvider-008|1": [pend("X-i Cert Provider source and build environment"),
+ "SWE1-CertProvider-008|1": [
+   doc_obtain(_CP_JAVA),
+   doc_review(_CP_JAVA,
+              "Verify they link against and invoke the CertProvider Binder interface "
+              "for certificate validation"),
    logcat("Logdog", f"PENDING: {LOGDOG_PEND}")],
- "SWE1-CertProvider-008|2": [pend("X-i Cert Provider source and build environment"),
+ "SWE1-CertProvider-008|2": [
+   doc_obtain(_CP_NATIVE),
+   doc_review(_CP_NATIVE,
+              "Verify they utilize the libCertProvider C++ API for leaf certificate "
+              "verification"),
    logcat("Logdog", f"PENDING: {LOGDOG_PEND}")],
  "SWE1-CertProvider-009|1": [
    ls(STORE, f'The adb shell ls -l {STORE} output lists the Development certificate chain'),
@@ -182,45 +272,39 @@ STEPS: dict[str, list] = {
             '"Policy:" line whose OID is not 1.3.6.1.4.1.57872.<…>'),
    pend("X-e OID certificate + trigger", LOGDOG_PEND)],
 
- "SWE1-KeyInsyall-001|1": [od("/mnt/vendor/oemkeys/<installstate file>", 0),
-   pend("X-f-2 KeyInstall status test runner")],
- "SWE1-KeyInsyall-001|2": [od("/mnt/vendor/oemkeys/<installstate file>", 2),
-   pend("X-f-2 KeyInstall status test runner")],
- "SWE1-KeyInsyall-002|1": [od("/mnt/vendor/oemkeys/<installstate file>", 3),
+ "SWE1-KeyInsyall-001|1": [od("/mnt/vendor/oemkeys/installstate", 0), km_aes()],
+ "SWE1-KeyInsyall-001|2": [od("/mnt/vendor/oemkeys/installstate", 2), km_aes()],
+ "SWE1-KeyInsyall-002|1": [od("/mnt/vendor/oemkeys/installstate", 3),
    ls("/mnt/vendor/oemkeys", "The adb shell ls -l /mnt/vendor/oemkeys output lists no stored key material")],
- "SWE1-KeyInsyall-003|1": [od("/mnt/vendor/oemkeys/<installstate file>", 3),
+ "SWE1-KeyInsyall-003|1": [od("/mnt/vendor/oemkeys/installstate", 3),
    ("Read the status value in the secure partition", "$ adb shell od -t x1 /mnt/vendor/oemkeys/<status file>",
     'The adb shell od -t x1 /mnt/vendor/oemkeys/<status file> output shows "0900 0000 0000 0000"')],
- "SWE1-KeyInsyall-003|2": [od("/mnt/vendor/oemkeys/<installstate file>", 3)],
- "SWE1-KeyInsyall-004|1": [od("/mnt/vendor/oemkeys/<installstate file>", 1)],
- "SWE1-KeyInsyall-005|1": [od("/mnt/vendor/oemkeys/<installstate file>", 2),
+ "SWE1-KeyInsyall-003|2": [od("/mnt/vendor/oemkeys/installstate", 3)],
+ "SWE1-KeyInsyall-004|1": [od("/mnt/vendor/oemkeys/installstate", 1)],
+ "SWE1-KeyInsyall-005|1": [od("/mnt/vendor/oemkeys/installstate", 2),
    ls("/mnt/vendor/oemkeys", "The adb shell ls -l /mnt/vendor/oemkeys output lists the originally stored key material")],
- "SWE1-KeyInsyall-006|1": [od("/mnt/vendor/oemkeys/<installstate file>", 0)],
- "SWE1-KeyInsyall-006|2": [od("/mnt/vendor/oemkeys/<installstate file>", 1)],
- "SWE1-KeyInsyall-006|3": [od("/mnt/vendor/oemkeys/<installstate file>", 2)],
- "SWE1-KeyInsyall-006|4": [od("/mnt/vendor/oemkeys/<installstate file>", 3)],
+ "SWE1-KeyInsyall-006|1": [od("/mnt/vendor/oemkeys/installstate", 0)],
+ "SWE1-KeyInsyall-006|2": [od("/mnt/vendor/oemkeys/installstate", 1)],
+ "SWE1-KeyInsyall-006|3": [od("/mnt/vendor/oemkeys/installstate", 2)],
+ "SWE1-KeyInsyall-006|4": [od("/mnt/vendor/oemkeys/installstate", 3)],
  "SWE1-KeyInsyall-007|1": [
    ls("/mnt/vendor/oemkeys", "The adb shell ls -l /mnt/vendor/oemkeys output lists the stored key material"),
-   od("/mnt/vendor/oemkeys/<installstate file>", 1)],
- "SWE1-KeyInsyall-007|2": [od("/mnt/vendor/oemkeys/<installstate file>", 2)],
+   od("/mnt/vendor/oemkeys/installstate", 1)],
+ "SWE1-KeyInsyall-007|2": [od("/mnt/vendor/oemkeys/installstate", 2)],
  "SWE1-KeyInsyall-008|1": [
    ls("/mnt/vendor/oemkeys", "The adb shell ls -l /mnt/vendor/oemkeys output lists the stored key blob")],
  "SWE1-KeyInsyall-008|2": [pend("X-j OTA or HAL upgrade image + trigger")],
- "SWE1-KeyInsyall-009|1": [od("/mnt/vendor/oemkeys/<installstate file>", 1),
-   pend("X-f-2 KeyInstall status test runner")],
- "SWE1-KeyInsyall-009|2": [od("/mnt/vendor/oemkeys/<installstate file>", 2),
-   pend("X-f-2 KeyInstall status test runner")],
+ "SWE1-KeyInsyall-009|1": [od("/mnt/vendor/oemkeys/installstate", 1), km_aes()],
+ "SWE1-KeyInsyall-009|2": [od("/mnt/vendor/oemkeys/installstate", 2), km_aes()],
  "SWE1-KeyInsyall-010|1": [pend("X-f-2 KeyInstall status test runner")],
  "SWE1-KeyInsyall-010|2": [pend("X-f-2 KeyInstall status test runner"),
    logcat("KeyInstall", f"PENDING: {LOGDOG_PEND}")],
- "SWE1-KeyInsyall-011|1": [od("/mnt/vendor/oemkeys/<installstate file>", 2),
-   pend("X-f-2 KeyInstall status test runner")],
- "SWE1-KeyInsyall-011|2": [od("/mnt/vendor/oemkeys/<installstate file>", 3),
-   pend("X-f-2 KeyInstall status test runner")],
+ "SWE1-KeyInsyall-011|1": [od("/mnt/vendor/oemkeys/installstate", 2), ki_status()],
+ "SWE1-KeyInsyall-011|2": [od("/mnt/vendor/oemkeys/installstate", 3), ki_status()],
  "SWE1-KeyInsyall-012|1": [pend("X-f-2 KeyInstall designated task execution + trigger"),
    logcat("avc", 'The adb logcat -s avc output contains no "avc: denied" entry related to KeyInstall')],
- "SWE1-KeyInsyall-012|2": [pend("X-i KeyInstall source and build environment")],
- "SWE1-KeyInsyall-012|3": [pend("X-i KeyInstall source and build environment")],
+ "SWE1-KeyInsyall-012|2": [doc_obtain(_KI_SRC), doc_review(_KI_SRC, "an Android.bp file must be present and functional", "satisfies")],
+ "SWE1-KeyInsyall-012|3": [doc_obtain(_KI_CODE), doc_review(_KI_CODE, "it passes Static Analysis for CERT and CWE compliance", "satisfies")],
  "SWE1-KeyInsyall-013|1": [
    ("Read the process resource usage on the DUT", "$ adb shell procrank",
     "The adb shell procrank output shows the KeyInstall RAM usage within the stated limit"),
@@ -287,8 +371,12 @@ STEPS: dict[str, list] = {
  "SWE1-SRA-SECURITY-SWDL-003|2": [pend("X-l SWDL decryption test entry point")],
  "SWE1-SRA-SECURITY-SWDL-003|3": [pend("X-l SWDL decryption test entry point")],
  "SWE1-SRA-SECURITY-SWDL-004|1": [pend("X-l SWDL verification test entry point")],
- "SWE1-SRA-SECURITY-SWDL-004|2": [pend("X-l SWDL verification test entry point")],
- "SWE1-SRA-SECURITY-SWDL-004|3": [pend("X-l SWDL verification test entry point")],
+ "SWE1-SRA-SECURITY-SWDL-004|2": [
+   ("Send UDS request RoutineControl to start the Check Program routine", "$ 31 01 F0 00",
+    "Positive response is received: 71 01 F0 00 00")],
+ "SWE1-SRA-SECURITY-SWDL-004|3": [
+   ("Send UDS request RoutineControl to start the Check Program routine", "$ 31 01 F0 00",
+    "Positive response is received: 71 01 F0 00 01")],
 
  "SWE1-SAM-0002|1": [
    ("Read the running native processes on the DUT", "$ adb shell ps -A",
@@ -334,6 +422,18 @@ STEPS: dict[str, list] = {
 
 # ---------------------------------------------------- 逐 SWE1 之 Pre-Condition
 _CP_ASSET = f"Certificate assets are available under {ASSETS}"
+
+if not SEC08:          # 重建 v03：X-i 仍為 PENDING（R-SEC20 之前）
+    _XI_CP = "X-i Cert Provider source and build environment"
+    for _n in "1234":
+        STEPS[f"SWE1-CertProvider-006|{_n}"] = [pend(_XI_CP)]
+    for _n in "12":
+        STEPS[f"SWE1-CertProvider-008|{_n}"] = [pend(_XI_CP),
+                                                logcat("Logdog", f"PENDING: {LOGDOG_PEND}")]
+    for _n in "23":
+        STEPS[f"SWE1-KeyInsyall-012|{_n}"] = [pend("X-i KeyInstall source and build environment")]
+    DOC_REVIEW.clear()
+
 PRE: dict[str, list[str]] = {
  "SWE1-CertProvider-001": [ADB_ROOT, RUNNER_READY, _CP_ASSET],
  "SWE1-CertProvider-002": [ADB_ROOT, RUNNER_READY, "SAM Dongle is inserted into the DUT",
@@ -402,6 +502,78 @@ def first_sentence(desc: str) -> str:
     return re.split(r"(?<=\.)\s+", head)[0].strip()
 
 
+
+# ---------------------------------------------------- R-SEC21：PENDING → 描述性佔位
+# 供給方：多數為 RD；實體憑證鏈由 STLA 供（X-c／X-d 之 EXEC_ASSETS 所載）。
+PROVIDER = {"X-c": "STLA", "X-d": "STLA"}
+# 性質之敘述（取自原 PENDING 之尾語，去掉 `+ trigger`），使佔位「點名值之來源與性質」。
+RE_PENDING_LINE = re.compile(r"^(\s*(?:\d+\.\s*)?)PENDING:\s*(X-[a-z0-9-]+)\s*(.*)$")
+
+
+def _nature(rest: str) -> str:
+    return re.sub(r"\s*\+\s*trigger\s*$", "", rest).strip() or "value"
+
+
+def placeholder_for(tok: str, rest: str, kind: str) -> str:
+    """kind：trigger／exec／command／outcome／value／env（R-SEC21(b) 三型之句式）。"""
+    who = PROVIDER.get(tok, "RD")
+    n = _nature(rest)
+    if kind == "trigger":
+        return f"<DUT-side trigger for {n} provided by {who} ({tok})>"
+    if kind == "exec":
+        return f"<{n} provided by {who} ({tok})> is executed"
+    if kind == "command":
+        return f"$ <command provided by {who} ({tok})>"
+    if kind == "outcome":
+        return f"<observable outcome provided by {who} ({tok})>"
+    if kind == "env":
+        return f"<{n} provided by {who} ({tok})> is available"
+    return f"<{n} provided by {who} ({tok})>"
+
+
+def placeholderise(proc_lines: list[str], er_lines: list[str]
+                   ) -> tuple[list[str], list[str], list[dict]]:
+    """把 PENDING 行換成描述性佔位；回傳 (proc, er, 逐行紀錄)。
+
+    一行只換一處（R-SEC21(c)）。步驟型佔位另補一行 `$ <command provided by …>`，
+    使該步驟仍有執行通道行（R-SEC7(a)）——原 PENDING 步驟係以「整行 PENDING」免通道，
+    佔位化後不再具該豁免，故補之。
+    """
+    rec: list[dict] = []
+    out_proc: list[str] = []
+    for ln in proc_lines:
+        m = RE_PENDING_LINE.match(ln)
+        if not m:
+            out_proc.append(ln)
+            continue
+        head, tok, rest = m.groups()
+        kind = "trigger" if _nature(rest) != rest.strip() else "exec"
+        ph, cmd = placeholder_for(tok, rest, kind), placeholder_for(tok, rest, "command")
+        out_proc += [f"{head}{ph}", cmd]
+        rec.append({"field": "proc", "line": len(out_proc) - 1, "x_token": tok,
+                    "original_pending": ln.strip(), "placeholder": f"{head}{ph}".strip(),
+                    "kind": kind, "converted_to": f"{head}{ph}".strip() + " ⏎ " + cmd})
+    out_er: list[str] = []
+    for ln in er_lines:
+        m = RE_PENDING_LINE.match(ln)
+        if not m:
+            out_er.append(ln)
+            continue
+        head, tok, rest = m.groups()
+        kind = "outcome" if _nature(rest) != rest.strip() else "value"
+        ph = placeholder_for(tok, rest, kind)
+        out_er.append(f"{head}{ph}")
+        rec.append({"field": "er", "line": len(out_er), "x_token": tok,
+                    "original_pending": ln.strip(), "placeholder": f"{head}{ph}".strip(),
+                    "kind": kind, "converted_to": f"{head}{ph}".strip()})
+    return out_proc, out_er, rec
+
+
+def r_proc_probe(steps) -> str:
+    """把該 sibling 之步驟與 ER 攤平為一字串，供 Remarks 之來源判定。"""
+    return " ".join(f"{d} {c or ''} {e}" for d, c, e in steps)
+
+
 def main() -> int:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     plan = list(csv.DictReader((DATA / "sibling_plan.tsv").open(encoding="utf-8"), delimiter="\t"))
@@ -449,29 +621,59 @@ def main() -> int:
         group = GROUP[comp]
         counter[group] += 1
         tc_id = f"NR1L-{ABBR[group]}-{counter[group]:03d}"
-        steps = STEPS[f'{swe1}|{s["sibling_no"]}']
+        key_sib = f'{swe1}|{s["sibling_no"]}'
+        doc_rev = key_sib in DOC_REVIEW
+        steps = STEPS[key_sib]
         proc, er = [], []
         for i, (d, cmd, e) in enumerate(steps, 1):
             proc.append(f"{i}. {d}")
             if cmd:
                 proc.append(cmd)
             er.append(f"{i}. {e}")
+        ph_rec: list[dict] = []
+        if SEC08:
+            proc, er, ph_rec = placeholderise(proc, er)
         design = DESIGN_OVERRIDE.get(swe1, NEG if s["priority"] and "reject" in s["lower_half(English)"]
                                      or "fails" in s["lower_half(English)"]
                                      or "not identical" in s["lower_half(English)"]
                                      or "refuse" in s["lower_half(English)"] else FUNC)
-        remarks = [f'source: 037 {swe1} Requirement Description and Verification Criteria',
+        remarks = [f'source: 037 {swe1} Requirement Description and Verification Criteria',]
+        if doc_rev:          # R-SEC20(a)(f)：首行標驗證型態，並保留 X-i 代號
+            remarks.insert(0, "verification: document review (R-SEC20)")
+            remarks.append("asset: X-i — closed by R-SEC20 (document review; "
+                           "no source/build-environment asset required)")
+        if "installstate" in r_proc_probe(STEPS[f'{swe1}|{s["sibling_no"]}']):
+            remarks.append("source: Z1 IntegrationTests/PythonTests/common/keys_install_helper.py "
+                           "(installstate path and state values verbatim)")
+        if "KeyInstallDiagServiceManagerTests" in r_proc_probe(STEPS[f'{swe1}|{s["sibling_no"]}']):
+            remarks.append("source: Z1 IntegrationTests/PythonTests/KeysInstallationTests/"
+                           "test_java_integration.py (instrument command verbatim)")
+        if "KeyMasterWrapperAesTests" in r_proc_probe(STEPS[f'{swe1}|{s["sibling_no"]}']):
+            remarks.append("source: Z1 IntegrationTests/PythonTests/KeysInstallationTests/"
+                           "test_java_integration.py (instrument command verbatim)")
+        if "31 01 F0 00" in r_proc_probe(STEPS[f'{swe1}|{s["sibling_no"]}']):
+            remarks.append("source: CCVR Auth-Prog CS.93 evidence rows 3/5/6/7/8; "
+                           "response byte 4 bit field per CS.00102 SYS-RA-CS00102-685")
+        remarks += [
                    f'sibling axis: {s["axis"]}; rule {s["rule"]} of SEC-04 4.2',
                    f'channel_feasible: {tm[swe1]["channel_feasible"]}']
         if tm[swe1]["nrl_swe1"] != "-":
             remarks.insert(1, f'Polarion: {tm[swe1]["nrl_swe1"]}')
+        for rc in ph_rec:                                        # R-SEC21(d)
+            remarks.append(f'asset: {rc["x_token"]} — {rc["original_pending"]}')
         used = {m for m in re.findall(r"#([A-Za-z]+) ", " ".join(proc) + " ")}
         for meth in sorted(used):
             remarks.append(f"apk pairing: {meth} (apk_pairing.tsv)")
         r = {"req_id": swe1, "tc_id": tc_id, "test_group": group,
              "test_set": l2[swe1]["test_set"],
-             "test_item": f'{d_first[swe1]}\n({s["lower_half(English)"]})',
-             "pre": "\n".join(f"{i}. {x}" for i, x in enumerate(PRE[swe1], 1)),
+             "test_item": f'{d_first[swe1]}\n({s["lower_half(English)"]}'
+                          f'{" (document review)" if doc_rev else ""})',
+             "pre": "\n".join(f"{i}. {x}" for i, x in enumerate(
+                 (DOC_REVIEW_PRE.get(swe1) or
+                  PRE[swe1] + ["Access to the RD build environment for "
+                               f'{DOC_COMPONENT[tm[swe1]["component"]]} is granted'])
+                 if doc_rev
+                 else PRE[swe1], 1)),
              "input": "NA", "proc": "\n".join(proc), "er": "\n".join(er),
              "spec": f'{TOKEN[group]}_{swe1}', "tc_ref": "NEW",
              "priority": s["priority"], "design": design, "fs": "No",
@@ -482,7 +684,8 @@ def main() -> int:
         for col, val in zip(VM_COLS, VM_VALUES):
             ws[f"{col}{row}"] = val
         (OUT_DIR / f"{tc_id}.json").write_text(
-            json.dumps({**r, "vehicle_model": dict(zip(VM_NAMES, VM_VALUES))},
+            json.dumps({**r, "vehicle_model": dict(zip(VM_NAMES, VM_VALUES)),
+                        "placeholders": ph_rec},
                        ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         out_rows.append(r)
         for line in (r["proc"] + "\n" + r["er"]).splitlines():
@@ -494,11 +697,14 @@ def main() -> int:
     agg: dict[str, list[str]] = {}
     for token, tc in pend_rows:
         agg.setdefault(token, []).append(tc)
-    with (DATA / "pending_summary.tsv").open("w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh, delimiter="\t")
-        w.writerow(["token", "count", "tc_ids"])
-        for token in sorted(agg):
-            w.writerow([token, len(agg[token]), ";".join(sorted(set(agg[token])))])
+    # v04 之佔位總表由 `build_merged.py` 以合併本口徑產出（`placeholder_summary.tsv`）；
+    # 此處只在 v03 模式維護原 `pending_summary.tsv`，v04 模式不另落 batch1 專屬表。
+    if not SEC08:
+        with (DATA / "pending_summary.tsv").open("w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh, delimiter="\t")
+            w.writerow(["token", "count", "tc_ids"])
+            for token in sorted(agg):
+                w.writerow([token, len(agg[token]), ";".join(sorted(set(agg[token])))])
 
     print(f"batch1：{len(out_rows)} TC → {OUT_XLSX.relative_to(ROOT)}")
     print("  逐組:", dict(counter))

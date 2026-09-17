@@ -6,15 +6,15 @@
   "test_item": "This function shall apply AuthData when it is found in USB storage\n(AuthData not at the root of the USB external memory is not received)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. SAM dongle is inserted into the DUT",
   "input": "NA",
-  "proc": "1. PENDING: X-g SAM AuthData package outside the USB root + trigger\n2. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth",
-  "er": "1. PENDING: X-g SAM AuthData package outside the USB root + trigger\n2. The adb shell ls -l /data/vendor/dauth output lists no newly received AuthData",
+  "proc": "1. <DUT-side trigger for SAM AuthData package outside the USB root provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n2. Confirm the content of /data/vendor/dauth on the DUT\n$ adb shell ls -l /data/vendor/dauth",
+  "er": "1. <observable outcome provided by RD (X-g)>\n2. The adb shell ls -l /data/vendor/dauth output lists no newly received AuthData",
   "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0003",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-SAM-0003 Requirement Description and Verification Criteria\nsibling axis: media layout\nchannel_feasible: 部分/部分\npriority assigned by analogy; R-SEC16 does not list this SWE1 row",
+  "remarks": "source: 037 SWE1-SAM-0003 Requirement Description and Verification Criteria\nsibling axis: media layout\nchannel_feasible: 部分/部分\nasset: X-g — 1. PENDING: X-g SAM AuthData package outside the USB root + trigger\nasset: X-g — 1. PENDING: X-g SAM AuthData package outside the USB root + trigger",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,25 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": [
+    {
+      "field": "proc",
+      "line": 1,
+      "x_token": "X-g",
+      "original_pending": "1. PENDING: X-g SAM AuthData package outside the USB root + trigger",
+      "placeholder": "1. <DUT-side trigger for SAM AuthData package outside the USB root provided by RD (X-g)>",
+      "kind": "trigger",
+      "converted_to": "1. <DUT-side trigger for SAM AuthData package outside the USB root provided by RD (X-g)> ⏎ $ <command provided by RD (X-g)>"
+    },
+    {
+      "field": "er",
+      "line": 1,
+      "x_token": "X-g",
+      "original_pending": "1. PENDING: X-g SAM AuthData package outside the USB root + trigger",
+      "placeholder": "1. <observable outcome provided by RD (X-g)>",
+      "kind": "outcome",
+      "converted_to": "1. <observable outcome provided by RD (X-g)>"
+    }
+  ]
 }

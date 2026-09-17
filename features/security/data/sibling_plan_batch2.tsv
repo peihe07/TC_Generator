@@ -17,8 +17,8 @@ SWE1-SAM-0012	2	number of ignition cycles is 1 and does not exceed ValidityCount
 SWE1-SAM-0012	3	number of ignition cycles reaches 65535 and exceeds ValidityCounter	ValidityCounter boundary	ADB	Y	P0	-
 SWE1-SAM-0013	1	head unit boots up on Atl-Hi; disabling is notified to all target functions	EE architecture	CAN/ADB	N	P1	hi
 SWE1-SAM-0013	2	head unit boots up on Atl-Mi; disabling is notified to all target functions	EE architecture	CAN/ADB	N	P1	mi
-SWE1-SAM-0013	3	head unit resumes from suspend on Atl-Hi; disabling is notified	EE architecture	CAN/ADB	N	P1	hi
-SWE1-SAM-0013	4	head unit resumes from suspend on Atl-Mi; disabling is notified	EE architecture	CAN/ADB	N	P1	mi
+SWE1-SAM-0013	3	head unit resumes from suspend on Atl-Hi; disabling is notified	EE architecture	PENDING/ADB	Y	P1	hi
+SWE1-SAM-0013	4	head unit resumes from suspend on Atl-Mi; disabling is notified	EE architecture	PENDING/ADB	Y	P1	mi
 SWE1-SAM-0014	1	verification succeeds; the target functions are notified according to SAMType	notification trigger	PENDING/ADB	Y	P1	-
 SWE1-SAM-0016	1	target function connects while the status is ON; the current status is notified	current status	PENDING/ADB	Y	P1	-
 SWE1-SAM-0016	2	target function connects while the status is OFF; the current status is notified	current status	PENDING/ADB	Y	P1	-

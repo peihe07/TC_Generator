@@ -2,7 +2,7 @@
   "req_id": "SWE1-SAM-0008",
   "tc_id": "NR1L-SAM-013",
   "test_group": "SAM",
-  "test_set": "Service Environment",
+  "test_set": "AuthData Verification",
   "test_item": "AuthData contains Manifest file, manifest signature and SAM certificate file.\n(manifest, signature and certificate files follow the SAM package naming and format)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. SAM dongle is inserted into the DUT",
   "input": "NA",
@@ -23,5 +23,6 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": []
 }

@@ -25,7 +25,7 @@ _s.loader.exec_module(g1)
 
 DATA = ROOT / "features" / "security" / "data"
 SB = ROOT / "features" / "security" / "sandbox"
-OUT_XLSX = SB / "merged" / "security_v01.xlsx"
+OUT_XLSX = SB / "merged" / f"security_{g1.VER}.xlsx"
 
 
 def main() -> int:
@@ -73,7 +73,7 @@ def main() -> int:
             w.writerow([s, "D" if bo[s]["disposition"] == "D" else "PRODUCED",
                         bo[s]["ccvr_batch"], len(ids), ";".join(ids)])
 
-    # pending_summary.tsv —— 合併本口徑
+    # PENDING／佔位總表 —— 合併本口徑
     import re
     agg = defaultdict(list)
     for t in tcs:
@@ -81,11 +81,32 @@ def main() -> int:
             m = re.match(r"^\s*(?:\d+\.\s*)?PENDING:\s*(\S+)", line)
             if m:
                 agg[m.group(1)].append(t["tc_id"])
-    with (DATA / "pending_summary.tsv").open("w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh, delimiter="\t")
-        w.writerow(["token", "count", "tc_ids"])
-        for k in sorted(agg):
-            w.writerow([k, len(agg[k]), ";".join(sorted(set(agg[k])))])
+    if not g1.SEC08:            # v03 形態：維護原 `pending_summary.tsv`
+        with (DATA / "pending_summary.tsv").open("w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh, delimiter="\t")
+            w.writerow(["token", "count", "tc_ids"])
+            for k in sorted(agg):
+                w.writerow([k, len(agg[k]), ";".join(sorted(set(agg[k])))])
+    # R-SEC21(d)：逐行佔位總表（取代 `pending_summary.tsv` 之交付用途）
+    ph_rows = [(t["tc_id"], rc) for t in tcs for rc in t.get("placeholders", [])]
+    if g1.SEC08:
+        with (DATA / "placeholder_summary.tsv").open("w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh, delimiter="\t")
+            w.writerow(["tc_id", "field", "line", "x_token", "original_pending",
+                        "placeholder", "kind", "converted_to"])
+            for tc, rc in ph_rows:
+                w.writerow([tc, rc["field"], rc["line"], rc["x_token"],
+                            rc["original_pending"], rc["placeholder"], rc["kind"],
+                            rc["converted_to"]])
+        by_tok = Counter(rc["x_token"] for _, rc in ph_rows)
+        with (DATA / "placeholder_by_token.tsv").open("w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh, delimiter="\t")
+            w.writerow(["token", "count", "tc_ids", "fields"])
+            for k in sorted(by_tok):
+                tcs_k = sorted({tc for tc, rc in ph_rows if rc["x_token"] == k})
+                flds = Counter(rc["field"] for _, rc in ph_rows if rc["x_token"] == k)
+                w.writerow([k, by_tok[k], ";".join(tcs_k),
+                            " ".join(f"{a}={b}" for a, b in sorted(flds.items()))])
 
     cov = list(csv.DictReader((DATA / "coverage.tsv").open(encoding="utf-8"), delimiter="\t"))
     produced = [c for c in cov if int(c["tc_count"]) > 0]
@@ -95,6 +116,9 @@ def main() -> int:
     print(f"  coverage.tsv {len(cov)} 列；tc_count>0 = {len(produced)}；D 群 = "
           f"{sum(1 for c in cov if c['disposition'] == 'D')}")
     print(f"  PENDING token 群 {len(agg)}；行 {sum(len(v) for v in agg.values())}")
+    print(f"  佔位 {len(ph_rows)} 行；token 群 "
+          f"{len({rc['x_token'] for _, rc in ph_rows})}；型別 "
+          f"{dict(Counter(rc['kind'] for _, rc in ph_rows))}")
     print("  surgical:", {k: v for k, v in report.items() if k != "members_patched"})
     return 0
 

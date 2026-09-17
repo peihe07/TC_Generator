@@ -14,3 +14,5 @@ no	method	swe1_ids	basis	confidence
 13	secondPartyLevelThreeCertATestNormalFlow	SWE1-CertProvider-004	同 12；A/B/C 為 sibling 候選（L3 三種 leaf）	medium
 14	secondPartyLevelThreeCertBTestNormalFlow	SWE1-CertProvider-004	同 13	medium
 15	secondPartyLevelThreeCertCTestNormalFlow	SWE1-CertProvider-004	同 13	medium
+16	getInstalledKeysStatus	SWE1-KeyInsyall-011	Z1 IntegrationTests/PythonTests/KeysInstallationTests/test_java_integration.py L72-L77；類 KeyInstallDiagServiceManagerTests，037 KI-011 之 DIAG 服務查詢狀態即此方法	high
+17	encryptDecryptNormalFlow	SWE1-KeyInsyall-001;SWE1-KeyInsyall-009	Z1 同上 L17-L23（KeyMasterWrapperAesTests）；037 KI-001 之 cryptographic operations 與 KI-009 之 sign/verify/encrypt/decrypt 即此族	medium

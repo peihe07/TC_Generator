@@ -1,0 +1,93 @@
+sheet	cell	swc_value	home_value	security_value(proposed)
+Cover 封面	C12	STLA 測試用例規範和結果_SWQT ⏎ STLA Test Case Specification & Result_SWQT	FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_BT	
+Cover 封面	C4	文件名 Document name: STLA 測試用例規範和結果_SWQT ⏎ STLA Test Case Specification & Result_SWQT	文件名 Document name: STLA 測試用例規範和結果_SWQT ⏎ STLA Test Case Specification & Result_SWQT	
+Cover 封面	C6	版本 Version	版本 Version	
+Cover 封面	C7	核准者 Approver	核准者 Approver	
+Cover 封面	C8	審查者 Reviewer	審查者 Reviewer	
+Cover 封面	C9	作者 Author	作者 Author	
+Cover 封面	D6	C	B	
+Cover 封面	D7	劉安哲 AllenACLiu	劉安哲 AllenACLiu	
+Cover 封面	D8	張愷霏 ErinKFChang	陳禹伸 YuShenChen	
+Cover 封面	D9		張愷霏 ErinKFChang	
+Cover 封面	G6	修訂日期 Revision Date	修訂日期 Revision Date	
+Cover 封面	G7	2025-10-27 00:00:00	2025-12-11 00:00:00	
+Cover 封面	G8		2025-12-09 00:00:00	
+Cover 封面	G9		2025-12-08 00:00:00	
+Cover 封面	H30	FM-WI-FSM-036-A01	FM-WI-FSM-036-A01	
+ChangeHistory 修訂履歷	A1	修訂履歷  Revision History	修訂履歷  Revision History	
+ChangeHistory 修訂履歷	A4	版本 Ver.	版本 Ver.	
+ChangeHistory 修訂履歷	A5	A	A	
+ChangeHistory 修訂履歷	A6	B	B	
+ChangeHistory 修訂履歷	A7	C	C	
+ChangeHistory 修訂履歷	B4	修訂内容 Revision Content	修訂内容 Revision Content	
+ChangeHistory 修訂履歷	B5	初版發行 ⏎ New Release. ⏎ 1. 測試案例規格新增欄位 — Add columns in Test Case Spec: ⏎ a. B欄：序號Column — B: No.#  ⏎ b. C欄：需求／設計ID（Polarion) — Column C: Requirement or Design ID (Polarion) ⏎ c. E欄：測試用例ID（TestRail） — Column E: Test Case ID (TestRail) ⏎ d. N欄：規格參考 — Column N: Specification Reference ⏎ e. O欄：引用自 Melco — Column O: Derived from Melco ⏎ f. P欄：測試用例優先級別 — Column P: Test Case Priority ⏎ g. 車型欄位 — Vehicle Model column ⏎  ⏎ 2. 測試案例規格刪除欄位 — Remove columns in Test Case Spec: ⏎ a. G欄：測試方法 — Column G: Test Method ⏎ b. J欄：測試環境 — Column J: Test Environment ⏎ c. K欄：計畫樣本數量 — Column K: Planned Sample Quantity ⏎ d. P欄：備註 — Column P: Remarks ⏎  ⏎ 3. 測試結果新增欄位 — Add columns in Test Results: ⏎ a. AA欄：測試版號 — Column AA: Test Version ⏎ b. AB欄：測試車型 (Bench) — Column AB: Test Vehicle (Bench) ⏎ c. AC欄：測試期間 — Column AC: Test Period ⏎ d. AD欄：測試者 — Column AD: Tester ⏎ e. AF欄：缺陷ID — Column AF: Defect ID ⏎  ⏎ 4. 測試結果刪除欄位 — Remove columns in Test Results: ⏎ a. Q欄：測試結果ID — Column Q: Result ID ⏎ b. S欄：結果敘述 — Column S: Result Description ⏎ c. T欄：實際樣品數量 — Column T: Actual Sample Quantity ⏎ d. U欄：開始時間 — Column U: Start Time ⏎ e. V欄：完成時間 — Column V: End Time ⏎ f. W欄：儀校效期 — Column W: Equipment verification validity period ⏎  ⏎ 5. 修正測試用例設計方法下拉選單為 — Update dropdown for Test Case Design Technique to: ⏎ a. 功能測試（Functional-based；無特定設計方法）Functional-based (no specific technique) ⏎ b. 狀態轉換測試 — State Transition Testing ⏎ c. 決策表測試 — Decision Table Testing ⏎ e. 等價劃分（EP） — Equivalence Partitioning (EP) ⏎ f. 邊界值分析（BVA） — Boundary Value Analysis (BVA) ⏎ g. 組合測試（Pair-wise／N-wise） — Combinatorial (Pair-wise / N-wise) ⏎ h. 情境／用例測試 — Scenario / Use Case Testing ⏎ i. 負向／無效測試 — Negative / Invalid Testing ⏎ j. 基礎故障注入（Lite） — Fault Injection (Lite)	初版發行 ⏎ New Release. ⏎ 1. 測試案例規格新增欄位 — Add columns in Test Case Spec: ⏎ a. B欄：序號Column — B: No.#  ⏎ b. C欄：需求／設計ID（Polarion) — Column C: Requirement or Design ID (Polarion) ⏎ c. E欄：測試用例ID（TestRail） — Column E: Test Case ID (TestRail) ⏎ d. N欄：規格參考 — Column N: Specification Reference ⏎ e. O欄：引用自 Melco — Column O: Derived from Melco ⏎ f. P欄：測試用例優先級別 — Column P: Test Case Priority ⏎ g. 車型欄位 — Vehicle Model column ⏎  ⏎ 2. 測試案例規格刪除欄位 — Remove columns in Test Case Spec: ⏎ a. G欄：測試方法 — Column G: Test Method ⏎ b. J欄：測試環境 — Column J: Test Environment ⏎ c. K欄：計畫樣本數量 — Column K: Planned Sample Quantity ⏎ d. P欄：備註 — Column P: Remarks ⏎  ⏎ 3. 測試結果新增欄位 — Add columns in Test Results: ⏎ a. AA欄：測試版號 — Column AA: Test Version ⏎ b. AB欄：測試車型 (Bench) — Column AB: Test Vehicle (Bench) ⏎ c. AC欄：測試期間 — Column AC: Test Period ⏎ d. AD欄：測試者 — Column AD: Tester ⏎ e. AF欄：缺陷ID — Column AF: Defect ID ⏎  ⏎ 4. 測試結果刪除欄位 — Remove columns in Test Results: ⏎ a. Q欄：測試結果ID — Column Q: Result ID ⏎ b. S欄：結果敘述 — Column S: Result Description ⏎ c. T欄：實際樣品數量 — Column T: Actual Sample Quantity ⏎ d. U欄：開始時間 — Column U: Start Time ⏎ e. V欄：完成時間 — Column V: End Time ⏎ f. W欄：儀校效期 — Column W: Equipment verification validity period ⏎  ⏎ 5. 修正測試用例設計方法下拉選單為 — Update dropdown for Test Case Design Technique to: ⏎ a. 功能測試（Functional-based；無特定設計方法）Functional-based (no specific technique) ⏎ b. 狀態轉換測試 — State Transition Testing ⏎ c. 決策表測試 — Decision Table Testing ⏎ e. 等價劃分（EP） — Equivalence Partitioning (EP) ⏎ f. 邊界值分析（BVA） — Boundary Value Analysis (BVA) ⏎ g. 組合測試（Pair-wise／N-wise） — Combinatorial (Pair-wise / N-wise) ⏎ h. 情境／用例測試 — Scenario / Use Case Testing ⏎ i. 負向／無效測試 — Negative / Invalid Testing ⏎ j. 基礎故障注入（Lite） — Fault Injection (Lite)	
+ChangeHistory 修訂履歷	B6	重新命名 O 欄：由引用自 Melco 至測項參考編號 ⏎ Rename Column O: From Derived From Melco to Test Case Reference ID ⏎  ⏎ 目的：此欄位用於追溯當前的測項回溯至其原始的外部或內部測項 ID，以確保文件具備更佳的彈性與可追溯性。 ⏎ Purpose: This column is used to trace the current test case back to its original external or internal test ID, ensuring better document flexibility and traceability.	重新命名 O 欄：由引用自 Melco 至測項參考編號 ⏎ Rename Column O: From Derived From Melco to Test Case Reference ID ⏎  ⏎ 目的：此欄位用於追溯當前的測項回溯至其原始的外部或內部測項 ID，以確保文件具備更佳的彈性與可追溯性。 ⏎ Purpose: This column is used to trace the current test case back to its original external or internal test ID, ensuring better document flexibility and traceability.	
+ChangeHistory 修訂履歷	B7	新增欄位：預估測試時間(分鐘) ⏎ Add new column: Estimated Test Time (mins) ⏎  ⏎ 目的：用於記錄單一測項的預估測試執行時間，以支援測試規劃與工時評估。 ⏎ Purpose: This column is added to estimate the execution time for each test case, supporting test planning and effort estimation.	Regenerated the three blank-author segments from FMWIFSM037A03 remaining leaves (segment 1 at row 87: 4 -> 4 rows; segment 2 at row 125: 4 -> 5 rows; segment 3 at row 162: 77 -> 63 rows); 72 rows total. ⏎ The 144 rows authored by Arif are unchanged — verified by an ordered content hash over columns D..AG, not by row position. ⏎ Leaves with no testable content of their own carry a placeholder row with the reason in Remarks (see ANOMALIES A-H01, A-H02, A-H20).	
+ChangeHistory 修訂履歷	C4	修訂人Reviser	修訂人Reviser	
+ChangeHistory 修訂履歷	C5	張愷霏 ⏎ ErinKFChang	張愷霏 ⏎ ErinKFChang	
+ChangeHistory 修訂履歷	C6	張愷霏 ⏎ ErinKFChang	張愷霏 ⏎ ErinKFChang	
+ChangeHistory 修訂履歷	C7	張愷霏 ⏎ ErinKFChang	PeiPYHsu	
+ChangeHistory 修訂履歷	D4	日期 Date	日期 Date	
+ChangeHistory 修訂履歷	D5	2025-10-20 00:00:00	2025-10-20 00:00:00	
+ChangeHistory 修訂履歷	D6	2025-12-08 00:00:00	2025-12-08 00:00:00	
+ChangeHistory 修訂履歷	D7	2026-01-21 00:00:00	2026-08-09	
+ChangeHistory 修訂履歷	E16	FM-WI-FSM-036-A01	FM-WI-FSM-036-A01	
+ChangeHistory 修訂履歷	E4	核准者 Approver	核准者 Approver	
+ChangeHistory 修訂履歷	E5	劉安哲 ⏎ AllenACLiu	劉安哲 ⏎ AllenACLiu	
+ChangeHistory 修訂履歷	E6	劉安哲 ⏎ AllenACLiu	劉安哲 ⏎ AllenACLiu	
+ChangeHistory 修訂履歷	E7	劉安哲 ⏎ AllenACLiu		
+Product Document 記錄封面頁	A1	產品文件 ⏎ Product Document	產品文件 ⏎ Product Document	
+Product Document 記錄封面頁	A11	文件修訂歷史 ⏎ Document Amendment History	文件修訂歷史 ⏎ Document Amendment History	
+Product Document 記錄封面頁	A12	版本Version	版本Version	
+Product Document 記錄封面頁	A13	1	V1.0	
+Product Document 記錄封面頁	A3	專案代號 ⏎ Project Code	專案代號 ⏎ Project Code	
+Product Document 記錄封面頁	A4	文件名稱 ⏎ Document Name	文件名稱 ⏎ Document Name	
+Product Document 記錄封面頁	A5	版本 ⏎ Version	版本 ⏎ Version	
+Product Document 記錄封面頁	A6	部門 ⏎ Prepared Dep.	部門 ⏎ Prepared Dep.	
+Product Document 記錄封面頁	A7	分類 ⏎ Classification	分類 ⏎ Classification	
+Product Document 記錄封面頁	A8	日期 ⏎ Date	日期 ⏎ Date	
+Product Document 記錄封面頁	B12	修訂內容Revision Content	修訂內容Revision Content	
+Product Document 記錄封面頁	B13	初版發佈	Initial Release 初版發布	
+Product Document 記錄封面頁	B3	NR1L	new R1L	
+Product Document 記錄封面頁	B5	V1.0	V1.0	
+Product Document 記錄封面頁	B6	SW Testing	SW Testing	
+Product Document 記錄封面頁	B7	Confidential	Confidential	
+Product Document 記錄封面頁	C12	作者Author	作者Author	
+Product Document 記錄封面頁	D12	日期Date	日期Date	
+Product Document 記錄封面頁	D13	2026-03-02 00:00:00		
+Product Document 記錄封面頁	D2	FM-WI-FSM-036-A01	FM-WI-FSM-036-A01	
+Reference	B10	7	7	
+Reference	B11	8	8	
+Reference	B12	9	9	
+Reference	B3	No.#	No.#	
+Reference	B4	1	1	
+Reference	B5	2	2	
+Reference	B6	3	3	
+Reference	B7	4	4	
+Reference	B8	5	5	
+Reference	B9	6	6	
+Reference	C10	情境 / 用例 (Scenario / Use Case Testing)	情境 / 用例 (Scenario / Use Case Testing)	
+Reference	C11	負向測試 (Negative / Invalid)	負向測試 (Negative / Invalid)	
+Reference	C12	基礎故障注入 (Fault Injection Lite)	基礎故障注入 (Fault Injection Lite)	
+Reference	C19	動態測試用的測試設計技術類型：	動態測試用的測試設計技術類型：	
+Reference	C20	https://www.astralweb.com.tw/test-design-technology-equivalence-partitioning-introduction-and-application/	https://www.astralweb.com.tw/test-design-technology-equivalence-partitioning-introduction-and-application/	
+Reference	C3	Test Case Design Methods	Test Case Design Methods	
+Reference	C4	功能測試 (Functional based ; no specific technique)	功能測試 (Functional based ; no specific technique)	
+Reference	C5	狀態轉換 (State Transition Testing)	狀態轉換 (State Transition Testing)	
+Reference	C6	決策表 (Decision Table Testing)	決策表 (Decision Table Testing)	
+Reference	C7	等價劃分 (Equivalence Partitioning, EP)	等價劃分 (Equivalence Partitioning, EP)	
+Reference	C8	邊界值分析 (Boundary Value Analysis, BVA)	邊界值分析 (Boundary Value Analysis, BVA)	
+Reference	C9	組合測試 (Combinatorial Testing ; Pair-wise / N-wise)	組合測試 (Combinatorial Testing ; Pair-wise / N-wise)	
+Reference	D10	按真實流程端到端驗證；跨模組時用。	按真實流程端到端驗證；跨模組時用。	
+Reference	D11	故意做錯（錯的值 / 錯順序 / 缺前置），看系統會不會擋住＋提示。	故意做錯（錯的值 / 錯順序 / 缺前置），看系統會不會擋住＋提示。	
+Reference	D12	把環境/依賴弄壞（斷網、逾時、拔裝置），看系統是否可恢復。	把環境/依賴弄壞（斷網、逾時、拔裝置），看系統是否可恢復。	
+Reference	D5	有模式 / 流程的功能（播放、暫停、鎖定等）。	有模式 / 流程的功能（播放、暫停、鎖定等）。	
+Reference	D6	條件×結果矩陣；多規則決定動作時用。	條件×結果矩陣；多規則決定動作時用。	
+Reference	D7	將行為相同的輸入分組，每組取代表值（含有效/無效）。	將行為相同的輸入分組，每組取代表值（含有效/無效）。	
+Reference	D8	錯最常發生在邊界；測上下限與**±1**；有範圍/閾值就用。	錯最常發生在邊界；測上下限與**±1**；有範圍/閾值就用。	
+Reference	D9	兩兩 / 三三組合覆蓋交互；參數 / 組態很多且彼此影響。	兩兩 / 三三組合覆蓋交互；參數 / 組態很多且彼此影響。	
+Reference	E10	例：插USB→掃描→播放→來電中斷→掛斷自動恢復播放。	例：插USB→掃描→播放→來電中斷→掛斷自動恢復播放。	
+Reference	E5	例：Stopped + Play → Playing；Stopped + Resume 應被拒。	例：Stopped + Play → Playing；Stopped + Resume 應被拒。	
+Reference	E7	例：本機/USB/BT/串流；格式：支援/不支援。	例：本機/USB/BT/串流；格式：支援/不支援。	
+Reference	E8	例：音量 0、1、99、100、101。	例：音量 0、1、99、100、101。	
+Reference	E9	例：機型×語言×來源×格式。	例：機型×語言×來源×格式。	

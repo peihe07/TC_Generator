@@ -6,15 +6,15 @@
   "test_item": "The software shall start the key installation process if the USB device/SDCard is inserted with the available key material present in the specified external storage directory.\n(not valid private keys; verification fails and stored keys are removed)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. A USB drive containing not valid private keys has been inserted into the HU USB port",
   "input": "NA",
-  "proc": "1. Read the installation state file in the secure partition\n$ adb shell od -t x1 /mnt/vendor/oemkeys/<installstate file>\n2. Confirm the content of /mnt/vendor/oemkeys on the DUT\n$ adb shell ls -l /mnt/vendor/oemkeys",
-  "er": "1. The adb shell od -t x1 /mnt/vendor/oemkeys/<installstate file> output shows the installstate value 3\n2. The adb shell ls -l /mnt/vendor/oemkeys output lists no stored key material",
+  "proc": "1. Read the installation state file in the secure partition\n$ adb shell od -t x1 /mnt/vendor/oemkeys/installstate\n2. Confirm the content of /mnt/vendor/oemkeys on the DUT\n$ adb shell ls -l /mnt/vendor/oemkeys",
+  "er": "1. The adb shell od -t x1 /mnt/vendor/oemkeys/installstate output shows the installstate value 3\n2. The adb shell ls -l /mnt/vendor/oemkeys output lists no stored key material",
   "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-002",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-KeyInsyall-002 Requirement Description and Verification Criteria\nsibling axis: verification outcome; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "source: 037 SWE1-KeyInsyall-002 Requirement Description and Verification Criteria\nsource: Z1 IntegrationTests/PythonTests/common/keys_install_helper.py (installstate path and state values verbatim)\nsibling axis: verification outcome; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,6 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": []
 }

@@ -6,15 +6,15 @@
   "test_item": "Provides a unified interface (API) that translates user requests into commands to retrieve the key from the system and returns the results to the user.\n(diagnostic interface reports a failed verification)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. ADA Active Roles permit ADA+ protected data identifiers",
   "input": "NA",
-  "proc": "1. Send UDS request DiagnosticSessionControl for the SystemSupplierSpecific session\n$ 10 60\n2. PENDING: X-d ECU certificate chain for the DUT serial number + trigger",
-  "er": "1. Positive response is received: 50 60\n2. PENDING: X-d ECU certificate chain for the DUT serial number + trigger",
+  "proc": "1. Send UDS request DiagnosticSessionControl for the SystemSupplierSpecific session\n$ 10 60\n2. <DUT-side trigger for ECU certificate chain for the DUT serial number provided by STLA (X-d)>\n$ <command provided by STLA (X-d)>",
+  "er": "1. Positive response is received: 50 60\n2. <observable outcome provided by STLA (X-d)>",
   "spec": "SWE1_ECUCert_FM-WI-FSM-037-A03_SYSAD_SEC_ECUCERT_DIAG",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "邊界值分析 (Boundary Value Analysis, BVA)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SYSAD_SEC_ECUCERT_DIAG Requirement Description and Verification Criteria\nsibling axis: verification status; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "source: 037 SYSAD_SEC_ECUCERT_DIAG Requirement Description and Verification Criteria\nsibling axis: verification status; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-d — 2. PENDING: X-d ECU certificate chain for the DUT serial number + trigger\nasset: X-d — 2. PENDING: X-d ECU certificate chain for the DUT serial number + trigger",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,25 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": [
+    {
+      "field": "proc",
+      "line": 3,
+      "x_token": "X-d",
+      "original_pending": "2. PENDING: X-d ECU certificate chain for the DUT serial number + trigger",
+      "placeholder": "2. <DUT-side trigger for ECU certificate chain for the DUT serial number provided by STLA (X-d)>",
+      "kind": "trigger",
+      "converted_to": "2. <DUT-side trigger for ECU certificate chain for the DUT serial number provided by STLA (X-d)> ⏎ $ <command provided by STLA (X-d)>"
+    },
+    {
+      "field": "er",
+      "line": 2,
+      "x_token": "X-d",
+      "original_pending": "2. PENDING: X-d ECU certificate chain for the DUT serial number + trigger",
+      "placeholder": "2. <observable outcome provided by STLA (X-d)>",
+      "kind": "outcome",
+      "converted_to": "2. <observable outcome provided by STLA (X-d)>"
+    }
+  ]
 }

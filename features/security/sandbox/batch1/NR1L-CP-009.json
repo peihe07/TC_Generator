@@ -6,15 +6,15 @@
   "test_item": "For ECU verification scenarios, the system shall dynamically retrieve the CRL from the Distribution Point (CDP) URL(s) defined within the target certificate.\n(certificate revoked at the distribution point; certificate is rejected)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. The DUT has network access\n3. An ECU certificate carrying a valid revocation distribution point is available",
   "input": "NA",
-  "proc": "1. PENDING: X-e revoked certificate at the distribution point + trigger",
-  "er": "1. PENDING: X-h log keyword",
+  "proc": "1. <DUT-side trigger for revoked certificate at the distribution point provided by RD (X-e)>\n$ <command provided by RD (X-e)>",
+  "er": "1. <log keyword provided by RD (X-h)>",
   "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-005",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-005 Requirement Description and Verification Criteria\nPolarion: NRL-349388\nsibling axis: revocation outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "source: 037 SWE1-CertProvider-005 Requirement Description and Verification Criteria\nPolarion: NRL-349388\nsibling axis: revocation outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-e — 1. PENDING: X-e revoked certificate at the distribution point + trigger\nasset: X-h — 1. PENDING: X-h log keyword",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,25 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": [
+    {
+      "field": "proc",
+      "line": 1,
+      "x_token": "X-e",
+      "original_pending": "1. PENDING: X-e revoked certificate at the distribution point + trigger",
+      "placeholder": "1. <DUT-side trigger for revoked certificate at the distribution point provided by RD (X-e)>",
+      "kind": "trigger",
+      "converted_to": "1. <DUT-side trigger for revoked certificate at the distribution point provided by RD (X-e)> ⏎ $ <command provided by RD (X-e)>"
+    },
+    {
+      "field": "er",
+      "line": 1,
+      "x_token": "X-h",
+      "original_pending": "1. PENDING: X-h log keyword",
+      "placeholder": "1. <log keyword provided by RD (X-h)>",
+      "kind": "value",
+      "converted_to": "1. <log keyword provided by RD (X-h)>"
+    }
+  ]
 }

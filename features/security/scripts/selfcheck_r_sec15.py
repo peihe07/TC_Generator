@@ -20,6 +20,15 @@ APK_PAIRING = ROOT / "features" / "security" / "data" / "apk_pairing.tsv"
 RE_METHOD = re.compile(r"#([A-Za-z]+)\s")
 RE_PENDING_HEAD = re.compile(r"^\s*(?:\d+[.)]\s*)?PENDING:")
 RE_LEDGER = re.compile(r"\bX-[a-z]\b|\bDR-SEC-[a-z]\b|\bR-SEC\d|\bA-SE")
+# R-SEC21(a)（SEC-08）：描述性佔位 `<性質 provided by <供給方> (X-<n>)>` 為 (c) 之例外擴充，
+# 且其 `<…>` 內容必然長於四詞（須點名來源與性質），故 (d) 之 `<>` 判項亦排除之。
+RE_PLACEHOLDER = re.compile(r"<[^<>]*\bprovided by\b[^<>]*\(X-[a-z0-9-]+\)>")
+# R-SEC20(b)：取得方式 037 未載者，整步為佔位 `<obtain <artifact> per RD>`；同列 (d) 例外。
+RE_OBTAIN = re.compile(r"<obtain [^<>]+ per RD>")
+# R-SEC20(b)：文件審查之兩式步驟（取得／審查）不得自擬檢查指令，故免執行通道（DOC 面）。
+RE_DOC_STEP = re.compile(r'^\s*(?:\d+[.)]\s*)?(?:<obtain [^<>]+ per RD>|Review .+ against ")')
+RE_PLACEHOLDER_HEAD = re.compile(
+    r"^\s*(?:\d+[.)]\s*)?<[^<>]*\bprovided by\b[^<>]*\(X-[a-z0-9-]+\)>")
 RE_BADQUOTE = re.compile(r"`|(?<![A-Za-z])'[^'\n]{1,120}'(?![A-Za-z])")
 RE_ANGLE = re.compile(r"<([^>]*)>")
 RE_STEP = re.compile(r"^\s*(\d+)[.)]\s*(.+)$")
@@ -38,9 +47,13 @@ RE_ER_STATE_READ = re.compile(r"adb shell (?:ls|cat)\b|\bod -t x1\b")
 # DUT 側觸發之步驟
 RE_DUT_TRIGGER = re.compile(
     r"am instrument|adb push|adb reboot|^\s*\$\s+(?:10|22|2E|31) |Insert |Power cycle |Send CAN:"
-    # R-SEC15(b)：無可用觸發手段者，該觸發步驟整行寫 `PENDING: X-<n> … + trigger`。
-    # 該 PENDING 步驟即觸發位之佔位，結構上滿足「須有觸發步驟」。
-    r"|PENDING:.*\+ trigger")
+    # R-SEC15(b)／R-SEC19：無可用觸發手段者，該觸發步驟整行寫 PENDING token
+    # （R-SEC15(b) 之式為 `… + trigger`，R-SEC19 之式為 `X-n suspend/resume trigger method`）。
+    # 凡**整行 PENDING 之 Procedure 步驟**皆為觸發位之佔位，結構上滿足「須有觸發步驟」——
+    # 其不可執行性已由 PENDING 本身標明，不需再由 (b) 重複報一次。
+    r"|^\s*(?:\d+[.)]\s*)?PENDING:"
+    # R-SEC21(e)：觸發型佔位視同觸發位之佔位（與 PENDING 同）。
+    r"|^\s*(?:\d+[.)]\s*)?<[^<>]*provided by[^<>]*\(X-[a-z0-9-]+\)>")
 
 
 def swe1_descriptions() -> dict[str, str]:
@@ -95,7 +108,7 @@ def main() -> int:
 
         # (b) 觀察不得代替觸發 —— 只施於「出現型」ER
         for n, line in enumerate(er_lines, 1):
-            if RE_PENDING_HEAD.match(line):
+            if RE_PENDING_HEAD.match(line) or RE_PLACEHOLDER_HEAD.match(line):
                 continue
             if not RE_ER_APPEARANCE.search(line):
                 continue          # 狀態讀取型：由同編號步驟之讀取指令產生，不需另有觸發
@@ -108,13 +121,14 @@ def main() -> int:
                 if not line.strip():
                     continue
                 # (c) 台帳代號只可入 Remarks（PENDING token 起首者例外）
-                if RE_LEDGER.search(line) and not RE_PENDING_HEAD.match(line):
+                probe = RE_PLACEHOLDER.sub("", line)     # R-SEC21(a) 例外擴充
+                if RE_LEDGER.search(probe) and not RE_PENDING_HEAD.match(line):
                     findings["c"].append(f"{tid} {key}: {line.strip()[:50]}")
                 # (d) 反引號／單引號
                 if RE_BADQUOTE.search(line):
                     findings["d"].append(f"{tid} {key}: {line.strip()[:50]}")
                 # (d) <> 只可為佔位（內容不得是完整句）
-                for m in RE_ANGLE.finditer(line):
+                for m in RE_ANGLE.finditer(RE_OBTAIN.sub("", RE_PLACEHOLDER.sub("", line))):
                     if len(m.group(1).split()) > 4:
                         findings["d"].append(f"{tid} {key}: 角括號非佔位 {m.group(0)[:40]}")
                 # (i) PENDING 須整行
@@ -149,7 +163,7 @@ def main() -> int:
         # 通道（R-SEC7(a)）：每編號步驟後須有 $ 行、實體操作、或整行 PENDING
         for i, line in enumerate(proc_lines):
             m = RE_STEP.match(line)
-            if not m or RE_PENDING_HEAD.match(line):
+            if not m or RE_PENDING_HEAD.match(line) or RE_DOC_STEP.match(line):
                 continue
             nxt = proc_lines[i + 1] if i + 1 < len(proc_lines) else ""
             if not (RE_CMD.match(nxt) or RE_PHYS.match(m.group(2))):
@@ -160,7 +174,7 @@ def main() -> int:
     print("|---|---|---:|---|")
     METHOD = {
         "a": ("跨場景字串移植", "ECU 專屬 log 字串（`ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY`）出現於 ER 而 Procedure 無 `ecuCert*` 方法者"),
-        "b": ("觀察不得代替觸發 ＋ 每步須有通道", "ER 行含 DUT 側觀察標記而 Procedure 無 DUT 側觸發（`am instrument`／`adb push`／`adb reboot`／UDS `$ 10|22|2E|31`／`Insert`／`Power cycle`／`Send CAN:`）；另逐編號步驟查其後是否有 `$` 行或實體操作或整行 PENDING"),
+        "b": ("觀察不得代替觸發 ＋ 每步須有通道", "ER 行含 DUT 側觀察標記而 Procedure 無 DUT 側觸發（`am instrument`／`adb push`／`adb reboot`／UDS `$ 10|22|2E|31`／`Insert`／`Power cycle`／`Send CAN:`）；另逐編號步驟查其後是否有 `$` 行或實體操作或整行 PENDING／佔位；R-SEC20 之文件審查步驟免通道"),
         "c": ("台帳代號不入四欄", "四欄逐行 regex `X-[a-z]｜DR-SEC-[a-z]｜R-SEC\\d｜A-SE`，排除以 PENDING token 起首之行"),
         "d": ("字面值只用雙引號", "四欄逐行查反引號與單引號包字串；另查角括號內容超過 4 token 者（非佔位）"),
         "e": ("Input Test Data = NA", "逐 TC 比對 `input` 欄"),

@@ -7,6 +7,11 @@
 TC 內之寫法：資產以 **Pre-Condition 一行**點名（R-SEC7(d) 之連線／權限狀態另計），
 **不寫 `PENDING`** —— 資產缺席是執行面問題，不是規格面缺件。
 
+**SEC-08 起（R-SEC21）**：原以整行 `PENDING: X-<n> …` 標記之位置，一律改為
+**描述性佔位** `<性質 provided by <供給方> (X-<n>)>`；下表「寫法」欄所載之 `PENDING:` 式
+為**歷史式**（v03 及以前之工作簿）。v04 之逐行佔位位置見 `data/placeholder_summary.tsv`
+（96 行）與 `data/placeholder_by_token.tsv`（11 token）。
+
 ---
 
 | 代號 | 資產 | Pre-Condition 寫法（TC 內） | 服務之 SWE1 列 | 找誰 | 急迫 | 現況 |
@@ -21,11 +26,19 @@ TC 內之寫法：資產以 **Pre-Condition 一行**點名（R-SEC7(d) 之連線
 | **X-g** | SAM 四 SAMType AuthData（`{SSN}_SAM_{SAMType}.json` ＋ `.sig` ＋ cert）；ValidityCounter `0`／`1`／`65535`；TimeStamp 舊於已裝者一組；SAM dongle | 各列點名 | SAM 19 列 | SAM 負責人 | 後批（batch 2 為主）| 未到 |
 | **X-g-2**（SEC-04 增）| **SAM 狀態變更之觸發手段**（使 DebugAuth 送出 status 訊息，供 seqId 驗證）—— 037 SAM-0015 之 WHEN | `PENDING: X-g SAM AuthData status change + trigger` | `SWE1-SAM-0015` | SAM 負責人 | 後批 | 未到 |
 | **X-h** | CS.212 正式 package（Cybersecurity team review 後）| — | R-SEC5 直連之 11 列 | Steven／Shawn | Revise 時 | 未到；**惟 R-SEC8(k) 已准以 CS.212 draft 之 tag／期望字串逐字落地，故不阻本輪** |
-| **X-i**（SEC-04 增）| **Cert Provider／KeyInstall 之原始碼與建置環境**（Android.bp、靜態分析報告、安全掃描報告）—— 037 CP-006／KI-012 之受詞為 source code，黑箱無入口 | `PENDING: X-i <元件> source and build environment` | `SWE1-CertProvider-006`（4 sibling）、`SWE1-KeyInsyall-012`（2 sibling）| RD | 後批 | 未到 |
 | **X-j**（SEC-04 增）| **OTA／HAL 版本升級之映像檔與升級手段** —— 037 KI-008 之第二 sibling | `PENDING: X-j OTA or HAL upgrade image + trigger` | `SWE1-KeyInsyall-008` sibling 2 | SW 整合 | 後批 | 未到 |
 | **X-k**（SEC-04 增）| **Dealer App 對 DUT 之存取**（ECUCert Dealer Service 之 `UI` 通道入口）—— Test Steps PDF 載有 CSR 匯出入口，惟未載金鑰更新操作 | `PENDING: X-k Dealer App access to the DUT` | `SYSAD_SEC_ECUCERT_DEALER`（2 sibling）| Samuel | 後批 | 未到 |
 | **X-l**（SEC-04 增）| **SwdlSecureLib 之解密／驗證測試入口**（程式庫介面之可執行 harness）—— 037 SWDL-003/004 為程式庫內部介面，無 apk 對應 | `PENDING: X-l SWDL <decryption|verification> test entry point` | `SWE1-SRA-SECURITY-SWDL-003`／`-004`（各 3 sibling）| SWDL 負責人 | 後批 | 未到 |
 | **X-m**（SEC-05 增）| **兩次獨立取樣之 log snapshot ＋ 對稱金鑰比對手段** —— 037 LOGENC-006 4.1.3「compare the symmetric key in different iteration」 | `PENDING: X-m two log snapshots taken in separate iterations + comparison` | `SWE1-LOGENC-006` sibling 3 | LogEncrypt 負責人 | 後批 | 未到 |
+| **X-n**（SEC-06 增）| **suspend／resume 之觸發手段** —— 037 SAM-0013 之「resume from suspend」未載觸發方式；VHAL Guide 無對應之 CAN 值（`PowerModeSts` 之 `VAL_` 只有 Standard_Power／Logistic_Mode_*，A-19） | `PENDING: X-n suspend/resume trigger method` | `SWE1-SAM-0013` sibling 3／4（`NR1L-SAM-025`／`-026`）| SAM 負責人 | 後批 | 未到 |
+
+---
+
+## 已結案（不再阻執行）
+
+| 代號 | 結案依據 | 說明 |
+|---|---|---|
+| **X-i**（SEC-04 增；SEC-08 結）| **CLOSED (R-SEC20)** | 原求 Cert Provider／KeyInstall 之原始碼與建置環境（Android.bp、靜態分析報告、安全掃描報告）。Pei 2026-09-17 裁降為**文件審查**：8 TC（`NR1L-CP-011`~`-014`、`NR1L-CP-017`／`-018`、`NR1L-KI-023`／`-024`）依 R-SEC20 重寫為「取得 artifact ＋ 逐要件審查」式，Pre-Condition 改 `Access to the RD build environment for <component> is granted`。v04 已無 `X-i` 佔位（原 16 行全數消除）。**惟建置環境之存取權仍須 RD 開通**，此為排期事項，不再列為資產缺件 |
 
 ---
 

@@ -6,15 +6,15 @@
   "test_item": "The system shall guarantee that all imported client keys are encrypted using the KeyMint AIDL HAL and stored in a location immune to user-initiated erasures (e.g., Factory Reset).\n(key blob is still usable after an OTA or HAL version upgrade)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. A key blob is installed on the DUT\n3. A factory reset has been performed\n4. The DUT has been power cycled",
   "input": "NA",
-  "proc": "1. PENDING: X-j OTA or HAL upgrade image + trigger",
-  "er": "1. PENDING: X-j OTA or HAL upgrade image + trigger",
+  "proc": "1. <DUT-side trigger for OTA or HAL upgrade image provided by RD (X-j)>\n$ <command provided by RD (X-j)>",
+  "er": "1. <observable outcome provided by RD (X-j)>",
   "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-008",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-KeyInsyall-008 Requirement Description and Verification Criteria\nsibling axis: persistence trigger; rule 5 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "source: 037 SWE1-KeyInsyall-008 Requirement Description and Verification Criteria\nsibling axis: persistence trigger; rule 5 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-j — 1. PENDING: X-j OTA or HAL upgrade image + trigger\nasset: X-j — 1. PENDING: X-j OTA or HAL upgrade image + trigger",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,25 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": [
+    {
+      "field": "proc",
+      "line": 1,
+      "x_token": "X-j",
+      "original_pending": "1. PENDING: X-j OTA or HAL upgrade image + trigger",
+      "placeholder": "1. <DUT-side trigger for OTA or HAL upgrade image provided by RD (X-j)>",
+      "kind": "trigger",
+      "converted_to": "1. <DUT-side trigger for OTA or HAL upgrade image provided by RD (X-j)> ⏎ $ <command provided by RD (X-j)>"
+    },
+    {
+      "field": "er",
+      "line": 1,
+      "x_token": "X-j",
+      "original_pending": "1. PENDING: X-j OTA or HAL upgrade image + trigger",
+      "placeholder": "1. <observable outcome provided by RD (X-j)>",
+      "kind": "outcome",
+      "converted_to": "1. <observable outcome provided by RD (X-j)>"
+    }
+  ]
 }

@@ -3,18 +3,18 @@
   "tc_id": "NR1L-CP-012",
   "test_group": "Cert Provider",
   "test_set": "Service Robustness",
-  "test_item": "The Cert Provider feature shall adhere to the Android Application Development Guidelines and Common Platform System Design.\n(logs follow the Logdog error-level policy)",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. The Cert Provider source code and build environment are available",
+  "test_item": "The Cert Provider feature shall adhere to the Android Application Development Guidelines and Common Platform System Design.\n(logs follow the Logdog error-level policy (document review))",
+  "pre": "1. Access to the RD build environment for Cert Provider is granted",
   "input": "NA",
-  "proc": "1. PENDING: X-i Cert Provider source and build environment",
-  "er": "1. PENDING: X-i Cert Provider source and build environment",
+  "proc": "1. <obtain the Cert Provider source code and logs per RD>\n2. Review the Cert Provider source code and logs against \"logs must align with Logdog requirements (Error-level only for defects)\"",
+  "er": "1. The Cert Provider source code and logs are available for review\n2. The Cert Provider source code and logs satisfy \"logs must align with Logdog requirements (Error-level only for defects)\"",
   "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-006",
   "tc_ref": "NEW",
   "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-006 Requirement Description and Verification Criteria\nPolarion: NRL-349389\nsibling axis: logging policy; rule 1 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "verification: document review (R-SEC20)\nPolarion: NRL-349389\nsource: 037 SWE1-CertProvider-006 Requirement Description and Verification Criteria\nasset: X-i — closed by R-SEC20 (document review; no source/build-environment asset required)\nsibling axis: logging policy; rule 1 of SEC-04 4.2\nchannel_feasible: Y/Y",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,6 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": []
 }

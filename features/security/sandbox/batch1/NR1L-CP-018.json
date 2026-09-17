@@ -3,18 +3,18 @@
   "tc_id": "NR1L-CP-018",
   "test_group": "Cert Provider",
   "test_set": "Client Interface",
-  "test_item": "The Cert Provider feature shall provide standardized client interfaces to support both Java and Native clients.\n(Native client uses the libCertProvider C++ API for leaf verification)",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
+  "test_item": "The Cert Provider feature shall provide standardized client interfaces to support both Java and Native clients.\n(Native client uses the libCertProvider C++ API for leaf verification (document review))",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/\n4. Access to the RD build environment for Cert Provider is granted",
   "input": "NA",
-  "proc": "1. PENDING: X-i Cert Provider source and build environment\n2. Confirm the Logdog log after the previous step\n$ adb logcat -s Logdog",
-  "er": "1. PENDING: X-i Cert Provider source and build environment\n2. PENDING: X-h log keyword",
+  "proc": "1. <obtain the Native client implementations per RD>\n2. Review the Native client implementations against \"Verify they utilize the libCertProvider C++ API for leaf certificate verification\"\n3. Confirm the Logdog log after the previous step\n$ adb logcat -s Logdog",
+  "er": "1. The Native client implementations are available for review\n2. The Native client implementations satisfy \"Verify they utilize the libCertProvider C++ API for leaf certificate verification\"\n3. <log keyword provided by RD (X-h)>",
   "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-008",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-008 Requirement Description and Verification Criteria\nPolarion: NRL-349391\nsibling axis: client type; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "verification: document review (R-SEC20)\nPolarion: NRL-349391\nsource: 037 SWE1-CertProvider-008 Requirement Description and Verification Criteria\nasset: X-i — closed by R-SEC20 (document review; no source/build-environment asset required)\nsibling axis: client type; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-h — 3. PENDING: X-h log keyword",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,16 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": [
+    {
+      "field": "er",
+      "line": 3,
+      "x_token": "X-h",
+      "original_pending": "3. PENDING: X-h log keyword",
+      "placeholder": "3. <log keyword provided by RD (X-h)>",
+      "kind": "value",
+      "converted_to": "3. <log keyword provided by RD (X-h)>"
+    }
+  ]
 }

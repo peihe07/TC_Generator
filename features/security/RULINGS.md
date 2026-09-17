@@ -572,3 +572,110 @@ R-SEC18  batch 2 之 CAN 通道寫法（SAM-0013／0017 首例）
 註：(d) 之路徑寫作 `/data/vehicle/dauth/seqId`，037 SAM-0015／0017 原文為
 **`/data/vendor/dauth/seqId`**（`vendor`，非 `vehicle`）—— 本包依 **037 原文**寫，
 條文之筆誤逐字回報，不沿用（R-SEC4(c) 逐字取自來源）。
+
+---
+
+### R-SEC16(amend) — batch 2 六列之 Priority 指派（Pei 裁，2026-09-16；SEC-06 §1）
+
+```text
+R-SEC16 amend  batch 2 六列指派：SAM-0006／0010／0011／0012 = P0（驗證之接受／拒絕決定）；SAM-0003／0009 = P1（介面與儲存）。
+               Remarks 之 `priority assigned by analogy; …` 註移除。
+```
+
+**執行層回報（SEC-06）**：與 SEC-05 之類推指派**逐列相同**，故六列之 Priority 值不變；
+僅移除六列 TC 之 Remarks 註（`priority assigned by analogy; R-SEC16 does not list this SWE1 row`）。
+
+---
+
+### R-SEC17(v03) — SAM-0008 移組（Revise v03；Pei 裁，2026-09-16；SEC-06 §1；A-17 更正）
+
+```text
+R-SEC17 Revise v03  SAM-0008 由 `Service Environment` 移至 `AuthData Verification`；`Service Environment` 剩 SAM-0001／0002／0019。（A-17 更正）
+```
+
+**執行層回報（SEC-06）**：`framework.md` 加 `REVISE v03` 段並 `LOCKED v03`；
+`layer2_assign.tsv` 同步 1 列。`Service Environment` 之 leaf 由 4 降為 **3**，
+`AuthData Verification` 由 5 升為 **6**；**leaf 總數 70 不變**。
+
+---
+
+### R-SEC18(amend) — 刪 `POWER_MODE_STS` 對照；路徑更正（Pei 裁，2026-09-16；SEC-06 §1）
+
+```text
+R-SEC18 amend  (a) 刪 `POWER_MODE_STS ↔ PowerModeSts` 對照（A-19：分析層推測橋，DBC 證實無 resume 值）；只留 `IGNITION_STATE ↔ CmdIgnSts`。
+               (d) `/data/vehicle/dauth/seqId` 更正為 `/data/vendor/dauth/seqId`（A-14）。
+```
+
+**執行層回報（SEC-06）**：(a) 之 `BCM_FD_9` 佔位式已自 batch 2 移除（見 R-SEC19）；
+(d) 之路徑本包前即依 037 原文寫 `/data/vendor/dauth/seqId`，**無須改 TC**。
+
+---
+
+### R-SEC19 — SAM-0013 之 resume-from-suspend 分支（Pei 裁，2026-09-16；SEC-06 §1）
+
+```text
+R-SEC19  SAM-0013 之 resume-from-suspend 分支：037 未載觸發手段，VHAL Guide 無對應 → `NR1L-SAM-025`／`-026` 之觸發步驟整行
+         `PENDING: X-n suspend/resume trigger method`，ER 對應行同為 PENDING；`BCM_FD_9` 之佔位式移除。`X-n` 登 EXEC_ASSETS（15→16）。
+```
+
+**執行層回報（SEC-06）**：兩列之觸發步驟與 ER 已改為整行 PENDING token；
+`BCM_FD_9` 之 `Send CAN:` 行移除，CAN 步驟由 6 降為 **4**（全部 DBC 逐字，**佔位 0**）。
+`X-n` 已登 `EXEC_ASSETS.md`（15 → 16 項）。
+
+---
+
+### R-SEC20 — 原始碼／建置環境類驗證之文件審查定式（Pei 裁，2026-09-17；SEC-08 §1）
+
+```text
+R-SEC20  原始碼／建置環境類驗證之文件審查定式（X-i；CP-006、KI-012、KI-013 等以 source code 為受詞之列）
+  (a) Design Method 維持 037 之 Verification Method 語意：`功能測試 (Functional based ; no specific technique)`；
+      Remarks 首行 `verification: document review (R-SEC20)`。
+  (b) Procedure：
+        1. Obtain <artifact> from the RD build environment
+           $ <取得方式若 037 有載則逐字，否則整步為佔位 `<obtain <artifact> per RD>`>
+        2. Review <artifact> against <037 條款逐字之要件>
+      每一要件一步；不得寫 `$ grep`／`$ cat` 等執行層自擬之檢查指令（037 未載）。
+  (c) ER：`<artifact> contains <要件逐字>`（例 `Android.bp declares the service as START_STICKY`——只在 037 原文有該字串時；
+      否則 `<artifact> satisfies <要件逐字>`）。
+  (d) Pre-Condition：`Access to the RD build environment for <component> is granted`。
+  (e) Priority 依 R-SEC16 = P2 不變；`test_item` 括號下半加 `(document review)` 尾綴，作 sibling token。
+  (f) 原 `PENDING: X-i …` 行全部消除；Remarks 保留 `X-i` 代號與 `source:`。
+```
+
+**執行層回報（SEC-08）——條文之涵蓋面與實測不符，逐項具名**：
+
+| 條文所載 | 實測 | 處置 |
+|---|---|---|
+| 「`X-i` 16 行（**12 TC**）」 | 16 行／**8 TC**（每 TC 2 行：Proc ＋ ER）| 依實測之 8 TC 重寫 |
+| 條文舉例含 **KI-013** | **`SWE1-KeyInsyall-013`（`NR1L-KI-025`）不帶 `X-i`** —— 其 037 VC 為 `monitoring via procrank and df`，SEC-04 起即以 `$ adb shell procrank`／`$ adb shell df` 落地，無 PENDING | **不動**該列 |
+| 同理 **CP-010**（`NR1L-CP-021`）| 亦不帶 `X-i`（`procrank`）| **不動** |
+| 條文未列 **CP-008** | `NR1L-CP-017`／`-018` 帶 `X-i`，其 037 VC 為 `Inspect the source code and dependency graph` —— **以 source code 為受詞**，合 (a) 之射程 | **納入**重寫 |
+
+→ 重寫之 8 TC：`NR1L-CP-011`~`-014`（CP-006 四 sibling）、`NR1L-CP-017`／`-018`（CP-008 兩 sibling）、
+`NR1L-KI-023`／`-024`（KI-012 兩 sibling）。
+
+---
+
+### R-SEC21 — PENDING 之佔位化（Pei 裁，2026-09-17；SEC-08 §2）
+
+```text
+R-SEC21  PENDING 之佔位化（適用 AWAIT_ASSET 96 行；X-i 依 R-SEC20）
+  (a) 允許轉換之條件：佔位須**點名值之來源與性質**，格式 `<性質 provided by RD (X-<n>)>`——括號內之 `X-<n>` 為交付欄唯一允許之內部代號
+      （R-SEC15(c) 例外擴充），使審查者在交付本內即可回查 `asset_request.md`。
+  (b) 三型：
+      值型（檔名／字串／憑證）：`<wrong-subject certificate file provided by RD (X-e-2)>`、`<CS.212 log keyword for key injection failure provided by RD (X-h)>`
+      觸發型（無執行手段）：步驟整行 `<DUT-side trigger for wrong-OID certificate verification provided by RD (X-e-3)>`，
+                          其 `$` 指令行為 `$ <command provided by RD (X-e-3)>`；ER 對應行 `<observable outcome provided by RD (X-e-3)>`
+      環境型（實體資產）：Pre-Condition `<ECU certificate chain for the DUT SSN provided by STLA (X-d)> is available`
+  (c) 一行只換一處；不得把兩個 PENDING 合併成一個佔位。
+  (d) Remarks 保留：`asset: X-<n> — <原 PENDING 全文>`；`placeholder_summary.tsv` 逐行記 `tc_id | field | line | x_token | original_pending | placeholder`。
+  (e) lint：`U`（PENDING 計數）預期 0；新增 `SS` 判項——交付欄含 `<… provided by … (X-…)>` 者，Remarks 須含同一 `X-` 代號，否則 FAIL。
+      `selfcheck` (b)：觸發型佔位視同觸發位之佔位（與 PENDING 同）。
+  (f) 誠實條款：交付本 Cover 之 Remarks 或 Product Document 之備註格（依 SWC 量測有填者）不加註；
+      改於 `asset_request.md` 首段明寫「本本含 96 處 RD 資產佔位，執行前須依本清單補值」，隨交付本同送。
+```
+
+**執行層回報（SEC-08）**：轉換 96 行；`placeholder_summary.tsv` **96 列**；
+`U` 由 112 降為 **0**；新 `SS` 判項 **0**；`selfcheck` 九條 **0**。
+(a) 之「交付欄唯一允許之內部代號」為 **R-SEC15(c) 之例外擴充**，
+已於 `selfcheck_r_sec15.py` 之 (c) 判項加同一例外，否則兩條互斥。

@@ -6,15 +6,15 @@
   "test_item": "DebugAuth shall verify received files and rejects them if verification fails.\n(manifest signature is invalid; verification fails)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. SAM dongle is inserted into the DUT",
   "input": "NA",
-  "proc": "1. PENDING: X-g SAM AuthData package with an invalid manifest signature + trigger\n2. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
-  "er": "1. PENDING: X-g SAM AuthData package with an invalid manifest signature + trigger\n2. PENDING: X-h log keyword",
+  "proc": "1. <DUT-side trigger for SAM AuthData package with an invalid manifest signature provided by RD (X-g)>\n$ <command provided by RD (X-g)>\n2. Confirm the dauth log after the previous step\n$ adb logcat -s dauth",
+  "er": "1. <observable outcome provided by RD (X-g)>\n2. <log keyword provided by RD (X-h)>",
   "spec": "SWE1-SAM-SWE1R1-V1.1_SWE1-SAM-0005",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-SAM-0005 Requirement Description and Verification Criteria\nsibling axis: verification outcome\nchannel_feasible: N/N",
+  "remarks": "source: 037 SWE1-SAM-0005 Requirement Description and Verification Criteria\nsibling axis: verification outcome\nchannel_feasible: N/N\nasset: X-g — 1. PENDING: X-g SAM AuthData package with an invalid manifest signature + trigger\nasset: X-g — 1. PENDING: X-g SAM AuthData package with an invalid manifest signature + trigger\nasset: X-h — 2. PENDING: X-h log keyword",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,34 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": [
+    {
+      "field": "proc",
+      "line": 1,
+      "x_token": "X-g",
+      "original_pending": "1. PENDING: X-g SAM AuthData package with an invalid manifest signature + trigger",
+      "placeholder": "1. <DUT-side trigger for SAM AuthData package with an invalid manifest signature provided by RD (X-g)>",
+      "kind": "trigger",
+      "converted_to": "1. <DUT-side trigger for SAM AuthData package with an invalid manifest signature provided by RD (X-g)> ⏎ $ <command provided by RD (X-g)>"
+    },
+    {
+      "field": "er",
+      "line": 1,
+      "x_token": "X-g",
+      "original_pending": "1. PENDING: X-g SAM AuthData package with an invalid manifest signature + trigger",
+      "placeholder": "1. <observable outcome provided by RD (X-g)>",
+      "kind": "outcome",
+      "converted_to": "1. <observable outcome provided by RD (X-g)>"
+    },
+    {
+      "field": "er",
+      "line": 2,
+      "x_token": "X-h",
+      "original_pending": "2. PENDING: X-h log keyword",
+      "placeholder": "2. <log keyword provided by RD (X-h)>",
+      "kind": "value",
+      "converted_to": "2. <log keyword provided by RD (X-h)>"
+    }
+  ]
 }

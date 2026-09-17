@@ -7,14 +7,14 @@
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
   "input": "NA",
   "proc": "1. Run the OpenSSL chain verification of the certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n2. Run the Cert Provider instrumentation test for fotaMcpuCertTestBrokenCert\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#fotaMcpuCertTestBrokenCert com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner\n3. Confirm the MelcoCertProviderTest log after the previous step\n$ adb logcat -s MelcoCertProviderTest",
-  "er": "1. The openssl command prints \"unable to get issuer certificate\" on stdout\n2. The instrumentation runner reports \"OK (1 test)\" for fotaMcpuCertTestBrokenCert\n3. PENDING: X-h log keyword",
+  "er": "1. The openssl command prints \"unable to get issuer certificate\" on stdout\n2. The instrumentation runner reports \"OK (1 test)\" for fotaMcpuCertTestBrokenCert\n3. <log keyword provided by RD (X-h)>",
   "spec": "SWE1-CertProvider-SWE1R1-V1.0_SWE1-CertProvider-001",
   "tc_ref": "NEW",
   "priority": "P0",
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-001 Requirement Description and Verification Criteria\nPolarion: NRL-349384\nsibling axis: verification outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: fotaMcpuCertTestBrokenCert (apk_pairing.tsv)",
+  "remarks": "source: 037 SWE1-CertProvider-001 Requirement Description and Verification Criteria\nPolarion: NRL-349384\nsibling axis: verification outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-h — 3. PENDING: X-h log keyword\napk pairing: fotaMcpuCertTestBrokenCert (apk_pairing.tsv)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,16 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": [
+    {
+      "field": "er",
+      "line": 3,
+      "x_token": "X-h",
+      "original_pending": "3. PENDING: X-h log keyword",
+      "placeholder": "3. <log keyword provided by RD (X-h)>",
+      "kind": "value",
+      "converted_to": "3. <log keyword provided by RD (X-h)>"
+    }
+  ]
 }

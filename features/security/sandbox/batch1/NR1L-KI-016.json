@@ -6,15 +6,15 @@
   "test_item": "The software shall provide a Binder-based interface via the Android Java Service for Java clients, and a dedicated Crypto Library for Native clients, to perform cryptographic operations (sign, verify, encrypt, decrypt).\n(keys in VERIFICATION_REQUIRED state; the crypto service refuses the operation)",
   "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)",
   "input": "NA",
-  "proc": "1. Read the installation state file in the secure partition\n$ adb shell od -t x1 /mnt/vendor/oemkeys/<installstate file>\n2. PENDING: X-f-2 KeyInstall status test runner",
-  "er": "1. The adb shell od -t x1 /mnt/vendor/oemkeys/<installstate file> output shows the installstate value 1\n2. PENDING: X-f-2 KeyInstall status test runner",
+  "proc": "1. Read the installation state file in the secure partition\n$ adb shell od -t x1 /mnt/vendor/oemkeys/installstate\n2. Run the KeyMaster wrapper AES encrypt and decrypt normal flow\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.testkeymasterwrapper.aes.KeyMasterWrapperAesTests#encryptDecryptNormalFlow com.mitsubishielectric.ahu.efw.lib.testkeymasterwrapper.aes/androidx.test.runner.AndroidJUnitRunner",
+  "er": "1. The adb shell od -t x1 /mnt/vendor/oemkeys/installstate output shows the installstate value 1\n2. The instrumentation runner reports \"OK (1 test)\" for encryptDecryptNormalFlow",
   "spec": "SWE1-KeyInstall-SWE1R1-V1.0_SWE1-KeyInsyall-009",
   "tc_ref": "NEW",
   "priority": "P1",
   "design": "狀態轉換 (State Transition Testing)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-KeyInsyall-009 Requirement Description and Verification Criteria\nsibling axis: key state; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y",
+  "remarks": "source: 037 SWE1-KeyInsyall-009 Requirement Description and Verification Criteria\nsource: Z1 IntegrationTests/PythonTests/common/keys_install_helper.py (installstate path and state values verbatim)\nsource: Z1 IntegrationTests/PythonTests/KeysInstallationTests/test_java_integration.py (instrument command verbatim)\nsibling axis: key state; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: encryptDecryptNormalFlow (apk_pairing.tsv)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -23,5 +23,6 @@
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
     "Fastack (376)": "1"
-  }
+  },
+  "placeholders": []
 }

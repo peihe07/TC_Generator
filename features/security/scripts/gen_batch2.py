@@ -26,7 +26,7 @@ _s.loader.exec_module(g1)
 
 DATA = ROOT / "features" / "security" / "data"
 OUT_DIR = ROOT / "features" / "security" / "sandbox" / "batch2"
-OUT_XLSX = OUT_DIR / "security_batch2_v01.xlsx"
+OUT_XLSX = OUT_DIR / f"security_batch2_{g1.VER}.xlsx"
 
 VM_HI = ["1", "1", "0", "0", "0", "0", "0"]      # HDCC27 / DT27
 VM_MI = ["0", "0", "1", "0", "0", "1", "1"]      # VF637 / Toro / Fastback
@@ -38,13 +38,12 @@ CAN = {
     "hi": ("BCM_FD_10", "CmdIgnSts", "4", "RUN", "PDT27_E2A_R1_FDCAN8.dbc", "0x481"),
     "mi": ("STATUS_BH_BCM2", "CmdIgnSts", "4", "RUN", "P363_BH-CAN [07338]_3A_R2.dbc", "0x46C"),
 }
-# `POWER_MODE_STS` 之 VAL_ 只有 Standard_Power／Logistic_Mode_* —— **無 resume-from-suspend 之 label**。
-# 依 R-SEC18(b) 以 `<…>` 佔位，Remarks 註 `DBC lookup pending`。
-CAN_RESUME = ("BCM_FD_9", "PowerModeSts", "<raw>", "<label>", None, "0x42A")
+# R-SEC18 amend(a)：`POWER_MODE_STS ↔ PowerModeSts` 之對照已刪（A-19：分析層推測橋，
+# DBC 證實 `PowerModeSts` 之 `VAL_` 無 resume 值）。resume 分支改走 R-SEC19 之 PENDING。
 
 
-def send_can(ee: str, resume=False):
-    msg, sig, raw, label, dbc, cid = (CAN_RESUME if resume else CAN[ee])
+def send_can(ee: str):
+    msg, sig, raw, label, dbc, cid = CAN[ee]
     return (f"Send the ignition signal on the {'Atl-Hi' if ee == 'hi' else 'Atl-Mi'} bus",
             f"Send CAN: {msg}.{sig} = {raw} ({label})",
             f"{msg}.{sig} = {raw} ({label}) is sent")
@@ -132,10 +131,10 @@ SPEC = [
   "EE architecture", "P1", g1.STATE, [send_can("mi"),
    logcat("dauth", "The adb logcat -s dauth output contains the OFF notification to the target functions")], "mi"),
  ("SWE1-SAM-0013", 3, "head unit resumes from suspend on Atl-Hi; disabling is notified", "EE architecture",
-  "P1", g1.STATE, [send_can("hi", resume=True),
+  "P1", g1.STATE, [pend("X-n suspend/resume trigger method"),
    logcat("dauth", "The adb logcat -s dauth output contains the OFF notification to the target functions")], "hi"),
  ("SWE1-SAM-0013", 4, "head unit resumes from suspend on Atl-Mi; disabling is notified", "EE architecture",
-  "P1", g1.STATE, [send_can("mi", resume=True),
+  "P1", g1.STATE, [pend("X-n suspend/resume trigger method"),
    logcat("dauth", "The adb logcat -s dauth output contains the OFF notification to the target functions")], "mi"),
  ("SWE1-SAM-0014", 1, "verification succeeds; the target functions are notified according to SAMType",
   "notification trigger", "P1", g1.FUNC,
@@ -239,16 +238,19 @@ def main() -> int:
             if cmd:
                 proc.append(cmd)
             er.append(f"{i}. {e}")
+        ph_rec: list[dict] = []
+        if g1.SEC08:                                             # R-SEC21
+            proc, er, ph_rec = g1.placeholderise(proc, er)
         remarks = [f"source: 037 {swe1} Requirement Description and Verification Criteria",
                    f"sibling axis: {axis}", f'channel_feasible: {tm[swe1]["channel_feasible"]}']
+        for rc in ph_rec:                                        # R-SEC21(d)
+            remarks.append(f'asset: {rc["x_token"]} — {rc["original_pending"]}')
         if vm:
-            msg, sig, raw, label, dbc, cid = (CAN_RESUME if "<raw>" in " ".join(proc) else CAN[vm])
-            remarks.append(f"CAN signal per VHAL User Guide R5 section 2.4; "
-                           f"{msg} is {cid}" + (f"; raw and label verbatim from {dbc}" if dbc
-                                                else "; DBC lookup pending"))
-        if pr in ("P0", "P1") and swe1 in ("SWE1-SAM-0003", "SWE1-SAM-0006", "SWE1-SAM-0009",
-                                           "SWE1-SAM-0010", "SWE1-SAM-0011", "SWE1-SAM-0012"):
-            remarks.append("priority assigned by analogy; R-SEC16 does not list this SWE1 row")
+            if "Send CAN:" in "\n".join(proc):
+                msg, sig, raw, label, dbc, cid = CAN[vm]
+                remarks.append(f"CAN signal per VHAL User Guide R5 section 2.4; "
+                               f"{msg} is {cid}; raw and label verbatim from {dbc}")
+        # R-SEC16 amend：六列已入條文，類推註移除。
         r = {"req_id": swe1, "tc_id": tc_id, "test_group": group, "test_set": l2[swe1]["test_set"],
              "test_item": f"{d_first[swe1]}\n({lower})",
              "pre": "\n".join(f"{i}. {x}" for i, x in enumerate(
@@ -267,7 +269,8 @@ def main() -> int:
         for col, val in zip(g1.VM_COLS, vmv):
             ws[f"{col}{row}"] = val
         (OUT_DIR / f"{tc_id}.json").write_text(
-            json.dumps({**r, "vehicle_model": dict(zip(g1.VM_NAMES, vmv))},
+            json.dumps({**r, "vehicle_model": dict(zip(g1.VM_NAMES, vmv)),
+                        "placeholders": ph_rec},
                        ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         rows.append(r)
         for line in (r["proc"] + "\n" + r["er"]).splitlines():
