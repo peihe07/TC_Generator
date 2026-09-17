@@ -4,7 +4,7 @@
   "test_group": "SAM",
   "test_set": "AuthData Verification",
   "test_item": "DebugAuth shall check SAM certificate as part of AuthData verification.\n(SAM certificate is x509 PEM, anchors to the OEM issued root, and carries the SAM subject)",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderServiceManagerTest.apk is installed\n3. SAM dongle is inserted into the DUT\n4. An AuthData package is available on a USB drive",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. SAM dongle is inserted into the DUT\n4. An AuthData package is available on a USB drive",
   "input": "NA",
   "proc": "1. Read the SAM certificate format and subject on the host\n$ openssl x509 -in SAMcert.pem -text\n2. Run the OpenSSL chain verification of the certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. Run the Cert Provider instrumentation test for samCertTestNormalFlow\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#samCertTestNormalFlow com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner",
   "er": "1. The openssl x509 output shows the certificate in x509 PEM format and a \"Subject:\" line intended for SAM and specific market\n2. The openssl command prints \"SAMcert.pem: OK\" on stdout\n3. The instrumentation runner reports \"OK (1 test)\" for samCertTestNormalFlow",

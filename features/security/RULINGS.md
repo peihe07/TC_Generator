@@ -758,3 +758,54 @@ R-SEC23  DEFERRED 列之產出（R-SEC11(b) 之解凍）
   (e) 上游回覆後之處置：DR-a（ECUCert 補 SWE ID）→ Revise 只改 ID 欄；DR-i／r → 不影響本群；若 037 作者將任一列改為 Testing
       且給出可執行 VC，該列依 R-SEC4 重寫，文件審查 TC 作廢（R-TM13 保留舊本）。
 ```
+
+---
+
+### R-SEC22(a)(amend) — C3 落點加 LOGENC-004 兩 sibling（Pei 准 SEC-11 review §一 #1，2026-09-17；SEC-12 §1）
+
+```text
+R-SEC22(a) amend  C3（金鑰強度）之落點加 `NR1L-LOGENC-007`／`-008`（SWE1-LOGENC-004 之兩 sibling）；
+                  Remarks 增 `conflict: 376/509/511 vs 510 vs 514 — key strength; unresolved per CCVR Mapping notes row 14`。
+```
+
+**執行層回報（SEC-12）**：`CONFLICT_NOTE` 加 `SWE1-LOGENC-004`；v06 → v07 之逐格 diff 即該兩 TC 之
+`remarks` 2 格。C3 之 `tc_ids_found` 6 筆自此全數帶註（A-30 為分析層自報之漏列）。
+
+---
+
+### R-SEC24 — CertProvider 測試 runner 之 apk 檔名（A-33 更正）（Pei 裁，2026-09-17；SEC-13 §1）
+
+```text
+R-SEC24  CertProvider 測試 runner 之 apk 檔名（A-33 更正）
+  §5.3 常數 `CP_TEST_RUNNER_INSTALLED` 改為 `Test runner CertProviderAndroidInstrumentalTest.apk is installed`
+  （檔名逐字取 `CCVR/To Validation team/Cert Val CS.98/CertProviderAndroidInstrumentalTest.apk`，MANIFEST 外部路徑登錄）。
+  `CertProviderServiceManagerTest` 仍為 instrumentation class 名，只出現於 `am instrument` 指令與 apk_pairing。
+  既有 19 TC 之 Pre-Condition 依 R-G72 Revise；profile §3 常數表同步。
+```
+
+**執行層回報（SEC-13）**：`gen_batch1.py`／`gen_batch2.py` 共用之 `RUNNER_READY` 常數改檔名；
+v07 → v08 之逐格 diff 為 19 格 `pre`。檔名之**在庫出處**為下放包 `down/20260916_SEC-01.md:125`
+之「不投遞」目錄清單（`sources/MANIFEST.tsv` 無該 apk 之列 —— 該檔未投遞，故只有外部路徑之記載）。
+`gen_pilot01.py`／`gen_pilot02.py` 之同名常數**未動**（pilot 本已被 batch1 取代，R-TM13 不回修）。
+
+> **Note（SEC-13 review §一 #1；非 amend，不動 body sha）**：`A-33 reclassified: source exists in CCVR STEPS; R-SEC24 kept on physical-file evidence`。即原判「造值」撤回 —— `CertProviderServiceManagerTest.apk` 可溯 CCVR `Cert Val CS.98` STEPS item 2／5；本條仍以目錄實體檔案為準。CCVR 自身不一致登 `A-SEC-15`。
+
+---
+
+### R-SEC25 — Security 交付形制：六本一元件（取代 R-SEC10(a)）（Pei 裁，2026-09-17；SEC-15 §1）
+
+```text
+R-SEC25  Security 交付形制（取代 R-SEC10(a)；(b)~(f) 不變）
+  (a) 六本 workbook，一本 037 一本：Cert Provider／Key Install／SAM／ECU Cert／SWDL Secure Lib／Log Encrypt。
+      每本 Test Group 欄 = 該元件名；Test Set 欄 = framework Layer 2 之值（不變）。
+  (b) 本內排序：**SWE1 ID 升冪**（`SWE1-CertProvider-001` → `-011`…）；ECUCert 無 SWE1 ID，依 037 `Analysis Report` 列序（row 9 起）；
+      同一 SWE1 之 sibling 依 `sibling_plan*.tsv` 之 `sibling_no`。
+  (c) TC ID 依 (b) 之序**重新編號**，各組自 001 起（`NR1L-CP-001`…）；v08→v09 之 ID 對照表 `id_map_v08_v09.tsv` 必交。
+  (d) 檔名：`FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Security_<Component>_<YYYYMMDD>.xlsx`，
+      `<Component>` 取 `CertProvider`／`KeyInstall`／`SAM`／`ECUCert`／`SwdlSecureLib`／`libLogEncrypt`（037 檔名 token，無空白）。
+      Cover `C12` 文件名同式 `…_SWQT_Security_<Component>`；`D7`／`D8`／`D9` 中文半留空由 Pei 填（六次）。
+  (e) `coverage.tsv`、`placeholder_summary.tsv`／`by_token`、`asset_request.md`、`EXEC_GUIDE.md` **維持單一份**（跨六本），
+      各表加 `workbook` 欄；`EXEC_GUIDE.md` §3 指令索引之 TC ID 改為 `<Component>/<新 ID>`。
+  (f) 另產一本 `merged/security_v09_all.xlsx`（六本串接，同序）供 lint 與內部審閱，不交付。
+  (g) 舊 R-SEC10(a) 之單本產物（v01~v08）依 R-TM13 保留。
+```
