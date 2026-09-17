@@ -297,6 +297,53 @@ R-DIAG22  長度軸 negative 之請求寫法
   lint NEG-DIAG：長度軸 negative 之請求串不得與同 DID／RID 之正向請求串相同。
 ```
 
+### R-DIAG22(amend) — 值域軸依 SID 分型（Pei 裁，2026-09-17）
+
+```text
+R-DIAG22(amend)  值域軸依 SID 分型
+  0x22 讀類：negative 第二條為「unsupported DID」型，請求 `22 <unsupported DID>`（佔位，token DR-DIAG-6），ER `7F 22 31`。
+  0x2E／0x2F／0x31：值域軸請求保留完整長度，資料 byte 為 `<out-of-range value>` 或 CFTS004 明載越界值。
+  DR-DIAG-6 改題為「不支援之 SID 與 DID 清單」。
+```
+
+### R-DIAG20(amend) — 與 R-DIAG22 之重疊（Pei 裁，2026-09-17）
+
+```text
+R-DIAG20(amend)  與 R-DIAG22 之重疊
+  長度軸截斷串（描述行含 `with the last byte omitted`）不受 RT-DIAG 之「RID 須兩 byte」判準拘束。
+```
+
+### R-DIAG23 — 延伸審計（交付前必經）（Pei 裁，2026-09-17）
+
+```text
+R-DIAG23  延伸審計（交付前必經）
+  對 389 列逐列比對三個延伸來源，產 `extension_audit.tsv`（列／來源／原句／現有 TC 是否已斷言／候選 sibling／錨）：
+  (a) 037 Description 之定型句列舉之失效型態；(b) 037 Verification Criteria／Method 欄所述情境；
+  (c) 該列所引錨之同節 Information 列中補充該 FR 之列舉／值域。
+  候選只列不產；Pei 裁後於 Revise 產出。canon §8.3 之環境／持久軸因 CFTS004 零載，於 coverage 說明明記「未延伸之由」。
+```
+
+### R-DIAG24 — SWE1 = 037 全欄；VC／VM 為 sibling plan 之必讀輸入（Pei 裁，2026-09-17）
+
+```text
+R-DIAG24  SWE1 = 037 全欄；VC／VM 為 sibling plan 之必讀輸入
+  (a) 037 之 Verification Criteria／Verification Method 欄與 Description 同為 SWE1 依據；
+      sibling plan 逐列抽出 VC/VM 之情境詞（狀態／條件／邊界／逾時／重試／各欄位…），每一情境至少一條 TC。
+  (b) 情境之值依序取：該列所引錨 → 同 $XXXX 節內之 CFTS004 列舉／值域（引兩錨）→ `<…>` 佔位（R-DIAG15 登錄）。
+      VC/VM 只供情境，不供值（IN §8.4.1）。
+  (c) VC/VM 之 unit／integration 字樣不在 SWE.6 層級，略過；純 boilerplate 句（無情境詞）不產。
+```
+
+### R-DIAG25 — 詳細度（Pei 裁，2026-09-17）
+
+```text
+R-DIAG25  詳細度
+  (a) 一列所引錨或其 VC/VM 列舉之每一狀態／值，各成一條 sibling（狀態軸），PC 寫該態、ER 斷言該態下之回報；
+      態之建立方式 CFTS004 未載者不寫步驟，只寫態（§8.5 例外）。
+  (b) 同節其他列已各自成 TC 之欄位，不重複斷言（§8.2.1 不變）；但該列自身之錨列舉多個值／子項者，ER 依 §6.1 逐項。
+  (c) 單一 SWE1 列拆分上限 8；超過者回報不產，Pei 裁。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

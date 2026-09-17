@@ -184,6 +184,15 @@ RE_DIAG_DOLLAR = re.compile(r"^\s*\$ (.+?)\s*$", re.M)
 RE_DIAG_LEN_NRC = re.compile(r"7F [0-9A-F]{2} 13 \(incorrectMessageLengthOrInvalidFormat\)")
 RE_DIAG_LEN_DESC = re.compile(
     r"^\s*\d+\..*?\bwith (?P<form>the last byte omitted|an invalid message length)\b.*$", re.M)
+RE_DIAG_RNG_NRC = re.compile(r"7F (?P<sid>[0-9A-F]{2}) 31 \(requestOutOfRange\)")
+# R-DIAG22(amend)：值域軸依 SID 分型。`0x22` 讀類之請求本無資料位元組，
+# 其第二軸為「unsupported DID」型；其餘 SID 保留完整長度並以越界資料 byte 區辨。
+RE_DIAG_RNG_DESC = re.compile(
+    r"^\s*\d+\..*?\b(?:for an unsupported DID"
+    r"|outside the supported range"
+    r"|does not correspond to an audio or video input"
+    r"|to set the .+? to \S)"
+    r".*$", re.M)
 
 
 def check_diag_neg(rows: list[tuple[int, str, str, str]]) -> list[Violation]:
@@ -192,6 +201,8 @@ def check_diag_neg(rows: list[tuple[int, str, str, str]]) -> list[Violation]:
     `rows` = (row_no, tc_id, proc, er)。兩判：
       (a) 觸發步驟之請求串出現於正向請求集合 → 與合法請求無從區辨，FAIL；
       (b) 描述行仍書 `with an invalid message length` → 未依條文改為 `with the last byte omitted`。
+    值域軸（`7F <sid> 31`）同判 (a) —— R-DIAG22(amend) 後，`0x22` 讀類之請求須為
+    `22 <unsupported DID>`，其餘 SID 須帶越界資料 byte，兩者皆不得等於正向串。
     """
     legal = {m.group(1) for _, _, proc, er in rows if "7F" not in er
              for m in RE_DIAG_DOLLAR.finditer(proc)}
@@ -214,6 +225,20 @@ def check_diag_neg(rows: list[tuple[int, str, str, str]]) -> list[Violation]:
                 "NEG-DIAG", row_no, tc_id, "proc",
                 "R-DIAG22：長度軸之請求串與同 DID／RID 之正向請求串相同 —— "
                 "須為合法請求省去最後一個 byte", d.group(1)[:40]))
+    # 值域軸（R-DIAG22(amend)）
+    for row_no, tc_id, proc, er in rows:
+        if not RE_DIAG_RNG_NRC.search(er):
+            continue
+        m = RE_DIAG_RNG_DESC.search(proc)
+        if m is None:
+            continue
+        d = RE_DIAG_DOLLAR.search(proc[m.end():])
+        if d and d.group(1) in legal:
+            out.append(Violation(
+                "NEG-DIAG", row_no, tc_id, "proc",
+                "R-DIAG22(amend)：值域軸之請求串與正向請求串相同 —— "
+                "`0x22` 讀類須為 `22 <unsupported DID>`，其餘 SID 須帶越界資料 byte",
+                d.group(1)[:40]))
     return out
 
 
@@ -230,9 +255,9 @@ def check_diag_routine(req_id: str, fields: dict, row_no: int, tc_id: str) -> li
     out: list[Violation] = []
     for field in ("proc", "er"):
         text = fields.get(field, "")
-        # R-DIAG22 之長度軸觸發行**刻意**是殘缺請求（合法請求省去最後一個 byte），
-        # 其 `$` 串必然不合 R-DIAG20 之四段式 —— 兩條文於此重疊，後出且專管長度軸之
-        # R-DIAG22 優先，故該行不入 RT-DIAG 母體（`[A-DIAG53]`）。
+        # R-DIAG20(amend)（Pei 裁，2026-09-17）：長度軸截斷串（描述行含
+        # `with the last byte omitted`）不受本檢查之「RID 須兩 byte」判準拘束。
+        # 成因見 `[A-DIAG53]` —— R-DIAG22 之截斷與 R-DIAG20 之四段式於此重疊。
         skip = {m.start() for d in RE_DIAG_LEN_OMIT.finditer(text)
                 if (m := RE_DIAG_DOLLAR.search(text, d.end()))}
         for m in RE_DIAG_RT_LINE.finditer(text):

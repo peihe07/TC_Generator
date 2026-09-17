@@ -56,17 +56,21 @@ lint `U`（PENDING 佔位）於合併本 `v06` 為 **3**（`-281` 二行、`-297
 
 ---
 
-## 三　`DR-DIAG-6` —— 不支援之 SID（**176 行**）
+## 三　`DR-DIAG-6` —— **不支援之 SID 與 DID 清單**（R-DIAG22(amend) 改題）
 
-**缺件**：本 ECU **不支援之 UDS 服務識別碼**至少一個。
+**缺件**：本 ECU **不支援之 UDS 服務識別碼**至少一個，**以及不受支援之 DID 至少一個**。
 
 unsupported 型之 037 列（93 列）要求「送出不支援之服務請求並回 `serviceNotSupported`」，
 但**哪一個 SID 不被支援**是 ECU 實作事實，CFTS004、037、SYSAD 三處皆未載。
 SYSAD §4.5 只正面列出**支援**之三項（`0x22`／`0x2E`／`0x31`），未給不支援清單。
 
-**佔位**：`<unsupported SID>`（Procedure 與 ER 各一，故 176 行 ≈ 88 條 TC）。
+**佔位**：`<unsupported SID>`（Procedure 與 ER 各一）與 `<unsupported DID>`（R-DIAG22(amend) 後之讀類值域軸）。
 
-**問**：請提供本 ECU 之 UDS 服務支援矩陣，或指定一個確定不支援之 SID 供測試使用。
+**`<unsupported DID>` 之由**：R-DIAG22(amend) 裁定 `0x22` 讀類之 negative 第二軸改為「unsupported DID」型 ——
+`22 <DID>` 請求本無資料位元組，「值域」無處可填；而 037 negative 列原文之第三種失效型態正是 `unsupported DID`，
+ISO 14229-1 之 `31 requestOutOfRange` 亦即「DID 不受支援」之碼。
+
+**問**：請提供本 ECU 之 **UDS 服務支援矩陣**與 **DID 支援清單**，或各指定一個確定不支援之 SID／DID 供測試使用。
 
 ---
 
