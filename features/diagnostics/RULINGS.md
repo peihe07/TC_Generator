@@ -263,6 +263,14 @@ R-DIAG18  Pre-Condition 之機械守門（IN §4.4 之本 feature 實作）
   by a diagnostic command 者 FAIL；`*_initial` 只得於 Procedure 宣告並於 ER 使用。
 ```
 
+### R-DIAG19 — KeySense HMI Logic and Flow 為缺件（Pei 裁，2026-09-17）
+
+```text
+R-DIAG19  KeySense HMI Logic and Flow 為缺件
+  CFTS004-4940469 明引「KeySense HMI Logic and Flow」而該件不在來源集且 CFTS004 未載其版本；
+  登 DR-DIAG-7（文件請求，對 Nik）。`-290` 之 ER 在到件前只斷言常式正回應與完成；到件後 Revise。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。
