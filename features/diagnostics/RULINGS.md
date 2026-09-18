@@ -424,6 +424,45 @@ R-DIAG5(amend3)  NRC 來源鏈補一級（CDD-13 附錄 A 改寫）
       session 不符 → `$7F`、子功能不支援 → `$12`（$31 類）。無敘述者不產（R-DIAG8）。
 ```
 
+### R-DIAG31 — CS.00100 之位階：遞移引用（Pei 裁，2026-09-18）
+
+```text
+R-DIAG31  CS.00100 之位階：遞移引用
+  CFTS004 明引 CS.00099（SYS-RA-DIAG-344／-403）；CS.00099 §6.1-4 與 §9.3.3-5 明引 CS.00100。
+  CS.00100 據此為本 feature 之值來源，位階同 CS.00099；`data/cs_uds_rules.md` 首段記此引用鏈。
+```
+
+### R-DIAG32 — 描述行動詞須與 SID 一致（lint `SID-WORD`）（Pei 裁，2026-09-18）
+
+```text
+R-DIAG32  描述行動詞須與 SID 一致（lint SID-WORD）
+  `22` → read／`2E` → write／`2F` → InputOutputControlByIdentifier／`31` → routine（start／stop／request results）。
+  描述行與其下 `$` 位元組行之 SID 不符 = FAIL；產生器層同守。
+```
+
+### R-DIAG33 — 佔位之兩類：工具可解 vs 真缺件（Pei 裁，2026-09-18）
+
+```text
+R-DIAG33  佔位之兩類：工具可解 vs 真缺件
+  (a) 「工具可解」（TOOL_RESOLVED）：值定義於 ECU 之 CDD 檔（CANdela），執行時由載入該檔之診斷工具解出，
+      TC 文字保留 `<…>` 佔位即為可執行。屬此類：
+      - `<controlState for "…">`／`<out-of-range controlState>`（DR-DIAG-4）
+      - `<… byte>`／`<… record>`／`<out-of-range value>` 等資料位元組值域與版面（DR-DIAG-5）
+      - `<unsupported SID>`／`<unsupported DID>`（DR-DIAG-6）—— 工具之服務／DID 清單中不存在者即為不支援
+  (b) 「真缺件」（ASSET_MISSING）：值不在 CDD 檔，需 RD 另供：
+      - `<Package Indication value>`（DR-DIAG-8，sales code → PkgIndex 對照）
+      - KeySense 常式行為（DR-DIAG-7，只影響 -290 之 ER 深度，非佔位）
+      - SD.00049 附件（DR-DIAG-11，只影響 PC-3 去留，非佔位）
+  (c) 著色：只 ASSET_MISSING 之 TC 列著 FCE4D6；TOOL_RESOLVED 不著色。
+  (d) Remarks：含 TOOL_RESOLVED 佔位之 TC 加一行定型句
+      `Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file`
+      （`RM-DIAG` 白名單加第七式；已有 R-DIAG6(amend) 先例）。
+  (e) `placeholder_summary.tsv` 加 `class` 欄（TOOL_RESOLVED／ASSET_MISSING）；`asset_request.md` 只列 ASSET_MISSING，
+      並另立一節「建議取得 ECU CDD 檔（.cdd）」註明：取得後可將 TOOL_RESOLVED 佔位填為實值以供自動化，非交付前提。
+  (f) DR-DIAG-4／-5／-6 Status 改 `TOOL_RESOLVED`（非 CLOSED、非 MISSING），Urgency LOW；DATA_REQUESTS.md 表頭加註此狀態之定義。
+  (g) `EXEC_GUIDE.md` 加一節：執行前提 = 診斷工具已載入本 ECU 之 CDD 檔；佔位之解讀方式各舉一例（controlState／值域／不支援 DID）。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

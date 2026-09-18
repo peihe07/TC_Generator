@@ -386,3 +386,33 @@ batch 4 產出 `-160`（row 167）時確認：**`-154` 之 Title 與 `-160` 之 
 > **FB-DIAG-r 改述**：原書「`SX-9830-0095` 與 `CIP Radio Tables` 流程圖兩件皆不在來源集」——
 > `CIP Radio Tables` **實已於 2026-09-16 置於 `forms/`**，CDD-12 已登錄並轉錄兩張流程圖。
 > 本項改為只求 **`SX-9830-0095` 本文**與 **vehicle sales code → PkgIndex 對照表**（`DR-DIAG-8` 現為 PARTIAL）。
+
+---
+
+## FB-DIAG-u —— `$500B` 之 5 s override 逾時，是否即 CS.00099 之 S3ECU？
+
+**對象**：Nik（CFTS004／037 之 RD 窗口）
+
+037 `SWE1-Diagnostics-007`～`-012`（`$500B` In-Motion Menu Control）之 Verification Criteria 第 3 項：
+
+```text
+3) The override remains active only when valid commands are received within 5 s
+```
+
+037 `-012` 之 Description 另書「start a timer for 5s ... If the SW does not receive the command for a duration
+greater than 5 seconds, the SW shall ...」。
+
+而 `CS.00099` §5.5.6.2 Table 8 定義 **S3ECU = 5000 ms**：
+
+```text
+RQMT 5.5.6.2-1 If after 5000ms no diagnostic requests have been received, each ECU shall timeout and
+return to a Default Session.
+```
+
+**問**：兩者數值相同（5 s / 5000 ms），是否為**同一個計時器**？
+
+- 若是 —— `$500B` 之 override 失效即 session 逾時之結果，測試只需一條（現有 `NR1L-DIAG-226`）。
+- 若否 —— 兩者為獨立計時器，需再產「非 default session 閒置 5000 ms → 回 default session 且控制權回收」之 sibling（6 條）。
+
+**現況**：CFTS004、037、SYSAD、CS.00099 四處皆未說明兩者關係，故**未產**該 6 條（CDD-13 T4 只出 plan）。
+請 RD 確認後回覆，我們據以補產或維持。

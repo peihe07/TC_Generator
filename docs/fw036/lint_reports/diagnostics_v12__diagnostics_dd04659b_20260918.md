@@ -1,6 +1,6 @@
-# lint036 報告：FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Diagnostics_20260918_v04.xlsx
+# lint036 報告：diagnostics_v12.xlsx
 
-- 來源：`features/diagnostics/sandbox/delivery/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Diagnostics_20260918_v04.xlsx`（唯讀）
+- 來源：`features/diagnostics/sandbox/merged/diagnostics_v12.xlsx`（唯讀）
 - 資料列數：565
 - sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
 - L 閾值：50 tokens
@@ -55,6 +55,6 @@
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
-| 504 | NR1L-DIAG-495 | proc | R-DIAG32：描述行指名之服務為 2E，而其下位元組行之 SID 為 2F | Send a write request for DID $5100 with the last b |
-| 505 | NR1L-DIAG-496 | proc | R-DIAG32：描述行指名之服務為 2E，而其下位元組行之 SID 為 2F | Send a write request for DID $5100 with a paramete |
+| 238 | NR1L-DIAG-229 | proc | R-DIAG32：描述行指名之服務為 2E，而其下位元組行之 SID 為 2F | Send a write request for DID $5100 with the last b |
+| 239 | NR1L-DIAG-230 | proc | R-DIAG32：描述行指名之服務為 2E，而其下位元組行之 SID 為 2F | Send a write request for DID $5100 with a paramete |
 

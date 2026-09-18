@@ -22,7 +22,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -68,7 +68,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -91,7 +91,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -114,7 +114,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -137,7 +137,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -159,7 +159,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "CS.00100 Annex A Figure A-11（SID $2E）之最後一個判斷：`Was correctly altered into server's memory` → `NRC $72`。037 `-237` 只書「an appropriate NRC」、CFTS004-4939892 只書「shall provide a negative response」，而流程圖之寫入未生效分支即此碼（R-DIAG5(amend3)）",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per CS.00100 Annex A Figure A-11 (Was correctly altered into server's memory); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -182,7 +182,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -205,7 +205,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -251,7 +251,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -274,7 +274,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -297,7 +297,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -343,7 +343,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -366,7 +366,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -389,7 +389,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -435,7 +435,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -458,7 +458,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -481,7 +481,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -527,7 +527,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -550,7 +550,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -573,7 +573,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -619,7 +619,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -642,7 +642,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -665,7 +665,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -711,7 +711,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -734,7 +734,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -757,7 +757,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -803,7 +803,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -826,7 +826,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -849,7 +849,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -895,7 +895,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -918,7 +918,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -941,7 +941,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -987,7 +987,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1010,7 +1010,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1033,7 +1033,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG25(a)：錨列舉之每一狀態各成一條 sibling；態之建立方式 CFTS004 未載，依 §8.5 例外只寫態、不寫建立步驟。取代 CDD-07 之單條收斂（該次依下放包升級條件「錨不足四個」處置，R-DIAG25(a) 出後前提不再成立）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1080,7 +1080,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1103,7 +1103,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1126,7 +1126,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "CFTS004-4940462 之處理步驟定義於 SX-9830-0095 與「CIP Radio Tables」之 MPFA Select Process 流程圖，兩件皆不在本 feature 之來源集；依 §8.4.1 不造值，ER 只斷言常式回應與結果之歸屬（DR-DIAG-8）",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1195,7 +1195,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "CFTS004-4940464 引 CFTS004-1415（= 本表之 4940456）為有效 Indication Code 之全表，並明載 `$10` 於 select 常式無效 → ER 列舉七碼，不用 `<Indication Code>` 佔位。各碼之個別觸發方式來源未載（流程圖缺件），故不拆碼值 sibling",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1264,7 +1264,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG28(c)：NOTE 五結局各一條。本條為 timeout 軸 —— 三次 600 ms 無回應 → `$FF`。CFTS004-4940466／-4940455 之「timeout」與「differing Indication Codes」原為單條，依流程圖 NOTE 拆為二；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1288,7 +1288,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $03。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1312,7 +1312,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0D。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1336,7 +1336,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0F。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1360,7 +1360,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "037 `-347` 之 Title 書「KeySense PIN」，而其來源 SYS-RA-DIAG-375／CFTS004-4940463 位於 `$0309 - X65 MPFA Select Routine` 節內（`$030A - Clear Key Sense PIN` 之唯一 FR 為 4940469，已於 batch 4 `-290` 產出）。依 IN §8.6 取來源（`[A-DIAG46]`／FB-DIAG-q）",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1383,7 +1383,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1405,7 +1405,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1428,7 +1428,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "CFTS004-4940451 之處理步驟定義於 SX-9830-0095 與「CIP Radio Tables」之 MPFA Validate Process 流程圖，兩件皆不在本 feature 之來源集；依 §8.4.1 不造值（DR-DIAG-8）",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1451,7 +1451,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "CFTS004-4940453 引 CFTS004-1415（= 本表之 4940456）為有效 Indication Code 之全表 → ER 列舉八碼，不用 `<Indication Code>` 佔位。各碼之個別觸發方式來源未載，不拆碼值 sibling",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1474,7 +1474,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG28(c)：NOTE 五結局各一條。本條為 timeout 軸 —— 三次 600 ms 無回應 → `$FF`。CFTS004-4940466／-4940455 之「timeout」與「differing Indication Codes」原為單條，依流程圖 NOTE 拆為二；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1498,7 +1498,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $03。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1522,7 +1522,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0D。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1546,7 +1546,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4940465／-4940454 逐字明載三個碼值，各為獨立之重試結局 → 依 IN §8.3 拆 sibling；本條區分 token 為 $0F。PC 依 R-DIAG28(c) 改寫為 X65 之回應態（原為「retries are the result of …」之條文複述，非可建立之狀態）；錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1570,7 +1570,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG28(c)：本條為混合軸 —— 三次重試得到相異 Indication Code → `$FF`。錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Select Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1594,7 +1594,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG28(c)：本條為混合軸 —— 三次重試得到相異 Indication Code → `$FF`。錨 Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
-      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process",
+      "remarks": "Flowchart: CIP_Radio_Tables_v6.7:MPFA Validate Process; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",

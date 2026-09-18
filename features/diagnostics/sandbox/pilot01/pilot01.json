@@ -21,7 +21,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -65,7 +65,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：同 NR1L-DIAG-002 之來源列，本條為值域軸，區分 token 為 NRC 31",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -87,7 +87,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -109,7 +109,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -130,7 +130,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "CDD-04 §2 T2 定 controlOptionRecord 未載時一律以 `<…>` 佔位（DR-DIAG-4），取代 CDD-02 §4 之整行 PENDING；本條同 batch 2 之 $5000 諸條對齊（見上繳包 §3.4）",
-      "remarks": "SID per 037 SWE1-Diagnostics-112",
+      "remarks": "SID per 037 SWE1-Diagnostics-112; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -175,7 +175,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：同 NR1L-DIAG-007 之來源列，本條為值域軸，區分 token 為 NRC 31",
-      "remarks": "SID per 037 SWE1-Diagnostics-112; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "SID per 037 SWE1-Diagnostics-112; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -197,7 +197,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; SID per 037 SWE1-Diagnostics-151",
+      "remarks": "Harman Scope: Need Rework; SID per 037 SWE1-Diagnostics-151; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -221,7 +221,7 @@
       "priority": "P0",
       "split_flag": false,
       "split_reason": "037 Title 述 NRC 31，其內容屬 SYS-RA-DIAG-371（037 row 167，不在 pilot 範圍）；本 TC 依 Description 與本列所掛之 SYS-RA-DIAG-367 產出（IN §8.6：來源規格勝出）",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -246,7 +246,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -268,7 +268,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "037 VM blank; procedure derived from Description + CFTS004",
+      "remarks": "037 VM blank; procedure derived from Description + CFTS004; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -290,7 +290,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "037 書 \"Previous Out of Range\"，CFTS004-4940356 書 \"Request Out of Range\", code $31；依 IN §8.6 取 CFTS004 用字，NRC 值 31 不變",
-      "remarks": "Harman Scope: Need Rework; SID per 037 SWE1-Diagnostics-340-001",
+      "remarks": "Harman Scope: Need Rework; SID per 037 SWE1-Diagnostics-340-001; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",

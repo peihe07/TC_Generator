@@ -11,6 +11,37 @@
 
 ---
 
+## 〇　引用鏈（R-DIAG31）—— CS.00100 之位階
+
+`CS.00100` 未被 CFTS004／SYSAD 任一本直接明引（CDD-13 T1 實測零命中，`[A-DIAG64]`）。
+其位階由 **遞移引用** 成立：
+
+```text
+CFTS004  ──明引──▶  CS.00099  ──明引──▶  CS.00100
+```
+
+**第一段**（CFTS004 → CS.00099）：
+`SYS-RA-DIAG-344`（CFTS004-4939459）`Refer to [CS.00099].`
+`SYS-RA-DIAG-403`（CFTS004-6151764）`Please refer [CS.00102], [CS.00021], [CS.00099], …`
+
+**第二段**（CS.00099 → CS.00100）：`SYS2_CS.00099` Analysis Report 內共 **15 列**明引，其中三處為規範性指定：
+
+| CS.00099 列 | Sys-RA ID | 逐字（節錄） |
+|---|---|---|
+| r25 | `Sys-RA-CS00099-020` | `UDS is the "Enhanced Diagnostic Protocol" referenced in this document based on ISO 14229-1 with **Stellantis UDS implementation per specification CS.00100**.` |
+| r68 | `Sys-RA-CS00099-063` | `RQMT 6.1-4: If a diagnostic service cannot be executed due to the execution of an asynchronous routine, the ECU shall respond with the respective **negative response code (see CS.00100)** indicating diagnostic service is not supported during this routine.` |
+| r140 | `Sys-RA-CS00099-135` | `RQMT 9.3.3-5: ECUs shall support reject messages if a secure service is requested while the ECU is locked per table 32 in this specification and **cs.00100 for applicable diagnostic services**.` |
+
+另 r9（`-004`）將 CS.00100 列為 STLA 診斷文件族之一：
+`- Unified Diagnostic Services (UDS) Implementation Standard (CS.00100)`；
+r26（`-021`）`Details regarding which UDS diagnostics services, data identifiers, etc. may be found in diagnostic protocol specification CS.00100.`
+
+**故 CS.00100 為本 feature 之值來源，位階同 CS.00099（R-DIAG31）。**
+本檔與 `cs00100_annex_a.md` 所取之 Table 51／Table 53／Table 2／Annex A 皆依此位階採用。
+
+
+---
+
 ## 一　CS.00100 —— UDS 服務之 STELLANTIS 實作
 
 ### 1.1　Table 51 —— Input Output Control Parameter（`RQMT 5.6.1.2.1.2-1`，r272）

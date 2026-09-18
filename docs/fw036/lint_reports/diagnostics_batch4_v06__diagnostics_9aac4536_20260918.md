@@ -1,7 +1,7 @@
-# lint036 報告：FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Diagnostics_20260918_v04.xlsx
+# lint036 報告：diagnostics_batch4_v06.xlsx
 
-- 來源：`features/diagnostics/sandbox/delivery/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Diagnostics_20260918_v04.xlsx`（唯讀）
-- 資料列數：565
+- 來源：`features/diagnostics/sandbox/batch4/diagnostics_batch4_v06.xlsx`（唯讀）
+- 資料列數：61
 - sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
 - L 閾值：50 tokens
 - profile：`diagnostics`（P 採 R-1 v3；另跑 Q／R／T）
@@ -45,16 +45,9 @@
 | PC-DIAG | Pre-Condition 含動作詞（R-DIAG18，Diagnostics profile 專屬） | 0 | 0 | 每列每行 | 未校準（R-DIAG18，CDD-06 新增）—— **feature 專屬**；IN §4.4 之機械守門。 |
 | RT-DIAG | 常式之位元組式不合 `31 0<sub> <RID>`（R-DIAG20，Diagnostics profile 專屬） | 0 | 0 | 每列每行 | 未校準（R-DIAG20，CDD-08 新增）—— **feature 專屬**；母體依 Routine 母節反查（27 列）。 |
 | NEG-DIAG | 長度軸 negative 之請求串同於正向串／描述行未綴省末 byte（R-DIAG22，Diagnostics profile 專屬） | 0 | 0 | 每列每項 | 未校準（R-DIAG22，CDD-09 新增）—— **feature 專屬**；**跨列**檢查，正向請求集合取自同 sheet。 |
-| SID-WORD | 描述行動詞與其下 `$` 行之 SID 不符（R-DIAG32，Diagnostics profile 專屬） | 2 | 2 | 每列每行 | 未校準（R-DIAG32，CDD-14 新增）—— **feature 專屬**；母體為描述行＋其下 `$` 行之配對。 |
+| SID-WORD | 描述行動詞與其下 `$` 行之 SID 不符（R-DIAG32，Diagnostics profile 專屬） | 0 | 0 | 每列每行 | 未校準（R-DIAG32，CDD-14 新增）—— **feature 專屬**；母體為描述行＋其下 `$` 行之配對。 |
 
-**總計：行計 2**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 0**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
-
-### SID-WORD — 描述行動詞與其下 `$` 行之 SID 不符（R-DIAG32，Diagnostics profile 專屬）（行計 2／列計 2）
-
-| 列 | TC ID | 欄位 | 說明 | 片段 |
-| ---: | --- | --- | --- | --- |
-| 504 | NR1L-DIAG-495 | proc | R-DIAG32：描述行指名之服務為 2E，而其下位元組行之 SID 為 2F | Send a write request for DID $5100 with the last b |
-| 505 | NR1L-DIAG-496 | proc | R-DIAG32：描述行指名之服務為 2E，而其下位元組行之 SID 為 2F | Send a write request for DID $5100 with a paramete |
 

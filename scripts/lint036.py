@@ -109,6 +109,11 @@ RE_DIAG_REMARKS_OK = (
     # R-DIAG28(b)（Pei 裁，2026-09-17）：MPFA 兩流程圖之錨須於 Remarks 引用。
     # 本式為第六種定型句 —— 不加白名單，R-DIAG28(b) 所命之引用就會被 RM-DIAG 攔下。
     re.compile(r"^Flowchart: CIP_Radio_Tables_v6\.7:MPFA (?:Validate|Select) Process"),
+    # R-DIAG5(amend3)(a)（CDD-13 審閱 §一）：依 Annex A 取碼者，Remarks 須記所依之 Figure 與節點。
+    re.compile(r"^NRC per CS\.00100 Annex A Figure A-\d+ \([^)]+\)"),
+    # R-DIAG33(d)：TOOL_RESOLVED 佔位之定型句。條文書「第七式」，惟白名單此時已有七式
+    # （原五 ＋ CDD-12 流程圖錨 ＋ CDD-14 Annex A 錨），故本式實為**第八**。
+    re.compile(r"^Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file"),
 )
 DIAG_AUTHOR_FIELDS = ("test_item", "pre", "proc", "er")
 # R-DIAG18（IN §4.4 之本 feature 實作）：Pre-Condition 只述狀態。
@@ -196,6 +201,53 @@ RE_DIAG_RNG_DESC = re.compile(
     r"|does not correspond to an audio or video input"
     r"|to set the .+? to \S)"
     r".*$", re.M)
+
+
+# --- R-DIAG32：描述行動詞須與 SID 一致 -----------------------------------------
+# 母體 = 「描述行 ＋ 其下之 `$` 位元組行」之配對。描述行為編號步驟句，
+# `$` 行緊隨其後（IN §8.7.5(c) 之式）。`<unsupported SID>` 起首者不判 —— 其服務位元組
+# 本就不是具體 SID，動詞（`Send a diagnostic request carrying …`）亦不指涉任一服務。
+RE_DIAG_STEP = re.compile(r"^\s*\d+\.\s*(?P<desc>.+?)\s*$", re.M)
+# R-DIAG32 之立意（`[A-DIAG68]`）：描述行**指名了某個服務**，而其下之位元組行是**另一個**服務。
+# 判準因此是「指名衝突」，不是「每個 SID 只准一種動詞」——
+# `Activate a buzzer control tone`／`Select the 7 kHz tone`／`Send the command to set …`
+# 皆未指名服務，與任何 SID 都不衝突（CDD-14 首版誤以動詞白名單為判準，101 行假陽性）。
+DIAG_SID_NAME = {
+    "read": "22",
+    "write": "2E",
+    "inputoutputcontrolbyidentifier": "2F",
+    "i/o control": "2F",
+    "input output control": "2F",
+    "routine": "31",
+}
+
+
+def check_diag_sid_word(fields: dict, row_no: int, tc_id: str) -> list[Violation]:
+    """SID-WORD —— 描述行動詞與其下 `$` 行之 SID 不符（R-DIAG32）。"""
+    out: list[Violation] = []
+    for field in ("proc", "er"):
+        lines = fields.get(field, "").split("\n")
+        for i, l in enumerate(lines):
+            m = RE_DIAG_STEP.match(l)
+            if not m or i + 1 >= len(lines):
+                continue
+            d = RE_DIAG_DOLLAR.match(lines[i + 1])
+            if not d:
+                continue
+            body = d.group(1).strip()
+            sid = body.split()[0].upper()
+            if sid not in ("22", "2E", "2F", "31"):   # `<unsupported SID>` 等不判
+                continue
+            desc = m.group("desc").lower()
+            named = {v for k, v in DIAG_SID_NAME.items() if k in desc}
+            if not named or sid in named:      # 未指名服務，或指名者即該 SID
+                continue
+            out.append(Violation(
+                "SID-WORD", row_no, tc_id, field,
+                f"R-DIAG32：描述行指名之服務為 {'／'.join(sorted(named))}，"
+                f"而其下位元組行之 SID 為 {sid}",
+                m.group("desc")[:50]))
+    return out
 
 
 def check_diag_neg(rows: list[tuple[int, str, str, str]]) -> list[Violation]:
@@ -480,6 +532,7 @@ CHECK_TITLES = {
     "PC-DIAG": "Pre-Condition 含動作詞（R-DIAG18，Diagnostics profile 專屬）",
     "RT-DIAG": "常式之位元組式不合 `31 0<sub> <RID>`（R-DIAG20，Diagnostics profile 專屬）",
     "NEG-DIAG": "長度軸 negative 之請求串同於正向串／描述行未綴省末 byte（R-DIAG22，Diagnostics profile 專屬）",
+    "SID-WORD": "描述行動詞與其下 `$` 行之 SID 不符（R-DIAG32，Diagnostics profile 專屬）",
     "SS": "Remarks 無 `source:` 標記／資產佔位之 `X-` 代號未載於 Remarks"
           "（R-SEC4(a)／R-SEC21(e)，Security profile 專屬）",
 }
@@ -516,6 +569,7 @@ CHECK_STATUS = {
     "PC-DIAG": "未校準（R-DIAG18，CDD-06 新增）—— **feature 專屬**；IN §4.4 之機械守門。",
     "RT-DIAG": "未校準（R-DIAG20，CDD-08 新增）—— **feature 專屬**；母體依 Routine 母節反查（27 列）。",
     "NEG-DIAG": "未校準（R-DIAG22，CDD-09 新增）—— **feature 專屬**；**跨列**檢查，正向請求集合取自同 sheet。",
+    "SID-WORD": "未校準（R-DIAG32，CDD-14 新增）—— **feature 專屬**；母體為描述行＋其下 `$` 行之配對。",
     "SC": "未校準（R-SEC7，SEC-02 新增）—— **feature 專屬**，僅 `--profile security` 啟用。"
           "對既有語料之假陽性率 Procedure 98.4%／ER 74.9%（九本 1,700 列實測，SEC-01 上繳包 8-2），"
           "**故絕不可入 PROFILE_CHECKS**；對 Security 自身之假陽性率待 Pilot",
@@ -543,7 +597,7 @@ PROFILE_CHECKS = ["Q", "R", "T", "U", "V", "I-cross", "W", "X", "Y"]
 FEATURE_CHECKS: dict[str, list[str]] = {
     "camera": ["Z"], "security": ["SC", "SS"],
     "diagnostics": ["P-DIAG", "U-DIAG", "R1-DIAG", "Z", "RM-DIAG", "SEC-DIAG", "KEY-DIAG",
-                    "PC-DIAG", "RT-DIAG", "NEG-DIAG"],
+                    "PC-DIAG", "RT-DIAG", "NEG-DIAG", "SID-WORD"],
 }
 # **feature 專屬之豁免**：某 profile 下不適用之 `PROFILE_CHECKS` 項。
 # R-SEC15(j)：Security 之 ER 為指令輸出斷言，無 R-SU33/34 之「觀測窗」概念，
@@ -632,7 +686,7 @@ CHECK_GRANULARITY = {
     "P-DIAG": "每列每欄每 token", "U-DIAG": "每列每位元組串",
     "R1-DIAG": "每列", "RM-DIAG": "每列每段",
     "SEC-DIAG": "每列", "KEY-DIAG": "每列每次命中", "PC-DIAG": "每列每行",
-    "RT-DIAG": "每列每行", "NEG-DIAG": "每列每項",
+    "RT-DIAG": "每列每行", "NEG-DIAG": "每列每項", "SID-WORD": "每列每行",
     "Q": "每行每欄", "R": "每行", "T": "每次命中", "U": "每次命中",
     "V": "每行每欄",
     "I-cross": "每列每配對（一組命中記二列）",
@@ -1456,6 +1510,8 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
             result.violations.extend(check_diag_pc(fields, offset, tc_id))
         if "RT-DIAG" in enabled:
             result.violations.extend(check_diag_routine(req_id, fields, offset, tc_id))
+        if "SID-WORD" in enabled:
+            result.violations.extend(check_diag_sid_word(fields, offset, tc_id))
         if "RM-DIAG" in enabled:
             diag_remarks = (cell_text(raw[remarks_idx])
                             if remarks_idx is not None and remarks_idx < len(raw) else "")

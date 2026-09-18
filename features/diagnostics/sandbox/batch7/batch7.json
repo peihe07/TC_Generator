@@ -21,7 +21,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -67,7 +67,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -90,7 +90,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -113,7 +113,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -159,7 +159,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -182,7 +182,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -205,7 +205,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4939808 逐字明載五個狀態，037 VM 亦書 「under varying antenna conditions … RF reception states」→ 依 IN §8.3 拆 sibling；本條區分 token 為 \"No signal\"",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -229,7 +229,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4939808 逐字明載五個狀態，037 VM 亦書 「under varying antenna conditions … RF reception states」→ 依 IN §8.3 拆 sibling；本條區分 token 為 \"Very weak\"",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -253,7 +253,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4939808 逐字明載五個狀態，037 VM 亦書 「under varying antenna conditions … RF reception states」→ 依 IN §8.3 拆 sibling；本條區分 token 為 \"Weak signal\"",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -277,7 +277,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4939808 逐字明載五個狀態，037 VM 亦書 「under varying antenna conditions … RF reception states」→ 依 IN §8.3 拆 sibling；本條區分 token 為 \"Marginal signal\"",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -301,7 +301,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4939808 逐字明載五個狀態，037 VM 亦書 「under varying antenna conditions … RF reception states」→ 依 IN §8.3 拆 sibling；本條區分 token 為 \"Good signal\"",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -348,7 +348,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -371,7 +371,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -394,7 +394,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -440,7 +440,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -463,7 +463,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -509,7 +509,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -532,7 +532,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -578,7 +578,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -601,7 +601,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -647,7 +647,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -670,7 +670,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -716,7 +716,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -739,7 +739,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -785,7 +785,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -808,7 +808,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -854,7 +854,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -877,7 +877,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -923,7 +923,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -946,7 +946,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -992,7 +992,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1015,7 +1015,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1061,7 +1061,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1084,7 +1084,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1130,7 +1130,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1153,7 +1153,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1199,7 +1199,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1222,7 +1222,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1268,7 +1268,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1291,7 +1291,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1337,7 +1337,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1383,7 +1383,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "037 VM blank; procedure derived from Description + CFTS004; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "037 VM blank; procedure derived from Description + CFTS004; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1406,7 +1406,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "037 VM blank; procedure derived from Description + CFTS004",
+      "remarks": "037 VM blank; procedure derived from Description + CFTS004; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1452,7 +1452,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "037 VM blank; procedure derived from Description + CFTS004; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "037 VM blank; procedure derived from Description + CFTS004; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1475,7 +1475,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1521,7 +1521,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1544,7 +1544,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1590,7 +1590,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1613,7 +1613,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1659,7 +1659,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1682,7 +1682,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1728,7 +1728,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1751,7 +1751,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1797,7 +1797,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1820,7 +1820,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1866,7 +1866,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1889,7 +1889,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1935,7 +1935,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -1958,7 +1958,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2004,7 +2004,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2027,7 +2027,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2073,7 +2073,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2096,7 +2096,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG24(b)＋R-DIAG25(a)：情境詞取自 037 VM，值取自同 `$2840` 節內之 CFTS004-4939801 三態列舉，故 `specification_reference` 引兩錨",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2143,7 +2143,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2166,7 +2166,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG25(a)：CFTS004-4939800 之值域 0–3 bars 僅四個離散值（≤ R-DIAG25(c) 之上限 8），逐值各成 sibling；BVA 兩式適用於值數 > 8 之連續值域（如 volume step 0–38）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2190,7 +2190,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG25(a)：CFTS004-4939800 之值域 0–3 bars 僅四個離散值（≤ R-DIAG25(c) 之上限 8），逐值各成 sibling；BVA 兩式適用於值數 > 8 之連續值域（如 volume step 0–38）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2237,7 +2237,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2260,7 +2260,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG24(b)＋R-DIAG25(a)：情境詞取自 037 VM，值取自同 `$2840` 節內之 CFTS004-4939801 三態列舉，故 `specification_reference` 引兩錨",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2307,7 +2307,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2330,7 +2330,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2376,7 +2376,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2399,7 +2399,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4939801 逐字明載三個狀態（\"OK\"／\"Disconnected\"／\"Shorted\"），各為獨立之可建立狀態（斷開／短路天線）→ 依 IN §8.3 拆 sibling；本條區分 token 為 \"OK\"",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2423,7 +2423,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4939801 逐字明載三個狀態（\"OK\"／\"Disconnected\"／\"Shorted\"），各為獨立之可建立狀態（斷開／短路天線）→ 依 IN §8.3 拆 sibling；本條區分 token 為 \"Disconnected\"",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2447,7 +2447,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "CFTS004-4939801 逐字明載三個狀態（\"OK\"／\"Disconnected\"／\"Shorted\"），各為獨立之可建立狀態（斷開／短路天線）→ 依 IN §8.3 拆 sibling；本條區分 token 為 \"Shorted\"",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2494,7 +2494,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2517,7 +2517,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2563,7 +2563,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -2586,7 +2586,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",

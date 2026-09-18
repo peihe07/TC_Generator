@@ -4,24 +4,30 @@
 
 ---
 
-## ⚠ 一　佔位填入前不得執行
+## ⚠ 一　執行前提：診斷工具須已載入本 ECU 之 CDD 檔（R-DIAG33）
 
-交付本 **388 條 TC（整列以 `FCE4D6` 著色）**之 `Test Procedure`／`Expected Result` 含 `<…>` 佔位。
-測試者知道要送哪個服務、讀哪個 DID，**但不知道要送哪些位元組**。
+**本交付本 565 條中，547 條可直接執行；不可派工者只有 18 條。**
 
-| token | 行數 | 缺件 |
+### 1.1　佔位之兩類
+
+| class | 條數 | 意義 |
 |---|--:|---|
-| `DR-DIAG-6` | 269 | 不支援之 **SID 與 DID** 清單 |
-| `DR-DIAG-5` | 199 | 資料位元組之值域與 record 版面 |
-| `DR-DIAG-4` | 64 | I/O Control 之 controlOptionRecord／controlEnableMask 全表 |
-| `DR-DIAG-8` | 18 | `SX-9830-0095` 之 Package Indication 編碼（**PARTIAL** —— 流程圖已到，餘本文與 PkgIndex 對照）|
+| **`TOOL_RESOLVED`** | **427** | 值定義於本 ECU 之 **CDD 檔（CANdela）**。執行前於診斷工具載入該檔，工具即以人可讀之名稱呈現這些值，**TC 保留 `<…>` 佔位即為可執行** |
+| **`ASSET_MISSING`** | **18** | 值不在 CDD 檔，需 RD 另供。**交付本中整列以 `FCE4D6` 著色者即此 18 條**，在 `SX-9830-0095` 與 PkgIndex 對照到件前**只可評審，不可派工** |
 
-逐行清單見 `placeholder_summary.tsv`（550 行）與 `placeholder_by_token.tsv`（依 token 彙整）。
-**著色列在上述四件到齊前只可用於評審，不可派工。** 未著色之 **170 條**可直接執行。
+逐行清單見 `placeholder_summary.tsv`（**592 行**，`class` 欄）與 `placeholder_by_token.tsv`。
 
-另有 **2 條 TC／3 行**為 `PENDING: DR-DIAG-1`（NRC 值無來源），非佔位而是**無法書寫之步驟**，同樣不可執行。
+### 1.2　`TOOL_RESOLVED` 佔位之解讀（各舉一例）
 
----
+| 佔位型 | TC 中之寫法 | 執行時如何取得 |
+|---|---|---|
+| **controlState**（`DR-DIAG-4`） | `$ 2F 50 00 03 <controlState for "buzzer control tone">` | 工具之 `$5000` I/O 控制畫面列出可選音調（7 kHz Tool controlled 等），選取即送出對應位元組 |
+| **值域／版面**（`DR-DIAG-5`） | `1. The positive response 62 28 43 <module version record> is received, and the record contains the SXI Rev Minor` | 工具依 CDD 之 `$2843` 版面拆解回應，逐子欄位顯示；比對 `SXI Rev Minor` 該欄即可 |
+| **不支援之 SID／DID**（`DR-DIAG-6`） | `$ 22 <unsupported DID>` | 工具之 DID 清單即本 ECU 支援者之全集；**取任一不在清單中之 DID** 送出即可 |
+
+### 1.3　另有 `PENDING` 者
+
+**無** —— 全本 `PENDING` 行數為 **0**（NRC 值已依 `CS.00100` Annex A 取定）。
 
 ## 二　一次性環境（全 556 條共用）
 

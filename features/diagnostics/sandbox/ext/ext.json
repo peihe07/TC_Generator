@@ -18,7 +18,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG25(a)：錨列舉之每一狀態各成一條 sibling；態之建立方式 CFTS004 未載，依 §8.5 例外只寫態、不寫建立步驟。取代 CDD-07 之單條收斂（該次依下放包升級條件「錨不足四個」處置，R-DIAG25(a) 出後前提不再成立）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -42,7 +42,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG25(a)：錨列舉之每一狀態各成一條 sibling；態之建立方式 CFTS004 未載，依 §8.5 例外只寫態、不寫建立步驟。取代 CDD-07 之單條收斂（該次依下放包升級條件「錨不足四個」處置，R-DIAG25(a) 出後前提不再成立）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -66,7 +66,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG25(a)：錨列舉之每一狀態各成一條 sibling；態之建立方式 CFTS004 未載，依 §8.5 例外只寫態、不寫建立步驟。取代 CDD-07 之單條收斂（該次依下放包升級條件「錨不足四個」處置，R-DIAG25(a) 出後前提不再成立）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -90,7 +90,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG25(a)：CFTS004-4939800 之值域 0–3 bars 僅四個離散值（≤ R-DIAG25(c) 之上限 8），逐值各成 sibling；BVA 兩式適用於值數 > 8 之連續值域（如 volume step 0–38）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -114,7 +114,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG25(a)：CFTS004-4939800 之值域 0–3 bars 僅四個離散值（≤ R-DIAG25(c) 之上限 8），逐值各成 sibling；BVA 兩式適用於值數 > 8 之連續值域（如 volume step 0–38）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -138,7 +138,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG24(b)＋R-DIAG25(a)：情境詞取自 037 VM，值取自同 `$2840` 節內之 CFTS004-4939801 三態列舉，故 `specification_reference` 引兩錨",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -162,7 +162,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG24(b)＋R-DIAG25(a)：情境詞取自 037 VM，值取自同 `$2840` 節內之 CFTS004-4939801 三態列舉，故 `specification_reference` 引兩錨",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -186,7 +186,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG24(b)＋R-DIAG25(a)：情境詞取自 037 VM，值取自同 `$2840` 節內之 CFTS004-4939801 三態列舉，故 `specification_reference` 引兩錨",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -210,7 +210,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG24(b)＋R-DIAG25(a)：情境詞取自 037 VM，值取自同 `$2840` 節內之 CFTS004-4939801 三態列舉，故 `specification_reference` 引兩錨",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "NAFTA",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -234,7 +234,7 @@
       "priority": "P0",
       "split_flag": true,
       "split_reason": "R-DIAG23(c)：CFTS004-4940293（Information）補充本列已引之 4940296 —— externally generated tone 之輸入端為 AV1 aux，且不受 speaker quadrant selection 影響、四象限皆播。該 Information 列之 `SYS-RA-DIAG-328` 未被 037 引用，但其所補充者為 037 已引之 FR，依 R-DIAG23(c) 列為候選並產出",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -258,7 +258,7 @@
       "priority": "P0",
       "split_flag": true,
       "split_reason": "R-DIAG23(c)：CFTS004-4940480 補充本列已引之 4940473 —— 使用多條訊號線之輸入須逐線提供偵測。哪些輸入使用多條訊號線 CFTS004 未載，故以 `<…>` 佔位（feasible = P，token DR-DIAG-5）",
-      "remarks": "Harman Scope: Need Rework; SID per 037 SWE1-Diagnostics-151",
+      "remarks": "Harman Scope: Need Rework; SID per 037 SWE1-Diagnostics-151; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -282,7 +282,7 @@
       "priority": "P0",
       "split_flag": true,
       "split_reason": "R-DIAG23(c)：CFTS004-4940338 補充本列已引之 4940337 —— new tuned frequency = F + S*N。F（band 起始頻率）與 S（band 頻率級距）CFTS004 未載其值，故以 `<…>` 佔位（feasible = P，token DR-DIAG-5）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",

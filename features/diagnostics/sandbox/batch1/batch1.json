@@ -46,7 +46,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -67,7 +67,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "Harman Scope: Need Rework; NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -88,7 +88,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為讀向，區分 token 為 SID 22",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -109,7 +109,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為寫向，區分 token 為 SID 2E",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -131,7 +131,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為讀向，區分 token 為 SID 22",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -152,7 +152,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為寫向，區分 token 為 SID 2E",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -174,7 +174,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為讀向，區分 token 為 SID 22",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -195,7 +195,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為寫向，區分 token 為 SID 2E",
-      "remarks": "Harman Scope: Need Rework",
+      "remarks": "Harman Scope: Need Rework; Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -261,7 +261,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為讀向，區分 token 為 SID 22",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -282,7 +282,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為寫向，區分 token 為 SID 2E",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -348,7 +348,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為讀向，區分 token 為 SID 22",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -369,7 +369,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 述本 DID 對該設定同時 readable 與 writeable，讀（0x22）與寫（0x2E）為不同服務且可觀察結果不同，依 IN §8.3 拆 sibling；本條為寫向，區分 token 為 SID 2E",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -435,7 +435,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：CFTS004-4939923 列舉 inserted／not inserted 兩個狀態，依 IN §8.3 狀態軸拆 sibling；區分 token 為該狀態值",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -457,7 +457,7 @@
       "priority": "P1",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：CFTS004-4939923 列舉 inserted／not inserted 兩個狀態，依 IN §8.3 狀態軸拆 sibling；區分 token 為該狀態值",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -479,7 +479,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -522,7 +522,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -543,7 +543,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "037 Title 書 \"connected USB devices\"，與 -329 之 Title 逐字相同；本列所掛之 CFTS004-4939919 書 \"detected USB Hub devices\"，依 IN §8.6 取後者（FB-DIAG-i）",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -586,7 +586,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -629,7 +629,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -651,7 +651,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -673,7 +673,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -716,7 +716,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -737,7 +737,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -780,7 +780,7 @@
       "priority": "P2",
       "split_flag": true,
       "split_reason": "R-DIAG1(b)：037 之 negative 列述三種失效型態（invalid length／incorrect format／unsupported DID），依 IN §8.3 拆 sibling；本條為不支援 DID 軸，區分 token 為 NRC 31；R-DIAG22(amend)：`22 <DID>` 請求無資料位元組可填，037 negative 列原文之第三種失效型態即 `unsupported DID`，ISO 14229-1 之 31 requestOutOfRange 亦即該碼",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -801,7 +801,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -822,7 +822,7 @@
       "priority": "P1",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "",
+      "remarks": "Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
@@ -888,7 +888,7 @@
       "priority": "P2",
       "split_flag": false,
       "split_reason": "",
-      "remarks": "NRC per ISO 14229-1 (037 unspecified)",
+      "remarks": "NRC per ISO 14229-1 (037 unspecified); Placeholder values resolved at execution by the diagnostic tool loaded with the ECU CDD file",
       "vehicle_model": "All",
       "pc_sources": [
         "PC-1: SYSAD §4.5 Session & Security Assumptions（ECU starts in Default Session）",
