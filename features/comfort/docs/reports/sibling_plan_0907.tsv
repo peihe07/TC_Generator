@@ -1,0 +1,28 @@
+source_group	req_id	existing_tc_id(wb/json)	missing_axis	axis_values	value_source(section + verbatim)	est_new	blocked_by_R-C42	verdict
+1 雙實體	SWE1-HVAC-002-01	wb-006/json-032	觸發方向（HC→TS／TS→HC）	TS→HC	2.2 C1「changes … via hard controls or touchscreen, these changes are reflected in both locations」	0	否	不拆：TS→HC 向另由 002-08（wb-014，LED 反映）承接；wb-006 第 3 步建議刪除以免與 002-08 重疊（改寫，非新增）
+1 雙實體	SWE1-HVAC-005-04	wb-031/json-139	觸發（控制實體）	FRONT DEF｜RECIRC	2.4 C3 與 037 leaf「defrost and RECIRC can automatically turn on A/C」	1	否	拆：不同觸發 → 各 1（§8.2.2 different control entities）；現 TC 保留 FRONT DEF，新增 RECIRC
+1 雙實體	SWE1-HVAC-009-04	wb-049/json-056	通道	TS 箭頭｜溫度硬鍵	2.6.1 C5.1「long press = fast move … shall also work for temperature HARD CONTROLS」	1	否	拆：條文逐字點名兩通道 → 各 1
+1 雙實體	SWE1-HVAC-010-05	wb-061/json-063	—（非該 leaf 之軸）	—	2.7 C6「(using climate power button on the screen or hard control)」	0	否	不拆：leaf 驗 off 狀態之灰化；兩個 power 實體皆為到達同一狀態之 setup。若 Pei 視 power 實體為觸發軸則 +1（列 §4 待裁之附帶）
+1 雙實體	SWE1-HVAC-012-02	wb-064/json-154	—	—	—	0	否	不拆：ER 重複係基線／結果同字（change not shown），單一觸發
+1 雙實體	SWE1-HVAC-013-03	wb-072/json-161	「其他氣候功能」之列舉	AUTO｜FRONT DEF	2.9 C8「Rear defrost is independent of any other climate functions」／037「operate independently of other climate functions」	1	否	拆：不同觸發、獨立部分失效（§8.2.2）→ 各 1
+1 雙實體	SWE1-HVAC-015-04	wb-083/json-430	控制實體	fan speed｜airflow mode	037 leaf「adjusting fan speed/mode affects front and rear passengers」	1	否	拆：leaf 自點兩實體 → 各 1
+1 雙實體	SWE1-HVAC-018-05	wb-103/json-456	起始畫面（scope）	Climate main｜非 Climate main	2.12.2（Mode 硬鍵）；037 VC 另點 press and hold	1	否	拆：兩起始畫面為不同 scope → 各 1；VC 之 press-and-hold 未涵蓋，須回條文判是否屬本 leaf（未計入）
+1 雙實體	SWE1-HVAC-021-02	wb-113/json-166	「其他氣候功能」之列舉	AUTO｜climate OFF	2.15 C16「independent of any other climate functions」／037「operate independently of other climate functions」	1	否	拆：同 013-03
+1 雙實體	SWE1-HVAC-023-02	wb-119/json-016	—	—	3.1 C19 cycle 順序	0	否	不拆：同一控制之循環，多列 ER（§8.2.2 same element）
+1 雙實體	SWE1-HVAC-036-05	wb-178/json-300	press｜press-and-hold	—	7.x／037 leaf	0	否	已拆：wb-179 即 press-and-hold sibling
+1 雙實體	SWE1-HVAC-048-03	wb-201/json-073	破 AUTO 之觸發	fan speed｜airflow mode	10.5 EH5「AUTO mode will only be broken by acting on other buttons e.g. fan speed, airflow mode」／037「broken only by other button actions (fan, airflow, etc.)」	1	否	拆：不同觸發 → 各 1（第 3、4 步各成一條）
+1 雙實體	SWE1-HVAC-050	wb-204/json-076	所選設定值	AUTO ECO｜AUTO ON	10.7 EH7「HVAC AUTO shall keep the selected setting through ignition cycles」	1	否	列舉：現只驗 AUTO ECO，補 AUTO ON（值集受 DR #22 影響）
+1 雙實體	SWE1-HVAC-101-01	wb-308/json-187	—	—	—	0	否	不拆：同一 icon 之狀態循環
+1 雙實體	SWE1-HVAC-111-04	wb-362/json-107	通道	TS 箭頭｜溫度硬鍵	16.6.1 ICE5.1（ICS 側 long press 條文，逐字待 Revise 時引）	1	否	拆：同 009-04
+1 雙實體	SWE1-HVAC-121-02	wb-438/json-265	「其他氣候功能」之列舉	AUTO｜climate OFF	16.15 ICE14／037「independent of any other climate functions」	1	否	拆：同 021-02
+1 雙實體	SWE1-HVAC-123	wb-444/json-114	—	—	—	0	否	不拆：單一觸發（VR session），ER 重複係前後比對
+2 通道	SWE1-HVAC-010-03	wb-056/json-061; wb-057/json-393; wb-058/json-394	調整方式	fan up/down｜touch segment｜slide｜Hard Control	2.7 C6「When on climate screen, user can either use Fan up/down …, directly touch a fan segment to jump or slide, or use Hard Control」	1	否	補 HC 值：ICS 對應 leaf 112-04 已有 4 條（含 HC，wb-371），前排缺；037 leaf 文少 `or use Hard Control`，依 R-C33 內容以條文為準
+2 通道	SWE1-HVAC-080-01	wb-276/json-009	通道	hard button (-, +)｜touch screen	13.4 LS3「long press on the hard button (-, +) or on the touch screen itself」	1	否	補 TS 值
+2 通道	（其餘 31 leaf）	見 docs/reports 上繳包 7 節	通道	—	037 VC 為 parent 共用樣板；leaf 句未點兩通道	0	否	不補：002-04/05/06、008-01～05、010-01、011、017-01/02、020-01～04、029-02、033-01～04、080-02、106-04～08、112-01/02、117-01～03 —— leaf 句為顯示／狀態陳述或單通道明文（HC-only 之 popup、TS-only 之 7.5）
+3 列舉	SWE1-HVAC-003-06	wb-020/json-132; wb-021/json-386; wb-022/json-387	破 AUTO 之觸發	A/C｜airflow mode｜front defrost｜fan speed	2.3 C2「Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto」	1	否	補 front defrost 值
+3 列舉	SWE1-HVAC-003-07	wb-023/json-133	分支 (b)：指定 mode 鍵	Face｜Face plus Feet｜Feet｜Feet plus Windshield｜front defrost	2.3 C2「unless a specific mode button is pressed, in which case the system would go to that mode」；值集 2.12 C13「(1) Face, (2) Face plus Feet, (3) Feet, (4) Feet plus Windshield」	4	否（值集受 DR #31：4 模式／5 狀態之配置未定）	現有 Feet；補其餘 4
+3 列舉	SWE1-HVAC-003-07	wb-023/json-133	分支 (a)：非 mode 鍵破 AUTO	A/C｜fan speed	2.3 C2「the system will go to the manual mode that most closely matches the auto mode exited」	2	否（惟 ER 之「most closely matches」無值 → §8.4.1，產出時 ER 須 PENDING: DR）	分支 (a) 全無 TC；2 條為上限，若 Pei 裁 ER 不可陳述則改登 DR、0 條
+3 列舉	SWE1-HVAC-023-01	wb-116/json-015; wb-117/json-397; wb-118/json-398	toggle 組合	W+Fe｜W+F｜F+Fe｜W+F+Fe	3.1 C19「Each Mode button can be pressed to individually toggle ON / OFF which provides 7 possible distribution modes」	4	否	現 3 條各驗單鍵 toggle；雙鍵／三鍵組合 4 種未驗
+3 列舉	SWE1-HVAC-024-xx	wb-125/json-021; wb-126/json-022; wb-127/json-023; wb-128/json-024; wb-129/json-025; wb-130/json-026; wb-131/json-027	破 MAX DEF 之觸發	temperature｜recirculation｜mode｜MAX DEF again｜A/C｜AUTO｜MAX A/C	3.2 C20；037 VC「Press any climate function: …」	0	否	已全數涵蓋（024-04～07 共 7 條）
+4 ch11↔ch12	054-02～057-02 ↔ 067-02～071-02	wb-210～219 ↔ wb-247～258	—	—	R-C19／delivery note 開放問題	0	—	僅標記：J/L/M 逐字相同者實測 9 對（非 10）：210↔247、211↔248、212↔249、214↔251、215↔252、216↔253、217↔256、218↔257、219↔258；213 無對
+# total est_new = 23 (threshold 40)

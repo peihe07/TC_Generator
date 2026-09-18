@@ -1442,3 +1442,26 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 2f87c5e854b490a0c8f28b5a4f53d7476d80177e93cade22ef9c7a351aa14c36  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_itemdef.xlsx
 
 25fbfc7a84824df2d3c15728994cfdf89d756f7c0999e910747d911c7ed681f1  output/archive/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_Comfort_20260817_merged.xlsx
+
+# ENTRY 036 — 2026-09-18 — **實測所見**：0907 本（ComfortHMI_20260907）之登記與對帳（下放包 CMF-01 §1）
+#
+#   type : observed（**非本 pipeline 之產出** —— 同 ENTRY 032 之型）
+#   對象 : /Users/peihe/Work/02_Project_R1LR/10_Reviewing/00_TestCase/ASW-R2/
+#          Climate Control Interface/…_SWQT_ComfortHMI_20260907.xlsx
+#          253,539 bytes｜mtime 2026-09-08 09:56
+#   處置 : 整檔複製入 delivered/（cmp 一致；檔名與內容未改），登 delivered/MANIFEST.tsv
+#
+#   逐格比對（`scripts/diff_0907.py`，row 10–475，466 列）:
+#     vs generated/*.json（經 write_back 匯出規則）與 vs ENTRY 035 產出檔，結果相同：
+#     D F H I J K L M N R S AH 十二欄 —— **不符 0 格**
+#     G 欄 466 格：`Comfort` → `Climate Control Interface`（含留空列 row 116）
+#     P 欄 465 格：P1→P0（325）、P2→P1（132）、P3→P2（8），整體降一級、次序保持
+#     非語料欄（NEVER_WRITE）: C=466（Polarion `NRL-4342xx`）、E=465（TestRail `C74501…`）、
+#       O=466（`NEW`）、T–Z 各 466（全 `1`）、AA=466（作者）
+#   結論 : 0907 本 = ENTRY 035 之產出 ＋ 離線填欄；語料側內容**未被離線編修**。
+#          ENTRY 035 之 R!=G 重驗 14 欄皆 0（語料 0817 後未前進）。
+#
+#   未做 : 未改語料；未產新工作簿；未改 ENTRY 001–035；git 未執行。
+#
+# 對象（delivered/ 內之副本）
+3550d16d8bd319633d872856ae51ba63a7d2a928d22fab69bff6dd1963736aff  delivered/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260907.xlsx

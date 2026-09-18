@@ -1,0 +1,91 @@
+item	wb_tc_id	json_tc_id	req_id	field	current	proposed	dependency
+M1	—	—	SWE1-HVAC-019-03	(new TC)	row 116 空殼	新增 BLOCKED row：remarks=`[BLOCKED-SPEC] Owner: VF HVAC document — the MAX A/C on/off logic is defined there; with that delegation removed this requirement has no content verifiable against the Comfort HMI specification alone. No test case in this delivery covers that logic.`；procedure/ER 空；N=2.13（形同 080-02）	待裁：R-C26 白名單增列（gen_batch9 reasoning 明載停下待裁）
+M2	wb-312	NR1L-ComfortHMI-191	SWE1-HVAC-103-01	test_procedure	"1. Press the driver comfort seat icon in the status bar
+2. Wait 5 seconds without further interaction"	"1. Press the driver comfort seat icon in the status bar
+2. Wait 3 seconds without further interaction
+3. Press the driver comfort seat icon again
+4. Wait 3 seconds without further interaction"	不依賴裁定；`3 seconds` 為作者取之 <5 s 測點（條文僅定 5 s），Revise 前請分析層確認是否屬 §8.4.1 造值
+M2	wb-312	NR1L-ComfortHMI-191	SWE1-HVAC-103-01	expected_result	"1. A popup for the comfort feature is shown
+2. The popup is no longer shown"	"1. A popup for the comfort feature is shown
+2. The popup is still shown
+3. The popup is still shown
+4. The popup is still shown"	不依賴裁定；`3 seconds` 為作者取之 <5 s 測點（條文僅定 5 s），Revise 前請分析層確認是否屬 §8.4.1 造值
+M2	wb-312	NR1L-ComfortHMI-191	SWE1-HVAC-103-01	test_item 下半	(wait 5 seconds without further interaction -> The popup is no longer shown)	(press the icon again before the timeout -> the timeout restarts)	不依賴裁定；`3 seconds` 為作者取之 <5 s 測點（條文僅定 5 s），Revise 前請分析層確認是否屬 §8.4.1 造值
+M2	wb-313	NR1L-ComfortHMI-192	SWE1-HVAC-103-02	test_procedure	"1. Press the driver comfort seat icon in the status bar
+2. Wait 5 seconds without further interaction"	"1. Press the driver comfort seat icon in the status bar
+2. Wait 3 seconds without further interaction
+3. Press the driver comfort seat icon again
+4. Wait 5 seconds without further interaction"	不依賴裁定；`3 seconds` 為作者取之 <5 s 測點（條文僅定 5 s），Revise 前請分析層確認是否屬 §8.4.1 造值
+M2	wb-313	NR1L-ComfortHMI-192	SWE1-HVAC-103-02	expected_result	"1. A popup for the comfort feature is shown
+2. The popup is no longer shown"	"1. A popup for the comfort feature is shown
+2. The popup is still shown
+3. The popup is still shown
+4. The popup is no longer shown"	不依賴裁定；`3 seconds` 為作者取之 <5 s 測點（條文僅定 5 s），Revise 前請分析層確認是否屬 §8.4.1 造值
+M2	wb-313	NR1L-ComfortHMI-192	SWE1-HVAC-103-02	test_item 下半	(let the popup time out untouched -> it is gone after five seconds)	(press the icon again before the timeout -> the popup stays for another 5 seconds, then closes)	不依賴裁定；`3 seconds` 為作者取之 <5 s 測點（條文僅定 5 s），Revise 前請分析層確認是否屬 §8.4.1 造值
+M6	wb-033	NR1L-ComfortHMI-141	SWE1-HVAC-006-02	test_procedure（該步）	1. Set the recirc availability status from the CCM to unavailable	1. PENDING: DR-46 DBC message and raw value for $RECIRC_STAT$ = [not available/Blink]	DR-46 未登（提案）；CFTS043 有訊號名（NEWR1L-50234／-50051），四份 forms/*.dbc 皆查無
+M6	wb-069	NR1L-ComfortHMI-158	SWE1-HVAC-012-06	test_procedure（該步）	"2. Set the recirc availability status from the CCM to unavailable and read the ""RECIRC"" button"	"2. PENDING: DR-46 DBC message and raw value for $RECIRC_STAT$ = [not available/Blink] and read the ""RECIRC"" button"	DR-46 未登（提案）；CFTS043 有訊號名（NEWR1L-50234／-50051），四份 forms/*.dbc 皆查無
+M6	wb-071	NR1L-ComfortHMI-160	SWE1-HVAC-013-02	test_procedure（該步）	1. Set the rear defrost availability status from the CCM to unavailable	1. PENDING: DR-46 DBC message and raw value for $EBL_Stat$ = [not available/Blink]	DR-46 未登（提案）；CFTS043 有訊號名（NEWR1L-50234／-50051），四份 forms/*.dbc 皆查無
+M6	wb-390	NR1L-ComfortHMI-250	SWE1-HVAC-114-02	test_procedure（該步）	1. Set the rear defrost availability status from the CCM to unavailable	1. PENDING: DR-46 DBC message and raw value for $EBL_Stat$ = [not available/Blink]	DR-46 未登（提案）；CFTS043 有訊號名（NEWR1L-50234／-50051），四份 forms/*.dbc 皆查無
+M8	wb-282	NR1L-ComfortHMI-434	SWE1-HVAC-083	test_set	HVAC Pop-ups	Climate Popups	不依賴裁定（framework Part N §2：14.1→#10、16.11→#12）
+M8	wb-403	NR1L-ComfortHMI-432	SWE1-HVAC-116-03	test_set	EMEA ICS Interface	ICS Climate Modes	不依賴裁定（framework Part N §2：14.1→#10、16.11→#12）
+M8	wb-404	NR1L-ComfortHMI-433	SWE1-HVAC-116-04	test_set	EMEA ICS Interface	ICS Climate Modes	不依賴裁定（framework Part N §2：14.1→#10、16.11→#12）
+M9-Note	wb-019	NR1L-ComfortHMI-131	SWE1-HVAC-003-05	test_procedure（該步）	"1. Note the state of the ""A/C"" button on the climate screen with AUTO off"	"1. Record the state of the ""A/C"" button on the climate screen with AUTO off"	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-050	NR1L-ComfortHMI-057	SWE1-HVAC-009-05	test_procedure（該步）	1. Note the temperature shown on the climate screen	1. Record the temperature shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-051	NR1L-ComfortHMI-391	SWE1-HVAC-009-05	test_procedure（該步）	1. Note the temperature shown on the climate screen	1. Record the temperature shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-052	NR1L-ComfortHMI-058	SWE1-HVAC-009-06	test_procedure（該步）	1. Note the temperature slider position	1. Record the temperature slider position	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-056	NR1L-ComfortHMI-061	SWE1-HVAC-010-03	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-057	NR1L-ComfortHMI-393	SWE1-HVAC-010-03	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-058	NR1L-ComfortHMI-394	SWE1-HVAC-010-03	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-059	NR1L-ComfortHMI-062	SWE1-HVAC-010-04	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-060	NR1L-ComfortHMI-395	SWE1-HVAC-010-04	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-065	NR1L-ComfortHMI-155	SWE1-HVAC-012-03	test_procedure（該步）	1. Note the fan speed on the climate screen	1. Record the fan speed on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-078	NR1L-ComfortHMI-147	SWE1-HVAC-014-05	test_procedure（該步）	1. Note the fan speed, then turn the climate system off using the climate power button on the climate screen	1. Record the fan speed, then turn the climate system off using the climate power button on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-268	NR1L-ComfortHMI-001	SWE1-HVAC-076-01	test_procedure（該步）	1. Note which tab is currently shown on the lower screen	1. Record which tab is currently shown on the lower screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-270	NR1L-ComfortHMI-003	SWE1-HVAC-076-03	test_procedure（該步）	1. Note which tab is currently shown in the climate section on the head unit	1. Record which tab is currently shown in the climate section on the head unit	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-359	NR1L-ComfortHMI-106	SWE1-HVAC-111-03	test_procedure（該步）	1. Note the temperature shown on the climate screen	1. Record the temperature shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-360	NR1L-ComfortHMI-414	SWE1-HVAC-111-03	test_procedure（該步）	1. Note the temperature shown on the climate screen	1. Record the temperature shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-361	NR1L-ComfortHMI-415	SWE1-HVAC-111-03	test_procedure（該步）	1. Note the temperature shown on the climate screen	1. Record the temperature shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-364	NR1L-ComfortHMI-416	SWE1-HVAC-111-05	test_procedure（該步）	1. Note the temperature slider position	1. Record the temperature slider position	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-368	NR1L-ComfortHMI-112	SWE1-HVAC-112-04	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-369	NR1L-ComfortHMI-417	SWE1-HVAC-112-04	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-370	NR1L-ComfortHMI-418	SWE1-HVAC-112-04	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-371	NR1L-ComfortHMI-419	SWE1-HVAC-112-04	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-372	NR1L-ComfortHMI-113	SWE1-HVAC-112-05	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-373	NR1L-ComfortHMI-420	SWE1-HVAC-112-05	test_procedure（該步）	1. Note the fan speed shown on the climate screen	1. Record the fan speed shown on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-406	NR1L-ComfortHMI-252	SWE1-HVAC-117-02	test_procedure（該步）	1. Note the size and highlight of the Feet airflow mode button	1. Record the size and highlight of the Feet airflow mode button	不依賴裁定（canon §5.1 preferred verb）
+M9-Note	wb-417	NR1L-ComfortHMI-262	SWE1-HVAC-118-09	test_procedure（該步）	1. Note the main category label on the climate screen	1. Record the main category label on the climate screen	不依賴裁定（canon §5.1 preferred verb）
+M9-compound	wb-018	NR1L-ComfortHMI-130	SWE1-HVAC-003-04	test_procedure（該步）	1. Select an airflow mode and turn front defrost on from the climate screen	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-078	NR1L-ComfortHMI-147	SWE1-HVAC-014-05	test_procedure（該步）	1. Note the fan speed, then turn the climate system off using the climate power button on the climate screen	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-101	NR1L-ComfortHMI-454	SWE1-HVAC-018-04	test_procedure（該步）	1. Open a screen other than Climate main and press the Mode hard control once	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-102	NR1L-ComfortHMI-455	SWE1-HVAC-018-04	test_procedure（該步）	1. Open a screen other than Climate main and press the Mode hard control once	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-146	NR1L-ComfortHMI-275	SWE1-HVAC-030-04	test_procedure（該步）	3. Turn rear AUTO on again and press a specific rear airflow mode button	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-149	NR1L-ComfortHMI-400	SWE1-HVAC-031-01	test_procedure（該步）	"1. Press ""LOCK REAR"", then press ""UNLOCK REAR"""	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-187	NR1L-ComfortHMI-368	SWE1-HVAC-040-02	test_procedure（該步）	1. Trigger the fan speed pop up and press the Front Fan area	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-187	NR1L-ComfortHMI-368	SWE1-HVAC-040-02	test_procedure（該步）	2. Trigger the fan speed pop up and press the Rear fan area	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-201	NR1L-ComfortHMI-073	SWE1-HVAC-048-03	test_procedure（該步）	4. Press the AUTO button until the AUTO ECO mode is active, then change the airflow mode	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-206	NR1L-ComfortHMI-078	SWE1-HVAC-052	test_procedure（該步）	1. Press the AUTO button until the AUTO ECO mode is active, then change the fan speed using the fan speed hard control	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-206	NR1L-ComfortHMI-078	SWE1-HVAC-052	test_procedure（該步）	2. Press the AUTO button once, then change the fan speed using the fan speed hard control	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-240	NR1L-ComfortHMI-334	SWE1-HVAC-064-02	test_procedure（該步）	3. Display the popup again and select an item in it	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-289	NR1L-ComfortHMI-173	SWE1-HVAC-088	test_procedure（該步）	1. Open a NAV screen and change the fan speed using the fan speed hard control	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-289	NR1L-ComfortHMI-173	SWE1-HVAC-088	test_procedure（該步）	2. Open a Projection screen and change the fan speed using the fan speed hard control	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-290	NR1L-ComfortHMI-174	SWE1-HVAC-089	test_procedure（該步）	1. Open a pop-up, then change the fan speed using the fan speed hard control	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-291	NR1L-ComfortHMI-175	SWE1-HVAC-090-01	test_procedure（該步）	1. Open a pop-up that has a selectable item, then change the fan speed using the fan speed hard control	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-292	NR1L-ComfortHMI-176	SWE1-HVAC-090-02	test_procedure（該步）	1. Open a pop-up that has a selectable item, then change the fan speed using the fan speed hard control	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-293	NR1L-ComfortHMI-177	SWE1-HVAC-091	test_procedure（該步）	1. Open a pop-up, then change the fan speed using the fan speed hard control	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-295	NR1L-ComfortHMI-179	SWE1-HVAC-093	test_procedure（該步）	2. Put the head unit into simulated off/idle mode and change the fan speed again	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-305	NR1L-ComfortHMI-184	SWE1-HVAC-100-01	test_procedure（該步）	1. Turn the driver heated seat on, then turn it off	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-324	NR1L-ComfortHMI-384	SWE1-HVAC-105-01	test_procedure（該步）	"1. Turn ""FRONT DEF"" on and set the airflow mode and the fan speed to known values"	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-326	NR1L-ComfortHMI-385	SWE1-HVAC-105-02	test_procedure（該步）	"1. Turn ""FRONT DEF"" on and set the fan speed to a value that differs from the one in the example graphic"	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-332	NR1L-ComfortHMI-087	SWE1-HVAC-106-06	test_procedure（該步）	1. Set the temperature units to Celsius and open a screen outside the climate main category	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-350	NR1L-ComfortHMI-098	SWE1-HVAC-110-01	test_procedure（該步）	1. Set the temperature units to English and open the climate screen	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-351	NR1L-ComfortHMI-413	SWE1-HVAC-110-01	test_procedure（該步）	1. Set the temperature units to Metric and open the climate screen	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-374	NR1L-ComfortHMI-237	SWE1-HVAC-113-01	test_procedure（該步）	"1. Turn ""A/C"" off and select an airflow mode other than Windshield on the climate screen"	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-380	NR1L-ComfortHMI-243	SWE1-HVAC-113-07	test_procedure（該步）	"1. Select a known airflow mode on the climate screen, then press ""MAX DEF"""	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-382	NR1L-ComfortHMI-245	SWE1-HVAC-113-09	test_procedure（該步）	"1. Select a known airflow mode, then press ""MAX DEF"""	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-383	NR1L-ComfortHMI-421	SWE1-HVAC-113-09	test_procedure（該步）	"1. Select a known airflow mode, then press ""MAX DEF"""	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-384	NR1L-ComfortHMI-422	SWE1-HVAC-113-09	test_procedure（該步）	"1. Select a known airflow mode, then press ""MAX DEF"""	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-386	NR1L-ComfortHMI-246	SWE1-HVAC-113-10	test_procedure（該步）	"1. Select a known airflow mode, then press ""MAX DEF"""	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-430	NR1L-ComfortHMI-233	SWE1-HVAC-119-09	test_procedure（該步）	"1. Set a known airflow mode and temperature, then press ""MAX A/C"""	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-431	NR1L-ComfortHMI-234	SWE1-HVAC-119-10	test_procedure（該步）	"1. Set a known airflow mode, then press ""MAX A/C"""	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-443	NR1L-ComfortHMI-097	SWE1-HVAC-122-05	test_procedure（該步）	1. Turn one seat control on and another seat control off, then leave the controls screen	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
+M9-compound	wb-448	NR1L-ComfortHMI-118	SWE1-HVAC-125-01	test_procedure（該步）	1. Move the Comfort widget to its second screen and leave the home screen	拆為兩步（ER 對應增一列）—— 逐條於 Revise 時改寫	不依賴裁定
