@@ -463,6 +463,28 @@ R-DIAG33  佔位之兩類：工具可解 vs 真缺件
   (g) `EXEC_GUIDE.md` 加一節：執行前提 = 診斷工具已載入本 ECU 之 CDD 檔；佔位之解讀方式各舉一例（controlState／值域／不支援 DID）。
 ```
 
+### R-DIAG6(amend2) — Remarks 定型句白名單以 lint 為準（Pei 裁，2026-09-18）
+
+```text
+R-DIAG6(amend2)  Remarks 定型句白名單以 lint036.py `RE_DIAG_REMARKS_OK` 為準
+  條文不再列舉「N 種」；新增定型句時只需在該 regex 加式並於上繳回報，不另 amend。
+  現有八式：原五 ＋ Flowchart 錨（CDD-12）＋ Annex A 錨（CDD-14）＋ CDD-tool 解出句（CDD-15）。
+```
+
+### R-DIAG32(amend) — `SID-WORD` 判準 = 指名衝突（Pei 裁，2026-09-18）
+
+```text
+R-DIAG32(amend)  SID-WORD 判準 = 指名衝突
+  描述行明確指名某服務（read／write／InputOutputControl／routine …）而其 `$` 行之 SID 為他服務者才 FAIL；
+  未指名服務之動作句（Activate／Select／Send a request for DID …）不在檢查範圍。
+```
+
+### R-DIAG31(amend) — 引文改 CS.00099 r25（Pei 裁，2026-09-18）
+
+```text
+R-DIAG31(amend)  引文改 CS.00099 r25（「Stellantis UDS implementation per specification CS.00100」）。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。

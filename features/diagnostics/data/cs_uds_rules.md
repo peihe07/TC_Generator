@@ -24,7 +24,15 @@ CFTS004  ──明引──▶  CS.00099  ──明引──▶  CS.00100
 `SYS-RA-DIAG-344`（CFTS004-4939459）`Refer to [CS.00099].`
 `SYS-RA-DIAG-403`（CFTS004-6151764）`Please refer [CS.00102], [CS.00021], [CS.00099], …`
 
-**第二段**（CS.00099 → CS.00100）：`SYS2_CS.00099` Analysis Report 內共 **15 列**明引，其中三處為規範性指定：
+**第二段**（CS.00099 → CS.00100）：`SYS2_CS.00099` Analysis Report 內共 **15 列**明引。
+**R-DIAG31(amend)（Pei 裁，2026-09-18）：本鏈之引文以 r25 為準** ——
+
+```text
+UDS is the "Enhanced Diagnostic Protocol" referenced in this document based on ISO 14229-1
+with Stellantis UDS implementation per specification CS.00100.
+```
+
+該句直接把 CS.00100 指定為 STLA 之 UDS 實作規範本身，較 §6.1-4／§9.3.3-5 之個別引用更根本。三處規範性指定：
 
 | CS.00099 列 | Sys-RA ID | 逐字（節錄） |
 |---|---|---|

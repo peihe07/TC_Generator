@@ -208,10 +208,10 @@ RE_DIAG_RNG_DESC = re.compile(
 # `$` 行緊隨其後（IN §8.7.5(c) 之式）。`<unsupported SID>` 起首者不判 —— 其服務位元組
 # 本就不是具體 SID，動詞（`Send a diagnostic request carrying …`）亦不指涉任一服務。
 RE_DIAG_STEP = re.compile(r"^\s*\d+\.\s*(?P<desc>.+?)\s*$", re.M)
-# R-DIAG32 之立意（`[A-DIAG68]`）：描述行**指名了某個服務**，而其下之位元組行是**另一個**服務。
-# 判準因此是「指名衝突」，不是「每個 SID 只准一種動詞」——
-# `Activate a buzzer control tone`／`Select the 7 kHz tone`／`Send the command to set …`
-# 皆未指名服務，與任何 SID 都不衝突（CDD-14 首版誤以動詞白名單為判準，101 行假陽性）。
+# R-DIAG32(amend)（Pei 裁，2026-09-18）：SID-WORD 判準 = **指名衝突** ——
+# 「描述行明確指名某服務（read／write／InputOutputControl／routine …）而其 `$` 行之 SID 為他服務者才 FAIL；
+#  未指名服務之動作句（Activate／Select／Send a request for DID …）不在檢查範圍。」
+# CDD-14 首版誤以「每個 SID 只准一種動詞」之白名單為判準，101 行假陽性（`[A-DIAG75]`）。
 DIAG_SID_NAME = {
     "read": "22",
     "write": "2E",
