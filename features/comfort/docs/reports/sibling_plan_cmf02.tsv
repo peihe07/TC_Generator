@@ -1,0 +1,18 @@
+# CMF-02 §3 —— sibling_plan_0907.tsv 之 23 條逐條判讀（R-C44 三問 ＋ §3 停點）。實產 8；不產 15（R-C44 14、停點 1）。
+plan_row	req_id	axis_value	est_new_plan	produced	new_tc_id	q1_who_listed	q2_trigger_or_value	q3_exhaustive	stop_check_er_in_clause	verdict	basis
+005-04	SWE1-HVAC-005-04	RECIRC	1	0		是（條文另句 Recirc can automatically turn on AC）	觸發	是	**否** —— 2.4 之「(Do not show this change)」只附於 Defrost 一句；Recirc 一句無呈現之陳述，ER「A/C 按鈕不亮」之值來自 037 leaf「(change not shown)」而非條文	**停（§3 停點二）**：不產；原條 json-139 不瘦身、第 3 步原樣保留	CMF-02 §3 停點；R-C33（內容歸 spec）
+009-04	SWE1-HVAC-009-04	TS 箭頭	1	1	NR1L-ComfortHMI-469	是（C5.1 兩句分別點名 arrows 與 HARD CONTROLS）	觸發	是	是	產；原條移除 TS 步、補 setup 步	R-C44
+013-03	SWE1-HVAC-013-03	AUTO	1	0		**否** —— `any other climate functions` 為泛稱	—	—	—	不拆（R-C44 溯源表明列 013-03 為第一問之例）	R-C44 一；77 §1 表
+015-04	SWE1-HVAC-015-04	fan speed	1	1	NR1L-ComfortHMI-471	是（Fan speed and Mode）	觸發	是	是	產；原條移除 fan 步	R-C44
+018-05	SWE1-HVAC-018-05	Climate main	1	1	NR1L-ComfortHMI-472	是（In both cases）	scope（§5.7）	是	是	產；原條移除 Climate main 步、補 setup 步；VC 之 press and hold 屬 018-03，不產	§5.7；gen_batch17 之「018-05 維持一條」改寫於 018 reasoning
+021-02	SWE1-HVAC-021-02	AUTO｜climate OFF	1	0		**否** —— 同 013-03	—	—	—	不拆（R-C44 溯源表明列 021-02）	R-C44 一；77 §1 表
+048-03	SWE1-HVAC-048-03	airflow mode	1	0		是	觸發	**否** —— 10.5「e.g. fan speed, airflow mode etc」為舉例	—	不拆；第 4 步雙動作仍依 M9 拆步	R-C44 三
+050	SWE1-HVAC-050	AUTO ON	1	0		「the selected setting」為泛稱	**值域** —— AUTO ECO／AUTO ON 為同一觸發（ignition cycle）之可能取值	—	—	不拆	R-C44 二
+111-04	SWE1-HVAC-111-04	TS 箭頭	1	1	NR1L-ComfortHMI-474	是（ICE5.1 兩句）	觸發	是	是	產；原條移除 TS 步、補 setup 步	R-C44
+121-02	SWE1-HVAC-121-02	AUTO｜climate OFF	1	0		**否** —— 同 013-03	—	—	—	不拆（R-C44 溯源表明列 121-02）	R-C44 一；77 §1 表
+010-03	SWE1-HVAC-010-03	Hard Control	1	1	NR1L-ComfortHMI-470	是（either … or use Hard Control）	觸發	是	是	產（原三條不動）	75 §1；R-C33
+080-01	SWE1-HVAC-080-01	touch screen	1	1	NR1L-ComfortHMI-473	是（hard button (-, +) or on the touch screen itself）	觸發	是	是	產（原條不動）	R-C44
+003-06	SWE1-HVAC-003-06	front defrost	1	0		是	觸發	**否** —— 「(including front defrost)」；R-C44 三明列 `including` 為舉例語	—	不拆（字面適用；若分析層判此處 including 為範圍界定而非舉例，則 +1）	R-C44 三
+003-07(b)	SWE1-HVAC-003-07	Face｜Face plus Feet｜Feet plus Windshield｜front defrost	4	0		**否** —— 「a specific mode button」為泛稱，四模式列舉在 2.12 而非本句	—	—	—	不拆；既有 Feet 一條為 interaction data	R-C44 一
+003-07(a)	SWE1-HVAC-003-07	A/C｜fan speed	2	2	NR1L-ComfortHMI-467／-468	是（同節前句 Manually selecting A/C … or changing fan speeds）	觸發	是	ER 落點條文無值 → 依 CMF-02 §3 寫 PENDING: DR-47（非停點）	產 2 條，ER 各 1 行 PENDING	CMF-02 §3；§8.4.1
+023-01	SWE1-HVAC-023-01	W+Fe｜W+F｜F+Fe｜W+F+Fe	4	0		是（7 possible distribution modes）	**值域** —— 7 組合為「逐鍵 toggle」之結果，非另一種按法；其全集已由 023-02 之循環條驗	—	—	不拆	R-C44 二

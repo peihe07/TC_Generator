@@ -3,7 +3,7 @@
 # and contain no per-feature literals. Regenerate nothing by editing code.
 
 feature: "Comfort"
-test_group: "Comfort"          # R-C6 — spec 標題模組名，非交付夾之 "Climate Control Interface"
+test_group: "Climate Control Interface"   # R-C6(amend)（CMF-01_review §3，2026-09-18）—— 從 0907 本；原值 "Comfort"（R-C6）
 
 paths:
   # BLANK workbook：客戶交付夾無 036 workbook，依 handoff 01 §1 以空白通用

@@ -136,6 +136,10 @@ workbook Test Group 欄一律填 "Comfort"。
 Test Set（Layer 2）不得重複 "Comfort" 前綴（§4.2）。
 ```
 
+〔**旁標：本條之 Test Group 值已由 R-C6(amend) 修訂**（CMF-01_review §3，2026-09-18）——
+`Climate Control Interface`，從 0907 本；上列原文保留不改，實際適用者為 R-C6(amend)。
+A-CF-EXT-02 所記之「條文與交付件不一致」由此收斂。〕
+
 ```
 R-C7  tc_id scheme
 tc_id 格式為 NR1L-ComfortHMI-{NNN}，NNN 為三位零填補序號，於同一
@@ -1050,6 +1054,109 @@ R-C42 一、二不變；三之原文保留於條文旁，標其修訂出處。
 **其 gate 之涵蓋範圍一併裁准**（65 §1）：`axis-candidate-registered` 量測
 **已寫入之 pre_conditions** 而非節之全文 —— 該條所防之風險為
 「兩條 TC 把同一條件寫成兩種樣子」，**只有寫出來的 PC 能做到這件事**。
+
+---
+
+## R-C46 ～ R-C53、R-C6(amend) —— CMF-01_review §3（分析層裁定，2026-09-18）
+
+**出處**：`docs/fw036/handoff/down/20260918_CMF-01_review.md` §3（依常設指示即時生效）；
+`20260918_CMF-02_A.md` §2：**Pei 未撤回任何一條；CMF-01_review §3 全數照行**。
+
+**編號（live numbering，CMF-02 §1-1）**：落帳前實測本檔之現行最大號為 **R-C45**
+（`grep -n "^R-C[0-9]"`，2026-09-18）。故暫編 R-C46～R-C53 **全數未被佔用，實編與暫編相同**：
+
+| 暫編 | 實編 |
+|---|---|
+| R-C46 | R-C46 |
+| R-C6(amend) | R-C6(amend)（R-C6 原文不動，見下方旁標） |
+| R-C47 | R-C47 |
+| R-C48 | R-C48 |
+| R-C49 | R-C49 |
+| R-C50 | R-C50 |
+| R-C51 | R-C51 |
+| R-C52 | R-C52 |
+| R-C53 | R-C53 |
+
+sha8 未產：GC-16 未落地前，裁定只落本檔與 profile，`docs/fw036/RULINGS.sha.tsv` 不手改（CMF-02 前言）。
+
+條文逐字（review §3 表，R19-2）：
+
+```
+R-C46  基線
+語料以 JSON 為準；母本改為 0907 本之複本。Revise 以 `xlsx_surgical` 寫於複本上，
+C／E／O／AA 原格不動。既有列之 F（TC ID）與 E（TestRail ID）不重編；新增 sibling
+一律接於尾端自 `-466` 起編，E 留空、O＝`NEW`，列位置於尾端（不插入，以免位移 E 欄對映）
+理由：重產於空白範本會丟 TestRail ID；插列會使 F 依列位重編而與 E 脫鉤
+```
+
+```
+R-C6(amend)  Test Group
+`Climate Control Interface`（從 0907 本）；回灌 JSON／framework Part N
+理由：整欄 466 格單一映射，為 Pei 之編修
+```
+
+```
+R-C47  Priority
+0907 本之 P 欄為準，回灌 JSON（465 條各上調一級）。新增 sibling 取其同 leaf 既有 TC 之級
+理由：同上，整欄單一映射
+```
+
+```
+R-C48  車型欄
+W（598）、X（5210）＝`0`（R-G74），CMF-02 即改。T／U／V／Y／Z 本輪維持 `1` 不動，
+CMF-02 唯讀產 PROXI 軸值表後另裁。profile §3.9「一律留白」作廢
+理由：全域裁定晚於 profile
+```
+
+```
+R-C49  N 欄
+一節一行、升冪、每行重述 stem；stem 不加 `SYS1_`（從 ENTRY 032，profile §3.5 隨改）；
+外部文件各自成行。PC 出處節次（2.14／16.2／6.3 等）續載 —— J 欄括號既已移除，
+N 欄為工作簿內唯一承載處；leaf 自身節次置首行
+理由：canon §10.7 排列規則（2026-08-21）；§10.7「directly verifies」於本線讀為含 PC 之
+條文出處（R-C29）
+```
+
+```
+R-C50  test_item
+下半 `->` 式合規不改（profile §3.1.1「做了什麼、預期看到什麼」）。上半 > 50 token 之
+26 條：摘為該句之連續子字串 ≤ 50 token（須仍過 `test-item-upper-verbatim`），
+取與下半直接相關之段
+理由：canon R-3 為全域；連續子字串使 gate 不必放寬
+```
+
+```
+R-C51  `019-03`
+准 `[BLOCKED-SPEC]` 白名單增列，取用 row 116，TC ID 依 R-C46 取 `-466`
+（row 116 之 F 現為空，不佔既有號）
+理由：R-C24 五問已由 `gen_batch9` reasoning 答過
+```
+
+```
+R-C52  `001-01／-02`
+TC 不改（鏈：SR24 條文 → 037 → TC，條文為權威）。wb-001～004 之 Remarks 加自足之
+conflict 句（037 寫 3 tabs／無 Massage，條文寫 4 tabs）；入 RD feedback
+理由：canon §8.1／§8.6；profile §3.6 Remarks 限制照守
+```
+
+```
+R-C53  導航入口
+R-G71 適用於本線。CMF-02 唯讀查 Menu Bar §4.1 命名表與 HMI Settings List 有無
+Comfort／Climate 入口標籤；查得 → 提案 `ENTER_COMFORT` 常數；查無 → DR「HMI entry path」。
+本輪不改任何 Procedure 之導航步驟
+理由：60 條之改寫須先有來源
+```
+
+同表另兩列（非編號裁定，照錄）：**Final Step** —— 首輪 229 作廢（A-CMF3），不立項；
+**ch11↔ch12 九對** —— 不處置，維持 delivery note 之開放問題。**DR-46**（`$RECIRC_STAT$`／
+`$EBL_Stat$` 之 DBC message 與 raw 值）准登。
+
+**R-C6 之旁標**：R-C6 原文（本檔 R-C6 段）保留不改；其「workbook Test Group 欄一律填
+"Comfort"」自 2026-09-18 起由 **R-C6(amend)** 取代（同 R-C42 → R-C42-1 之處置）。
+
+**CMF-02 之落實（執行層，2026-09-18）**：R-C46／R-C47／R-C48／R-C49／R-C50／R-C51／R-C52
+於 JSON 與 Revise 候選本（`sandbox/revise_0918/`）落實；R-C53 唯讀查證之結果與
+`ENTER_COMFORT` 提案見上繳 CMF-02 §5。詳見 `docs/fw036/handoff/up/20260918_CMF-02.md`。
 
 ---
 

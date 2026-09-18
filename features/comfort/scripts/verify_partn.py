@@ -33,7 +33,7 @@ FEATURE = ROOT / "features" / "comfort"
 LAYER3 = FEATURE / "data" / "layer3_map.tsv"
 OUT = FEATURE / "data" / "test_set_map.tsv"
 
-TEST_GROUP = "Comfort"          # Layer 1 (R-C6)
+TEST_GROUP = "Climate Control Interface"   # Layer 1 (R-C6(amend), CMF-01_review §3; was "Comfort")
 
 # Layer 2 — transcribed from handoff 12 §2, AMENDED by handoff 14 §1
 # (four sections moved, 2026-08-15). (name, sections, declared leaves)

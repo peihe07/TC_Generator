@@ -1,0 +1,351 @@
+# label_quote_plan.tsv - CMF-02 M7 (quote plan only; nothing applied)
+# source: features/comfort/sandbox/revise_0918/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260918.xlsx
+# source sha256: 28a0998c8b36a88b182b3fa209492cc5c6fda3999f48e6031d571d66439a266f
+# sheet: Test Case Specification 測試用例規範; rows 10-483; columns L (Test procedure) + M (Expected Result); F = tc_id, D = req_id
+# scan: case-sensitive whole word \b(AUTO|Face|Feet|RECIRC|SYNC|Sync)\b per physical line; a hit is "already quoted" when it lies inside a "..." span on the same line (ASCII double quotes; no curly quotes found)
+# line_no = 1-based physical line within the cell; context = that line verbatim
+# counts (unquoted hits listed below / already-quoted not listed): AUTO 173/45; Face 54/10; Feet 55/12; RECIRC 29/18; SYNC 24/39; Sync 4/0
+# CMF-01 L+M (0907 workbook, unquoted): AUTO 161 (quoted 43), Face 54, Feet 55, RECIRC 29, SYNC 24, Sync 4
+# class totals: label 144, state 184, verbatim 11; of which ambiguous (note starts with "ambiguous:") 25
+# per token x class: AUTO l92/s70/v11; Face l8/s46/v0; Feet l10/s45/v0; RECIRC l14/s15/v0; SYNC l19/s5/v0; Sync l1/s3/v0 (l=label s=state v=verbatim)
+# suggestion: label -> full line with every label hit of that line quoted (same text on each hit row of the line); state/verbatim -> keep
+row	tc_id_F	req_id	column	line_no	token	class	context	suggestion	note
+18	NR1L-ComfortHMI-009	SWE1-HVAC-002-04	L	1	Sync	label	1. Turn Sync on	1. Turn "SYNC" on	spelling: canon button label is SYNC (2.8 C12 "highlight button if SYNC"); SR24 also writes "Sync" in prose (2.8, MAX DEF "turns on Sync"). Analysis layer to decide whether to normalise to SYNC; suggestion normalises to "SYNC" matching precedent `Turn "SYNC" on` (rows 90-93, 411-414, 480)
+18	NR1L-ComfortHMI-009	SWE1-HVAC-002-04	M	1	Sync	state	1. Sync is on	keep	spelling: canon button label is SYNC (2.8 C12 "highlight button if SYNC"); SR24 also writes "Sync" in prose (2.8, MAX DEF "turns on Sync"). Analysis layer to decide whether to normalise to SYNC
+24	NR1L-ComfortHMI-015	SWE1-HVAC-003-01	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+25	NR1L-ComfortHMI-016	SWE1-HVAC-003-02	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+26	NR1L-ComfortHMI-017	SWE1-HVAC-003-03	L	1	AUTO	state	1. Set a fan speed and an airflow mode from the climate screen with AUTO off	keep	
+26	NR1L-ComfortHMI-017	SWE1-HVAC-003-03	L	2	AUTO	label	2. Turn AUTO on and read the fan speed and the airflow mode	2. Turn "AUTO" on and read the fan speed and the airflow mode	
+27	NR1L-ComfortHMI-018	SWE1-HVAC-003-04	L	3	AUTO	label	3. Turn AUTO on	3. Turn "AUTO" on	
+28	NR1L-ComfortHMI-019	SWE1-HVAC-003-05	L	1	AUTO	state	1. Read the state of the "A/C" button on the climate screen with AUTO off and record it	keep	
+28	NR1L-ComfortHMI-019	SWE1-HVAC-003-05	L	2	AUTO	label	2. Turn AUTO on and read the "A/C" button	2. Turn "AUTO" on and read the "A/C" button	
+29	NR1L-ComfortHMI-020	SWE1-HVAC-003-06	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+30	NR1L-ComfortHMI-021	SWE1-HVAC-003-06	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+31	NR1L-ComfortHMI-022	SWE1-HVAC-003-06	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+32	NR1L-ComfortHMI-023	SWE1-HVAC-003-07	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+32	NR1L-ComfortHMI-023	SWE1-HVAC-003-07	M	2	Feet	state	2. The "AUTO" button is no longer highlighted and the Feet airflow mode is active	keep	
+33	NR1L-ComfortHMI-024	SWE1-HVAC-003-08	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+35	NR1L-ComfortHMI-026	SWE1-HVAC-004-01	L	2	AUTO	label	2. Read the AUTO controls	2. Read the "AUTO" controls	dual-AUTO configuration (2.3.1): the two AUTO controls
+35	NR1L-ComfortHMI-026	SWE1-HVAC-004-01	M	2	AUTO	state	2. A driver side AUTO mode and a passenger side AUTO mode are provided	keep	paraphrase of 2.3.1 C2.1 "dual AUTO modes, one for the driver side and passenger side"
+35	NR1L-ComfortHMI-026	SWE1-HVAC-004-01	M	2	AUTO	state	2. A driver side AUTO mode and a passenger side AUTO mode are provided	keep	paraphrase of 2.3.1 C2.1 "dual AUTO modes, one for the driver side and passenger side"
+36	NR1L-ComfortHMI-027	SWE1-HVAC-004-02	L	1	AUTO	label	1. Turn the driver side AUTO on	1. Turn the driver side "AUTO" on	
+36	NR1L-ComfortHMI-027	SWE1-HVAC-004-02	L	2	AUTO	label	2. Read the driver and passenger AUTO indicators	2. Read the driver and passenger "AUTO" indicators	
+36	NR1L-ComfortHMI-027	SWE1-HVAC-004-02	M	1	AUTO	state	1. The driver side AUTO is on	keep	
+36	NR1L-ComfortHMI-027	SWE1-HVAC-004-02	M	2	AUTO	label	2. The driver side AUTO indicator is shown as on and the passenger side AUTO indicator is shown separately	2. The driver side "AUTO" indicator is shown as on and the passenger side "AUTO" indicator is shown separately	
+36	NR1L-ComfortHMI-027	SWE1-HVAC-004-02	M	2	AUTO	label	2. The driver side AUTO indicator is shown as on and the passenger side AUTO indicator is shown separately	2. The driver side "AUTO" indicator is shown as on and the passenger side "AUTO" indicator is shown separately	
+38	NR1L-ComfortHMI-029	SWE1-HVAC-005-02	L	1	AUTO	label	1. Turn "A/C" off and AUTO off from the climate screen	1. Turn "A/C" off and "AUTO" off from the climate screen	
+38	NR1L-ComfortHMI-029	SWE1-HVAC-005-02	L	2	AUTO	label	2. Turn AUTO on and read the "A/C" button	2. Turn "AUTO" on and read the "A/C" button	
+39	NR1L-ComfortHMI-030	SWE1-HVAC-005-03	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+44	NR1L-ComfortHMI-035	SWE1-HVAC-006-04	L	2	RECIRC	label	2. Read the RECIRC icon	2. Read the "RECIRC" icon	
+44	NR1L-ComfortHMI-035	SWE1-HVAC-006-04	M	2	RECIRC	label	2. A RECIRC icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected	2. A "RECIRC" icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected	
+45	NR1L-ComfortHMI-036	SWE1-HVAC-007-01	L	1	RECIRC	label	1. Press the RECIRC button	1. Press the "RECIRC" button	
+45	NR1L-ComfortHMI-036	SWE1-HVAC-007-01	L	2	RECIRC	label	2. Press the RECIRC button again	2. Press the "RECIRC" button again	
+45	NR1L-ComfortHMI-036	SWE1-HVAC-007-01	L	3	RECIRC	label	3. Press the RECIRC button again	3. Press the "RECIRC" button again	
+45	NR1L-ComfortHMI-036	SWE1-HVAC-007-01	M	1	RECIRC	state	1. RECIRC is in the Auto state	keep	
+45	NR1L-ComfortHMI-036	SWE1-HVAC-007-01	M	2	RECIRC	state	2. RECIRC is in the Manual state	keep	
+45	NR1L-ComfortHMI-036	SWE1-HVAC-007-01	M	3	RECIRC	state	3. RECIRC is in the Open state	keep	
+46	NR1L-ComfortHMI-037	SWE1-HVAC-007-01	L	1	RECIRC	label	1. Press the RECIRC button until RECIRC is in the Open state	1. Press the "RECIRC" button until RECIRC is in the Open state	
+46	NR1L-ComfortHMI-037	SWE1-HVAC-007-01	L	1	RECIRC	state	1. Press the RECIRC button until RECIRC is in the Open state	keep	
+46	NR1L-ComfortHMI-037	SWE1-HVAC-007-01	L	2	RECIRC	label	2. Press the RECIRC button again and read the RECIRC state	2. Press the "RECIRC" button again and read the RECIRC state	
+46	NR1L-ComfortHMI-037	SWE1-HVAC-007-01	L	2	RECIRC	state	2. Press the RECIRC button again and read the RECIRC state	keep	ambiguous: the word names the function whose state is read, not a control; kept as state for consistency with "The AUTO state is AUTO ECO". Conflicts with already-quoted precedent row 433 L2 `Press "MAX A/C" and read the "RECIRC" state and its LED` - one of the two conventions must win
+46	NR1L-ComfortHMI-037	SWE1-HVAC-007-01	M	1	RECIRC	state	1. RECIRC is in the Open state	keep	
+46	NR1L-ComfortHMI-037	SWE1-HVAC-007-01	M	2	RECIRC	state	2. RECIRC is in the Auto state and no further state is offered	keep	
+47	NR1L-ComfortHMI-038	SWE1-HVAC-007-02	L	1	RECIRC	label	1. Set RECIRC to Manual	1. Set "RECIRC" to Manual	ambiguous: "Set RECIRC to <value>" treated like "Turn X on" (tester operates the RECIRC control; precedent `Turn "RECIRC" on`); alternative reading = function set-up by value (state). Row 433 has this line unquoted next to quoted `read the "RECIRC" state` in the same cell
+47	NR1L-ComfortHMI-038	SWE1-HVAC-007-02	L	2	RECIRC	label	2. Read the RECIRC control on the climate screen	2. Read the "RECIRC" control on the climate screen	
+47	NR1L-ComfortHMI-038	SWE1-HVAC-007-02	M	1	RECIRC	state	1. RECIRC is in the Manual state	keep	
+54	NR1L-ComfortHMI-045	SWE1-HVAC-009-01	L	1	SYNC	label	1. Turn SYNC on	1. Turn "SYNC" on	
+54	NR1L-ComfortHMI-045	SWE1-HVAC-009-01	M	1	SYNC	state	1. SYNC is on	keep	
+55	NR1L-ComfortHMI-046	SWE1-HVAC-009-02	L	1	SYNC	label	1. Turn SYNC on	1. Turn "SYNC" on	
+55	NR1L-ComfortHMI-046	SWE1-HVAC-009-02	M	1	SYNC	state	1. SYNC is on	keep	
+55	NR1L-ComfortHMI-046	SWE1-HVAC-009-02	M	2	SYNC	state	2. SYNC is off	keep	
+76	NR1L-ComfortHMI-067	SWE1-HVAC-012-05	L	2	AUTO	label	2. Turn AUTO on and read the "FRONT DEF" button	2. Turn "AUTO" on and read the "FRONT DEF" button	
+77	NR1L-ComfortHMI-068	SWE1-HVAC-012-05	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+81	NR1L-ComfortHMI-072	SWE1-HVAC-013-03	L	2	AUTO	label	2. Turn AUTO on and read the "REAR DEFROST" button	2. Turn "AUTO" on and read the "REAR DEFROST" button	
+100	NR1L-ComfortHMI-091	SWE1-HVAC-017-01	L	1	Face	label	1. Select the Face airflow mode on the climate screen	1. Select the "Face" airflow mode on the climate screen	
+100	NR1L-ComfortHMI-091	SWE1-HVAC-017-01	M	1	Face	state	1. The Face airflow mode is active	keep	
+100	NR1L-ComfortHMI-091	SWE1-HVAC-017-01	M	2	Face	state	2. The modes were Mix of Face and Feet, then Feet, then Mix of Feet and Windshield, then Windshield	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; spec 2.12.1 writes "Mix of Face & Feet"
+100	NR1L-ComfortHMI-091	SWE1-HVAC-017-01	M	2	Feet	state	2. The modes were Mix of Face and Feet, then Feet, then Mix of Feet and Windshield, then Windshield	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; spec 2.12.1 writes "Mix of Face & Feet"
+100	NR1L-ComfortHMI-091	SWE1-HVAC-017-01	M	2	Feet	state	2. The modes were Mix of Face and Feet, then Feet, then Mix of Feet and Windshield, then Windshield	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; spec 2.12.1 writes "Mix of Face & Feet"
+100	NR1L-ComfortHMI-091	SWE1-HVAC-017-01	M	2	Feet	state	2. The modes were Mix of Face and Feet, then Feet, then Mix of Feet and Windshield, then Windshield	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; spec 2.12.1 writes "Mix of Face & Feet"
+101	NR1L-ComfortHMI-092	SWE1-HVAC-017-02	L	1	Feet	label	1. Select the Feet airflow mode on the climate screen	1. Select the "Feet" airflow mode on the climate screen	
+101	NR1L-ComfortHMI-092	SWE1-HVAC-017-02	M	1	Feet	state	1. The climate screen shows the Feet mode as active	keep	
+102	NR1L-ComfortHMI-093	SWE1-HVAC-018-01	L	1	Face	state	1. Set the airflow mode to Face	keep	ambiguous: set-up by value (018-01 hard-control loop start point, channel not specified) -> state; if read as "Select the X airflow mode" (precedent quoted `Select the "Face" airflow mode`) it would be label -> `Set the airflow mode to "X"`
+102	NR1L-ComfortHMI-093	SWE1-HVAC-018-01	M	1	Face	state	1. The Face airflow mode is active	keep	
+102	NR1L-ComfortHMI-093	SWE1-HVAC-018-01	M	2	Face	state	2. The Face/Feet airflow mode is active	keep	
+102	NR1L-ComfortHMI-093	SWE1-HVAC-018-01	M	2	Feet	state	2. The Face/Feet airflow mode is active	keep	
+103	NR1L-ComfortHMI-094	SWE1-HVAC-018-01	L	1	Face	state	1. Set the airflow mode to Face/Feet	keep	ambiguous: set-up by value (018-01 hard-control loop start point, channel not specified) -> state; if read as "Select the X airflow mode" (precedent quoted `Select the "Face" airflow mode`) it would be label -> `Set the airflow mode to "X"`
+103	NR1L-ComfortHMI-094	SWE1-HVAC-018-01	L	1	Feet	state	1. Set the airflow mode to Face/Feet	keep	ambiguous: set-up by value (018-01 hard-control loop start point, channel not specified) -> state; if read as "Select the X airflow mode" (precedent quoted `Select the "Face" airflow mode`) it would be label -> `Set the airflow mode to "X"`
+103	NR1L-ComfortHMI-094	SWE1-HVAC-018-01	M	1	Face	state	1. The Face/Feet airflow mode is active	keep	
+103	NR1L-ComfortHMI-094	SWE1-HVAC-018-01	M	1	Feet	state	1. The Face/Feet airflow mode is active	keep	
+103	NR1L-ComfortHMI-094	SWE1-HVAC-018-01	M	2	Feet	state	2. The Feet airflow mode is active	keep	
+104	NR1L-ComfortHMI-095	SWE1-HVAC-018-01	L	1	Feet	state	1. Set the airflow mode to Feet	keep	ambiguous: set-up by value (018-01 hard-control loop start point, channel not specified) -> state; if read as "Select the X airflow mode" (precedent quoted `Select the "Face" airflow mode`) it would be label -> `Set the airflow mode to "X"`
+104	NR1L-ComfortHMI-095	SWE1-HVAC-018-01	M	1	Feet	state	1. The Feet airflow mode is active	keep	
+104	NR1L-ComfortHMI-095	SWE1-HVAC-018-01	M	2	Feet	state	2. The Feet plus Windshield airflow mode is active	keep	
+105	NR1L-ComfortHMI-096	SWE1-HVAC-018-01	L	1	Feet	state	1. Set the airflow mode to Feet plus Windshield	keep	ambiguous: set-up by value (018-01 hard-control loop start point, channel not specified) -> state; if read as "Select the X airflow mode" (precedent quoted `Select the "Face" airflow mode`) it would be label -> `Set the airflow mode to "X"`
+105	NR1L-ComfortHMI-096	SWE1-HVAC-018-01	M	1	Feet	state	1. The Feet plus Windshield airflow mode is active	keep	
+105	NR1L-ComfortHMI-096	SWE1-HVAC-018-01	M	2	Face	state	2. The Face airflow mode is active	keep	
+106	NR1L-ComfortHMI-097	SWE1-HVAC-018-01	L	1	Face	state	1. Set the airflow mode to Face	keep	ambiguous: set-up by value (018-01 hard-control loop start point, channel not specified) -> state; if read as "Select the X airflow mode" (precedent quoted `Select the "Face" airflow mode`) it would be label -> `Set the airflow mode to "X"`
+106	NR1L-ComfortHMI-097	SWE1-HVAC-018-01	M	1	Face	state	1. The Face airflow mode is active	keep	
+106	NR1L-ComfortHMI-097	SWE1-HVAC-018-01	M	2	Face	state	2. The airflow mode read after the four presses is Face/Feet, then Feet, then Feet plus Windshield, then Face again, and Defrost is not among them	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 2.12.2 C13.1 loop
+106	NR1L-ComfortHMI-097	SWE1-HVAC-018-01	M	2	Feet	state	2. The airflow mode read after the four presses is Face/Feet, then Feet, then Feet plus Windshield, then Face again, and Defrost is not among them	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 2.12.2 C13.1 loop
+106	NR1L-ComfortHMI-097	SWE1-HVAC-018-01	M	2	Feet	state	2. The airflow mode read after the four presses is Face/Feet, then Feet, then Feet plus Windshield, then Face again, and Defrost is not among them	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 2.12.2 C13.1 loop
+106	NR1L-ComfortHMI-097	SWE1-HVAC-018-01	M	2	Feet	state	2. The airflow mode read after the four presses is Face/Feet, then Feet, then Feet plus Windshield, then Face again, and Defrost is not among them	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 2.12.2 C13.1 loop
+106	NR1L-ComfortHMI-097	SWE1-HVAC-018-01	M	2	Face	state	2. The airflow mode read after the four presses is Face/Feet, then Feet, then Feet plus Windshield, then Face again, and Defrost is not among them	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 2.12.2 C13.1 loop
+107	NR1L-ComfortHMI-098	SWE1-HVAC-018-02	L	1	Face	state	1. Set the airflow mode to Face	keep	ambiguous: set-up by value (018-01 hard-control loop start point, channel not specified) -> state; if read as "Select the X airflow mode" (precedent quoted `Select the "Face" airflow mode`) it would be label -> `Set the airflow mode to "X"`
+107	NR1L-ComfortHMI-098	SWE1-HVAC-018-02	M	1	Face	state	1. The Face airflow mode is active	keep	
+107	NR1L-ComfortHMI-098	SWE1-HVAC-018-02	M	2	Face	state	2. The Face/Feet airflow mode is active and the airflow mode does not continue to move while the control is held	keep	
+107	NR1L-ComfortHMI-098	SWE1-HVAC-018-02	M	2	Feet	state	2. The Face/Feet airflow mode is active and the airflow mode does not continue to move while the control is held	keep	
+123	NR1L-ComfortHMI-113	SWE1-HVAC-021-02	L	2	AUTO	label	2. Turn AUTO on and read the exterior rear-view mirror defrost state	2. Turn "AUTO" on and read the exterior rear-view mirror defrost state	
+126	NR1L-ComfortHMI-116	SWE1-HVAC-023-01	M	2	Face	state	2. The Face mode is toggled ON and the Windshield and Feet modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+126	NR1L-ComfortHMI-116	SWE1-HVAC-023-01	M	2	Feet	state	2. The Face mode is toggled ON and the Windshield and Feet modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+126	NR1L-ComfortHMI-116	SWE1-HVAC-023-01	M	3	Face	state	3. The Face mode is toggled OFF and the Windshield and Feet modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+126	NR1L-ComfortHMI-116	SWE1-HVAC-023-01	M	3	Feet	state	3. The Face mode is toggled OFF and the Windshield and Feet modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+127	NR1L-ComfortHMI-117	SWE1-HVAC-023-01	M	2	Feet	state	2. The Feet mode is toggled ON and the Windshield and Face modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+127	NR1L-ComfortHMI-117	SWE1-HVAC-023-01	M	2	Face	state	2. The Feet mode is toggled ON and the Windshield and Face modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+127	NR1L-ComfortHMI-117	SWE1-HVAC-023-01	M	3	Feet	state	3. The Feet mode is toggled OFF and the Windshield and Face modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+127	NR1L-ComfortHMI-117	SWE1-HVAC-023-01	M	3	Face	state	3. The Feet mode is toggled OFF and the Windshield and Face modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+128	NR1L-ComfortHMI-118	SWE1-HVAC-023-01	M	2	Face	state	2. The Windshield mode is toggled ON and the Face and Feet modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+128	NR1L-ComfortHMI-118	SWE1-HVAC-023-01	M	2	Feet	state	2. The Windshield mode is toggled ON and the Face and Feet modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+128	NR1L-ComfortHMI-118	SWE1-HVAC-023-01	M	3	Face	state	3. The Windshield mode is toggled OFF and the Face and Feet modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+128	NR1L-ComfortHMI-118	SWE1-HVAC-023-01	M	3	Feet	state	3. The Windshield mode is toggled OFF and the Face and Feet modes are unchanged	keep	Tri-Mode (2.12.3) mode state in prose; the button itself would be `"Face" mode button`
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	L	1	Face	state	1. Press the hard control MODE button repeatedly until the Face mode alone is active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	1	Face	state	1. Only the Face mode is active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	2	Face	state	2. The Face and Feet modes are active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	2	Feet	state	2. The Face and Feet modes are active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	3	Feet	state	3. Only the Feet mode is active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	4	Feet	state	4. The Windshield and Feet modes are active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	6	Face	state	6. The Windshield and Face modes are active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	7	Face	state	7. The Windshield, Face and Feet modes are active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	7	Feet	state	7. The Windshield, Face and Feet modes are active	keep	
+129	NR1L-ComfortHMI-119	SWE1-HVAC-023-02	M	8	Face	state	8. Only the Face mode is active	keep	
+130	NR1L-ComfortHMI-120	SWE1-HVAC-023-03	L	1	Face	state	1. Toggle the MODE control repeatedly until the Face mode alone is active	keep	
+130	NR1L-ComfortHMI-120	SWE1-HVAC-023-03	M	1	Face	state	1. Only the Face mode is active	keep	
+130	NR1L-ComfortHMI-120	SWE1-HVAC-023-03	M	2	Face	state	2. The Face and Feet modes are active	keep	
+130	NR1L-ComfortHMI-120	SWE1-HVAC-023-03	M	2	Feet	state	2. The Face and Feet modes are active	keep	
+130	NR1L-ComfortHMI-120	SWE1-HVAC-023-03	M	3	Feet	state	3. Only the Feet mode is active	keep	
+131	NR1L-ComfortHMI-121	SWE1-HVAC-023-03	L	1	Feet	state	1. Toggle the MODE control repeatedly until the Feet mode alone is active	keep	
+131	NR1L-ComfortHMI-121	SWE1-HVAC-023-03	M	1	Feet	state	1. Only the Feet mode is active	keep	
+131	NR1L-ComfortHMI-121	SWE1-HVAC-023-03	M	2	Face	state	2. The Face and Feet modes are active	keep	
+131	NR1L-ComfortHMI-121	SWE1-HVAC-023-03	M	2	Feet	state	2. The Face and Feet modes are active	keep	
+131	NR1L-ComfortHMI-121	SWE1-HVAC-023-03	M	3	Face	state	3. Only the Face mode is active	keep	
+133	NR1L-ComfortHMI-123	SWE1-HVAC-024-02	L	7	RECIRC	state	7. Read the RECIRC state and its LED	keep	ambiguous: the word names the function whose state is read, not a control; kept as state for consistency with "The AUTO state is AUTO ECO". Conflicts with already-quoted precedent row 433 L2 `Press "MAX A/C" and read the "RECIRC" state and its LED` - one of the two conventions must win
+133	NR1L-ComfortHMI-123	SWE1-HVAC-024-02	L	8	Sync	state	8. Read the Sync state	keep	ambiguous: the word names the function whose state is read, not a control; kept as state for consistency with "The AUTO state is AUTO ECO". Conflicts with already-quoted precedent row 433 L2 `Press "MAX A/C" and read the "RECIRC" state and its LED` - one of the two conventions must win; spelling: canon button label is SYNC (2.8 C12 "highlight button if SYNC"); SR24 also writes "Sync" in prose (2.8, MAX DEF "turns on Sync"). Analysis layer to decide whether to normalise to SYNC
+133	NR1L-ComfortHMI-123	SWE1-HVAC-024-02	M	7	RECIRC	state	7. RECIRC is open and its LED is off	keep	
+133	NR1L-ComfortHMI-123	SWE1-HVAC-024-02	M	8	Sync	state	8. Sync is on	keep	spelling: canon button label is SYNC (2.8 C12 "highlight button if SYNC"); SR24 also writes "Sync" in prose (2.8, MAX DEF "turns on Sync"). Analysis layer to decide whether to normalise to SYNC
+136	NR1L-ComfortHMI-126	SWE1-HVAC-024-05	M	2	AUTO	state	2. The "MAX DEF" button is no longer active and the climate system is in AUTO	keep	
+139	NR1L-ComfortHMI-129	SWE1-HVAC-024-07	L	2	RECIRC	label	2. Change RECIRC	2. Change "RECIRC"	ambiguous: "Change RECIRC" = operate the RECIRC control (label); could also be read as changing the recirc state in prose (state)
+153	NR1L-ComfortHMI-143	SWE1-HVAC-030-01	L	1	AUTO	label	1. Turn rear AUTO on	1. Turn rear "AUTO" on	
+153	NR1L-ComfortHMI-143	SWE1-HVAC-030-01	M	1	AUTO	label	1. The rear AUTO button is highlighted	1. The rear "AUTO" button is highlighted	
+153	NR1L-ComfortHMI-143	SWE1-HVAC-030-01	M	2	AUTO	label	2. The rear fan speed indicator shows AUTO instead of the actual fan speed	2. The rear fan speed indicator shows "AUTO" instead of the actual fan speed	value read off the UI (fan speed indicator / pop up), §11 "values follow the same convention"; spec 2.3/7.2 writes "Auto", R-C2 -> AUTO
+154	NR1L-ComfortHMI-144	SWE1-HVAC-030-02	L	1	AUTO	label	1. Turn rear AUTO on	1. Turn rear "AUTO" on	
+154	NR1L-ComfortHMI-144	SWE1-HVAC-030-02	M	1	AUTO	label	1. The rear AUTO button is highlighted	1. The rear "AUTO" button is highlighted	
+155	NR1L-ComfortHMI-145	SWE1-HVAC-030-03	L	2	AUTO	label	2. Turn rear AUTO on	2. Turn rear "AUTO" on	
+155	NR1L-ComfortHMI-145	SWE1-HVAC-030-03	M	2	AUTO	label	2. The rear AUTO button is highlighted	2. The rear "AUTO" button is highlighted	
+156	NR1L-ComfortHMI-146	SWE1-HVAC-030-04	L	1	AUTO	label	1. Turn rear AUTO on	1. Turn rear "AUTO" on	
+156	NR1L-ComfortHMI-146	SWE1-HVAC-030-04	L	3	AUTO	label	3. Turn rear AUTO on again	3. Turn rear "AUTO" on again	
+156	NR1L-ComfortHMI-146	SWE1-HVAC-030-04	M	1	AUTO	label	1. The rear AUTO button is highlighted	1. The rear "AUTO" button is highlighted	
+156	NR1L-ComfortHMI-146	SWE1-HVAC-030-04	M	2	AUTO	label	2. The rear AUTO button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode	2. The rear "AUTO" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode	
+156	NR1L-ComfortHMI-146	SWE1-HVAC-030-04	M	2	AUTO	verbatim	2. The rear AUTO button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode	keep	lifted from 2.3 C2 / 7.x "the manual mode that most closely matches the auto mode exited" (reordered; spec spelling "auto", R-C2 -> AUTO)
+156	NR1L-ComfortHMI-146	SWE1-HVAC-030-04	M	3	AUTO	label	3. The rear AUTO button is highlighted	3. The rear "AUTO" button is highlighted	
+157	NR1L-ComfortHMI-147	SWE1-HVAC-030-05	L	1	AUTO	label	1. Turn rear AUTO on	1. Turn rear "AUTO" on	
+157	NR1L-ComfortHMI-147	SWE1-HVAC-030-05	L	3	AUTO	label	3. Read the rear AUTO button	3. Read the rear "AUTO" button	
+157	NR1L-ComfortHMI-147	SWE1-HVAC-030-05	M	1	AUTO	label	1. The rear AUTO button is highlighted	1. The rear "AUTO" button is highlighted	
+157	NR1L-ComfortHMI-147	SWE1-HVAC-030-05	M	3	AUTO	label	3. The rear AUTO button is still highlighted	3. The rear "AUTO" button is still highlighted	
+167	NR1L-ComfortHMI-157	SWE1-HVAC-032-04	L	1	SYNC	label	1. Turn SYNC on	1. Turn "SYNC" on	
+167	NR1L-ComfortHMI-157	SWE1-HVAC-032-04	M	1	SYNC	label	1. The SYNC button is highlighted	1. The "SYNC" button is highlighted	
+168	NR1L-ComfortHMI-158	SWE1-HVAC-032-04	L	1	SYNC	label	1. Turn SYNC on	1. Turn "SYNC" on	
+168	NR1L-ComfortHMI-158	SWE1-HVAC-032-04	M	1	SYNC	label	1. The SYNC button is highlighted	1. The "SYNC" button is highlighted	
+168	NR1L-ComfortHMI-158	SWE1-HVAC-032-04	M	2	SYNC	state	2. SYNC is turned off and the SYNC button is no longer highlighted	keep	
+168	NR1L-ComfortHMI-158	SWE1-HVAC-032-04	M	2	SYNC	label	2. SYNC is turned off and the SYNC button is no longer highlighted	2. SYNC is turned off and the "SYNC" button is no longer highlighted	
+170	NR1L-ComfortHMI-160	SWE1-HVAC-033-01	L	1	AUTO	label	1. Turn rear AUTO on	1. Turn rear "AUTO" on	
+170	NR1L-ComfortHMI-160	SWE1-HVAC-033-01	M	1	AUTO	label	1. The rear AUTO button is highlighted	1. The rear "AUTO" button is highlighted	
+170	NR1L-ComfortHMI-160	SWE1-HVAC-033-01	M	2	AUTO	label	2. The rear fan speed indicator shows AUTO	2. The rear fan speed indicator shows "AUTO"	value read off the UI (fan speed indicator / pop up), §11 "values follow the same convention"; spec 2.3/7.2 writes "Auto", R-C2 -> AUTO
+179	NR1L-ComfortHMI-169	SWE1-HVAC-035-01	L	1	SYNC	label	1. Turn SYNC on	1. Turn "SYNC" on	
+179	NR1L-ComfortHMI-169	SWE1-HVAC-035-01	M	1	SYNC	label	1. The SYNC button is highlighted	1. The "SYNC" button is highlighted	
+180	NR1L-ComfortHMI-170	SWE1-HVAC-035-02	L	1	SYNC	label	1. Turn SYNC on	1. Turn "SYNC" on	
+180	NR1L-ComfortHMI-170	SWE1-HVAC-035-02	L	3	SYNC	label	3. Read the SYNC button	3. Read the "SYNC" button	
+180	NR1L-ComfortHMI-170	SWE1-HVAC-035-02	M	1	SYNC	label	1. The SYNC button is highlighted	1. The "SYNC" button is highlighted	
+180	NR1L-ComfortHMI-170	SWE1-HVAC-035-02	M	3	SYNC	state	3. SYNC is off and the SYNC button is no longer highlighted	keep	
+180	NR1L-ComfortHMI-170	SWE1-HVAC-035-02	M	3	SYNC	label	3. SYNC is off and the SYNC button is no longer highlighted	3. SYNC is off and the "SYNC" button is no longer highlighted	
+181	NR1L-ComfortHMI-171	SWE1-HVAC-035-03	L	1	SYNC	label	1. Turn SYNC on	1. Turn "SYNC" on	
+181	NR1L-ComfortHMI-171	SWE1-HVAC-035-03	M	1	SYNC	label	1. The SYNC button is highlighted	1. The "SYNC" button is highlighted	
+182	NR1L-ComfortHMI-172	SWE1-HVAC-036-01	L	1	Feet	label	1. Select the rear Feet mode	1. Select the rear "Feet" mode	
+182	NR1L-ComfortHMI-172	SWE1-HVAC-036-01	M	1	Feet	state	1. The rear Feet mode is selected	keep	
+182	NR1L-ComfortHMI-172	SWE1-HVAC-036-01	M	2	Feet	state	2. The rear airflow mode is Feet	keep	
+183	NR1L-ComfortHMI-173	SWE1-HVAC-036-01	L	1	Face	label	1. Select the rear Face + Feet mode	1. Select the rear "Face + Feet" mode	compound rear mode label from 7.8 CR8 "Face + Feet"; both hits covered by one quoted span
+183	NR1L-ComfortHMI-173	SWE1-HVAC-036-01	L	1	Feet	label	1. Select the rear Face + Feet mode	1. Select the rear "Face + Feet" mode	compound rear mode label from 7.8 CR8 "Face + Feet"; both hits covered by one quoted span
+183	NR1L-ComfortHMI-173	SWE1-HVAC-036-01	M	1	Face	state	1. The rear Face + Feet mode is selected	keep	
+183	NR1L-ComfortHMI-173	SWE1-HVAC-036-01	M	1	Feet	state	1. The rear Face + Feet mode is selected	keep	
+183	NR1L-ComfortHMI-173	SWE1-HVAC-036-01	M	2	Face	state	2. The rear airflow mode is Face + Feet	keep	
+183	NR1L-ComfortHMI-173	SWE1-HVAC-036-01	M	2	Feet	state	2. The rear airflow mode is Face + Feet	keep	
+184	NR1L-ComfortHMI-174	SWE1-HVAC-036-01	L	1	Face	label	1. Select the rear Face mode	1. Select the rear "Face" mode	
+184	NR1L-ComfortHMI-174	SWE1-HVAC-036-01	M	1	Face	state	1. The rear Face mode is selected	keep	
+184	NR1L-ComfortHMI-174	SWE1-HVAC-036-01	M	2	Face	state	2. The rear airflow mode is Face	keep	
+186	NR1L-ComfortHMI-176	SWE1-HVAC-036-03	L	2	AUTO	label	2. Turn rear AUTO on	2. Turn rear "AUTO" on	
+186	NR1L-ComfortHMI-176	SWE1-HVAC-036-03	M	2	AUTO	label	2. The rear AUTO button is highlighted	2. The rear "AUTO" button is highlighted	
+187	NR1L-ComfortHMI-177	SWE1-HVAC-036-04	L	1	Feet	label	1. Select the rear Feet mode	1. Select the rear "Feet" mode	
+187	NR1L-ComfortHMI-177	SWE1-HVAC-036-04	L	2	Face	label	2. Select the rear Face mode	2. Select the rear "Face" mode	
+187	NR1L-ComfortHMI-177	SWE1-HVAC-036-04	M	1	Feet	state	1. The rear Feet mode is selected	keep	
+187	NR1L-ComfortHMI-177	SWE1-HVAC-036-04	M	2	Face	state	2. The rear Face mode is selected	keep	
+187	NR1L-ComfortHMI-177	SWE1-HVAC-036-04	M	3	Face	label	3. Only the rear Face mode button is highlighted	3. Only the rear "Face" mode button is highlighted	
+195	NR1L-ComfortHMI-185	SWE1-HVAC-040-01	L	1	AUTO	label	1. Turn AUTO on for the front climate	1. Turn "AUTO" on for the front climate	
+195	NR1L-ComfortHMI-185	SWE1-HVAC-040-01	M	1	AUTO	state	1. The front climate is in AUTO	keep	
+195	NR1L-ComfortHMI-185	SWE1-HVAC-040-01	M	2	AUTO	label	2. The pop up shows AUTO as the front fan status	2. The pop up shows "AUTO" as the front fan status	value read off the pop up; 14.x "front fan speed status (level number, AUTO, OFF)"
+203	NR1L-ComfortHMI-193	SWE1-HVAC-044-01	L	2	AUTO	label	2. Press the AUTO button	2. Press the "AUTO" button	
+203	NR1L-ComfortHMI-193	SWE1-HVAC-044-01	M	1	AUTO	label	1. The climate screen shows the AUTO control	1. The climate screen shows the "AUTO" control	
+203	NR1L-ComfortHMI-193	SWE1-HVAC-044-01	M	2	AUTO	state	2. The AUTO ECO mode is active	keep	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	L	1	AUTO	label	1. Press the AUTO button until AUTO is off	1. Press the "AUTO" button until AUTO is off	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	L	1	AUTO	state	1. Press the AUTO button until AUTO is off	keep	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	L	2	AUTO	label	2. Press the AUTO button	2. Press the "AUTO" button	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	L	3	AUTO	label	3. Press the AUTO button	3. Press the "AUTO" button	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	M	1	AUTO	state	1. The AUTO state is AUTO OFF	keep	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	M	1	AUTO	state	1. The AUTO state is AUTO OFF	keep	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	M	2	AUTO	state	2. The AUTO state is AUTO ECO	keep	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	M	2	AUTO	state	2. The AUTO state is AUTO ECO	keep	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	M	3	AUTO	state	3. The AUTO state is AUTO ON	keep	
+205	NR1L-ComfortHMI-195	SWE1-HVAC-045	M	3	AUTO	state	3. The AUTO state is AUTO ON	keep	
+206	NR1L-ComfortHMI-196	SWE1-HVAC-046	L	1	AUTO	label	1. Press the AUTO button until the AUTO ECO mode is active	1. Press the "AUTO" button until the AUTO ECO mode is active	
+206	NR1L-ComfortHMI-196	SWE1-HVAC-046	L	1	AUTO	state	1. Press the AUTO button until the AUTO ECO mode is active	keep	
+206	NR1L-ComfortHMI-196	SWE1-HVAC-046	L	2	AUTO	label	2. Read the label on the AUTO button	2. Read the label on the "AUTO" button	
+206	NR1L-ComfortHMI-196	SWE1-HVAC-046	M	1	AUTO	state	1. The AUTO ECO mode is active	keep	
+206	NR1L-ComfortHMI-196	SWE1-HVAC-046	M	2	AUTO	label	2. The button label reads AUTO ECO	2. The button label reads "AUTO ECO"	value read off the button; 10.3 EH3 "Button label will read AUTO ECO"; quote covers the whole label "AUTO ECO"
+207	NR1L-ComfortHMI-197	SWE1-HVAC-047	L	1	AUTO	label	1. Press the AUTO button until AUTO is off	1. Press the "AUTO" button until AUTO is off	
+207	NR1L-ComfortHMI-197	SWE1-HVAC-047	L	1	AUTO	state	1. Press the AUTO button until AUTO is off	keep	
+207	NR1L-ComfortHMI-197	SWE1-HVAC-047	L	2	AUTO	label	2. Press the AUTO button once	2. Press the "AUTO" button once	
+207	NR1L-ComfortHMI-197	SWE1-HVAC-047	M	1	AUTO	state	1. The AUTO state is AUTO OFF	keep	
+207	NR1L-ComfortHMI-197	SWE1-HVAC-047	M	1	AUTO	state	1. The AUTO state is AUTO OFF	keep	
+207	NR1L-ComfortHMI-197	SWE1-HVAC-047	M	2	AUTO	verbatim	2. The AUTO ECO functionality is activated	keep	wording of 10.4 EH4 "will activate the AUTO ECO functionality"
+208	NR1L-ComfortHMI-198	SWE1-HVAC-047	L	2	AUTO	label	2. Press the position at which the AUTO button is shown in an ATC configuration	2. Press the position at which the "AUTO" button is shown in an ATC configuration	names the AUTO button label although it is absent in this configuration
+208	NR1L-ComfortHMI-198	SWE1-HVAC-047	M	1	AUTO	label	1. The climate screen is displayed and no AUTO button is shown	1. The climate screen is displayed and no "AUTO" button is shown	
+208	NR1L-ComfortHMI-198	SWE1-HVAC-047	M	2	AUTO	verbatim	2. The AUTO ECO functionality is not activated	keep	negated wording of 10.4 EH4 "will activate the AUTO ECO functionality"
+209	NR1L-ComfortHMI-199	SWE1-HVAC-048-01	L	1	AUTO	label	1. Press the AUTO button until the AUTO ECO mode is active	1. Press the "AUTO" button until the AUTO ECO mode is active	
+209	NR1L-ComfortHMI-199	SWE1-HVAC-048-01	L	1	AUTO	state	1. Press the AUTO button until the AUTO ECO mode is active	keep	
+209	NR1L-ComfortHMI-199	SWE1-HVAC-048-01	L	2	AUTO	label	2. Press the AUTO button once	2. Press the "AUTO" button once	
+209	NR1L-ComfortHMI-199	SWE1-HVAC-048-01	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+209	NR1L-ComfortHMI-199	SWE1-HVAC-048-01	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+209	NR1L-ComfortHMI-199	SWE1-HVAC-048-01	M	2	AUTO	state	2. The AUTO state is AUTO ON	keep	
+209	NR1L-ComfortHMI-199	SWE1-HVAC-048-01	M	2	AUTO	state	2. The AUTO state is AUTO ON	keep	
+210	NR1L-ComfortHMI-200	SWE1-HVAC-048-02	L	1	AUTO	label	1. Press the AUTO button until the AUTO ON state is active	1. Press the "AUTO" button until the AUTO ON state is active	
+210	NR1L-ComfortHMI-200	SWE1-HVAC-048-02	L	1	AUTO	state	1. Press the AUTO button until the AUTO ON state is active	keep	
+210	NR1L-ComfortHMI-200	SWE1-HVAC-048-02	L	2	AUTO	label	2. Press the AUTO button once	2. Press the "AUTO" button once	
+210	NR1L-ComfortHMI-200	SWE1-HVAC-048-02	M	1	AUTO	state	1. The AUTO state is AUTO ON	keep	
+210	NR1L-ComfortHMI-200	SWE1-HVAC-048-02	M	1	AUTO	state	1. The AUTO state is AUTO ON	keep	
+210	NR1L-ComfortHMI-200	SWE1-HVAC-048-02	M	2	AUTO	state	2. The AUTO state is AUTO ECO	keep	
+210	NR1L-ComfortHMI-200	SWE1-HVAC-048-02	M	2	AUTO	state	2. The AUTO state is AUTO ECO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	L	1	AUTO	label	1. Press the AUTO button until the AUTO ECO mode is active	1. Press the "AUTO" button until the AUTO ECO mode is active	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	L	1	AUTO	state	1. Press the AUTO button until the AUTO ECO mode is active	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	L	2	AUTO	label	2. Press the AUTO button repeatedly	2. Press the "AUTO" button repeatedly	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	L	4	AUTO	label	4. Press the AUTO button until the AUTO ECO mode is active	4. Press the "AUTO" button until the AUTO ECO mode is active	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	L	4	AUTO	state	4. Press the AUTO button until the AUTO ECO mode is active	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	2	AUTO	state	2. The AUTO state stays within AUTO ECO and AUTO ON and does not leave AUTO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	2	AUTO	state	2. The AUTO state stays within AUTO ECO and AUTO ON and does not leave AUTO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	2	AUTO	state	2. The AUTO state stays within AUTO ECO and AUTO ON and does not leave AUTO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	2	AUTO	state	2. The AUTO state stays within AUTO ECO and AUTO ON and does not leave AUTO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	3	AUTO	state	3. AUTO is broken	keep	spec wording 10.5 EH5 "AUTO mode will only be broken"; state in prose
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	4	AUTO	state	4. The AUTO state is AUTO ECO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	4	AUTO	state	4. The AUTO state is AUTO ECO	keep	
+211	NR1L-ComfortHMI-201	SWE1-HVAC-048-03	M	5	AUTO	state	5. AUTO is broken	keep	spec wording 10.5 EH5 "AUTO mode will only be broken"; state in prose
+212	NR1L-ComfortHMI-202	SWE1-HVAC-049-01	L	2	AUTO	label	2. Press the AUTO button until the AUTO ECO mode is active	2. Press the "AUTO" button until the AUTO ECO mode is active	
+212	NR1L-ComfortHMI-202	SWE1-HVAC-049-01	L	2	AUTO	state	2. Press the AUTO button until the AUTO ECO mode is active	keep	
+213	NR1L-ComfortHMI-203	SWE1-HVAC-049-02	L	1	AUTO	label	1. Press the AUTO button until the AUTO ECO mode is active	1. Press the "AUTO" button until the AUTO ECO mode is active	
+213	NR1L-ComfortHMI-203	SWE1-HVAC-049-02	L	1	AUTO	state	1. Press the AUTO button until the AUTO ECO mode is active	keep	
+213	NR1L-ComfortHMI-203	SWE1-HVAC-049-02	M	1	AUTO	state	1. The AUTO ECO mode is active	keep	
+213	NR1L-ComfortHMI-203	SWE1-HVAC-049-02	M	2	AUTO	state	2. The fan speed indication denotes that AUTO ECO is active	keep	
+214	NR1L-ComfortHMI-204	SWE1-HVAC-050	L	1	AUTO	label	1. Press the AUTO button until the AUTO ECO mode is active	1. Press the "AUTO" button until the AUTO ECO mode is active	
+214	NR1L-ComfortHMI-204	SWE1-HVAC-050	L	1	AUTO	state	1. Press the AUTO button until the AUTO ECO mode is active	keep	
+214	NR1L-ComfortHMI-204	SWE1-HVAC-050	L	3	AUTO	state	3. Read the AUTO state on the climate screen	keep	ambiguous: the word names the function whose state is read, not a control; kept as state for consistency with "The AUTO state is AUTO ECO". Conflicts with already-quoted precedent row 433 L2 `Press "MAX A/C" and read the "RECIRC" state and its LED` - one of the two conventions must win
+214	NR1L-ComfortHMI-204	SWE1-HVAC-050	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+214	NR1L-ComfortHMI-204	SWE1-HVAC-050	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+214	NR1L-ComfortHMI-204	SWE1-HVAC-050	M	3	AUTO	state	3. The AUTO state is AUTO ECO	keep	
+214	NR1L-ComfortHMI-204	SWE1-HVAC-050	M	3	AUTO	state	3. The AUTO state is AUTO ECO	keep	
+215	NR1L-ComfortHMI-205	SWE1-HVAC-051	L	1	AUTO	label	1. Press the AUTO button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon	1. Press the "AUTO" button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon	
+215	NR1L-ComfortHMI-205	SWE1-HVAC-051	L	1	AUTO	state	1. Press the AUTO button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon	keep	
+215	NR1L-ComfortHMI-205	SWE1-HVAC-051	L	2	AUTO	label	2. Press the AUTO button once, then read the Comfort main Menu Bar icon	2. Press the "AUTO" button once, then read the Comfort main Menu Bar icon	
+215	NR1L-ComfortHMI-205	SWE1-HVAC-051	M	1	AUTO	state	1. The Comfort main Menu Bar icon reflects the AUTO ECO state	keep	phrase derived from 10.8 EH8 / 10.9 EH9 "shall reflect the AUTO ECO and AUTO states"; AUTO ECO / AUTO ON are 10.2 state names
+215	NR1L-ComfortHMI-205	SWE1-HVAC-051	M	2	AUTO	state	2. The Comfort main Menu Bar icon reflects the AUTO ON state	keep	phrase derived from 10.8 EH8 / 10.9 EH9 "shall reflect the AUTO ECO and AUTO states"; AUTO ECO / AUTO ON are 10.2 state names
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	L	1	AUTO	label	1. Press the AUTO button until the AUTO ECO mode is active	1. Press the "AUTO" button until the AUTO ECO mode is active	
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	L	1	AUTO	state	1. Press the AUTO button until the AUTO ECO mode is active	keep	
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	L	3	AUTO	label	3. Press the AUTO button until the AUTO ON state is active	3. Press the "AUTO" button until the AUTO ON state is active	
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	L	3	AUTO	state	3. Press the AUTO button until the AUTO ON state is active	keep	
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	M	2	AUTO	state	2. The comfort pop up reflects the AUTO ECO state	keep	phrase derived from 10.8 EH8 / 10.9 EH9 "shall reflect the AUTO ECO and AUTO states"; AUTO ECO / AUTO ON are 10.2 state names
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	M	3	AUTO	state	3. The AUTO state is AUTO ON	keep	
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	M	3	AUTO	state	3. The AUTO state is AUTO ON	keep	
+216	NR1L-ComfortHMI-206	SWE1-HVAC-052	M	4	AUTO	state	4. The comfort pop up reflects the AUTO ON state	keep	phrase derived from 10.8 EH8 / 10.9 EH9 "shall reflect the AUTO ECO and AUTO states"; AUTO ECO / AUTO ON are 10.2 state names
+217	NR1L-ComfortHMI-207	SWE1-HVAC-053-01	L	1	AUTO	label	1. Press the AUTO button until AUTO is off	1. Press the "AUTO" button until AUTO is off	
+217	NR1L-ComfortHMI-207	SWE1-HVAC-053-01	L	1	AUTO	state	1. Press the AUTO button until AUTO is off	keep	
+217	NR1L-ComfortHMI-207	SWE1-HVAC-053-01	L	2	AUTO	label	2. Press the AUTO button once and read the AUTO pop up	2. Press the "AUTO" button once and read the AUTO pop up	
+217	NR1L-ComfortHMI-207	SWE1-HVAC-053-01	L	2	AUTO	verbatim	2. Press the AUTO button once and read the AUTO pop up	keep	ambiguous: spec term "AUTO pop up(s)" (10.9.1 EH9.1 / ICE AUTO pop up) names the pop-up type, not a label the tester reads; keep. If treated as label -> `"AUTO" pop up`
+217	NR1L-ComfortHMI-207	SWE1-HVAC-053-01	M	1	AUTO	state	1. The AUTO state is AUTO OFF	keep	
+217	NR1L-ComfortHMI-207	SWE1-HVAC-053-01	M	1	AUTO	state	1. The AUTO state is AUTO OFF	keep	
+217	NR1L-ComfortHMI-207	SWE1-HVAC-053-01	M	2	AUTO	verbatim	2. The AUTO pop up reads "Press again to improve climate performance"	keep	ambiguous: spec term "AUTO pop up(s)" (10.9.1 EH9.1 / ICE AUTO pop up) names the pop-up type, not a label the tester reads; keep. If treated as label -> `"AUTO" pop up`
+218	NR1L-ComfortHMI-208	SWE1-HVAC-053-02	L	1	AUTO	label	1. Press the AUTO button until the AUTO ECO mode is active	1. Press the "AUTO" button until the AUTO ECO mode is active	
+218	NR1L-ComfortHMI-208	SWE1-HVAC-053-02	L	1	AUTO	state	1. Press the AUTO button until the AUTO ECO mode is active	keep	
+218	NR1L-ComfortHMI-208	SWE1-HVAC-053-02	L	2	AUTO	label	2. Press the AUTO button once and read the AUTO pop up	2. Press the "AUTO" button once and read the AUTO pop up	
+218	NR1L-ComfortHMI-208	SWE1-HVAC-053-02	L	2	AUTO	verbatim	2. Press the AUTO button once and read the AUTO pop up	keep	ambiguous: spec term "AUTO pop up(s)" (10.9.1 EH9.1 / ICE AUTO pop up) names the pop-up type, not a label the tester reads; keep. If treated as label -> `"AUTO" pop up`
+218	NR1L-ComfortHMI-208	SWE1-HVAC-053-02	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+218	NR1L-ComfortHMI-208	SWE1-HVAC-053-02	M	1	AUTO	state	1. The AUTO state is AUTO ECO	keep	
+218	NR1L-ComfortHMI-208	SWE1-HVAC-053-02	M	2	AUTO	verbatim	2. The AUTO pop up reads "Press again for lower battery consumption"	keep	ambiguous: spec term "AUTO pop up(s)" (10.9.1 EH9.1 / ICE AUTO pop up) names the pop-up type, not a label the tester reads; keep. If treated as label -> `"AUTO" pop up`
+329	NR1L-ComfortHMI-319	SWE1-HVAC-104-05	L	1	AUTO	label	1. Turn AUTO on using the AUTO hard control	1. Turn "AUTO" on using the "AUTO" hard control	second hit is the hard-key label; §11 form could also be `H/K "AUTO"`
+329	NR1L-ComfortHMI-319	SWE1-HVAC-104-05	L	1	AUTO	label	1. Turn AUTO on using the AUTO hard control	1. Turn "AUTO" on using the "AUTO" hard control	second hit is the hard-key label; §11 form could also be `H/K "AUTO"`
+329	NR1L-ComfortHMI-319	SWE1-HVAC-104-05	L	2	AUTO	verbatim	2. Read the screen for an AUTO pop-up	keep	ambiguous: spec term "AUTO pop up(s)" (10.9.1 EH9.1 / ICE AUTO pop up) names the pop-up type, not a label the tester reads; keep. If treated as label -> `"AUTO" pop up`
+329	NR1L-ComfortHMI-319	SWE1-HVAC-104-05	M	2	AUTO	verbatim	2. No AUTO pop-up is shown	keep	ambiguous: spec term "AUTO pop up(s)" (10.9.1 EH9.1 / ICE AUTO pop up) names the pop-up type, not a label the tester reads; keep. If treated as label -> `"AUTO" pop up`
+340	NR1L-ComfortHMI-330	SWE1-HVAC-106-04	L	1	SYNC	label	1. Turn SYNC on from the climate screen	1. Turn "SYNC" on from the climate screen	
+346	NR1L-ComfortHMI-336	SWE1-HVAC-107-01	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+347	NR1L-ComfortHMI-337	SWE1-HVAC-107-02	L	2	AUTO	label	2. Turn AUTO on and read the Mode buttons	2. Turn "AUTO" on and read the Mode buttons	
+348	NR1L-ComfortHMI-338	SWE1-HVAC-107-03	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+349	NR1L-ComfortHMI-339	SWE1-HVAC-107-04	L	1	AUTO	state	1. Set a fan speed and an airflow mode from the climate screen with AUTO off	keep	
+349	NR1L-ComfortHMI-339	SWE1-HVAC-107-04	L	2	AUTO	label	2. Turn AUTO on and read the fan speed and the airflow mode	2. Turn "AUTO" on and read the fan speed and the airflow mode	
+350	NR1L-ComfortHMI-340	SWE1-HVAC-107-05	L	2	AUTO	label	2. Turn AUTO on and read the "MAX A/C" and "MAX DEF" buttons	2. Turn "AUTO" on and read the "MAX A/C" and "MAX DEF" buttons	
+351	NR1L-ComfortHMI-341	SWE1-HVAC-107-06	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+352	NR1L-ComfortHMI-342	SWE1-HVAC-107-06	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+353	NR1L-ComfortHMI-343	SWE1-HVAC-107-07	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+354	NR1L-ComfortHMI-344	SWE1-HVAC-107-07	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+355	NR1L-ComfortHMI-345	SWE1-HVAC-107-08	L	1	AUTO	label	1. Turn AUTO on from the climate screen and read the "A/C" button	1. Turn "AUTO" on from the climate screen and read the "A/C" button	
+366	NR1L-ComfortHMI-356	SWE1-HVAC-110-06	L	1	SYNC	label	1. Turn SYNC on from the climate screen	1. Turn "SYNC" on from the climate screen	
+367	NR1L-ComfortHMI-357	SWE1-HVAC-111-01	L	1	SYNC	label	1. Turn SYNC on from the climate screen	1. Turn "SYNC" on from the climate screen	
+368	NR1L-ComfortHMI-358	SWE1-HVAC-111-02	L	1	SYNC	label	1. Turn SYNC on from the climate screen	1. Turn "SYNC" on from the climate screen	
+375	NR1L-ComfortHMI-365	SWE1-HVAC-112-01	L	2	AUTO	label	2. Turn AUTO on	2. Turn "AUTO" on	
+375	NR1L-ComfortHMI-365	SWE1-HVAC-112-01	M	2	AUTO	label	2. The fan speed indicator shows the AUTO label instead of a fan speed	2. The fan speed indicator shows the "AUTO" label instead of a fan speed	value read off the UI; 16.7 ICE6 "show AUTO label instead"
+387	NR1L-ComfortHMI-377	SWE1-HVAC-113-04	L	1	RECIRC	label	1. Set RECIRC to closed on the climate screen	1. Set "RECIRC" to closed on the climate screen	ambiguous: "Set RECIRC to <value>" treated like "Turn X on" (tester operates the RECIRC control; precedent `Turn "RECIRC" on`); alternative reading = function set-up by value (state). Row 433 has this line unquoted next to quoted `read the "RECIRC" state` in the same cell
+387	NR1L-ComfortHMI-377	SWE1-HVAC-113-04	L	2	RECIRC	state	2. Press "MAX DEF" and read the RECIRC state and its LED	keep	ambiguous: the word names the function whose state is read, not a control; kept as state for consistency with "The AUTO state is AUTO ECO". Conflicts with already-quoted precedent row 433 L2 `Press "MAX A/C" and read the "RECIRC" state and its LED` - one of the two conventions must win
+387	NR1L-ComfortHMI-377	SWE1-HVAC-113-04	M	1	RECIRC	state	1. RECIRC is closed	keep	
+387	NR1L-ComfortHMI-377	SWE1-HVAC-113-04	M	2	RECIRC	state	2. RECIRC is open and its LED is off	keep	
+393	NR1L-ComfortHMI-383	SWE1-HVAC-113-09	L	3	RECIRC	label	3. Change RECIRC and read the "MAX DEF" button	3. Change "RECIRC" and read the "MAX DEF" button	ambiguous: "Change RECIRC" = operate the RECIRC control (label); could also be read as changing the recirc state in prose (state)
+415	NR1L-ComfortHMI-405	SWE1-HVAC-117-01	L	1	Face	label	1. Select the Face airflow mode on the climate screen	1. Select the "Face" airflow mode on the climate screen	
+415	NR1L-ComfortHMI-405	SWE1-HVAC-117-01	L	2	Feet	label	2. Select the Feet airflow mode and read the mode buttons	2. Select the "Feet" airflow mode and read the mode buttons	
+415	NR1L-ComfortHMI-405	SWE1-HVAC-117-01	M	1	Face	state	1. The Face airflow mode is active	keep	
+415	NR1L-ComfortHMI-405	SWE1-HVAC-117-01	M	2	Feet	state	2. The Feet airflow mode is active and the Face airflow mode is not	keep	
+415	NR1L-ComfortHMI-405	SWE1-HVAC-117-01	M	2	Face	state	2. The Feet airflow mode is active and the Face airflow mode is not	keep	
+416	NR1L-ComfortHMI-406	SWE1-HVAC-117-02	L	1	Feet	label	1. Read the size and highlight of the Feet airflow mode button and record them	1. Read the size and highlight of the "Feet" airflow mode button and record them	
+416	NR1L-ComfortHMI-406	SWE1-HVAC-117-02	L	2	Feet	label	2. Select the Feet airflow mode and read that button	2. Select the "Feet" airflow mode and read that button	
+416	NR1L-ComfortHMI-406	SWE1-HVAC-117-02	M	1	Feet	label	1. The Feet airflow mode button is not highlighted	1. The "Feet" airflow mode button is not highlighted	
+416	NR1L-ComfortHMI-406	SWE1-HVAC-117-02	M	2	Feet	label	2. The Feet airflow mode button is highlighted and larger than in step 1	2. The "Feet" airflow mode button is highlighted and larger than in step 1	
+417	NR1L-ComfortHMI-407	SWE1-HVAC-117-03	L	1	Feet	label	1. Select the Feet airflow mode on the climate screen	1. Select the "Feet" airflow mode on the climate screen	
+417	NR1L-ComfortHMI-407	SWE1-HVAC-117-03	M	1	Feet	state	1. The Feet airflow mode is active	keep	
+417	NR1L-ComfortHMI-407	SWE1-HVAC-117-03	M	2	Feet	state	2. The main category control shows the Feet airflow mode inside the fan space	keep	ambiguous: the main category control displays an airflow-mode icon (2.12 "inside the fan space"); Feet names the displayed mode value, not text label -> state
+418	NR1L-ComfortHMI-408	SWE1-HVAC-118-01	L	1	Face	label	1. Select the Face airflow mode on the climate screen	1. Select the "Face" airflow mode on the climate screen	
+418	NR1L-ComfortHMI-408	SWE1-HVAC-118-01	M	1	Face	state	1. The Face airflow mode is active	keep	
+418	NR1L-ComfortHMI-408	SWE1-HVAC-118-01	M	2	Face	state	2. The modes were Face/Feet, then Feet, then Feet/Windshield, then Windshield	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 16.12.1 ICE11.1 loop
+418	NR1L-ComfortHMI-408	SWE1-HVAC-118-01	M	2	Feet	state	2. The modes were Face/Feet, then Feet, then Feet/Windshield, then Windshield	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 16.12.1 ICE11.1 loop
+418	NR1L-ComfortHMI-408	SWE1-HVAC-118-01	M	2	Feet	state	2. The modes were Face/Feet, then Feet, then Feet/Windshield, then Windshield	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 16.12.1 ICE11.1 loop
+418	NR1L-ComfortHMI-408	SWE1-HVAC-118-01	M	2	Feet	state	2. The modes were Face/Feet, then Feet, then Feet/Windshield, then Windshield	keep	mode names listed in spec loop order (2.12.1/2.12.2/16.12.1); prose about which mode is active, not a label; notation of 16.12.1 ICE11.1 loop
+419	NR1L-ComfortHMI-409	SWE1-HVAC-118-02	L	1	Face	label	1. Select the Face airflow mode on the climate screen	1. Select the "Face" airflow mode on the climate screen	
+419	NR1L-ComfortHMI-409	SWE1-HVAC-118-02	M	1	Face	state	1. The Face airflow mode is active	keep	
+419	NR1L-ComfortHMI-409	SWE1-HVAC-118-02	M	2	Face	state	2. The Face/Feet airflow mode is active and the mode does not move further while the control is held	keep	
+419	NR1L-ComfortHMI-409	SWE1-HVAC-118-02	M	2	Feet	state	2. The Face/Feet airflow mode is active and the mode does not move further while the control is held	keep	
+430	NR1L-ComfortHMI-420	SWE1-HVAC-119-02	L	1	Face	state	1. Select an airflow mode other than Face on the climate screen	keep	
+430	NR1L-ComfortHMI-420	SWE1-HVAC-119-02	M	2	Face	state	2. The Face airflow mode is active	keep	
+433	NR1L-ComfortHMI-423	SWE1-HVAC-119-05	L	1	RECIRC	label	1. Set RECIRC to open on the climate screen	1. Set "RECIRC" to open on the climate screen	ambiguous: "Set RECIRC to <value>" treated like "Turn X on" (tester operates the RECIRC control; precedent `Turn "RECIRC" on`); alternative reading = function set-up by value (state). Row 433 has this line unquoted next to quoted `read the "RECIRC" state` in the same cell
+433	NR1L-ComfortHMI-423	SWE1-HVAC-119-05	M	1	RECIRC	state	1. RECIRC is open	keep	
+433	NR1L-ComfortHMI-423	SWE1-HVAC-119-05	M	2	RECIRC	state	2. RECIRC is closed and its LED is on	keep	
+435	NR1L-ComfortHMI-425	SWE1-HVAC-119-07	M	2	Face	state	2. The "MAX A/C" button is no longer highlighted, the airflow mode is still Face and the temperature is still LO	keep	
+437	NR1L-ComfortHMI-427	SWE1-HVAC-119-08	L	2	RECIRC	label	2. Change RECIRC and read the "MAX A/C" button	2. Change "RECIRC" and read the "MAX A/C" button	ambiguous: "Change RECIRC" = operate the RECIRC control (label); could also be read as changing the recirc state in prose (state)
+448	NR1L-ComfortHMI-438	SWE1-HVAC-121-02	L	2	AUTO	label	2. Turn AUTO on and read the exterior rear-view mirror defrost state	2. Turn "AUTO" on and read the exterior rear-view mirror defrost state	
+476	NR1L-ComfortHMI-467	SWE1-HVAC-003-07	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+476	NR1L-ComfortHMI-467	SWE1-HVAC-003-07	M	2	AUTO	verbatim	2. PENDING: DR-47 the manual mode the system goes to when AUTO is broken without a mode button	keep	PENDING line (DR-47), wording follows 2.3 / 10.5 "AUTO mode will only be broken"
+477	NR1L-ComfortHMI-468	SWE1-HVAC-003-07	L	1	AUTO	label	1. Turn AUTO on from the climate screen	1. Turn "AUTO" on from the climate screen	
+477	NR1L-ComfortHMI-468	SWE1-HVAC-003-07	M	2	AUTO	verbatim	2. PENDING: DR-47 the manual mode the system goes to when AUTO is broken without a mode button	keep	PENDING line (DR-47), wording follows 2.3 / 10.5 "AUTO mode will only be broken"

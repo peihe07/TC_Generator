@@ -1465,3 +1465,21 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 #
 # 對象（delivered/ 內之副本）
 3550d16d8bd319633d872856ae51ba63a7d2a928d22fab69bff6dd1963736aff  delivered/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260907.xlsx
+
+# ENTRY 037 — 2026-09-18 — **候選本**：Comfort HMI Revise 候選本（下放包 CMF-02 §4）
+#
+#   type : candidate（**不入 delivered/、未交付**；候選本之身分紀錄）
+#   母本 : ENTRY 036 之對象（delivered/…_ComfortHMI_20260907.xlsx，3550d16d…）之複本，
+#          以 backend/xlsx_surgical.py 寫入（R-C46）；C／E／O／AA 既有格不動
+#   產生 : scripts/cmf02_apply.py（JSON 層）→ scripts/cmf02_revise.py（候選本）
+#   內容 : 既有 466 列之列位／F／E 不變；row 116 = 019-03 [BLOCKED-SPEC]（F=-466，R-C51）；
+#          row 476–483 = sibling 8 條（F=-467…-474，O=NEW，AA=PeiPYHsu，E 空）；
+#          W／X 全列 0（R-C48）；N 欄一節一行（R-C49）；其餘見上繳 CMF-02
+#   驗證 : zip member 57＝57；DV sqref 逐字相同；B 公式 row 10–601 原樣；
+#          逐格對帳 0907 本（全部工作表，21,309 格）—— **未列於本包之格不符 0**；
+#          變更 1,731 格全數歸因（docs/reports/cmf02_candidate_cell_recon.tsv）
+#   大小 : 235273 bytes
+#   未做 : 未入 delivered/；未覆寫 0907 本；未跑 --gate／--regen；未改 RULINGS.sha.tsv；git 未執行
+#
+# 對象（sandbox 路徑）
+28a0998c8b36a88b182b3fa209492cc5c6fda3999f48e6031d571d66439a266f  sandbox/revise_0918/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260918.xlsx

@@ -104,7 +104,11 @@ MARKER_WHITELIST = {"[BLOCKED-SPEC]": {"NR1L-ComfortHMI-010",
                                        # ruling too (R-C26), and 81 §2.3 is it.
                                        # 12.6's -383 stays: HMI Notes does not
                                        # exist in the customer tree.
-                                       "NR1L-ComfortHMI-383"},
+                                       "NR1L-ComfortHMI-383",
+                                       # R-C51（CMF-01_review §3，2026-09-18）
+                                       # — 2.13 之 On/Off logic 全部委派
+                                       # VF HVAC document；取 row 116 與 -466。
+                                       "NR1L-ComfortHMI-466"},
                     # 41 §1.2 — ruled together with R-C38 itself.
                     "[BLOCKED-NON-HMI]": {"NR1L-ComfortHMI-081"}}
 OWNER_WINDOW = 60          # R-C27 — chars visible on the clipped first line
@@ -128,6 +132,12 @@ AMBIGUITY_REMARKS = {
     "NR1L-ComfortHMI-374": "whether radial popups apply",
     "NR1L-ComfortHMI-375": "whether vertical popups apply",
     "NR1L-ComfortHMI-376": "only the predominant control type",
+    # R-C52（CMF-01_review §3）—— 2.1 條文 4 tabs 含 Massage，037 寫 3 tabs
+    # 而無 Massage；TC 依條文不改，Remarks 載其衝突（CMF-02 §2）
+    "NR1L-ComfortHMI-435": "upper limit of 4 tabs",
+    "NR1L-ComfortHMI-436": "checks 3 tabs drawn from",
+    "NR1L-ComfortHMI-437": "checks 2 tabs drawn from",
+    "NR1L-ComfortHMI-438": "specification's order, including Massage",
 }
 # 67 §1 三 — content limits, hard, checked on every registered row.
 REMARKS_FORBIDDEN = ("R-C", "DR #", "A-CF", "§")

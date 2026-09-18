@@ -137,11 +137,13 @@ MOVED_TO_BATCH16 = ['SWE1-HVAC-004-01', 'SWE1-HVAC-004-02', 'SWE1-HVAC-007-01', 
 #             97 §2.4：只驗「有改變」，**ER 不得引 16.13 之逐項清單**
 #             （§8.2.1 禁跨章移植）；其尾「according to VF HVAC logic」
 #             與 `019-03` 之委派同入 DR #5
-# `019-03` **維持不產** —— 其全部內容即為對外部文件之委派（比照 `080-02`），
-# 其列為 96 §1 之留空列，故仍列於此。
-WITHHELD = [
- ("SWE1-HVAC-019-03", "「On/Off logic should follow requirements from **VF HVAC document**」—— **全部內容即為委派**，扣除後無獨立餘留，比照 `080-02` 之前例維持不產；其列依 96 §1 為留空列（`Requirement or Design ID` 照填、其餘欄空）。DR #5 具名 VF HVAC document"),
-]
+# `019-03` 原**維持不產** —— 其全部內容即為對外部文件之委派（比照 `080-02`），
+# 其列為 96 §1 之留空列。**R-C51（CMF-01_review §3，2026-09-18）准其
+# [BLOCKED-SPEC] 白名單增列**，該列改由 `cmf02_apply.py` 產出（-466），
+# 故自本表移出 —— 留在此處會使 `withheld-not-generated` 讀成「停下又交付」。
+# 原宣告（逐字保留，改為註解；括號後加一空格，使 `WITHHELD_DECL` 不再讀它）：
+#  ( "SWE1-HVAC-019-03", "「On/Off logic should follow requirements from **VF HVAC document**」—— **全部內容即為委派**，扣除後無獨立餘留，比照 `080-02` 之前例維持不產；其列依 96 §1 為留空列（`Requirement or Design ID` 照填、其餘欄空）。DR #5 具名 VF HVAC document"),
+WITHHELD = []
 
 
 def add_lines(pre_conditions: str, *lines: str) -> str:

@@ -1,6 +1,6 @@
 # FW036 Comfort HMI — Framework Part N
 
-- Layer 1 Test Group：**`Comfort`**（R-C6）
+- Layer 1 Test Group：~~**`Comfort`**（R-C6）~~ → **`Climate Control Interface`**（R-C6(amend)，CMF-01_review §3，2026-09-18）
 - Layer 2 Test Set：**15 組**，見 §2
 - Layer 3：spec section，**不入工作簿**（§4.1.5）
 - 依據：下放包 `docs/handoff/12_partN_final.md`（Pei 簽署 2026-08-14），
@@ -14,7 +14,7 @@
 
 | Layer | 值 | 進工作簿？ |
 |---|---|---|
-| 1 Test Group | `Comfort` | ✅ G 欄 |
+| 1 Test Group | ~~`Comfort`~~ → `Climate Control Interface`（R-C6(amend)） | ✅ G 欄 |
 | 2 Test Set | 15 組之一（§2） | ✅ H 欄 |
 | 3 spec section | outline 節次（如 `2.3.1`） | ❌ **不入** |
 

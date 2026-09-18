@@ -348,12 +348,22 @@ def render(field: str, value: str) -> str:
     return value
 
 
-def _compact_refs(value: str) -> str:
-    """Pei 之 N 欄寫法：stem 只寫一次，其節次以「、」相連；外部出處另段。
+def _outline_key(outline: str) -> tuple:
+    return tuple(int(x) for x in outline.split("."))
 
-    JSON 內每一節各寫一次完整 stem（R-C29：本節在前，引用節在後），
-    工作簿內重複 12 次同一個 600 字元之 stem 對讀者毫無用處。
-    `SYS1_` 前綴一併去除（Comfort stem 與 CFTS043 皆然）。
+
+def _compact_refs(value: str) -> str:
+    """N 欄寫法 —— R-C49（CMF-01_review §3，2026-09-18）。
+
+    一節一行、每行重述 stem；**leaf 自身節次置首行**，其餘 Comfort 節次升冪；
+    外部文件各自成行，列於 Comfort 各行之後；stem 不加 `SYS1_`（從 ENTRY 032，
+    Comfort stem 與 CFTS043 皆然）。PC 出處節次（2.14／16.2／6.3 等）續載 ——
+    J 欄括號既已移除，N 欄為工作簿內唯一承載處（R-C29）。
+
+    取代 Pei 2026-08-17 之「stem 只寫一次、節次以「、」相連」（ENTRY 034 所併入）：
+    canon §10.7 於 2026-08-21 改為「一個章節號一行、禁用 `,`／`、`／`;` 串接」，
+    晚於該寫法，故 0907 本之 452 格「、」串接違反現行 canon（CMF-01 M4）。
+    JSON 之首項即 leaf 自身之節（R-C29：本節在前，`spec-ref-outline` gate 所驗）。
     """
     stem_short = SYS1_STEM[len("SYS1_"):]
     outlines, others = [], []
@@ -363,11 +373,8 @@ def _compact_refs(value: str) -> str:
             outlines.append(seg[len(stem_short) + 1:])
         else:
             others.append(seg)
-    parts = []
-    if outlines:
-        parts.append(f"{stem_short}_" + "、".join(outlines))
-    parts.extend(others)
-    return "; ".join(parts)
+    ordered = outlines[:1] + sorted(outlines[1:], key=_outline_key)
+    return "\n".join([f"{stem_short}_{o}" for o in ordered] + others)
 
 
 def tcid_sequence(plan: list) -> list:
@@ -581,7 +588,8 @@ def assertions(plan: list, report: dict) -> bool:
         cell = ws[f"N{FIRST_ROW + i}"].value or ""
         want = set(re.findall(r"_(\d+(?:\.\d+)*)(?=[;、]|$)",
                               t["specification_reference"]))
-        got = set(re.findall(r"[_、](\d+(?:\.\d+)*)(?=[;、]|$)", cell))
+        # R-C49 —— 行分隔（\n）亦為節次之邊界
+        got = set(re.findall(r"[_、](\d+(?:\.\d+)*)(?=[;、\n]|$)", cell))
         if want - got:
             n_lost.append(f"{t['tc_id']}:{sorted(want - got)}")
     g("N 欄之節次一個不少（縮寫後仍涵蓋 JSON 所列之全部節次）", [], n_lost,

@@ -1,0 +1,1571 @@
+tc_id	req_id	field	item	before	after
+NR1L-ComfortHMI-042	SWE1-HVAC-001-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-042	SWE1-HVAC-001-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-435	SWE1-HVAC-001-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-435	SWE1-HVAC-001-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-436	SWE1-HVAC-001-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-436	SWE1-HVAC-001-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-437	SWE1-HVAC-001-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-437	SWE1-HVAC-001-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-438	SWE1-HVAC-001-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-438	SWE1-HVAC-001-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-032	SWE1-HVAC-002-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-032	SWE1-HVAC-002-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-033	SWE1-HVAC-002-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-033	SWE1-HVAC-002-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-034	SWE1-HVAC-002-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-034	SWE1-HVAC-002-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-035	SWE1-HVAC-002-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-035	SWE1-HVAC-002-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-036	SWE1-HVAC-002-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-036	SWE1-HVAC-002-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-037	SWE1-HVAC-002-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-037	SWE1-HVAC-002-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-038	SWE1-HVAC-002-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-038	SWE1-HVAC-002-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-039	SWE1-HVAC-002-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-039	SWE1-HVAC-002-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-040	SWE1-HVAC-002-08	priority	R-C47	P1	P0
+NR1L-ComfortHMI-040	SWE1-HVAC-002-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-127	SWE1-HVAC-003-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-127	SWE1-HVAC-003-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-128	SWE1-HVAC-003-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-128	SWE1-HVAC-003-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-129	SWE1-HVAC-003-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-129	SWE1-HVAC-003-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-130	SWE1-HVAC-003-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-130	SWE1-HVAC-003-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-131	SWE1-HVAC-003-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-131	SWE1-HVAC-003-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-132	SWE1-HVAC-003-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-132	SWE1-HVAC-003-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-386	SWE1-HVAC-003-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-386	SWE1-HVAC-003-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-387	SWE1-HVAC-003-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-387	SWE1-HVAC-003-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-133	SWE1-HVAC-003-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-133	SWE1-HVAC-003-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-134	SWE1-HVAC-003-08	priority	R-C47	P2	P1
+NR1L-ComfortHMI-134	SWE1-HVAC-003-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-135	SWE1-HVAC-003-09	priority	R-C47	P2	P1
+NR1L-ComfortHMI-135	SWE1-HVAC-003-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-363	SWE1-HVAC-004-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-363	SWE1-HVAC-004-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-364	SWE1-HVAC-004-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-364	SWE1-HVAC-004-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-136	SWE1-HVAC-005-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-136	SWE1-HVAC-005-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-137	SWE1-HVAC-005-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-137	SWE1-HVAC-005-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-138	SWE1-HVAC-005-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-138	SWE1-HVAC-005-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-139	SWE1-HVAC-005-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-139	SWE1-HVAC-005-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-140	SWE1-HVAC-006-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-140	SWE1-HVAC-006-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-141	SWE1-HVAC-006-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-141	SWE1-HVAC-006-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-142	SWE1-HVAC-006-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-142	SWE1-HVAC-006-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-439	SWE1-HVAC-006-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-439	SWE1-HVAC-006-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-365	SWE1-HVAC-007-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-365	SWE1-HVAC-007-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-388	SWE1-HVAC-007-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-388	SWE1-HVAC-007-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-366	SWE1-HVAC-007-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-366	SWE1-HVAC-007-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-048	SWE1-HVAC-008-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-048	SWE1-HVAC-008-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-049	SWE1-HVAC-008-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-049	SWE1-HVAC-008-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-389	SWE1-HVAC-008-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-389	SWE1-HVAC-008-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-050	SWE1-HVAC-008-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-050	SWE1-HVAC-008-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-051	SWE1-HVAC-008-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-051	SWE1-HVAC-008-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-052	SWE1-HVAC-008-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-052	SWE1-HVAC-008-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-053	SWE1-HVAC-009-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-053	SWE1-HVAC-009-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-054	SWE1-HVAC-009-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-054	SWE1-HVAC-009-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-055	SWE1-HVAC-009-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-055	SWE1-HVAC-009-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-390	SWE1-HVAC-009-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-390	SWE1-HVAC-009-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-056	SWE1-HVAC-009-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-056	SWE1-HVAC-009-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-057	SWE1-HVAC-009-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-057	SWE1-HVAC-009-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-391	SWE1-HVAC-009-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-391	SWE1-HVAC-009-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-058	SWE1-HVAC-009-06	priority	R-C47	P2	P1
+NR1L-ComfortHMI-058	SWE1-HVAC-009-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-392	SWE1-HVAC-009-06	priority	R-C47	P2	P1
+NR1L-ComfortHMI-392	SWE1-HVAC-009-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-059	SWE1-HVAC-010-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-059	SWE1-HVAC-010-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-060	SWE1-HVAC-010-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-060	SWE1-HVAC-010-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-061	SWE1-HVAC-010-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-061	SWE1-HVAC-010-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-393	SWE1-HVAC-010-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-393	SWE1-HVAC-010-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-394	SWE1-HVAC-010-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-394	SWE1-HVAC-010-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-062	SWE1-HVAC-010-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-062	SWE1-HVAC-010-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-395	SWE1-HVAC-010-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-395	SWE1-HVAC-010-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-063	SWE1-HVAC-010-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-063	SWE1-HVAC-010-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-066	SWE1-HVAC-011	priority	R-C47	P2	P1
+NR1L-ComfortHMI-066	SWE1-HVAC-011	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-153	SWE1-HVAC-012-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-153	SWE1-HVAC-012-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-154	SWE1-HVAC-012-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-154	SWE1-HVAC-012-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-155	SWE1-HVAC-012-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-155	SWE1-HVAC-012-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-156	SWE1-HVAC-012-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-156	SWE1-HVAC-012-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-157	SWE1-HVAC-012-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-157	SWE1-HVAC-012-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-396	SWE1-HVAC-012-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-396	SWE1-HVAC-012-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-158	SWE1-HVAC-012-06	priority	R-C47	P2	P1
+NR1L-ComfortHMI-158	SWE1-HVAC-012-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-159	SWE1-HVAC-013-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-159	SWE1-HVAC-013-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-160	SWE1-HVAC-013-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-160	SWE1-HVAC-013-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-161	SWE1-HVAC-013-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-161	SWE1-HVAC-013-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-162	SWE1-HVAC-013-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-162	SWE1-HVAC-013-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-143	SWE1-HVAC-014-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-143	SWE1-HVAC-014-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-144	SWE1-HVAC-014-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-144	SWE1-HVAC-014-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-145	SWE1-HVAC-014-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-145	SWE1-HVAC-014-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-146	SWE1-HVAC-014-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-146	SWE1-HVAC-014-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-147	SWE1-HVAC-014-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-147	SWE1-HVAC-014-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-148	SWE1-HVAC-014-06	priority	R-C47	P2	P1
+NR1L-ComfortHMI-148	SWE1-HVAC-014-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-149	SWE1-HVAC-015-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-149	SWE1-HVAC-015-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-150	SWE1-HVAC-015-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-150	SWE1-HVAC-015-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-151	SWE1-HVAC-015-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-151	SWE1-HVAC-015-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-430	SWE1-HVAC-015-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-430	SWE1-HVAC-015-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-431	SWE1-HVAC-015-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-431	SWE1-HVAC-015-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-440	SWE1-HVAC-016-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-440	SWE1-HVAC-016-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-441	SWE1-HVAC-016-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-441	SWE1-HVAC-016-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-442	SWE1-HVAC-016-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-442	SWE1-HVAC-016-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-443	SWE1-HVAC-016-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-443	SWE1-HVAC-016-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-444	SWE1-HVAC-016-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-444	SWE1-HVAC-016-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-445	SWE1-HVAC-016-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-445	SWE1-HVAC-016-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-163	SWE1-HVAC-017-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-163	SWE1-HVAC-017-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-164	SWE1-HVAC-017-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-164	SWE1-HVAC-017-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-446	SWE1-HVAC-018-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-446	SWE1-HVAC-018-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-447	SWE1-HVAC-018-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-447	SWE1-HVAC-018-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-448	SWE1-HVAC-018-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-448	SWE1-HVAC-018-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-449	SWE1-HVAC-018-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-449	SWE1-HVAC-018-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-450	SWE1-HVAC-018-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-450	SWE1-HVAC-018-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-451	SWE1-HVAC-018-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-451	SWE1-HVAC-018-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-452	SWE1-HVAC-018-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-452	SWE1-HVAC-018-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-453	SWE1-HVAC-018-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-453	SWE1-HVAC-018-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-454	SWE1-HVAC-018-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-454	SWE1-HVAC-018-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-455	SWE1-HVAC-018-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-455	SWE1-HVAC-018-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-456	SWE1-HVAC-018-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-456	SWE1-HVAC-018-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-457	SWE1-HVAC-018-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-457	SWE1-HVAC-018-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-152	SWE1-HVAC-019-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-152	SWE1-HVAC-019-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-458	SWE1-HVAC-019-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-458	SWE1-HVAC-019-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-043	SWE1-HVAC-020-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-043	SWE1-HVAC-020-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-044	SWE1-HVAC-020-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-044	SWE1-HVAC-020-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-045	SWE1-HVAC-020-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-045	SWE1-HVAC-020-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-046	SWE1-HVAC-020-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-046	SWE1-HVAC-020-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-047	SWE1-HVAC-020-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-047	SWE1-HVAC-020-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-165	SWE1-HVAC-021-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-165	SWE1-HVAC-021-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-166	SWE1-HVAC-021-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-166	SWE1-HVAC-021-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-064	SWE1-HVAC-022-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-064	SWE1-HVAC-022-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-065	SWE1-HVAC-022-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-065	SWE1-HVAC-022-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-015	SWE1-HVAC-023-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-015	SWE1-HVAC-023-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-397	SWE1-HVAC-023-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-397	SWE1-HVAC-023-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-398	SWE1-HVAC-023-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-398	SWE1-HVAC-023-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-016	SWE1-HVAC-023-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-016	SWE1-HVAC-023-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-017	SWE1-HVAC-023-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-017	SWE1-HVAC-023-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-399	SWE1-HVAC-023-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-399	SWE1-HVAC-023-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-018	SWE1-HVAC-024-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-018	SWE1-HVAC-024-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-019	SWE1-HVAC-024-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-019	SWE1-HVAC-024-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-020	SWE1-HVAC-024-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-020	SWE1-HVAC-024-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-021	SWE1-HVAC-024-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-021	SWE1-HVAC-024-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-022	SWE1-HVAC-024-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-022	SWE1-HVAC-024-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-023	SWE1-HVAC-024-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-023	SWE1-HVAC-024-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-024	SWE1-HVAC-024-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-024	SWE1-HVAC-024-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-025	SWE1-HVAC-024-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-025	SWE1-HVAC-024-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-026	SWE1-HVAC-024-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-026	SWE1-HVAC-024-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-027	SWE1-HVAC-024-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-027	SWE1-HVAC-024-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-028	SWE1-HVAC-024-08	priority	R-C47	P2	P1
+NR1L-ComfortHMI-028	SWE1-HVAC-024-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-029	SWE1-HVAC-025-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-029	SWE1-HVAC-025-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-030	SWE1-HVAC-025-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-030	SWE1-HVAC-025-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-031	SWE1-HVAC-026	priority	R-C47	P1	P0
+NR1L-ComfortHMI-031	SWE1-HVAC-026	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-041	SWE1-HVAC-027	priority	R-C47	P1	P0
+NR1L-ComfortHMI-041	SWE1-HVAC-027	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-266	SWE1-HVAC-028-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-266	SWE1-HVAC-028-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-267	SWE1-HVAC-028-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-267	SWE1-HVAC-028-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-268	SWE1-HVAC-028-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-268	SWE1-HVAC-028-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-269	SWE1-HVAC-029-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-269	SWE1-HVAC-029-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-270	SWE1-HVAC-029-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-270	SWE1-HVAC-029-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-271	SWE1-HVAC-029-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-271	SWE1-HVAC-029-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-272	SWE1-HVAC-030-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-272	SWE1-HVAC-030-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-273	SWE1-HVAC-030-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-273	SWE1-HVAC-030-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-274	SWE1-HVAC-030-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-274	SWE1-HVAC-030-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-275	SWE1-HVAC-030-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-275	SWE1-HVAC-030-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-276	SWE1-HVAC-030-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-276	SWE1-HVAC-030-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-277	SWE1-HVAC-031-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-277	SWE1-HVAC-031-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-400	SWE1-HVAC-031-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-400	SWE1-HVAC-031-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-278	SWE1-HVAC-031-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-278	SWE1-HVAC-031-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-279	SWE1-HVAC-031-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-279	SWE1-HVAC-031-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-280	SWE1-HVAC-032-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-280	SWE1-HVAC-032-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-401	SWE1-HVAC-032-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-401	SWE1-HVAC-032-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-402	SWE1-HVAC-032-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-402	SWE1-HVAC-032-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-281	SWE1-HVAC-032-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-281	SWE1-HVAC-032-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-282	SWE1-HVAC-032-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-282	SWE1-HVAC-032-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-283	SWE1-HVAC-032-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-283	SWE1-HVAC-032-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-403	SWE1-HVAC-032-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-403	SWE1-HVAC-032-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-284	SWE1-HVAC-033-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-284	SWE1-HVAC-033-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-404	SWE1-HVAC-033-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-404	SWE1-HVAC-033-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-285	SWE1-HVAC-033-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-285	SWE1-HVAC-033-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-286	SWE1-HVAC-033-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-286	SWE1-HVAC-033-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-287	SWE1-HVAC-033-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-287	SWE1-HVAC-033-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-288	SWE1-HVAC-034-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-288	SWE1-HVAC-034-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-289	SWE1-HVAC-034-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-289	SWE1-HVAC-034-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-290	SWE1-HVAC-034-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-290	SWE1-HVAC-034-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-291	SWE1-HVAC-034-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-291	SWE1-HVAC-034-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-292	SWE1-HVAC-034-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-292	SWE1-HVAC-034-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-293	SWE1-HVAC-035-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-293	SWE1-HVAC-035-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-294	SWE1-HVAC-035-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-294	SWE1-HVAC-035-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-295	SWE1-HVAC-035-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-295	SWE1-HVAC-035-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-296	SWE1-HVAC-036-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-296	SWE1-HVAC-036-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-405	SWE1-HVAC-036-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-405	SWE1-HVAC-036-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-406	SWE1-HVAC-036-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-406	SWE1-HVAC-036-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-297	SWE1-HVAC-036-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-297	SWE1-HVAC-036-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-298	SWE1-HVAC-036-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-298	SWE1-HVAC-036-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-299	SWE1-HVAC-036-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-299	SWE1-HVAC-036-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-300	SWE1-HVAC-036-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-300	SWE1-HVAC-036-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-407	SWE1-HVAC-036-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-407	SWE1-HVAC-036-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-301	SWE1-HVAC-037	priority	R-C47	P1	P0
+NR1L-ComfortHMI-301	SWE1-HVAC-037	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-302	SWE1-HVAC-038-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-302	SWE1-HVAC-038-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-303	SWE1-HVAC-038-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-303	SWE1-HVAC-038-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-459	SWE1-HVAC-039	priority	R-C47	P1	P0
+NR1L-ComfortHMI-459	SWE1-HVAC-039	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-367	SWE1-HVAC-040-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-367	SWE1-HVAC-040-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-408	SWE1-HVAC-040-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-408	SWE1-HVAC-040-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-409	SWE1-HVAC-040-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-409	SWE1-HVAC-040-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-368	SWE1-HVAC-040-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-368	SWE1-HVAC-040-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-369	SWE1-HVAC-041	priority	R-C47	P2	P1
+NR1L-ComfortHMI-369	SWE1-HVAC-041	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-370	SWE1-HVAC-042-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-370	SWE1-HVAC-042-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-371	SWE1-HVAC-042-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-371	SWE1-HVAC-042-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-372	SWE1-HVAC-042-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-372	SWE1-HVAC-042-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-373	SWE1-HVAC-043	priority	R-C47	P2	P1
+NR1L-ComfortHMI-373	SWE1-HVAC-043	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-067	SWE1-HVAC-044-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-067	SWE1-HVAC-044-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-081	SWE1-HVAC-044-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-081	SWE1-HVAC-044-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-068	SWE1-HVAC-045	priority	R-C47	P1	P0
+NR1L-ComfortHMI-068	SWE1-HVAC-045	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-069	SWE1-HVAC-046	priority	R-C47	P1	P0
+NR1L-ComfortHMI-069	SWE1-HVAC-046	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-070	SWE1-HVAC-047	priority	R-C47	P1	P0
+NR1L-ComfortHMI-070	SWE1-HVAC-047	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-460	SWE1-HVAC-047	priority	R-C47	P2	P1
+NR1L-ComfortHMI-460	SWE1-HVAC-047	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-071	SWE1-HVAC-048-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-071	SWE1-HVAC-048-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-072	SWE1-HVAC-048-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-072	SWE1-HVAC-048-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-073	SWE1-HVAC-048-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-073	SWE1-HVAC-048-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-074	SWE1-HVAC-049-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-074	SWE1-HVAC-049-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-075	SWE1-HVAC-049-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-075	SWE1-HVAC-049-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-076	SWE1-HVAC-050	priority	R-C47	P1	P0
+NR1L-ComfortHMI-076	SWE1-HVAC-050	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-077	SWE1-HVAC-051	priority	R-C47	P1	P0
+NR1L-ComfortHMI-077	SWE1-HVAC-051	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-078	SWE1-HVAC-052	priority	R-C47	P1	P0
+NR1L-ComfortHMI-078	SWE1-HVAC-052	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-079	SWE1-HVAC-053-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-079	SWE1-HVAC-053-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-080	SWE1-HVAC-053-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-080	SWE1-HVAC-053-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-304	SWE1-HVAC-054-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-304	SWE1-HVAC-054-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-305	SWE1-HVAC-054-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-305	SWE1-HVAC-054-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-306	SWE1-HVAC-054-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-306	SWE1-HVAC-054-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-307	SWE1-HVAC-054-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-307	SWE1-HVAC-054-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-308	SWE1-HVAC-055-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-308	SWE1-HVAC-055-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-309	SWE1-HVAC-055-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-309	SWE1-HVAC-055-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-310	SWE1-HVAC-055-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-310	SWE1-HVAC-055-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-311	SWE1-HVAC-055-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-311	SWE1-HVAC-055-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-312	SWE1-HVAC-056	priority	R-C47	P1	P0
+NR1L-ComfortHMI-312	SWE1-HVAC-056	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-313	SWE1-HVAC-057-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-313	SWE1-HVAC-057-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-314	SWE1-HVAC-057-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-314	SWE1-HVAC-057-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-382	SWE1-HVAC-058	priority	R-C47	P2	P1
+NR1L-ComfortHMI-382	SWE1-HVAC-058	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-315	SWE1-HVAC-059-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-315	SWE1-HVAC-059-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-316	SWE1-HVAC-059-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-316	SWE1-HVAC-059-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-317	SWE1-HVAC-059-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-317	SWE1-HVAC-059-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-318	SWE1-HVAC-059-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-318	SWE1-HVAC-059-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-319	SWE1-HVAC-059-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-319	SWE1-HVAC-059-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-320	SWE1-HVAC-059-06	priority	R-C47	P2	P1
+NR1L-ComfortHMI-320	SWE1-HVAC-059-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-321	SWE1-HVAC-060-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-321	SWE1-HVAC-060-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-322	SWE1-HVAC-060-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-322	SWE1-HVAC-060-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-323	SWE1-HVAC-061-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-323	SWE1-HVAC-061-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-324	SWE1-HVAC-061-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-324	SWE1-HVAC-061-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-325	SWE1-HVAC-061-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-325	SWE1-HVAC-061-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-326	SWE1-HVAC-061-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-326	SWE1-HVAC-061-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-327	SWE1-HVAC-062-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-327	SWE1-HVAC-062-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-328	SWE1-HVAC-062-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-328	SWE1-HVAC-062-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-329	SWE1-HVAC-062-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-329	SWE1-HVAC-062-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-330	SWE1-HVAC-062-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-330	SWE1-HVAC-062-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-331	SWE1-HVAC-063-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-331	SWE1-HVAC-063-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-332	SWE1-HVAC-063-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-332	SWE1-HVAC-063-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-333	SWE1-HVAC-064-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-333	SWE1-HVAC-064-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-334	SWE1-HVAC-064-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-334	SWE1-HVAC-064-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-335	SWE1-HVAC-064-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-335	SWE1-HVAC-064-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-336	SWE1-HVAC-065-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-336	SWE1-HVAC-065-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-337	SWE1-HVAC-065-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-337	SWE1-HVAC-065-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-338	SWE1-HVAC-065-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-338	SWE1-HVAC-065-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-339	SWE1-HVAC-066	priority	R-C47	P2	P1
+NR1L-ComfortHMI-339	SWE1-HVAC-066	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-340	SWE1-HVAC-067-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-340	SWE1-HVAC-067-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-341	SWE1-HVAC-067-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-341	SWE1-HVAC-067-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-342	SWE1-HVAC-067-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-342	SWE1-HVAC-067-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-343	SWE1-HVAC-067-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-343	SWE1-HVAC-067-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-344	SWE1-HVAC-068-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-344	SWE1-HVAC-068-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-345	SWE1-HVAC-068-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-345	SWE1-HVAC-068-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-346	SWE1-HVAC-068-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-346	SWE1-HVAC-068-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-347	SWE1-HVAC-068-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-347	SWE1-HVAC-068-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-348	SWE1-HVAC-069-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-348	SWE1-HVAC-069-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-349	SWE1-HVAC-069-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-349	SWE1-HVAC-069-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-350	SWE1-HVAC-070	priority	R-C47	P1	P0
+NR1L-ComfortHMI-350	SWE1-HVAC-070	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-351	SWE1-HVAC-071-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-351	SWE1-HVAC-071-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-352	SWE1-HVAC-071-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-352	SWE1-HVAC-071-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-383	SWE1-HVAC-072	priority	R-C47	P3	P2
+NR1L-ComfortHMI-383	SWE1-HVAC-072	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-353	SWE1-HVAC-073-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-353	SWE1-HVAC-073-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-354	SWE1-HVAC-073-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-354	SWE1-HVAC-073-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-355	SWE1-HVAC-074-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-355	SWE1-HVAC-074-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-356	SWE1-HVAC-074-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-356	SWE1-HVAC-074-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-357	SWE1-HVAC-074-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-357	SWE1-HVAC-074-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-358	SWE1-HVAC-075-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-358	SWE1-HVAC-075-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-359	SWE1-HVAC-075-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-359	SWE1-HVAC-075-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-360	SWE1-HVAC-075-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-360	SWE1-HVAC-075-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-001	SWE1-HVAC-076-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-001	SWE1-HVAC-076-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-002	SWE1-HVAC-076-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-002	SWE1-HVAC-076-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-003	SWE1-HVAC-076-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-003	SWE1-HVAC-076-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-004	SWE1-HVAC-077	priority	R-C47	P1	P0
+NR1L-ComfortHMI-004	SWE1-HVAC-077	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-005	SWE1-HVAC-078-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-005	SWE1-HVAC-078-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-006	SWE1-HVAC-078-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-006	SWE1-HVAC-078-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-007	SWE1-HVAC-079-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-007	SWE1-HVAC-079-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-008	SWE1-HVAC-079-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-008	SWE1-HVAC-079-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-009	SWE1-HVAC-080-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-009	SWE1-HVAC-080-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-010	SWE1-HVAC-080-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-010	SWE1-HVAC-080-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-011	SWE1-HVAC-081-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-011	SWE1-HVAC-081-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-012	SWE1-HVAC-081-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-012	SWE1-HVAC-081-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-013	SWE1-HVAC-082-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-013	SWE1-HVAC-082-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-014	SWE1-HVAC-082-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-014	SWE1-HVAC-082-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-434	SWE1-HVAC-083	priority	R-C47	P2	P1
+NR1L-ComfortHMI-434	SWE1-HVAC-083	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-167	SWE1-HVAC-084	priority	R-C47	P2	P1
+NR1L-ComfortHMI-167	SWE1-HVAC-084	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-168	SWE1-HVAC-085	priority	R-C47	P1	P0
+NR1L-ComfortHMI-168	SWE1-HVAC-085	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-169	SWE1-HVAC-086-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-169	SWE1-HVAC-086-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-170	SWE1-HVAC-086-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-170	SWE1-HVAC-086-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-171	SWE1-HVAC-087-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-171	SWE1-HVAC-087-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-172	SWE1-HVAC-087-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-172	SWE1-HVAC-087-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-173	SWE1-HVAC-088	priority	R-C47	P1	P0
+NR1L-ComfortHMI-173	SWE1-HVAC-088	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-174	SWE1-HVAC-089	priority	R-C47	P2	P1
+NR1L-ComfortHMI-174	SWE1-HVAC-089	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-175	SWE1-HVAC-090-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-175	SWE1-HVAC-090-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-176	SWE1-HVAC-090-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-176	SWE1-HVAC-090-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-177	SWE1-HVAC-091	priority	R-C47	P2	P1
+NR1L-ComfortHMI-177	SWE1-HVAC-091	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-178	SWE1-HVAC-092	priority	R-C47	P2	P1
+NR1L-ComfortHMI-178	SWE1-HVAC-092	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-179	SWE1-HVAC-093	priority	R-C47	P2	P1
+NR1L-ComfortHMI-179	SWE1-HVAC-093	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-180	SWE1-HVAC-094	priority	R-C47	P2	P1
+NR1L-ComfortHMI-180	SWE1-HVAC-094	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-181	SWE1-HVAC-095-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-181	SWE1-HVAC-095-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-182	SWE1-HVAC-095-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-182	SWE1-HVAC-095-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-374	SWE1-HVAC-096-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-374	SWE1-HVAC-096-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-375	SWE1-HVAC-096-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-375	SWE1-HVAC-096-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-376	SWE1-HVAC-096-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-376	SWE1-HVAC-096-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-183	SWE1-HVAC-097	priority	R-C47	P2	P1
+NR1L-ComfortHMI-183	SWE1-HVAC-097	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-377	SWE1-HVAC-098	priority	R-C47	P1	P0
+NR1L-ComfortHMI-377	SWE1-HVAC-098	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-461	SWE1-HVAC-099	priority	R-C47	P1	P0
+NR1L-ComfortHMI-461	SWE1-HVAC-099	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-184	SWE1-HVAC-100-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-184	SWE1-HVAC-100-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-185	SWE1-HVAC-100-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-185	SWE1-HVAC-100-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-186	SWE1-HVAC-100-03	priority	R-C47	P3	P2
+NR1L-ComfortHMI-186	SWE1-HVAC-100-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-187	SWE1-HVAC-101-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-187	SWE1-HVAC-101-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-188	SWE1-HVAC-101-02	priority	R-C47	P3	P2
+NR1L-ComfortHMI-188	SWE1-HVAC-101-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-189	SWE1-HVAC-101-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-189	SWE1-HVAC-101-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-190	SWE1-HVAC-102	priority	R-C47	P2	P1
+NR1L-ComfortHMI-190	SWE1-HVAC-102	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-191	SWE1-HVAC-103-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-191	SWE1-HVAC-103-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-192	SWE1-HVAC-103-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-192	SWE1-HVAC-103-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-410	SWE1-HVAC-103-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-410	SWE1-HVAC-103-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-193	SWE1-HVAC-104-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-193	SWE1-HVAC-104-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-194	SWE1-HVAC-104-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-194	SWE1-HVAC-104-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-195	SWE1-HVAC-104-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-195	SWE1-HVAC-104-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-196	SWE1-HVAC-104-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-196	SWE1-HVAC-104-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-197	SWE1-HVAC-104-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-197	SWE1-HVAC-104-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-198	SWE1-HVAC-104-06	priority	R-C47	P3	P2
+NR1L-ComfortHMI-198	SWE1-HVAC-104-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-199	SWE1-HVAC-104-07	priority	R-C47	P3	P2
+NR1L-ComfortHMI-199	SWE1-HVAC-104-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-200	SWE1-HVAC-104-08	priority	R-C47	P3	P2
+NR1L-ComfortHMI-200	SWE1-HVAC-104-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-201	SWE1-HVAC-105-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-201	SWE1-HVAC-105-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-202	SWE1-HVAC-105-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-202	SWE1-HVAC-105-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-384	SWE1-HVAC-105-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-384	SWE1-HVAC-105-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-385	SWE1-HVAC-105-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-385	SWE1-HVAC-105-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-082	SWE1-HVAC-106-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-082	SWE1-HVAC-106-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-083	SWE1-HVAC-106-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-083	SWE1-HVAC-106-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-084	SWE1-HVAC-106-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-084	SWE1-HVAC-106-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-085	SWE1-HVAC-106-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-085	SWE1-HVAC-106-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-086	SWE1-HVAC-106-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-086	SWE1-HVAC-106-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-087	SWE1-HVAC-106-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-087	SWE1-HVAC-106-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-088	SWE1-HVAC-106-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-088	SWE1-HVAC-106-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-089	SWE1-HVAC-106-08	priority	R-C47	P1	P0
+NR1L-ComfortHMI-089	SWE1-HVAC-106-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-090	SWE1-HVAC-106-09	priority	R-C47	P2	P1
+NR1L-ComfortHMI-090	SWE1-HVAC-106-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-203	SWE1-HVAC-107-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-203	SWE1-HVAC-107-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-204	SWE1-HVAC-107-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-204	SWE1-HVAC-107-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-205	SWE1-HVAC-107-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-205	SWE1-HVAC-107-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-206	SWE1-HVAC-107-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-206	SWE1-HVAC-107-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-207	SWE1-HVAC-107-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-207	SWE1-HVAC-107-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-208	SWE1-HVAC-107-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-208	SWE1-HVAC-107-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-411	SWE1-HVAC-107-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-411	SWE1-HVAC-107-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-209	SWE1-HVAC-107-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-209	SWE1-HVAC-107-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-412	SWE1-HVAC-107-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-412	SWE1-HVAC-107-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-210	SWE1-HVAC-107-08	priority	R-C47	P2	P1
+NR1L-ComfortHMI-210	SWE1-HVAC-107-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-211	SWE1-HVAC-107-09	priority	R-C47	P2	P1
+NR1L-ComfortHMI-211	SWE1-HVAC-107-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-212	SWE1-HVAC-108	priority	R-C47	P1	P0
+NR1L-ComfortHMI-212	SWE1-HVAC-108	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-213	SWE1-HVAC-109-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-213	SWE1-HVAC-109-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-214	SWE1-HVAC-109-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-214	SWE1-HVAC-109-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-098	SWE1-HVAC-110-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-098	SWE1-HVAC-110-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-413	SWE1-HVAC-110-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-413	SWE1-HVAC-110-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-099	SWE1-HVAC-110-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-099	SWE1-HVAC-110-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-100	SWE1-HVAC-110-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-100	SWE1-HVAC-110-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-101	SWE1-HVAC-110-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-101	SWE1-HVAC-110-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-102	SWE1-HVAC-110-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-102	SWE1-HVAC-110-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-103	SWE1-HVAC-110-06	priority	R-C47	P2	P1
+NR1L-ComfortHMI-103	SWE1-HVAC-110-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-104	SWE1-HVAC-111-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-104	SWE1-HVAC-111-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-105	SWE1-HVAC-111-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-105	SWE1-HVAC-111-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-106	SWE1-HVAC-111-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-106	SWE1-HVAC-111-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-414	SWE1-HVAC-111-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-414	SWE1-HVAC-111-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-415	SWE1-HVAC-111-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-415	SWE1-HVAC-111-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-107	SWE1-HVAC-111-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-107	SWE1-HVAC-111-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-108	SWE1-HVAC-111-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-108	SWE1-HVAC-111-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-416	SWE1-HVAC-111-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-416	SWE1-HVAC-111-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-109	SWE1-HVAC-112-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-109	SWE1-HVAC-112-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-110	SWE1-HVAC-112-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-110	SWE1-HVAC-112-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-111	SWE1-HVAC-112-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-111	SWE1-HVAC-112-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-112	SWE1-HVAC-112-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-112	SWE1-HVAC-112-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-417	SWE1-HVAC-112-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-417	SWE1-HVAC-112-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-418	SWE1-HVAC-112-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-418	SWE1-HVAC-112-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-419	SWE1-HVAC-112-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-419	SWE1-HVAC-112-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-113	SWE1-HVAC-112-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-113	SWE1-HVAC-112-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-420	SWE1-HVAC-112-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-420	SWE1-HVAC-112-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-237	SWE1-HVAC-113-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-237	SWE1-HVAC-113-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-238	SWE1-HVAC-113-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-238	SWE1-HVAC-113-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-239	SWE1-HVAC-113-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-239	SWE1-HVAC-113-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-240	SWE1-HVAC-113-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-240	SWE1-HVAC-113-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-241	SWE1-HVAC-113-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-241	SWE1-HVAC-113-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-242	SWE1-HVAC-113-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-242	SWE1-HVAC-113-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-243	SWE1-HVAC-113-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-243	SWE1-HVAC-113-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-244	SWE1-HVAC-113-08	priority	R-C47	P1	P0
+NR1L-ComfortHMI-244	SWE1-HVAC-113-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-245	SWE1-HVAC-113-09	priority	R-C47	P1	P0
+NR1L-ComfortHMI-245	SWE1-HVAC-113-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-421	SWE1-HVAC-113-09	priority	R-C47	P1	P0
+NR1L-ComfortHMI-421	SWE1-HVAC-113-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-422	SWE1-HVAC-113-09	priority	R-C47	P1	P0
+NR1L-ComfortHMI-422	SWE1-HVAC-113-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-423	SWE1-HVAC-113-09	priority	R-C47	P1	P0
+NR1L-ComfortHMI-423	SWE1-HVAC-113-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-246	SWE1-HVAC-113-10	priority	R-C47	P1	P0
+NR1L-ComfortHMI-246	SWE1-HVAC-113-10	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-247	SWE1-HVAC-113-11	priority	R-C47	P1	P0
+NR1L-ComfortHMI-247	SWE1-HVAC-113-11	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-248	SWE1-HVAC-113-12	priority	R-C47	P1	P0
+NR1L-ComfortHMI-248	SWE1-HVAC-113-12	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-249	SWE1-HVAC-114-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-249	SWE1-HVAC-114-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-250	SWE1-HVAC-114-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-250	SWE1-HVAC-114-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-215	SWE1-HVAC-115-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-215	SWE1-HVAC-115-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-216	SWE1-HVAC-115-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-216	SWE1-HVAC-115-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-217	SWE1-HVAC-115-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-217	SWE1-HVAC-115-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-218	SWE1-HVAC-115-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-218	SWE1-HVAC-115-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-219	SWE1-HVAC-115-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-219	SWE1-HVAC-115-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-424	SWE1-HVAC-115-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-424	SWE1-HVAC-115-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-425	SWE1-HVAC-115-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-425	SWE1-HVAC-115-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-220	SWE1-HVAC-115-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-220	SWE1-HVAC-115-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-221	SWE1-HVAC-115-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-221	SWE1-HVAC-115-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-222	SWE1-HVAC-115-08	priority	R-C47	P2	P1
+NR1L-ComfortHMI-222	SWE1-HVAC-115-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-223	SWE1-HVAC-116-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-223	SWE1-HVAC-116-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-224	SWE1-HVAC-116-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-224	SWE1-HVAC-116-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-432	SWE1-HVAC-116-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-432	SWE1-HVAC-116-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-433	SWE1-HVAC-116-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-433	SWE1-HVAC-116-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-251	SWE1-HVAC-117-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-251	SWE1-HVAC-117-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-252	SWE1-HVAC-117-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-252	SWE1-HVAC-117-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-253	SWE1-HVAC-117-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-253	SWE1-HVAC-117-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-254	SWE1-HVAC-118-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-254	SWE1-HVAC-118-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-255	SWE1-HVAC-118-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-255	SWE1-HVAC-118-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-256	SWE1-HVAC-118-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-256	SWE1-HVAC-118-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-257	SWE1-HVAC-118-04	priority	R-C47	P2	P1
+NR1L-ComfortHMI-257	SWE1-HVAC-118-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-258	SWE1-HVAC-118-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-258	SWE1-HVAC-118-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-259	SWE1-HVAC-118-06	priority	R-C47	P2	P1
+NR1L-ComfortHMI-259	SWE1-HVAC-118-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-260	SWE1-HVAC-118-07	priority	R-C47	P2	P1
+NR1L-ComfortHMI-260	SWE1-HVAC-118-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-426	SWE1-HVAC-118-07	priority	R-C47	P2	P1
+NR1L-ComfortHMI-426	SWE1-HVAC-118-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-261	SWE1-HVAC-118-08	priority	R-C47	P2	P1
+NR1L-ComfortHMI-261	SWE1-HVAC-118-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-262	SWE1-HVAC-118-09	priority	R-C47	P2	P1
+NR1L-ComfortHMI-262	SWE1-HVAC-118-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-263	SWE1-HVAC-118-10	priority	R-C47	P2	P1
+NR1L-ComfortHMI-263	SWE1-HVAC-118-10	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-225	SWE1-HVAC-119-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-225	SWE1-HVAC-119-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-226	SWE1-HVAC-119-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-226	SWE1-HVAC-119-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-227	SWE1-HVAC-119-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-227	SWE1-HVAC-119-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-228	SWE1-HVAC-119-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-228	SWE1-HVAC-119-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-229	SWE1-HVAC-119-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-229	SWE1-HVAC-119-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-230	SWE1-HVAC-119-06	priority	R-C47	P1	P0
+NR1L-ComfortHMI-230	SWE1-HVAC-119-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-231	SWE1-HVAC-119-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-231	SWE1-HVAC-119-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-232	SWE1-HVAC-119-08	priority	R-C47	P1	P0
+NR1L-ComfortHMI-232	SWE1-HVAC-119-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-427	SWE1-HVAC-119-08	priority	R-C47	P1	P0
+NR1L-ComfortHMI-427	SWE1-HVAC-119-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-428	SWE1-HVAC-119-08	priority	R-C47	P1	P0
+NR1L-ComfortHMI-428	SWE1-HVAC-119-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-429	SWE1-HVAC-119-08	priority	R-C47	P1	P0
+NR1L-ComfortHMI-429	SWE1-HVAC-119-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-233	SWE1-HVAC-119-09	priority	R-C47	P1	P0
+NR1L-ComfortHMI-233	SWE1-HVAC-119-09	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-234	SWE1-HVAC-119-10	priority	R-C47	P1	P0
+NR1L-ComfortHMI-234	SWE1-HVAC-119-10	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-235	SWE1-HVAC-119-11	priority	R-C47	P1	P0
+NR1L-ComfortHMI-235	SWE1-HVAC-119-11	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-236	SWE1-HVAC-119-12	priority	R-C47	P1	P0
+NR1L-ComfortHMI-236	SWE1-HVAC-119-12	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-091	SWE1-HVAC-120-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-091	SWE1-HVAC-120-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-092	SWE1-HVAC-120-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-092	SWE1-HVAC-120-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-093	SWE1-HVAC-120-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-093	SWE1-HVAC-120-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-264	SWE1-HVAC-121-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-264	SWE1-HVAC-121-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-265	SWE1-HVAC-121-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-265	SWE1-HVAC-121-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-094	SWE1-HVAC-122-01	priority	R-C47	P2	P1
+NR1L-ComfortHMI-094	SWE1-HVAC-122-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-095	SWE1-HVAC-122-03	priority	R-C47	P3	P2
+NR1L-ComfortHMI-095	SWE1-HVAC-122-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-096	SWE1-HVAC-122-04	priority	R-C47	P3	P2
+NR1L-ComfortHMI-096	SWE1-HVAC-122-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-097	SWE1-HVAC-122-05	priority	R-C47	P2	P1
+NR1L-ComfortHMI-097	SWE1-HVAC-122-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-462	SWE1-HVAC-122-02	priority	R-C47	P2	P1
+NR1L-ComfortHMI-462	SWE1-HVAC-122-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-114	SWE1-HVAC-123	priority	R-C47	P2	P1
+NR1L-ComfortHMI-114	SWE1-HVAC-123	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-115	SWE1-HVAC-124-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-115	SWE1-HVAC-124-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-116	SWE1-HVAC-124-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-116	SWE1-HVAC-124-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-117	SWE1-HVAC-124-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-117	SWE1-HVAC-124-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-118	SWE1-HVAC-125-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-118	SWE1-HVAC-125-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-119	SWE1-HVAC-125-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-119	SWE1-HVAC-125-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-120	SWE1-HVAC-125-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-120	SWE1-HVAC-125-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-121	SWE1-HVAC-125-04	priority	R-C47	P1	P0
+NR1L-ComfortHMI-121	SWE1-HVAC-125-04	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-122	SWE1-HVAC-125-05	priority	R-C47	P1	P0
+NR1L-ComfortHMI-122	SWE1-HVAC-125-05	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-123	SWE1-HVAC-125-06	priority	R-C47	P2	P1
+NR1L-ComfortHMI-123	SWE1-HVAC-125-06	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-124	SWE1-HVAC-125-07	priority	R-C47	P1	P0
+NR1L-ComfortHMI-124	SWE1-HVAC-125-07	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-361	SWE1-HVAC-125-08	priority	R-C47	P1	P0
+NR1L-ComfortHMI-361	SWE1-HVAC-125-08	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-125	SWE1-HVAC-126-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-125	SWE1-HVAC-126-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-126	SWE1-HVAC-126-03	priority	R-C47	P2	P1
+NR1L-ComfortHMI-126	SWE1-HVAC-126-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-362	SWE1-HVAC-126-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-362	SWE1-HVAC-126-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-378	SWE1-HVAC-127-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-378	SWE1-HVAC-127-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-379	SWE1-HVAC-127-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-379	SWE1-HVAC-127-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-380	SWE1-HVAC-128-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-380	SWE1-HVAC-128-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-381	SWE1-HVAC-128-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-381	SWE1-HVAC-128-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-463	SWE1-HVAC-129-01	priority	R-C47	P1	P0
+NR1L-ComfortHMI-463	SWE1-HVAC-129-01	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-464	SWE1-HVAC-129-02	priority	R-C47	P1	P0
+NR1L-ComfortHMI-464	SWE1-HVAC-129-02	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-465	SWE1-HVAC-129-03	priority	R-C47	P1	P0
+NR1L-ComfortHMI-465	SWE1-HVAC-129-03	test_group	R-C6(amend)	Comfort	Climate Control Interface
+NR1L-ComfortHMI-434	SWE1-HVAC-083	test_set	M8	HVAC Pop-ups	Climate Popups
+NR1L-ComfortHMI-432	SWE1-HVAC-116-03	test_set	M8	EMEA ICS Interface	ICS Climate Modes
+NR1L-ComfortHMI-433	SWE1-HVAC-116-04	test_set	M8	EMEA ICS Interface	ICS Climate Modes
+NR1L-ComfortHMI-191	SWE1-HVAC-103-01	test_procedure	M2	"1. Press the driver comfort seat icon in the status bar
+2. Wait 5 seconds without further interaction"	"1. Press the driver comfort seat icon in the status bar
+2. Press the driver comfort seat icon again before the popup times out
+3. Wait until 5 seconds have passed since the press in step 1"
+NR1L-ComfortHMI-191	SWE1-HVAC-103-01	expected_result	M2	"1. A popup for the comfort feature is shown
+2. The popup is no longer shown"	"1. A popup for the comfort feature is shown
+2. The popup is still shown
+3. The popup is still shown"
+NR1L-ComfortHMI-191	SWE1-HVAC-103-01	test_item	M2	"HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+
+(wait 5 seconds without further interaction -> The popup is no longer shown)"	"HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+
+(press the icon again before the timeout -> the timeout restarts)"
+NR1L-ComfortHMI-192	SWE1-HVAC-103-02	test_procedure	M2	"1. Press the driver comfort seat icon in the status bar
+2. Wait 5 seconds without further interaction"	"1. Press the driver comfort seat icon in the status bar
+2. Press the driver comfort seat icon again before the popup times out
+3. Wait 5 seconds after the press in step 2 without further interaction"
+NR1L-ComfortHMI-192	SWE1-HVAC-103-02	expected_result	M2	"1. A popup for the comfort feature is shown
+2. The popup is no longer shown"	"1. A popup for the comfort feature is shown
+2. The popup is still shown
+3. The popup is no longer shown"
+NR1L-ComfortHMI-192	SWE1-HVAC-103-02	test_item	M2	"HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+
+(let the popup time out untouched -> it is gone after five seconds)"	"HVACSB5.) Popup will have a 5 sec timeout and restart with additional presses.
+
+(press the icon again before the timeout -> the popup stays for another 5 seconds, then closes)"
+NR1L-ComfortHMI-141	SWE1-HVAC-006-02	test_procedure	M6	"1. Set the recirc availability status from the CCM to unavailable
+2. Read the ""RECIRC"" button on the climate screen"	"1. PENDING: DR-46 DBC message and raw value for $RECIRC_STAT$ = ""not available/Blink""
+2. Read the ""RECIRC"" button on the climate screen"
+NR1L-ComfortHMI-158	SWE1-HVAC-012-06	test_procedure	M6	"1. Turn ""FRONT DEF"" on from the climate screen
+2. Set the recirc availability status from the CCM to unavailable and read the ""RECIRC"" button"	"1. Turn ""FRONT DEF"" on from the climate screen
+2. PENDING: DR-46 DBC message and raw value for $RECIRC_STAT$ = ""not available/Blink""
+3. Read the ""RECIRC"" button on the climate screen"
+NR1L-ComfortHMI-158	SWE1-HVAC-012-06	expected_result	M6	"1. The ""FRONT DEF"" button is highlighted
+2. The ""RECIRC"" button is greyed out"	"1. The ""FRONT DEF"" button is highlighted
+2. The climate screen is displayed
+3. The ""RECIRC"" button is greyed out"
+NR1L-ComfortHMI-158	SWE1-HVAC-012-06	test_item	M6	"Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that.
+
+(set the recirc availability status from the CCM to unavailable and read the ""RECIRC"" button -> The ""RECIRC"" button is greyed out)"	"Therefore, gray out the RECIRC button when recirc availability status from CCM denotes that.
+
+(read the ""RECIRC"" button on the climate screen -> The ""RECIRC"" button is greyed out)"
+NR1L-ComfortHMI-160	SWE1-HVAC-013-02	test_procedure	M6	"1. Set the rear defrost availability status from the CCM to unavailable
+2. Read the ""REAR DEFROST"" button on the climate screen"	"1. PENDING: DR-46 DBC message and raw value for $EBL_Stat$ = ""not available/Blink""
+2. Read the ""REAR DEFROST"" button on the climate screen"
+NR1L-ComfortHMI-250	SWE1-HVAC-114-02	test_procedure	M6	"1. Set the rear defrost availability status from the CCM to unavailable
+2. Read the ""REAR DEFROST"" button on the climate screen"	"1. PENDING: DR-46 DBC message and raw value for $EBL_Stat$ = ""not available/Blink""
+2. Read the ""REAR DEFROST"" button on the climate screen"
+NR1L-ComfortHMI-130	SWE1-HVAC-003-04	test_procedure	M9-compound	"1. Select an airflow mode and turn front defrost on from the climate screen
+2. Turn AUTO on"	"1. Select an airflow mode on the climate screen
+2. Turn front defrost on from the climate screen
+3. Turn AUTO on"
+NR1L-ComfortHMI-130	SWE1-HVAC-003-04	expected_result	M9-compound	"1. The selected airflow mode and ""FRONT DEF"" are active
+2. The airflow mode buttons and ""FRONT DEF"" are no longer active"	"1. The selected airflow mode is active
+2. ""FRONT DEF"" is active
+3. The airflow mode buttons and ""FRONT DEF"" are no longer active"
+NR1L-ComfortHMI-147	SWE1-HVAC-014-05	test_procedure	M9-compound	"1. Note the fan speed, then turn the climate system off using the climate power button on the climate screen
+2. Press the fan speed hard control up"	"1. Read the fan speed on the climate screen and record it
+2. Turn the climate system off using the climate power button on the climate screen
+3. Press the fan speed hard control up"
+NR1L-ComfortHMI-147	SWE1-HVAC-014-05	expected_result	M9-compound	"1. The CLIMATE OFF screen is displayed
+2. The climate system is on and the fan speed is at the level noted"	"1. The climate screen shows the current fan speed
+2. The CLIMATE OFF screen is displayed
+3. The climate system is on and the fan speed is at the level recorded in step 1"
+NR1L-ComfortHMI-147	SWE1-HVAC-014-05	test_item	M9-compound	"If a user presses a temp/fan control to turn climate back on, the system reinstates to the last level of that feature and if Front/Max Defrost is selected, the climate system turns back on (does not happen with rear defrost, heated/vented seats or heated wheel).
+
+(press the fan speed hard control up -> The climate system is on and the fan speed is at the level noted)"	"If a user presses a temp/fan control to turn climate back on, the system reinstates to the last level of that feature and if Front/Max Defrost is selected, the climate system turns back on (does not happen with rear defrost, heated/vented seats or heated wheel).
+
+(press the fan speed hard control up -> The climate system is on and the fan speed is at the level recorded in step 1)"
+NR1L-ComfortHMI-454	SWE1-HVAC-018-04	test_procedure	M9-compound	"1. Open a screen other than Climate main and press the Mode hard control once
+2. Do not interact with the head unit for 3 seconds"	"1. Open a screen other than Climate main
+2. Press the Mode hard control once
+3. Do not interact with the head unit for 3 seconds"
+NR1L-ComfortHMI-454	SWE1-HVAC-018-04	expected_result	M9-compound	"1. A small pop-up appears above the Climate main category control
+2. The pop-up is no longer shown"	"1. The Climate main screen is not displayed
+2. A small pop-up appears above the Climate main category control
+3. The pop-up is no longer shown"
+NR1L-ComfortHMI-455	SWE1-HVAC-018-04	test_procedure	M9-compound	"1. Open a screen other than Climate main and press the Mode hard control once
+2. Press a button other than the Mode hard control"	"1. Open a screen other than Climate main
+2. Press the Mode hard control once
+3. Press a button other than the Mode hard control"
+NR1L-ComfortHMI-455	SWE1-HVAC-018-04	expected_result	M9-compound	"1. A small pop-up appears above the Climate main category control
+2. The pop-up is no longer shown"	"1. The Climate main screen is not displayed
+2. A small pop-up appears above the Climate main category control
+3. The pop-up is no longer shown"
+NR1L-ComfortHMI-275	SWE1-HVAC-030-04	test_procedure	M9-compound	"1. Turn rear AUTO on
+2. Change the rear fan speed
+3. Turn rear AUTO on again and press a specific rear airflow mode button"	"1. Turn rear AUTO on
+2. Change the rear fan speed
+3. Turn rear AUTO on again
+4. Press a specific rear airflow mode button"
+NR1L-ComfortHMI-275	SWE1-HVAC-030-04	expected_result	M9-compound	"1. The rear AUTO button is highlighted
+2. The rear AUTO button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode
+3. The system is in the pressed rear airflow mode"	"1. The rear AUTO button is highlighted
+2. The rear AUTO button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode
+3. The rear AUTO button is highlighted
+4. The system is in the pressed rear airflow mode"
+NR1L-ComfortHMI-275	SWE1-HVAC-030-04	test_item	M9-compound	"Switching to another airflow mode would break Auto; go from auto mode to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(turn rear AUTO on again and press a specific rear airflow mode button -> The system is in the pressed rear airflow mode)"	"Switching to another airflow mode would break Auto; go from auto mode to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(press a specific rear airflow mode button -> The system is in the pressed rear airflow mode)"
+NR1L-ComfortHMI-400	SWE1-HVAC-031-01	test_procedure	M9-compound	"1. Press ""LOCK REAR"", then press ""UNLOCK REAR""
+2. Operate a rear climate control"	"1. Press ""LOCK REAR""
+2. Press ""UNLOCK REAR""
+3. Operate a rear climate control"
+NR1L-ComfortHMI-400	SWE1-HVAC-031-01	expected_result	M9-compound	"1. The rear climate is unlocked
+2. The rear climate control takes effect"	"1. The rear climate is locked
+2. The rear climate is unlocked
+3. The rear climate control takes effect"
+NR1L-ComfortHMI-368	SWE1-HVAC-040-02	test_procedure	M9-compound	"1. Trigger the fan speed pop up and press the Front Fan area
+2. Trigger the fan speed pop up and press the Rear fan area"	"1. Trigger the fan speed pop up
+2. Press the Front Fan area
+3. Trigger the fan speed pop up
+4. Press the Rear fan area"
+NR1L-ComfortHMI-368	SWE1-HVAC-040-02	expected_result	M9-compound	"1. The Front climate tab is displayed
+2. The Rear climate tab is displayed"	"1. The fan speed pop up is displayed
+2. The Front climate tab is displayed
+3. The fan speed pop up is displayed
+4. The Rear climate tab is displayed"
+NR1L-ComfortHMI-368	SWE1-HVAC-040-02	test_item	M9-compound	"The pop up will be touch interactive: by pressing on the Front Fan area, the user will be redirected to the Front climate tab; by pressing on the Rear fan area, the user will be redirected to the Rear climate tab.
+
+(trigger the fan speed pop up and press the Rear fan area -> The Rear climate tab is displayed)"	"The pop up will be touch interactive: by pressing on the Front Fan area, the user will be redirected to the Front climate tab; by pressing on the Rear fan area, the user will be redirected to the Rear climate tab.
+
+(press the Rear fan area -> The Rear climate tab is displayed)"
+NR1L-ComfortHMI-073	SWE1-HVAC-048-03	test_procedure	M9-compound	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Press the AUTO button repeatedly
+3. Change the fan speed
+4. Press the AUTO button until the AUTO ECO mode is active, then change the airflow mode"	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Press the AUTO button repeatedly
+3. Change the fan speed
+4. Press the AUTO button until the AUTO ECO mode is active
+5. Change the airflow mode"
+NR1L-ComfortHMI-073	SWE1-HVAC-048-03	expected_result	M9-compound	"1. The AUTO state is AUTO ECO
+2. The AUTO state stays within AUTO ECO and AUTO ON and does not leave AUTO
+3. AUTO is broken
+4. AUTO is broken"	"1. The AUTO state is AUTO ECO
+2. The AUTO state stays within AUTO ECO and AUTO ON and does not leave AUTO
+3. AUTO is broken
+4. The AUTO state is AUTO ECO
+5. AUTO is broken"
+NR1L-ComfortHMI-073	SWE1-HVAC-048-03	test_item	M9-compound	"The user will not be able to exit AUTO mode by pressing the AUTO button again.
+
+(press the AUTO button until the AUTO ECO mode is active, then change the airflow mode -> AUTO is broken)"	"The user will not be able to exit AUTO mode by pressing the AUTO button again.
+
+(change the airflow mode -> AUTO is broken)"
+NR1L-ComfortHMI-078	SWE1-HVAC-052	test_procedure	M9-compound	"1. Press the AUTO button until the AUTO ECO mode is active, then change the fan speed using the fan speed hard control
+2. Press the AUTO button once, then change the fan speed using the fan speed hard control"	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Change the fan speed using the fan speed hard control
+3. Press the AUTO button until the AUTO ON state is active
+4. Change the fan speed using the fan speed hard control"
+NR1L-ComfortHMI-078	SWE1-HVAC-052	expected_result	M9-compound	"1. The comfort pop up reflects the AUTO ECO state
+2. The comfort pop up reflects the AUTO ON state"	"1. The AUTO state is AUTO ECO
+2. The comfort pop up reflects the AUTO ECO state
+3. The AUTO state is AUTO ON
+4. The comfort pop up reflects the AUTO ON state"
+NR1L-ComfortHMI-078	SWE1-HVAC-052	test_item	M9-compound	"EH9.) The comfort pop ups triggered by hard controls interaction shall reflect the AUTO ECO and AUTO states.
+
+(press the AUTO button once, then change the fan speed using the fan speed hard control -> The comfort pop up reflects the AUTO ON state)"	"EH9.) The comfort pop ups triggered by hard controls interaction shall reflect the AUTO ECO and AUTO states.
+
+(change the fan speed using the fan speed hard control -> The comfort pop up reflects the AUTO ON state)"
+NR1L-ComfortHMI-334	SWE1-HVAC-064-02	test_procedure	M9-compound	"1. Press the heated seat control so that the popup is displayed
+2. Wait without touching the popup
+3. Display the popup again and select an item in it"	"1. Press the heated seat control so that the popup is displayed
+2. Wait without touching the popup
+3. Display the popup again
+4. Select an item in the popup"
+NR1L-ComfortHMI-334	SWE1-HVAC-064-02	expected_result	M9-compound	"1. The popup is displayed
+2. The popup closes after 3 seconds
+3. The popup remains displayed for a further 3 seconds from the selection"	"1. The popup is displayed
+2. The popup closes after 3 seconds
+3. The popup is displayed
+4. The popup remains displayed for a further 3 seconds from the selection"
+NR1L-ComfortHMI-334	SWE1-HVAC-064-02	test_item	M9-compound	"If an item in the popup is selected the timer will restart.
+
+(display the popup again and select an item in it -> The popup remains displayed for a further 3 seconds from the selection)"	"If an item in the popup is selected the timer will restart.
+
+(select an item in the popup -> The popup remains displayed for a further 3 seconds from the selection)"
+NR1L-ComfortHMI-173	SWE1-HVAC-088	test_procedure	M9-compound	"1. Open a NAV screen and change the fan speed using the fan speed hard control
+2. Open a Projection screen and change the fan speed using the fan speed hard control"	"1. Open a NAV screen
+2. Change the fan speed using the fan speed hard control
+3. Open a Projection screen
+4. Change the fan speed using the fan speed hard control"
+NR1L-ComfortHMI-173	SWE1-HVAC-088	expected_result	M9-compound	"1. The fan pop-up is shown over the NAV screen
+2. The fan pop-up is shown over the Projection screen"	"1. The NAV screen is displayed
+2. The fan pop-up is shown over the NAV screen
+3. The Projection screen is displayed
+4. The fan pop-up is shown over the Projection screen"
+NR1L-ComfortHMI-173	SWE1-HVAC-088	test_item	M9-compound	"HVACP5.) HVAC pop-ups should display over NAV, 3rd Party Apps, and Projection screens when permitted.
+
+(open a Projection screen and change the fan speed using the fan speed hard control -> The fan pop-up is shown over the Projection screen)"	"HVACP5.) HVAC pop-ups should display over NAV, 3rd Party Apps, and Projection screens when permitted.
+
+(change the fan speed using the fan speed hard control -> The fan pop-up is shown over the Projection screen)"
+NR1L-ComfortHMI-174	SWE1-HVAC-089	test_procedure	M9-compound	"1. Open a pop-up, then change the fan speed using the fan speed hard control
+2. Touch the text area of the bottom pop-up"	"1. Open a pop-up
+2. Change the fan speed using the fan speed hard control
+3. Touch the text area of the bottom pop-up"
+NR1L-ComfortHMI-174	SWE1-HVAC-089	expected_result	M9-compound	"1. The fan pop-up is shown over the other pop-up
+2. The fan pop-up is closed"	"1. The pop-up is displayed
+2. The fan pop-up is shown over the other pop-up
+3. The fan pop-up is closed"
+NR1L-ComfortHMI-175	SWE1-HVAC-090-01	test_procedure	M9-compound	"1. Open a pop-up that has a selectable item, then change the fan speed using the fan speed hard control
+2. Touch the selectable item of the bottom pop-up"	"1. Open a pop-up that has a selectable item
+2. Change the fan speed using the fan speed hard control
+3. Touch the selectable item of the bottom pop-up"
+NR1L-ComfortHMI-175	SWE1-HVAC-090-01	expected_result	M9-compound	"1. The fan pop-up is shown over the other pop-up
+2. The action of the bottom pop-up is taken"	"1. The pop-up is displayed
+2. The fan pop-up is shown over the other pop-up
+3. The action of the bottom pop-up is taken"
+NR1L-ComfortHMI-176	SWE1-HVAC-090-02	test_procedure	M9-compound	"1. Open a pop-up that has a selectable item, then change the fan speed using the fan speed hard control
+2. Touch the selectable item of the bottom pop-up and read the screen"	"1. Open a pop-up that has a selectable item
+2. Change the fan speed using the fan speed hard control
+3. Touch the selectable item of the bottom pop-up and read the screen"
+NR1L-ComfortHMI-176	SWE1-HVAC-090-02	expected_result	M9-compound	"1. The fan pop-up is shown over the other pop-up
+2. The fan pop-up is closed"	"1. The pop-up is displayed
+2. The fan pop-up is shown over the other pop-up
+3. The fan pop-up is closed"
+NR1L-ComfortHMI-177	SWE1-HVAC-091	test_procedure	M9-compound	"1. Open a pop-up, then change the fan speed using the fan speed hard control
+2. Press an area outside both pop-ups"	"1. Open a pop-up
+2. Change the fan speed using the fan speed hard control
+3. Press an area outside both pop-ups"
+NR1L-ComfortHMI-177	SWE1-HVAC-091	expected_result	M9-compound	"1. The fan pop-up is shown over the other pop-up
+2. Both pop-ups are closed"	"1. The pop-up is displayed
+2. The fan pop-up is shown over the other pop-up
+3. Both pop-ups are closed"
+NR1L-ComfortHMI-179	SWE1-HVAC-093	test_procedure	M9-compound	"1. Change the fan speed using the fan speed hard control with idle mode not applied and read the fan pop-up
+2. Put the head unit into simulated off/idle mode and change the fan speed again"	"1. Change the fan speed using the fan speed hard control with idle mode not applied and read the fan pop-up
+2. Put the head unit into simulated off/idle mode
+3. Change the fan speed again"
+NR1L-ComfortHMI-179	SWE1-HVAC-093	expected_result	M9-compound	"1. The fan pop-up is shown
+2. The fan pop-up is shown as it was in step 1"	"1. The fan pop-up is shown
+2. The head unit is in simulated off/idle mode
+3. The fan pop-up is shown as it was in step 1"
+NR1L-ComfortHMI-179	SWE1-HVAC-093	test_item	M9-compound	"HVACP10.) When head unit is in simulated off/idle mode HVAC popups should display as they normally would when idle mode is not applied.
+
+(put the head unit into simulated off/idle mode and change the fan speed again -> The fan pop-up is shown as it was in step 1)"	"HVACP10.) When head unit is in simulated off/idle mode HVAC popups should display as they normally would when idle mode is not applied.
+
+(change the fan speed again -> The fan pop-up is shown as it was in step 1)"
+NR1L-ComfortHMI-184	SWE1-HVAC-100-01	test_procedure	M9-compound	"1. Turn the driver heated seat on, then turn it off
+2. Read the driver comfort seat feature in the status bar"	"1. Turn the driver heated seat on
+2. Turn the driver heated seat off
+3. Read the driver comfort seat feature in the status bar"
+NR1L-ComfortHMI-184	SWE1-HVAC-100-01	expected_result	M9-compound	"1. The driver heated seat is off
+2. The driver comfort seat feature shows the heated state as the last used state"	"1. The driver heated seat is on
+2. The driver heated seat is off
+3. The driver comfort seat feature shows the heated state as the last used state"
+NR1L-ComfortHMI-384	SWE1-HVAC-105-01	test_procedure	M9-compound	"1. Turn ""FRONT DEF"" on and set the airflow mode and the fan speed to known values
+2. Turn ""FRONT DEF"" off and read the HVAC pop-up"	"1. Turn ""FRONT DEF"" on
+2. Set the airflow mode and the fan speed to known values
+3. Turn ""FRONT DEF"" off and read the HVAC pop-up"
+NR1L-ComfortHMI-384	SWE1-HVAC-105-01	expected_result	M9-compound	"1. The climate screen shows the values set
+2. The HVAC pop-up shows the current MODE and FAN SPEED of the system"	"1. ""FRONT DEF"" is active
+2. The climate screen shows the values set
+3. The HVAC pop-up shows the current MODE and FAN SPEED of the system"
+NR1L-ComfortHMI-385	SWE1-HVAC-105-02	test_procedure	M9-compound	"1. Turn ""FRONT DEF"" on and set the fan speed to a value that differs from the one in the example graphic
+2. Turn ""FRONT DEF"" off and read the HVAC pop-up"	"1. Turn ""FRONT DEF"" on
+2. Set the fan speed to a value that differs from the one in the example graphic
+3. Turn ""FRONT DEF"" off and read the HVAC pop-up"
+NR1L-ComfortHMI-385	SWE1-HVAC-105-02	expected_result	M9-compound	"1. The climate screen shows the fan speed set
+2. The HVAC pop-up shows the fan speed set in step 1"	"1. ""FRONT DEF"" is active
+2. The climate screen shows the fan speed set
+3. The HVAC pop-up shows the fan speed set in step 2"
+NR1L-ComfortHMI-385	SWE1-HVAC-105-02	test_item	M9-compound	"The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
+
+(turn ""FRONT DEF"" off and read the HVAC pop-up -> The HVAC pop-up shows the fan speed set in step 1)"	"The graphics provided are examples and all pop ups should display current state of the HVAC systems (not the exact pictures below but whatever MODE or FAN SPEED for current system).
+
+(turn ""FRONT DEF"" off and read the HVAC pop-up -> The HVAC pop-up shows the fan speed set in step 2)"
+NR1L-ComfortHMI-087	SWE1-HVAC-106-06	test_procedure	M9-compound	"1. Set the temperature units to Celsius and open a screen outside the climate main category
+2. Change the temperature using the temperature hard control"	"1. Set the temperature units to Celsius
+2. Open a screen outside the climate main category
+3. Change the temperature using the temperature hard control"
+NR1L-ComfortHMI-087	SWE1-HVAC-106-06	expected_result	M9-compound	"1. The climate main category is not displayed
+2. The pop-up displays the degree being set in half degree increments"	"1. The temperature units are Celsius
+2. The climate main category is not displayed
+3. The pop-up displays the degree being set in half degree increments"
+NR1L-ComfortHMI-098	SWE1-HVAC-110-01	test_procedure	M9-compound	"1. Set the temperature units to English and open the climate screen
+2. Adjust the temperature across its whole range"	"1. Set the temperature units to English
+2. Open the climate screen
+3. Adjust the temperature across its whole range"
+NR1L-ComfortHMI-098	SWE1-HVAC-110-01	expected_result	M9-compound	"1. The climate screen shows the temperature setting
+2. The settings available are LO, 60 to 84, HI"	"1. The temperature units are English
+2. The climate screen shows the temperature setting
+3. The settings available are LO, 60 to 84, HI"
+NR1L-ComfortHMI-413	SWE1-HVAC-110-01	test_procedure	M9-compound	"1. Set the temperature units to Metric and open the climate screen
+2. Adjust the temperature across its whole range"	"1. Set the temperature units to Metric
+2. Open the climate screen
+3. Adjust the temperature across its whole range"
+NR1L-ComfortHMI-413	SWE1-HVAC-110-01	expected_result	M9-compound	"1. The climate screen shows the temperature setting
+2. The settings available are LO, 16 to 28, HI"	"1. The temperature units are Metric
+2. The climate screen shows the temperature setting
+3. The settings available are LO, 16 to 28, HI"
+NR1L-ComfortHMI-237	SWE1-HVAC-113-01	test_procedure	M9-compound	"1. Turn ""A/C"" off and select an airflow mode other than Windshield on the climate screen
+2. Press ""MAX DEF"" and read the ""A/C"" button and the airflow mode"	"1. Turn ""A/C"" off on the climate screen
+2. Select an airflow mode other than Windshield on the climate screen
+3. Press ""MAX DEF"" and read the ""A/C"" button and the airflow mode"
+NR1L-ComfortHMI-237	SWE1-HVAC-113-01	expected_result	M9-compound	"1. The ""A/C"" button is not highlighted and the selected airflow mode is active
+2. The ""A/C"" button is highlighted and the Windshield airflow mode is active"	"1. The ""A/C"" button is not highlighted
+2. The selected airflow mode is active
+3. The ""A/C"" button is highlighted and the Windshield airflow mode is active"
+NR1L-ComfortHMI-243	SWE1-HVAC-113-07	test_procedure	M9-compound	"1. Select a known airflow mode on the climate screen, then press ""MAX DEF""
+2. Wait without further interaction until ""MAX DEF"" is no longer highlighted"	"1. Select a known airflow mode on the climate screen
+2. Press ""MAX DEF""
+3. Wait without further interaction until ""MAX DEF"" is no longer highlighted"
+NR1L-ComfortHMI-243	SWE1-HVAC-113-07	expected_result	M9-compound	"1. The ""MAX DEF"" button is highlighted
+2. The ""MAX DEF"" button is no longer highlighted and the airflow mode is the one selected in step 1"	"1. The selected airflow mode is active
+2. The ""MAX DEF"" button is highlighted
+3. The ""MAX DEF"" button is no longer highlighted and the airflow mode is the one selected in step 1"
+NR1L-ComfortHMI-245	SWE1-HVAC-113-09	test_procedure	M9-compound	"1. Select a known airflow mode, then press ""MAX DEF""
+2. Change the temperature and read the ""MAX DEF"" button"	"1. Select a known airflow mode
+2. Press ""MAX DEF""
+3. Change the temperature and read the ""MAX DEF"" button"
+NR1L-ComfortHMI-245	SWE1-HVAC-113-09	expected_result	M9-compound	"1. The ""MAX DEF"" button is highlighted
+2. ""MAX DEF"" is no longer highlighted and the airflow mode is the one selected in step 1"	"1. The selected airflow mode is active
+2. The ""MAX DEF"" button is highlighted
+3. ""MAX DEF"" is no longer highlighted and the airflow mode is the one selected in step 1"
+NR1L-ComfortHMI-421	SWE1-HVAC-113-09	test_procedure	M9-compound	"1. Select a known airflow mode, then press ""MAX DEF""
+2. Change RECIRC and read the ""MAX DEF"" button"	"1. Select a known airflow mode
+2. Press ""MAX DEF""
+3. Change RECIRC and read the ""MAX DEF"" button"
+NR1L-ComfortHMI-421	SWE1-HVAC-113-09	expected_result	M9-compound	"1. The ""MAX DEF"" button is highlighted
+2. ""MAX DEF"" is no longer highlighted and the airflow mode is the one selected in step 1"	"1. The selected airflow mode is active
+2. The ""MAX DEF"" button is highlighted
+3. ""MAX DEF"" is no longer highlighted and the airflow mode is the one selected in step 1"
+NR1L-ComfortHMI-422	SWE1-HVAC-113-09	test_procedure	M9-compound	"1. Select a known airflow mode, then press ""MAX DEF""
+2. Select another airflow mode and read the ""MAX DEF"" button"	"1. Select a known airflow mode
+2. Press ""MAX DEF""
+3. Select another airflow mode and read the ""MAX DEF"" button"
+NR1L-ComfortHMI-422	SWE1-HVAC-113-09	expected_result	M9-compound	"1. The ""MAX DEF"" button is highlighted
+2. ""MAX DEF"" is no longer highlighted"	"1. The selected airflow mode is active
+2. The ""MAX DEF"" button is highlighted
+3. ""MAX DEF"" is no longer highlighted"
+NR1L-ComfortHMI-246	SWE1-HVAC-113-10	test_procedure	M9-compound	"1. Select a known airflow mode, then press ""MAX DEF""
+2. Press ""A/C"" and read the ""MAX DEF"" button, the airflow mode and the ""A/C"" button"	"1. Select a known airflow mode
+2. Press ""MAX DEF""
+3. Press ""A/C"" and read the ""MAX DEF"" button, the airflow mode and the ""A/C"" button"
+NR1L-ComfortHMI-246	SWE1-HVAC-113-10	expected_result	M9-compound	"1. The ""MAX DEF"" button is highlighted
+2. ""MAX DEF"" is no longer highlighted, the airflow mode is the one selected in step 1 and ""A/C"" is not highlighted"	"1. The selected airflow mode is active
+2. The ""MAX DEF"" button is highlighted
+3. ""MAX DEF"" is no longer highlighted, the airflow mode is the one selected in step 1 and ""A/C"" is not highlighted"
+NR1L-ComfortHMI-233	SWE1-HVAC-119-09	test_procedure	M9-compound	"1. Set a known airflow mode and temperature, then press ""MAX A/C""
+2. Change the temperature and read the airflow mode and the ""A/C"" button"	"1. Set a known airflow mode and temperature
+2. Press ""MAX A/C""
+3. Change the temperature and read the airflow mode and the ""A/C"" button"
+NR1L-ComfortHMI-233	SWE1-HVAC-119-09	expected_result	M9-compound	"1. The ""MAX A/C"" button is highlighted
+2. The airflow mode is the one set in step 1, the temperature is the one just changed to, and ""A/C"" is highlighted"	"1. The climate screen shows the airflow mode and temperature set
+2. The ""MAX A/C"" button is highlighted
+3. The airflow mode is the one set in step 1, the temperature is the one just changed to, and ""A/C"" is highlighted"
+NR1L-ComfortHMI-234	SWE1-HVAC-119-10	test_procedure	M9-compound	"1. Set a known airflow mode, then press ""MAX A/C""
+2. Press ""A/C"" and read the ""MAX A/C"" button, the airflow mode and the ""A/C"" button"	"1. Set a known airflow mode
+2. Press ""MAX A/C""
+3. Press ""A/C"" and read the ""MAX A/C"" button, the airflow mode and the ""A/C"" button"
+NR1L-ComfortHMI-234	SWE1-HVAC-119-10	expected_result	M9-compound	"1. The ""MAX A/C"" button is highlighted
+2. ""MAX A/C"" is no longer highlighted, the airflow mode is the one set in step 1, and ""A/C"" is not highlighted"	"1. The selected airflow mode is active
+2. The ""MAX A/C"" button is highlighted
+3. ""MAX A/C"" is no longer highlighted, the airflow mode is the one set in step 1, and ""A/C"" is not highlighted"
+NR1L-ComfortHMI-097	SWE1-HVAC-122-05	test_procedure	M9-compound	"1. Turn one seat control on and another seat control off, then leave the controls screen
+2. Enter the controls screen"	"1. Turn one seat control on and another seat control off
+2. Leave the controls screen
+3. Enter the controls screen"
+NR1L-ComfortHMI-097	SWE1-HVAC-122-05	expected_result	M9-compound	"1. The controls screen is no longer displayed
+2. The controls screen shows one seat control active and the other inactive"	"1. The controls screen shows one seat control active and the other inactive
+2. The controls screen is no longer displayed
+3. The controls screen shows one seat control active and the other inactive"
+NR1L-ComfortHMI-118	SWE1-HVAC-125-01	test_procedure	M9-compound	"1. Move the Comfort widget to its second screen and leave the home screen
+2. Open the home screen"	"1. Move the Comfort widget to its second screen
+2. Leave the home screen
+3. Open the home screen"
+NR1L-ComfortHMI-118	SWE1-HVAC-125-01	expected_result	M9-compound	"1. The home screen is no longer displayed
+2. The Comfort widget shows the Climate screen"	"1. The Comfort widget shows its second screen
+2. The home screen is no longer displayed
+3. The Comfort widget shows the Climate screen"
+NR1L-ComfortHMI-032	SWE1-HVAC-002-01	test_procedure	sibling-plan wb-006	"1. Open the climate screen
+2. Change the fan speed using the fan speed hard control
+3. Change the temperature on the climate screen"	"1. Open the climate screen
+2. Change the fan speed using the fan speed hard control"
+NR1L-ComfortHMI-032	SWE1-HVAC-002-01	expected_result	sibling-plan wb-006	"1. The climate screen shows the current fan speed and temperature
+2. The fan speed shown on the climate screen is the one set by the hard control
+3. The temperature indicated by the hard controls is the one set on the climate screen"	"1. The climate screen shows the current fan speed and temperature
+2. The fan speed shown on the climate screen is the one set by the hard control"
+NR1L-ComfortHMI-032	SWE1-HVAC-002-01	test_item	sibling-plan wb-006	"C1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations.
+
+(change the temperature on the climate screen -> The temperature indicated by the hard controls is the one set on the climate screen)"	"C1.) Whenever changes to the climate system are made via hard controls or touchscreen, these changes are reflected in both locations.
+
+(change the fan speed using the fan speed hard control -> The fan speed shown on the climate screen is the one set by the hard control)"
+NR1L-ComfortHMI-131	SWE1-HVAC-003-05	test_procedure	M9-Note	"1. Note the state of the ""A/C"" button on the climate screen with AUTO off
+2. Turn AUTO on and read the ""A/C"" button"	"1. Read the state of the ""A/C"" button on the climate screen with AUTO off and record it
+2. Turn AUTO on and read the ""A/C"" button"
+NR1L-ComfortHMI-057	SWE1-HVAC-009-05	test_procedure	M9-Note	"1. Note the temperature shown on the climate screen
+2. Touch a spot in the temperature slider bar"	"1. Read the temperature shown on the climate screen and record it
+2. Touch a spot in the temperature slider bar"
+NR1L-ComfortHMI-391	SWE1-HVAC-009-05	test_procedure	M9-Note	"1. Note the temperature shown on the climate screen
+2. Set the temperature to a value by voice command"	"1. Read the temperature shown on the climate screen and record it
+2. Set the temperature to a value by voice command"
+NR1L-ComfortHMI-058	SWE1-HVAC-009-06	test_procedure	M9-Note	"1. Note the temperature slider position
+2. Press the temperature slider handle and move it"	"1. Read the temperature slider position and record it
+2. Press the temperature slider handle and move it"
+NR1L-ComfortHMI-061	SWE1-HVAC-010-03	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Press the fan up button on the climate screen"	"1. Read the fan speed shown on the climate screen and record it
+2. Press the fan up button on the climate screen"
+NR1L-ComfortHMI-393	SWE1-HVAC-010-03	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Touch a fan segment on the climate screen"	"1. Read the fan speed shown on the climate screen and record it
+2. Touch a fan segment on the climate screen"
+NR1L-ComfortHMI-394	SWE1-HVAC-010-03	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Slide across the fan segments on the climate screen"	"1. Read the fan speed shown on the climate screen and record it
+2. Slide across the fan segments on the climate screen"
+NR1L-ComfortHMI-062	SWE1-HVAC-010-04	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Press the fan down button on the climate screen repeatedly until the fan speed stops decreasing"	"1. Read the fan speed shown on the climate screen and record it
+2. Press the fan down button on the climate screen repeatedly until the fan speed stops decreasing"
+NR1L-ComfortHMI-395	SWE1-HVAC-010-04	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Turn the fan speed hard control down repeatedly until the fan speed stops decreasing"	"1. Read the fan speed shown on the climate screen and record it
+2. Turn the fan speed hard control down repeatedly until the fan speed stops decreasing"
+NR1L-ComfortHMI-155	SWE1-HVAC-012-03	test_procedure	M9-Note	"1. Note the fan speed on the climate screen
+2. Turn ""FRONT DEF"" on and read the fan speed"	"1. Read the fan speed on the climate screen and record it
+2. Turn ""FRONT DEF"" on and read the fan speed"
+NR1L-ComfortHMI-001	SWE1-HVAC-076-01	test_procedure	M9-Note	"1. Note which tab is currently shown on the lower screen
+2. Press ""-"" on the door seat control"	"1. Read which tab is currently shown on the lower screen and record it
+2. Press ""-"" on the door seat control"
+NR1L-ComfortHMI-003	SWE1-HVAC-076-03	test_procedure	M9-Note	"1. Note which tab is currently shown in the climate section on the head unit
+2. Press ""-"" on the door seat control"	"1. Read which tab is currently shown in the climate section on the head unit and record it
+2. Press ""-"" on the door seat control"
+NR1L-ComfortHMI-106	SWE1-HVAC-111-03	test_procedure	M9-Note	"1. Note the temperature shown on the climate screen
+2. Press the temperature up arrow on the climate screen"	"1. Read the temperature shown on the climate screen and record it
+2. Press the temperature up arrow on the climate screen"
+NR1L-ComfortHMI-414	SWE1-HVAC-111-03	test_procedure	M9-Note	"1. Note the temperature shown on the climate screen
+2. Touch the slider handle and drag it to another value"	"1. Read the temperature shown on the climate screen and record it
+2. Touch the slider handle and drag it to another value"
+NR1L-ComfortHMI-415	SWE1-HVAC-111-03	test_procedure	M9-Note	"1. Note the temperature shown on the climate screen
+2. Set the temperature to a value by voice command"	"1. Read the temperature shown on the climate screen and record it
+2. Set the temperature to a value by voice command"
+NR1L-ComfortHMI-416	SWE1-HVAC-111-05	test_procedure	M9-Note	"1. Note the temperature slider position
+2. Press the slider handle and drag it"	"1. Read the temperature slider position and record it
+2. Press the slider handle and drag it"
+NR1L-ComfortHMI-112	SWE1-HVAC-112-04	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Press the fan up button on the climate screen"	"1. Read the fan speed shown on the climate screen and record it
+2. Press the fan up button on the climate screen"
+NR1L-ComfortHMI-417	SWE1-HVAC-112-04	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Touch a fan segment on the climate screen"	"1. Read the fan speed shown on the climate screen and record it
+2. Touch a fan segment on the climate screen"
+NR1L-ComfortHMI-418	SWE1-HVAC-112-04	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Slide across the fan segments on the climate screen"	"1. Read the fan speed shown on the climate screen and record it
+2. Slide across the fan segments on the climate screen"
+NR1L-ComfortHMI-419	SWE1-HVAC-112-04	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Change the fan speed using the fan speed hard control"	"1. Read the fan speed shown on the climate screen and record it
+2. Change the fan speed using the fan speed hard control"
+NR1L-ComfortHMI-113	SWE1-HVAC-112-05	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Press the fan down button on the climate screen repeatedly until the fan speed stops decreasing"	"1. Read the fan speed shown on the climate screen and record it
+2. Press the fan down button on the climate screen repeatedly until the fan speed stops decreasing"
+NR1L-ComfortHMI-420	SWE1-HVAC-112-05	test_procedure	M9-Note	"1. Note the fan speed shown on the climate screen
+2. Turn the fan speed hard control down repeatedly until the fan speed stops decreasing"	"1. Read the fan speed shown on the climate screen and record it
+2. Turn the fan speed hard control down repeatedly until the fan speed stops decreasing"
+NR1L-ComfortHMI-252	SWE1-HVAC-117-02	test_procedure	M9-Note	"1. Note the size and highlight of the Feet airflow mode button
+2. Select the Feet airflow mode and read that button"	"1. Read the size and highlight of the Feet airflow mode button and record them
+2. Select the Feet airflow mode and read that button"
+NR1L-ComfortHMI-262	SWE1-HVAC-118-09	test_procedure	M9-Note	"1. Note the main category label on the climate screen
+2. Press the Mode hard control and read the main category label"	"1. Read the main category label on the climate screen and record it
+2. Press the Mode hard control and read the main category label"
+NR1L-ComfortHMI-036	SWE1-HVAC-002-05	test_item	R-C50	"If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, in half degree increments)"	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, in half degree increments)"
+NR1L-ComfortHMI-037	SWE1-HVAC-002-05	test_item	R-C50	"If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, without half degrees)"	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, without half degrees)"
+NR1L-ComfortHMI-038	SWE1-HVAC-002-06	test_item	R-C50	"If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set, for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(continue altering the temperature using the temperature hard control -> The arrow moves with the temperature being set)"	"for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(continue altering the temperature using the temperature hard control -> The arrow moves with the temperature being set)"
+NR1L-ComfortHMI-086	SWE1-HVAC-106-05	test_item	R-C50	"If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar)"	"If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar)"
+NR1L-ComfortHMI-087	SWE1-HVAC-106-06	test_item	R-C50	"If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> The pop-up displays the degree being set in half degree increments)"	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set
+
+(change the temperature using the temperature hard control -> The pop-up displays the degree being set in half degree increments)"
+NR1L-ComfortHMI-088	SWE1-HVAC-106-07	test_item	R-C50	"If the user is outside of the climate main category and the temperature is changed through hard controls, a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set, for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> The pop-up displays a slider bar with the arrow pointing to the current setting)"	"for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> The pop-up displays a slider bar with the arrow pointing to the current setting)"
+NR1L-ComfortHMI-193	SWE1-HVAC-104-01	test_item	R-C50	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the status bar and the area below it -> The temperature pop-up is shown on the status bar and no drop down menu is shown)"	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)
+
+(read the status bar and the area below it -> The temperature pop-up is shown on the status bar and no drop down menu is shown)"
+NR1L-ComfortHMI-194	SWE1-HVAC-104-02	test_item	R-C50	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the screen for a fan speed pop-up -> A fan speed pop-up is shown)"	"-FAN Speed Pop-up: show for R1Low, do not show for R1H.
+
+(read the screen for a fan speed pop-up -> A fan speed pop-up is shown)"
+NR1L-ComfortHMI-195	SWE1-HVAC-104-03	test_item	R-C50	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the screen for an airflow mode pop-up -> No airflow mode pop-up is shown)"	"-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)
+
+(read the screen for an airflow mode pop-up -> No airflow mode pop-up is shown)"
+NR1L-ComfortHMI-196	SWE1-HVAC-104-04	test_item	R-C50	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the screen for a climate on/off pop-up -> No climate on/off pop-up is shown)"	"-Climate On/Off Pop-up: do not show (feedback is already on widget)
+
+(read the screen for a climate on/off pop-up -> No climate on/off pop-up is shown)"
+NR1L-ComfortHMI-197	SWE1-HVAC-104-05	test_item	R-C50	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the screen for an AUTO pop-up -> No AUTO pop-up is shown)"	"-Auto Pop-up: do not show (feedback is already on widget)
+
+(read the screen for an AUTO pop-up -> No AUTO pop-up is shown)"
+NR1L-ComfortHMI-198	SWE1-HVAC-104-06	test_item	R-C50	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the status bar and the area below it -> The heated seats pop-up is shown on the status bar and no drop down menu is shown)"	"-Heated Seats Pop-up: only on status bar (do not show drop down menu)
+
+(read the status bar and the area below it -> The heated seats pop-up is shown on the status bar and no drop down menu is shown)"
+NR1L-ComfortHMI-199	SWE1-HVAC-104-07	test_item	R-C50	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the status bar and the area below it -> The vented seats pop-up is shown on the status bar and no drop down menu is shown)"	"-Vented Seats Pop-up: only on status bar (do not show drop down menu)
+
+(read the status bar and the area below it -> The vented seats pop-up is shown on the status bar and no drop down menu is shown)"
+NR1L-ComfortHMI-200	SWE1-HVAC-104-08	test_item	R-C50	"HVACSB6.) When the Climate widget is shown on the currently displayed screen and the user interacts with climate controls, either soft or hard, pop ups will behave as follows:\n-Temperature Pop-up: only on status bar (do not show drop down menu)\n-FAN Speed Pop-up: show for R1Low, do not show for R1H.\n-Air Flow Mode (distribution) Pop-up: do not show (feedback is already on widget)\n-Climate On/Off Pop-up: do not show (feedback is already on widget)\n-Auto Pop-up: do not show (feedback is already on widget)\n-Heated Seats Pop-up: only on status bar (do not show drop down menu)\n-Vented Seats Pop-up: only on status bar (do not show drop down menu)\n-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the status bar and the area below it -> The heated steering wheel pop-up is shown on the status bar and no drop down menu is shown)"	"-Heated Steering Wheel Pop-up: only on status bar (do not show drop down menu)
+
+(read the status bar and the area below it -> The heated steering wheel pop-up is shown on the status bar and no drop down menu is shown)"
+NR1L-ComfortHMI-254	SWE1-HVAC-118-01	test_item	R-C50	"ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+
+(press the Mode hard control four times, reading the mode after each press -> The modes were Face/Feet, then Feet, then Feet/Windshield, then Windshield)"	"ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press
+
+(press the Mode hard control four times, reading the mode after each press -> The modes were Face/Feet, then Feet, then Feet/Windshield, then Windshield)"
+NR1L-ComfortHMI-255	SWE1-HVAC-118-02	test_item	R-C50	"ICE11.1) If the Mode hard control is pressed the user will be moved to the next mode available in the loop (Face > Face/Feet > Feet > Feet/Windshield > Windshield), the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+
+(press and hold the Mode hard control and read the airflow mode -> The Face/Feet airflow mode is active and the mode does not move further while the control is held)"	"the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+
+(press and hold the Mode hard control and read the airflow mode -> The Face/Feet airflow mode is active and the mode does not move further while the control is held)"
+NR1L-ComfortHMI-256	SWE1-HVAC-118-03	test_item	R-C50	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the airflow mode -> The airflow mode has moved to the next mode in the loop)"	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted.
+
+(press the Mode hard control and read the airflow mode -> The airflow mode has moved to the next mode in the loop)"
+NR1L-ComfortHMI-257	SWE1-HVAC-118-04	test_item	R-C50	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the mode buttons -> The new mode button is highlighted)"	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted.
+
+(press the Mode hard control and read the mode buttons -> The new mode button is highlighted)"
+NR1L-ComfortHMI-258	SWE1-HVAC-118-05	test_item	R-C50	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the airflow mode -> The airflow mode has moved to the next mode in the loop)"	"if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the airflow mode -> The airflow mode has moved to the next mode in the loop)"
+NR1L-ComfortHMI-259	SWE1-HVAC-118-06	test_item	R-C50	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the area above the Climate main category control -> A small pop-up is shown above the Climate main category control)"	"if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the area above the Climate main category control -> A small pop-up is shown above the Climate main category control)"
+NR1L-ComfortHMI-260	SWE1-HVAC-118-07	test_item	R-C50	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(wait 3 seconds without further interaction -> The pop-up is no longer shown)"	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(wait 3 seconds without further interaction -> The pop-up is no longer shown)"
+NR1L-ComfortHMI-426	SWE1-HVAC-118-07	test_item	R-C50	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the fan speed hard control and read the screen -> The pop-up is no longer shown)"	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press the fan speed hard control and read the screen -> The pop-up is no longer shown)"
+NR1L-ComfortHMI-261	SWE1-HVAC-118-08	test_item	R-C50	"When the Mode hard control is pressed, if the user is on Climate main the new mode button will be shown highlighted. if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the displayed screen -> The displayed screen is the one opened in step 1)"	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the displayed screen -> The displayed screen is the one opened in step 1)"
+NR1L-ComfortHMI-453	SWE1-HVAC-018-04	test_item	R-C50	"If the user is not on Climate main when pressing the Mode hard control a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control once -> A small pop-up appears above the Climate main category control and the Climate main screen is still not displayed)"	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control once -> A small pop-up appears above the Climate main category control and the Climate main screen is still not displayed)"
+NR1L-ComfortHMI-454	SWE1-HVAC-018-04	test_item	R-C50	"If the user is not on Climate main when pressing the Mode hard control a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(do not interact with the head unit for 3 seconds -> The pop-up is no longer shown)"	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(do not interact with the head unit for 3 seconds -> The pop-up is no longer shown)"
+NR1L-ComfortHMI-455	SWE1-HVAC-018-04	test_item	R-C50	"If the user is not on Climate main when pressing the Mode hard control a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press a button other than the Mode hard control -> The pop-up is no longer shown)"	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press a button other than the Mode hard control -> The pop-up is no longer shown)"
+NR1L-ComfortHMI-435	SWE1-HVAC-001-01	remarks	R-C52		The Comfort HMI specification allows up to 4 tabs including Massage, while the software requirement for this case allows up to 3 tabs and does not list Massage. This case checks the specification's upper limit of 4 tabs.
+NR1L-ComfortHMI-436	SWE1-HVAC-001-01	remarks	R-C52		The Comfort HMI specification allows up to 4 tabs including Massage, while the software requirement for this case allows up to 3 tabs and does not list Massage. This case checks 3 tabs drawn from the specification's four areas, which may include Massage.
+NR1L-ComfortHMI-437	SWE1-HVAC-001-01	remarks	R-C52		The Comfort HMI specification allows up to 4 tabs including Massage, while the software requirement for this case allows up to 3 tabs and does not list Massage. This case checks 2 tabs drawn from the specification's four areas, which may include Massage.
+NR1L-ComfortHMI-438	SWE1-HVAC-001-02	remarks	R-C52		The Comfort HMI specification orders the tabs Front, Seats, Massage, Rear, while the software requirement for this case lists Front, Seats, Rear without Massage. This case checks the specification's order, including Massage.
+NR1L-ComfortHMI-056	SWE1-HVAC-009-04	test_procedure	§3 slim	"1. Long-press the temperature up arrow on the climate screen
+2. Long-press the temperature hard control"	"1. Read the temperature shown on the climate screen and record it
+2. Long-press the temperature hard control"
+NR1L-ComfortHMI-056	SWE1-HVAC-009-04	expected_result	§3 slim	"1. The temperature changes with a fast move
+2. The temperature changes with a fast move"	"1. The climate screen shows the current temperature
+2. The temperature changes with a fast move"
+NR1L-ComfortHMI-107	SWE1-HVAC-111-04	test_procedure	§3 slim	"1. Press and hold the temperature up arrow on the climate screen
+2. Press and hold the temperature hard control in the up direction"	"1. Read the temperature shown on the climate screen and record it
+2. Press and hold the temperature hard control in the up direction"
+NR1L-ComfortHMI-107	SWE1-HVAC-111-04	expected_result	§3 slim	"1. The temperature moves up by more than 1 increment while the press is held
+2. The temperature moves up by more than 1 increment while the press is held"	"1. The climate screen shows the current temperature
+2. The temperature moves up by more than 1 increment while the press is held"
+NR1L-ComfortHMI-430	SWE1-HVAC-015-04	test_procedure	§3 slim	"1. Turn ""SYNC"" on from the climate screen
+2. Change the fan speed from the climate screen
+3. Change the airflow mode from the climate screen"	"1. Turn ""SYNC"" on from the climate screen
+2. Change the airflow mode from the climate screen"
+NR1L-ComfortHMI-430	SWE1-HVAC-015-04	expected_result	§3 slim	"1. The ""SYNC"" button is highlighted
+2. The fan speed changes for the front and the rear passengers
+3. The airflow mode changes for the front and the rear passengers"	"1. The ""SYNC"" button is highlighted
+2. The airflow mode changes for the front and the rear passengers"
+NR1L-ComfortHMI-456	SWE1-HVAC-018-05	test_procedure	§3 slim	"1. Press the Mode hard control while on the Climate main screen and read the main category label
+2. Press the Mode hard control from a screen other than Climate main and read the main category label"	"1. Open a screen other than Climate main
+2. Press the Mode hard control from a screen other than Climate main and read the main category label"
+NR1L-ComfortHMI-456	SWE1-HVAC-018-05	expected_result	§3 slim	"1. The main category label shows the new airflow mode
+2. The main category label shows the new airflow mode"	"1. The Climate main screen is not displayed
+2. The main category label shows the new airflow mode"
+NR1L-ComfortHMI-133	SWE1-HVAC-003-07	split_flag	§3 split	False	True
+NR1L-ComfortHMI-133	SWE1-HVAC-003-07	split_reason	§3 split		§8.2.2 之拆分，依 R-C44 三問：`2.3`（C2）之「When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed」以 `unless` 分出兩個分支；分支 (b)（按下特定模式鍵）由既有一條承載，其模式鍵為條文之泛稱（`a specific mode button`），故依第一問不再展開；分支 (a) 此前無任何 TC，其觸發取同節前句所列而非模式鍵者（`Manually selecting A/C` 與 `changing fan speeds`），條文逐字列舉、各為一種按法、無舉例語 —— 三問皆是，故一觸發一條。分支 (a) 之落點（`most closely matches`）條文無值，ER 該行為 PENDING（CMF-02 §3）。
+NR1L-ComfortHMI-056	SWE1-HVAC-009-04	split_flag	§3 split	False	True
+NR1L-ComfortHMI-056	SWE1-HVAC-009-04	split_reason	§3 split		§8.2.2 之拆分，依 R-C44 三問：`2.6.1` 之條文以兩句分別點名長按快移之兩個通道 —— 「Change temperature on climate screen by using arrows (… long press = fast move …」與「Long press = fast move shall also work for temperature HARD CONTROLS」；條文列舉、兩種按法、非舉例 —— 三問皆是，故一通道一條（CMF-01 sibling plan）。
+NR1L-ComfortHMI-107	SWE1-HVAC-111-04	split_flag	§3 split	False	True
+NR1L-ComfortHMI-107	SWE1-HVAC-111-04	split_reason	§3 split		§8.2.2 之拆分，依 R-C44 三問：`16.6.1` 之條文以兩句分別點名長按快移之兩個通道 —— 「Change temperature on climate screen by using arrows (… long press = fast move …」與「Long press = fast move shall also work for temperature HARD CONTROLS」；條文列舉、兩種按法、非舉例 —— 三問皆是，故一通道一條（CMF-01 sibling plan）。
+NR1L-ComfortHMI-430	SWE1-HVAC-015-04	split_flag	§3 split	False	True
+NR1L-ComfortHMI-430	SWE1-HVAC-015-04	split_reason	§3 split		§8.2.2 之拆分，依 R-C44 三問：「Adjusting Fan speed and Mode will alter the Front and Rear passengers」逐字列舉兩個觸發（fan speed、mode），各為一種按法、非舉例 —— 三問皆是，故一觸發一條（CMF-01 sibling plan）；原條之兩個觸發步驟分入兩條。
+NR1L-ComfortHMI-456	SWE1-HVAC-018-05	split_flag	§3 split	False	True
+NR1L-ComfortHMI-456	SWE1-HVAC-018-05	split_reason	§3 split		§8.2.2 之拆分，判準為 §5.7 之 scope：「In both cases the main category label will be updated」之兩個 case 為按 Mode 硬鍵時之兩種起始畫面（Climate main 內／外），兩者之起點與呈現路徑不同、可各自失效，故各一條（CMF-02 §3 依 CMF-01 sibling plan）。037 VC 所列之 `press and hold` 回條文判讀屬 `018-03`（長按只移一格），不屬本 leaf，不產。
+NR1L-ComfortHMI-009	SWE1-HVAC-080-01	split_flag	§3 split	False	True
+NR1L-ComfortHMI-009	SWE1-HVAC-080-01	split_reason	§3 split		§8.2.2 之拆分，依 R-C44 三問：LS3 之「long press on the hard button (-, +) or on the touch screen itself」逐字列舉兩個通道，各為一種按法、非舉例 —— 三問皆是，故一通道一條（CMF-01 sibling plan）。
+NR1L-ComfortHMI-466	SWE1-HVAC-019-03	(new TC)	R-C51		NR1L-ComfortHMI-466
+NR1L-ComfortHMI-467	SWE1-HVAC-003-07	(new TC)	§3 sibling		NR1L-ComfortHMI-467
+NR1L-ComfortHMI-468	SWE1-HVAC-003-07	(new TC)	§3 sibling		NR1L-ComfortHMI-468
+NR1L-ComfortHMI-469	SWE1-HVAC-009-04	(new TC)	§3 sibling		NR1L-ComfortHMI-469
+NR1L-ComfortHMI-470	SWE1-HVAC-010-03	(new TC)	§3 sibling		NR1L-ComfortHMI-470
+NR1L-ComfortHMI-471	SWE1-HVAC-015-04	(new TC)	§3 sibling		NR1L-ComfortHMI-471
+NR1L-ComfortHMI-472	SWE1-HVAC-018-05	(new TC)	§3 sibling		NR1L-ComfortHMI-472
+NR1L-ComfortHMI-473	SWE1-HVAC-080-01	(new TC)	§3 sibling		NR1L-ComfortHMI-473
+NR1L-ComfortHMI-474	SWE1-HVAC-111-04	(new TC)	§3 sibling		NR1L-ComfortHMI-474

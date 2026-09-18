@@ -1391,3 +1391,24 @@ Climate Control Interface/FM-WI-FSM-036-A01 …_SWQT_Comfort_20260817.xlsx`
 並撤回 `R-PMH2` 之後半。Pei 於 2026-08-23 核可。
 
 **本回報不含處置建議** —— 交由 Comfort 自行判斷。
+
+---
+
+## A-CMF1 ～ A-CMF7 —— 分析層自陳（A 類，CMF-01_review §1，2026-09-18）
+
+> **來源**：`docs/fw036/handoff/down/20260918_CMF-01_review.md` §1（續 CMF-01 §0）。
+> 依 CMF-02 §1-3 登錄，**文字取 review §1，逐字**。性質為**分析層之判讀錯誤之自陳**，
+> 非 spec／語料之缺陷；不阻塞任何批次。
+
+| # | 分析層之誤 | 來源 |
+|---|---|---|
+| A-CMF1 | 稱 J 欄無節次括號、N 欄無 `SYS1_`「與 profile 不符」而暗示離線偏離 —— 實為 Pei 08-17 之編修已併入匯出規則（ENTRY 032／034），**profile 落後於 pipeline**。未查 `DELIVERY.sha256` 即下斷言 | 上繳 §1 |
+| A-CMF2 | M5 判「引文之外外露文字」—— 該句整句即 CFTS043 `NEWR1L-53677` 逐字。未查 tree view | 上繳 M5 |
+| A-CMF3 | 複合步驟 102 高估（真雙動作 35 行／32 TC）；`<動作> and read <對象>` 為 canon §5.5 容許之形，亦使首輪「Final Step 無 check target 229」**不可信**，該數作廢 | 上繳 M9 |
+| A-CMF4 | 通道軸約 45 → 回條文句僅 2 leaf；首輪已註明為啟發式，惟對話中列為「拆解不足」之主項，比重失當 | 上繳 §4 |
+| A-CMF5 | 「未見 Priority rubric」—— canon §10.2 自身即引 `TEST_CASE_PRIORITY.md`，分析層手上就有 | 上繳 §5-8 |
+| A-CMF6 | §19／§20 缺口稱「profile 未見」而未查 `DATA_REQUESTS.md`（DR #6／#8 已載）；LATAM 11 列含 heading，實為 10 | 上繳 §6 |
+| A-CMF7 | M10「-010～-012 為 94」被讀成最大值；最大為 118 | 上繳 M10 |
+
+**處置**：A-CMF1 之 profile 落後已於 CMF-02 §1-2 同步（profile §3.2 J 欄框、§3.5）；
+A-CMF3 之「Final Step 229」不立項（review §3）。其餘為紀錄。

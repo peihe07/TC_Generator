@@ -3,7 +3,7 @@
  "outline": "2.13",
  "batch": "Climate Modes",
  "source_clause": "C14.) MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C functionality. MAX A/C has an on/off state that is indicated on climate screen (highlight button if on). MAX A/C modifies multiple climate parameters. On/Off logic should follow requirements from VF HVAC document.",
- "reasoning": "驗證目標：2.13（C14）定出 MAX A/C 之畫面採用時機、on/off 狀態呈現，以及其對多項氣候參數之修改與 On/Off 邏輯之委派，三個 037 leaf 對應之，本輪產一條。關鍵情境條件：第四軸（MAX A/C 有無）—— C14 首句「MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C functionality」為明文配置條件，故起始 PC 取該軸之有值，出處 2.13；依 **R-C34** 第九軸與第十三軸暴露 → 補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`019-01` 之可觀察量為按鈕高亮，與被委派之參數修改邏輯無關，故可獨立成條。刻意略過：**`019-02`／`019-03` 停下不產列** —— C14 之「On/Off logic should follow requirements from **VF HVAC document**」為**對外部文件之明文委派**，依 profile §5.3 之判別次序屬 `[BLOCKED-SPEC]`，而該 marker 之白名單增列須經裁定（**R-C26**：豁免不可自取），故停下回報，形態與 `080-02`／`081-02` 相同。**不以 16.13（ICE12）之逐項列舉補之** —— 那是另一套介面之條文，援引即跨介面移植（§8.2.1）。",
+ "reasoning": "驗證目標：2.13（C14）定出 MAX A/C 之畫面採用時機、on/off 狀態呈現，以及其對多項氣候參數之修改與 On/Off 邏輯之委派，三個 037 leaf 對應之，本輪產一條。關鍵情境條件：第四軸（MAX A/C 有無）—— C14 首句「MAX A/C screens/popups are to be used when CCM relays presence of MAX A/C functionality」為明文配置條件，故起始 PC 取該軸之有值，出處 2.13；依 **R-C34** 第九軸與第十三軸暴露 → 補，EMEA 排除補並逐條答，第十二軸不補。為什麼這樣切：`019-01` 之可觀察量為按鈕高亮，與被委派之參數修改邏輯無關，故可獨立成條。刻意略過：**`019-03` 依 R-C51 產 `[BLOCKED-SPEC]` 列（`019-02` 已另補產）** —— C14 之「On/Off logic should follow requirements from **VF HVAC document**」為**對外部文件之明文委派**，依 profile §5.3 之判別次序屬 `[BLOCKED-SPEC]`，而該 marker 之白名單增列須經裁定（**R-C26**：豁免不可自取），故停下回報，形態與 `080-02`／`081-02` 相同。**不以 16.13（ICE12）之逐項列舉補之** —— 那是另一套介面之條文，援引即跨介面移植（§8.2.1）。",
  "keywords": [],
  "duplicate_of": "",
  "distinguishing_axis": {
@@ -23,7 +23,7 @@
    "req_id": "SWE1-HVAC-019-01",
    "tc_id": "NR1L-ComfortHMI-152",
    "tc_title": "MAX A/C is highlighted on the climate screen when on",
-   "test_group": "Comfort",
+   "test_group": "Climate Control Interface",
    "test_set": "Climate Modes",
    "test_item": "MAX A/C has an on/off state that is indicated on climate screen (highlight button if on).\n\n(press \"MAX A/C\" again -> The \"MAX A/C\" button is no longer highlighted)",
    "pre_conditions": "1. [spec-derived] The vehicle has MAX A/C functionality, whose presence the CCM relays (2.13)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
@@ -31,7 +31,7 @@
    "test_procedure": "1. Press \"MAX A/C\" on the climate screen\n2. Press \"MAX A/C\" again",
    "expected_result": "1. The \"MAX A/C\" button is highlighted\n2. The \"MAX A/C\" button is no longer highlighted",
    "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "split_flag": false,
    "split_reason": "",
@@ -49,7 +49,7 @@
    "req_id": "SWE1-HVAC-019-02",
    "tc_id": "NR1L-ComfortHMI-458",
    "tc_title": "MAX A/C changes more than one climate parameter",
-   "test_group": "Comfort",
+   "test_group": "Climate Control Interface",
    "test_set": "Climate Modes",
    "test_item": "MAX A/C modifies multiple climate parameters.\n\n(turn MAX A/C on and read the climate parameters again -> More than one of the climate parameters read in step 1 has changed)",
    "pre_conditions": "1. [spec-derived] The vehicle has MAX A/C functionality, whose presence the CCM relays (2.13)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
@@ -57,7 +57,7 @@
    "test_procedure": "1. Read the climate parameters shown on the climate screen\n2. Turn MAX A/C on and read the climate parameters again",
    "expected_result": "1. The climate screen shows the current climate parameters\n2. More than one of the climate parameters read in step 1 has changed",
    "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
-   "priority": "P1",
+   "priority": "P0",
    "design_method": "功能測試 (Functional based ; no specific technique)",
    "split_flag": false,
    "split_reason": "",
@@ -70,6 +70,32 @@
     "ch16_sentence": "ICE12 之 MAX A/C 於 ch16 側**逐項列出**其所改之參數，C14 則只說「multiple climate parameters」—— 兩側之涵蓋範圍不同，故本條之排除為過嚴側（R-C36-1，removal 待裁）；**ER 不得引 16.13 之逐項清單**（§8.2.1 禁跨章移植），只驗「有改變」"
    },
    "test_item_authored": "MAX A/C shall modify multiple climate parameters"
+  },
+  {
+   "req_id": "SWE1-HVAC-019-03",
+   "tc_id": "NR1L-ComfortHMI-466",
+   "tc_title": "MAX A/C on/off logic follows the VF HVAC document",
+   "test_group": "Climate Control Interface",
+   "test_set": "Climate Modes",
+   "test_item": "On/Off logic should follow requirements from VF HVAC document.\n\n(the requirement's content is owned by another document, so this delivery carries no test case for it; see Remarks)",
+   "pre_conditions": "1. [spec-derived] The vehicle has MAX A/C functionality, whose presence the CCM relays (2.13)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
+   "input_test_data": "NA",
+   "test_procedure": "",
+   "expected_result": "",
+   "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.13",
+   "priority": "P1",
+   "design_method": "功能測試 (Functional based ; no specific technique)",
+   "split_flag": false,
+   "split_reason": "",
+   "functional_safety": "NA",
+   "estimated_test_time": "",
+   "remarks": "[BLOCKED-SPEC] Owner: VF HVAC document — the MAX A/C on/off logic is defined there; with that delegation removed this requirement has no content verifiable against the Comfort HMI specification alone. No test case in this delivery covers that logic.",
+   "test_item_authored": "The On/Off logic of MAX A/C shall follow the requirements of the VF HVAC document",
+   "emea_ics_review": {
+    "ch16_outline": "16.13",
+    "ch16_sentence": "C14 把 MAX A/C 之 On/Off 邏輯委派予 VF HVAC document，ICE12 則於 ch16 逐項列出其參數與退出途徑 —— 兩側之涵蓋範圍不同，故本列之 EMEA 排除為過嚴側（R-C36-1，同 `019-02`）；本列為 [BLOCKED-SPEC]，不以 ICE12 補其內容（§8.2.1）",
+    "verdict": "no"
+   }
   }
  ]
 }

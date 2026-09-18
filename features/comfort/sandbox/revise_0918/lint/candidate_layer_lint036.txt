@@ -1,0 +1,6 @@
+/Users/peihe/Work_Projects/TC_Generator/.venv/lib/python3.10/site-packages/openpyxl/worksheet/_reader.py:329: UserWarning: Data Validation extension is not supported and will be removed
+  warn(msg)
+FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260918.xlsx
+  -> features/comfort/sandbox/revise_0918/lint/ComfortHMI__comfort_28a0998c_20260918.md
+  行計 A=0  B=0  C=0  D=0  E=0  F=0  G=0  H=4  I=0  I-sibling=0  J=14  K=0  L=0  M=10  N=0  P=4  Q=0  R=1476  T=0  U=6  V=0  I-cross=441  W=3  X=335  Y=0
+  -> features/comfort/sandbox/revise_0918/lint/ComfortHMI__comfort_28a0998c_20260918.json

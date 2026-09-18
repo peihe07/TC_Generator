@@ -1,0 +1,4 @@
+# CMF-02 §6 — lint 兩層之完成判定（本檔由執行層之 wrapper 寫出；lint036 自身之哨兵行屬 GC-16，尚未落地）
+json_layer : features/comfort/scripts/lint_tcs.py  traceback=False  summary=57 / 57 gates PASS; 0 finding(s) across 474 TCs
+candidate  : scripts/lint036.py --profile comfort (report mode)  traceback=False  summary=行計 A=0  B=0  C=0  D=0  E=0  F=0  G=0  H=4  I=0  I-sibling=0  J=14  K=0  L=0  M=10  N=0  P=4  Q=0  R=1476  T=0  U=6  V=0  I-cross=441  W=3  X=335  Y=0
+LINT_STATUS: OK
