@@ -14,7 +14,7 @@
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-001 Requirement Description and Verification Criteria\nPolarion: NRL-349384\nsibling axis: verification outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: fotaMcpuCertTestNormalFlow (apk_pairing.tsv)",
+  "remarks": "source: 037 SWE1-CertProvider-001 Requirement Description and Verification Criteria\nPolarion: NRL-349384\nsibling axis: verification outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: fotaMcpuCertTestNormalFlow (apk_pairing.tsv)\napk name: CCVR STEPS say CertProviderServiceManagerTest.apk; delivered file is CertProviderAndroidInstrumentalTest.apk (A-SEC-15)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",

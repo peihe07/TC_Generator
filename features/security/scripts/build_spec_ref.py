@@ -86,7 +86,7 @@ def main() -> int:
     sys2 = sys2_table()
     oid = objectid_map()                      # amend3：取號改 ObjectID
     vcs = vc_map()
-    missing_nrl: list[str] = []
+    missing_object_id: list[str] = []
     rows = []
     for r in tm:
         swe1 = r["swe1_id"]
@@ -96,12 +96,12 @@ def main() -> int:
         for i in ids:
             meta = sys2.get(i)
             if meta is None:
-                missing_nrl.append(f"{swe1}:{i}")
+                missing_object_id.append(f"{swe1}:{i}")
                 continue
             nrl, desc, cat = meta
             obj = oid.get(i, "")
             if not obj or obj == "MISSING":
-                missing_nrl.append(f"{swe1}:{i}(no ObjectID)")
+                missing_object_id.append(f"{swe1}:{i}(no ObjectID)")
                 continue
             kept.append((i, obj, desc, cat))
         status = "OK" if kept else "FALLBACK"
@@ -139,7 +139,7 @@ def main() -> int:
         print(f"  OK 列之行數 min/median/max = {ln[0]}／{ln[len(ln)//2]}／{ln[-1]}")
     mx = max(rows, key=lambda r: r["lines"])
     print(f"  最大列：{mx['swe1_id']} {mx['lines']} 行")
-    print("  ObjectID 缺號者（sys2_objectid_map 之 MISSING）：", missing_nrl or "無")
+    print("  ObjectID 缺號者（sys2_objectid_map 之 MISSING）：", missing_object_id or "無")
     import collections
     grp = collections.defaultdict(list)
     for r in rows:

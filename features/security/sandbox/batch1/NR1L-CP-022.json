@@ -14,7 +14,7 @@
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "verification: document review (R-SEC20)\nPolarion: NRL-349391\nsource: 037 SWE1-CertProvider-008 Requirement Description and Verification Criteria\nasset: X-i — closed by R-SEC20 (document review; no source/build-environment asset required)\nsibling axis: client type; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-h — 3. PENDING: X-h log keyword",
+  "remarks": "verification: document review (R-SEC20)\nPolarion: NRL-349391\nsource: 037 SWE1-CertProvider-008 Requirement Description and Verification Criteria\nasset: X-i — closed by R-SEC20 (document review; no source/build-environment asset required)\nsibling axis: client type; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-h — 3. PENDING: X-h log keyword\napk name: CCVR STEPS say CertProviderServiceManagerTest.apk; delivered file is CertProviderAndroidInstrumentalTest.apk (A-SEC-15)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",

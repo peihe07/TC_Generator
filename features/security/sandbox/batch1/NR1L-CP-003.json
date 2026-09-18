@@ -14,7 +14,7 @@
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-001 Requirement Description and Verification Criteria\nPolarion: NRL-349384\nsibling axis: chain trust; rule SEC-20 §2.1 (CCVR Cert Val CS.98 item 3) of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: ecuCertTestSelfSignedChain (apk_pairing.tsv)\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)",
+  "remarks": "source: 037 SWE1-CertProvider-001 Requirement Description and Verification Criteria\nPolarion: NRL-349384\nsibling axis: chain trust; rule SEC-20 §2.1 (CCVR Cert Val CS.98 item 3) of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: ecuCertTestSelfSignedChain (apk_pairing.tsv)\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)\napk name: CCVR STEPS say CertProviderServiceManagerTest.apk; delivered file is CertProviderAndroidInstrumentalTest.apk (A-SEC-15)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",

@@ -14,7 +14,7 @@
   "design": "基礎故障注入 (Fault Injection Lite)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-010 Requirement Description and Verification Criteria\nPolarion: NRL-349393\nsibling axis: resource consumption; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: fotaMcpuCertVerifyStressTest (apk_pairing.tsv)",
+  "remarks": "source: 037 SWE1-CertProvider-010 Requirement Description and Verification Criteria\nPolarion: NRL-349393\nsibling axis: resource consumption; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: fotaMcpuCertVerifyStressTest (apk_pairing.tsv)\napk name: CCVR STEPS say CertProviderServiceManagerTest.apk; delivered file is CertProviderAndroidInstrumentalTest.apk (A-SEC-15)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",

@@ -65,6 +65,8 @@ ADB_ROOT = "DUT is connected via ADB with root permission (Dev/Eng build)"
 # R-SEC24（SEC-13）：apk 檔名逐字取 CCVR 外部目錄清單（A-33 更正；原值為類名接 .apk 之造值）。
 RUNNER_READY = "Test runner CertProviderAndroidInstrumentalTest.apk is installed"
 # SEC-20（R-SEC26）：CCVR CS.98 之 GIVEN「Prerequisite check」逐字 —— 屬前提而非步驟，故入 Pre-Condition。
+APK_NAME_NOTE = ("apk name: CCVR STEPS say CertProviderServiceManagerTest.apk; delivered file "
+                 "is CertProviderAndroidInstrumentalTest.apk (A-SEC-15)")
 CP_RUNNER_CHECK = ("The test runner is verified with adb shell pm list instrumentation | grep "
                    "melcocertprovider (if missing run adb install -r -t "
                    "CertProviderServiceManagerTest.apk)")
@@ -822,6 +824,10 @@ def main() -> int:
                                          or swe1 in SCOPE_ALL_SIBLINGS):
             remarks.append(SCOPE_NOTE)                           # R-SEC22(b)
         blob = "\n".join(proc) + "\n" + "\n".join(er)          # A-SEC-16（SEC-16 §4）
+        pre_txt = "\n".join(DOC_REVIEW_PRE.get(swe1) or PRE.get(swe1, []))
+        if ("CertProviderAndroidInstrumentalTest.apk" in pre_txt
+                and "CertProviderServiceManagerTest.apk" in pre_txt):   # SEC-21 §1
+            remarks.append(APK_NAME_NOTE)
         if STORE in blob:                                        # SEC-20（R-SEC26）
             remarks.append(PATH_ODM_NOTE)
         if "dcl.json" in blob:

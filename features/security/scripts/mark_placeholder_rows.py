@@ -175,8 +175,12 @@ def mark(src: Path, out: Path) -> dict:
 
 
 def main() -> int:
-    books = sorted(DELIVERY.glob("*Security_*_20260917.xlsx"))
-    assert len(books) == 6, f"交付本 {len(books)} 本"
+    # SEC-21 §2：`--targets <glob>` 可指定標的（預設六本交付 ＋ `_all`）
+    pattern = (sys.argv[sys.argv.index("--targets") + 1]
+               if "--targets" in sys.argv else "*Security_*_20260917.xlsx")
+    books = sorted(DELIVERY.glob(pattern))
+    if "--targets" not in sys.argv:
+        assert len(books) == 6, f"交付本 {len(books)} 本"
     sup = DELIVERY / "superseded"
     sup.mkdir(exist_ok=True)
     rows_out: list[tuple[str, str, int, str]] = []
@@ -191,7 +195,8 @@ def main() -> int:
         rep = mark(book, tmp)
         if rep["text_diff"]:
             raise StructureError(f"{comp}: 文字 diff {rep['text_diff']} ≠ 0")
-        prev = os.environ.get("PREV_VER", "v11")     # 被取代之版本（移入 superseded/ 之尾綴）
+        # 被取代之版本：取該檔現有之版本標記（無則沿 PREV_VER，最後才用 "prev"）
+        prev = os.environ.get("PREV_VER") or "prev"
         shutil.move(str(book), str(sup / f"{book.stem}_{prev}{book.suffix}"))
         shutil.move(str(tmp), str(book))
         total += len(rep["rows"])
