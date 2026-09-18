@@ -2,14 +2,14 @@ no	method	swe1_ids	basis	confidence
 01	fotaMcpuCertTestNormalFlow	SWE1-CertProvider-001;SWE1-CertProvider-008	037 CP-008 明列 FOTA service 為 Java client；CertProfile Code Signing 樹	high
 02	fotaMcpuCertTestBrokenCert	SWE1-CertProvider-001	broken = 鏈驗失敗	high
 03	fotaVcpuCertTestNormalFlow	SWE1-CertProvider-001;SWE1-CertProvider-008	同 01，VCPU 分支	medium
-04	samCertTestNormalFlow	SWE1-SAM-0007;SWE1-CertProvider-002;SWE1-CertProvider-003	037 CP-002/003 GIVEN 含 SAM Dongle	high
+04	samCertTestNormalFlow	SWE1-SAM-0007;SWE1-CertProvider-002;SWE1-CertProvider-003;SWE1-CertProvider-004	037 CP-002/003 GIVEN 含 SAM Dongle；SEC-20：CCVR Cert Val CS.98 item 2／5~8 之 RD 步驟以該方法驗 DCL 撤銷（CertProvider-004）	high
 05	fotaMcpuCertVerifyStressTest	SWE1-CertProvider-010	037 CP-010「series of certificate verification tasks」	medium
 06	fotaMcpuCertStressTest	SWE1-CertProvider-010	同 05	medium
 07	fotaMcpuVcpuVerifyCertStressTest	SWE1-CertProvider-010	同 05	medium
 08	fotaMcpuVcpuCertStressTest	SWE1-CertProvider-010	同 05	medium
 09	ecuCertTestNormalFlow	SYSAD_SEC_ECUCERT_ECUCERT_API;SYSAD_SEC_ECUCERT_ECUCERT_SERVICE;SWE1-CertProvider-005	037 CP-005「For ECU verification scenarios」；ECUCert R9／R10 為 library／service 驗證	high
 10	ecuCertTestBrokenChainCert	SYSAD_SEC_ECUCERT_ECUCERT_API;SYSAD_SEC_ECUCERT_ECUCERT_SERVICE	CS.212 第 1 項逐字引該 log（ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY）	high
-11	ecuCertTestSelfSignedChain	SYSAD_SEC_ECUCERT_ECUCERT_API;SYSAD_SEC_ECUCERT_ECUCERT_SERVICE	CS.98 STEPS 逐字	high
+11	ecuCertTestSelfSignedChain	SYSAD_SEC_ECUCERT_ECUCERT_API;SYSAD_SEC_ECUCERT_ECUCERT_SERVICE;SWE1-CertProvider-001	CS.98 STEPS 逐字；SEC-20：CCVR Cert Val CS.98 item 3 之 RD 步驟以該方法驗未受信任鏈（CertProvider-001）	high
 12	secondPartyLevelTwoCertTestNormalFlow	SWE1-CertProvider-004	037 CP-004 列舉 Second Party APKs	high
 13	secondPartyLevelThreeCertATestNormalFlow	SWE1-CertProvider-004	同 12；A/B/C 為 sibling 候選（L3 三種 leaf）	medium
 14	secondPartyLevelThreeCertBTestNormalFlow	SWE1-CertProvider-004	同 13	medium

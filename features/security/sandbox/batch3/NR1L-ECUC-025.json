@@ -1,0 +1,28 @@
+{
+  "req_id": "SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF",
+  "tc_id": "NR1L-ECUC-025",
+  "test_group": "ECU Cert",
+  "test_set": "Certificate Lifecycle",
+  "test_item": "Download certificate.\n(the ECU ID download is provided (document review))",
+  "pre": "1. Access to the RD build environment for ECU Cert is granted",
+  "input": "NA",
+  "proc": "1. <obtain the certificate download interface per RD>\n2. Review the certificate download interface against \"Download ECU ID\"",
+  "er": "1. The certificate download interface is available for review\n2. The certificate download interface satisfies \"Download ECU ID\"",
+  "spec": "CFTS084-4949787\nCFTS084-4949789\nCFTS084-4949790\nCFTS084-4949791\nCFTS084-4949792\nCFTS084-4949793\nCFTS084-4949794\nCFTS084-4949795\nCFTS084-4949796\nCFTS084-4949797\nCFTS084-4949798\nCFTS084-4949799\nCFTS084-4949800\nCFTS084-4949801\nCFTS084-4949803\nCFTS084-4949804\nCFTS084-4949805\nCFTS084-4949806\nCFTS084-4949807\nCFTS084-4949809\nCFTS084-4949810\nCFTS084-4949900\nCFTS084-4949901\nCFTS084-4949903",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "verification: document review (R-SEC23; upstream DR-a/i/r pending)\nsource: 037 SYSAD_SEC_ECUCERT_ECUONLINE_DOWNLOADCERT_INTF Requirement Description and Verification Criteria\nsibling axis: download; rule R-SEC23(b) VC item 2\nchannel_feasible: Y/Y\nSWE ID pending DR-a; Source Requirement ID used per R-SEC3(b)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "placeholders": []
+}

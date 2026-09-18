@@ -846,3 +846,25 @@ R-SEC10(c) amend3  spec_reference 之號 = CFTS084 SYS2 本之 Polarion ObjectID
 （`CFTS_042 … _DeltaAnalysis_Released.xlsx`）`Basic Report` 之 **`SYS2 來源需求項目ID  Source Requirement items`** 欄；
 CFTS084 同名欄（index 7）即取號面。對照表 `data/sys2_objectid_map.tsv`：161 個 `sys_ra_sec` 全數對到 7 位號，`MISSING` 0。
 本條未寫入 `RULINGS.sha.tsv`（GC-16 前禁令），body sha8 乾跑取得。
+
+---
+
+### R-SEC8(f)(amend) — CRL／DCL 之術語與步驟分工（Pei 裁，2026-09-17；SEC-20 §1）
+
+```text
+R-SEC8(f) amend  CRL／DCL：test_item 上半沿 037（CRL）；Procedure 依 RD 實作（CCVR Cert Val CS.98 STEPS 之 DCL JSON 流程逐字）；
+                 Remarks 加 `term: 037 "CRL" = RD-implemented DCL file /vendor/odm/etc/cert_store/dcl.json (CCVR Cert Val CS.98)`。
+                 R-SEC15(a)「同一場景」判準：CS.98 item 2/5~8 之場景 = 撤銷後驗證被拒，與 037 CP-004（非 ECU 撤銷檢查）同場景，可用。
+```
+
+### R-SEC26 — RD 已給可執行步驟者不得留佔位（Pei 裁，2026-09-17；SEC-20 §1）
+
+```text
+R-SEC26  RD 已給可執行步驟者不得留佔位：CCVR 五 sheet 之 Test steps／STEPS 欄凡有 `$` 可執行行者，對應 037 場景之 TC 必須採用；
+         僅資產本身（憑證檔、DCL 檔、chain）仍可為 `<… provided by RD (X-n)>`。
+```
+
+**執行層回報（SEC-20）**：CS.98 item 1／2／3／5~8／10 與 ECU ID CS.165 item 2~6／12 之可執行行全數落地；
+新增 10 sibling（CP 5／ECUCert 5），TC 124 → **134**。CertStore 路徑依 RD 實作改 `/vendor/odm/etc/cert_store`
+（037 之 `/odm` 差異記於各 TC Remarks 之 `path per CCVR Cert Val CS.98 (RD implementation)`）。
+DCL 檔本身仍為資產：不在步驟內寫佔位（R-SEC26 後段），改以 Remarks `asset: X-e — dcl_baseline.json / dcl_revoked*.json …` 記其出處。

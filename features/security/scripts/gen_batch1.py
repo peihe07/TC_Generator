@@ -64,8 +64,14 @@ BVA = "邊界值分析 (Boundary Value Analysis, BVA)"
 ADB_ROOT = "DUT is connected via ADB with root permission (Dev/Eng build)"
 # R-SEC24（SEC-13）：apk 檔名逐字取 CCVR 外部目錄清單（A-33 更正；原值為類名接 .apk 之造值）。
 RUNNER_READY = "Test runner CertProviderAndroidInstrumentalTest.apk is installed"
+# SEC-20（R-SEC26）：CCVR CS.98 之 GIVEN「Prerequisite check」逐字 —— 屬前提而非步驟，故入 Pre-Condition。
+CP_RUNNER_CHECK = ("The test runner is verified with adb shell pm list instrumentation | grep "
+                   "melcocertprovider (if missing run adb install -r -t "
+                   "CertProviderServiceManagerTest.apk)")
 ASSETS = "SecurityAssets/oem-certs/cert-provider/"
-STORE = "/odm/etc/cert_store"
+# R-SEC26／SEC-20：路徑依 RD 實作（CCVR Cert Val CS.98 全項逐字 `/vendor/odm/etc/cert_store/`）；
+# 037 寫 `/odm`，差異記於 Remarks（PATH_ODM_NOTE）。
+STORE = "/vendor/odm/etc/cert_store"
 FQCN = ("com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test"
         ".CertProviderServiceManagerTest")
 RUNNER = ("com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test"
@@ -198,6 +204,75 @@ _KI_CODE = "the KeyInstall code implementation"
 PLURAL_ARTIFACT.update({_CP_BUILD, _CP_SRCLOG, _CP_JAVA, _CP_NATIVE})
 
 
+# ---------------------------------------------------- SEC-20：CCVR 已給之 RD 步驟（逐字）
+# 來源：CCVR v2.7 工作中版（`4e13ee7efbeaf29b`）`Cert Val CS.98` STEPS 欄、`ECU ID CS.165` Test steps 欄。
+CP_RUNNER = ("com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test"
+             ".CertProviderServiceManagerTest#samCertTestNormalFlow "
+             "com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test"
+             "/androidx.test.runner.AndroidJUnitRunner")
+CP_SELFSIGNED = CP_RUNNER.replace("#samCertTestNormalFlow", "#ecuCertTestSelfSignedChain")
+PATH_ODM_NOTE = ("path per CCVR Cert Val CS.98 (RD implementation): 037 /odm/etc/cert_store "
+                 "= RD /vendor/odm/etc/cert_store")
+TERM_DCL_NOTE = ('term: 037 "CRL" = RD-implemented DCL file '
+                 "/vendor/odm/etc/cert_store/dcl.json (CCVR Cert Val CS.98)")
+DCL_ASSET_NOTE = ("asset: X-e — dcl_baseline.json / dcl_revoked*.json are the pre-prepared test "
+                  "assets named in CCVR Cert Val CS.98 GIVEN; the steps themselves are RD-provided")
+
+
+def dcl_flow(dcl_file: str, revoked_er: str) -> list[tuple[str, str, str]]:
+    """CS.98 item 2／5~8 之三段流程（Phase A 基線 → Phase B 撤銷 → Phase C 復原），指令逐字。"""
+    inst = f"$ adb shell am instrument -w -e class {CP_RUNNER}"
+    return [
+        ("Run the baseline verification with the clean DCL in place", inst,
+         'The instrumentation runner reports "OK (1 test)" for samCertTestNormalFlow'),
+        (f"Remount the DUT and push {dcl_file} to the CertStore as dcl.json",
+         "$ adb root && adb remount\n"
+         f"$ adb push {dcl_file} {STORE}/dcl.json\n"
+         f"$ adb shell ls -la {STORE}/",
+         f'The adb shell ls -la {STORE}/ output lists "dcl.json"'),
+        ("Clear the log buffer", "$ adb logcat -c", "The log buffer is cleared"),
+        ("Re-run the verification with the revoked DCL in place", inst, revoked_er),
+        ("Confirm the CertProvider log", '$ adb logcat -d | grep -i "CertProvider"',
+         'The adb logcat -d output contains "ERR_CERT_REVOKED"'),
+        ("Restore the clean baseline DCL and re-run the verification",
+         f"$ adb push dcl_baseline.json {STORE}/dcl.json\n{inst}",
+         'The instrumentation runner reports "OK (1 test)" for samCertTestNormalFlow'),
+    ]
+
+
+def ecu_corrupt_flow(which: str) -> list[tuple[str, str, str]]:
+    """CS.165 item 2~6 之步驟（逐字）：損毀 → push → re-connect／reboot → 確認 log。"""
+    return [
+        (f"Corrupt {which} in file ecu.cacert on the host and push it to the DUT",
+         "$ adb push ecu.cacert /data/misc/ecuidentity/\n"
+         "$ adb push ecu.crt /data/misc/ecuidentity/\n"
+         "$ adb shell ls -l /data/misc/ecuidentity",
+         'The adb shell ls -l /data/misc/ecuidentity output lists "ecu.cacert" and "ecu.crt"'),
+        ("Re-connect any internet or reboot, then confirm the ECU_CERT_SERVICE_FUNCTION_ID log",
+         "$ adb reboot\n$ adb logcat -s ECU_CERT_SERVICE_FUNCTION_ID",
+         "The adb logcat -s ECU_CERT_SERVICE_FUNCTION_ID output contains "
+         '"ECU_INSTALLATION_STATUS value : 2 -> 1"'),
+    ]
+
+
+REVOKED_ER = ('The instrumentation runner reports FAILURES!!! with '
+              '"expected:<OK> but was:<ERR_CERT_REVOKED>"')
+# CS.98 item 1／10 之 CertStore 盤點（THEN 逐字）
+def store_inventory() -> list[tuple[str, str, str]]:
+    return [
+        ("List the pre-installed CertStore directory structure and DCL file on the device",
+         f"$ adb shell ls -la {STORE}/",
+         f'The adb shell ls -la {STORE}/ output lists "cfgs/", "oem_cert_tree/", '
+         '"ecu_chain/" and "dcl.json"'),
+        ("List the configuration files and certificate sub-folders",
+         f"$ adb shell ls -la {STORE}/cfgs/\n"
+         f"$ adb shell ls -la {STORE}/oem_cert_tree/\n"
+         f"$ adb shell ls -la {STORE}/ecu_chain/",
+         f'The adb shell ls -la {STORE}/cfgs/ output lists "2nd_party.cfg", "sam.cfg" '
+         'and "ecu.cfg"'),
+    ]
+
+
 # ------------------------------------------- 逐 sibling 之步驟（key = swe1_id|sibling_no）
 LOGDOG_PEND = "X-h log keyword"
 STEPS: dict[str, list] = {
@@ -206,6 +281,14 @@ STEPS: dict[str, list] = {
           "The adb logcat -s MelcoCertProviderTest output contains no error entry for the leaf certificate")],
  "SWE1-CertProvider-001|2": [ssl_verify(False), apk("fotaMcpuCertTestBrokenCert"),
    logcat("MelcoCertProviderTest", f"PENDING: {LOGDOG_PEND}")],
+ # SEC-20：CS.98 item 3（未受信任／自簽鏈被拒），指令逐字
+ "SWE1-CertProvider-001|3": [
+   ("Clear the log buffer", "$ adb logcat -c", "The log buffer is cleared"),
+   ("Trigger verification of an untrusted / self-signed certificate chain",
+    f"$ adb shell am instrument -w -e class {CP_SELFSIGNED}",
+    'The instrumentation runner reports "OK (1 test)" for ecuCertTestSelfSignedChain'),
+   ("Confirm the CertProvider log", '$ adb logcat -d | grep -i "CertProvider"',
+    'The adb logcat -d output contains "ERR_DEPTH_ZERO_SELF_SIGNED_CERT"')],
  "SWE1-CertProvider-002|1": [
    ssl_x509("Subject field", 'The openssl x509 output shows a "Subject:" line identical to the subject name in '
             + ASSETS + "{TYPE}/cfgs/"),
@@ -222,9 +305,15 @@ STEPS: dict[str, list] = {
    ssl_x509("Issuer field", 'The openssl x509 output shows an "Issuer:" line that is not identical to the issuer name in '
             + ASSETS + "{TYPE}/cfgs/"),
    ssl_verify(True), pend("X-e wrong-issuer certificate + trigger", LOGDOG_PEND)],
+ # SEC-20：CS.98 item 2（DCL 撤銷 → 驗證被拒 → 復原），指令逐字；資產（DCL 檔）記於 Remarks
  "SWE1-CertProvider-004|1": [
    ls(STORE, f'The adb shell ls -l {STORE} output lists "CRL.r0"'),
-   pend("X-e revoked certificate + trigger", LOGDOG_PEND)],
+   *dcl_flow("dcl_revoked.json", REVOKED_ER)],
+ # CS.98 item 5~8：撤銷層級 L3／L2／L1／L0（item 5 之檔名逐字為 dcl_revoked.json）
+ "SWE1-CertProvider-004|3": dcl_flow("dcl_revoked.json", REVOKED_ER),
+ "SWE1-CertProvider-004|4": dcl_flow("dcl_revoked_l2.json", REVOKED_ER),
+ "SWE1-CertProvider-004|5": dcl_flow("dcl_revoked_l1.json", REVOKED_ER),
+ "SWE1-CertProvider-004|6": dcl_flow("dcl_revoked_l0.json", REVOKED_ER),
  "SWE1-CertProvider-004|2": [
    ("Run the OpenSSL chain verification with the local revocation list on the host",
     "$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem "
@@ -238,8 +327,10 @@ STEPS: dict[str, list] = {
  "SWE1-CertProvider-006|3": [doc_obtain(_CP_ONSTART), doc_review(_CP_ONSTART, "It must return START_STICKY", "satisfies")],
  "SWE1-CertProvider-006|4": [doc_obtain(_CP_SCAN), doc_review(_CP_SCAN, "The module must be free of vulnerabilities listed in CWE/SANS Top 25 and OWASP Top 10", "satisfies")],
  "SWE1-CertProvider-007|1": [
+   *store_inventory(),                                     # SEC-20：CS.98 item 1
    ls(STORE, f'The adb shell ls -l {STORE} output lists the trusted certificate chain files')],
  "SWE1-CertProvider-007|2": [
+   *store_inventory(),                                     # SEC-20：CS.98 item 1
    ls(STORE, f'The adb shell ls -l {STORE} output lists the trusted certificate chain files'),
    ssl_verify(True),
    pend("X-e valid leaf certificate + trigger", LOGDOG_PEND)],
@@ -256,9 +347,11 @@ STEPS: dict[str, list] = {
               "verification"),
    logcat("Logdog", f"PENDING: {LOGDOG_PEND}")],
  "SWE1-CertProvider-009|1": [
+   *store_inventory(),                                     # SEC-20：CS.98 item 10
    ls(STORE, f'The adb shell ls -l {STORE} output lists the Development certificate chain'),
    ssl_verify(True)],
  "SWE1-CertProvider-009|2": [
+   *store_inventory(),                                     # SEC-20：CS.98 item 10
    ls(STORE, f'The adb shell ls -l {STORE} output lists the Product certificate chain'),
    pend("X-c NR1L production certificate + trigger", LOGDOG_PEND)],
  "SWE1-CertProvider-010|1": [apk("fotaMcpuCertVerifyStressTest"),
@@ -320,21 +413,18 @@ STEPS: dict[str, list] = {
    logcat("ECU_CERT_SERVICE_FUNCTION_ID",
           "The adb logcat -s ECU_CERT_SERVICE_FUNCTION_ID output contains "
           '"ECU_INSTALLATION_STATUS value : 2 -> 1"')],
- "SYSAD_SEC_ECUCERT_ECUCERT_API|2": [
-   ("Corrupt CERT 0 in ecu.cacert on the host and push it to the DUT",
-    "$ adb push ecu.cacert /data/misc/ecuidentity/",
-    "PENDING: X-d ECU certificate chain for the DUT serial number + trigger"),
-   logcat("ECU_CERT_SERVICE_FUNCTION_ID",
-          "The adb logcat -s ECU_CERT_SERVICE_FUNCTION_ID output contains "
-          '"ECU_INSTALLATION_STATUS value : 2 -> 1"')],
+ "SYSAD_SEC_ECUCERT_ECUCERT_API|2": ecu_corrupt_flow("CERT 0"),
+ # SEC-20：CS.165 item 3~6（corrupt CERT 0,1／0,2／1／2），步驟同 item 2（"refer step 2~3 in item 2"）
+ "SYSAD_SEC_ECUCERT_ECUCERT_API|3": ecu_corrupt_flow("CERT 0, 1"),
+ "SYSAD_SEC_ECUCERT_ECUCERT_API|4": ecu_corrupt_flow("CERT 0, 2"),
+ "SYSAD_SEC_ECUCERT_ECUCERT_API|5": ecu_corrupt_flow("CERT 1"),
+ "SYSAD_SEC_ECUCERT_ECUCERT_API|6": ecu_corrupt_flow("CERT 2"),
  "SYSAD_SEC_ECUCERT_ECUCERT_SERVICE|1": [
    ("Read the ECU certificate status file on the DUT",
     "$ adb shell od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus",
     "The adb shell od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus output shows the status value")],
  "SYSAD_SEC_ECUCERT_ECUCERT_SERVICE|2": [
-   ("Corrupt CERT 0 in ecu.cacert on the host and push it to the DUT",
-    "$ adb push ecu.cacert /data/misc/ecuidentity/",
-    "PENDING: X-d ECU certificate chain for the DUT serial number + trigger"),
+   *ecu_corrupt_flow("CERT 0")[:2],                         # SEC-20：CS.165 item 2 之步驟 1~2
    ("Read the ECU certificate status file on the DUT",
     "$ adb shell od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus",
     "The adb shell od -t x1 /mnt/vendor/oemkeys/ecu/state/ecucertstatus output shows the status value")],
@@ -350,6 +440,12 @@ STEPS: dict[str, list] = {
    pend("X-d ECU certificate chain for the DUT serial number + trigger")],
  "SYSAD_SEC_ECUCERT_DEALER|1": [pend("X-k Dealer App access to the DUT")],
  "SYSAD_SEC_ECUCERT_DEALER|2": [pend("X-k Dealer App access to the DUT")],
+ # SEC-20：CS.165 item 12 case 2（production：dealer mode 匯出 CSR；觸發無 RD 指令，仍為 X-k 佔位）
+ "SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF|2": [
+   pend("X-k Dealer App access to the DUT"),
+   ("Run the OpenSSL signature check on the exported CSR on the host",
+    "$ openssl req -in ecu.crt -noout -verify",
+    'The openssl command prints "verify OK" on stdout')],
  "SYSAD_SEC_ECUCERT_ECUCERT_SRV_EXPORTCSR_INTF|1": [
    uds("DiagnosticSessionControl for the SystemSupplierSpecific session", "10 60", "50 60"),
    uds("ReadDataByIdentifier for DID 2965 (CSR Read)", "22 29 65",
@@ -438,21 +534,21 @@ if not SEC08:          # 重建 v03：X-i 仍為 PENDING（R-SEC20 之前）
     DOC_REVIEW.clear()
 
 PRE: dict[str, list[str]] = {
- "SWE1-CertProvider-001": [ADB_ROOT, RUNNER_READY, _CP_ASSET],
- "SWE1-CertProvider-002": [ADB_ROOT, RUNNER_READY, "SAM Dongle is inserted into the DUT",
+ "SWE1-CertProvider-001": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK, _CP_ASSET],
+ "SWE1-CertProvider-002": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK, "SAM Dongle is inserted into the DUT",
                            "Configuration files are available under " + ASSETS + "{TYPE}/cfgs/"],
- "SWE1-CertProvider-003": [ADB_ROOT, RUNNER_READY, "SAM Dongle is inserted into the DUT",
+ "SWE1-CertProvider-003": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK, "SAM Dongle is inserted into the DUT",
                            "Configuration files are available under " + ASSETS + "{TYPE}/cfgs/"],
- "SWE1-CertProvider-004": [ADB_ROOT, RUNNER_READY,
+ "SWE1-CertProvider-004": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK,
                            'A revocation list "CRL.r0" is preinstalled in the /odm partition', _CP_ASSET],
  "SWE1-CertProvider-005": [ADB_ROOT, "The DUT has network access",
                            "An ECU certificate carrying a valid revocation distribution point is available"],
  "SWE1-CertProvider-006": [ADB_ROOT, "The Cert Provider source code and build environment are available"],
- "SWE1-CertProvider-007": [ADB_ROOT, RUNNER_READY, _CP_ASSET],
- "SWE1-CertProvider-008": [ADB_ROOT, RUNNER_READY, _CP_ASSET],
- "SWE1-CertProvider-009": [ADB_ROOT, RUNNER_READY, _CP_ASSET],
- "SWE1-CertProvider-010": [ADB_ROOT, RUNNER_READY, _CP_ASSET],
- "SWE1-CertProvider-011": [ADB_ROOT, RUNNER_READY, _CP_ASSET],
+ "SWE1-CertProvider-007": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK, _CP_ASSET],
+ "SWE1-CertProvider-008": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK, _CP_ASSET],
+ "SWE1-CertProvider-009": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK, _CP_ASSET],
+ "SWE1-CertProvider-010": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK, _CP_ASSET],
+ "SWE1-CertProvider-011": [ADB_ROOT, RUNNER_READY, CP_RUNNER_CHECK, _CP_ASSET],
  "SWE1-KeyInsyall-001": [ADB_ROOT, "A USB drive containing valid platform keys is inserted into the HU USB port"],
  "SWE1-KeyInsyall-002": [ADB_ROOT, "A USB drive containing not valid private keys has been inserted into the HU USB port"],
  "SWE1-KeyInsyall-003": [ADB_ROOT, "A USB drive containing non-platform raw keys has been inserted into the HU USB port"],
@@ -726,6 +822,10 @@ def main() -> int:
                                          or swe1 in SCOPE_ALL_SIBLINGS):
             remarks.append(SCOPE_NOTE)                           # R-SEC22(b)
         blob = "\n".join(proc) + "\n" + "\n".join(er)          # A-SEC-16（SEC-16 §4）
+        if STORE in blob:                                        # SEC-20（R-SEC26）
+            remarks.append(PATH_ODM_NOTE)
+        if "dcl.json" in blob:
+            remarks += [TERM_DCL_NOTE, DCL_ASSET_NOTE]
         if group == "ECU Cert" and any(m in blob for m in PATH_MARKERS):
             remarks.append(PATH_NOTE)
         if group == "Cert Provider" and "/odm/etc/cert_store" in blob:

@@ -1,6 +1,6 @@
 {
   "req_id": "SYSAD_SEC_ECUCERT_ECUONLINE_BINDER",
-  "tc_id": "NR1L-ECUC-016",
+  "tc_id": "NR1L-ECUC-021",
   "test_group": "ECU Cert",
   "test_set": "Internal Interfaces",
   "test_item": "The system provide an AIDL interface for communication between ECUOnlineServiceManager and ECUOnlineService.\n(the client communicates with the service through the binder (document review))",

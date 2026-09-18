@@ -1,0 +1,47 @@
+{
+  "req_id": "SWE1-CertProvider-009",
+  "tc_id": "NR1L-CP-025",
+  "test_group": "Cert Provider",
+  "test_set": "Trust Store",
+  "test_item": "The Cert Provider feature shall be able to switch verification configurations between the development version software and the product version software.\n(Product configuration; the matching certificate chain is deployed)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. The test runner is verified with adb shell pm list instrumentation | grep melcocertprovider (if missing run adb install -r -t CertProviderServiceManagerTest.apk)\n4. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
+  "input": "NA",
+  "proc": "1. List the pre-installed CertStore directory structure and DCL file on the device\n$ adb shell ls -la /vendor/odm/etc/cert_store/\n2. List the configuration files and certificate sub-folders\n$ adb shell ls -la /vendor/odm/etc/cert_store/cfgs/\n$ adb shell ls -la /vendor/odm/etc/cert_store/oem_cert_tree/\n$ adb shell ls -la /vendor/odm/etc/cert_store/ecu_chain/\n3. Confirm the content of /vendor/odm/etc/cert_store on the DUT\n$ adb shell ls -l /vendor/odm/etc/cert_store\n4. <DUT-side trigger for NR1L production certificate provided by STLA (X-c)>\n$ <command provided by STLA (X-c)>",
+  "er": "1. The adb shell ls -la /vendor/odm/etc/cert_store/ output lists \"cfgs/\", \"oem_cert_tree/\", \"ecu_chain/\" and \"dcl.json\"\n2. The adb shell ls -la /vendor/odm/etc/cert_store/cfgs/ output lists \"2nd_party.cfg\", \"sam.cfg\" and \"ecu.cfg\"\n3. The adb shell ls -l /vendor/odm/etc/cert_store output lists the Product certificate chain\n4. <log keyword provided by RD (X-h)>",
+  "spec": "CFTS084-4949379\nCFTS084-4949380\nCFTS084-4949381\nCFTS084-4949382\nCFTS084-4949384\nCFTS084-4949579\nCFTS084-4949580\nCFTS084-4949588\nCFTS084-4949594\nCFTS084-4949680\nCFTS084-4949682\nCFTS084-4949746\nCFTS084-4949747\nCFTS084-4949748\nCFTS084-4949749\nCFTS084-4949750\nCFTS084-4949751\nCFTS084-4949752\nCFTS084-4949756\nCFTS084-4949757\nCFTS084-4949763\nCFTS084-4949771\nCFTS084-4949772\nCFTS084-4949774\nCFTS084-4949775\nCFTS084-4949776\nCFTS084-4949777\nCFTS084-4949778\nCFTS084-4949779\nCFTS084-4949780\nCFTS084-4949781\nCFTS084-4949782\nCFTS084-4949783",
+  "tc_ref": "NEW",
+  "priority": "P1",
+  "design": "功能測試 (Functional based ; no specific technique)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-009 Requirement Description and Verification Criteria\nPolarion: NRL-349392\nsibling axis: configuration version; rule 1,2 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-c — 4. PENDING: X-c NR1L production certificate + trigger\nasset: X-h — 4. PENDING: X-h log keyword\nconflict: 543/546 vs 226; 517 vs 520 — root & CA lifecycle; unresolved per CCVR Mapping notes row 12\npath per CCVR Cert Val CS.98 (RD implementation): 037 /odm/etc/cert_store = RD /vendor/odm/etc/cert_store\nterm: 037 \"CRL\" = RD-implemented DCL file /vendor/odm/etc/cert_store/dcl.json (CCVR Cert Val CS.98)\nasset: X-e — dcl_baseline.json / dcl_revoked*.json are the pre-prepared test assets named in CCVR Cert Val CS.98 GIVEN; the steps themselves are RD-provided\nL0 chain path per CCVR note 20260915: /odm/etc/cert_store/ecu_chain — confirm (A-SEC-16)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "placeholders": [
+    {
+      "field": "proc",
+      "line": 7,
+      "x_token": "X-c",
+      "original_pending": "4. PENDING: X-c NR1L production certificate + trigger",
+      "placeholder": "4. <DUT-side trigger for NR1L production certificate provided by STLA (X-c)>",
+      "kind": "trigger",
+      "converted_to": "4. <DUT-side trigger for NR1L production certificate provided by STLA (X-c)> ⏎ $ <command provided by STLA (X-c)>"
+    },
+    {
+      "field": "er",
+      "line": 4,
+      "x_token": "X-h",
+      "original_pending": "4. PENDING: X-h log keyword",
+      "placeholder": "4. <log keyword provided by RD (X-h)>",
+      "kind": "value",
+      "converted_to": "4. <log keyword provided by RD (X-h)>"
+    }
+  ]
+}

@@ -1,20 +1,20 @@
 {
-  "req_id": "SWE1-CertProvider-004",
+  "req_id": "SWE1-CertProvider-003",
   "tc_id": "NR1L-CP-007",
   "test_group": "Cert Provider",
-  "test_set": "Revocation",
-  "test_item": "For non-ECU verification scenarios (e.g., SAM, FOTA, Second Party APKs), the system shall perform revocation checks using Certificate Revocation Lists (CRL) preinstalled in the secure storage of the /odm partition.\n(certificate listed in the local revocation list; certificate is rejected)",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. A revocation list \"CRL.r0\" is preinstalled in the /odm partition\n4. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
+  "test_set": "Field Matching",
+  "test_item": "The Cert Provider feature shall verify that the Issuer field of the leaf certificate matches the expected value defined in the configuration.\n(issuer name not identical to the configuration; certificate is rejected)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. The test runner is verified with adb shell pm list instrumentation | grep melcocertprovider (if missing run adb install -r -t CertProviderServiceManagerTest.apk)\n4. SAM Dongle is inserted into the DUT\n5. Configuration files are available under SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/",
   "input": "NA",
-  "proc": "1. Confirm the content of /odm/etc/cert_store on the DUT\n$ adb shell ls -l /odm/etc/cert_store\n2. <DUT-side trigger for revoked certificate provided by RD (X-e)>\n$ <command provided by RD (X-e)>",
-  "er": "1. The adb shell ls -l /odm/etc/cert_store output lists \"CRL.r0\"\n2. <log keyword provided by RD (X-h)>",
+  "proc": "1. Read the Issuer field of the certificate on the host\n$ openssl x509 -in leaf.crt -text\n2. Run the OpenSSL chain verification of the certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. <DUT-side trigger for wrong-issuer certificate provided by RD (X-e)>\n$ <command provided by RD (X-e)>",
+  "er": "1. The openssl x509 output shows an \"Issuer:\" line that is not identical to the issuer name in SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/\n2. The openssl command prints \"SAMcert.pem: OK\" on stdout\n3. <log keyword provided by RD (X-h)>",
   "spec": "CFTS084-4949587\nCFTS084-4949588\nCFTS084-4949594\nCFTS084-4949595\nCFTS084-4949596\nCFTS084-4949680\nCFTS084-4949681\nCFTS084-4949682\nCFTS084-4949759\nCFTS084-4949760\nCFTS084-4949761\nCFTS084-4949762",
   "tc_ref": "NEW",
-  "priority": "P0",
+  "priority": "P1",
   "design": "負向測試 (Negative / Invalid)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-004 Requirement Description and Verification Criteria\nPolarion: NRL-349387\nsibling axis: revocation outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-e — 2. PENDING: X-e revoked certificate + trigger\nasset: X-h — 2. PENDING: X-h log keyword\nconflict: 529/383/532/539 — DCL not deployed; unresolved per CCVR Mapping notes row 10\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)\nL0 chain path per CCVR note 20260915: /odm/etc/cert_store/ecu_chain — confirm (A-SEC-16)",
+  "remarks": "source: 037 SWE1-CertProvider-003 Requirement Description and Verification Criteria\nPolarion: NRL-349386\nsibling axis: issuer match; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-e — 3. PENDING: X-e wrong-issuer certificate + trigger\nasset: X-h — 3. PENDING: X-h log keyword\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -27,21 +27,21 @@
   "placeholders": [
     {
       "field": "proc",
-      "line": 3,
+      "line": 5,
       "x_token": "X-e",
-      "original_pending": "2. PENDING: X-e revoked certificate + trigger",
-      "placeholder": "2. <DUT-side trigger for revoked certificate provided by RD (X-e)>",
+      "original_pending": "3. PENDING: X-e wrong-issuer certificate + trigger",
+      "placeholder": "3. <DUT-side trigger for wrong-issuer certificate provided by RD (X-e)>",
       "kind": "trigger",
-      "converted_to": "2. <DUT-side trigger for revoked certificate provided by RD (X-e)> ⏎ $ <command provided by RD (X-e)>"
+      "converted_to": "3. <DUT-side trigger for wrong-issuer certificate provided by RD (X-e)> ⏎ $ <command provided by RD (X-e)>"
     },
     {
       "field": "er",
-      "line": 2,
+      "line": 3,
       "x_token": "X-h",
-      "original_pending": "2. PENDING: X-h log keyword",
-      "placeholder": "2. <log keyword provided by RD (X-h)>",
+      "original_pending": "3. PENDING: X-h log keyword",
+      "placeholder": "3. <log keyword provided by RD (X-h)>",
       "kind": "value",
-      "converted_to": "2. <log keyword provided by RD (X-h)>"
+      "converted_to": "3. <log keyword provided by RD (X-h)>"
     }
   ]
 }

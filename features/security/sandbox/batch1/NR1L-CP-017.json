@@ -1,20 +1,20 @@
 {
-  "req_id": "SWE1-CertProvider-008",
+  "req_id": "SWE1-CertProvider-006",
   "tc_id": "NR1L-CP-017",
   "test_group": "Cert Provider",
-  "test_set": "Client Interface",
-  "test_item": "The Cert Provider feature shall provide standardized client interfaces to support both Java and Native clients.\n(Java client invokes the Binder interface for certificate validation (document review + log observation))",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/\n4. Access to the RD build environment for Cert Provider is granted",
+  "test_set": "Service Robustness",
+  "test_item": "The Cert Provider feature shall adhere to the Android Application Development Guidelines and Common Platform System Design.\n(logs follow the Logdog error-level policy (document review))",
+  "pre": "1. Access to the RD build environment for Cert Provider is granted",
   "input": "NA",
-  "proc": "1. <obtain the source code and dependency graph of the Java clients per RD>\n2. Review the source code and dependency graph of the Java clients against \"Verify they link against and invoke the CertProvider Binder interface for certificate validation\"\n3. Confirm the Logdog log after the previous step\n$ adb logcat -s Logdog",
-  "er": "1. The source code and dependency graph of the Java clients are available for review\n2. The source code and dependency graph of the Java clients satisfy \"Verify they link against and invoke the CertProvider Binder interface for certificate validation\"\n3. <log keyword provided by RD (X-h)>",
-  "spec": "CFTS084-4949587\nCFTS084-4949588\nCFTS084-4949594\nCFTS084-4949680\nCFTS084-4949681\nCFTS084-4949682",
+  "proc": "1. <obtain the Cert Provider source code and logs per RD>\n2. Review the Cert Provider source code and logs against \"logs must align with Logdog requirements (Error-level only for defects)\"",
+  "er": "1. The Cert Provider source code and logs are available for review\n2. The Cert Provider source code and logs satisfy \"logs must align with Logdog requirements (Error-level only for defects)\"",
+  "spec": "CFTS084-4949587\nCFTS084-4949588\nCFTS084-4949594\nCFTS084-4949595\nCFTS084-4949596\nCFTS084-4949680\nCFTS084-4949681\nCFTS084-4949682\nCFTS084-4949759\nCFTS084-4949760\nCFTS084-4949761\nCFTS084-4949762",
   "tc_ref": "NEW",
-  "priority": "P1",
+  "priority": "P2",
   "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "verification: document review (R-SEC20)\nPolarion: NRL-349391\nsource: 037 SWE1-CertProvider-008 Requirement Description and Verification Criteria\nasset: X-i — closed by R-SEC20 (document review; no source/build-environment asset required)\nsibling axis: client type; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-h — 3. PENDING: X-h log keyword",
+  "remarks": "verification: document review (R-SEC20)\nPolarion: NRL-349389\nsource: 037 SWE1-CertProvider-006 Requirement Description and Verification Criteria\nasset: X-i — closed by R-SEC20 (document review; no source/build-environment asset required)\nsibling axis: logging policy; rule 1 of SEC-04 4.2\nchannel_feasible: Y/Y",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -24,15 +24,5 @@
     "Toro(2261)": "1",
     "Fastack (376)": "1"
   },
-  "placeholders": [
-    {
-      "field": "er",
-      "line": 3,
-      "x_token": "X-h",
-      "original_pending": "3. PENDING: X-h log keyword",
-      "placeholder": "3. <log keyword provided by RD (X-h)>",
-      "kind": "value",
-      "converted_to": "3. <log keyword provided by RD (X-h)>"
-    }
-  ]
+  "placeholders": []
 }

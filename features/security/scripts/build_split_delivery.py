@@ -64,7 +64,10 @@ def main() -> int:
     for d in ("batch1", "batch2", "batch3"):
         for f in sorted((SB / d).glob("NR1L-*.json")):
             tcs.append(json.loads(f.read_text(encoding="utf-8")))
-    assert len(tcs) == 124, len(tcs)
+    # TC 總數以 `coverage.tsv` 之 tc_count 合計為準（SEC-20 起 134；原硬編 124）
+    cov_total = sum(int(r["tc_count"]) for r in csv.DictReader(
+        (DATA / "coverage.tsv").open(encoding="utf-8"), delimiter="\t"))
+    assert len(tcs) == cov_total, f"JSON {len(tcs)} 筆 vs coverage 合計 {cov_total}"
 
     # 排序鍵：(037 本序, swe1_seq, 舊 TC 號)  —— 同 SWE1 內之舊號序即 sibling_no 序
     def key(t: dict):
@@ -130,7 +133,8 @@ def main() -> int:
     print(f"  {'_all':14s} {len(tcs):3d} TC → {all_out.relative_to(ROOT)}")
 
     # ---- id_map ----
-    with (DATA / "id_map_v08_v09.tsv").open("w", newline="", encoding="utf-8") as fh:
+    map_name = os.environ.get("ID_MAP", "id_map_v08_v09.tsv")
+    with (DATA / map_name).open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, delimiter="\t")
         w.writerow(["old_id", "new_id", "swe1_id", "workbook"])
         for t in sorted(tcs, key=lambda x: x["tc_id"]):

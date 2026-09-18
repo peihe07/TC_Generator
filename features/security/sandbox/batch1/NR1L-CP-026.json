@@ -1,0 +1,28 @@
+{
+  "req_id": "SWE1-CertProvider-010",
+  "tc_id": "NR1L-CP-026",
+  "test_group": "Cert Provider",
+  "test_set": "Service Robustness",
+  "test_item": "The Cert Provider feature shall operate within the following resource and performance constraints:\n(resource usage stays within the estimated limits during repeated verification)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. The test runner is verified with adb shell pm list instrumentation | grep melcocertprovider (if missing run adb install -r -t CertProviderServiceManagerTest.apk)\n4. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
+  "input": "NA",
+  "proc": "1. Run the Cert Provider instrumentation test for fotaMcpuCertVerifyStressTest\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#fotaMcpuCertVerifyStressTest com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner\n2. Read the process resource usage on the DUT\n$ adb shell procrank",
+  "er": "1. The instrumentation runner reports \"OK (1 test)\" for fotaMcpuCertVerifyStressTest\n2. The adb shell procrank output shows the Cert Provider RAM usage within the stated limit",
+  "spec": "CFTS084-4949587\nCFTS084-4949588\nCFTS084-4949594\nCFTS084-4949595\nCFTS084-4949596\nCFTS084-4949680\nCFTS084-4949681\nCFTS084-4949682\nCFTS084-4949759\nCFTS084-4949760\nCFTS084-4949761\nCFTS084-4949762",
+  "tc_ref": "NEW",
+  "priority": "P2",
+  "design": "基礎故障注入 (Fault Injection Lite)",
+  "fs": "No",
+  "author": "PeiPYHsu",
+  "remarks": "source: 037 SWE1-CertProvider-010 Requirement Description and Verification Criteria\nPolarion: NRL-349393\nsibling axis: resource consumption; rule 1,4 of SEC-04 4.2\nchannel_feasible: Y/Y\napk pairing: fotaMcpuCertVerifyStressTest (apk_pairing.tsv)",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "placeholders": []
+}

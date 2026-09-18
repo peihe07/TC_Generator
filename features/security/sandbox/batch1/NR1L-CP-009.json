@@ -1,20 +1,20 @@
 {
-  "req_id": "SWE1-CertProvider-005",
+  "req_id": "SWE1-CertProvider-004",
   "tc_id": "NR1L-CP-009",
   "test_group": "Cert Provider",
   "test_set": "Revocation",
-  "test_item": "For ECU verification scenarios, the system shall dynamically retrieve the CRL from the Distribution Point (CDP) URL(s) defined within the target certificate.\n(certificate revoked at the distribution point; certificate is rejected)",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. The DUT has network access\n3. An ECU certificate carrying a valid revocation distribution point is available",
+  "test_item": "For non-ECU verification scenarios (e.g., SAM, FOTA, Second Party APKs), the system shall perform revocation checks using Certificate Revocation Lists (CRL) preinstalled in the secure storage of the /odm partition.\n(OpenSSL verification with the local revocation list on the host)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. The test runner is verified with adb shell pm list instrumentation | grep melcocertprovider (if missing run adb install -r -t CertProviderServiceManagerTest.apk)\n4. A revocation list \"CRL.r0\" is preinstalled in the /odm partition\n5. Certificate assets are available under SecurityAssets/oem-certs/cert-provider/",
   "input": "NA",
-  "proc": "1. <DUT-side trigger for revoked certificate at the distribution point provided by RD (X-e)>\n$ <command provided by RD (X-e)>",
-  "er": "1. <log keyword provided by RD (X-h)>",
+  "proc": "1. Run the OpenSSL chain verification with the local revocation list on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem -untrusted CRL.pem SAMcert.pem",
+  "er": "1. The openssl command prints \"certificate revoked\" on stdout",
   "spec": "CFTS084-4949587\nCFTS084-4949588\nCFTS084-4949594\nCFTS084-4949595\nCFTS084-4949596\nCFTS084-4949680\nCFTS084-4949681\nCFTS084-4949682\nCFTS084-4949759\nCFTS084-4949760\nCFTS084-4949761\nCFTS084-4949762",
   "tc_ref": "NEW",
   "priority": "P0",
-  "design": "負向測試 (Negative / Invalid)",
+  "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-005 Requirement Description and Verification Criteria\nPolarion: NRL-349388\nsibling axis: revocation outcome; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/Y\nasset: X-e — 1. PENDING: X-e revoked certificate at the distribution point + trigger\nasset: X-h — 1. PENDING: X-h log keyword\nconflict: 529/383/532/539 — DCL not deployed; unresolved per CCVR Mapping notes row 10\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)",
+  "remarks": "source: 037 SWE1-CertProvider-004 Requirement Description and Verification Criteria\nPolarion: NRL-349387\nsibling axis: verification path; rule 1 of SEC-04 4.2\nchannel_feasible: Y/Y\nconflict: 529/383/532/539 — DCL not deployed; unresolved per CCVR Mapping notes row 10\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -24,24 +24,5 @@
     "Toro(2261)": "1",
     "Fastack (376)": "1"
   },
-  "placeholders": [
-    {
-      "field": "proc",
-      "line": 1,
-      "x_token": "X-e",
-      "original_pending": "1. PENDING: X-e revoked certificate at the distribution point + trigger",
-      "placeholder": "1. <DUT-side trigger for revoked certificate at the distribution point provided by RD (X-e)>",
-      "kind": "trigger",
-      "converted_to": "1. <DUT-side trigger for revoked certificate at the distribution point provided by RD (X-e)> ⏎ $ <command provided by RD (X-e)>"
-    },
-    {
-      "field": "er",
-      "line": 1,
-      "x_token": "X-h",
-      "original_pending": "1. PENDING: X-h log keyword",
-      "placeholder": "1. <log keyword provided by RD (X-h)>",
-      "kind": "value",
-      "converted_to": "1. <log keyword provided by RD (X-h)>"
-    }
-  ]
+  "placeholders": []
 }

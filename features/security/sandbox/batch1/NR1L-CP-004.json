@@ -3,18 +3,18 @@
   "tc_id": "NR1L-CP-004",
   "test_group": "Cert Provider",
   "test_set": "Field Matching",
-  "test_item": "The Cert Provider feature shall verify that the Subject field of the leaf certificate matches the expected value defined in the configuration or provided dynamically.\n(subject name not identical to the configuration; certificate is rejected)",
-  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. SAM Dongle is inserted into the DUT\n4. Configuration files are available under SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/",
+  "test_item": "The Cert Provider feature shall verify that the Subject field of the leaf certificate matches the expected value defined in the configuration or provided dynamically.\n(subject name identical to the configuration; certificate is accepted)",
+  "pre": "1. DUT is connected via ADB with root permission (Dev/Eng build)\n2. Test runner CertProviderAndroidInstrumentalTest.apk is installed\n3. The test runner is verified with adb shell pm list instrumentation | grep melcocertprovider (if missing run adb install -r -t CertProviderServiceManagerTest.apk)\n4. SAM Dongle is inserted into the DUT\n5. Configuration files are available under SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/",
   "input": "NA",
-  "proc": "1. Read the Subject field of the certificate on the host\n$ openssl x509 -in leaf.crt -text\n2. Run the OpenSSL chain verification of the certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. <DUT-side trigger for wrong-subject certificate provided by RD (X-e)>\n$ <command provided by RD (X-e)>",
-  "er": "1. The openssl x509 output shows a \"Subject:\" line that is not identical to the subject name in SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/\n2. The openssl command prints \"SAMcert.pem: OK\" on stdout\n3. <log keyword provided by RD (X-h)>",
+  "proc": "1. Read the Subject field of the certificate on the host\n$ openssl x509 -in leaf.crt -text\n2. Run the OpenSSL chain verification of the certificate on the host\n$ openssl verify -verbose -CAfile RootCert.pem -untrusted L1.pem -untrusted L2.pem -untrusted L3.pem SAMcert.pem\n3. Run the Cert Provider instrumentation test for samCertTestNormalFlow\n$ adb shell am instrument -w -e class com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test.CertProviderServiceManagerTest#samCertTestNormalFlow com.mitsubishielectric.ahu.efw.lib.melcocertprovider.libcertproviderservice.test/androidx.test.runner.AndroidJUnitRunner",
+  "er": "1. The openssl x509 output shows a \"Subject:\" line identical to the subject name in SecurityAssets/oem-certs/cert-provider/{TYPE}/cfgs/\n2. The openssl command prints \"SAMcert.pem: OK\" on stdout\n3. The instrumentation runner reports \"OK (1 test)\" for samCertTestNormalFlow",
   "spec": "CFTS084-4949587\nCFTS084-4949588\nCFTS084-4949594\nCFTS084-4949595\nCFTS084-4949596\nCFTS084-4949680\nCFTS084-4949681\nCFTS084-4949682\nCFTS084-4949759\nCFTS084-4949760\nCFTS084-4949761\nCFTS084-4949762",
   "tc_ref": "NEW",
   "priority": "P1",
-  "design": "負向測試 (Negative / Invalid)",
+  "design": "功能測試 (Functional based ; no specific technique)",
   "fs": "No",
   "author": "PeiPYHsu",
-  "remarks": "source: 037 SWE1-CertProvider-002 Requirement Description and Verification Criteria\nPolarion: NRL-349385\nsibling axis: subject match; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/N\nasset: X-e — 3. PENDING: X-e wrong-subject certificate + trigger\nasset: X-h — 3. PENDING: X-h log keyword\nscope: service-level validation; reprogramming rejection owned by SWDL (CCVR Cert Val CS.98 rationale)",
+  "remarks": "source: 037 SWE1-CertProvider-002 Requirement Description and Verification Criteria\nPolarion: NRL-349385\nsibling axis: subject match; rule 1,3 of SEC-04 4.2\nchannel_feasible: Y/N\napk pairing: samCertTestNormalFlow (apk_pairing.tsv)",
   "vehicle_model": {
     "HDCC27": "1",
     "DT27": "1",
@@ -24,24 +24,5 @@
     "Toro(2261)": "1",
     "Fastack (376)": "1"
   },
-  "placeholders": [
-    {
-      "field": "proc",
-      "line": 5,
-      "x_token": "X-e",
-      "original_pending": "3. PENDING: X-e wrong-subject certificate + trigger",
-      "placeholder": "3. <DUT-side trigger for wrong-subject certificate provided by RD (X-e)>",
-      "kind": "trigger",
-      "converted_to": "3. <DUT-side trigger for wrong-subject certificate provided by RD (X-e)> ⏎ $ <command provided by RD (X-e)>"
-    },
-    {
-      "field": "er",
-      "line": 3,
-      "x_token": "X-h",
-      "original_pending": "3. PENDING: X-h log keyword",
-      "placeholder": "3. <log keyword provided by RD (X-h)>",
-      "kind": "value",
-      "converted_to": "3. <log keyword provided by RD (X-h)>"
-    }
-  ]
+  "placeholders": []
 }

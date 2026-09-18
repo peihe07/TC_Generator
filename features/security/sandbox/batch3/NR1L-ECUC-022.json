@@ -1,6 +1,6 @@
 {
   "req_id": "SYSAD_SEC_ECUCERT_ECUCERT_STORAGE_IO",
-  "tc_id": "NR1L-ECUC-017",
+  "tc_id": "NR1L-ECUC-022",
   "test_group": "ECU Cert",
   "test_set": "Internal Interfaces",
   "test_item": "The system shall access certificates stored in the Cert Store via file paths.\n(the Java types are converted without memory leaks (document review))",

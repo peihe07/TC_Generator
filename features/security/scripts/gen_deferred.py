@@ -30,6 +30,7 @@ btm = importlib.util.module_from_spec(_t)
 _t.loader.exec_module(btm)
 
 DATA = ROOT / "features" / "security" / "data"
+SB = ROOT / "features" / "security" / "sandbox"
 OUT_DIR = ROOT / "features" / "security" / "sandbox" / "batch3"
 VER = os.environ.get("SEC_VER", "v06")
 OUT_XLSX = OUT_DIR / "security_batch3_v01.xlsx"
@@ -37,8 +38,16 @@ OUT_XLSX = OUT_DIR / "security_batch3_v01.xlsx"
 # R-SEC20(d) 之 `<component>`：037 之元件寫法
 COMPONENT = {"libLogEncrypt": "Log Encryption", "SAM": "DebugAuth",
              "SwdlSecureLib": "SwdlSecureLib", "ECUCert": "ECU Cert"}
-# 各組續號之起點（現行末號）
-START_NO = {"Log Encrypt": 3, "ECU Cert": 12, "SWDL Secure Lib": 6, "SAM": 31}
+def start_numbers() -> dict[str, int]:
+    """各組續號之起點 = batch1／batch2 之現行末號（SEC-20：原硬編 12 使 ECUC 與 batch1 撞號）。"""
+    import re as _re
+    mx: dict[str, int] = {}
+    for d in ("batch1", "batch2"):
+        for f in (SB / d).glob("NR1L-*.json"):
+            m = _re.match(r"NR1L-([A-Z]+)-(\d{3})", f.stem)
+            grp = {v: k for k, v in g1.ABBR.items()}[m.group(1)]
+            mx[grp] = max(mx.get(grp, 0), int(m.group(2)))
+    return mx
 
 # (swe1_id, sibling_no, artifact, 037 逐字要件, lower_half, axis, rule)
 PLAN: list[tuple[str, int, str, str, str, str, str]] = [
@@ -160,7 +169,7 @@ def main() -> int:
 
     wb = openpyxl.load_workbook(g1.TEMPLATE)
     ws = wb[g1.SHEET]
-    counter: Counter = Counter(START_NO)
+    counter: Counter = Counter(start_numbers())
     rows = []
     order = [r["swe1_id"] for r in csv.DictReader(
         (DATA / "layer2_assign.tsv").open(encoding="utf-8"), delimiter="\t")]
