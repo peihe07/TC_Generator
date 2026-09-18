@@ -1,0 +1,160 @@
+tc_id	batch	欄／行	原串	改後串	改由
+NR1L-DIAG-006	pilot01	步驟	$ 2F 50 00 <buzzer control tone selection>	$ 2F 50 00 03 <controlState for "buzzer control tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-007	pilot01	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-008	pilot01	步驟	$ 2F 50 00 <out-of-range controlOptionRecord>	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-013	pilot01	步驟	$ 2F 50 0D <incompatible video input>	$ 2F 50 0D 03 <controlState for "incompatible video input">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-057	batch2	步驟	$ 2F 50 00 <buzzer control tone selection>	$ 2F 50 00 03 <controlState for "buzzer control tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-058	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-059	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-062	batch2	步驟	$ 2F 50 00 <tool-controlled tone selection>	$ 2F 50 00 03 <controlState for "tool-controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-063	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-064	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-066	batch2	步驟	$ 2F 50 00 <Tones Off option selection>	$ 2F 50 00 03 <controlState for "Tones Off option">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-067	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-068	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-070	batch2	步驟	$ 2F 50 00 <7 kHz Tool controlled tone selection>	$ 2F 50 00 03 <controlState for "7 kHz Tool controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-071	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-072	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-074	batch2	步驟	$ 2F 50 00 <7 kHz Radio controlled tone selection>	$ 2F 50 00 03 <controlState for "7 kHz Radio controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-075	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-076	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-078	batch2	步驟	$ 2F 50 00 <60 Hz Tool controlled tone selection>	$ 2F 50 00 03 <controlState for "60 Hz Tool controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-079	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-080	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-082	batch2	步驟	$ 2F 50 00 <60 Hz Radio controlled tone selection>	$ 2F 50 00 03 <controlState for "60 Hz Radio controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-083	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-084	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-086	batch2	步驟	$ 2F 50 00 <200 Hz, 120 mV tone - Tool controlled tone selection>	$ 2F 50 00 03 <controlState for "200 Hz, 120 mV tone - Tool controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-087	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-088	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-090	batch2	步驟	$ 2F 50 00 <200 Hz Tool controlled tone selection>	$ 2F 50 00 03 <controlState for "200 Hz Tool controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-091	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-092	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-094	batch2	步驟	$ 2F 50 00 <200 Hz Radio controlled tone selection>	$ 2F 50 00 03 <controlState for "200 Hz Radio controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-095	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-096	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-098	batch2	步驟	$ 2F 50 00 <1 kHz, 120 mV tone - Tool controlled tone selection>	$ 2F 50 00 03 <controlState for "1 kHz, 120 mV tone - Tool controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-099	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-100	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-102	batch2	步驟	$ 2F 50 00 <radio-controlled tone selection>	$ 2F 50 00 03 <controlState for "radio-controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-102	batch2	步驟	$ 2F 50 00 <Tones Off option selection>	$ 2F 50 00 03 <controlState for "Tones Off option">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-103	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-104	batch2	步驟	$ 2F 50 00	$ 2F 50 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-110	batch2	步驟	$ 2F 50 01 <Rear Right speaker selection>	$ 2F 50 01 03 <controlState for "Rear Right speaker">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-111	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-112	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-114	batch2	步驟	$ 2F 50 01 <Rear Left speaker selection>	$ 2F 50 01 03 <controlState for "Rear Left speaker">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-115	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-116	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-121	batch2	步驟	$ 2F 50 01 <Front Right speaker selection>	$ 2F 50 01 03 <controlState for "Front Right speaker">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-122	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-123	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-125	batch2	步驟	$ 2F 50 01 <Front Left speaker selection>	$ 2F 50 01 03 <controlState for "Front Left speaker">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-126	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-127	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-118	batch2	步驟	$ 2F 50 01 <speaker output selection>	$ 2F 50 01 03 <controlState for "speaker output">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-119	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-120	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-130	batch2	步驟	$ 2F 50 01 <speaker output selection>	$ 2F 50 01 03 <controlState for "speaker output">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-131	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-132	batch2	步驟	$ 2F 50 01	$ 2F 50 01 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-135	batch3	步驟	$ 2F 50 06 <fade control step = 9 front>	$ 2F 50 06 03 <controlState for "fade control step = 9 front">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-136	batch3	步驟	$ 2F 50 06 <fade control step = 9 rear>	$ 2F 50 06 03 <controlState for "fade control step = 9 rear">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-137	batch3	步驟	$ 2F 50 06 <fade control step = 10 front>	$ 2F 50 06 03 <controlState for "fade control step = 10 front">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-138	batch3	步驟	$ 2F 50 06 <fade control step = 10 rear>	$ 2F 50 06 03 <controlState for "fade control step = 10 rear">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-139	batch3	步驟	$ 2F 50 06 <fade control step value>	$ 2F 50 06 03 <controlState for "fade control step">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-140	batch3	步驟	$ 2F 50 05 <balance control step = 9 left>	$ 2F 50 05 03 <controlState for "balance control step = 9 left">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-141	batch3	步驟	$ 2F 50 05 <balance control step = 9 right>	$ 2F 50 05 03 <controlState for "balance control step = 9 right">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-142	batch3	步驟	$ 2F 50 05 <balance control step = 10 left>	$ 2F 50 05 03 <controlState for "balance control step = 10 left">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-143	batch3	步驟	$ 2F 50 05 <balance control step = 10 right>	$ 2F 50 05 03 <controlState for "balance control step = 10 right">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-144	batch3	步驟	$ 2F 50 05 <balance control step value>	$ 2F 50 05 03 <controlState for "balance control step">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-145	batch3	步驟	$ 2F 50 04 <treble tone control step = -9>	$ 2F 50 04 03 <controlState for "treble tone control step = -9">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-146	batch3	步驟	$ 2F 50 04 <treble tone control step = +9>	$ 2F 50 04 03 <controlState for "treble tone control step = +9">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-147	batch3	步驟	$ 2F 50 04 <treble tone control step value>	$ 2F 50 04 03 <controlState for "treble tone control step">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-148	batch3	步驟	$ 2F 50 04 <treble tone control step value>	$ 2F 50 04 03 <controlState for "treble tone control step">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-149	batch3	描述行	2. Send a write request for DID $5004 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-149	batch3	步驟	$ 2F 50 04	$ 2F 50 04 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-150	batch3	描述行	2. Send a write request for DID $5004 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-150	batch3	步驟	$ 2F 50 04	$ 2F 50 04 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-152	batch3	步驟	$ 2F 50 03 <bass tone control step = -9>	$ 2F 50 03 03 <controlState for "bass tone control step = -9">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-153	batch3	步驟	$ 2F 50 03 <bass tone control step = +9>	$ 2F 50 03 03 <controlState for "bass tone control step = +9">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-154	batch3	描述行	2. Send a write request for DID $5003 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-154	batch3	步驟	$ 2F 50 03	$ 2F 50 03 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-155	batch3	描述行	2. Send a write request for DID $5003 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-155	batch3	步驟	$ 2F 50 03	$ 2F 50 03 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-157	batch3	步驟	$ 2F 50 03 <bass tone control step value>	$ 2F 50 03 03 <controlState for "bass tone control step">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-158	batch3	描述行	2. Send a write request for DID $5003 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-158	batch3	步驟	$ 2F 50 03	$ 2F 50 03 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-159	batch3	描述行	2. Send a write request for DID $5003 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-159	batch3	步驟	$ 2F 50 03	$ 2F 50 03 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-161	batch3	步驟	$ 2F 50 03 <bass tone control step value>	$ 2F 50 03 03 <controlState for "bass tone control step">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-162	batch3	描述行	2. Send a write request for DID $5003 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-162	batch3	步驟	$ 2F 50 03	$ 2F 50 03 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-163	batch3	描述行	2. Send a write request for DID $5003 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-163	batch3	步驟	$ 2F 50 03	$ 2F 50 03 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-165	batch3	步驟	$ 2F 50 02 <volume step = 0>	$ 2F 50 02 03 <controlState for "volume step = 0">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-166	batch3	步驟	$ 2F 50 02 <volume step = 38>	$ 2F 50 02 03 <controlState for "volume step = 38">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-167	batch3	描述行	2. Send a write request for DID $5002 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-167	batch3	步驟	$ 2F 50 02	$ 2F 50 02 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-168	batch3	描述行	2. Send a write request for DID $5002 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-168	batch3	步驟	$ 2F 50 02	$ 2F 50 02 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-170	batch3	步驟	$ 2F 50 02 <volume step value>	$ 2F 50 02 03 <controlState for "volume step">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-171	batch3	描述行	2. Send a write request for DID $5002 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-171	batch3	步驟	$ 2F 50 02	$ 2F 50 02 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-172	batch3	描述行	2. Send a write request for DID $5002 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-172	batch3	步驟	$ 2F 50 02	$ 2F 50 02 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-174	batch3	步驟	$ 2F 50 02 <volume step value>	$ 2F 50 02 03 <controlState for "volume step">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-175	batch3	描述行	2. Send a write request for DID $5002 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-175	batch3	步驟	$ 2F 50 02	$ 2F 50 02 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-176	batch3	描述行	2. Send a write request for DID $5002 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-176	batch3	步驟	$ 2F 50 02	$ 2F 50 02 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-190	batch3	步驟	$ 2F 50 0C <SDAR station selection value>	$ 2F 50 0C 03 <controlState for "SDAR station selection">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-191	batch3	描述行	2. Send a write request for DID $500C with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-191	batch3	步驟	$ 2F 50 0C	$ 2F 50 0C 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-192	batch3	描述行	2. Send a write request for DID $500C with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-192	batch3	步驟	$ 2F 50 0C	$ 2F 50 0C 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-194	batch3	步驟	$ 2F 50 0C <invalid station number>	$ 2F 50 0C 03 <controlState for "invalid station number">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-195	batch3	步驟	$ 2F 50 09 <tuned frequency value>	$ 2F 50 09 03 <controlState for "tuned frequency">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-196	batch3	描述行	2. Send a write request for DID $5009 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-196	batch3	步驟	$ 2F 50 09	$ 2F 50 09 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-197	batch3	描述行	2. Send a write request for DID $5009 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-197	batch3	步驟	$ 2F 50 09	$ 2F 50 09 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-199	batch3	步驟	$ 2F 50 08 <seek status value>	$ 2F 50 08 03 <controlState for "seek status">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-200	batch3	描述行	2. Send a write request for DID $5008 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-200	batch3	步驟	$ 2F 50 08	$ 2F 50 08 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-201	batch3	描述行	2. Send a write request for DID $5008 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-201	batch3	步驟	$ 2F 50 08	$ 2F 50 08 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-203	batch3	步驟	$ 2F 50 08 <seek status value>	$ 2F 50 08 03 <controlState for "seek status">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-204	batch3	描述行	2. Send a write request for DID $5008 with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-204	batch3	步驟	$ 2F 50 08	$ 2F 50 08 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-205	batch3	描述行	2. Send a write request for DID $5008 with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-205	batch3	步驟	$ 2F 50 08	$ 2F 50 08 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-211	batch3	步驟	$ 2F 50 0A <Mode 2 Entertainment audio source selection value>	$ 2F 50 0A 03 <controlState for "Mode 2 Entertainment audio source selection">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-212	batch3	描述行	2. Send a write request for DID $500A with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-212	batch3	步驟	$ 2F 50 0A	$ 2F 50 0A 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-213	batch3	描述行	2. Send a write request for DID $500A with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-213	batch3	步驟	$ 2F 50 0A	$ 2F 50 0A 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-215	batch3	步驟	$ 2F 50 0A <Mode 1 Information audio source selection value>	$ 2F 50 0A 03 <controlState for "Mode 1 Information audio source selection">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-216	batch3	描述行	2. Send a write request for DID $500A with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-216	batch3	步驟	$ 2F 50 0A	$ 2F 50 0A 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-217	batch3	描述行	2. Send a write request for DID $500A with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-217	batch3	步驟	$ 2F 50 0A	$ 2F 50 0A 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-219	batch3	步驟	$ 2F 50 0B <enable in-motion menu>	$ 2F 50 0B 03 <controlState for "enable in-motion menu">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-220	batch3	描述行	2. Send a write request for DID $500B with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-220	batch3	步驟	$ 2F 50 0B	$ 2F 50 0B 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-221	batch3	描述行	2. Send a write request for DID $500B with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-221	batch3	步驟	$ 2F 50 0B	$ 2F 50 0B 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-223	batch3	步驟	$ 2F 50 0B <enable in-motion menu>	$ 2F 50 0B 03 <controlState for "enable in-motion menu">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-223	batch3	步驟	$ 2F 50 0B <disable in-motion menu>	$ 2F 50 0B 03 <controlState for "disable in-motion menu">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-224	batch3	描述行	2. Send a write request for DID $500B with the last byte omi	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-224	batch3	步驟	$ 2F 50 0B	$ 2F 50 0B 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-225	batch3	描述行	2. Send a write request for DID $500B with a parameter value	2. Send an InputOutputControlByIdentifier request for DID $5	0x2F 為 InputOutputControlByIdentifier，非 write request
+NR1L-DIAG-225	batch3	步驟	$ 2F 50 0B	$ 2F 50 0B 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-226	batch3	步驟	$ 2F 50 0B <enable in-motion menu>	$ 2F 50 0B 03 <controlState for "enable in-motion menu">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-227	batch3	步驟	$ 2F 51 00 <video input selection>	$ 2F 51 00 03 <controlState for "video input">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-228	batch3	步驟	$ 2F 51 00 <normal operation>	$ 2F 51 00 03 <controlState for "normal operation">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-229	batch3	步驟	$ 2F 51 00	$ 2F 51 00 03	R-DIAG29(a)＋R-DIAG22：合法請求現為 `2F <DID> 03 <controlState>`，省末 byte 即 `… 03`
+NR1L-DIAG-230	batch3	步驟	$ 2F 51 00	$ 2F 51 00 03 <out-of-range controlState>	R-DIAG29(a)＋R-DIAG22(amend)：值域軸保留完整長度，資料 byte 為越界值
+NR1L-DIAG-231	batch3	步驟	$ 2F 50 0D <video input selection>	$ 2F 50 0D 03 <controlState for "video input">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-554	ext	步驟	$ 2F 50 00 <tool-controlled tone selection>	$ 2F 50 00 03 <controlState for "tool-controlled tone">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState
+NR1L-DIAG-556	ext	步驟	$ 2F 50 09 <tuned frequency value>	$ 2F 50 09 03 <controlState for "tuned frequency">	R-DIAG29(a)(b)：插入 IOCP `03 Short Term Adjustment`（Table 51），佔位改為 controlState

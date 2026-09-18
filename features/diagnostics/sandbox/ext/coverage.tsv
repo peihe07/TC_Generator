@@ -280,7 +280,7 @@ l2_no	test_set	row037	swe1_id	tc_ids	tc_count	status
 11	Buzzer Control	149	SWE1-Diagnostics-142	NR1L-DIAG-098	1	COVERED
 11	Buzzer Control	150	SWE1-Diagnostics-143	NR1L-DIAG-099;NR1L-DIAG-100	2	COVERED
 11	Buzzer Control	151	SWE1-Diagnostics-144	NR1L-DIAG-101	1	COVERED
-11	Buzzer Control	152	SWE1-Diagnostics-145	NR1L-DIAG-102	1	COVERED
+11	Buzzer Control	152	SWE1-Diagnostics-145	NR1L-DIAG-102;NR1L-DIAG-563	2	COVERED
 11	Buzzer Control	153	SWE1-Diagnostics-146	NR1L-DIAG-103;NR1L-DIAG-104	2	COVERED
 11	Buzzer Control	154	SWE1-Diagnostics-147	NR1L-DIAG-105	1	COVERED
 12	Speaker Quadrant Selection	54	SWE1-Diagnostics-047	NR1L-DIAG-106	1	COVERED
@@ -348,7 +348,7 @@ l2_no	test_set	row037	swe1_id	tc_ids	tc_count	status
 14	Tuner Control	42	SWE1-Diagnostics-035	NR1L-DIAG-195;NR1L-DIAG-556	2	COVERED
 14	Tuner Control	43	SWE1-Diagnostics-036	NR1L-DIAG-196;NR1L-DIAG-197	2	COVERED
 14	Tuner Control	44	SWE1-Diagnostics-037	NR1L-DIAG-198	1	COVERED
-14	Tuner Control	45	SWE1-Diagnostics-038	NR1L-DIAG-199	1	COVERED
+14	Tuner Control	45	SWE1-Diagnostics-038	NR1L-DIAG-199;NR1L-DIAG-562	2	COVERED
 14	Tuner Control	46	SWE1-Diagnostics-039	NR1L-DIAG-200;NR1L-DIAG-201	2	COVERED
 14	Tuner Control	47	SWE1-Diagnostics-040	NR1L-DIAG-202	1	COVERED
 14	Tuner Control	48	SWE1-Diagnostics-041	NR1L-DIAG-203	1	COVERED
@@ -363,14 +363,14 @@ l2_no	test_set	row037	swe1_id	tc_ids	tc_count	status
 15	Mode Selection	68	SWE1-Diagnostics-061	NR1L-DIAG-215	1	COVERED
 15	Mode Selection	69	SWE1-Diagnostics-062	NR1L-DIAG-216;NR1L-DIAG-217	2	COVERED
 15	Mode Selection	70	SWE1-Diagnostics-063	NR1L-DIAG-218	1	COVERED
-16	In Motion Menu Control	14	SWE1-Diagnostics-007	NR1L-DIAG-219	1	COVERED
+16	In Motion Menu Control	14	SWE1-Diagnostics-007	NR1L-DIAG-219;NR1L-DIAG-559	2	COVERED
 16	In Motion Menu Control	15	SWE1-Diagnostics-008	NR1L-DIAG-220;NR1L-DIAG-221	2	COVERED
 16	In Motion Menu Control	16	SWE1-Diagnostics-009	NR1L-DIAG-222	1	COVERED
-16	In Motion Menu Control	17	SWE1-Diagnostics-010	NR1L-DIAG-223	1	COVERED
+16	In Motion Menu Control	17	SWE1-Diagnostics-010	NR1L-DIAG-223;NR1L-DIAG-560	2	COVERED
 16	In Motion Menu Control	18	SWE1-Diagnostics-011	NR1L-DIAG-224;NR1L-DIAG-225	2	COVERED
-16	In Motion Menu Control	19	SWE1-Diagnostics-012	NR1L-DIAG-226	1	COVERED
-17	Video Input	343	SWE1-Diagnostics-336	NR1L-DIAG-227	1	COVERED
-17	Video Input	344	SWE1-Diagnostics-337	NR1L-DIAG-228	1	COVERED
+16	In Motion Menu Control	19	SWE1-Diagnostics-012	NR1L-DIAG-226;NR1L-DIAG-561	2	COVERED
+17	Video Input	343	SWE1-Diagnostics-336	NR1L-DIAG-227;NR1L-DIAG-564	2	COVERED
+17	Video Input	344	SWE1-Diagnostics-337	NR1L-DIAG-228;NR1L-DIAG-565	2	COVERED
 17	Video Input	345	SWE1-Diagnostics-338	NR1L-DIAG-229;NR1L-DIAG-230	2	COVERED
 17	Video Input	346	SWE1-Diagnostics-339	NR1L-DIAG-231	1	COVERED
 17	Video Input	347	SWE1-Diagnostics-340-001	NR1L-DIAG-013	1	COVERED

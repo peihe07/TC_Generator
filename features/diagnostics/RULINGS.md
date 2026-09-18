@@ -386,6 +386,44 @@ R-DIAG28  CIP Radio Tables v6.7 為 $0307／$0309 之流程來源
       餘 `SX-9830-0095` 本文與 PkgIndex 對照表。
 ```
 
+### R-DIAG29 — CS.00100 Table 51 為 I/O Control 之 IOCP 位元組來源（Pei 裁，2026-09-18）
+
+```text
+R-DIAG29  CS.00100 Table 51 為 I/O Control 之 IOCP 位元組來源
+  (a) 0x2F 請求一律書 `2F <DID> <IOCP> [<controlState>]`，IOCP 逐字取 Table 51：
+      00 Return Control to ECU／01 Reset to Default／02 Freeze Current State／03 Short Term Adjustment。
+      CDD-04 之「ISO IOCP 通用值禁用」係因無 STLA 來源；今 CS.00100 為 STLA 來源，該禁令解除。
+  (b) `<controlState>`（Table 51 NOTE 之 `XX`）仍為佔位 —— DR-DIAG-4 題目縮為「各 I/O DID 之 controlState 編碼」，
+      不再含 IOCP 本身；`<option-name selection>` 佔位改寫為 `2F <DID> 03 <controlState for "<option-name>">`。
+  (c) 037 列之 VC/VM 或 CFTS004 同節點述及「return control」「stop」「reset」者，得依 (a) 產 `00` sibling；
+      述及 session 結束／逾時者，得依 CS.00099 §5.10.2.3-2 ＋ CS.00100 §5.1.5-4 產「S3 timeout → 控制權回收」sibling，
+      timeout 值 5000 ms 取 CS.00099 Table 8。無此敘述者不產（§0 範圍）。
+  (d) Control Enable Mask 只於 packeted DID（CS.00100 §5.6.1.2.1.3-1）；單參數 DID 之 TC 不得帶 mask。
+```
+
+### R-DIAG30 — Session 與安全序列之來源升級（Pei 裁，2026-09-18）
+
+```text
+R-DIAG30  Session 與安全序列之來源升級
+  (a) `Security access 0x27 has been granted` 之 PC 來源由 SYSAD §4.5 改為併引 CS.00099 §9.3.3（序列 `10 → 27 → 2E/31`）；
+      是否含 0x2F 仍**不定** —— SD.00049 附件到件前維持 R-DIAG13 保守；DR-DIAG-10 登記該附件。
+  (b) 037 有 session 軸敘述之列（FB-DIAG-m 之 `-048` 類），S3ECU 5000 ms 回 default 取 CS.00099 §5.5.6.2 為來源，
+      可產「非 default session 閒置 5000 ms → 回 default session」sibling；ER 之 NRC 值若需 Annex A 者仍佔位。
+  (c) 常式類：不需車速之常式於車速 > 0 拒絕（CS.00099 §6.2-8）—— 只對 037 VC 或 CFTS004 同節點述及車速者產 sibling。
+```
+
+### R-DIAG5(amend3) — NRC 來源鏈補一級（Pei 裁，2026-09-18）
+
+```text
+R-DIAG5(amend3)  NRC 來源鏈補一級（CDD-13 附錄 A 改寫）
+  來源鏈 CFTS004 → 037 → CS.00100 Annex A → ISO 14229-1:2020 §7.5。
+  (a) DR-DIAG-1 之 3 列（`-156`／`-157`／`-237`）依 Annex A 對應圖之第一個適用判斷取碼，PENDING 清零；`U` 應降至 0。
+  (b) 既有 223 列：以 `nrc_coverage` 對照 Annex A —— 長度軸 `$13`、值域軸 `$31`、不支援 SID `$11` 預期全合；
+      不合者才 Revise，回報差異表。
+  (c) 新負向軸只在 037 Description／VC 或 CFTS004 同節點述及者產：安全未解鎖 → `$33`（2E/2F/31 類）、
+      session 不符 → `$7F`、子功能不支援 → `$12`（$31 類）。無敘述者不產（R-DIAG8）。
+```
+
 ## 承接之全域條（本 feature 適用）
 
 - **R-G73** 裁決錨點前綴放寬至四字母 —— 本 feature 九條 `R-DIAG{n}` 因之得入 `RULINGS.sha.tsv`。
