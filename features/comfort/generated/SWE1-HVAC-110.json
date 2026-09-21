@@ -160,7 +160,7 @@
    "test_item": "(when sync'd, do not show slider pop-up on passenger side when adjusting driver slider).\n\n(adjust the driver temperature slider -> No slider pop-up is shown on the passenger side)",
    "pre_conditions": "1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)",
    "input_test_data": "NA",
-   "test_procedure": "1. Turn SYNC on from the climate screen\n2. Adjust the driver temperature slider",
+   "test_procedure": "1. Turn \"SYNC\" on from the climate screen\n2. Adjust the driver temperature slider",
    "expected_result": "1. The \"SYNC\" button is highlighted\n2. No slider pop-up is shown on the passenger side",
    "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.6; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14",
    "priority": "P1",

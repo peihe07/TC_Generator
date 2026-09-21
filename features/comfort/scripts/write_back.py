@@ -355,10 +355,16 @@ def _outline_key(outline: str) -> tuple:
 def _compact_refs(value: str) -> str:
     """N 欄寫法 —— R-C49（CMF-01_review §3，2026-09-18）。
 
-    一節一行、每行重述 stem；**leaf 自身節次置首行**，其餘 Comfort 節次升冪；
-    外部文件各自成行，列於 Comfort 各行之後；stem 不加 `SYS1_`（從 ENTRY 032，
-    Comfort stem 與 CFTS043 皆然）。PC 出處節次（2.14／16.2／6.3 等）續載 ——
+    一節一行、每行重述 stem；**外部文件／CFTS 行在前**，其後 leaf 自身節次，
+    其後其餘 Comfort 節次升冪；stem 不加 `SYS1_`（從 ENTRY 032，Comfort stem
+    與 CFTS043 皆然）。PC 出處節次（2.14／16.2／6.3 等）續載 ——
     J 欄括號既已移除，N 欄為工作簿內唯一承載處（R-C29）。
+
+    **R-C49(amend)（CMF-02_review §2，2026-09-21）**：外部／CFTS 行移至最前。
+    R-C49 原文寫「leaf 自身節次置首行」，與 canon §10.7 之家族排序
+    （CFTS 行在前，SWC 基準 286/286）相衝；CMF-02 依 R-C49 落地並自陳其衝突，
+    審閱層裁定依 canon §10.7。受影響 7 條（全為帶外部文件行者），
+    節次集合增減 0（`docs/reports/cmf03_rc49_refs_before_after.tsv`）。
 
     取代 Pei 2026-08-17 之「stem 只寫一次、節次以「、」相連」（ENTRY 034 所併入）：
     canon §10.7 於 2026-08-21 改為「一個章節號一行、禁用 `,`／`、`／`;` 串接」，
@@ -374,7 +380,7 @@ def _compact_refs(value: str) -> str:
         else:
             others.append(seg)
     ordered = outlines[:1] + sorted(outlines[1:], key=_outline_key)
-    return "\n".join([f"{stem_short}_{o}" for o in ordered] + others)
+    return "\n".join(others + [f"{stem_short}_{o}" for o in ordered])
 
 
 def tcid_sequence(plan: list) -> list:

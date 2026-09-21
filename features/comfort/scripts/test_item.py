@@ -99,6 +99,12 @@ def situation(tc: dict) -> str:
 
 # 合成分不開者，逐條手寫。**其分別在步驟之中段而非末步**，
 # 而合成器只讀末步 —— 這是它的界線，不是它的錯。
+#
+# **已凍結，勿據此重產**（R-C59，CMF-02_review §2，2026-09-21）：下列之值是
+# **generator 時代**之下半，自 CMF-02 起已由 `cmf02_apply.py` 直接改寫於
+# `generated/*.json`（M2 之 `103-01`／`103-02` 骨架重寫），本表**未同步**。
+# 它只有 generator 會讀，而 generator 已凍結；把它當成現行值讀，會讀到
+# 一個工作簿裡早已不存在的句子。現行值一律以 `generated/*.json` 為準。
 HAND_WRITTEN = {
     "NR1L-ComfortHMI-192":
         "(let the popup time out untouched -> it is gone after five seconds)",

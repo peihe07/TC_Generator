@@ -1412,3 +1412,42 @@ Climate Control Interface/FM-WI-FSM-036-A01 …_SWQT_Comfort_20260817.xlsx`
 
 **處置**：A-CMF1 之 profile 落後已於 CMF-02 §1-2 同步（profile §3.2 J 欄框、§3.5）；
 A-CMF3 之「Final Step 229」不立項（review §3）。其餘為紀錄。
+
+---
+
+## A-CMF8 ～ A-CMF12 —— 分析層自陳（A 類，CMF-02_review §1，2026-09-21）
+
+> **來源**：`docs/fw036/handoff/down/20260918_CMF-02_review.md` §1。
+> 依 CMF-03 §1 登錄，**A-CMF8～11 之文字取 review §1，逐字**。性質為
+> **分析層之判讀錯誤之自陳**，非 spec／語料之缺陷；不阻塞任何批次。
+> **A-CMF12 非 review §1 之列** —— 其為 CMF-03_A §1 明令登錄之一條，性質為
+> **037 與 Pei 裁定之不一致**，列於同節以便一併複讀。
+
+| # | 內容 | 來源 |
+|---|---|---|
+| A-CMF8 | CMF-01／02 之 sibling plan 未對 **R-C44 三問**即下「依 plan 產出」——其中 `013-03`／`021-02`／`121-02` 是 R-C44 溯源表自己點名之「不拆」例。與 CMF-01 §0 同型：未讀該線既有裁定即下指示。執行層依既有裁定不產，正確 | review §1 |
+| A-CMF9 | R-C49 寫「leaf 自身節次置首行」而未對 canon §10.7 之家族排序（CFTS 行在前，SWC 286/286）——兩條相衝是分析層造成的，執行層擇 R-C49 無誤 | review §1 |
+| A-CMF10 | R-C50 定「連續子字串」時未想到句中段起抄必為小寫開頭；canon R-4 早有解（句首轉大寫屬排版正規化）| review §1 |
+| A-CMF11 | CMF-02 §2 M2 用 `Hold for 5 s`，取自 Diagnostics 線之 R-DIAG16，未察本 spec 有 press-and-hold 手勢。執行層改 `Wait …` 正確 | review §1 |
+| A-CMF12 | **037 之 VC 前提與 Pei 之車型裁定不一致** —— 037 寫「Vehicle variant is DT or HDCC」，而 Pei 2026-09-21（CMF-03_A §1）裁定本功能**僅 Alt-Mi**（Promaster／Toro／Fastback）。三份 Atl-Hi PROXI（HDCC27_initial／HDCC28／DT28）之七個氣候參數**全為 `0=Absent`**，與 Pei 之裁定一致而與 037 之 VC 前提相反。**列 RD feedback 候補；TC 不因此改動** | CMF-03_A §1 |
+
+**處置**：A-CMF9 已由 **R-C49(amend)** 裁正（外部／CFTS 行改置最前），
+A-CMF10 已由 **R-C50(amend)** 裁正（首字母大小寫正規化），二者於 CMF-03 落實。
+A-CMF8／A-CMF11 為紀錄。A-CMF12 之處置為**只記錄、不改 TC**（CMF-03_A §1 明令）。
+
+### A-CMF13 —— `Sync` 與 `SYNC` 之拼寫不一致曾使一道 gate 靜默（執行層自陳，CMF-03，2026-09-21）
+
+profile 之 `function-axis-reverse-test` 軸 2 區塊，其 `removed-interface-keywords`
+列 `SYNC is on | SYNC is off` 而**未列 `Sync is on`**。M7 第 5 問（依 R-C2 取 SR24
+之按鍵標籤拼寫 `SYNC`，全本一致）把 `Sync is on` 正規化為 `SYNC is on` 之後，
+`axis-type-reverse-test` 隨即命中 `NR1L-ComfortHMI-019`／`-035` 兩條 ——
+**它們以 SYNC 指示為可觀察量而未宣告軸 2 之值，這在 CMF-02 及其前皆已成立**，
+只是被拼寫差異擋在 gate 之外。
+
+**這不是 M7 造成的違規，是 M7 使一個既有違規由隱轉顯。**
+gate 之關鍵字表以**字面**比對，而語料之字面不一致時，綠燈量測的是拼寫而非性質。
+
+**處置**：兩條補入工作簿既有之同一句 PC（15 條在用）
+`The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)`
+並同步補 `2.11` 於其 N 欄；profile 之軸 2 `negation-users` 一併補此二條。
+**未擴充關鍵字表**（擴之即以另一份清單承擔一致性，與 R-C43 之理由同）。

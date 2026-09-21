@@ -98,7 +98,38 @@ batch gate 都要按 Urgency 回報。
 | 44 | **同一 Test Set 內之 sibling 從未被產生為候選**（非檔案，屬流程缺口；本層已加 gate 緩解）| ⚠️ `sibling_candidates.py` 依設計排除同組配對（`group[a] == group[b]`），而 Part N 把 ch11 與 ch12 併為同一組 —— **故 `11.1`↔`12.1`、`11.2`↔`12.2`、`11.3`↔`12.4`、`11.4`↔`12.5` 四對從未成為候選**，其中兩對之 TC **四欄全同（含 `pre_conditions`）**。本輪已由 `identical-TC scan` 找出並補列，且加 gate `equivalence-in-sibling-table` 使其不再可能被漏。**惟 gate 只覆蓋「TC 逐字相同」者** —— 同組內**非逐字相同之 sibling** 仍無任何機制會發現。**請裁**：是否令候選產生器亦產同組內配對（代價：候選數大幅增加）| **0 節／0 leaf**（不阻塞；影響 §4.6 判定之完備性）| **不阻塞** | — | Medium |
 | 45 | **R-C42 二與三於本輪相衝**（非檔案，屬上游釐清）| ⚠️ R-C42 三要求「同一條件出現於兩節以上而未登記為軸者 gate FAIL」，R-C42 二要求「軸之登記仍依既有三條件」。**實例**：`dual airflow modes` 出現於 `2.3.1`／`14.14`／`17.5` 三節，惟其否定值於全 129 節無字面（DR #38），依三條件不得登記 —— **逕行登記等於替條文造一個值（§8.4.1），那正是三條件所防者**。本層之實作為「每一 ≥2 節之候選須有具名處置（`registered:` 或 `deferred: DR #x`），沉默即 FAIL」（gate `axis-candidate-registered`，profile §3.2.1），**保住 R-C42 三之目的而不必造值**。**請裁**：接受此實作，抑或另有處置 | **0 節／0 leaf**（不阻塞；影響四個待軸化候選之處置）| **不阻塞** | — | Medium |
 | 46 | **`$RECIRC_STAT$`／`$EBL_Stat$` 之 DBC message 與 raw 值**（檔案或上游釐清；CMF-01 M6 提案，CMF-01_review §3 准登，2026-09-18 登錄）| ❌ 四條 TC 之第一步須由 CCM 送出「不可用」狀態：`006-02`／`012-06`（RECIRC 灰化）、`013-02`／`114-02`（REAR DEFROST 灰化）。CFTS043 載有訊號名與值：`$RECIRC_STAT$`（NEWR1L-50234，R1L 適用）、`$EBL_Stat$`（NEWR1L-50051，R1L 適用），值 `[not available/Blink]`；**`forms/` 內 4 份 DBC 皆查無此二訊號**（CMF-01 實測，含寬鬆 pattern）→ canon §8.7.5(c) 無法寫 `Send CAN:` 步驟。**處置**：該步改為整行 `PENDING: DR-46 DBC message and raw value for $…$ = "not available/Blink"`（值以雙引號呈現：`[…]` 會觸 Comfort lint 之 `ui-bracket`，而 `lint036.py` 之 P 檢查要 `[…]` —— 兩道 lint 相衝，見上繳 CMF-02）| **4 節／4 leaf**（`2.5`／`2.8`／`2.9`／`16.9`）—— 四條 TC 已產出，其一步為 PENDING | **不阻塞生成**；阻塞該四條之**執行** | — | High |
+
+> **R-C58 之內查（CMF-03，2026-09-21；唯讀，狀態仍 open）** —— 依 CMF-02_review §2 於送出前先查
+> `forms/` 全部 4 份 DBC 與 CFTS043 tree view。**結論：命中停點，四條之 PENDING 行全數維持，DR-46 不結案。**
+>
+> 1. **首次查詢無效之更正**：`grep` 把 ISO-8859 編碼之 `.dbc` 判為 binary，未加 `-a` 時 `-c` 靜默輸出 0 行。
+>    CMF-01「4 份 DBC 皆查無此二訊號」之結論**以同一方式取得**，故本輪重查。
+> 2. **`$EBL_Stat$`** —— 逐字命中 1 處：`PDT27_E2A_R1_FDCAN8.dbc`
+>    `BO_ 1436 BCM_FD_27` / `SG_ EBL_Stat` / `CM_ … "Rear Defrost Status"` /
+>    `VAL_ 1436 EBL_Stat 0 "OFF" 1 "ON" 2 "Blink" 3 "SNA"`。
+> 3. **`$RECIRC_STAT$`** —— 四份 DBC **逐字零命中**。四份中之三份載 `STATUS_CLIMATE2.HVACRecirc_Sts`
+>    （`VAL_ 1482 HVACRecirc_Sts 0 "OFF" 1 "ON" 2 "BLINK" 3 "SNA"`），**名不同**。
+> 4. **旁證（`forms/Logical Identifiers and CAN Mapping v1_78.xlsx`，sheet `CAN Mapping`）** ——
+>    該二者為 **LID**（邏輯識別碼）而非 CAN 訊號名，其平台對映為：
+>    `RECIRC_STAT` → Atlantis 與 Atlantis High 皆 `STATUS_CLIMATE2.HVACRecirc_Sts`（r1566）；
+>    `EBL_Stat` → Atlantis（MID）`STATUS_CLIMATE2.HVACRearDef_Sts`、Atlantis High
+>    `BODY_CNTRL3.EBL_Stat`（DCSD／CAN-B）與 `BCM_FD_27.EBL_Stat`（ETM／FD CAN8）（r587）。
+> 5. **停點之命中**：CMF-03 §5 條二「查得之訊號名與條文之 `$…$` 名不同名 → 不代入，回報」。
+>    RECIRC 兩條直接命中。EBL 兩條之逐字命中**只存在於 Atlantis High**，而 Pei 2026-09-21
+>    （CMF-03_A §1）裁定本功能**只有 Alt-Mi 有**；本輪受測之三台（Promaster／Toro／Fastback）
+>    依對映表其訊號為 `HVACRearDef_Sts`，與 `$EBL_Stat$` 亦不同名 → 同一停點。
+>    依 §8.7.5(g) 不以語意相近之他訊號代入。
+> 6. **結案所需**：只要裁定「本交付之平台欄位」為 Atlantis（MID）抑或 Atlantis High，
+>    上表即足以寫出四條之 `Send CAN:` 行，無須再查。
+
 | 47 | **`2.3`（C2）之「the manual mode that most closely matches the auto mode exited」無值**（非檔案，屬上游釐清；**RD-1 候選**；CMF-02 §3 登錄，2026-09-18）| ❌ C2 以 `unless` 分兩支：按下特定模式鍵 → 進該模式（`003-07` 既有一條）；**其餘中斷方式（`Manually selecting A/C`、`changing fan speeds`）→ 進入「最接近」之手動模式**，而條文未給 AUTO 狀態與手動模式之對應 —— 寫出任何具體模式皆為造值（§8.4.1）。CMF-02 §3 依 sibling plan 產其兩條（`NR1L-ComfortHMI-467`／`-468`，JSON 側），**ER 之落點為 `PENDING: DR-47`**。**問句**：以 A/C 或風速中斷 AUTO 時，系統進入之氣流模式／風速／A-C 狀態各為何（或其判定規則）。**另記**：後排之同句（`7.2`，`030-04`）之既有 TC 以「the manual mode that most closely matches the exited AUTO mode」照錄為 ER 而未 PENDING —— 兩側處置不一致，待分析層裁| **1 節／1 leaf**（`003-07` 之分支 (a)，2 條 TC 之 ER 各一行 PENDING）| **不阻塞生成**；阻塞該兩條之**判定** | — | Medium |
+> **R-C56 之處置（CMF-03，2026-09-21）** —— 審閱層裁定與既有 `json-275`（`030-04`）對齊：
+> **ER 照錄條文逐字，不寫 PENDING**（canon §8.4.1「ambiguous source → preserve ambiguity」）。
+> `-467`／`-468` 之兩行 `PENDING: DR-47` 已改為與 `json-275` 同句之 ER，三條（`-467`／`-468`／
+> `-275`）各加一句自足之 ambiguity Remarks 並登 `AMBIGUITY_REMARKS`。
+> **DR-47 維持 open** —— 問句不變，只是其落點由 PENDING 佔位改為 Remarks。
+
+| 48 | **`2.4`（C3）之 `Recirc can automatically turn on AC` 是否顯示該變化**（非檔案，屬上游釐清；**RD-1 候選**；R-C55 准登，CMF-03 §1 登錄，2026-09-21）| ❌ `2.4`（C3）四句連動中，`(Do not show this change)` **只附於 Defrost 一句**，Recirc 一句無任何呈現之陳述；而 037 之 leaf `SWE1-HVAC-005-04` 寫「The system shall defrost and RECIRC can automatically turn on A/C **(change not shown)**」—— **037 把兩者一併納入「不顯示」，條文只對 Defrost 這麼說**。**處置**：依 R-C55 產 sibling `NR1L-ComfortHMI-476`，其 ER 取 037 leaf 逐字所對應之可觀察句（措辭與原條 `json-139` 一致，非造值），該不對稱寫入 Remarks 並登 `AMBIGUITY_REMARKS`。**問句**：RECIRC 自動開啟 A/C 時，climate screen 之 "A/C" 按鈕是否改變其高亮狀態？| **1 節／1 leaf**（`2.4`，`005-04` 之兩列）| **不阻塞生成**；阻塞該列之**判定** | — | Medium |
 
 ## 已量測、無需索取
 

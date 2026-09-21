@@ -7,6 +7,10 @@
 # xlsx format (HDCC/DT): configured_cell_raw = column I 'Data' verbatim; value/label split at first '='. xlsm format: configured_value = column Y 'Dec' (Setting Value), label = the matching line of column I 'Table'; proxi_read_col_value = column AC ('PROXI Read' / 'Read').
 # txt_byte_at_start_byte: raw token at 1-indexed position start_byte of the folder's .txt (comma-separated hex). Bit extraction not performed here.
 # Escaping: newline in a cell -> literal \n; tab -> \t; backslash -> \\.
+# R-C48(amend) / Pei 2026-09-21 (docs/fw036/handoff/down/20260921_CMF-03_A.md section 1): the feature exists on Alt-Mi only -- fastback / promaster / toro.
+#   The seven climate parameters read 0 in all three Atl-Hi PROXI files (HDCC27_initial, HDCC28_ATL_HI, DT28_ATL_HI); that is CONSISTENT with the ruling (the feature is absent on Atl-Hi), not a missing value.
+#   Workbook vehicle-model columns follow the ruling: T=0 U=0 V=1 W=0 X=0 Y=1 Z=1 (all rows). Per-axis subdivision is a plan only -- see docs/reports/vm_axis_plan.tsv.
+#   This note is a provenance record; no value in the table below was changed by CMF-03.
 wb_col	wb_header_row9	proxi_folder	proxi_file	sheet	parameter	status	param_cell	start_byte	stop_byte	start_bit	stop_bit	coding	configured_value	configured_label	configured_cell	configured_cell_raw	enum_verbatim	enum_source	proxi_read_col_value	txt_file	txt_byte_at_start_byte	search_note
 T	HDCC27\nAtl-Hi\n	HDCC27_initial	PROXI_HDCC27_R3_20250424_UserInputExcel_Initial.xlsx	Sheet1	Climate_Type	FOUND	A342	77	77	0	1	Data Type=Table	0	Absent	I342	0=Absent	0=Absent,1=Manual,2=Automatic	Sheet1 data validation on I342	(no such column)	PROXI_HDCC27_initial.txt	0x00	
 T	HDCC27\nAtl-Hi\n	HDCC27_initial	PROXI_HDCC27_R3_20250424_UserInputExcel_Initial.xlsx	Sheet1	Rear_Climate	FOUND	A350	78	78	2	2	Data Type=Table	0	Absent	I350	0=Absent	0=Absent,1=Present	Sheet1 data validation on I350	(no such column)	PROXI_HDCC27_initial.txt	0x00	

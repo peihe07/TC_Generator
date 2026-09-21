@@ -1483,3 +1483,28 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 #
 # 對象（sandbox 路徑）
 28a0998c8b36a88b182b3fa209492cc5c6fda3999f48e6031d571d66439a266f  sandbox/revise_0918/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260918.xlsx
+
+# ENTRY 038 — 2026-09-21 — **候選本 v2**：Comfort HMI Revise 候選本（下放包 CMF-03 §3 ＋ CMF-03_A §1）
+#
+#   type : candidate（**不入 delivered/、未交付**；候選本之身分紀錄）
+#   母本 : ENTRY 036 之對象（delivered/…_ComfortHMI_20260907.xlsx，3550d16d…）之複本 ——
+#          **不是疊在 ENTRY 037 之上**（CMF-03 §3）；以 backend/xlsx_surgical.py 寫入（R-C46）
+#   產生 : scripts/cmf03_apply.py（JSON 層）→ scripts/cmf03_revise.py（候選本）
+#   內容 : 既有 466 列之列位／F／E 不變；row 116 = 019-03 [BLOCKED-SPEC]（F=-466，R-C51）；
+#          row 476–485 = sibling 10 條（F=-467…-476，O=NEW，AA=PeiPYHsu，E 空）；
+#          車型欄 **全列** T=0 U=0 V=1 W=0 X=0 Y=1 Z=1（R-C48(amend)，Pei 2026-09-21）；
+#          N 欄家族排序改為外部／CFTS 行在前（R-C49(amend)）；M7 引號套用；
+#          R-C50(amend) 摘句首字母大寫；R-C54／R-C55 各補 1 sibling；R-C56 ER 逐字化
+#   驗證 : zip member 57＝57；DV sqref 逐字相同；B 公式 row 10–601 原樣；
+#          逐格對帳 0907 本（全部工作表，21,309 格）—— **未列於本包之格不符 0**；
+#          變更 2,863 格全數歸因（docs/reports/cmf03_candidate_cell_recon.tsv）；
+#          另對帳 ENTRY 037 候選本 —— 差異 1,185 格全數歸因
+#          （docs/reports/cmf03_vs_0918_cell_delta.tsv）
+#   lint : JSON 層 57/57 PASS、476 TCs、0 finding；候選本層 J=0 P=0 L=0 U=4
+#          （哨兵見 sandbox/revise_0921/lint/LINT_STATUS.txt）
+#   大小 : 241298 bytes
+#   未做 : 未入 delivered/；未覆寫 0907 本與 ENTRY 037 候選本；未跑 --gate／--regen；
+#          未改 RULINGS.sha.tsv；git 未執行
+#
+# 對象（sandbox 路徑）
+98ddf21a616b5f45e0b0cb0d2b163650d1b19090b8b48260cc0032148a31a47f  sandbox/revise_0921/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260921.xlsx

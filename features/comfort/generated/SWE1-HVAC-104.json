@@ -132,7 +132,7 @@
    "test_item": "-Auto Pop-up: do not show (feedback is already on widget)\n\n(read the screen for an AUTO pop-up -> No AUTO pop-up is shown)",
    "pre_conditions": "1. [spec-derived] The Climate widget is shown on the currently displayed screen (14.19)\n2. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)\n3. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)\n4. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)",
    "input_test_data": "NA",
-   "test_procedure": "1. Turn AUTO on using the AUTO hard control\n2. Read the screen for an AUTO pop-up",
+   "test_procedure": "1. Turn \"AUTO\" on using the \"AUTO\" hard control\n2. Read the screen for an AUTO pop-up",
    "expected_result": "1. The Climate widget is shown\n2. No AUTO pop-up is shown",
    "specification_reference": "SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.19; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3",
    "priority": "P1",

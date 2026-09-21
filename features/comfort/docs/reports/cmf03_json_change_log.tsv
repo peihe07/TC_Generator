@@ -1,0 +1,766 @@
+tc_id	field	item	before	after
+NR1L-ComfortHMI-467	expected_result	R-C56	"1. The ""AUTO"" button is highlighted
+2. PENDING: DR-47 the manual mode the system goes to when AUTO is broken without a mode button"	"1. The ""AUTO"" button is highlighted
+2. The ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode"
+NR1L-ComfortHMI-467	test_item	R-C56	"When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(press ""A/C"" -> the system goes to the manual mode that most closely matches the AUTO mode exited)"	"When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(press ""A/C"" -> The ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode)"
+NR1L-ComfortHMI-468	expected_result	R-C56	"1. The ""AUTO"" button is highlighted
+2. PENDING: DR-47 the manual mode the system goes to when AUTO is broken without a mode button"	"1. The ""AUTO"" button is highlighted
+2. The ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode"
+NR1L-ComfortHMI-468	test_item	R-C56	"When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(change the fan speed -> the system goes to the manual mode that most closely matches the AUTO mode exited)"	"When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(change the fan speed -> The ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode)"
+NR1L-ComfortHMI-467	remarks	R-C56		The specification does not name which manual mode the system enters when AUTO is broken by pressing A/C, so the mode reached after this step cannot be determined from the specification alone
+NR1L-ComfortHMI-468	remarks	R-C56		The specification does not name which manual mode the system enters when AUTO is broken by changing the fan speed, so the mode reached after this step cannot be determined from the specification alone
+NR1L-ComfortHMI-275	remarks	R-C56		The specification does not name which manual mode the rear system enters when rear AUTO is broken by changing the rear fan speed, so the mode reached after that step cannot be determined from the specification alone
+NR1L-ComfortHMI-036	test_item	R-C50(amend)	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, in half degree increments)"	"A pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, in half degree increments)"
+NR1L-ComfortHMI-037	test_item	R-C50(amend)	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, without half degrees)"	"A pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, without half degrees)"
+NR1L-ComfortHMI-038	test_item	R-C50(amend)	"for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(continue altering the temperature using the temperature hard control -> The arrow moves with the temperature being set)"	"For MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(continue altering the temperature using the temperature hard control -> The arrow moves with the temperature being set)"
+NR1L-ComfortHMI-453	test_item	R-C50(amend)	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control once -> A small pop-up appears above the Climate main category control and the Climate main screen is still not displayed)"	"A small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control once -> A small pop-up appears above the Climate main category control and the Climate main screen is still not displayed)"
+NR1L-ComfortHMI-454	test_item	R-C50(amend)	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(do not interact with the head unit for 3 seconds -> The pop-up is no longer shown)"	"A small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(do not interact with the head unit for 3 seconds -> The pop-up is no longer shown)"
+NR1L-ComfortHMI-455	test_item	R-C50(amend)	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press a button other than the Mode hard control -> The pop-up is no longer shown)"	"A small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press a button other than the Mode hard control -> The pop-up is no longer shown)"
+NR1L-ComfortHMI-087	test_item	R-C50(amend)	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set
+
+(change the temperature using the temperature hard control -> The pop-up displays the degree being set in half degree increments)"	"A pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set
+
+(change the temperature using the temperature hard control -> The pop-up displays the degree being set in half degree increments)"
+NR1L-ComfortHMI-088	test_item	R-C50(amend)	"for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> The pop-up displays a slider bar with the arrow pointing to the current setting)"	"For MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> The pop-up displays a slider bar with the arrow pointing to the current setting)"
+NR1L-ComfortHMI-255	test_item	R-C50(amend)	"the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+
+(press and hold the Mode hard control and read the airflow mode -> The Face/Feet airflow mode is active and the mode does not move further while the control is held)"	"The user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+
+(press and hold the Mode hard control and read the airflow mode -> The Face/Feet airflow mode is active and the mode does not move further while the control is held)"
+NR1L-ComfortHMI-258	test_item	R-C50(amend)	"if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the airflow mode -> The airflow mode has moved to the next mode in the loop)"	"If the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the airflow mode -> The airflow mode has moved to the next mode in the loop)"
+NR1L-ComfortHMI-259	test_item	R-C50(amend)	"if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the area above the Climate main category control -> A small pop-up is shown above the Climate main category control)"	"If the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the area above the Climate main category control -> A small pop-up is shown above the Climate main category control)"
+NR1L-ComfortHMI-260	test_item	R-C50(amend)	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(wait 3 seconds without further interaction -> The pop-up is no longer shown)"	"A small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(wait 3 seconds without further interaction -> The pop-up is no longer shown)"
+NR1L-ComfortHMI-426	test_item	R-C50(amend)	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press the fan speed hard control and read the screen -> The pop-up is no longer shown)"	"A small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press the fan speed hard control and read the screen -> The pop-up is no longer shown)"
+NR1L-ComfortHMI-261	test_item	R-C50(amend)	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the displayed screen -> The displayed screen is the one opened in step 1)"	"A small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the displayed screen -> The displayed screen is the one opened in step 1)"
+NR1L-ComfortHMI-019	pre_conditions	軸 2 PC	"1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)
+2. [spec-derived] The front HVAC fan range of the vehicle is Off, 1-7 (2.7)
+3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)"	"1. [spec-derived] The vehicle is equipped with MAX DEF (3.2)
+2. [spec-derived] The front HVAC fan range of the vehicle is Off, 1-7 (2.7)
+3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)
+4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+5. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)"
+NR1L-ComfortHMI-019	specification_reference	軸 2 PC	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+NR1L-ComfortHMI-035	pre_conditions	軸 2 PC	"1. [spec-derived] The vehicle has climate hard controls and a climate touchscreen (2.2)
+2. [spec-derived] The vehicle has a passenger side temperature control (2.2)
+3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)"	"1. [spec-derived] The vehicle has climate hard controls and a climate touchscreen (2.2)
+2. [spec-derived] The vehicle has a passenger side temperature control (2.2)
+3. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)
+4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+5. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)"
+NR1L-ComfortHMI-035	specification_reference	軸 2 PC	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2	SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2; SYS1_HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+NR1L-ComfortHMI-139	test_procedure	R-C55 slim	"1. Turn ""A/C"" off from the climate screen and note the ""A/C"" button
+2. Turn ""FRONT DEF"" on and read the ""A/C"" button
+3. Turn ""RECIRC"" on and read the ""A/C"" button"	"1. Turn ""A/C"" off from the climate screen and note the ""A/C"" button
+2. Turn ""FRONT DEF"" on and read the ""A/C"" button"
+NR1L-ComfortHMI-139	expected_result	R-C55 slim	"1. The ""A/C"" button is not highlighted
+2. The ""A/C"" button is not highlighted
+3. The ""A/C"" button is not highlighted"	"1. The ""A/C"" button is not highlighted
+2. The ""A/C"" button is not highlighted"
+NR1L-ComfortHMI-139	test_item	R-C55 slim	"Defrost can automatically turn on AC (Do not show this change).
+
+(turn ""RECIRC"" on and read the ""A/C"" button -> The ""A/C"" button is not highlighted)"	"Defrost can automatically turn on AC (Do not show this change).
+
+(turn ""FRONT DEF"" on and read the ""A/C"" button -> The ""A/C"" button is not highlighted)"
+NR1L-ComfortHMI-139	tc_title	R-C55 slim	Defrost and Recirc turn A/C on without showing it	Defrost turns A/C on without showing it
+NR1L-ComfortHMI-139	split_flag	R-C55 slim	False	True
+NR1L-ComfortHMI-139	split_reason	R-C55 slim		§8.2.2 之拆分，依 R-C44 三問（**R-C55，CMF-02_review §2**）：2.4（C3）之 `Defrost can automatically turn on AC (Do not show this change).` 與 `Recirc can automatically turn on AC.` 為兩句各自具名之連動，條文逐字列舉、各為一種操作、無舉例語 —— 三問皆是，故一觸發一條。本條留 Defrost 一句，Recirc 一句移出為同 req 之另一列。
+NR1L-ComfortHMI-475	(new TC)	R-C54/R-C55 sibling		NR1L-ComfortHMI-475
+NR1L-ComfortHMI-476	(new TC)	R-C54/R-C55 sibling		NR1L-ComfortHMI-476
+NR1L-ComfortHMI-035	test_procedure	M7	"1. Turn Sync on
+2. Adjust the driver temperature slider"	"1. Turn ""SYNC"" on
+2. Adjust the driver temperature slider"
+NR1L-ComfortHMI-035	expected_result	M7	"1. Sync is on
+2. No slider pop-up is shown on the passenger side"	"1. SYNC is on
+2. No slider pop-up is shown on the passenger side"
+NR1L-ComfortHMI-127	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Read the fan speed indicator"	"1. Turn ""AUTO"" on from the climate screen
+2. Read the fan speed indicator"
+NR1L-ComfortHMI-128	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Read the main category control"	"1. Turn ""AUTO"" on from the climate screen
+2. Read the main category control"
+NR1L-ComfortHMI-129	test_procedure	M7	"1. Set a fan speed and an airflow mode from the climate screen with AUTO off
+2. Turn AUTO on and read the fan speed and the airflow mode"	"1. Set a fan speed and an airflow mode from the climate screen with AUTO off
+2. Turn ""AUTO"" on and read the fan speed and the airflow mode"
+NR1L-ComfortHMI-129	test_item	M7	"AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+
+(turn AUTO on and read the fan speed and the airflow mode -> The fan speed and the airflow mode are set by the system)"	"AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+
+(turn ""AUTO"" on and read the fan speed and the airflow mode -> The fan speed and the airflow mode are set by the system)"
+NR1L-ComfortHMI-130	test_procedure	M7	"1. Select an airflow mode on the climate screen
+2. Turn front defrost on from the climate screen
+3. Turn AUTO on"	"1. Select an airflow mode on the climate screen
+2. Turn front defrost on from the climate screen
+3. Turn ""AUTO"" on"
+NR1L-ComfortHMI-130	test_item	M7	"Auto is mutually exclusive with the four airflow modes and front defrost.
+
+(turn AUTO on -> The airflow mode buttons and ""FRONT DEF"" are no longer active)"	"Auto is mutually exclusive with the four airflow modes and front defrost.
+
+(turn ""AUTO"" on -> The airflow mode buttons and ""FRONT DEF"" are no longer active)"
+NR1L-ComfortHMI-131	test_procedure	M7	"1. Read the state of the ""A/C"" button on the climate screen with AUTO off and record it
+2. Turn AUTO on and read the ""A/C"" button"	"1. Read the state of the ""A/C"" button on the climate screen with AUTO off and record it
+2. Turn ""AUTO"" on and read the ""A/C"" button"
+NR1L-ComfortHMI-131	test_item	M7	"Auto can change the state of AC, but do not show this change.
+
+(turn AUTO on and read the ""A/C"" button -> The ""A/C"" button state is unchanged)"	"Auto can change the state of AC, but do not show this change.
+
+(turn ""AUTO"" on and read the ""A/C"" button -> The ""A/C"" button state is unchanged)"
+NR1L-ComfortHMI-132	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Press ""A/C"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""A/C"""
+NR1L-ComfortHMI-386	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Select another airflow mode"	"1. Turn ""AUTO"" on from the climate screen
+2. Select another airflow mode"
+NR1L-ComfortHMI-387	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Change the fan speed"	"1. Turn ""AUTO"" on from the climate screen
+2. Change the fan speed"
+NR1L-ComfortHMI-133	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Press the ""Feet"" airflow mode button"	"1. Turn ""AUTO"" on from the climate screen
+2. Press the ""Feet"" airflow mode button"
+NR1L-ComfortHMI-134	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Press ""REAR DEFROST"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""REAR DEFROST"""
+NR1L-ComfortHMI-467	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Press ""A/C"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""A/C"""
+NR1L-ComfortHMI-468	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Change the fan speed"	"1. Turn ""AUTO"" on from the climate screen
+2. Change the fan speed"
+NR1L-ComfortHMI-363	test_procedure	M7	"1. Open the climate screen
+2. Read the AUTO controls"	"1. Open the climate screen
+2. Read the ""AUTO"" controls"
+NR1L-ComfortHMI-363	test_item	M7	"C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+
+(read the AUTO controls -> A driver side AUTO mode and a passenger side AUTO mode are provided)"	"C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+
+(read the ""AUTO"" controls -> A driver side AUTO mode and a passenger side AUTO mode are provided)"
+NR1L-ComfortHMI-364	test_procedure	M7	"1. Turn the driver side AUTO on
+2. Read the driver and passenger AUTO indicators"	"1. Turn the driver side ""AUTO"" on
+2. Read the driver and passenger ""AUTO"" indicators"
+NR1L-ComfortHMI-364	expected_result	M7	"1. The driver side AUTO is on
+2. The driver side AUTO indicator is shown as on and the passenger side AUTO indicator is shown separately"	"1. The driver side AUTO is on
+2. The driver side ""AUTO"" indicator is shown as on and the passenger side ""AUTO"" indicator is shown separately"
+NR1L-ComfortHMI-364	test_item	M7	"C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+
+(read the driver and passenger AUTO indicators -> The driver side AUTO indicator is shown as on and the passenger side AUTO indicator is shown separately)"	"C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+
+(read the driver and passenger ""AUTO"" indicators -> The driver side ""AUTO"" indicator is shown as on and the passenger side ""AUTO"" indicator is shown separately)"
+NR1L-ComfortHMI-137	test_procedure	M7	"1. Turn ""A/C"" off and AUTO off from the climate screen
+2. Turn AUTO on and read the ""A/C"" button"	"1. Turn ""A/C"" off and ""AUTO"" off from the climate screen
+2. Turn ""AUTO"" on and read the ""A/C"" button"
+NR1L-ComfortHMI-137	test_item	M7	"Auto can automatically turn on AC. AC will break Auto.
+
+(turn AUTO on and read the ""A/C"" button -> The ""A/C"" button is highlighted)"	"Auto can automatically turn on AC. AC will break Auto.
+
+(turn ""AUTO"" on and read the ""A/C"" button -> The ""A/C"" button is highlighted)"
+NR1L-ComfortHMI-138	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Press ""A/C"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""A/C"""
+NR1L-ComfortHMI-439	test_procedure	M7	"1. Open the climate screen
+2. Read the RECIRC icon"	"1. Open the climate screen
+2. Read the ""RECIRC"" icon"
+NR1L-ComfortHMI-439	expected_result	M7	"1. The climate screen is displayed
+2. A RECIRC icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected"	"1. The climate screen is displayed
+2. A ""RECIRC"" icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected"
+NR1L-ComfortHMI-439	test_item	M7	"The recirc icon will display the vehicle model specific icon as displayed in the table.
+
+(read the RECIRC icon -> A RECIRC icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected)"	"The recirc icon will display the vehicle model specific icon as displayed in the table.
+
+(read the ""RECIRC"" icon -> A ""RECIRC"" icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected)"
+NR1L-ComfortHMI-365	test_procedure	M7	"1. Press the RECIRC button
+2. Press the RECIRC button again
+3. Press the RECIRC button again"	"1. Press the ""RECIRC"" button
+2. Press the ""RECIRC"" button again
+3. Press the ""RECIRC"" button again"
+NR1L-ComfortHMI-365	test_item	M7	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(press the RECIRC button again -> RECIRC is in the Open state)"	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(press the ""RECIRC"" button again -> RECIRC is in the Open state)"
+NR1L-ComfortHMI-388	test_procedure	M7	"1. Press the RECIRC button until RECIRC is in the Open state
+2. Press the RECIRC button again and read the RECIRC state"	"1. Press the ""RECIRC"" button until RECIRC is in the Open state
+2. Press the ""RECIRC"" button again and read the ""RECIRC"" button state"
+NR1L-ComfortHMI-388	test_item	M7	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(press the RECIRC button again and read the RECIRC state -> RECIRC is in the Auto state and no further state is offered)"	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(press the ""RECIRC"" button again and read the ""RECIRC"" button state -> RECIRC is in the Auto state and no further state is offered)"
+NR1L-ComfortHMI-366	test_procedure	M7	"1. Set RECIRC to Manual
+2. Read the RECIRC control on the climate screen"	"1. Set ""RECIRC"" to Manual
+2. Read the ""RECIRC"" control on the climate screen"
+NR1L-ComfortHMI-366	test_item	M7	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(read the RECIRC control on the climate screen -> The climate screen indicates the Manual state)"	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(read the ""RECIRC"" control on the climate screen -> The climate screen indicates the Manual state)"
+NR1L-ComfortHMI-053	test_procedure	M7	"1. Turn SYNC on
+2. Change the driver temperature"	"1. Turn ""SYNC"" on
+2. Change the driver temperature"
+NR1L-ComfortHMI-054	test_procedure	M7	"1. Turn SYNC on
+2. Change the passenger temperature"	"1. Turn ""SYNC"" on
+2. Change the passenger temperature"
+NR1L-ComfortHMI-157	test_procedure	M7	"1. Turn ""FRONT DEF"" on from the climate screen
+2. Turn AUTO on and read the ""FRONT DEF"" button"	"1. Turn ""FRONT DEF"" on from the climate screen
+2. Turn ""AUTO"" on and read the ""FRONT DEF"" button"
+NR1L-ComfortHMI-157	test_item	M7	"Turning Defrost on while in Auto will break Auto and turn it off.
+
+(turn AUTO on and read the ""FRONT DEF"" button -> The ""FRONT DEF"" button is no longer highlighted)"	"Turning Defrost on while in Auto will break Auto and turn it off.
+
+(turn ""AUTO"" on and read the ""FRONT DEF"" button -> The ""FRONT DEF"" button is no longer highlighted)"
+NR1L-ComfortHMI-396	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Turn ""FRONT DEF"" on and read the ""AUTO"" button"	"1. Turn ""AUTO"" on from the climate screen
+2. Turn ""FRONT DEF"" on and read the ""AUTO"" button"
+NR1L-ComfortHMI-161	test_procedure	M7	"1. Turn ""REAR DEFROST"" on from the climate screen
+2. Turn AUTO on and read the ""REAR DEFROST"" button
+3. Turn ""FRONT DEF"" on and read the ""REAR DEFROST"" button"	"1. Turn ""REAR DEFROST"" on from the climate screen
+2. Turn ""AUTO"" on and read the ""REAR DEFROST"" button
+3. Turn ""FRONT DEF"" on and read the ""REAR DEFROST"" button"
+NR1L-ComfortHMI-163	test_procedure	M7	"1. Select the Face airflow mode on the climate screen
+2. Move to the next airflow mode four times, reading the mode after each"	"1. Select the ""Face"" airflow mode on the climate screen
+2. Move to the next airflow mode four times, reading the mode after each"
+NR1L-ComfortHMI-164	test_procedure	M7	"1. Select the Feet airflow mode on the climate screen
+2. Select the Windshield airflow mode"	"1. Select the ""Feet"" airflow mode on the climate screen
+2. Select the Windshield airflow mode"
+NR1L-ComfortHMI-446	test_procedure	M7	"1. Set the airflow mode to Face
+2. Press the Mode hard control once"	"1. Select the ""Face"" airflow mode
+2. Press the Mode hard control once"
+NR1L-ComfortHMI-448	test_procedure	M7	"1. Set the airflow mode to Feet
+2. Press the Mode hard control once"	"1. Select the ""Feet"" airflow mode
+2. Press the Mode hard control once"
+NR1L-ComfortHMI-450	test_procedure	M7	"1. Set the airflow mode to Face
+2. Press the Mode hard control four times, reading the airflow mode after each press"	"1. Select the ""Face"" airflow mode
+2. Press the Mode hard control four times, reading the airflow mode after each press"
+NR1L-ComfortHMI-451	test_procedure	M7	"1. Set the airflow mode to Face
+2. Press and hold the Mode hard control"	"1. Select the ""Face"" airflow mode
+2. Press and hold the Mode hard control"
+NR1L-ComfortHMI-166	test_procedure	M7	"1. Turn the exterior rear-view mirror defrost on
+2. Turn AUTO on and read the exterior rear-view mirror defrost state
+3. Turn the climate system off and read the exterior rear-view mirror defrost state"	"1. Turn the exterior rear-view mirror defrost on
+2. Turn ""AUTO"" on and read the exterior rear-view mirror defrost state
+3. Turn the climate system off and read the exterior rear-view mirror defrost state"
+NR1L-ComfortHMI-019	test_procedure	M7	"1. Open the climate screen with MAX DEF not active
+2. Press ""MAX DEF""
+3. Read the A/C state
+4. Read the airflow mode
+5. Read the fan speed
+6. Read the temperature setting for the driver and, if available, the passenger
+7. Read the RECIRC state and its LED
+8. Read the Sync state
+9. Read the REAR DEFROST state"	"1. Open the climate screen with MAX DEF not active
+2. Press ""MAX DEF""
+3. Read the A/C state
+4. Read the airflow mode
+5. Read the fan speed
+6. Read the temperature setting for the driver and, if available, the passenger
+7. Read the ""RECIRC"" button state and its LED
+8. Read the SYNC state
+9. Read the REAR DEFROST state"
+NR1L-ComfortHMI-019	expected_result	M7	"1. The ""MAX DEF"" button is not active
+2. The ""MAX DEF"" button is active
+3. A/C is on
+4. The airflow mode is Windshield
+5. The fan speed is at the highest setting (7/7)
+6. The temperature is at the highest setting (HI) for the driver and, if available, the passenger
+7. RECIRC is open and its LED is off
+8. Sync is on
+9. REAR DEFROST is active"	"1. The ""MAX DEF"" button is not active
+2. The ""MAX DEF"" button is active
+3. A/C is on
+4. The airflow mode is Windshield
+5. The fan speed is at the highest setting (7/7)
+6. The temperature is at the highest setting (HI) for the driver and, if available, the passenger
+7. RECIRC is open and its LED is off
+8. SYNC is on
+9. REAR DEFROST is active"
+NR1L-ComfortHMI-025	test_procedure	M7	"1. Press ""MAX DEF""
+2. Change RECIRC"	"1. Press ""MAX DEF""
+2. Change ""RECIRC"""
+NR1L-ComfortHMI-025	test_item	M7	"Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+
+(change RECIRC -> The ""MAX DEF"" button is no longer active and the system is in the previous manual mode with A/C on)"	"Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+
+(change ""RECIRC"" -> The ""MAX DEF"" button is no longer active and the system is in the previous manual mode with A/C on)"
+NR1L-ComfortHMI-272	test_procedure	M7	"1. Turn rear AUTO on
+2. Read the rear fan speed indicator"	"1. Turn rear ""AUTO"" on
+2. Read the rear fan speed indicator"
+NR1L-ComfortHMI-272	expected_result	M7	"1. The rear AUTO button is highlighted
+2. The rear fan speed indicator shows AUTO instead of the actual fan speed"	"1. The rear ""AUTO"" button is highlighted
+2. The rear fan speed indicator shows ""AUTO"" instead of the actual fan speed"
+NR1L-ComfortHMI-272	test_item	M7	"The fan speed will be transmitted as 15h instead of the actual fan speed.
+
+(read the rear fan speed indicator -> The rear fan speed indicator shows AUTO instead of the actual fan speed)"	"The fan speed will be transmitted as 15h instead of the actual fan speed.
+
+(read the rear fan speed indicator -> The rear fan speed indicator shows ""AUTO"" instead of the actual fan speed)"
+NR1L-ComfortHMI-273	test_procedure	M7	"1. Turn rear AUTO on
+2. Set a rear temperature different from the current cabin temperature
+3. Read the rear fan speed and airflow mode"	"1. Turn rear ""AUTO"" on
+2. Set a rear temperature different from the current cabin temperature
+3. Read the rear fan speed and airflow mode"
+NR1L-ComfortHMI-273	expected_result	M7	"1. The rear AUTO button is highlighted
+2. The rear temperature is set to the requested value
+3. The rear fan speed and airflow mode change without user input"	"1. The rear ""AUTO"" button is highlighted
+2. The rear temperature is set to the requested value
+3. The rear fan speed and airflow mode change without user input"
+NR1L-ComfortHMI-274	test_procedure	M7	"1. Select a rear airflow mode
+2. Turn rear AUTO on
+3. Read the three rear airflow mode buttons"	"1. Select a rear airflow mode
+2. Turn rear ""AUTO"" on
+3. Read the three rear airflow mode buttons"
+NR1L-ComfortHMI-274	expected_result	M7	"1. The selected rear airflow mode button is highlighted
+2. The rear AUTO button is highlighted
+3. The three rear airflow mode buttons are turned off"	"1. The selected rear airflow mode button is highlighted
+2. The rear ""AUTO"" button is highlighted
+3. The three rear airflow mode buttons are turned off"
+NR1L-ComfortHMI-275	test_procedure	M7	"1. Turn rear AUTO on
+2. Change the rear fan speed
+3. Turn rear AUTO on again
+4. Press a specific rear airflow mode button"	"1. Turn rear ""AUTO"" on
+2. Change the rear fan speed
+3. Turn rear ""AUTO"" on again
+4. Press a specific rear airflow mode button"
+NR1L-ComfortHMI-275	expected_result	M7	"1. The rear AUTO button is highlighted
+2. The rear AUTO button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode
+3. The rear AUTO button is highlighted
+4. The system is in the pressed rear airflow mode"	"1. The rear ""AUTO"" button is highlighted
+2. The rear ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode
+3. The rear ""AUTO"" button is highlighted
+4. The system is in the pressed rear airflow mode"
+NR1L-ComfortHMI-276	test_procedure	M7	"1. Turn rear AUTO on
+2. Change the rear temperature
+3. Read the rear AUTO button"	"1. Turn rear ""AUTO"" on
+2. Change the rear temperature
+3. Read the rear ""AUTO"" button"
+NR1L-ComfortHMI-276	expected_result	M7	"1. The rear AUTO button is highlighted
+2. The rear temperature changes
+3. The rear AUTO button is still highlighted"	"1. The rear ""AUTO"" button is highlighted
+2. The rear temperature changes
+3. The rear ""AUTO"" button is still highlighted"
+NR1L-ComfortHMI-276	test_item	M7	"Any other climate controls do NOT break Auto either.
+
+(read the rear AUTO button -> The rear AUTO button is still highlighted)"	"Any other climate controls do NOT break Auto either.
+
+(read the rear ""AUTO"" button -> The rear ""AUTO"" button is still highlighted)"
+NR1L-ComfortHMI-283	test_procedure	M7	"1. Turn SYNC on
+2. Change the driver temperature"	"1. Turn ""SYNC"" on
+2. Change the driver temperature"
+NR1L-ComfortHMI-283	expected_result	M7	"1. The SYNC button is highlighted
+2. The passenger temperature follows the driver temperature"	"1. The ""SYNC"" button is highlighted
+2. The passenger temperature follows the driver temperature"
+NR1L-ComfortHMI-403	test_procedure	M7	"1. Turn SYNC on
+2. Change the passenger temperature"	"1. Turn ""SYNC"" on
+2. Change the passenger temperature"
+NR1L-ComfortHMI-403	expected_result	M7	"1. The SYNC button is highlighted
+2. SYNC is turned off and the SYNC button is no longer highlighted"	"1. The ""SYNC"" button is highlighted
+2. SYNC is turned off and the ""SYNC"" button is no longer highlighted"
+NR1L-ComfortHMI-403	test_item	M7	"If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.
+
+(change the passenger temperature -> SYNC is turned off and the SYNC button is no longer highlighted)"	"If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.
+
+(change the passenger temperature -> SYNC is turned off and the ""SYNC"" button is no longer highlighted)"
+NR1L-ComfortHMI-404	test_procedure	M7	"1. Turn rear AUTO on
+2. Read the rear fan speed indicator"	"1. Turn rear ""AUTO"" on
+2. Read the rear fan speed indicator"
+NR1L-ComfortHMI-404	expected_result	M7	"1. The rear AUTO button is highlighted
+2. The rear fan speed indicator shows AUTO"	"1. The rear ""AUTO"" button is highlighted
+2. The rear fan speed indicator shows ""AUTO"""
+NR1L-ComfortHMI-404	test_item	M7	"CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead).
+
+(read the rear fan speed indicator -> The rear fan speed indicator shows AUTO)"	"CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead).
+
+(read the rear fan speed indicator -> The rear fan speed indicator shows ""AUTO"")"
+NR1L-ComfortHMI-293	test_procedure	M7	"1. Turn SYNC on
+2. Change the driver temperature
+3. Read the rear temperature"	"1. Turn ""SYNC"" on
+2. Change the driver temperature
+3. Read the rear temperature"
+NR1L-ComfortHMI-293	expected_result	M7	"1. The SYNC button is highlighted
+2. The driver temperature changes
+3. The rear temperature follows the driver temperature"	"1. The ""SYNC"" button is highlighted
+2. The driver temperature changes
+3. The rear temperature follows the driver temperature"
+NR1L-ComfortHMI-294	test_procedure	M7	"1. Turn SYNC on
+2. Change the rear passenger temperature using the rear climate controls
+3. Read the SYNC button"	"1. Turn ""SYNC"" on
+2. Change the rear passenger temperature using the rear climate controls
+3. Read the ""SYNC"" button"
+NR1L-ComfortHMI-294	expected_result	M7	"1. The SYNC button is highlighted
+2. The rear passenger temperature changes
+3. SYNC is off and the SYNC button is no longer highlighted"	"1. The ""SYNC"" button is highlighted
+2. The rear passenger temperature changes
+3. SYNC is off and the ""SYNC"" button is no longer highlighted"
+NR1L-ComfortHMI-294	test_item	M7	"Adjusting the front or rear passenger temperature, mode, and fan speed via touchscreen or hard control would break SYNC.
+
+(read the SYNC button -> SYNC is off and the SYNC button is no longer highlighted)"	"Adjusting the front or rear passenger temperature, mode, and fan speed via touchscreen or hard control would break SYNC.
+
+(read the ""SYNC"" button -> SYNC is off and the ""SYNC"" button is no longer highlighted)"
+NR1L-ComfortHMI-295	test_procedure	M7	"1. Turn SYNC on
+2. Change the front fan speed
+3. Read the rear fan speed"	"1. Turn ""SYNC"" on
+2. Change the front fan speed
+3. Read the rear fan speed"
+NR1L-ComfortHMI-295	expected_result	M7	"1. The SYNC button is highlighted
+2. The front fan speed changes
+3. The rear fan speed follows the front fan speed"	"1. The ""SYNC"" button is highlighted
+2. The front fan speed changes
+3. The rear fan speed follows the front fan speed"
+NR1L-ComfortHMI-296	test_procedure	M7	"1. Select the rear Feet mode
+2. Read the rear airflow mode"	"1. Select the rear ""Feet"" mode
+2. Read the rear airflow mode"
+NR1L-ComfortHMI-405	test_procedure	M7	"1. Select the rear Face + Feet mode
+2. Read the rear airflow mode"	"1. Select the rear ""Face + Feet"" mode
+2. Read the rear airflow mode"
+NR1L-ComfortHMI-406	test_procedure	M7	"1. Select the rear Face mode
+2. Read the rear airflow mode"	"1. Select the rear ""Face"" mode
+2. Read the rear airflow mode"
+NR1L-ComfortHMI-298	test_procedure	M7	"1. Select a rear airflow mode
+2. Turn rear AUTO on
+3. Read the rear airflow mode buttons"	"1. Select a rear airflow mode
+2. Turn rear ""AUTO"" on
+3. Read the rear airflow mode buttons"
+NR1L-ComfortHMI-298	expected_result	M7	"1. The selected rear airflow mode button is highlighted
+2. The rear AUTO button is highlighted
+3. The rear airflow mode buttons are turned off"	"1. The selected rear airflow mode button is highlighted
+2. The rear ""AUTO"" button is highlighted
+3. The rear airflow mode buttons are turned off"
+NR1L-ComfortHMI-299	test_procedure	M7	"1. Select the rear Feet mode
+2. Select the rear Face mode
+3. Read the rear airflow mode buttons"	"1. Select the rear ""Feet"" mode
+2. Select the rear ""Face"" mode
+3. Read the rear airflow mode buttons"
+NR1L-ComfortHMI-299	expected_result	M7	"1. The rear Feet mode is selected
+2. The rear Face mode is selected
+3. Only the rear Face mode button is highlighted"	"1. The rear Feet mode is selected
+2. The rear Face mode is selected
+3. Only the rear ""Face"" mode button is highlighted"
+NR1L-ComfortHMI-299	test_item	M7	"Only one mode can be selected at a time.
+
+(read the rear airflow mode buttons -> Only the rear Face mode button is highlighted)"	"Only one mode can be selected at a time.
+
+(read the rear airflow mode buttons -> Only the rear ""Face"" mode button is highlighted)"
+NR1L-ComfortHMI-408	test_procedure	M7	"1. Turn AUTO on for the front climate
+2. Trigger the fan speed pop up using the hard controls"	"1. Turn ""AUTO"" on for the front climate
+2. Trigger the fan speed pop up using the hard controls"
+NR1L-ComfortHMI-408	expected_result	M7	"1. The front climate is in AUTO
+2. The pop up shows AUTO as the front fan status"	"1. The front climate is in AUTO
+2. The pop up shows ""AUTO"" as the front fan status"
+NR1L-ComfortHMI-408	test_item	M7	"The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
+
+(trigger the fan speed pop up using the hard controls -> The pop up shows AUTO as the front fan status)"	"The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
+
+(trigger the fan speed pop up using the hard controls -> The pop up shows ""AUTO"" as the front fan status)"
+NR1L-ComfortHMI-067	test_procedure	M7	"1. Open the climate screen
+2. Press the AUTO button"	"1. Open the climate screen
+2. Press the ""AUTO"" button"
+NR1L-ComfortHMI-067	expected_result	M7	"1. The climate screen shows the AUTO control
+2. The AUTO ECO mode is active"	"1. The climate screen shows the ""AUTO"" control
+2. The AUTO ECO mode is active"
+NR1L-ComfortHMI-067	test_item	M7	"EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.
+
+(press the AUTO button -> The AUTO ECO mode is active)"	"EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.
+
+(press the ""AUTO"" button -> The AUTO ECO mode is active)"
+NR1L-ComfortHMI-068	test_procedure	M7	"1. Press the AUTO button until AUTO is off
+2. Press the AUTO button
+3. Press the AUTO button"	"1. Press the ""AUTO"" button until AUTO is off
+2. Press the ""AUTO"" button
+3. Press the ""AUTO"" button"
+NR1L-ComfortHMI-068	test_item	M7	"EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.
+
+(press the AUTO button -> The AUTO state is AUTO ON)"	"EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.
+
+(press the ""AUTO"" button -> The AUTO state is AUTO ON)"
+NR1L-ComfortHMI-069	test_procedure	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Read the label on the AUTO button"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Read the label on the ""AUTO"" button"
+NR1L-ComfortHMI-069	expected_result	M7	"1. The AUTO ECO mode is active
+2. The button label reads AUTO ECO"	"1. The AUTO ECO mode is active
+2. The button label reads ""AUTO ECO"""
+NR1L-ComfortHMI-069	test_item	M7	"EH3.) Button label will read AUTO ECO.
+
+(read the label on the AUTO button -> The button label reads AUTO ECO)"	"EH3.) Button label will read AUTO ECO.
+
+(read the label on the ""AUTO"" button -> The button label reads ""AUTO ECO"")"
+NR1L-ComfortHMI-070	test_procedure	M7	"1. Press the AUTO button until AUTO is off
+2. Press the AUTO button once"	"1. Press the ""AUTO"" button until AUTO is off
+2. Press the ""AUTO"" button once"
+NR1L-ComfortHMI-070	test_item	M7	"EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+
+(press the AUTO button once -> The AUTO ECO functionality is activated)"	"EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+
+(press the ""AUTO"" button once -> The AUTO ECO functionality is activated)"
+NR1L-ComfortHMI-460	test_procedure	M7	"1. Open the climate screen
+2. Press the position at which the AUTO button is shown in an ATC configuration"	"1. Open the climate screen
+2. Press the position at which the ""AUTO"" button is shown in an ATC configuration"
+NR1L-ComfortHMI-460	expected_result	M7	"1. The climate screen is displayed and no AUTO button is shown
+2. The AUTO ECO functionality is not activated"	"1. The climate screen is displayed and no ""AUTO"" button is shown
+2. The AUTO ECO functionality is not activated"
+NR1L-ComfortHMI-460	test_item	M7	"EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+
+(press the position at which the AUTO button is shown in an ATC configuration -> The AUTO ECO functionality is not activated)"	"EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+
+(press the position at which the ""AUTO"" button is shown in an ATC configuration -> The AUTO ECO functionality is not activated)"
+NR1L-ComfortHMI-071	test_procedure	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Press the AUTO button once"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Press the ""AUTO"" button once"
+NR1L-ComfortHMI-071	test_item	M7	"EH5.) The second press will switch to AUTO on.
+
+(press the AUTO button once -> The AUTO state is AUTO ON)"	"EH5.) The second press will switch to AUTO on.
+
+(press the ""AUTO"" button once -> The AUTO state is AUTO ON)"
+NR1L-ComfortHMI-072	test_procedure	M7	"1. Press the AUTO button until the AUTO ON state is active
+2. Press the AUTO button once"	"1. Press the ""AUTO"" button until the AUTO ON state is active
+2. Press the ""AUTO"" button once"
+NR1L-ComfortHMI-072	test_item	M7	"A third press would go back to AUTO ECO.
+
+(press the AUTO button once -> The AUTO state is AUTO ECO)"	"A third press would go back to AUTO ECO.
+
+(press the ""AUTO"" button once -> The AUTO state is AUTO ECO)"
+NR1L-ComfortHMI-073	test_procedure	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Press the AUTO button repeatedly
+3. Change the fan speed
+4. Press the AUTO button until the AUTO ECO mode is active
+5. Change the airflow mode"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Press the ""AUTO"" button repeatedly
+3. Change the fan speed
+4. Press the ""AUTO"" button until the AUTO ECO mode is active
+5. Change the airflow mode"
+NR1L-ComfortHMI-074	test_procedure	M7	"1. Select an airflow mode on the climate screen
+2. Press the AUTO button until the AUTO ECO mode is active"	"1. Select an airflow mode on the climate screen
+2. Press the ""AUTO"" button until the AUTO ECO mode is active"
+NR1L-ComfortHMI-074	test_item	M7	"EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.
+
+(press the AUTO button until the AUTO ECO mode is active -> The airflow modes are deselected)"	"EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.
+
+(press the ""AUTO"" button until the AUTO ECO mode is active -> The airflow modes are deselected)"
+NR1L-ComfortHMI-075	test_procedure	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Read the fan speed indication on the climate screen"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Read the fan speed indication on the climate screen"
+NR1L-ComfortHMI-076	test_procedure	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Run an ignition cycle
+3. Read the AUTO state on the climate screen"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Run an ignition cycle
+3. Read the AUTO state on the climate screen"
+NR1L-ComfortHMI-077	test_procedure	M7	"1. Press the AUTO button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon
+2. Press the AUTO button once, then read the Comfort main Menu Bar icon"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon
+2. Press the ""AUTO"" button once, then read the Comfort main Menu Bar icon"
+NR1L-ComfortHMI-077	test_item	M7	"EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.
+
+(press the AUTO button once, then read the Comfort main Menu Bar icon -> The Comfort main Menu Bar icon reflects the AUTO ON state)"	"EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.
+
+(press the ""AUTO"" button once, then read the Comfort main Menu Bar icon -> The Comfort main Menu Bar icon reflects the AUTO ON state)"
+NR1L-ComfortHMI-078	test_procedure	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Change the fan speed using the fan speed hard control
+3. Press the AUTO button until the AUTO ON state is active
+4. Change the fan speed using the fan speed hard control"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Change the fan speed using the fan speed hard control
+3. Press the ""AUTO"" button until the AUTO ON state is active
+4. Change the fan speed using the fan speed hard control"
+NR1L-ComfortHMI-079	test_procedure	M7	"1. Press the AUTO button until AUTO is off
+2. Press the AUTO button once and read the AUTO pop up"	"1. Press the ""AUTO"" button until AUTO is off
+2. Press the ""AUTO"" button once and read the AUTO pop up"
+NR1L-ComfortHMI-079	test_item	M7	"When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+
+(press the AUTO button once and read the AUTO pop up -> The AUTO pop up reads ""Press again to improve climate performance"")"	"When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+
+(press the ""AUTO"" button once and read the AUTO pop up -> The AUTO pop up reads ""Press again to improve climate performance"")"
+NR1L-ComfortHMI-080	test_procedure	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Press the AUTO button once and read the AUTO pop up"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Press the ""AUTO"" button once and read the AUTO pop up"
+NR1L-ComfortHMI-080	test_item	M7	"When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+
+(press the AUTO button once and read the AUTO pop up -> The AUTO pop up reads ""Press again for lower battery consumption"")"	"When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+
+(press the ""AUTO"" button once and read the AUTO pop up -> The AUTO pop up reads ""Press again for lower battery consumption"")"
+NR1L-ComfortHMI-197	test_procedure	M7	"1. Turn AUTO on using the AUTO hard control
+2. Read the screen for an AUTO pop-up"	"1. Turn ""AUTO"" on using the ""AUTO"" hard control
+2. Read the screen for an AUTO pop-up"
+NR1L-ComfortHMI-085	test_procedure	M7	"1. Turn SYNC on from the climate screen
+2. Adjust the driver temperature slider"	"1. Turn ""SYNC"" on from the climate screen
+2. Adjust the driver temperature slider"
+NR1L-ComfortHMI-203	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Read the fan speed indicator"	"1. Turn ""AUTO"" on from the climate screen
+2. Read the fan speed indicator"
+NR1L-ComfortHMI-204	test_procedure	M7	"1. Select an airflow mode on the climate screen
+2. Turn AUTO on and read the Mode buttons"	"1. Select an airflow mode on the climate screen
+2. Turn ""AUTO"" on and read the Mode buttons"
+NR1L-ComfortHMI-204	test_item	M7	"The fan speed indicator shows Auto instead of the actual fan speed and none of the Mode buttons will be shown highlighted.
+
+(turn AUTO on and read the Mode buttons -> No Mode button is highlighted)"	"The fan speed indicator shows Auto instead of the actual fan speed and none of the Mode buttons will be shown highlighted.
+
+(turn ""AUTO"" on and read the Mode buttons -> No Mode button is highlighted)"
+NR1L-ComfortHMI-205	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Read the main category control"	"1. Turn ""AUTO"" on from the climate screen
+2. Read the main category control"
+NR1L-ComfortHMI-206	test_procedure	M7	"1. Set a fan speed and an airflow mode from the climate screen with AUTO off
+2. Turn AUTO on and read the fan speed and the airflow mode"	"1. Set a fan speed and an airflow mode from the climate screen with AUTO off
+2. Turn ""AUTO"" on and read the fan speed and the airflow mode"
+NR1L-ComfortHMI-206	test_item	M7	"AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+
+(turn AUTO on and read the fan speed and the airflow mode -> The fan speed and the airflow mode are set by the system)"	"AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+
+(turn ""AUTO"" on and read the fan speed and the airflow mode -> The fan speed and the airflow mode are set by the system)"
+NR1L-ComfortHMI-207	test_procedure	M7	"1. Turn ""MAX A/C"" on from the climate screen
+2. Turn AUTO on and read the ""MAX A/C"" and ""MAX DEF"" buttons"	"1. Turn ""MAX A/C"" on from the climate screen
+2. Turn ""AUTO"" on and read the ""MAX A/C"" and ""MAX DEF"" buttons"
+NR1L-ComfortHMI-207	test_item	M7	"Auto is mutually exclusive with MAX A/C and MAX DEF.
+
+(turn AUTO on and read the ""MAX A/C"" and ""MAX DEF"" buttons -> Neither ""MAX A/C"" nor ""MAX DEF"" is highlighted)"	"Auto is mutually exclusive with MAX A/C and MAX DEF.
+
+(turn ""AUTO"" on and read the ""MAX A/C"" and ""MAX DEF"" buttons -> Neither ""MAX A/C"" nor ""MAX DEF"" is highlighted)"
+NR1L-ComfortHMI-208	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Press ""MAX A/C"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""MAX A/C"""
+NR1L-ComfortHMI-411	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Press ""MAX DEF"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""MAX DEF"""
+NR1L-ComfortHMI-209	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Select another airflow mode"	"1. Turn ""AUTO"" on from the climate screen
+2. Select another airflow mode"
+NR1L-ComfortHMI-412	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Change the fan speed"	"1. Turn ""AUTO"" on from the climate screen
+2. Change the fan speed"
+NR1L-ComfortHMI-210	test_procedure	M7	"1. Turn AUTO on from the climate screen and read the ""A/C"" button
+2. Press ""A/C"" and read the ""AUTO"" button"	"1. Turn ""AUTO"" on from the climate screen and read the ""A/C"" button
+2. Press ""A/C"" and read the ""AUTO"" button"
+NR1L-ComfortHMI-103	test_procedure	M7	"1. Turn SYNC on from the climate screen
+2. Adjust the driver temperature slider"	"1. Turn ""SYNC"" on from the climate screen
+2. Adjust the driver temperature slider"
+NR1L-ComfortHMI-104	test_procedure	M7	"1. Turn SYNC on from the climate screen
+2. Adjust the driver temperature"	"1. Turn ""SYNC"" on from the climate screen
+2. Adjust the driver temperature"
+NR1L-ComfortHMI-105	test_procedure	M7	"1. Turn SYNC on from the climate screen
+2. Adjust the passenger temperature"	"1. Turn ""SYNC"" on from the climate screen
+2. Adjust the passenger temperature"
+NR1L-ComfortHMI-109	test_procedure	M7	"1. Adjust the fan speed across its whole range on the climate screen
+2. Turn AUTO on"	"1. Adjust the fan speed across its whole range on the climate screen
+2. Turn ""AUTO"" on"
+NR1L-ComfortHMI-109	expected_result	M7	"1. The fan speeds available are 1 to 7
+2. The fan speed indicator shows the AUTO label instead of a fan speed"	"1. The fan speeds available are 1 to 7
+2. The fan speed indicator shows the ""AUTO"" label instead of a fan speed"
+NR1L-ComfortHMI-109	test_item	M7	"ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO).
+
+(turn AUTO on -> The fan speed indicator shows the AUTO label instead of a fan speed)"	"ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO).
+
+(turn ""AUTO"" on -> The fan speed indicator shows the ""AUTO"" label instead of a fan speed)"
+NR1L-ComfortHMI-240	test_procedure	M7	"1. Set RECIRC to closed on the climate screen
+2. Press ""MAX DEF"" and read the RECIRC state and its LED"	"1. Set ""RECIRC"" to closed on the climate screen
+2. Press ""MAX DEF"" and read the ""RECIRC"" button state and its LED"
+NR1L-ComfortHMI-240	test_item	M7	"ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+
+(press ""MAX DEF"" and read the RECIRC state and its LED -> RECIRC is open and its LED is off)"	"ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+
+(press ""MAX DEF"" and read the ""RECIRC"" button state and its LED -> RECIRC is open and its LED is off)"
+NR1L-ComfortHMI-421	test_procedure	M7	"1. Select a known airflow mode
+2. Press ""MAX DEF""
+3. Change RECIRC and read the ""MAX DEF"" button"	"1. Select a known airflow mode
+2. Press ""MAX DEF""
+3. Change ""RECIRC"" and read the ""MAX DEF"" button"
+NR1L-ComfortHMI-421	test_item	M7	"Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+
+(change RECIRC and read the ""MAX DEF"" button -> ""MAX DEF"" is no longer highlighted and the airflow mode is the one selected in step 1)"	"Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+
+(change ""RECIRC"" and read the ""MAX DEF"" button -> ""MAX DEF"" is no longer highlighted and the airflow mode is the one selected in step 1)"
+NR1L-ComfortHMI-251	test_procedure	M7	"1. Select the Face airflow mode on the climate screen
+2. Select the Feet airflow mode and read the mode buttons"	"1. Select the ""Face"" airflow mode on the climate screen
+2. Select the ""Feet"" airflow mode and read the mode buttons"
+NR1L-ComfortHMI-251	test_item	M7	"Only one airflow mode can be selected at a time.
+
+(select the Feet airflow mode and read the mode buttons -> The Feet airflow mode is active and the Face airflow mode is not)"	"Only one airflow mode can be selected at a time.
+
+(select the ""Feet"" airflow mode and read the mode buttons -> The Feet airflow mode is active and the Face airflow mode is not)"
+NR1L-ComfortHMI-252	test_procedure	M7	"1. Read the size and highlight of the Feet airflow mode button and record them
+2. Select the Feet airflow mode and read that button"	"1. Read the size and highlight of the ""Feet"" airflow mode button and record them
+2. Select the ""Feet"" airflow mode and read that button"
+NR1L-ComfortHMI-252	expected_result	M7	"1. The Feet airflow mode button is not highlighted
+2. The Feet airflow mode button is highlighted and larger than in step 1"	"1. The ""Feet"" airflow mode button is not highlighted
+2. The ""Feet"" airflow mode button is highlighted and larger than in step 1"
+NR1L-ComfortHMI-252	test_item	M7	"ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+
+(select the Feet airflow mode and read that button -> The Feet airflow mode button is highlighted and larger than in step 1)"	"ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+
+(select the ""Feet"" airflow mode and read that button -> The ""Feet"" airflow mode button is highlighted and larger than in step 1)"
+NR1L-ComfortHMI-253	test_procedure	M7	"1. Select the Feet airflow mode on the climate screen
+2. Read the main category control"	"1. Select the ""Feet"" airflow mode on the climate screen
+2. Read the main category control"
+NR1L-ComfortHMI-254	test_procedure	M7	"1. Select the Face airflow mode on the climate screen
+2. Press the Mode hard control four times, reading the mode after each press"	"1. Select the ""Face"" airflow mode on the climate screen
+2. Press the Mode hard control four times, reading the mode after each press"
+NR1L-ComfortHMI-255	test_procedure	M7	"1. Select the Face airflow mode on the climate screen
+2. Press and hold the Mode hard control and read the airflow mode"	"1. Select the ""Face"" airflow mode on the climate screen
+2. Press and hold the Mode hard control and read the airflow mode"
+NR1L-ComfortHMI-229	test_procedure	M7	"1. Set RECIRC to open on the climate screen
+2. Press ""MAX A/C"" and read the ""RECIRC"" state and its LED"	"1. Set ""RECIRC"" to open on the climate screen
+2. Press ""MAX A/C"" and read the ""RECIRC"" state and its LED"
+NR1L-ComfortHMI-427	test_procedure	M7	"1. Press ""MAX A/C"" on the climate screen
+2. Change RECIRC and read the ""MAX A/C"" button"	"1. Press ""MAX A/C"" on the climate screen
+2. Change ""RECIRC"" and read the ""MAX A/C"" button"
+NR1L-ComfortHMI-427	test_item	M7	"Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+
+(change RECIRC and read the ""MAX A/C"" button -> The ""MAX A/C"" button is no longer highlighted)"	"Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+
+(change ""RECIRC"" and read the ""MAX A/C"" button -> The ""MAX A/C"" button is no longer highlighted)"
+NR1L-ComfortHMI-265	test_procedure	M7	"1. Turn the exterior rear-view mirror defrost on
+2. Turn AUTO on and read the exterior rear-view mirror defrost state
+3. Turn the climate system off and read the exterior rear-view mirror defrost state"	"1. Turn the exterior rear-view mirror defrost on
+2. Turn ""AUTO"" on and read the exterior rear-view mirror defrost state
+3. Turn the climate system off and read the exterior rear-view mirror defrost state"
+NR1L-ComfortHMI-475	test_procedure	M7	"1. Turn AUTO on from the climate screen
+2. Turn ""FRONT DEF"" on"	"1. Turn ""AUTO"" on from the climate screen
+2. Turn ""FRONT DEF"" on"

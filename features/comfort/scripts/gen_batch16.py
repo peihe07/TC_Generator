@@ -380,5 +380,21 @@ def main() -> None:
         raise SystemExit(f"expected 19, got {total}")
 
 
+# ---------------------------------------------------------------- R-C59
+# **generator 凍結**（R-C59，CMF-02_review §2，2026-09-21）：自 CMF-02 起，
+# `generated/*.json` 為唯一語料真源 —— CMF-02／CMF-03 之 patch 直接寫在該處，
+# 而本檔整檔產出其 parent 之 JSON，重跑即覆寫那些改動且不留痕跡。
+# 需要重產時必須明示知情，旗標之名即是那句話。
+def _frozen_guard() -> None:
+    if "--i-know-this-overwrites-cmf" in sys.argv:
+        sys.argv.remove("--i-know-this-overwrites-cmf")
+        return
+    raise SystemExit(
+        __file__.rsplit("/", 1)[-1] + ": generator 已凍結（R-C59）—— "
+        "generated/*.json 自 CMF-02 起為唯一語料真源，重跑本檔會覆寫 "
+        "CMF-02／CMF-03 之 patch。確知要重產請加 --i-know-this-overwrites-cmf。")
+
+
 if __name__ == "__main__":
+    _frozen_guard()
     main()

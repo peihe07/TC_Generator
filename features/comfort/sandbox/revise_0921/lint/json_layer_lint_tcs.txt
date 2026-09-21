@@ -1,0 +1,160 @@
+files: 129   TCs: 476   vocabulary: 9 strings   valid outlines: 129
+
+gates:
+- PASS — tc-id-format
+- PASS — tc-id-unique
+- PASS — tc-id-sequence
+- PASS — req-id-unique
+- PASS — spec-ref-stem
+- PASS — spec-ref-outline
+- PASS — spec-ref-sr25
+- PASS — test-group
+- PASS — design-method
+- PASS — priority
+- PASS — functional-safety
+- PASS — estimated-time
+- PASS — remarks
+- PASS — trailing-period
+- PASS — ui-bracket
+- PASS — title-length
+- PASS — title-modal
+- PASS — test-item-two-parts
+- PASS — test-item-upper-verbatim
+- PASS — test-item-lower-distinct
+- PASS — test-item-lower-not-a-reference
+- PASS — er-modal
+- PASS — source-class
+- PASS — proc-er-1to1
+- PASS — token-placement
+- PASS — token-source
+- PASS — fabricated-qty
+- PASS — sibling-axis
+- PASS — required-keys
+- PASS — proc-min-steps
+- PASS — reasoning-sentences
+- PASS — duplicate-of-format
+- PASS — blocked-row-empty
+- PASS — blocked-remarks
+- PASS — marker-whitelist
+- PASS — json-key-coverage
+- PASS — anomaly-id-registered
+- PASS — residue-scan-window
+- PASS — forbidden-verb
+- PASS — axis-value-count
+- PASS — pending-sibling
+- PASS — interface-axis-answered
+- PASS — emea-per-tc-answered
+- PASS — provisional-sibling
+- PASS — axis-type-reverse-test
+- PASS — no-tcid-in-prose
+- PASS — prose-reqid-exists
+- PASS — mirror-map-verified
+- PASS — withheld-not-generated
+- PASS — equivalence-in-sibling-table
+- PASS — axis-candidate-registered
+- PASS — rc42-condition-marker
+- PASS — moved-leaf-identity
+- PASS — ambiguity-register
+- PASS — source-class-truthful
+- PASS — pc-line-numbering
+- PASS — rows exempted as BLOCKED, all markers (proc-min-steps, proc-er-1to1): ['NR1L-ComfortHMI-010', 'NR1L-ComfortHMI-012', 'NR1L-ComfortHMI-081', 'NR1L-ComfortHMI-383', 'NR1L-ComfortHMI-466']
+- PASS — marker whitelist (profile §5.1/§5.2) [BLOCKED-SPEC]: ['NR1L-ComfortHMI-010', 'NR1L-ComfortHMI-012', 'NR1L-ComfortHMI-383', 'NR1L-ComfortHMI-466']
+- PASS — marker whitelist (profile §5.1/§5.2) [BLOCKED-NON-HMI]: ['NR1L-ComfortHMI-081']
+- PASS — mirror maps re-measured (62 §1.1 (b)): 18 `mirrored` row(s), longest shared verbatim run per row (threshold 40 chars produces candidates; the segment is the substance, §5a)
+    · 16.2     ↔ 2.2       624 chars  '. Whenever fan speed or temperature hard controls ar'
+    · 16.3     ↔ 2.3       320 chars  ', or changing fan speeds breaks Auto. When breaking '
+    · 16.6     ↔ 2.6       211 chars  ' the user has set it to for ATC systems, when at the'
+    · 16.6.1   ↔ 2.6.1     220 chars  '5.1) If SYNC is ON, adjusting driver temperature aff'
+    · 16.7     ↔ 2.7       375 chars  ' buttons, directly touch a fan segment to jump or sl'
+    · 16.8     ↔ 3.2       319 chars  ' highest setting (7/7), sets temperature (driver and'
+    · 16.9     ↔ 2.9        91 chars  'ray out the REAR DEFROST button when rear defrost av'
+    · 16.10    ↔ 2.10      180 chars  'scar replaced with "OFF" which will remain until the'
+    · 16.11    ↔ 2.11      615 chars  '.) SYNC has on/ off state that is indicated on clima'
+    · 16.12    ↔ 2.12.1    100 chars  'odes has 5 states (1.Face, 2.Mix of Face & Feet, 3.F'
+    · 16.12.1  ↔ 2.12.2    337 chars  '-up will appear above the Climate main category cont'
+    · 16.13    ↔ 2.13      100 chars  '. MAX A/C has an on/off state that is indicated on c'
+    · 16.14    ↔ 2.14      210 chars  '.) MTC screens/popups are to be used when CCM relays'
+    · 16.15    ↔ 2.15       74 chars  '.) EXTERIOR REAR-VIEW MIRROR DEFROST has on/ off sta'
+    · 16.17    ↔ 2.16       86 chars  '.) If blower reduction occurs automatically due to a'
+    · 7.2      ↔ 2.3       160 chars  ' AUTO has on/ off state. The fan speed indicator sho'
+    · 7.7      ↔ 2.11       95 chars  '.) SYNC has on/ off state that is indicated on clima'
+    · 7.8      ↔ 2.12       79 chars  ' airflow modes is shown by highlighting the button a'
+- PASS — R-C42 unblocks whose quoted fragment does not match a listed qualifier, and their named dispositions (66 §2.2): 1
+    · 125-08 (17.2): condition — 出處 66 §2.1（分析層裁定不回復停下）
+- PASS — 兩段式狀態句之實詞（71 §1，量測不 FAIL）：5 行，其中 0 行有實詞未見於所引節
+    · NR1L-ComfortHMI-377 (14.14) 'the vehicle under test is such a vehicle' — 全部命中
+    · NR1L-ComfortHMI-378 (17.4) 'the vehicle has one of those screens' — 全部命中
+    · NR1L-ComfortHMI-379 (17.4) 'the vehicle has one of those screens' — 全部命中
+    · NR1L-ComfortHMI-380 (17.5) 'the vehicle is such a vehicle' — 全部命中
+    · NR1L-ComfortHMI-381 (17.5) 'the vehicle is such a vehicle' — 全部命中
+- PASS — [test-setup] 之對應強度（71 §3，量測不 FAIL）：最長 20 種寫法（依 節×措辭 去重，×n 為其列數）—— 長者可能其實有出處而被標成自撰
+    · (7.1.1   ) run= 23/ 60 ×  1 'he rear climate screen'   'The rear climate screen is open and the climat'  e.g. NR1L-ComfortHMI-271
+    · (7.6     ) run= 22/ 60 ×  5 'he rear climate screen'   'The rear climate screen is open and the climat'  e.g. NR1L-ComfortHMI-288
+    · (7.4     ) run= 22/ 60 ×  7 'he rear climate screen'   'The rear climate screen is open and the climat'  e.g. NR1L-ComfortHMI-280
+    · (7.1     ) run= 22/ 60 ×  3 'he rear climate screen'   'The rear climate screen is open and the climat'  e.g. NR1L-ComfortHMI-266
+    · (17.2    ) run= 21/ 46 ×  8 'he Comfort widget is '    'The Comfort widget is shown on the home screen'  e.g. NR1L-ComfortHMI-118
+    · (7.5     ) run= 20/ 60 ×  5 ' rear climate screen'     'The rear climate screen is open and the climat'  e.g. NR1L-ComfortHMI-284
+    · (2.10    ) run= 20/ 55 ×  6 ' the climate system '     'The climate screen is open and the climate sys'  e.g. NR1L-ComfortHMI-143
+    · (13.5    ) run= 20/ 96 ×  1 ' the lumbar/bolster '     'The Seats tab is open and the lumbar/bolster l'  e.g. NR1L-ComfortHMI-012
+    · (18.1    ) run= 19/ 46 ×  3 'The Comfort widget '      'The Comfort widget is shown on the home screen'  e.g. NR1L-ComfortHMI-463
+    · (17.1    ) run= 19/ 46 ×  3 'The Comfort widget '      'The Comfort widget is shown on the home screen'  e.g. NR1L-ComfortHMI-115
+    · (13.5    ) run= 18/ 70 ×  1 'he lumbar/bolster '       'The lumbar/bolster level is away from both its'  e.g. NR1L-ComfortHMI-011
+    · (7.7     ) run= 16/ 60 ×  3 ' climate screen '         'The rear climate screen is open and the climat'  e.g. NR1L-ComfortHMI-293
+    · (7.3     ) run= 16/ 60 ×  4 'he rear climate '         'The rear climate screen is open and the climat'  e.g. NR1L-ComfortHMI-277
+    · (7.1.1   ) run= 16/ 61 ×  2 ' climate screen '         'The front climate screen is open and the clima'  e.g. NR1L-ComfortHMI-269
+    · (17.3    ) run= 16/ 46 ×  2 ' Comfort widget '         'The Comfort widget is shown on the home screen'  e.g. NR1L-ComfortHMI-125
+    · (14.4    ) run= 14/ 48 ×  2 ' head unit is '           'The head unit is on and the climate system is '  e.g. NR1L-ComfortHMI-171
+    · (14.10   ) run= 14/ 48 ×  1 ' head unit is '           'The head unit is on and the climate system is '  e.g. NR1L-ComfortHMI-179
+    · (7.2     ) run= 10/ 60 ×  5 'r climate '               'The rear climate screen is open and the climat'  e.g. NR1L-ComfortHMI-272
+    · (2.5     ) run=  9/ 55 ×  4 'e system '                'The climate screen is open and the climate sys'  e.g. NR1L-ComfortHMI-140
+    · (2.15    ) run=  9/ 55 ×  2 ' climate '                'The climate screen is open and the climate sys'  e.g. NR1L-ComfortHMI-165
+- PASS — [spec-derived] 之對應強度（70 §3，量測不 FAIL）：最短 20 種寫法（依 節×措辭 去重，×n 為其列數），長度為其與所引節之最長共同連續字串
+    · (14.13   ) run=  9/ 35 ×  1 ' a lower '          'The vehicle has a lower HVAC screen'  e.g. NR1L-ComfortHMI-183
+    · (2.14    ) run=  9/ 25 ×  5 ' climate '          'The climate system is MTC'  e.g. NR1L-ComfortHMI-043
+    · (2.3     ) run=  9/ 25 ×  1 ' climate '          'The climate system is MTC'  e.g. NR1L-ComfortHMI-460
+    · (2.7     ) run=  9/ 51 ×  1 ' Off, 1-7'          'The front HVAC fan range of the vehicle is Off, 1-7'  e.g. NR1L-ComfortHMI-019
+    · (16.2    ) run= 10/ 86 ×119 'e climate '         'The vehicle is an EMEA ICS vehicle, whose climate interf'  e.g. NR1L-ComfortHMI-082
+    · (16.2    ) run= 10/101 ×307 'e climate '         'The vehicle is not an EMEA ICS vehicle, whose climate in'  e.g. NR1L-ComfortHMI-032
+    · (3.2     ) run= 10/ 36 ×  1 ' with MAX '         'The vehicle is equipped with MAX A/C'  e.g. NR1L-ComfortHMI-023
+    · (16.3    ) run= 11/ 61 × 11 ', in which '        'The vehicle has an ATC climate system, in which AUTO is '  e.g. NR1L-ComfortHMI-203
+    · (2.1     ) run= 11/ 93 × 52 'he comfort '        'The vehicle is not a front-climate-only vehicle, for whi'  e.g. NR1L-ComfortHMI-304
+    · (2.3     ) run= 11/ 61 × 15 ', in which '        'The vehicle has an ATC climate system, in which AUTO is '  e.g. NR1L-ComfortHMI-127
+    · (2.9     ) run= 11/ 73 ×  1 ' available '        'The exterior rear-view mirror defrost feature is availab'  e.g. NR1L-ComfortHMI-162
+    · (10.1    ) run= 13/ 55 × 16 ' ECO HVAC is '      'The vehicle is an EV vehicle, on which ECO HVAC is used'  e.g. NR1L-ComfortHMI-067
+    · (2.1     ) run= 13/110 ×  2 ' Front, Seats'      'The vehicle is configured with all four of the comfort a'  e.g. NR1L-ComfortHMI-435
+    · (2.1     ) run= 13/112 ×  1 ' Front, Seats'      'The vehicle is configured with three of the four comfort'  e.g. NR1L-ComfortHMI-436
+    · (2.1     ) run= 13/110 ×  1 ' Front, Seats'      'The vehicle is configured with two of the four comfort a'  e.g. NR1L-ComfortHMI-437
+    · (2.7     ) run= 13/ 40 ×  4 ' hard control'      'The vehicle has a fan speed hard control'  e.g. NR1L-ComfortHMI-060
+    · (3.2     ) run= 13/ 36 × 34 ' with MAX DEF'      'The vehicle is equipped with MAX DEF'  e.g. NR1L-ComfortHMI-018
+    · (13.2    ) run= 15/ 71 × 15 ' lower screen t'    'The vehicle is equipped with a lower screen that provide'  e.g. NR1L-ComfortHMI-001
+    · (13.3    ) run= 15/ 65 ×  1 ' the popup or t'    'The first press has already triggered the popup or the t'  e.g. NR1L-ComfortHMI-006
+    · (16.2    ) run= 15/ 37 ×  1 ' climate system'    'The vehicle has an ATC climate system'  e.g. NR1L-ComfortHMI-087
+- PASS — identical-TC scan (61 §2, measurement): 19 group(s) of TCs whose test_item, test_procedure and expected_result are character-identical — 037 decomposition artefacts, kept as separate rows (§8.2.2), recorded in pending_sibling's equivalent_tc_pairs
+    · 2.3:SWE1-HVAC-003-03 ≡ 16.3:SWE1-HVAC-107-04   pre_conditions: no
+    · 2.3:SWE1-HVAC-003-09 ≡ 16.3:SWE1-HVAC-107-09   pre_conditions: no
+    · 2.6:SWE1-HVAC-008-04 ≡ 16.6:SWE1-HVAC-110-04   pre_conditions: no
+    · 2.10:SWE1-HVAC-014-04 ≡ 16.10:SWE1-HVAC-115-04   pre_conditions: no
+    · 2.10:SWE1-HVAC-014-06 ≡ 16.10:SWE1-HVAC-115-08   pre_conditions: no
+    · 2.11:SWE1-HVAC-015-02 ≡ 16.11:SWE1-HVAC-116-01   pre_conditions: no
+    · 2.11:SWE1-HVAC-015-03 ≡ 16.11:SWE1-HVAC-116-02   pre_conditions: no
+    · 11.1:SWE1-HVAC-054-02 ≡ 12.1:SWE1-HVAC-067-02   pre_conditions: no
+    · 11.1:SWE1-HVAC-054-03 ≡ 12.1:SWE1-HVAC-067-03   pre_conditions: no
+    · 11.1:SWE1-HVAC-054-04 ≡ 12.1:SWE1-HVAC-067-04   pre_conditions: no
+    · 11.2:SWE1-HVAC-055-02 ≡ 12.2:SWE1-HVAC-068-02   pre_conditions: no
+    · 11.2:SWE1-HVAC-055-03 ≡ 12.2:SWE1-HVAC-068-03   pre_conditions: no
+    · 11.2:SWE1-HVAC-055-04 ≡ 12.2:SWE1-HVAC-068-04   pre_conditions: no
+    · 11.3:SWE1-HVAC-056 ≡ 12.4:SWE1-HVAC-070   pre_conditions: same
+    · 11.4:SWE1-HVAC-057-01 ≡ 12.5:SWE1-HVAC-071-01   pre_conditions: same
+    · 11.4:SWE1-HVAC-057-02 ≡ 12.5:SWE1-HVAC-071-02   pre_conditions: same
+    · 17.1:SWE1-HVAC-124-01 ≡ 18.1:SWE1-HVAC-129-01   pre_conditions: no
+    · 17.1:SWE1-HVAC-124-02 ≡ 18.1:SWE1-HVAC-129-02   pre_conditions: no
+    · 17.1:SWE1-HVAC-124-03 ≡ 18.1:SWE1-HVAC-129-03   pre_conditions: no
+- PASS — EMEA exclusions whose per-TC answer is NOT `yes` (R-C36-1; over-strict, removal awaits a ruling): [('NR1L-ComfortHMI-130', 'no', '16.3'), ('NR1L-ComfortHMI-131', 'no', '16.3'), ('NR1L-ComfortHMI-363', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-364', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-137', 'no', '16.4'), ('NR1L-ComfortHMI-138', 'no', '16.4'), ('NR1L-ComfortHMI-139', 'no', '16.4'), ('NR1L-ComfortHMI-476', 'no', '16.4'), ('NR1L-ComfortHMI-141', 'no', '16.4'), ('NR1L-ComfortHMI-142', 'no', '16.4'), ('NR1L-ComfortHMI-365', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-388', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-366', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-153', 'no', '16.4'), ('NR1L-ComfortHMI-154', 'no', '16.4'), ('NR1L-ComfortHMI-155', 'no', '16.4'), ('NR1L-ComfortHMI-156', 'no', '16.4'), ('NR1L-ComfortHMI-157', 'no', '16.4'), ('NR1L-ComfortHMI-396', 'no', '16.4'), ('NR1L-ComfortHMI-158', 'no', '16.4'), ('NR1L-ComfortHMI-161', 'no', '16.9'), ('NR1L-ComfortHMI-162', 'no', '16.9'), ('NR1L-ComfortHMI-440', 'no', '16.12'), ('NR1L-ComfortHMI-441', 'no', '16.12'), ('NR1L-ComfortHMI-442', 'no', '16.12'), ('NR1L-ComfortHMI-443', 'no', '16.12'), ('NR1L-ComfortHMI-458', 'no', '16.13'), ('NR1L-ComfortHMI-466', 'no', '16.13'), ('NR1L-ComfortHMI-166', 'no', '16.15'), ('NR1L-ComfortHMI-266', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-267', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-268', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-269', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-270', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-271', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-272', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-273', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-274', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-275', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-276', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-277', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-400', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-278', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-279', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-280', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-401', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-402', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-281', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-282', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-283', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-403', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-284', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-404', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-285', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-286', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-287', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-288', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-289', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-290', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-291', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-292', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-293', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-294', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-295', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-296', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-405', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-406', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-297', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-298', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-299', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-300', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-407', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-301', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-302', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-303', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-459', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-367', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-408', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-409', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-368', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-369', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-370', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-371', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-372', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-373', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-304', 'no', '16.16'), ('NR1L-ComfortHMI-305', 'no', '16.16'), ('NR1L-ComfortHMI-306', 'no', '16.16'), ('NR1L-ComfortHMI-307', 'no', '16.16'), ('NR1L-ComfortHMI-308', 'no', '16.16'), ('NR1L-ComfortHMI-309', 'no', '16.16'), ('NR1L-ComfortHMI-310', 'no', '16.16'), ('NR1L-ComfortHMI-311', 'no', '16.16'), ('NR1L-ComfortHMI-312', 'no', '16.16'), ('NR1L-ComfortHMI-313', 'no', '16.16'), ('NR1L-ComfortHMI-314', 'no', '16.16'), ('NR1L-ComfortHMI-382', 'no', '16.16'), ('NR1L-ComfortHMI-315', 'no', '16.16'), ('NR1L-ComfortHMI-316', 'no', '16.16'), ('NR1L-ComfortHMI-317', 'no', '16.16'), ('NR1L-ComfortHMI-318', 'no', '16.16'), ('NR1L-ComfortHMI-319', 'no', '16.16'), ('NR1L-ComfortHMI-320', 'no', '16.16'), ('NR1L-ComfortHMI-321', 'no', '16.16'), ('NR1L-ComfortHMI-322', 'no', '16.16'), ('NR1L-ComfortHMI-323', 'no', '16.16'), ('NR1L-ComfortHMI-324', 'no', '16.16'), ('NR1L-ComfortHMI-325', 'no', '16.16'), ('NR1L-ComfortHMI-326', 'no', '16.16'), ('NR1L-ComfortHMI-327', 'no', '16.16'), ('NR1L-ComfortHMI-328', 'no', '16.16'), ('NR1L-ComfortHMI-329', 'no', '16.16'), ('NR1L-ComfortHMI-330', 'no', '16.16'), ('NR1L-ComfortHMI-331', 'no', '16.16'), ('NR1L-ComfortHMI-332', 'no', '16.16'), ('NR1L-ComfortHMI-333', 'no', '16.16'), ('NR1L-ComfortHMI-334', 'no', '16.16'), ('NR1L-ComfortHMI-335', 'no', '16.16'), ('NR1L-ComfortHMI-336', 'no', '16.16'), ('NR1L-ComfortHMI-337', 'no', '16.16'), ('NR1L-ComfortHMI-338', 'no', '16.16'), ('NR1L-ComfortHMI-339', 'no', '16.16'), ('NR1L-ComfortHMI-340', 'no', '16.16'), ('NR1L-ComfortHMI-341', 'no', '16.16'), ('NR1L-ComfortHMI-342', 'no', '16.16'), ('NR1L-ComfortHMI-343', 'no', '16.16'), ('NR1L-ComfortHMI-344', 'no', '16.16'), ('NR1L-ComfortHMI-345', 'no', '16.16'), ('NR1L-ComfortHMI-346', 'no', '16.16'), ('NR1L-ComfortHMI-347', 'no', '16.16'), ('NR1L-ComfortHMI-348', 'no', '16.16'), ('NR1L-ComfortHMI-349', 'no', '16.16'), ('NR1L-ComfortHMI-350', 'no', '16.16'), ('NR1L-ComfortHMI-351', 'no', '16.16'), ('NR1L-ComfortHMI-352', 'no', '16.16'), ('NR1L-ComfortHMI-383', 'no', '16.16'), ('NR1L-ComfortHMI-353', 'no', '16.16'), ('NR1L-ComfortHMI-354', 'no', '16.16'), ('NR1L-ComfortHMI-355', 'no', '16.16'), ('NR1L-ComfortHMI-356', 'no', '16.16'), ('NR1L-ComfortHMI-357', 'no', '16.16'), ('NR1L-ComfortHMI-358', 'no', '16.16'), ('NR1L-ComfortHMI-359', 'no', '16.16'), ('NR1L-ComfortHMI-360', 'no', '16.16'), ('NR1L-ComfortHMI-434', 'no', '—'), ('NR1L-ComfortHMI-374', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-375', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-376', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-377', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-378', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-379', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-380', 'no', 'no-counterpart'), ('NR1L-ComfortHMI-381', 'no', 'no-counterpart')]
+- PASS — axis-type-reverse-test re-ran on 476 TCs (52 §3, criterion = 54 §1 purpose version): 14 功能型 axes declared, 2 with a removed interface (live test), 12 declaring `none` (vacuous by claim, not by omission)
+- PASS — of the purpose-version hits, those ALSO matching the 52 §3 wording version (function governed by the axis): none — the two versions are reported separately so a future divergence is visible rather than absorbed
+- PASS — pending siblings awaiting their counterpart section (36 §4 / 37 §6): [('11.1', '12.1'), ('11.2', '12.2'), ('11.3', '12.4'), ('11.4', '12.5'), ('16.2', '16.6'), ('17.1', '18.1'), ('2.10', '3.3'), ('2.12.1', '3.1'), ('2.15', '16.15'), ('2.3', '7.2'), ('2.6', '7.4'), ('2.6.1', '2.11'), ('2.6.1', '7.4'), ('2.6.1', '7.7'), ('2.7', '7.5'), ('2.9', '16.9')]
+- PASS — the pending-sibling table is produced by lexical overlap and is NOT a completeness proof (R-C37); run scripts/sibling_candidates.py when a Test Set completes
+- PASS — er-subject-net (a safety net, not the criterion; the criterion is §6 and is human-reviewed)
+- PASS — keys deliberately not in the workbook, TC + doc layer (26 §4.1 / 29 §5.1): ['assumptions', 'batch', 'distinguishing_axis', 'duplicate_of', 'emea_ics_review', 'estimated_test_time', 'interface_axis_review', 'keywords', 'outline', 'parent', 'reasoning', 'source_clause', 'split_flag', 'split_reason', 'tc_title', 'tcs', 'test_item_authored']
+
+57 / 57 gates PASS; 0 finding(s) across 476 TCs

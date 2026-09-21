@@ -138,6 +138,14 @@ AMBIGUITY_REMARKS = {
     "NR1L-ComfortHMI-436": "checks 3 tabs drawn from",
     "NR1L-ComfortHMI-437": "checks 2 tabs drawn from",
     "NR1L-ComfortHMI-438": "specification's order, including Massage",
+    # R-C55（CMF-02_review §2）—— 2.4 之 `(Do not show this change)` 只附於
+    # Defrost 一句，Recirc 一句無呈現之陳述；ER 取 037 leaf 之 `(change not shown)`
+    "NR1L-ComfortHMI-476": "unlike the Defrost sentence in the same clause",
+    # R-C56（同上）—— `most closely matches` 條文無值，ER 照錄條文逐字
+    # （canon §8.4.1「ambiguous source → preserve ambiguity」），三條各自之觸發不同
+    "NR1L-ComfortHMI-467": "broken by pressing A/C",
+    "NR1L-ComfortHMI-468": "broken by changing the fan speed",
+    "NR1L-ComfortHMI-275": "the rear system enters",
 }
 # 67 §1 三 — content limits, hard, checked on every registered row.
 REMARKS_FORBIDDEN = ("R-C", "DR #", "A-CF", "§")
@@ -322,6 +330,20 @@ SENT_END = re.compile(r"[。！？]|[.!?](?=\s|$)")
 # a blanket digit ban: step numbering ("1.") and quoted spec values are legal.
 FABRICATED_QTY = re.compile(r"\b\d+\s*(mm|cm|%|percent|seconds?|secs?|ms|"
                             r"levels?|steps?|degrees?)\b", re.I)
+
+
+def upper_matches(upper: str, body: str) -> bool:
+    """R-C50(amend)（CMF-02_review §2）—— 首字母一字之大小寫正規化，其餘逐字。
+
+    R-C50 要求上半為該節 `full_text` 之連續子字串且 ≤ 50 token；句中段起抄之摘句
+    必以小寫開頭，而 canon R-4 判「句首轉大寫」屬排版正規化。兩者相衝時取 R-4，
+    故本式只對**首字母一字**放寬，其餘逐字 —— 首字母以外之任何差異仍 FAIL
+    （負向測試見 `tests/test_comfort_upper_verbatim.py`）。
+    """
+    norm = " ".join(upper.split())
+    if not norm:
+        return False
+    return norm in body or (norm[0].swapcase() + norm[1:]) in body
 
 
 def load_authorities() -> dict:
@@ -776,7 +798,7 @@ def lint(docs: list, auth: dict) -> list[tuple[str, str, str]]:
         else:
             upper, lower = parts[0].strip(), parts[1].strip()
             body = " ".join(d["source_clause"].split())
-            if " ".join(upper.split()) not in body:
+            if not upper_matches(upper, body):
                 bad("test-item-upper-verbatim",
                     f"{w}: the upper block is not a contiguous quotation of "
                     f"section {d['outline']}'s full_text — {upper[:60]!r}")

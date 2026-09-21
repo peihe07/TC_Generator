@@ -1057,6 +1057,115 @@ R-C42 一、二不變；三之原文保留於條文旁，標其修訂出處。
 
 ---
 
+## R-C54 ～ R-C59、R-C48(amend)、R-C49(amend)、R-C50(amend) —— CMF-02_review §2（分析層裁定，2026-09-21）
+
+**出處**：`docs/fw036/handoff/down/20260918_CMF-02_review.md` §2（依常設指示即時生效）；
+R-C48(amend) 之值取自 `down/20260921_CMF-03_A.md` §1（**Pei 2026-09-21 之裁定**）。
+
+**編號（live numbering，CMF-03 §1）**：落帳前實測本檔之現行最大號為 **R-C53**
+（`grep -n "^R-C[0-9]"`，2026-09-21）。故暫編 R-C54～R-C59 **全數未被佔用，實編與暫編相同**：
+
+| 暫編 | 實編 | 備註 |
+|---|---|---|
+| R-C54 | R-C54 | |
+| R-C55 | R-C55 | |
+| R-C56 | R-C56 | |
+| R-C57 | R-C57 | |
+| R-C58 | R-C58 | |
+| R-C59 | R-C59 | |
+| R-C48(amend) | R-C48(amend) | R-C48 原文不動，加旁標（同 R-C42 → R-C42-1 之處置） |
+| R-C49(amend) | R-C49(amend) | 同上 |
+| R-C50(amend) | R-C50(amend) | 同上 |
+
+sha8 未產：GC-16 未落地前，裁定只落本檔與 profile，`docs/fw036/RULINGS.sha.tsv` 不手改（CMF-03 前言）。
+
+條文逐字（review §2 表，R19-2）：
+
+```
+R-C54  sibling 與 R-C44
+**R-C44 續行**。14 條不產之判讀逐條接受，唯一例外：`003-06`「(including front defrost)」
+——此 `including` 是條文**具名納入**一個控制，不是舉例清單之一員（句中無 `e.g.`／`etc`／
+`such as`），不落 R-C44 三 → **補產 1 條**。R-C44 與 Pei 2026-09-17 全域標準（VC 點名情境
+各一條、列舉值各自 sibling）之位階，列 §3-1 請 Pei 定
+```
+
+```
+R-C55  `005-04` RECIRC
+**產**。SWE1＝整張 037（Pei 2026-09-17）；037 leaf 自己寫了 `(change not shown)`，
+ER 取 037 leaf 逐字，非造值。Remarks 加自足之 ambiguity 句（條文 2.4 只於 Defrost 句載
+`Do not show this change`），登 `AMBIGUITY_REMARKS`，另登 DR-48 問 RD。既有 `json-139`
+第 3 步同此處置，不改 PENDING
+```
+
+```
+R-C56  `most closely matches`
+與既有 `json-275`（`030-04`）**對齊：ER 照錄條文逐字，不寫 PENDING**（canon §8.4.1
+「ambiguous source → preserve ambiguity」）。-467／-468 之 PENDING 兩行改為條文逐字 ER
+＋ Remarks ambiguity 句；`json-275` 補同型 Remarks。DR-47 維持 open
+```
+
+```
+R-C50(amend)  摘句首字
+摘句自句中段起者，**首字母轉大寫**（canon R-4）。`test-item-upper-verbatim` gate 比對時
+對首字母做大小寫正規化，其餘逐字。目標 J＝0
+```
+
+```
+R-C49(amend)  N 欄家族排序
+**CFTS／外部文件行在前**（canon §10.7，SWC 基準），其後 leaf 自身節次，其後其餘
+Comfort 節次升冪。先量受影響格數；節次集合增減須仍為 0
+```
+
+```
+R-C57  lint036 `P` × PENDING 行
+`PENDING:` 起首之整行**不受 `P` 檢查**（它不是訊號賦值）。值之寫法維持 `"…"`
+（`ui-bracket` 為準）。於 `FEATURE_CHECKS` 以 comfort 範圍豁免，不動全域
+```
+
+```
+R-C58  M6 四行
+DR-46 送出前先**內查**：`forms/` 之 DBC 與 CFTS043 tree view grep `RECIRC_STAT`／
+`EBL_Stat`（R-G78 之精神）。查得 message＋raw＋`VAL_` → 依 §8.7.5(c) 寫 `Send CAN:`，
+DR-46 結案；查無 → 維持 PENDING，報 Pei
+```
+
+```
+R-C59  generator 凍結
+`generated/*.json` 自 CMF-02 起為**唯一語料真源**。`gen_batch*.py` 加 guard：無
+`--i-know-this-overwrites-cmf` 即 `SystemExit`，訊息指向本條。`test_item.py` 之
+`HAND_WRITTEN` 舊值加註「已凍結，勿據此重產」
+```
+
+```
+R-C48(amend)  車型欄基線（Pei 2026-09-21，CMF-03_A §1）
+「這功能只有 alt-mi 有，所以是 fastback／promaster／toro」。全列適用（含 BLOCKED 列與
+新 sibling）：
+  T HDCC27 Atl-Hi ＝ 0   U DT27 Atl-Hi ＝ 0   V Promaster ＝ 1
+  W Commander (598) ＝ 0（R-G74）   X Regengade (5210) ＝ 0（R-G74）
+  Y Toro ＝ 1   Z Fastback ＝ 1
+CMF-03 §3「T／U／V／Y／Z 不動」作廢。HDCC／DT 三份 PROXI 之七參數全 0 與此一致
+（該功能於 Atl-Hi 不存在）
+```
+
+同表另三列（非編號裁定，照錄）：**`019-03` 取 P1** —— 准（比照三條既有 BLOCKED 列低一級
+之實測）；**M2 兩 leaf 可分、`Wait` 措辭** —— 准；**`json-078`／`json-073` 之改寫** —— 准。
+**`upper_excerpt_plan.tsv` 後出** —— 收到，內容逐條斷言相同，不重做。
+
+**M7 引號之七問**（review §2-1，判準一句：指涉畫面上可按／可讀之那個元件 → `"…"`；
+指涉系統狀態 → 不加）一併落於本輪，其逐項落實與量測見上繳 CMF-03 §2。
+
+**R-C48／R-C49／R-C50 之旁標**：三條原文（本檔 R-C46～R-C53 段）保留不改；
+R-C48 之「T／U／V／Y／Z 本輪維持 `1` 不動」自 2026-09-21 起由 **R-C48(amend)** 取代；
+R-C49 之「leaf 自身節次置首行」由 **R-C49(amend)** 取代（外部／CFTS 行改置最前）；
+R-C50 之 gate 比對方式由 **R-C50(amend)** 補充（首字母大小寫正規化）。
+
+**CMF-03 之落實（執行層，2026-09-21）**：R-C54～R-C57、R-C59、R-C48(amend)／R-C49(amend)／
+R-C50(amend) 於 JSON、gate 與 Revise 候選本 v2（`sandbox/revise_0921/`）落實；
+**R-C58 命中停點**（查得之訊號名與條文之 `$…$` 名不同名，不代入），四條之 PENDING 行維持，
+DR-46 不結案。詳見 `docs/fw036/handoff/up/20260921_CMF-03.md`。
+
+---
+
 ## R-C46 ～ R-C53、R-C6(amend) —— CMF-01_review §3（分析層裁定，2026-09-18）
 
 **出處**：`docs/fw036/handoff/down/20260918_CMF-01_review.md` §3（依常設指示即時生效）；

@@ -618,6 +618,17 @@ FEATURE_EXEMPT: dict[str, list[str]] = {"security": ["I-cross"],
 # 施檢面之判定沿用檢查 B 之同一機制（`quoted_spans()` ＋ `inside_spans()`）。
 FEATURE_EXEMPT_QUOTED: dict[str, list[str]] = {"security": ["H"]}
 
+# **行級**豁免（R-C57，CMF-02_review §2）—— 只吞「整行以 `PENDING:` 起首」者。
+# 由來：R-14 之 PENDING 佔位行不是訊號賦值，它是「此值尚未取得」之宣告；
+# 其值之寫法由 Comfort 之 `ui-bracket`（禁 `[…]`）所管，而 `P` 之
+# `check_vehicle_property_line` 要求車輛屬性之值以 `[…]` 包覆 —— 兩道 lint
+# 於同一行相衝（CMF-02 上繳 §6）。裁定：PENDING 行整行不入 `P`。
+# 施檢面縮到 feature（Comfort），不動全域 —— 他 feature 之 PENDING 行
+# 是否同此形態未經量測，全域放寬即是拿未量測之面換一行綠燈。
+# 該行仍受 `T`（說明之語言）與 `U`（佔位之可見性）覆蓋，不會變成沉默。
+FEATURE_EXEMPT_PENDING_LINE: dict[str, list[str]] = {"comfort": ["P"]}
+RE_PENDING_LINE = re.compile(r"^\s*(?:\d+\.\s*)?PENDING:")
+
 
 # **列級**豁免（R-DIAG11，Pei 2026-09-17）：與 FEATURE_EXEMPT（整項移出 check_order）不同 ——
 # 本表所列之項只對**符合條件之列**不施檢，其餘列照檢。
@@ -1061,10 +1072,21 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
     # P 訊號寫法（範圍依 R-6：作者生成內容，不含 test_item 上半）
     # R-G70（v4）：判準即 `Send CAN:` 式，**全域預設**；v3 分支已移除。
     signal_check = check_signal_line
+    # R-C57：本 profile 之 `PENDING:` 起首整行不入 `P`
+    p_pending_exempt = (profile is not None
+                        and "P" in FEATURE_EXEMPT_PENDING_LINE.get(profile, []))
+
+    def p_skip(line: str) -> bool:
+        return p_pending_exempt and bool(RE_PENDING_LINE.match(line))
+
     for key in P_FIELDS:
         for line in split_lines(fields[key]):
+            if p_skip(line):
+                continue
             out.extend(signal_check(line, key, row_no, tc_id))
     for line in paren_lines(item):                    # test_item 括號下半
+        if p_skip(line):
+            continue
         out.extend(signal_check(line, "test_item(括號下半)", row_no, tc_id))
 
     if not profile:
@@ -1123,11 +1145,15 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
     # v3 撤銷後獨立保留（R-G70 未廢此裁定）。
     for key in P_FIELDS:
         for line in split_lines(fields[key]):
+            if p_skip(line):                          # R-C57
+                continue
             out.extend(check_vehicle_property_line(line, key, row_no, tc_id))
 
     # PROXI 形態（R-G70 v4.1）—— 標準 SWC 式合規、VF230 舊式記 Y（WARN）、其餘記 P。
     for key in P_FIELDS:
         for line in split_lines(fields[key]):
+            if p_skip(line):                          # R-C57
+                continue
             out.extend(check_proxi_line(line, key, row_no, tc_id))
 
     # X 導航路徑之固定入口（§5.8／R-G71）—— WARN 只報不改。

@@ -1,0 +1,1848 @@
+cell	sheet	tc_id	item	revise_0918	revise_0921
+T10	Test Case Specification 測試用例規範	NR1L-ComfortHMI-435	R-C48(amend)	1	0
+U10	Test Case Specification 測試用例規範	NR1L-ComfortHMI-435	R-C48(amend)	1	0
+T11	Test Case Specification 測試用例規範	NR1L-ComfortHMI-436	R-C48(amend)	1	0
+U11	Test Case Specification 測試用例規範	NR1L-ComfortHMI-436	R-C48(amend)	1	0
+T12	Test Case Specification 測試用例規範	NR1L-ComfortHMI-437	R-C48(amend)	1	0
+U12	Test Case Specification 測試用例規範	NR1L-ComfortHMI-437	R-C48(amend)	1	0
+T13	Test Case Specification 測試用例規範	NR1L-ComfortHMI-438	R-C48(amend)	1	0
+U13	Test Case Specification 測試用例規範	NR1L-ComfortHMI-438	R-C48(amend)	1	0
+T14	Test Case Specification 測試用例規範	NR1L-ComfortHMI-042	R-C48(amend)	1	0
+U14	Test Case Specification 測試用例規範	NR1L-ComfortHMI-042	R-C48(amend)	1	0
+T15	Test Case Specification 測試用例規範	NR1L-ComfortHMI-032	R-C48(amend)	1	0
+U15	Test Case Specification 測試用例規範	NR1L-ComfortHMI-032	R-C48(amend)	1	0
+T16	Test Case Specification 測試用例規範	NR1L-ComfortHMI-033	R-C48(amend)	1	0
+U16	Test Case Specification 測試用例規範	NR1L-ComfortHMI-033	R-C48(amend)	1	0
+T17	Test Case Specification 測試用例規範	NR1L-ComfortHMI-034	R-C48(amend)	1	0
+U17	Test Case Specification 測試用例規範	NR1L-ComfortHMI-034	R-C48(amend)	1	0
+J18	Test Case Specification 測試用例規範	NR1L-ComfortHMI-035	軸 2 PC	"1. The vehicle has climate hard controls and a climate touchscreen
+2. The vehicle has a passenger side temperature control
+3. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+4. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16"	"1. The vehicle has climate hard controls and a climate touchscreen
+2. The vehicle has a passenger side temperature control
+3. The vehicle is not a single zone climate configuration, for which Sync is not shown
+4. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+5. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16"
+L18	Test Case Specification 測試用例規範	NR1L-ComfortHMI-035	M7	"1. Turn Sync on
+2. Adjust the driver temperature slider"	"1. Turn ""SYNC"" on
+2. Adjust the driver temperature slider"
+M18	Test Case Specification 測試用例規範	NR1L-ComfortHMI-035	M7	"1. Sync is on
+2. No slider pop-up is shown on the passenger side"	"1. SYNC is on
+2. No slider pop-up is shown on the passenger side"
+N18	Test Case Specification 測試用例規範	NR1L-ComfortHMI-035	R-C49(amend)	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.2
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+T18	Test Case Specification 測試用例規範	NR1L-ComfortHMI-035	R-C48(amend)	1	0
+U18	Test Case Specification 測試用例規範	NR1L-ComfortHMI-035	R-C48(amend)	1	0
+I19	Test Case Specification 測試用例規範	NR1L-ComfortHMI-036	R-C50+R-C50(amend)	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, in half degree increments)"	"A pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, in half degree increments)"
+T19	Test Case Specification 測試用例規範	NR1L-ComfortHMI-036	R-C48(amend)	1	0
+U19	Test Case Specification 測試用例規範	NR1L-ComfortHMI-036	R-C48(amend)	1	0
+I20	Test Case Specification 測試用例規範	NR1L-ComfortHMI-037	R-C50+R-C50(amend)	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, without half degrees)"	"A pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius and for Fahrenheit do not show half degrees) being set
+
+(change the temperature using the temperature hard control -> A pop-up comes down from the temperature in the status bar and displays the degree being set, without half degrees)"
+T20	Test Case Specification 測試用例規範	NR1L-ComfortHMI-037	R-C48(amend)	1	0
+U20	Test Case Specification 測試用例規範	NR1L-ComfortHMI-037	R-C48(amend)	1	0
+I21	Test Case Specification 測試用例規範	NR1L-ComfortHMI-038	R-C50+R-C50(amend)	"for MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(continue altering the temperature using the temperature hard control -> The arrow moves with the temperature being set)"	"For MTC (if the MTC has a Climate screen) it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(continue altering the temperature using the temperature hard control -> The arrow moves with the temperature being set)"
+T21	Test Case Specification 測試用例規範	NR1L-ComfortHMI-038	R-C48(amend)	1	0
+U21	Test Case Specification 測試用例規範	NR1L-ComfortHMI-038	R-C48(amend)	1	0
+T22	Test Case Specification 測試用例規範	NR1L-ComfortHMI-039	R-C48(amend)	1	0
+U22	Test Case Specification 測試用例規範	NR1L-ComfortHMI-039	R-C48(amend)	1	0
+T23	Test Case Specification 測試用例規範	NR1L-ComfortHMI-040	R-C48(amend)	1	0
+U23	Test Case Specification 測試用例規範	NR1L-ComfortHMI-040	R-C48(amend)	1	0
+L24	Test Case Specification 測試用例規範	NR1L-ComfortHMI-127	M7	"1. Turn AUTO on from the climate screen
+2. Read the fan speed indicator"	"1. Turn ""AUTO"" on from the climate screen
+2. Read the fan speed indicator"
+T24	Test Case Specification 測試用例規範	NR1L-ComfortHMI-127	R-C48(amend)	1	0
+U24	Test Case Specification 測試用例規範	NR1L-ComfortHMI-127	R-C48(amend)	1	0
+L25	Test Case Specification 測試用例規範	NR1L-ComfortHMI-128	M7	"1. Turn AUTO on from the climate screen
+2. Read the main category control"	"1. Turn ""AUTO"" on from the climate screen
+2. Read the main category control"
+T25	Test Case Specification 測試用例規範	NR1L-ComfortHMI-128	R-C48(amend)	1	0
+U25	Test Case Specification 測試用例規範	NR1L-ComfortHMI-128	R-C48(amend)	1	0
+I26	Test Case Specification 測試用例規範	NR1L-ComfortHMI-129	M7	"AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+
+(turn AUTO on and read the fan speed and the airflow mode -> The fan speed and the airflow mode are set by the system)"	"AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+
+(turn ""AUTO"" on and read the fan speed and the airflow mode -> The fan speed and the airflow mode are set by the system)"
+L26	Test Case Specification 測試用例規範	NR1L-ComfortHMI-129	M7	"1. Set a fan speed and an airflow mode from the climate screen with AUTO off
+2. Turn AUTO on and read the fan speed and the airflow mode"	"1. Set a fan speed and an airflow mode from the climate screen with AUTO off
+2. Turn ""AUTO"" on and read the fan speed and the airflow mode"
+T26	Test Case Specification 測試用例規範	NR1L-ComfortHMI-129	R-C48(amend)	1	0
+U26	Test Case Specification 測試用例規範	NR1L-ComfortHMI-129	R-C48(amend)	1	0
+I27	Test Case Specification 測試用例規範	NR1L-ComfortHMI-130	M7	"Auto is mutually exclusive with the four airflow modes and front defrost.
+
+(turn AUTO on -> The airflow mode buttons and ""FRONT DEF"" are no longer active)"	"Auto is mutually exclusive with the four airflow modes and front defrost.
+
+(turn ""AUTO"" on -> The airflow mode buttons and ""FRONT DEF"" are no longer active)"
+L27	Test Case Specification 測試用例規範	NR1L-ComfortHMI-130	M7+M9-compound	"1. Select an airflow mode on the climate screen
+2. Turn front defrost on from the climate screen
+3. Turn AUTO on"	"1. Select an airflow mode on the climate screen
+2. Turn front defrost on from the climate screen
+3. Turn ""AUTO"" on"
+T27	Test Case Specification 測試用例規範	NR1L-ComfortHMI-130	R-C48(amend)	1	0
+U27	Test Case Specification 測試用例規範	NR1L-ComfortHMI-130	R-C48(amend)	1	0
+I28	Test Case Specification 測試用例規範	NR1L-ComfortHMI-131	M7	"Auto can change the state of AC, but do not show this change.
+
+(turn AUTO on and read the ""A/C"" button -> The ""A/C"" button state is unchanged)"	"Auto can change the state of AC, but do not show this change.
+
+(turn ""AUTO"" on and read the ""A/C"" button -> The ""A/C"" button state is unchanged)"
+L28	Test Case Specification 測試用例規範	NR1L-ComfortHMI-131	M7+M9-Note	"1. Read the state of the ""A/C"" button on the climate screen with AUTO off and record it
+2. Turn AUTO on and read the ""A/C"" button"	"1. Read the state of the ""A/C"" button on the climate screen with AUTO off and record it
+2. Turn ""AUTO"" on and read the ""A/C"" button"
+T28	Test Case Specification 測試用例規範	NR1L-ComfortHMI-131	R-C48(amend)	1	0
+U28	Test Case Specification 測試用例規範	NR1L-ComfortHMI-131	R-C48(amend)	1	0
+L29	Test Case Specification 測試用例規範	NR1L-ComfortHMI-132	M7	"1. Turn AUTO on from the climate screen
+2. Press ""A/C"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""A/C"""
+T29	Test Case Specification 測試用例規範	NR1L-ComfortHMI-132	R-C48(amend)	1	0
+U29	Test Case Specification 測試用例規範	NR1L-ComfortHMI-132	R-C48(amend)	1	0
+L30	Test Case Specification 測試用例規範	NR1L-ComfortHMI-386	M7	"1. Turn AUTO on from the climate screen
+2. Select another airflow mode"	"1. Turn ""AUTO"" on from the climate screen
+2. Select another airflow mode"
+T30	Test Case Specification 測試用例規範	NR1L-ComfortHMI-386	R-C48(amend)	1	0
+U30	Test Case Specification 測試用例規範	NR1L-ComfortHMI-386	R-C48(amend)	1	0
+L31	Test Case Specification 測試用例規範	NR1L-ComfortHMI-387	M7	"1. Turn AUTO on from the climate screen
+2. Change the fan speed"	"1. Turn ""AUTO"" on from the climate screen
+2. Change the fan speed"
+T31	Test Case Specification 測試用例規範	NR1L-ComfortHMI-387	R-C48(amend)	1	0
+U31	Test Case Specification 測試用例規範	NR1L-ComfortHMI-387	R-C48(amend)	1	0
+L32	Test Case Specification 測試用例規範	NR1L-ComfortHMI-133	M7	"1. Turn AUTO on from the climate screen
+2. Press the ""Feet"" airflow mode button"	"1. Turn ""AUTO"" on from the climate screen
+2. Press the ""Feet"" airflow mode button"
+T32	Test Case Specification 測試用例規範	NR1L-ComfortHMI-133	R-C48(amend)	1	0
+U32	Test Case Specification 測試用例規範	NR1L-ComfortHMI-133	R-C48(amend)	1	0
+L33	Test Case Specification 測試用例規範	NR1L-ComfortHMI-134	M7	"1. Turn AUTO on from the climate screen
+2. Press ""REAR DEFROST"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""REAR DEFROST"""
+T33	Test Case Specification 測試用例規範	NR1L-ComfortHMI-134	R-C48(amend)	1	0
+U33	Test Case Specification 測試用例規範	NR1L-ComfortHMI-134	R-C48(amend)	1	0
+T34	Test Case Specification 測試用例規範	NR1L-ComfortHMI-135	R-C48(amend)	1	0
+U34	Test Case Specification 測試用例規範	NR1L-ComfortHMI-135	R-C48(amend)	1	0
+I35	Test Case Specification 測試用例規範	NR1L-ComfortHMI-363	M7	"C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+
+(read the AUTO controls -> A driver side AUTO mode and a passenger side AUTO mode are provided)"	"C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+
+(read the ""AUTO"" controls -> A driver side AUTO mode and a passenger side AUTO mode are provided)"
+L35	Test Case Specification 測試用例規範	NR1L-ComfortHMI-363	M7	"1. Open the climate screen
+2. Read the AUTO controls"	"1. Open the climate screen
+2. Read the ""AUTO"" controls"
+T35	Test Case Specification 測試用例規範	NR1L-ComfortHMI-363	R-C48(amend)	1	0
+U35	Test Case Specification 測試用例規範	NR1L-ComfortHMI-363	R-C48(amend)	1	0
+I36	Test Case Specification 測試用例規範	NR1L-ComfortHMI-364	M7	"C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+
+(read the driver and passenger AUTO indicators -> The driver side AUTO indicator is shown as on and the passenger side AUTO indicator is shown separately)"	"C2.1) Some vehicles with dual zone climate with dual airflow mode can have a configuration for dual AUTO modes, one for the driver side and passenger side.
+
+(read the driver and passenger ""AUTO"" indicators -> The driver side ""AUTO"" indicator is shown as on and the passenger side ""AUTO"" indicator is shown separately)"
+L36	Test Case Specification 測試用例規範	NR1L-ComfortHMI-364	M7	"1. Turn the driver side AUTO on
+2. Read the driver and passenger AUTO indicators"	"1. Turn the driver side ""AUTO"" on
+2. Read the driver and passenger ""AUTO"" indicators"
+M36	Test Case Specification 測試用例規範	NR1L-ComfortHMI-364	M7	"1. The driver side AUTO is on
+2. The driver side AUTO indicator is shown as on and the passenger side AUTO indicator is shown separately"	"1. The driver side AUTO is on
+2. The driver side ""AUTO"" indicator is shown as on and the passenger side ""AUTO"" indicator is shown separately"
+T36	Test Case Specification 測試用例規範	NR1L-ComfortHMI-364	R-C48(amend)	1	0
+U36	Test Case Specification 測試用例規範	NR1L-ComfortHMI-364	R-C48(amend)	1	0
+T37	Test Case Specification 測試用例規範	NR1L-ComfortHMI-136	R-C48(amend)	1	0
+U37	Test Case Specification 測試用例規範	NR1L-ComfortHMI-136	R-C48(amend)	1	0
+I38	Test Case Specification 測試用例規範	NR1L-ComfortHMI-137	M7	"Auto can automatically turn on AC. AC will break Auto.
+
+(turn AUTO on and read the ""A/C"" button -> The ""A/C"" button is highlighted)"	"Auto can automatically turn on AC. AC will break Auto.
+
+(turn ""AUTO"" on and read the ""A/C"" button -> The ""A/C"" button is highlighted)"
+L38	Test Case Specification 測試用例規範	NR1L-ComfortHMI-137	M7	"1. Turn ""A/C"" off and AUTO off from the climate screen
+2. Turn AUTO on and read the ""A/C"" button"	"1. Turn ""A/C"" off and ""AUTO"" off from the climate screen
+2. Turn ""AUTO"" on and read the ""A/C"" button"
+T38	Test Case Specification 測試用例規範	NR1L-ComfortHMI-137	R-C48(amend)	1	0
+U38	Test Case Specification 測試用例規範	NR1L-ComfortHMI-137	R-C48(amend)	1	0
+L39	Test Case Specification 測試用例規範	NR1L-ComfortHMI-138	M7	"1. Turn AUTO on from the climate screen
+2. Press ""A/C"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""A/C"""
+T39	Test Case Specification 測試用例規範	NR1L-ComfortHMI-138	R-C48(amend)	1	0
+U39	Test Case Specification 測試用例規範	NR1L-ComfortHMI-138	R-C48(amend)	1	0
+I40	Test Case Specification 測試用例規範	NR1L-ComfortHMI-139	R-C55 slim	"Defrost can automatically turn on AC (Do not show this change).
+
+(turn ""RECIRC"" on and read the ""A/C"" button -> The ""A/C"" button is not highlighted)"	"Defrost can automatically turn on AC (Do not show this change).
+
+(turn ""FRONT DEF"" on and read the ""A/C"" button -> The ""A/C"" button is not highlighted)"
+L40	Test Case Specification 測試用例規範	NR1L-ComfortHMI-139	R-C55 slim	"1. Turn ""A/C"" off from the climate screen and note the ""A/C"" button
+2. Turn ""FRONT DEF"" on and read the ""A/C"" button
+3. Turn ""RECIRC"" on and read the ""A/C"" button"	"1. Turn ""A/C"" off from the climate screen and note the ""A/C"" button
+2. Turn ""FRONT DEF"" on and read the ""A/C"" button"
+M40	Test Case Specification 測試用例規範	NR1L-ComfortHMI-139	R-C55 slim	"1. The ""A/C"" button is not highlighted
+2. The ""A/C"" button is not highlighted
+3. The ""A/C"" button is not highlighted"	"1. The ""A/C"" button is not highlighted
+2. The ""A/C"" button is not highlighted"
+T40	Test Case Specification 測試用例規範	NR1L-ComfortHMI-139	R-C48(amend)	1	0
+U40	Test Case Specification 測試用例規範	NR1L-ComfortHMI-139	R-C48(amend)	1	0
+T41	Test Case Specification 測試用例規範	NR1L-ComfortHMI-140	R-C48(amend)	1	0
+U41	Test Case Specification 測試用例規範	NR1L-ComfortHMI-140	R-C48(amend)	1	0
+T42	Test Case Specification 測試用例規範	NR1L-ComfortHMI-141	R-C48(amend)	1	0
+U42	Test Case Specification 測試用例規範	NR1L-ComfortHMI-141	R-C48(amend)	1	0
+T43	Test Case Specification 測試用例規範	NR1L-ComfortHMI-142	R-C48(amend)	1	0
+U43	Test Case Specification 測試用例規範	NR1L-ComfortHMI-142	R-C48(amend)	1	0
+I44	Test Case Specification 測試用例規範	NR1L-ComfortHMI-439	M7	"The recirc icon will display the vehicle model specific icon as displayed in the table.
+
+(read the RECIRC icon -> A RECIRC icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected)"	"The recirc icon will display the vehicle model specific icon as displayed in the table.
+
+(read the ""RECIRC"" icon -> A ""RECIRC"" icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected)"
+L44	Test Case Specification 測試用例規範	NR1L-ComfortHMI-439	M7	"1. Open the climate screen
+2. Read the RECIRC icon"	"1. Open the climate screen
+2. Read the ""RECIRC"" icon"
+M44	Test Case Specification 測試用例規範	NR1L-ComfortHMI-439	M7	"1. The climate screen is displayed
+2. A RECIRC icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected"	"1. The climate screen is displayed
+2. A ""RECIRC"" icon is displayed and it matches the vehicle's configuration — the model specific icon, or the generic recirc symbol where the vehicle model cannot be detected"
+T44	Test Case Specification 測試用例規範	NR1L-ComfortHMI-439	R-C48(amend)	1	0
+U44	Test Case Specification 測試用例規範	NR1L-ComfortHMI-439	R-C48(amend)	1	0
+I45	Test Case Specification 測試用例規範	NR1L-ComfortHMI-365	M7	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(press the RECIRC button again -> RECIRC is in the Open state)"	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(press the ""RECIRC"" button again -> RECIRC is in the Open state)"
+L45	Test Case Specification 測試用例規範	NR1L-ComfortHMI-365	M7	"1. Press the RECIRC button
+2. Press the RECIRC button again
+3. Press the RECIRC button again"	"1. Press the ""RECIRC"" button
+2. Press the ""RECIRC"" button again
+3. Press the ""RECIRC"" button again"
+T45	Test Case Specification 測試用例規範	NR1L-ComfortHMI-365	R-C48(amend)	1	0
+U45	Test Case Specification 測試用例規範	NR1L-ComfortHMI-365	R-C48(amend)	1	0
+I46	Test Case Specification 測試用例規範	NR1L-ComfortHMI-388	M7	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(press the RECIRC button again and read the RECIRC state -> RECIRC is in the Auto state and no further state is offered)"	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(press the ""RECIRC"" button again and read the ""RECIRC"" button state -> RECIRC is in the Auto state and no further state is offered)"
+L46	Test Case Specification 測試用例規範	NR1L-ComfortHMI-388	M7	"1. Press the RECIRC button until RECIRC is in the Open state
+2. Press the RECIRC button again and read the RECIRC state"	"1. Press the ""RECIRC"" button until RECIRC is in the Open state
+2. Press the ""RECIRC"" button again and read the ""RECIRC"" button state"
+T46	Test Case Specification 測試用例規範	NR1L-ComfortHMI-388	R-C48(amend)	1	0
+U46	Test Case Specification 測試用例規範	NR1L-ComfortHMI-388	R-C48(amend)	1	0
+I47	Test Case Specification 測試用例規範	NR1L-ComfortHMI-366	M7	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(read the RECIRC control on the climate screen -> The climate screen indicates the Manual state)"	"C4.1) Some vehicles have a configuration for a 3 state toggle recirc button: Auto, Manual, Open.
+
+(read the ""RECIRC"" control on the climate screen -> The climate screen indicates the Manual state)"
+L47	Test Case Specification 測試用例規範	NR1L-ComfortHMI-366	M7	"1. Set RECIRC to Manual
+2. Read the RECIRC control on the climate screen"	"1. Set ""RECIRC"" to Manual
+2. Read the ""RECIRC"" control on the climate screen"
+T47	Test Case Specification 測試用例規範	NR1L-ComfortHMI-366	R-C48(amend)	1	0
+U47	Test Case Specification 測試用例規範	NR1L-ComfortHMI-366	R-C48(amend)	1	0
+T48	Test Case Specification 測試用例規範	NR1L-ComfortHMI-048	R-C48(amend)	1	0
+U48	Test Case Specification 測試用例規範	NR1L-ComfortHMI-048	R-C48(amend)	1	0
+T49	Test Case Specification 測試用例規範	NR1L-ComfortHMI-049	R-C48(amend)	1	0
+U49	Test Case Specification 測試用例規範	NR1L-ComfortHMI-049	R-C48(amend)	1	0
+T50	Test Case Specification 測試用例規範	NR1L-ComfortHMI-389	R-C48(amend)	1	0
+U50	Test Case Specification 測試用例規範	NR1L-ComfortHMI-389	R-C48(amend)	1	0
+T51	Test Case Specification 測試用例規範	NR1L-ComfortHMI-050	R-C48(amend)	1	0
+U51	Test Case Specification 測試用例規範	NR1L-ComfortHMI-050	R-C48(amend)	1	0
+T52	Test Case Specification 測試用例規範	NR1L-ComfortHMI-051	R-C48(amend)	1	0
+U52	Test Case Specification 測試用例規範	NR1L-ComfortHMI-051	R-C48(amend)	1	0
+T53	Test Case Specification 測試用例規範	NR1L-ComfortHMI-052	R-C48(amend)	1	0
+U53	Test Case Specification 測試用例規範	NR1L-ComfortHMI-052	R-C48(amend)	1	0
+L54	Test Case Specification 測試用例規範	NR1L-ComfortHMI-053	M7	"1. Turn SYNC on
+2. Change the driver temperature"	"1. Turn ""SYNC"" on
+2. Change the driver temperature"
+T54	Test Case Specification 測試用例規範	NR1L-ComfortHMI-053	R-C48(amend)	1	0
+U54	Test Case Specification 測試用例規範	NR1L-ComfortHMI-053	R-C48(amend)	1	0
+L55	Test Case Specification 測試用例規範	NR1L-ComfortHMI-054	M7	"1. Turn SYNC on
+2. Change the passenger temperature"	"1. Turn ""SYNC"" on
+2. Change the passenger temperature"
+T55	Test Case Specification 測試用例規範	NR1L-ComfortHMI-054	R-C48(amend)	1	0
+U55	Test Case Specification 測試用例規範	NR1L-ComfortHMI-054	R-C48(amend)	1	0
+T56	Test Case Specification 測試用例規範	NR1L-ComfortHMI-055	R-C48(amend)	1	0
+U56	Test Case Specification 測試用例規範	NR1L-ComfortHMI-055	R-C48(amend)	1	0
+T57	Test Case Specification 測試用例規範	NR1L-ComfortHMI-390	R-C48(amend)	1	0
+U57	Test Case Specification 測試用例規範	NR1L-ComfortHMI-390	R-C48(amend)	1	0
+T58	Test Case Specification 測試用例規範	NR1L-ComfortHMI-056	R-C48(amend)	1	0
+U58	Test Case Specification 測試用例規範	NR1L-ComfortHMI-056	R-C48(amend)	1	0
+T59	Test Case Specification 測試用例規範	NR1L-ComfortHMI-057	R-C48(amend)	1	0
+U59	Test Case Specification 測試用例規範	NR1L-ComfortHMI-057	R-C48(amend)	1	0
+T60	Test Case Specification 測試用例規範	NR1L-ComfortHMI-391	R-C48(amend)	1	0
+U60	Test Case Specification 測試用例規範	NR1L-ComfortHMI-391	R-C48(amend)	1	0
+T61	Test Case Specification 測試用例規範	NR1L-ComfortHMI-058	R-C48(amend)	1	0
+U61	Test Case Specification 測試用例規範	NR1L-ComfortHMI-058	R-C48(amend)	1	0
+T62	Test Case Specification 測試用例規範	NR1L-ComfortHMI-392	R-C48(amend)	1	0
+U62	Test Case Specification 測試用例規範	NR1L-ComfortHMI-392	R-C48(amend)	1	0
+T63	Test Case Specification 測試用例規範	NR1L-ComfortHMI-059	R-C48(amend)	1	0
+U63	Test Case Specification 測試用例規範	NR1L-ComfortHMI-059	R-C48(amend)	1	0
+T64	Test Case Specification 測試用例規範	NR1L-ComfortHMI-060	R-C48(amend)	1	0
+U64	Test Case Specification 測試用例規範	NR1L-ComfortHMI-060	R-C48(amend)	1	0
+T65	Test Case Specification 測試用例規範	NR1L-ComfortHMI-061	R-C48(amend)	1	0
+U65	Test Case Specification 測試用例規範	NR1L-ComfortHMI-061	R-C48(amend)	1	0
+T66	Test Case Specification 測試用例規範	NR1L-ComfortHMI-393	R-C48(amend)	1	0
+U66	Test Case Specification 測試用例規範	NR1L-ComfortHMI-393	R-C48(amend)	1	0
+T67	Test Case Specification 測試用例規範	NR1L-ComfortHMI-394	R-C48(amend)	1	0
+U67	Test Case Specification 測試用例規範	NR1L-ComfortHMI-394	R-C48(amend)	1	0
+T68	Test Case Specification 測試用例規範	NR1L-ComfortHMI-062	R-C48(amend)	1	0
+U68	Test Case Specification 測試用例規範	NR1L-ComfortHMI-062	R-C48(amend)	1	0
+T69	Test Case Specification 測試用例規範	NR1L-ComfortHMI-395	R-C48(amend)	1	0
+U69	Test Case Specification 測試用例規範	NR1L-ComfortHMI-395	R-C48(amend)	1	0
+T70	Test Case Specification 測試用例規範	NR1L-ComfortHMI-063	R-C48(amend)	1	0
+U70	Test Case Specification 測試用例規範	NR1L-ComfortHMI-063	R-C48(amend)	1	0
+T71	Test Case Specification 測試用例規範	NR1L-ComfortHMI-066	R-C48(amend)	1	0
+U71	Test Case Specification 測試用例規範	NR1L-ComfortHMI-066	R-C48(amend)	1	0
+T72	Test Case Specification 測試用例規範	NR1L-ComfortHMI-153	R-C48(amend)	1	0
+U72	Test Case Specification 測試用例規範	NR1L-ComfortHMI-153	R-C48(amend)	1	0
+T73	Test Case Specification 測試用例規範	NR1L-ComfortHMI-154	R-C48(amend)	1	0
+U73	Test Case Specification 測試用例規範	NR1L-ComfortHMI-154	R-C48(amend)	1	0
+T74	Test Case Specification 測試用例規範	NR1L-ComfortHMI-155	R-C48(amend)	1	0
+U74	Test Case Specification 測試用例規範	NR1L-ComfortHMI-155	R-C48(amend)	1	0
+T75	Test Case Specification 測試用例規範	NR1L-ComfortHMI-156	R-C48(amend)	1	0
+U75	Test Case Specification 測試用例規範	NR1L-ComfortHMI-156	R-C48(amend)	1	0
+I76	Test Case Specification 測試用例規範	NR1L-ComfortHMI-157	M7	"Turning Defrost on while in Auto will break Auto and turn it off.
+
+(turn AUTO on and read the ""FRONT DEF"" button -> The ""FRONT DEF"" button is no longer highlighted)"	"Turning Defrost on while in Auto will break Auto and turn it off.
+
+(turn ""AUTO"" on and read the ""FRONT DEF"" button -> The ""FRONT DEF"" button is no longer highlighted)"
+L76	Test Case Specification 測試用例規範	NR1L-ComfortHMI-157	M7	"1. Turn ""FRONT DEF"" on from the climate screen
+2. Turn AUTO on and read the ""FRONT DEF"" button"	"1. Turn ""FRONT DEF"" on from the climate screen
+2. Turn ""AUTO"" on and read the ""FRONT DEF"" button"
+T76	Test Case Specification 測試用例規範	NR1L-ComfortHMI-157	R-C48(amend)	1	0
+U76	Test Case Specification 測試用例規範	NR1L-ComfortHMI-157	R-C48(amend)	1	0
+L77	Test Case Specification 測試用例規範	NR1L-ComfortHMI-396	M7	"1. Turn AUTO on from the climate screen
+2. Turn ""FRONT DEF"" on and read the ""AUTO"" button"	"1. Turn ""AUTO"" on from the climate screen
+2. Turn ""FRONT DEF"" on and read the ""AUTO"" button"
+T77	Test Case Specification 測試用例規範	NR1L-ComfortHMI-396	R-C48(amend)	1	0
+U77	Test Case Specification 測試用例規範	NR1L-ComfortHMI-396	R-C48(amend)	1	0
+T78	Test Case Specification 測試用例規範	NR1L-ComfortHMI-158	R-C48(amend)	1	0
+U78	Test Case Specification 測試用例規範	NR1L-ComfortHMI-158	R-C48(amend)	1	0
+T79	Test Case Specification 測試用例規範	NR1L-ComfortHMI-159	R-C48(amend)	1	0
+U79	Test Case Specification 測試用例規範	NR1L-ComfortHMI-159	R-C48(amend)	1	0
+T80	Test Case Specification 測試用例規範	NR1L-ComfortHMI-160	R-C48(amend)	1	0
+U80	Test Case Specification 測試用例規範	NR1L-ComfortHMI-160	R-C48(amend)	1	0
+L81	Test Case Specification 測試用例規範	NR1L-ComfortHMI-161	M7	"1. Turn ""REAR DEFROST"" on from the climate screen
+2. Turn AUTO on and read the ""REAR DEFROST"" button
+3. Turn ""FRONT DEF"" on and read the ""REAR DEFROST"" button"	"1. Turn ""REAR DEFROST"" on from the climate screen
+2. Turn ""AUTO"" on and read the ""REAR DEFROST"" button
+3. Turn ""FRONT DEF"" on and read the ""REAR DEFROST"" button"
+T81	Test Case Specification 測試用例規範	NR1L-ComfortHMI-161	R-C48(amend)	1	0
+U81	Test Case Specification 測試用例規範	NR1L-ComfortHMI-161	R-C48(amend)	1	0
+T82	Test Case Specification 測試用例規範	NR1L-ComfortHMI-162	R-C48(amend)	1	0
+U82	Test Case Specification 測試用例規範	NR1L-ComfortHMI-162	R-C48(amend)	1	0
+T83	Test Case Specification 測試用例規範	NR1L-ComfortHMI-143	R-C48(amend)	1	0
+U83	Test Case Specification 測試用例規範	NR1L-ComfortHMI-143	R-C48(amend)	1	0
+T84	Test Case Specification 測試用例規範	NR1L-ComfortHMI-144	R-C48(amend)	1	0
+U84	Test Case Specification 測試用例規範	NR1L-ComfortHMI-144	R-C48(amend)	1	0
+T85	Test Case Specification 測試用例規範	NR1L-ComfortHMI-145	R-C48(amend)	1	0
+U85	Test Case Specification 測試用例規範	NR1L-ComfortHMI-145	R-C48(amend)	1	0
+T86	Test Case Specification 測試用例規範	NR1L-ComfortHMI-146	R-C48(amend)	1	0
+U86	Test Case Specification 測試用例規範	NR1L-ComfortHMI-146	R-C48(amend)	1	0
+T87	Test Case Specification 測試用例規範	NR1L-ComfortHMI-147	R-C48(amend)	1	0
+U87	Test Case Specification 測試用例規範	NR1L-ComfortHMI-147	R-C48(amend)	1	0
+T88	Test Case Specification 測試用例規範	NR1L-ComfortHMI-148	R-C48(amend)	1	0
+U88	Test Case Specification 測試用例規範	NR1L-ComfortHMI-148	R-C48(amend)	1	0
+T89	Test Case Specification 測試用例規範	NR1L-ComfortHMI-149	R-C48(amend)	1	0
+U89	Test Case Specification 測試用例規範	NR1L-ComfortHMI-149	R-C48(amend)	1	0
+T90	Test Case Specification 測試用例規範	NR1L-ComfortHMI-150	R-C48(amend)	1	0
+U90	Test Case Specification 測試用例規範	NR1L-ComfortHMI-150	R-C48(amend)	1	0
+T91	Test Case Specification 測試用例規範	NR1L-ComfortHMI-151	R-C48(amend)	1	0
+U91	Test Case Specification 測試用例規範	NR1L-ComfortHMI-151	R-C48(amend)	1	0
+N92	Test Case Specification 測試用例規範	NR1L-ComfortHMI-430	R-C49(amend)	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2
+CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677"	"CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+T92	Test Case Specification 測試用例規範	NR1L-ComfortHMI-430	R-C48(amend)	1	0
+U92	Test Case Specification 測試用例規範	NR1L-ComfortHMI-430	R-C48(amend)	1	0
+N93	Test Case Specification 測試用例規範	NR1L-ComfortHMI-431	R-C49(amend)	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2
+CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677"	"CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+T93	Test Case Specification 測試用例規範	NR1L-ComfortHMI-431	R-C48(amend)	1	0
+U93	Test Case Specification 測試用例規範	NR1L-ComfortHMI-431	R-C48(amend)	1	0
+T94	Test Case Specification 測試用例規範	NR1L-ComfortHMI-440	R-C48(amend)	1	0
+U94	Test Case Specification 測試用例規範	NR1L-ComfortHMI-440	R-C48(amend)	1	0
+T95	Test Case Specification 測試用例規範	NR1L-ComfortHMI-441	R-C48(amend)	1	0
+U95	Test Case Specification 測試用例規範	NR1L-ComfortHMI-441	R-C48(amend)	1	0
+T96	Test Case Specification 測試用例規範	NR1L-ComfortHMI-442	R-C48(amend)	1	0
+U96	Test Case Specification 測試用例規範	NR1L-ComfortHMI-442	R-C48(amend)	1	0
+T97	Test Case Specification 測試用例規範	NR1L-ComfortHMI-443	R-C48(amend)	1	0
+U97	Test Case Specification 測試用例規範	NR1L-ComfortHMI-443	R-C48(amend)	1	0
+T98	Test Case Specification 測試用例規範	NR1L-ComfortHMI-444	R-C48(amend)	1	0
+U98	Test Case Specification 測試用例規範	NR1L-ComfortHMI-444	R-C48(amend)	1	0
+T99	Test Case Specification 測試用例規範	NR1L-ComfortHMI-445	R-C48(amend)	1	0
+U99	Test Case Specification 測試用例規範	NR1L-ComfortHMI-445	R-C48(amend)	1	0
+L100	Test Case Specification 測試用例規範	NR1L-ComfortHMI-163	M7	"1. Select the Face airflow mode on the climate screen
+2. Move to the next airflow mode four times, reading the mode after each"	"1. Select the ""Face"" airflow mode on the climate screen
+2. Move to the next airflow mode four times, reading the mode after each"
+T100	Test Case Specification 測試用例規範	NR1L-ComfortHMI-163	R-C48(amend)	1	0
+U100	Test Case Specification 測試用例規範	NR1L-ComfortHMI-163	R-C48(amend)	1	0
+L101	Test Case Specification 測試用例規範	NR1L-ComfortHMI-164	M7	"1. Select the Feet airflow mode on the climate screen
+2. Select the Windshield airflow mode"	"1. Select the ""Feet"" airflow mode on the climate screen
+2. Select the Windshield airflow mode"
+T101	Test Case Specification 測試用例規範	NR1L-ComfortHMI-164	R-C48(amend)	1	0
+U101	Test Case Specification 測試用例規範	NR1L-ComfortHMI-164	R-C48(amend)	1	0
+L102	Test Case Specification 測試用例規範	NR1L-ComfortHMI-446	M7	"1. Set the airflow mode to Face
+2. Press the Mode hard control once"	"1. Select the ""Face"" airflow mode
+2. Press the Mode hard control once"
+T102	Test Case Specification 測試用例規範	NR1L-ComfortHMI-446	R-C48(amend)	1	0
+U102	Test Case Specification 測試用例規範	NR1L-ComfortHMI-446	R-C48(amend)	1	0
+T103	Test Case Specification 測試用例規範	NR1L-ComfortHMI-447	R-C48(amend)	1	0
+U103	Test Case Specification 測試用例規範	NR1L-ComfortHMI-447	R-C48(amend)	1	0
+L104	Test Case Specification 測試用例規範	NR1L-ComfortHMI-448	M7	"1. Set the airflow mode to Feet
+2. Press the Mode hard control once"	"1. Select the ""Feet"" airflow mode
+2. Press the Mode hard control once"
+T104	Test Case Specification 測試用例規範	NR1L-ComfortHMI-448	R-C48(amend)	1	0
+U104	Test Case Specification 測試用例規範	NR1L-ComfortHMI-448	R-C48(amend)	1	0
+T105	Test Case Specification 測試用例規範	NR1L-ComfortHMI-449	R-C48(amend)	1	0
+U105	Test Case Specification 測試用例規範	NR1L-ComfortHMI-449	R-C48(amend)	1	0
+L106	Test Case Specification 測試用例規範	NR1L-ComfortHMI-450	M7	"1. Set the airflow mode to Face
+2. Press the Mode hard control four times, reading the airflow mode after each press"	"1. Select the ""Face"" airflow mode
+2. Press the Mode hard control four times, reading the airflow mode after each press"
+T106	Test Case Specification 測試用例規範	NR1L-ComfortHMI-450	R-C48(amend)	1	0
+U106	Test Case Specification 測試用例規範	NR1L-ComfortHMI-450	R-C48(amend)	1	0
+L107	Test Case Specification 測試用例規範	NR1L-ComfortHMI-451	M7	"1. Set the airflow mode to Face
+2. Press and hold the Mode hard control"	"1. Select the ""Face"" airflow mode
+2. Press and hold the Mode hard control"
+T107	Test Case Specification 測試用例規範	NR1L-ComfortHMI-451	R-C48(amend)	1	0
+U107	Test Case Specification 測試用例規範	NR1L-ComfortHMI-451	R-C48(amend)	1	0
+T108	Test Case Specification 測試用例規範	NR1L-ComfortHMI-452	R-C48(amend)	1	0
+U108	Test Case Specification 測試用例規範	NR1L-ComfortHMI-452	R-C48(amend)	1	0
+I109	Test Case Specification 測試用例規範	NR1L-ComfortHMI-453	R-C50+R-C50(amend)	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control once -> A small pop-up appears above the Climate main category control and the Climate main screen is still not displayed)"	"A small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control once -> A small pop-up appears above the Climate main category control and the Climate main screen is still not displayed)"
+T109	Test Case Specification 測試用例規範	NR1L-ComfortHMI-453	R-C48(amend)	1	0
+U109	Test Case Specification 測試用例規範	NR1L-ComfortHMI-453	R-C48(amend)	1	0
+I110	Test Case Specification 測試用例規範	NR1L-ComfortHMI-454	R-C50+R-C50(amend)	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(do not interact with the head unit for 3 seconds -> The pop-up is no longer shown)"	"A small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(do not interact with the head unit for 3 seconds -> The pop-up is no longer shown)"
+T110	Test Case Specification 測試用例規範	NR1L-ComfortHMI-454	R-C48(amend)	1	0
+U110	Test Case Specification 測試用例規範	NR1L-ComfortHMI-454	R-C48(amend)	1	0
+I111	Test Case Specification 測試用例規範	NR1L-ComfortHMI-455	R-C50+R-C50(amend)	"a small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press a button other than the Mode hard control -> The pop-up is no longer shown)"	"A small pop-up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press a button other than the Mode hard control -> The pop-up is no longer shown)"
+T111	Test Case Specification 測試用例規範	NR1L-ComfortHMI-455	R-C48(amend)	1	0
+U111	Test Case Specification 測試用例規範	NR1L-ComfortHMI-455	R-C48(amend)	1	0
+T112	Test Case Specification 測試用例規範	NR1L-ComfortHMI-456	R-C48(amend)	1	0
+U112	Test Case Specification 測試用例規範	NR1L-ComfortHMI-456	R-C48(amend)	1	0
+T113	Test Case Specification 測試用例規範	NR1L-ComfortHMI-457	R-C48(amend)	1	0
+U113	Test Case Specification 測試用例規範	NR1L-ComfortHMI-457	R-C48(amend)	1	0
+T114	Test Case Specification 測試用例規範	NR1L-ComfortHMI-152	R-C48(amend)	1	0
+U114	Test Case Specification 測試用例規範	NR1L-ComfortHMI-152	R-C48(amend)	1	0
+T115	Test Case Specification 測試用例規範	NR1L-ComfortHMI-458	R-C48(amend)	1	0
+U115	Test Case Specification 測試用例規範	NR1L-ComfortHMI-458	R-C48(amend)	1	0
+T116	Test Case Specification 測試用例規範	NR1L-ComfortHMI-466	R-C48(amend)	1	0
+U116	Test Case Specification 測試用例規範	NR1L-ComfortHMI-466	R-C48(amend)	1	0
+T117	Test Case Specification 測試用例規範	NR1L-ComfortHMI-043	R-C48(amend)	1	0
+U117	Test Case Specification 測試用例規範	NR1L-ComfortHMI-043	R-C48(amend)	1	0
+T118	Test Case Specification 測試用例規範	NR1L-ComfortHMI-044	R-C48(amend)	1	0
+U118	Test Case Specification 測試用例規範	NR1L-ComfortHMI-044	R-C48(amend)	1	0
+T119	Test Case Specification 測試用例規範	NR1L-ComfortHMI-045	R-C48(amend)	1	0
+U119	Test Case Specification 測試用例規範	NR1L-ComfortHMI-045	R-C48(amend)	1	0
+T120	Test Case Specification 測試用例規範	NR1L-ComfortHMI-046	R-C48(amend)	1	0
+U120	Test Case Specification 測試用例規範	NR1L-ComfortHMI-046	R-C48(amend)	1	0
+T121	Test Case Specification 測試用例規範	NR1L-ComfortHMI-047	R-C48(amend)	1	0
+U121	Test Case Specification 測試用例規範	NR1L-ComfortHMI-047	R-C48(amend)	1	0
+T122	Test Case Specification 測試用例規範	NR1L-ComfortHMI-165	R-C48(amend)	1	0
+U122	Test Case Specification 測試用例規範	NR1L-ComfortHMI-165	R-C48(amend)	1	0
+L123	Test Case Specification 測試用例規範	NR1L-ComfortHMI-166	M7	"1. Turn the exterior rear-view mirror defrost on
+2. Turn AUTO on and read the exterior rear-view mirror defrost state
+3. Turn the climate system off and read the exterior rear-view mirror defrost state"	"1. Turn the exterior rear-view mirror defrost on
+2. Turn ""AUTO"" on and read the exterior rear-view mirror defrost state
+3. Turn the climate system off and read the exterior rear-view mirror defrost state"
+T123	Test Case Specification 測試用例規範	NR1L-ComfortHMI-166	R-C48(amend)	1	0
+U123	Test Case Specification 測試用例規範	NR1L-ComfortHMI-166	R-C48(amend)	1	0
+T124	Test Case Specification 測試用例規範	NR1L-ComfortHMI-064	R-C48(amend)	1	0
+U124	Test Case Specification 測試用例規範	NR1L-ComfortHMI-064	R-C48(amend)	1	0
+T125	Test Case Specification 測試用例規範	NR1L-ComfortHMI-065	R-C48(amend)	1	0
+U125	Test Case Specification 測試用例規範	NR1L-ComfortHMI-065	R-C48(amend)	1	0
+T126	Test Case Specification 測試用例規範	NR1L-ComfortHMI-015	R-C48(amend)	1	0
+U126	Test Case Specification 測試用例規範	NR1L-ComfortHMI-015	R-C48(amend)	1	0
+T127	Test Case Specification 測試用例規範	NR1L-ComfortHMI-397	R-C48(amend)	1	0
+U127	Test Case Specification 測試用例規範	NR1L-ComfortHMI-397	R-C48(amend)	1	0
+T128	Test Case Specification 測試用例規範	NR1L-ComfortHMI-398	R-C48(amend)	1	0
+U128	Test Case Specification 測試用例規範	NR1L-ComfortHMI-398	R-C48(amend)	1	0
+T129	Test Case Specification 測試用例規範	NR1L-ComfortHMI-016	R-C48(amend)	1	0
+U129	Test Case Specification 測試用例規範	NR1L-ComfortHMI-016	R-C48(amend)	1	0
+T130	Test Case Specification 測試用例規範	NR1L-ComfortHMI-017	R-C48(amend)	1	0
+U130	Test Case Specification 測試用例規範	NR1L-ComfortHMI-017	R-C48(amend)	1	0
+T131	Test Case Specification 測試用例規範	NR1L-ComfortHMI-399	R-C48(amend)	1	0
+U131	Test Case Specification 測試用例規範	NR1L-ComfortHMI-399	R-C48(amend)	1	0
+T132	Test Case Specification 測試用例規範	NR1L-ComfortHMI-018	R-C48(amend)	1	0
+U132	Test Case Specification 測試用例規範	NR1L-ComfortHMI-018	R-C48(amend)	1	0
+J133	Test Case Specification 測試用例規範	NR1L-ComfortHMI-019	軸 2 PC	"1. The vehicle is equipped with MAX DEF
+2. The front HVAC fan range of the vehicle is Off, 1-7
+3. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+4. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16"	"1. The vehicle is equipped with MAX DEF
+2. The front HVAC fan range of the vehicle is Off, 1-7
+3. The vehicle is not a single zone climate configuration, for which Sync is not shown
+4. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+5. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16"
+L133	Test Case Specification 測試用例規範	NR1L-ComfortHMI-019	M7	"1. Open the climate screen with MAX DEF not active
+2. Press ""MAX DEF""
+3. Read the A/C state
+4. Read the airflow mode
+5. Read the fan speed
+6. Read the temperature setting for the driver and, if available, the passenger
+7. Read the RECIRC state and its LED
+8. Read the Sync state
+9. Read the REAR DEFROST state"	"1. Open the climate screen with MAX DEF not active
+2. Press ""MAX DEF""
+3. Read the A/C state
+4. Read the airflow mode
+5. Read the fan speed
+6. Read the temperature setting for the driver and, if available, the passenger
+7. Read the ""RECIRC"" button state and its LED
+8. Read the SYNC state
+9. Read the REAR DEFROST state"
+M133	Test Case Specification 測試用例規範	NR1L-ComfortHMI-019	M7	"1. The ""MAX DEF"" button is not active
+2. The ""MAX DEF"" button is active
+3. A/C is on
+4. The airflow mode is Windshield
+5. The fan speed is at the highest setting (7/7)
+6. The temperature is at the highest setting (HI) for the driver and, if available, the passenger
+7. RECIRC is open and its LED is off
+8. Sync is on
+9. REAR DEFROST is active"	"1. The ""MAX DEF"" button is not active
+2. The ""MAX DEF"" button is active
+3. A/C is on
+4. The airflow mode is Windshield
+5. The fan speed is at the highest setting (7/7)
+6. The temperature is at the highest setting (HI) for the driver and, if available, the passenger
+7. RECIRC is open and its LED is off
+8. SYNC is on
+9. REAR DEFROST is active"
+N133	Test Case Specification 測試用例規範	NR1L-ComfortHMI-019	R-C49(amend)	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_3.2
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.7
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+T133	Test Case Specification 測試用例規範	NR1L-ComfortHMI-019	R-C48(amend)	1	0
+U133	Test Case Specification 測試用例規範	NR1L-ComfortHMI-019	R-C48(amend)	1	0
+T134	Test Case Specification 測試用例規範	NR1L-ComfortHMI-020	R-C48(amend)	1	0
+U134	Test Case Specification 測試用例規範	NR1L-ComfortHMI-020	R-C48(amend)	1	0
+T135	Test Case Specification 測試用例規範	NR1L-ComfortHMI-021	R-C48(amend)	1	0
+U135	Test Case Specification 測試用例規範	NR1L-ComfortHMI-021	R-C48(amend)	1	0
+T136	Test Case Specification 測試用例規範	NR1L-ComfortHMI-022	R-C48(amend)	1	0
+U136	Test Case Specification 測試用例規範	NR1L-ComfortHMI-022	R-C48(amend)	1	0
+T137	Test Case Specification 測試用例規範	NR1L-ComfortHMI-023	R-C48(amend)	1	0
+U137	Test Case Specification 測試用例規範	NR1L-ComfortHMI-023	R-C48(amend)	1	0
+T138	Test Case Specification 測試用例規範	NR1L-ComfortHMI-024	R-C48(amend)	1	0
+U138	Test Case Specification 測試用例規範	NR1L-ComfortHMI-024	R-C48(amend)	1	0
+I139	Test Case Specification 測試用例規範	NR1L-ComfortHMI-025	M7	"Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+
+(change RECIRC -> The ""MAX DEF"" button is no longer active and the system is in the previous manual mode with A/C on)"	"Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+
+(change ""RECIRC"" -> The ""MAX DEF"" button is no longer active and the system is in the previous manual mode with A/C on)"
+L139	Test Case Specification 測試用例規範	NR1L-ComfortHMI-025	M7	"1. Press ""MAX DEF""
+2. Change RECIRC"	"1. Press ""MAX DEF""
+2. Change ""RECIRC"""
+T139	Test Case Specification 測試用例規範	NR1L-ComfortHMI-025	R-C48(amend)	1	0
+U139	Test Case Specification 測試用例規範	NR1L-ComfortHMI-025	R-C48(amend)	1	0
+T140	Test Case Specification 測試用例規範	NR1L-ComfortHMI-026	R-C48(amend)	1	0
+U140	Test Case Specification 測試用例規範	NR1L-ComfortHMI-026	R-C48(amend)	1	0
+T141	Test Case Specification 測試用例規範	NR1L-ComfortHMI-027	R-C48(amend)	1	0
+U141	Test Case Specification 測試用例規範	NR1L-ComfortHMI-027	R-C48(amend)	1	0
+T142	Test Case Specification 測試用例規範	NR1L-ComfortHMI-028	R-C48(amend)	1	0
+U142	Test Case Specification 測試用例規範	NR1L-ComfortHMI-028	R-C48(amend)	1	0
+T143	Test Case Specification 測試用例規範	NR1L-ComfortHMI-029	R-C48(amend)	1	0
+U143	Test Case Specification 測試用例規範	NR1L-ComfortHMI-029	R-C48(amend)	1	0
+T144	Test Case Specification 測試用例規範	NR1L-ComfortHMI-030	R-C48(amend)	1	0
+U144	Test Case Specification 測試用例規範	NR1L-ComfortHMI-030	R-C48(amend)	1	0
+T145	Test Case Specification 測試用例規範	NR1L-ComfortHMI-031	R-C48(amend)	1	0
+U145	Test Case Specification 測試用例規範	NR1L-ComfortHMI-031	R-C48(amend)	1	0
+T146	Test Case Specification 測試用例規範	NR1L-ComfortHMI-041	R-C48(amend)	1	0
+U146	Test Case Specification 測試用例規範	NR1L-ComfortHMI-041	R-C48(amend)	1	0
+T147	Test Case Specification 測試用例規範	NR1L-ComfortHMI-266	R-C48(amend)	1	0
+U147	Test Case Specification 測試用例規範	NR1L-ComfortHMI-266	R-C48(amend)	1	0
+T148	Test Case Specification 測試用例規範	NR1L-ComfortHMI-267	R-C48(amend)	1	0
+U148	Test Case Specification 測試用例規範	NR1L-ComfortHMI-267	R-C48(amend)	1	0
+T149	Test Case Specification 測試用例規範	NR1L-ComfortHMI-268	R-C48(amend)	1	0
+U149	Test Case Specification 測試用例規範	NR1L-ComfortHMI-268	R-C48(amend)	1	0
+T150	Test Case Specification 測試用例規範	NR1L-ComfortHMI-269	R-C48(amend)	1	0
+U150	Test Case Specification 測試用例規範	NR1L-ComfortHMI-269	R-C48(amend)	1	0
+T151	Test Case Specification 測試用例規範	NR1L-ComfortHMI-270	R-C48(amend)	1	0
+U151	Test Case Specification 測試用例規範	NR1L-ComfortHMI-270	R-C48(amend)	1	0
+T152	Test Case Specification 測試用例規範	NR1L-ComfortHMI-271	R-C48(amend)	1	0
+U152	Test Case Specification 測試用例規範	NR1L-ComfortHMI-271	R-C48(amend)	1	0
+I153	Test Case Specification 測試用例規範	NR1L-ComfortHMI-272	M7	"The fan speed will be transmitted as 15h instead of the actual fan speed.
+
+(read the rear fan speed indicator -> The rear fan speed indicator shows AUTO instead of the actual fan speed)"	"The fan speed will be transmitted as 15h instead of the actual fan speed.
+
+(read the rear fan speed indicator -> The rear fan speed indicator shows ""AUTO"" instead of the actual fan speed)"
+L153	Test Case Specification 測試用例規範	NR1L-ComfortHMI-272	M7	"1. Turn rear AUTO on
+2. Read the rear fan speed indicator"	"1. Turn rear ""AUTO"" on
+2. Read the rear fan speed indicator"
+M153	Test Case Specification 測試用例規範	NR1L-ComfortHMI-272	M7	"1. The rear AUTO button is highlighted
+2. The rear fan speed indicator shows AUTO instead of the actual fan speed"	"1. The rear ""AUTO"" button is highlighted
+2. The rear fan speed indicator shows ""AUTO"" instead of the actual fan speed"
+T153	Test Case Specification 測試用例規範	NR1L-ComfortHMI-272	R-C48(amend)	1	0
+U153	Test Case Specification 測試用例規範	NR1L-ComfortHMI-272	R-C48(amend)	1	0
+L154	Test Case Specification 測試用例規範	NR1L-ComfortHMI-273	M7	"1. Turn rear AUTO on
+2. Set a rear temperature different from the current cabin temperature
+3. Read the rear fan speed and airflow mode"	"1. Turn rear ""AUTO"" on
+2. Set a rear temperature different from the current cabin temperature
+3. Read the rear fan speed and airflow mode"
+M154	Test Case Specification 測試用例規範	NR1L-ComfortHMI-273	M7	"1. The rear AUTO button is highlighted
+2. The rear temperature is set to the requested value
+3. The rear fan speed and airflow mode change without user input"	"1. The rear ""AUTO"" button is highlighted
+2. The rear temperature is set to the requested value
+3. The rear fan speed and airflow mode change without user input"
+T154	Test Case Specification 測試用例規範	NR1L-ComfortHMI-273	R-C48(amend)	1	0
+U154	Test Case Specification 測試用例規範	NR1L-ComfortHMI-273	R-C48(amend)	1	0
+L155	Test Case Specification 測試用例規範	NR1L-ComfortHMI-274	M7	"1. Select a rear airflow mode
+2. Turn rear AUTO on
+3. Read the three rear airflow mode buttons"	"1. Select a rear airflow mode
+2. Turn rear ""AUTO"" on
+3. Read the three rear airflow mode buttons"
+M155	Test Case Specification 測試用例規範	NR1L-ComfortHMI-274	M7	"1. The selected rear airflow mode button is highlighted
+2. The rear AUTO button is highlighted
+3. The three rear airflow mode buttons are turned off"	"1. The selected rear airflow mode button is highlighted
+2. The rear ""AUTO"" button is highlighted
+3. The three rear airflow mode buttons are turned off"
+T155	Test Case Specification 測試用例規範	NR1L-ComfortHMI-274	R-C48(amend)	1	0
+U155	Test Case Specification 測試用例規範	NR1L-ComfortHMI-274	R-C48(amend)	1	0
+L156	Test Case Specification 測試用例規範	NR1L-ComfortHMI-275	M7+M9-compound	"1. Turn rear AUTO on
+2. Change the rear fan speed
+3. Turn rear AUTO on again
+4. Press a specific rear airflow mode button"	"1. Turn rear ""AUTO"" on
+2. Change the rear fan speed
+3. Turn rear ""AUTO"" on again
+4. Press a specific rear airflow mode button"
+M156	Test Case Specification 測試用例規範	NR1L-ComfortHMI-275	M7+M9-compound	"1. The rear AUTO button is highlighted
+2. The rear AUTO button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode
+3. The rear AUTO button is highlighted
+4. The system is in the pressed rear airflow mode"	"1. The rear ""AUTO"" button is highlighted
+2. The rear ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode
+3. The rear ""AUTO"" button is highlighted
+4. The system is in the pressed rear airflow mode"
+T156	Test Case Specification 測試用例規範	NR1L-ComfortHMI-275	R-C48(amend)	1	0
+U156	Test Case Specification 測試用例規範	NR1L-ComfortHMI-275	R-C48(amend)	1	0
+AH156	Test Case Specification 測試用例規範	NR1L-ComfortHMI-275	R-C56		The specification does not name which manual mode the rear system enters when rear AUTO is broken by changing the rear fan speed, so the mode reached after that step cannot be determined from the specification alone
+I157	Test Case Specification 測試用例規範	NR1L-ComfortHMI-276	M7	"Any other climate controls do NOT break Auto either.
+
+(read the rear AUTO button -> The rear AUTO button is still highlighted)"	"Any other climate controls do NOT break Auto either.
+
+(read the rear ""AUTO"" button -> The rear ""AUTO"" button is still highlighted)"
+L157	Test Case Specification 測試用例規範	NR1L-ComfortHMI-276	M7	"1. Turn rear AUTO on
+2. Change the rear temperature
+3. Read the rear AUTO button"	"1. Turn rear ""AUTO"" on
+2. Change the rear temperature
+3. Read the rear ""AUTO"" button"
+M157	Test Case Specification 測試用例規範	NR1L-ComfortHMI-276	M7	"1. The rear AUTO button is highlighted
+2. The rear temperature changes
+3. The rear AUTO button is still highlighted"	"1. The rear ""AUTO"" button is highlighted
+2. The rear temperature changes
+3. The rear ""AUTO"" button is still highlighted"
+T157	Test Case Specification 測試用例規範	NR1L-ComfortHMI-276	R-C48(amend)	1	0
+U157	Test Case Specification 測試用例規範	NR1L-ComfortHMI-276	R-C48(amend)	1	0
+T158	Test Case Specification 測試用例規範	NR1L-ComfortHMI-277	R-C48(amend)	1	0
+U158	Test Case Specification 測試用例規範	NR1L-ComfortHMI-277	R-C48(amend)	1	0
+T159	Test Case Specification 測試用例規範	NR1L-ComfortHMI-400	R-C48(amend)	1	0
+U159	Test Case Specification 測試用例規範	NR1L-ComfortHMI-400	R-C48(amend)	1	0
+T160	Test Case Specification 測試用例規範	NR1L-ComfortHMI-278	R-C48(amend)	1	0
+U160	Test Case Specification 測試用例規範	NR1L-ComfortHMI-278	R-C48(amend)	1	0
+T161	Test Case Specification 測試用例規範	NR1L-ComfortHMI-279	R-C48(amend)	1	0
+U161	Test Case Specification 測試用例規範	NR1L-ComfortHMI-279	R-C48(amend)	1	0
+T162	Test Case Specification 測試用例規範	NR1L-ComfortHMI-280	R-C48(amend)	1	0
+U162	Test Case Specification 測試用例規範	NR1L-ComfortHMI-280	R-C48(amend)	1	0
+T163	Test Case Specification 測試用例規範	NR1L-ComfortHMI-401	R-C48(amend)	1	0
+U163	Test Case Specification 測試用例規範	NR1L-ComfortHMI-401	R-C48(amend)	1	0
+T164	Test Case Specification 測試用例規範	NR1L-ComfortHMI-402	R-C48(amend)	1	0
+U164	Test Case Specification 測試用例規範	NR1L-ComfortHMI-402	R-C48(amend)	1	0
+T165	Test Case Specification 測試用例規範	NR1L-ComfortHMI-281	R-C48(amend)	1	0
+U165	Test Case Specification 測試用例規範	NR1L-ComfortHMI-281	R-C48(amend)	1	0
+T166	Test Case Specification 測試用例規範	NR1L-ComfortHMI-282	R-C48(amend)	1	0
+U166	Test Case Specification 測試用例規範	NR1L-ComfortHMI-282	R-C48(amend)	1	0
+L167	Test Case Specification 測試用例規範	NR1L-ComfortHMI-283	M7	"1. Turn SYNC on
+2. Change the driver temperature"	"1. Turn ""SYNC"" on
+2. Change the driver temperature"
+M167	Test Case Specification 測試用例規範	NR1L-ComfortHMI-283	M7	"1. The SYNC button is highlighted
+2. The passenger temperature follows the driver temperature"	"1. The ""SYNC"" button is highlighted
+2. The passenger temperature follows the driver temperature"
+T167	Test Case Specification 測試用例規範	NR1L-ComfortHMI-283	R-C48(amend)	1	0
+U167	Test Case Specification 測試用例規範	NR1L-ComfortHMI-283	R-C48(amend)	1	0
+I168	Test Case Specification 測試用例規範	NR1L-ComfortHMI-403	M7	"If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.
+
+(change the passenger temperature -> SYNC is turned off and the SYNC button is no longer highlighted)"	"If SYNC is ON, adjusting driver temperature affects passenger temperatures, adjusting passenger temperatures would break SYNC and turn it off.
+
+(change the passenger temperature -> SYNC is turned off and the ""SYNC"" button is no longer highlighted)"
+L168	Test Case Specification 測試用例規範	NR1L-ComfortHMI-403	M7	"1. Turn SYNC on
+2. Change the passenger temperature"	"1. Turn ""SYNC"" on
+2. Change the passenger temperature"
+M168	Test Case Specification 測試用例規範	NR1L-ComfortHMI-403	M7	"1. The SYNC button is highlighted
+2. SYNC is turned off and the SYNC button is no longer highlighted"	"1. The ""SYNC"" button is highlighted
+2. SYNC is turned off and the ""SYNC"" button is no longer highlighted"
+T168	Test Case Specification 測試用例規範	NR1L-ComfortHMI-403	R-C48(amend)	1	0
+U168	Test Case Specification 測試用例規範	NR1L-ComfortHMI-403	R-C48(amend)	1	0
+T169	Test Case Specification 測試用例規範	NR1L-ComfortHMI-284	R-C48(amend)	1	0
+U169	Test Case Specification 測試用例規範	NR1L-ComfortHMI-284	R-C48(amend)	1	0
+I170	Test Case Specification 測試用例規範	NR1L-ComfortHMI-404	M7	"CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead).
+
+(read the rear fan speed indicator -> The rear fan speed indicator shows AUTO)"	"CR5.) Fan ranges: Off, 1-7, 15h (denoting to show AUTO instead).
+
+(read the rear fan speed indicator -> The rear fan speed indicator shows ""AUTO"")"
+L170	Test Case Specification 測試用例規範	NR1L-ComfortHMI-404	M7	"1. Turn rear AUTO on
+2. Read the rear fan speed indicator"	"1. Turn rear ""AUTO"" on
+2. Read the rear fan speed indicator"
+M170	Test Case Specification 測試用例規範	NR1L-ComfortHMI-404	M7	"1. The rear AUTO button is highlighted
+2. The rear fan speed indicator shows AUTO"	"1. The rear ""AUTO"" button is highlighted
+2. The rear fan speed indicator shows ""AUTO"""
+T170	Test Case Specification 測試用例規範	NR1L-ComfortHMI-404	R-C48(amend)	1	0
+U170	Test Case Specification 測試用例規範	NR1L-ComfortHMI-404	R-C48(amend)	1	0
+T171	Test Case Specification 測試用例規範	NR1L-ComfortHMI-285	R-C48(amend)	1	0
+U171	Test Case Specification 測試用例規範	NR1L-ComfortHMI-285	R-C48(amend)	1	0
+T172	Test Case Specification 測試用例規範	NR1L-ComfortHMI-286	R-C48(amend)	1	0
+U172	Test Case Specification 測試用例規範	NR1L-ComfortHMI-286	R-C48(amend)	1	0
+T173	Test Case Specification 測試用例規範	NR1L-ComfortHMI-287	R-C48(amend)	1	0
+U173	Test Case Specification 測試用例規範	NR1L-ComfortHMI-287	R-C48(amend)	1	0
+T174	Test Case Specification 測試用例規範	NR1L-ComfortHMI-288	R-C48(amend)	1	0
+U174	Test Case Specification 測試用例規範	NR1L-ComfortHMI-288	R-C48(amend)	1	0
+T175	Test Case Specification 測試用例規範	NR1L-ComfortHMI-289	R-C48(amend)	1	0
+U175	Test Case Specification 測試用例規範	NR1L-ComfortHMI-289	R-C48(amend)	1	0
+T176	Test Case Specification 測試用例規範	NR1L-ComfortHMI-290	R-C48(amend)	1	0
+U176	Test Case Specification 測試用例規範	NR1L-ComfortHMI-290	R-C48(amend)	1	0
+T177	Test Case Specification 測試用例規範	NR1L-ComfortHMI-291	R-C48(amend)	1	0
+U177	Test Case Specification 測試用例規範	NR1L-ComfortHMI-291	R-C48(amend)	1	0
+T178	Test Case Specification 測試用例規範	NR1L-ComfortHMI-292	R-C48(amend)	1	0
+U178	Test Case Specification 測試用例規範	NR1L-ComfortHMI-292	R-C48(amend)	1	0
+L179	Test Case Specification 測試用例規範	NR1L-ComfortHMI-293	M7	"1. Turn SYNC on
+2. Change the driver temperature
+3. Read the rear temperature"	"1. Turn ""SYNC"" on
+2. Change the driver temperature
+3. Read the rear temperature"
+M179	Test Case Specification 測試用例規範	NR1L-ComfortHMI-293	M7	"1. The SYNC button is highlighted
+2. The driver temperature changes
+3. The rear temperature follows the driver temperature"	"1. The ""SYNC"" button is highlighted
+2. The driver temperature changes
+3. The rear temperature follows the driver temperature"
+T179	Test Case Specification 測試用例規範	NR1L-ComfortHMI-293	R-C48(amend)	1	0
+U179	Test Case Specification 測試用例規範	NR1L-ComfortHMI-293	R-C48(amend)	1	0
+I180	Test Case Specification 測試用例規範	NR1L-ComfortHMI-294	M7	"Adjusting the front or rear passenger temperature, mode, and fan speed via touchscreen or hard control would break SYNC.
+
+(read the SYNC button -> SYNC is off and the SYNC button is no longer highlighted)"	"Adjusting the front or rear passenger temperature, mode, and fan speed via touchscreen or hard control would break SYNC.
+
+(read the ""SYNC"" button -> SYNC is off and the ""SYNC"" button is no longer highlighted)"
+L180	Test Case Specification 測試用例規範	NR1L-ComfortHMI-294	M7	"1. Turn SYNC on
+2. Change the rear passenger temperature using the rear climate controls
+3. Read the SYNC button"	"1. Turn ""SYNC"" on
+2. Change the rear passenger temperature using the rear climate controls
+3. Read the ""SYNC"" button"
+M180	Test Case Specification 測試用例規範	NR1L-ComfortHMI-294	M7	"1. The SYNC button is highlighted
+2. The rear passenger temperature changes
+3. SYNC is off and the SYNC button is no longer highlighted"	"1. The ""SYNC"" button is highlighted
+2. The rear passenger temperature changes
+3. SYNC is off and the ""SYNC"" button is no longer highlighted"
+T180	Test Case Specification 測試用例規範	NR1L-ComfortHMI-294	R-C48(amend)	1	0
+U180	Test Case Specification 測試用例規範	NR1L-ComfortHMI-294	R-C48(amend)	1	0
+L181	Test Case Specification 測試用例規範	NR1L-ComfortHMI-295	M7	"1. Turn SYNC on
+2. Change the front fan speed
+3. Read the rear fan speed"	"1. Turn ""SYNC"" on
+2. Change the front fan speed
+3. Read the rear fan speed"
+M181	Test Case Specification 測試用例規範	NR1L-ComfortHMI-295	M7	"1. The SYNC button is highlighted
+2. The front fan speed changes
+3. The rear fan speed follows the front fan speed"	"1. The ""SYNC"" button is highlighted
+2. The front fan speed changes
+3. The rear fan speed follows the front fan speed"
+T181	Test Case Specification 測試用例規範	NR1L-ComfortHMI-295	R-C48(amend)	1	0
+U181	Test Case Specification 測試用例規範	NR1L-ComfortHMI-295	R-C48(amend)	1	0
+L182	Test Case Specification 測試用例規範	NR1L-ComfortHMI-296	M7	"1. Select the rear Feet mode
+2. Read the rear airflow mode"	"1. Select the rear ""Feet"" mode
+2. Read the rear airflow mode"
+T182	Test Case Specification 測試用例規範	NR1L-ComfortHMI-296	R-C48(amend)	1	0
+U182	Test Case Specification 測試用例規範	NR1L-ComfortHMI-296	R-C48(amend)	1	0
+L183	Test Case Specification 測試用例規範	NR1L-ComfortHMI-405	M7	"1. Select the rear Face + Feet mode
+2. Read the rear airflow mode"	"1. Select the rear ""Face + Feet"" mode
+2. Read the rear airflow mode"
+T183	Test Case Specification 測試用例規範	NR1L-ComfortHMI-405	R-C48(amend)	1	0
+U183	Test Case Specification 測試用例規範	NR1L-ComfortHMI-405	R-C48(amend)	1	0
+L184	Test Case Specification 測試用例規範	NR1L-ComfortHMI-406	M7	"1. Select the rear Face mode
+2. Read the rear airflow mode"	"1. Select the rear ""Face"" mode
+2. Read the rear airflow mode"
+T184	Test Case Specification 測試用例規範	NR1L-ComfortHMI-406	R-C48(amend)	1	0
+U184	Test Case Specification 測試用例規範	NR1L-ComfortHMI-406	R-C48(amend)	1	0
+T185	Test Case Specification 測試用例規範	NR1L-ComfortHMI-297	R-C48(amend)	1	0
+U185	Test Case Specification 測試用例規範	NR1L-ComfortHMI-297	R-C48(amend)	1	0
+L186	Test Case Specification 測試用例規範	NR1L-ComfortHMI-298	M7	"1. Select a rear airflow mode
+2. Turn rear AUTO on
+3. Read the rear airflow mode buttons"	"1. Select a rear airflow mode
+2. Turn rear ""AUTO"" on
+3. Read the rear airflow mode buttons"
+M186	Test Case Specification 測試用例規範	NR1L-ComfortHMI-298	M7	"1. The selected rear airflow mode button is highlighted
+2. The rear AUTO button is highlighted
+3. The rear airflow mode buttons are turned off"	"1. The selected rear airflow mode button is highlighted
+2. The rear ""AUTO"" button is highlighted
+3. The rear airflow mode buttons are turned off"
+T186	Test Case Specification 測試用例規範	NR1L-ComfortHMI-298	R-C48(amend)	1	0
+U186	Test Case Specification 測試用例規範	NR1L-ComfortHMI-298	R-C48(amend)	1	0
+I187	Test Case Specification 測試用例規範	NR1L-ComfortHMI-299	M7	"Only one mode can be selected at a time.
+
+(read the rear airflow mode buttons -> Only the rear Face mode button is highlighted)"	"Only one mode can be selected at a time.
+
+(read the rear airflow mode buttons -> Only the rear ""Face"" mode button is highlighted)"
+L187	Test Case Specification 測試用例規範	NR1L-ComfortHMI-299	M7	"1. Select the rear Feet mode
+2. Select the rear Face mode
+3. Read the rear airflow mode buttons"	"1. Select the rear ""Feet"" mode
+2. Select the rear ""Face"" mode
+3. Read the rear airflow mode buttons"
+M187	Test Case Specification 測試用例規範	NR1L-ComfortHMI-299	M7	"1. The rear Feet mode is selected
+2. The rear Face mode is selected
+3. Only the rear Face mode button is highlighted"	"1. The rear Feet mode is selected
+2. The rear Face mode is selected
+3. Only the rear ""Face"" mode button is highlighted"
+T187	Test Case Specification 測試用例規範	NR1L-ComfortHMI-299	R-C48(amend)	1	0
+U187	Test Case Specification 測試用例規範	NR1L-ComfortHMI-299	R-C48(amend)	1	0
+T188	Test Case Specification 測試用例規範	NR1L-ComfortHMI-300	R-C48(amend)	1	0
+U188	Test Case Specification 測試用例規範	NR1L-ComfortHMI-300	R-C48(amend)	1	0
+T189	Test Case Specification 測試用例規範	NR1L-ComfortHMI-407	R-C48(amend)	1	0
+U189	Test Case Specification 測試用例規範	NR1L-ComfortHMI-407	R-C48(amend)	1	0
+T190	Test Case Specification 測試用例規範	NR1L-ComfortHMI-301	R-C48(amend)	1	0
+U190	Test Case Specification 測試用例規範	NR1L-ComfortHMI-301	R-C48(amend)	1	0
+T191	Test Case Specification 測試用例規範	NR1L-ComfortHMI-302	R-C48(amend)	1	0
+U191	Test Case Specification 測試用例規範	NR1L-ComfortHMI-302	R-C48(amend)	1	0
+T192	Test Case Specification 測試用例規範	NR1L-ComfortHMI-303	R-C48(amend)	1	0
+U192	Test Case Specification 測試用例規範	NR1L-ComfortHMI-303	R-C48(amend)	1	0
+T193	Test Case Specification 測試用例規範	NR1L-ComfortHMI-459	R-C48(amend)	1	0
+U193	Test Case Specification 測試用例規範	NR1L-ComfortHMI-459	R-C48(amend)	1	0
+T194	Test Case Specification 測試用例規範	NR1L-ComfortHMI-367	R-C48(amend)	1	0
+U194	Test Case Specification 測試用例規範	NR1L-ComfortHMI-367	R-C48(amend)	1	0
+I195	Test Case Specification 測試用例規範	NR1L-ComfortHMI-408	M7	"The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
+
+(trigger the fan speed pop up using the hard controls -> The pop up shows AUTO as the front fan status)"	"The pop up will show the front fan speed status (level number, AUTO, OFF) and the Rear fan status (level number, AUTO, OFF).
+
+(trigger the fan speed pop up using the hard controls -> The pop up shows ""AUTO"" as the front fan status)"
+L195	Test Case Specification 測試用例規範	NR1L-ComfortHMI-408	M7	"1. Turn AUTO on for the front climate
+2. Trigger the fan speed pop up using the hard controls"	"1. Turn ""AUTO"" on for the front climate
+2. Trigger the fan speed pop up using the hard controls"
+M195	Test Case Specification 測試用例規範	NR1L-ComfortHMI-408	M7	"1. The front climate is in AUTO
+2. The pop up shows AUTO as the front fan status"	"1. The front climate is in AUTO
+2. The pop up shows ""AUTO"" as the front fan status"
+T195	Test Case Specification 測試用例規範	NR1L-ComfortHMI-408	R-C48(amend)	1	0
+U195	Test Case Specification 測試用例規範	NR1L-ComfortHMI-408	R-C48(amend)	1	0
+T196	Test Case Specification 測試用例規範	NR1L-ComfortHMI-409	R-C48(amend)	1	0
+U196	Test Case Specification 測試用例規範	NR1L-ComfortHMI-409	R-C48(amend)	1	0
+T197	Test Case Specification 測試用例規範	NR1L-ComfortHMI-368	R-C48(amend)	1	0
+U197	Test Case Specification 測試用例規範	NR1L-ComfortHMI-368	R-C48(amend)	1	0
+T198	Test Case Specification 測試用例規範	NR1L-ComfortHMI-369	R-C48(amend)	1	0
+U198	Test Case Specification 測試用例規範	NR1L-ComfortHMI-369	R-C48(amend)	1	0
+T199	Test Case Specification 測試用例規範	NR1L-ComfortHMI-370	R-C48(amend)	1	0
+U199	Test Case Specification 測試用例規範	NR1L-ComfortHMI-370	R-C48(amend)	1	0
+T200	Test Case Specification 測試用例規範	NR1L-ComfortHMI-371	R-C48(amend)	1	0
+U200	Test Case Specification 測試用例規範	NR1L-ComfortHMI-371	R-C48(amend)	1	0
+T201	Test Case Specification 測試用例規範	NR1L-ComfortHMI-372	R-C48(amend)	1	0
+U201	Test Case Specification 測試用例規範	NR1L-ComfortHMI-372	R-C48(amend)	1	0
+T202	Test Case Specification 測試用例規範	NR1L-ComfortHMI-373	R-C48(amend)	1	0
+U202	Test Case Specification 測試用例規範	NR1L-ComfortHMI-373	R-C48(amend)	1	0
+I203	Test Case Specification 測試用例規範	NR1L-ComfortHMI-067	M7	"EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.
+
+(press the AUTO button -> The AUTO ECO mode is active)"	"EH1.) ECO HVAC is an HVAC Mode, used on EV Vehicles only, to reduce Climate control System Power Consumption.
+
+(press the ""AUTO"" button -> The AUTO ECO mode is active)"
+L203	Test Case Specification 測試用例規範	NR1L-ComfortHMI-067	M7	"1. Open the climate screen
+2. Press the AUTO button"	"1. Open the climate screen
+2. Press the ""AUTO"" button"
+M203	Test Case Specification 測試用例規範	NR1L-ComfortHMI-067	M7	"1. The climate screen shows the AUTO control
+2. The AUTO ECO mode is active"	"1. The climate screen shows the ""AUTO"" control
+2. The AUTO ECO mode is active"
+T203	Test Case Specification 測試用例規範	NR1L-ComfortHMI-067	R-C48(amend)	1	0
+U203	Test Case Specification 測試用例規範	NR1L-ComfortHMI-067	R-C48(amend)	1	0
+T204	Test Case Specification 測試用例規範	NR1L-ComfortHMI-081	R-C48(amend)	1	0
+U204	Test Case Specification 測試用例規範	NR1L-ComfortHMI-081	R-C48(amend)	1	0
+I205	Test Case Specification 測試用例規範	NR1L-ComfortHMI-068	M7	"EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.
+
+(press the AUTO button -> The AUTO state is AUTO ON)"	"EH2.) For BEV vehicles, the AUTO functionality can have 3 states: AUTO ECO, AUTO ON, AUTO OFF.
+
+(press the ""AUTO"" button -> The AUTO state is AUTO ON)"
+L205	Test Case Specification 測試用例規範	NR1L-ComfortHMI-068	M7	"1. Press the AUTO button until AUTO is off
+2. Press the AUTO button
+3. Press the AUTO button"	"1. Press the ""AUTO"" button until AUTO is off
+2. Press the ""AUTO"" button
+3. Press the ""AUTO"" button"
+T205	Test Case Specification 測試用例規範	NR1L-ComfortHMI-068	R-C48(amend)	1	0
+U205	Test Case Specification 測試用例規範	NR1L-ComfortHMI-068	R-C48(amend)	1	0
+I206	Test Case Specification 測試用例規範	NR1L-ComfortHMI-069	M7	"EH3.) Button label will read AUTO ECO.
+
+(read the label on the AUTO button -> The button label reads AUTO ECO)"	"EH3.) Button label will read AUTO ECO.
+
+(read the label on the ""AUTO"" button -> The button label reads ""AUTO ECO"")"
+L206	Test Case Specification 測試用例規範	NR1L-ComfortHMI-069	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Read the label on the AUTO button"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Read the label on the ""AUTO"" button"
+M206	Test Case Specification 測試用例規範	NR1L-ComfortHMI-069	M7	"1. The AUTO ECO mode is active
+2. The button label reads AUTO ECO"	"1. The AUTO ECO mode is active
+2. The button label reads ""AUTO ECO"""
+T206	Test Case Specification 測試用例規範	NR1L-ComfortHMI-069	R-C48(amend)	1	0
+U206	Test Case Specification 測試用例規範	NR1L-ComfortHMI-069	R-C48(amend)	1	0
+I207	Test Case Specification 測試用例規範	NR1L-ComfortHMI-070	M7	"EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+
+(press the AUTO button once -> The AUTO ECO functionality is activated)"	"EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+
+(press the ""AUTO"" button once -> The AUTO ECO functionality is activated)"
+L207	Test Case Specification 測試用例規範	NR1L-ComfortHMI-070	M7	"1. Press the AUTO button until AUTO is off
+2. Press the AUTO button once"	"1. Press the ""AUTO"" button until AUTO is off
+2. Press the ""AUTO"" button once"
+T207	Test Case Specification 測試用例規範	NR1L-ComfortHMI-070	R-C48(amend)	1	0
+U207	Test Case Specification 測試用例規範	NR1L-ComfortHMI-070	R-C48(amend)	1	0
+I208	Test Case Specification 測試用例規範	NR1L-ComfortHMI-460	M7	"EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+
+(press the position at which the AUTO button is shown in an ATC configuration -> The AUTO ECO functionality is not activated)"	"EH4.) When the AUTO function is off and available, the user s first press of the AUTO button will activate the AUTO ECO functionality.
+
+(press the position at which the ""AUTO"" button is shown in an ATC configuration -> The AUTO ECO functionality is not activated)"
+L208	Test Case Specification 測試用例規範	NR1L-ComfortHMI-460	M7	"1. Open the climate screen
+2. Press the position at which the AUTO button is shown in an ATC configuration"	"1. Open the climate screen
+2. Press the position at which the ""AUTO"" button is shown in an ATC configuration"
+M208	Test Case Specification 測試用例規範	NR1L-ComfortHMI-460	M7	"1. The climate screen is displayed and no AUTO button is shown
+2. The AUTO ECO functionality is not activated"	"1. The climate screen is displayed and no ""AUTO"" button is shown
+2. The AUTO ECO functionality is not activated"
+T208	Test Case Specification 測試用例規範	NR1L-ComfortHMI-460	R-C48(amend)	1	0
+U208	Test Case Specification 測試用例規範	NR1L-ComfortHMI-460	R-C48(amend)	1	0
+I209	Test Case Specification 測試用例規範	NR1L-ComfortHMI-071	M7	"EH5.) The second press will switch to AUTO on.
+
+(press the AUTO button once -> The AUTO state is AUTO ON)"	"EH5.) The second press will switch to AUTO on.
+
+(press the ""AUTO"" button once -> The AUTO state is AUTO ON)"
+L209	Test Case Specification 測試用例規範	NR1L-ComfortHMI-071	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Press the AUTO button once"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Press the ""AUTO"" button once"
+T209	Test Case Specification 測試用例規範	NR1L-ComfortHMI-071	R-C48(amend)	1	0
+U209	Test Case Specification 測試用例規範	NR1L-ComfortHMI-071	R-C48(amend)	1	0
+I210	Test Case Specification 測試用例規範	NR1L-ComfortHMI-072	M7	"A third press would go back to AUTO ECO.
+
+(press the AUTO button once -> The AUTO state is AUTO ECO)"	"A third press would go back to AUTO ECO.
+
+(press the ""AUTO"" button once -> The AUTO state is AUTO ECO)"
+L210	Test Case Specification 測試用例規範	NR1L-ComfortHMI-072	M7	"1. Press the AUTO button until the AUTO ON state is active
+2. Press the AUTO button once"	"1. Press the ""AUTO"" button until the AUTO ON state is active
+2. Press the ""AUTO"" button once"
+T210	Test Case Specification 測試用例規範	NR1L-ComfortHMI-072	R-C48(amend)	1	0
+U210	Test Case Specification 測試用例規範	NR1L-ComfortHMI-072	R-C48(amend)	1	0
+L211	Test Case Specification 測試用例規範	NR1L-ComfortHMI-073	M7+M9-compound	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Press the AUTO button repeatedly
+3. Change the fan speed
+4. Press the AUTO button until the AUTO ECO mode is active
+5. Change the airflow mode"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Press the ""AUTO"" button repeatedly
+3. Change the fan speed
+4. Press the ""AUTO"" button until the AUTO ECO mode is active
+5. Change the airflow mode"
+T211	Test Case Specification 測試用例規範	NR1L-ComfortHMI-073	R-C48(amend)	1	0
+U211	Test Case Specification 測試用例規範	NR1L-ComfortHMI-073	R-C48(amend)	1	0
+I212	Test Case Specification 測試用例規範	NR1L-ComfortHMI-074	M7	"EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.
+
+(press the AUTO button until the AUTO ECO mode is active -> The airflow modes are deselected)"	"EH6.) When AUTO ECO is on, deselect airflow modes as in standard AUTO mode; fan speed indication should denote that AUTO ECO is active.
+
+(press the ""AUTO"" button until the AUTO ECO mode is active -> The airflow modes are deselected)"
+L212	Test Case Specification 測試用例規範	NR1L-ComfortHMI-074	M7	"1. Select an airflow mode on the climate screen
+2. Press the AUTO button until the AUTO ECO mode is active"	"1. Select an airflow mode on the climate screen
+2. Press the ""AUTO"" button until the AUTO ECO mode is active"
+T212	Test Case Specification 測試用例規範	NR1L-ComfortHMI-074	R-C48(amend)	1	0
+U212	Test Case Specification 測試用例規範	NR1L-ComfortHMI-074	R-C48(amend)	1	0
+L213	Test Case Specification 測試用例規範	NR1L-ComfortHMI-075	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Read the fan speed indication on the climate screen"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Read the fan speed indication on the climate screen"
+T213	Test Case Specification 測試用例規範	NR1L-ComfortHMI-075	R-C48(amend)	1	0
+U213	Test Case Specification 測試用例規範	NR1L-ComfortHMI-075	R-C48(amend)	1	0
+L214	Test Case Specification 測試用例規範	NR1L-ComfortHMI-076	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Run an ignition cycle
+3. Read the AUTO state on the climate screen"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Run an ignition cycle
+3. Read the AUTO state on the climate screen"
+T214	Test Case Specification 測試用例規範	NR1L-ComfortHMI-076	R-C48(amend)	1	0
+U214	Test Case Specification 測試用例規範	NR1L-ComfortHMI-076	R-C48(amend)	1	0
+I215	Test Case Specification 測試用例規範	NR1L-ComfortHMI-077	M7	"EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.
+
+(press the AUTO button once, then read the Comfort main Menu Bar icon -> The Comfort main Menu Bar icon reflects the AUTO ON state)"	"EH8.) The Comfort main Menu Bar icon shall reflect the AUTO ECO and AUTO states.
+
+(press the ""AUTO"" button once, then read the Comfort main Menu Bar icon -> The Comfort main Menu Bar icon reflects the AUTO ON state)"
+L215	Test Case Specification 測試用例規範	NR1L-ComfortHMI-077	M7	"1. Press the AUTO button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon
+2. Press the AUTO button once, then read the Comfort main Menu Bar icon"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active, then read the Comfort main Menu Bar icon
+2. Press the ""AUTO"" button once, then read the Comfort main Menu Bar icon"
+T215	Test Case Specification 測試用例規範	NR1L-ComfortHMI-077	R-C48(amend)	1	0
+U215	Test Case Specification 測試用例規範	NR1L-ComfortHMI-077	R-C48(amend)	1	0
+L216	Test Case Specification 測試用例規範	NR1L-ComfortHMI-078	M7+M9-compound	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Change the fan speed using the fan speed hard control
+3. Press the AUTO button until the AUTO ON state is active
+4. Change the fan speed using the fan speed hard control"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Change the fan speed using the fan speed hard control
+3. Press the ""AUTO"" button until the AUTO ON state is active
+4. Change the fan speed using the fan speed hard control"
+T216	Test Case Specification 測試用例規範	NR1L-ComfortHMI-078	R-C48(amend)	1	0
+U216	Test Case Specification 測試用例規範	NR1L-ComfortHMI-078	R-C48(amend)	1	0
+I217	Test Case Specification 測試用例規範	NR1L-ComfortHMI-079	M7	"When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+
+(press the AUTO button once and read the AUTO pop up -> The AUTO pop up reads ""Press again to improve climate performance"")"	"When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+
+(press the ""AUTO"" button once and read the AUTO pop up -> The AUTO pop up reads ""Press again to improve climate performance"")"
+L217	Test Case Specification 測試用例規範	NR1L-ComfortHMI-079	M7	"1. Press the AUTO button until AUTO is off
+2. Press the AUTO button once and read the AUTO pop up"	"1. Press the ""AUTO"" button until AUTO is off
+2. Press the ""AUTO"" button once and read the AUTO pop up"
+T217	Test Case Specification 測試用例規範	NR1L-ComfortHMI-079	R-C48(amend)	1	0
+U217	Test Case Specification 測試用例規範	NR1L-ComfortHMI-079	R-C48(amend)	1	0
+I218	Test Case Specification 測試用例規範	NR1L-ComfortHMI-080	M7	"When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+
+(press the AUTO button once and read the AUTO pop up -> The AUTO pop up reads ""Press again for lower battery consumption"")"	"When entering the AUTO ECO mode, text will read «Press again to improve climate performance»; when standard AUTO is activated, the text will read «Press again for lower battery consumption»
+
+(press the ""AUTO"" button once and read the AUTO pop up -> The AUTO pop up reads ""Press again for lower battery consumption"")"
+L218	Test Case Specification 測試用例規範	NR1L-ComfortHMI-080	M7	"1. Press the AUTO button until the AUTO ECO mode is active
+2. Press the AUTO button once and read the AUTO pop up"	"1. Press the ""AUTO"" button until the AUTO ECO mode is active
+2. Press the ""AUTO"" button once and read the AUTO pop up"
+T218	Test Case Specification 測試用例規範	NR1L-ComfortHMI-080	R-C48(amend)	1	0
+U218	Test Case Specification 測試用例規範	NR1L-ComfortHMI-080	R-C48(amend)	1	0
+T219	Test Case Specification 測試用例規範	NR1L-ComfortHMI-304	R-C48(amend)	1	0
+U219	Test Case Specification 測試用例規範	NR1L-ComfortHMI-304	R-C48(amend)	1	0
+T220	Test Case Specification 測試用例規範	NR1L-ComfortHMI-305	R-C48(amend)	1	0
+U220	Test Case Specification 測試用例規範	NR1L-ComfortHMI-305	R-C48(amend)	1	0
+T221	Test Case Specification 測試用例規範	NR1L-ComfortHMI-306	R-C48(amend)	1	0
+U221	Test Case Specification 測試用例規範	NR1L-ComfortHMI-306	R-C48(amend)	1	0
+T222	Test Case Specification 測試用例規範	NR1L-ComfortHMI-307	R-C48(amend)	1	0
+U222	Test Case Specification 測試用例規範	NR1L-ComfortHMI-307	R-C48(amend)	1	0
+T223	Test Case Specification 測試用例規範	NR1L-ComfortHMI-308	R-C48(amend)	1	0
+U223	Test Case Specification 測試用例規範	NR1L-ComfortHMI-308	R-C48(amend)	1	0
+T224	Test Case Specification 測試用例規範	NR1L-ComfortHMI-309	R-C48(amend)	1	0
+U224	Test Case Specification 測試用例規範	NR1L-ComfortHMI-309	R-C48(amend)	1	0
+T225	Test Case Specification 測試用例規範	NR1L-ComfortHMI-310	R-C48(amend)	1	0
+U225	Test Case Specification 測試用例規範	NR1L-ComfortHMI-310	R-C48(amend)	1	0
+T226	Test Case Specification 測試用例規範	NR1L-ComfortHMI-311	R-C48(amend)	1	0
+U226	Test Case Specification 測試用例規範	NR1L-ComfortHMI-311	R-C48(amend)	1	0
+T227	Test Case Specification 測試用例規範	NR1L-ComfortHMI-312	R-C48(amend)	1	0
+U227	Test Case Specification 測試用例規範	NR1L-ComfortHMI-312	R-C48(amend)	1	0
+T228	Test Case Specification 測試用例規範	NR1L-ComfortHMI-313	R-C48(amend)	1	0
+U228	Test Case Specification 測試用例規範	NR1L-ComfortHMI-313	R-C48(amend)	1	0
+T229	Test Case Specification 測試用例規範	NR1L-ComfortHMI-314	R-C48(amend)	1	0
+U229	Test Case Specification 測試用例規範	NR1L-ComfortHMI-314	R-C48(amend)	1	0
+N230	Test Case Specification 測試用例規範	NR1L-ComfortHMI-382	R-C49(amend)	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.5
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3
+HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026)_Settings"	"HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026)_Settings
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_11.5
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_17.3"
+T230	Test Case Specification 測試用例規範	NR1L-ComfortHMI-382	R-C48(amend)	1	0
+U230	Test Case Specification 測試用例規範	NR1L-ComfortHMI-382	R-C48(amend)	1	0
+T231	Test Case Specification 測試用例規範	NR1L-ComfortHMI-315	R-C48(amend)	1	0
+U231	Test Case Specification 測試用例規範	NR1L-ComfortHMI-315	R-C48(amend)	1	0
+T232	Test Case Specification 測試用例規範	NR1L-ComfortHMI-316	R-C48(amend)	1	0
+U232	Test Case Specification 測試用例規範	NR1L-ComfortHMI-316	R-C48(amend)	1	0
+T233	Test Case Specification 測試用例規範	NR1L-ComfortHMI-317	R-C48(amend)	1	0
+U233	Test Case Specification 測試用例規範	NR1L-ComfortHMI-317	R-C48(amend)	1	0
+T234	Test Case Specification 測試用例規範	NR1L-ComfortHMI-318	R-C48(amend)	1	0
+U234	Test Case Specification 測試用例規範	NR1L-ComfortHMI-318	R-C48(amend)	1	0
+T235	Test Case Specification 測試用例規範	NR1L-ComfortHMI-319	R-C48(amend)	1	0
+U235	Test Case Specification 測試用例規範	NR1L-ComfortHMI-319	R-C48(amend)	1	0
+T236	Test Case Specification 測試用例規範	NR1L-ComfortHMI-320	R-C48(amend)	1	0
+U236	Test Case Specification 測試用例規範	NR1L-ComfortHMI-320	R-C48(amend)	1	0
+T237	Test Case Specification 測試用例規範	NR1L-ComfortHMI-321	R-C48(amend)	1	0
+U237	Test Case Specification 測試用例規範	NR1L-ComfortHMI-321	R-C48(amend)	1	0
+T238	Test Case Specification 測試用例規範	NR1L-ComfortHMI-322	R-C48(amend)	1	0
+U238	Test Case Specification 測試用例規範	NR1L-ComfortHMI-322	R-C48(amend)	1	0
+T239	Test Case Specification 測試用例規範	NR1L-ComfortHMI-323	R-C48(amend)	1	0
+U239	Test Case Specification 測試用例規範	NR1L-ComfortHMI-323	R-C48(amend)	1	0
+T240	Test Case Specification 測試用例規範	NR1L-ComfortHMI-324	R-C48(amend)	1	0
+U240	Test Case Specification 測試用例規範	NR1L-ComfortHMI-324	R-C48(amend)	1	0
+T241	Test Case Specification 測試用例規範	NR1L-ComfortHMI-325	R-C48(amend)	1	0
+U241	Test Case Specification 測試用例規範	NR1L-ComfortHMI-325	R-C48(amend)	1	0
+T242	Test Case Specification 測試用例規範	NR1L-ComfortHMI-326	R-C48(amend)	1	0
+U242	Test Case Specification 測試用例規範	NR1L-ComfortHMI-326	R-C48(amend)	1	0
+T243	Test Case Specification 測試用例規範	NR1L-ComfortHMI-327	R-C48(amend)	1	0
+U243	Test Case Specification 測試用例規範	NR1L-ComfortHMI-327	R-C48(amend)	1	0
+T244	Test Case Specification 測試用例規範	NR1L-ComfortHMI-328	R-C48(amend)	1	0
+U244	Test Case Specification 測試用例規範	NR1L-ComfortHMI-328	R-C48(amend)	1	0
+T245	Test Case Specification 測試用例規範	NR1L-ComfortHMI-329	R-C48(amend)	1	0
+U245	Test Case Specification 測試用例規範	NR1L-ComfortHMI-329	R-C48(amend)	1	0
+T246	Test Case Specification 測試用例規範	NR1L-ComfortHMI-330	R-C48(amend)	1	0
+U246	Test Case Specification 測試用例規範	NR1L-ComfortHMI-330	R-C48(amend)	1	0
+T247	Test Case Specification 測試用例規範	NR1L-ComfortHMI-331	R-C48(amend)	1	0
+U247	Test Case Specification 測試用例規範	NR1L-ComfortHMI-331	R-C48(amend)	1	0
+T248	Test Case Specification 測試用例規範	NR1L-ComfortHMI-332	R-C48(amend)	1	0
+U248	Test Case Specification 測試用例規範	NR1L-ComfortHMI-332	R-C48(amend)	1	0
+T249	Test Case Specification 測試用例規範	NR1L-ComfortHMI-333	R-C48(amend)	1	0
+U249	Test Case Specification 測試用例規範	NR1L-ComfortHMI-333	R-C48(amend)	1	0
+T250	Test Case Specification 測試用例規範	NR1L-ComfortHMI-334	R-C48(amend)	1	0
+U250	Test Case Specification 測試用例規範	NR1L-ComfortHMI-334	R-C48(amend)	1	0
+T251	Test Case Specification 測試用例規範	NR1L-ComfortHMI-335	R-C48(amend)	1	0
+U251	Test Case Specification 測試用例規範	NR1L-ComfortHMI-335	R-C48(amend)	1	0
+T252	Test Case Specification 測試用例規範	NR1L-ComfortHMI-336	R-C48(amend)	1	0
+U252	Test Case Specification 測試用例規範	NR1L-ComfortHMI-336	R-C48(amend)	1	0
+T253	Test Case Specification 測試用例規範	NR1L-ComfortHMI-337	R-C48(amend)	1	0
+U253	Test Case Specification 測試用例規範	NR1L-ComfortHMI-337	R-C48(amend)	1	0
+T254	Test Case Specification 測試用例規範	NR1L-ComfortHMI-338	R-C48(amend)	1	0
+U254	Test Case Specification 測試用例規範	NR1L-ComfortHMI-338	R-C48(amend)	1	0
+T255	Test Case Specification 測試用例規範	NR1L-ComfortHMI-339	R-C48(amend)	1	0
+U255	Test Case Specification 測試用例規範	NR1L-ComfortHMI-339	R-C48(amend)	1	0
+T256	Test Case Specification 測試用例規範	NR1L-ComfortHMI-340	R-C48(amend)	1	0
+U256	Test Case Specification 測試用例規範	NR1L-ComfortHMI-340	R-C48(amend)	1	0
+T257	Test Case Specification 測試用例規範	NR1L-ComfortHMI-341	R-C48(amend)	1	0
+U257	Test Case Specification 測試用例規範	NR1L-ComfortHMI-341	R-C48(amend)	1	0
+T258	Test Case Specification 測試用例規範	NR1L-ComfortHMI-342	R-C48(amend)	1	0
+U258	Test Case Specification 測試用例規範	NR1L-ComfortHMI-342	R-C48(amend)	1	0
+T259	Test Case Specification 測試用例規範	NR1L-ComfortHMI-343	R-C48(amend)	1	0
+U259	Test Case Specification 測試用例規範	NR1L-ComfortHMI-343	R-C48(amend)	1	0
+T260	Test Case Specification 測試用例規範	NR1L-ComfortHMI-344	R-C48(amend)	1	0
+U260	Test Case Specification 測試用例規範	NR1L-ComfortHMI-344	R-C48(amend)	1	0
+T261	Test Case Specification 測試用例規範	NR1L-ComfortHMI-345	R-C48(amend)	1	0
+U261	Test Case Specification 測試用例規範	NR1L-ComfortHMI-345	R-C48(amend)	1	0
+T262	Test Case Specification 測試用例規範	NR1L-ComfortHMI-346	R-C48(amend)	1	0
+U262	Test Case Specification 測試用例規範	NR1L-ComfortHMI-346	R-C48(amend)	1	0
+T263	Test Case Specification 測試用例規範	NR1L-ComfortHMI-347	R-C48(amend)	1	0
+U263	Test Case Specification 測試用例規範	NR1L-ComfortHMI-347	R-C48(amend)	1	0
+T264	Test Case Specification 測試用例規範	NR1L-ComfortHMI-348	R-C48(amend)	1	0
+U264	Test Case Specification 測試用例規範	NR1L-ComfortHMI-348	R-C48(amend)	1	0
+T265	Test Case Specification 測試用例規範	NR1L-ComfortHMI-349	R-C48(amend)	1	0
+U265	Test Case Specification 測試用例規範	NR1L-ComfortHMI-349	R-C48(amend)	1	0
+T266	Test Case Specification 測試用例規範	NR1L-ComfortHMI-350	R-C48(amend)	1	0
+U266	Test Case Specification 測試用例規範	NR1L-ComfortHMI-350	R-C48(amend)	1	0
+T267	Test Case Specification 測試用例規範	NR1L-ComfortHMI-351	R-C48(amend)	1	0
+U267	Test Case Specification 測試用例規範	NR1L-ComfortHMI-351	R-C48(amend)	1	0
+T268	Test Case Specification 測試用例規範	NR1L-ComfortHMI-352	R-C48(amend)	1	0
+U268	Test Case Specification 測試用例規範	NR1L-ComfortHMI-352	R-C48(amend)	1	0
+T269	Test Case Specification 測試用例規範	NR1L-ComfortHMI-383	R-C48(amend)	1	0
+U269	Test Case Specification 測試用例規範	NR1L-ComfortHMI-383	R-C48(amend)	1	0
+T270	Test Case Specification 測試用例規範	NR1L-ComfortHMI-353	R-C48(amend)	1	0
+U270	Test Case Specification 測試用例規範	NR1L-ComfortHMI-353	R-C48(amend)	1	0
+T271	Test Case Specification 測試用例規範	NR1L-ComfortHMI-354	R-C48(amend)	1	0
+U271	Test Case Specification 測試用例規範	NR1L-ComfortHMI-354	R-C48(amend)	1	0
+T272	Test Case Specification 測試用例規範	NR1L-ComfortHMI-355	R-C48(amend)	1	0
+U272	Test Case Specification 測試用例規範	NR1L-ComfortHMI-355	R-C48(amend)	1	0
+T273	Test Case Specification 測試用例規範	NR1L-ComfortHMI-356	R-C48(amend)	1	0
+U273	Test Case Specification 測試用例規範	NR1L-ComfortHMI-356	R-C48(amend)	1	0
+T274	Test Case Specification 測試用例規範	NR1L-ComfortHMI-357	R-C48(amend)	1	0
+U274	Test Case Specification 測試用例規範	NR1L-ComfortHMI-357	R-C48(amend)	1	0
+T275	Test Case Specification 測試用例規範	NR1L-ComfortHMI-358	R-C48(amend)	1	0
+U275	Test Case Specification 測試用例規範	NR1L-ComfortHMI-358	R-C48(amend)	1	0
+T276	Test Case Specification 測試用例規範	NR1L-ComfortHMI-359	R-C48(amend)	1	0
+U276	Test Case Specification 測試用例規範	NR1L-ComfortHMI-359	R-C48(amend)	1	0
+T277	Test Case Specification 測試用例規範	NR1L-ComfortHMI-360	R-C48(amend)	1	0
+U277	Test Case Specification 測試用例規範	NR1L-ComfortHMI-360	R-C48(amend)	1	0
+T278	Test Case Specification 測試用例規範	NR1L-ComfortHMI-001	R-C48(amend)	1	0
+U278	Test Case Specification 測試用例規範	NR1L-ComfortHMI-001	R-C48(amend)	1	0
+T279	Test Case Specification 測試用例規範	NR1L-ComfortHMI-002	R-C48(amend)	1	0
+U279	Test Case Specification 測試用例規範	NR1L-ComfortHMI-002	R-C48(amend)	1	0
+T280	Test Case Specification 測試用例規範	NR1L-ComfortHMI-003	R-C48(amend)	1	0
+U280	Test Case Specification 測試用例規範	NR1L-ComfortHMI-003	R-C48(amend)	1	0
+T281	Test Case Specification 測試用例規範	NR1L-ComfortHMI-004	R-C48(amend)	1	0
+U281	Test Case Specification 測試用例規範	NR1L-ComfortHMI-004	R-C48(amend)	1	0
+T282	Test Case Specification 測試用例規範	NR1L-ComfortHMI-005	R-C48(amend)	1	0
+U282	Test Case Specification 測試用例規範	NR1L-ComfortHMI-005	R-C48(amend)	1	0
+T283	Test Case Specification 測試用例規範	NR1L-ComfortHMI-006	R-C48(amend)	1	0
+U283	Test Case Specification 測試用例規範	NR1L-ComfortHMI-006	R-C48(amend)	1	0
+T284	Test Case Specification 測試用例規範	NR1L-ComfortHMI-007	R-C48(amend)	1	0
+U284	Test Case Specification 測試用例規範	NR1L-ComfortHMI-007	R-C48(amend)	1	0
+T285	Test Case Specification 測試用例規範	NR1L-ComfortHMI-008	R-C48(amend)	1	0
+U285	Test Case Specification 測試用例規範	NR1L-ComfortHMI-008	R-C48(amend)	1	0
+T286	Test Case Specification 測試用例規範	NR1L-ComfortHMI-009	R-C48(amend)	1	0
+U286	Test Case Specification 測試用例規範	NR1L-ComfortHMI-009	R-C48(amend)	1	0
+T287	Test Case Specification 測試用例規範	NR1L-ComfortHMI-010	R-C48(amend)	1	0
+U287	Test Case Specification 測試用例規範	NR1L-ComfortHMI-010	R-C48(amend)	1	0
+T288	Test Case Specification 測試用例規範	NR1L-ComfortHMI-011	R-C48(amend)	1	0
+U288	Test Case Specification 測試用例規範	NR1L-ComfortHMI-011	R-C48(amend)	1	0
+T289	Test Case Specification 測試用例規範	NR1L-ComfortHMI-012	R-C48(amend)	1	0
+U289	Test Case Specification 測試用例規範	NR1L-ComfortHMI-012	R-C48(amend)	1	0
+T290	Test Case Specification 測試用例規範	NR1L-ComfortHMI-013	R-C48(amend)	1	0
+U290	Test Case Specification 測試用例規範	NR1L-ComfortHMI-013	R-C48(amend)	1	0
+T291	Test Case Specification 測試用例規範	NR1L-ComfortHMI-014	R-C48(amend)	1	0
+U291	Test Case Specification 測試用例規範	NR1L-ComfortHMI-014	R-C48(amend)	1	0
+N292	Test Case Specification 測試用例規範	NR1L-ComfortHMI-434	R-C49(amend)	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.1
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2
+Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023)_Main"	"Pop Up List HMI R1 SR24 Post 2A (Dec 15, 2023)_Main
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_14.1
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+T292	Test Case Specification 測試用例規範	NR1L-ComfortHMI-434	R-C48(amend)	1	0
+U292	Test Case Specification 測試用例規範	NR1L-ComfortHMI-434	R-C48(amend)	1	0
+T293	Test Case Specification 測試用例規範	NR1L-ComfortHMI-167	R-C48(amend)	1	0
+U293	Test Case Specification 測試用例規範	NR1L-ComfortHMI-167	R-C48(amend)	1	0
+T294	Test Case Specification 測試用例規範	NR1L-ComfortHMI-168	R-C48(amend)	1	0
+U294	Test Case Specification 測試用例規範	NR1L-ComfortHMI-168	R-C48(amend)	1	0
+T295	Test Case Specification 測試用例規範	NR1L-ComfortHMI-169	R-C48(amend)	1	0
+U295	Test Case Specification 測試用例規範	NR1L-ComfortHMI-169	R-C48(amend)	1	0
+T296	Test Case Specification 測試用例規範	NR1L-ComfortHMI-170	R-C48(amend)	1	0
+U296	Test Case Specification 測試用例規範	NR1L-ComfortHMI-170	R-C48(amend)	1	0
+T297	Test Case Specification 測試用例規範	NR1L-ComfortHMI-171	R-C48(amend)	1	0
+U297	Test Case Specification 測試用例規範	NR1L-ComfortHMI-171	R-C48(amend)	1	0
+T298	Test Case Specification 測試用例規範	NR1L-ComfortHMI-172	R-C48(amend)	1	0
+U298	Test Case Specification 測試用例規範	NR1L-ComfortHMI-172	R-C48(amend)	1	0
+T299	Test Case Specification 測試用例規範	NR1L-ComfortHMI-173	R-C48(amend)	1	0
+U299	Test Case Specification 測試用例規範	NR1L-ComfortHMI-173	R-C48(amend)	1	0
+T300	Test Case Specification 測試用例規範	NR1L-ComfortHMI-174	R-C48(amend)	1	0
+U300	Test Case Specification 測試用例規範	NR1L-ComfortHMI-174	R-C48(amend)	1	0
+T301	Test Case Specification 測試用例規範	NR1L-ComfortHMI-175	R-C48(amend)	1	0
+U301	Test Case Specification 測試用例規範	NR1L-ComfortHMI-175	R-C48(amend)	1	0
+T302	Test Case Specification 測試用例規範	NR1L-ComfortHMI-176	R-C48(amend)	1	0
+U302	Test Case Specification 測試用例規範	NR1L-ComfortHMI-176	R-C48(amend)	1	0
+T303	Test Case Specification 測試用例規範	NR1L-ComfortHMI-177	R-C48(amend)	1	0
+U303	Test Case Specification 測試用例規範	NR1L-ComfortHMI-177	R-C48(amend)	1	0
+T304	Test Case Specification 測試用例規範	NR1L-ComfortHMI-178	R-C48(amend)	1	0
+U304	Test Case Specification 測試用例規範	NR1L-ComfortHMI-178	R-C48(amend)	1	0
+T305	Test Case Specification 測試用例規範	NR1L-ComfortHMI-179	R-C48(amend)	1	0
+U305	Test Case Specification 測試用例規範	NR1L-ComfortHMI-179	R-C48(amend)	1	0
+T306	Test Case Specification 測試用例規範	NR1L-ComfortHMI-180	R-C48(amend)	1	0
+U306	Test Case Specification 測試用例規範	NR1L-ComfortHMI-180	R-C48(amend)	1	0
+T307	Test Case Specification 測試用例規範	NR1L-ComfortHMI-181	R-C48(amend)	1	0
+U307	Test Case Specification 測試用例規範	NR1L-ComfortHMI-181	R-C48(amend)	1	0
+T308	Test Case Specification 測試用例規範	NR1L-ComfortHMI-182	R-C48(amend)	1	0
+U308	Test Case Specification 測試用例規範	NR1L-ComfortHMI-182	R-C48(amend)	1	0
+T309	Test Case Specification 測試用例規範	NR1L-ComfortHMI-374	R-C48(amend)	1	0
+U309	Test Case Specification 測試用例規範	NR1L-ComfortHMI-374	R-C48(amend)	1	0
+T310	Test Case Specification 測試用例規範	NR1L-ComfortHMI-375	R-C48(amend)	1	0
+U310	Test Case Specification 測試用例規範	NR1L-ComfortHMI-375	R-C48(amend)	1	0
+T311	Test Case Specification 測試用例規範	NR1L-ComfortHMI-376	R-C48(amend)	1	0
+U311	Test Case Specification 測試用例規範	NR1L-ComfortHMI-376	R-C48(amend)	1	0
+T312	Test Case Specification 測試用例規範	NR1L-ComfortHMI-183	R-C48(amend)	1	0
+U312	Test Case Specification 測試用例規範	NR1L-ComfortHMI-183	R-C48(amend)	1	0
+T313	Test Case Specification 測試用例規範	NR1L-ComfortHMI-377	R-C48(amend)	1	0
+U313	Test Case Specification 測試用例規範	NR1L-ComfortHMI-377	R-C48(amend)	1	0
+T314	Test Case Specification 測試用例規範	NR1L-ComfortHMI-461	R-C48(amend)	1	0
+U314	Test Case Specification 測試用例規範	NR1L-ComfortHMI-461	R-C48(amend)	1	0
+T315	Test Case Specification 測試用例規範	NR1L-ComfortHMI-184	R-C48(amend)	1	0
+U315	Test Case Specification 測試用例規範	NR1L-ComfortHMI-184	R-C48(amend)	1	0
+T316	Test Case Specification 測試用例規範	NR1L-ComfortHMI-185	R-C48(amend)	1	0
+U316	Test Case Specification 測試用例規範	NR1L-ComfortHMI-185	R-C48(amend)	1	0
+T317	Test Case Specification 測試用例規範	NR1L-ComfortHMI-186	R-C48(amend)	1	0
+U317	Test Case Specification 測試用例規範	NR1L-ComfortHMI-186	R-C48(amend)	1	0
+T318	Test Case Specification 測試用例規範	NR1L-ComfortHMI-187	R-C48(amend)	1	0
+U318	Test Case Specification 測試用例規範	NR1L-ComfortHMI-187	R-C48(amend)	1	0
+T319	Test Case Specification 測試用例規範	NR1L-ComfortHMI-188	R-C48(amend)	1	0
+U319	Test Case Specification 測試用例規範	NR1L-ComfortHMI-188	R-C48(amend)	1	0
+T320	Test Case Specification 測試用例規範	NR1L-ComfortHMI-189	R-C48(amend)	1	0
+U320	Test Case Specification 測試用例規範	NR1L-ComfortHMI-189	R-C48(amend)	1	0
+T321	Test Case Specification 測試用例規範	NR1L-ComfortHMI-190	R-C48(amend)	1	0
+U321	Test Case Specification 測試用例規範	NR1L-ComfortHMI-190	R-C48(amend)	1	0
+T322	Test Case Specification 測試用例規範	NR1L-ComfortHMI-191	R-C48(amend)	1	0
+U322	Test Case Specification 測試用例規範	NR1L-ComfortHMI-191	R-C48(amend)	1	0
+T323	Test Case Specification 測試用例規範	NR1L-ComfortHMI-192	R-C48(amend)	1	0
+U323	Test Case Specification 測試用例規範	NR1L-ComfortHMI-192	R-C48(amend)	1	0
+T324	Test Case Specification 測試用例規範	NR1L-ComfortHMI-410	R-C48(amend)	1	0
+U324	Test Case Specification 測試用例規範	NR1L-ComfortHMI-410	R-C48(amend)	1	0
+T325	Test Case Specification 測試用例規範	NR1L-ComfortHMI-193	R-C48(amend)	1	0
+U325	Test Case Specification 測試用例規範	NR1L-ComfortHMI-193	R-C48(amend)	1	0
+T326	Test Case Specification 測試用例規範	NR1L-ComfortHMI-194	R-C48(amend)	1	0
+U326	Test Case Specification 測試用例規範	NR1L-ComfortHMI-194	R-C48(amend)	1	0
+T327	Test Case Specification 測試用例規範	NR1L-ComfortHMI-195	R-C48(amend)	1	0
+U327	Test Case Specification 測試用例規範	NR1L-ComfortHMI-195	R-C48(amend)	1	0
+T328	Test Case Specification 測試用例規範	NR1L-ComfortHMI-196	R-C48(amend)	1	0
+U328	Test Case Specification 測試用例規範	NR1L-ComfortHMI-196	R-C48(amend)	1	0
+L329	Test Case Specification 測試用例規範	NR1L-ComfortHMI-197	M7	"1. Turn AUTO on using the AUTO hard control
+2. Read the screen for an AUTO pop-up"	"1. Turn ""AUTO"" on using the ""AUTO"" hard control
+2. Read the screen for an AUTO pop-up"
+T329	Test Case Specification 測試用例規範	NR1L-ComfortHMI-197	R-C48(amend)	1	0
+U329	Test Case Specification 測試用例規範	NR1L-ComfortHMI-197	R-C48(amend)	1	0
+T330	Test Case Specification 測試用例規範	NR1L-ComfortHMI-198	R-C48(amend)	1	0
+U330	Test Case Specification 測試用例規範	NR1L-ComfortHMI-198	R-C48(amend)	1	0
+T331	Test Case Specification 測試用例規範	NR1L-ComfortHMI-199	R-C48(amend)	1	0
+U331	Test Case Specification 測試用例規範	NR1L-ComfortHMI-199	R-C48(amend)	1	0
+T332	Test Case Specification 測試用例規範	NR1L-ComfortHMI-200	R-C48(amend)	1	0
+U332	Test Case Specification 測試用例規範	NR1L-ComfortHMI-200	R-C48(amend)	1	0
+T333	Test Case Specification 測試用例規範	NR1L-ComfortHMI-201	R-C48(amend)	1	0
+U333	Test Case Specification 測試用例規範	NR1L-ComfortHMI-201	R-C48(amend)	1	0
+T334	Test Case Specification 測試用例規範	NR1L-ComfortHMI-384	R-C48(amend)	1	0
+U334	Test Case Specification 測試用例規範	NR1L-ComfortHMI-384	R-C48(amend)	1	0
+T335	Test Case Specification 測試用例規範	NR1L-ComfortHMI-202	R-C48(amend)	1	0
+U335	Test Case Specification 測試用例規範	NR1L-ComfortHMI-202	R-C48(amend)	1	0
+T336	Test Case Specification 測試用例規範	NR1L-ComfortHMI-385	R-C48(amend)	1	0
+U336	Test Case Specification 測試用例規範	NR1L-ComfortHMI-385	R-C48(amend)	1	0
+T337	Test Case Specification 測試用例規範	NR1L-ComfortHMI-082	R-C48(amend)	1	0
+U337	Test Case Specification 測試用例規範	NR1L-ComfortHMI-082	R-C48(amend)	1	0
+T338	Test Case Specification 測試用例規範	NR1L-ComfortHMI-083	R-C48(amend)	1	0
+U338	Test Case Specification 測試用例規範	NR1L-ComfortHMI-083	R-C48(amend)	1	0
+T339	Test Case Specification 測試用例規範	NR1L-ComfortHMI-084	R-C48(amend)	1	0
+U339	Test Case Specification 測試用例規範	NR1L-ComfortHMI-084	R-C48(amend)	1	0
+L340	Test Case Specification 測試用例規範	NR1L-ComfortHMI-085	M7	"1. Turn SYNC on from the climate screen
+2. Adjust the driver temperature slider"	"1. Turn ""SYNC"" on from the climate screen
+2. Adjust the driver temperature slider"
+T340	Test Case Specification 測試用例規範	NR1L-ComfortHMI-085	R-C48(amend)	1	0
+U340	Test Case Specification 測試用例規範	NR1L-ComfortHMI-085	R-C48(amend)	1	0
+T341	Test Case Specification 測試用例規範	NR1L-ComfortHMI-086	R-C48(amend)	1	0
+U341	Test Case Specification 測試用例規範	NR1L-ComfortHMI-086	R-C48(amend)	1	0
+I342	Test Case Specification 測試用例規範	NR1L-ComfortHMI-087	R-C50+R-C50(amend)	"a pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set
+
+(change the temperature using the temperature hard control -> The pop-up displays the degree being set in half degree increments)"	"A pop-up will be shown coming down from that temperature in the status bar to indicate it is being altered, for ATC it will display the degree (or half degree increments for Celsius) being set
+
+(change the temperature using the temperature hard control -> The pop-up displays the degree being set in half degree increments)"
+T342	Test Case Specification 測試用例規範	NR1L-ComfortHMI-087	R-C48(amend)	1	0
+U342	Test Case Specification 測試用例規範	NR1L-ComfortHMI-087	R-C48(amend)	1	0
+I343	Test Case Specification 測試用例規範	NR1L-ComfortHMI-088	R-C50+R-C50(amend)	"for MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> The pop-up displays a slider bar with the arrow pointing to the current setting)"	"For MTC it will display a slider bar with the arrow pointing to the current setting, this information will change as the user alters the temp.
+
+(change the temperature using the temperature hard control -> The pop-up displays a slider bar with the arrow pointing to the current setting)"
+T343	Test Case Specification 測試用例規範	NR1L-ComfortHMI-088	R-C48(amend)	1	0
+U343	Test Case Specification 測試用例規範	NR1L-ComfortHMI-088	R-C48(amend)	1	0
+T344	Test Case Specification 測試用例規範	NR1L-ComfortHMI-089	R-C48(amend)	1	0
+U344	Test Case Specification 測試用例規範	NR1L-ComfortHMI-089	R-C48(amend)	1	0
+T345	Test Case Specification 測試用例規範	NR1L-ComfortHMI-090	R-C48(amend)	1	0
+U345	Test Case Specification 測試用例規範	NR1L-ComfortHMI-090	R-C48(amend)	1	0
+L346	Test Case Specification 測試用例規範	NR1L-ComfortHMI-203	M7	"1. Turn AUTO on from the climate screen
+2. Read the fan speed indicator"	"1. Turn ""AUTO"" on from the climate screen
+2. Read the fan speed indicator"
+T346	Test Case Specification 測試用例規範	NR1L-ComfortHMI-203	R-C48(amend)	1	0
+U346	Test Case Specification 測試用例規範	NR1L-ComfortHMI-203	R-C48(amend)	1	0
+I347	Test Case Specification 測試用例規範	NR1L-ComfortHMI-204	M7	"The fan speed indicator shows Auto instead of the actual fan speed and none of the Mode buttons will be shown highlighted.
+
+(turn AUTO on and read the Mode buttons -> No Mode button is highlighted)"	"The fan speed indicator shows Auto instead of the actual fan speed and none of the Mode buttons will be shown highlighted.
+
+(turn ""AUTO"" on and read the Mode buttons -> No Mode button is highlighted)"
+L347	Test Case Specification 測試用例規範	NR1L-ComfortHMI-204	M7	"1. Select an airflow mode on the climate screen
+2. Turn AUTO on and read the Mode buttons"	"1. Select an airflow mode on the climate screen
+2. Turn ""AUTO"" on and read the Mode buttons"
+T347	Test Case Specification 測試用例規範	NR1L-ComfortHMI-204	R-C48(amend)	1	0
+U347	Test Case Specification 測試用例規範	NR1L-ComfortHMI-204	R-C48(amend)	1	0
+L348	Test Case Specification 測試用例規範	NR1L-ComfortHMI-205	M7	"1. Turn AUTO on from the climate screen
+2. Read the main category control"	"1. Turn ""AUTO"" on from the climate screen
+2. Read the main category control"
+T348	Test Case Specification 測試用例規範	NR1L-ComfortHMI-205	R-C48(amend)	1	0
+U348	Test Case Specification 測試用例規範	NR1L-ComfortHMI-205	R-C48(amend)	1	0
+I349	Test Case Specification 測試用例規範	NR1L-ComfortHMI-206	M7	"AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+
+(turn AUTO on and read the fan speed and the airflow mode -> The fan speed and the airflow mode are set by the system)"	"AUTO affects Fan speed, Modes, AC in order to reach desired temperature as quickly as possible.
+
+(turn ""AUTO"" on and read the fan speed and the airflow mode -> The fan speed and the airflow mode are set by the system)"
+L349	Test Case Specification 測試用例規範	NR1L-ComfortHMI-206	M7	"1. Set a fan speed and an airflow mode from the climate screen with AUTO off
+2. Turn AUTO on and read the fan speed and the airflow mode"	"1. Set a fan speed and an airflow mode from the climate screen with AUTO off
+2. Turn ""AUTO"" on and read the fan speed and the airflow mode"
+T349	Test Case Specification 測試用例規範	NR1L-ComfortHMI-206	R-C48(amend)	1	0
+U349	Test Case Specification 測試用例規範	NR1L-ComfortHMI-206	R-C48(amend)	1	0
+I350	Test Case Specification 測試用例規範	NR1L-ComfortHMI-207	M7	"Auto is mutually exclusive with MAX A/C and MAX DEF.
+
+(turn AUTO on and read the ""MAX A/C"" and ""MAX DEF"" buttons -> Neither ""MAX A/C"" nor ""MAX DEF"" is highlighted)"	"Auto is mutually exclusive with MAX A/C and MAX DEF.
+
+(turn ""AUTO"" on and read the ""MAX A/C"" and ""MAX DEF"" buttons -> Neither ""MAX A/C"" nor ""MAX DEF"" is highlighted)"
+L350	Test Case Specification 測試用例規範	NR1L-ComfortHMI-207	M7	"1. Turn ""MAX A/C"" on from the climate screen
+2. Turn AUTO on and read the ""MAX A/C"" and ""MAX DEF"" buttons"	"1. Turn ""MAX A/C"" on from the climate screen
+2. Turn ""AUTO"" on and read the ""MAX A/C"" and ""MAX DEF"" buttons"
+T350	Test Case Specification 測試用例規範	NR1L-ComfortHMI-207	R-C48(amend)	1	0
+U350	Test Case Specification 測試用例規範	NR1L-ComfortHMI-207	R-C48(amend)	1	0
+L351	Test Case Specification 測試用例規範	NR1L-ComfortHMI-208	M7	"1. Turn AUTO on from the climate screen
+2. Press ""MAX A/C"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""MAX A/C"""
+T351	Test Case Specification 測試用例規範	NR1L-ComfortHMI-208	R-C48(amend)	1	0
+U351	Test Case Specification 測試用例規範	NR1L-ComfortHMI-208	R-C48(amend)	1	0
+L352	Test Case Specification 測試用例規範	NR1L-ComfortHMI-411	M7	"1. Turn AUTO on from the climate screen
+2. Press ""MAX DEF"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""MAX DEF"""
+T352	Test Case Specification 測試用例規範	NR1L-ComfortHMI-411	R-C48(amend)	1	0
+U352	Test Case Specification 測試用例規範	NR1L-ComfortHMI-411	R-C48(amend)	1	0
+L353	Test Case Specification 測試用例規範	NR1L-ComfortHMI-209	M7	"1. Turn AUTO on from the climate screen
+2. Select another airflow mode"	"1. Turn ""AUTO"" on from the climate screen
+2. Select another airflow mode"
+T353	Test Case Specification 測試用例規範	NR1L-ComfortHMI-209	R-C48(amend)	1	0
+U353	Test Case Specification 測試用例規範	NR1L-ComfortHMI-209	R-C48(amend)	1	0
+L354	Test Case Specification 測試用例規範	NR1L-ComfortHMI-412	M7	"1. Turn AUTO on from the climate screen
+2. Change the fan speed"	"1. Turn ""AUTO"" on from the climate screen
+2. Change the fan speed"
+T354	Test Case Specification 測試用例規範	NR1L-ComfortHMI-412	R-C48(amend)	1	0
+U354	Test Case Specification 測試用例規範	NR1L-ComfortHMI-412	R-C48(amend)	1	0
+L355	Test Case Specification 測試用例規範	NR1L-ComfortHMI-210	M7	"1. Turn AUTO on from the climate screen and read the ""A/C"" button
+2. Press ""A/C"" and read the ""AUTO"" button"	"1. Turn ""AUTO"" on from the climate screen and read the ""A/C"" button
+2. Press ""A/C"" and read the ""AUTO"" button"
+T355	Test Case Specification 測試用例規範	NR1L-ComfortHMI-210	R-C48(amend)	1	0
+U355	Test Case Specification 測試用例規範	NR1L-ComfortHMI-210	R-C48(amend)	1	0
+T356	Test Case Specification 測試用例規範	NR1L-ComfortHMI-211	R-C48(amend)	1	0
+U356	Test Case Specification 測試用例規範	NR1L-ComfortHMI-211	R-C48(amend)	1	0
+T357	Test Case Specification 測試用例規範	NR1L-ComfortHMI-212	R-C48(amend)	1	0
+U357	Test Case Specification 測試用例規範	NR1L-ComfortHMI-212	R-C48(amend)	1	0
+T358	Test Case Specification 測試用例規範	NR1L-ComfortHMI-213	R-C48(amend)	1	0
+U358	Test Case Specification 測試用例規範	NR1L-ComfortHMI-213	R-C48(amend)	1	0
+T359	Test Case Specification 測試用例規範	NR1L-ComfortHMI-214	R-C48(amend)	1	0
+U359	Test Case Specification 測試用例規範	NR1L-ComfortHMI-214	R-C48(amend)	1	0
+T360	Test Case Specification 測試用例規範	NR1L-ComfortHMI-098	R-C48(amend)	1	0
+U360	Test Case Specification 測試用例規範	NR1L-ComfortHMI-098	R-C48(amend)	1	0
+T361	Test Case Specification 測試用例規範	NR1L-ComfortHMI-413	R-C48(amend)	1	0
+U361	Test Case Specification 測試用例規範	NR1L-ComfortHMI-413	R-C48(amend)	1	0
+T362	Test Case Specification 測試用例規範	NR1L-ComfortHMI-099	R-C48(amend)	1	0
+U362	Test Case Specification 測試用例規範	NR1L-ComfortHMI-099	R-C48(amend)	1	0
+T363	Test Case Specification 測試用例規範	NR1L-ComfortHMI-100	R-C48(amend)	1	0
+U363	Test Case Specification 測試用例規範	NR1L-ComfortHMI-100	R-C48(amend)	1	0
+T364	Test Case Specification 測試用例規範	NR1L-ComfortHMI-101	R-C48(amend)	1	0
+U364	Test Case Specification 測試用例規範	NR1L-ComfortHMI-101	R-C48(amend)	1	0
+T365	Test Case Specification 測試用例規範	NR1L-ComfortHMI-102	R-C48(amend)	1	0
+U365	Test Case Specification 測試用例規範	NR1L-ComfortHMI-102	R-C48(amend)	1	0
+L366	Test Case Specification 測試用例規範	NR1L-ComfortHMI-103	M7	"1. Turn SYNC on from the climate screen
+2. Adjust the driver temperature slider"	"1. Turn ""SYNC"" on from the climate screen
+2. Adjust the driver temperature slider"
+T366	Test Case Specification 測試用例規範	NR1L-ComfortHMI-103	R-C48(amend)	1	0
+U366	Test Case Specification 測試用例規範	NR1L-ComfortHMI-103	R-C48(amend)	1	0
+L367	Test Case Specification 測試用例規範	NR1L-ComfortHMI-104	M7	"1. Turn SYNC on from the climate screen
+2. Adjust the driver temperature"	"1. Turn ""SYNC"" on from the climate screen
+2. Adjust the driver temperature"
+T367	Test Case Specification 測試用例規範	NR1L-ComfortHMI-104	R-C48(amend)	1	0
+U367	Test Case Specification 測試用例規範	NR1L-ComfortHMI-104	R-C48(amend)	1	0
+L368	Test Case Specification 測試用例規範	NR1L-ComfortHMI-105	M7	"1. Turn SYNC on from the climate screen
+2. Adjust the passenger temperature"	"1. Turn ""SYNC"" on from the climate screen
+2. Adjust the passenger temperature"
+T368	Test Case Specification 測試用例規範	NR1L-ComfortHMI-105	R-C48(amend)	1	0
+U368	Test Case Specification 測試用例規範	NR1L-ComfortHMI-105	R-C48(amend)	1	0
+T369	Test Case Specification 測試用例規範	NR1L-ComfortHMI-106	R-C48(amend)	1	0
+U369	Test Case Specification 測試用例規範	NR1L-ComfortHMI-106	R-C48(amend)	1	0
+T370	Test Case Specification 測試用例規範	NR1L-ComfortHMI-414	R-C48(amend)	1	0
+U370	Test Case Specification 測試用例規範	NR1L-ComfortHMI-414	R-C48(amend)	1	0
+T371	Test Case Specification 測試用例規範	NR1L-ComfortHMI-415	R-C48(amend)	1	0
+U371	Test Case Specification 測試用例規範	NR1L-ComfortHMI-415	R-C48(amend)	1	0
+T372	Test Case Specification 測試用例規範	NR1L-ComfortHMI-107	R-C48(amend)	1	0
+U372	Test Case Specification 測試用例規範	NR1L-ComfortHMI-107	R-C48(amend)	1	0
+T373	Test Case Specification 測試用例規範	NR1L-ComfortHMI-108	R-C48(amend)	1	0
+U373	Test Case Specification 測試用例規範	NR1L-ComfortHMI-108	R-C48(amend)	1	0
+T374	Test Case Specification 測試用例規範	NR1L-ComfortHMI-416	R-C48(amend)	1	0
+U374	Test Case Specification 測試用例規範	NR1L-ComfortHMI-416	R-C48(amend)	1	0
+I375	Test Case Specification 測試用例規範	NR1L-ComfortHMI-109	M7	"ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO).
+
+(turn AUTO on -> The fan speed indicator shows the AUTO label instead of a fan speed)"	"ICE6.) Fan ranges: Off, 1-7 (denoting to show AUTO label instead when in AUTO).
+
+(turn ""AUTO"" on -> The fan speed indicator shows the ""AUTO"" label instead of a fan speed)"
+L375	Test Case Specification 測試用例規範	NR1L-ComfortHMI-109	M7	"1. Adjust the fan speed across its whole range on the climate screen
+2. Turn AUTO on"	"1. Adjust the fan speed across its whole range on the climate screen
+2. Turn ""AUTO"" on"
+M375	Test Case Specification 測試用例規範	NR1L-ComfortHMI-109	M7	"1. The fan speeds available are 1 to 7
+2. The fan speed indicator shows the AUTO label instead of a fan speed"	"1. The fan speeds available are 1 to 7
+2. The fan speed indicator shows the ""AUTO"" label instead of a fan speed"
+T375	Test Case Specification 測試用例規範	NR1L-ComfortHMI-109	R-C48(amend)	1	0
+U375	Test Case Specification 測試用例規範	NR1L-ComfortHMI-109	R-C48(amend)	1	0
+T376	Test Case Specification 測試用例規範	NR1L-ComfortHMI-110	R-C48(amend)	1	0
+U376	Test Case Specification 測試用例規範	NR1L-ComfortHMI-110	R-C48(amend)	1	0
+T377	Test Case Specification 測試用例規範	NR1L-ComfortHMI-111	R-C48(amend)	1	0
+U377	Test Case Specification 測試用例規範	NR1L-ComfortHMI-111	R-C48(amend)	1	0
+T378	Test Case Specification 測試用例規範	NR1L-ComfortHMI-112	R-C48(amend)	1	0
+U378	Test Case Specification 測試用例規範	NR1L-ComfortHMI-112	R-C48(amend)	1	0
+T379	Test Case Specification 測試用例規範	NR1L-ComfortHMI-417	R-C48(amend)	1	0
+U379	Test Case Specification 測試用例規範	NR1L-ComfortHMI-417	R-C48(amend)	1	0
+T380	Test Case Specification 測試用例規範	NR1L-ComfortHMI-418	R-C48(amend)	1	0
+U380	Test Case Specification 測試用例規範	NR1L-ComfortHMI-418	R-C48(amend)	1	0
+T381	Test Case Specification 測試用例規範	NR1L-ComfortHMI-419	R-C48(amend)	1	0
+U381	Test Case Specification 測試用例規範	NR1L-ComfortHMI-419	R-C48(amend)	1	0
+T382	Test Case Specification 測試用例規範	NR1L-ComfortHMI-113	R-C48(amend)	1	0
+U382	Test Case Specification 測試用例規範	NR1L-ComfortHMI-113	R-C48(amend)	1	0
+T383	Test Case Specification 測試用例規範	NR1L-ComfortHMI-420	R-C48(amend)	1	0
+U383	Test Case Specification 測試用例規範	NR1L-ComfortHMI-420	R-C48(amend)	1	0
+T384	Test Case Specification 測試用例規範	NR1L-ComfortHMI-237	R-C48(amend)	1	0
+U384	Test Case Specification 測試用例規範	NR1L-ComfortHMI-237	R-C48(amend)	1	0
+T385	Test Case Specification 測試用例規範	NR1L-ComfortHMI-238	R-C48(amend)	1	0
+U385	Test Case Specification 測試用例規範	NR1L-ComfortHMI-238	R-C48(amend)	1	0
+T386	Test Case Specification 測試用例規範	NR1L-ComfortHMI-239	R-C48(amend)	1	0
+U386	Test Case Specification 測試用例規範	NR1L-ComfortHMI-239	R-C48(amend)	1	0
+I387	Test Case Specification 測試用例規範	NR1L-ComfortHMI-240	M7	"ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+
+(press ""MAX DEF"" and read the RECIRC state and its LED -> RECIRC is open and its LED is off)"	"ICE7.) MAX DEF automatically turns on A/C, changes airflow modes to Windshield, increases fan speed at highest setting (7/7), sets temperature (driver and passenger if available) at highest setting (HI), change RECIRC to open (LED off), turns on Sync and activates the REAR DEFROST.
+
+(press ""MAX DEF"" and read the ""RECIRC"" button state and its LED -> RECIRC is open and its LED is off)"
+L387	Test Case Specification 測試用例規範	NR1L-ComfortHMI-240	M7	"1. Set RECIRC to closed on the climate screen
+2. Press ""MAX DEF"" and read the RECIRC state and its LED"	"1. Set ""RECIRC"" to closed on the climate screen
+2. Press ""MAX DEF"" and read the ""RECIRC"" button state and its LED"
+T387	Test Case Specification 測試用例規範	NR1L-ComfortHMI-240	R-C48(amend)	1	0
+U387	Test Case Specification 測試用例規範	NR1L-ComfortHMI-240	R-C48(amend)	1	0
+T388	Test Case Specification 測試用例規範	NR1L-ComfortHMI-241	R-C48(amend)	1	0
+U388	Test Case Specification 測試用例規範	NR1L-ComfortHMI-241	R-C48(amend)	1	0
+T389	Test Case Specification 測試用例規範	NR1L-ComfortHMI-242	R-C48(amend)	1	0
+U389	Test Case Specification 測試用例規範	NR1L-ComfortHMI-242	R-C48(amend)	1	0
+T390	Test Case Specification 測試用例規範	NR1L-ComfortHMI-243	R-C48(amend)	1	0
+U390	Test Case Specification 測試用例規範	NR1L-ComfortHMI-243	R-C48(amend)	1	0
+T391	Test Case Specification 測試用例規範	NR1L-ComfortHMI-244	R-C48(amend)	1	0
+U391	Test Case Specification 測試用例規範	NR1L-ComfortHMI-244	R-C48(amend)	1	0
+T392	Test Case Specification 測試用例規範	NR1L-ComfortHMI-245	R-C48(amend)	1	0
+U392	Test Case Specification 測試用例規範	NR1L-ComfortHMI-245	R-C48(amend)	1	0
+I393	Test Case Specification 測試用例規範	NR1L-ComfortHMI-421	M7	"Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+
+(change RECIRC and read the ""MAX DEF"" button -> ""MAX DEF"" is no longer highlighted and the airflow mode is the one selected in step 1)"	"Changing temperature, recirculation, mode distribution or pressing again MAX DEF breaks MAX DEF (turns MAX DEF off) and the system goes back to the previous manual mode with the A/C on.
+
+(change ""RECIRC"" and read the ""MAX DEF"" button -> ""MAX DEF"" is no longer highlighted and the airflow mode is the one selected in step 1)"
+L393	Test Case Specification 測試用例規範	NR1L-ComfortHMI-421	M7+M9-compound	"1. Select a known airflow mode
+2. Press ""MAX DEF""
+3. Change RECIRC and read the ""MAX DEF"" button"	"1. Select a known airflow mode
+2. Press ""MAX DEF""
+3. Change ""RECIRC"" and read the ""MAX DEF"" button"
+T393	Test Case Specification 測試用例規範	NR1L-ComfortHMI-421	R-C48(amend)	1	0
+U393	Test Case Specification 測試用例規範	NR1L-ComfortHMI-421	R-C48(amend)	1	0
+T394	Test Case Specification 測試用例規範	NR1L-ComfortHMI-422	R-C48(amend)	1	0
+U394	Test Case Specification 測試用例規範	NR1L-ComfortHMI-422	R-C48(amend)	1	0
+T395	Test Case Specification 測試用例規範	NR1L-ComfortHMI-423	R-C48(amend)	1	0
+U395	Test Case Specification 測試用例規範	NR1L-ComfortHMI-423	R-C48(amend)	1	0
+T396	Test Case Specification 測試用例規範	NR1L-ComfortHMI-246	R-C48(amend)	1	0
+U396	Test Case Specification 測試用例規範	NR1L-ComfortHMI-246	R-C48(amend)	1	0
+T397	Test Case Specification 測試用例規範	NR1L-ComfortHMI-247	R-C48(amend)	1	0
+U397	Test Case Specification 測試用例規範	NR1L-ComfortHMI-247	R-C48(amend)	1	0
+T398	Test Case Specification 測試用例規範	NR1L-ComfortHMI-248	R-C48(amend)	1	0
+U398	Test Case Specification 測試用例規範	NR1L-ComfortHMI-248	R-C48(amend)	1	0
+T399	Test Case Specification 測試用例規範	NR1L-ComfortHMI-249	R-C48(amend)	1	0
+U399	Test Case Specification 測試用例規範	NR1L-ComfortHMI-249	R-C48(amend)	1	0
+T400	Test Case Specification 測試用例規範	NR1L-ComfortHMI-250	R-C48(amend)	1	0
+U400	Test Case Specification 測試用例規範	NR1L-ComfortHMI-250	R-C48(amend)	1	0
+T401	Test Case Specification 測試用例規範	NR1L-ComfortHMI-215	R-C48(amend)	1	0
+U401	Test Case Specification 測試用例規範	NR1L-ComfortHMI-215	R-C48(amend)	1	0
+T402	Test Case Specification 測試用例規範	NR1L-ComfortHMI-216	R-C48(amend)	1	0
+U402	Test Case Specification 測試用例規範	NR1L-ComfortHMI-216	R-C48(amend)	1	0
+T403	Test Case Specification 測試用例規範	NR1L-ComfortHMI-217	R-C48(amend)	1	0
+U403	Test Case Specification 測試用例規範	NR1L-ComfortHMI-217	R-C48(amend)	1	0
+T404	Test Case Specification 測試用例規範	NR1L-ComfortHMI-218	R-C48(amend)	1	0
+U404	Test Case Specification 測試用例規範	NR1L-ComfortHMI-218	R-C48(amend)	1	0
+T405	Test Case Specification 測試用例規範	NR1L-ComfortHMI-219	R-C48(amend)	1	0
+U405	Test Case Specification 測試用例規範	NR1L-ComfortHMI-219	R-C48(amend)	1	0
+T406	Test Case Specification 測試用例規範	NR1L-ComfortHMI-424	R-C48(amend)	1	0
+U406	Test Case Specification 測試用例規範	NR1L-ComfortHMI-424	R-C48(amend)	1	0
+T407	Test Case Specification 測試用例規範	NR1L-ComfortHMI-425	R-C48(amend)	1	0
+U407	Test Case Specification 測試用例規範	NR1L-ComfortHMI-425	R-C48(amend)	1	0
+T408	Test Case Specification 測試用例規範	NR1L-ComfortHMI-220	R-C48(amend)	1	0
+U408	Test Case Specification 測試用例規範	NR1L-ComfortHMI-220	R-C48(amend)	1	0
+T409	Test Case Specification 測試用例規範	NR1L-ComfortHMI-221	R-C48(amend)	1	0
+U409	Test Case Specification 測試用例規範	NR1L-ComfortHMI-221	R-C48(amend)	1	0
+T410	Test Case Specification 測試用例規範	NR1L-ComfortHMI-222	R-C48(amend)	1	0
+U410	Test Case Specification 測試用例規範	NR1L-ComfortHMI-222	R-C48(amend)	1	0
+T411	Test Case Specification 測試用例規範	NR1L-ComfortHMI-223	R-C48(amend)	1	0
+U411	Test Case Specification 測試用例規範	NR1L-ComfortHMI-223	R-C48(amend)	1	0
+T412	Test Case Specification 測試用例規範	NR1L-ComfortHMI-224	R-C48(amend)	1	0
+U412	Test Case Specification 測試用例規範	NR1L-ComfortHMI-224	R-C48(amend)	1	0
+N413	Test Case Specification 測試用例規範	NR1L-ComfortHMI-432	R-C49(amend)	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2
+CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677"	"CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+T413	Test Case Specification 測試用例規範	NR1L-ComfortHMI-432	R-C48(amend)	1	0
+U413	Test Case Specification 測試用例規範	NR1L-ComfortHMI-432	R-C48(amend)	1	0
+N414	Test Case Specification 測試用例規範	NR1L-ComfortHMI-433	R-C49(amend)	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2
+CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677"	"CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+T414	Test Case Specification 測試用例規範	NR1L-ComfortHMI-433	R-C48(amend)	1	0
+U414	Test Case Specification 測試用例規範	NR1L-ComfortHMI-433	R-C48(amend)	1	0
+I415	Test Case Specification 測試用例規範	NR1L-ComfortHMI-251	M7	"Only one airflow mode can be selected at a time.
+
+(select the Feet airflow mode and read the mode buttons -> The Feet airflow mode is active and the Face airflow mode is not)"	"Only one airflow mode can be selected at a time.
+
+(select the ""Feet"" airflow mode and read the mode buttons -> The Feet airflow mode is active and the Face airflow mode is not)"
+L415	Test Case Specification 測試用例規範	NR1L-ComfortHMI-251	M7	"1. Select the Face airflow mode on the climate screen
+2. Select the Feet airflow mode and read the mode buttons"	"1. Select the ""Face"" airflow mode on the climate screen
+2. Select the ""Feet"" airflow mode and read the mode buttons"
+T415	Test Case Specification 測試用例規範	NR1L-ComfortHMI-251	R-C48(amend)	1	0
+U415	Test Case Specification 測試用例規範	NR1L-ComfortHMI-251	R-C48(amend)	1	0
+I416	Test Case Specification 測試用例規範	NR1L-ComfortHMI-252	M7	"ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+
+(select the Feet airflow mode and read that button -> The Feet airflow mode button is highlighted and larger than in step 1)"	"ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+
+(select the ""Feet"" airflow mode and read that button -> The ""Feet"" airflow mode button is highlighted and larger than in step 1)"
+L416	Test Case Specification 測試用例規範	NR1L-ComfortHMI-252	M7+M9-Note	"1. Read the size and highlight of the Feet airflow mode button and record them
+2. Select the Feet airflow mode and read that button"	"1. Read the size and highlight of the ""Feet"" airflow mode button and record them
+2. Select the ""Feet"" airflow mode and read that button"
+M416	Test Case Specification 測試用例規範	NR1L-ComfortHMI-252	M7	"1. The Feet airflow mode button is not highlighted
+2. The Feet airflow mode button is highlighted and larger than in step 1"	"1. The ""Feet"" airflow mode button is not highlighted
+2. The ""Feet"" airflow mode button is highlighted and larger than in step 1"
+T416	Test Case Specification 測試用例規範	NR1L-ComfortHMI-252	R-C48(amend)	1	0
+U416	Test Case Specification 測試用例規範	NR1L-ComfortHMI-252	R-C48(amend)	1	0
+L417	Test Case Specification 測試用例規範	NR1L-ComfortHMI-253	M7	"1. Select the Feet airflow mode on the climate screen
+2. Read the main category control"	"1. Select the ""Feet"" airflow mode on the climate screen
+2. Read the main category control"
+T417	Test Case Specification 測試用例規範	NR1L-ComfortHMI-253	R-C48(amend)	1	0
+U417	Test Case Specification 測試用例規範	NR1L-ComfortHMI-253	R-C48(amend)	1	0
+L418	Test Case Specification 測試用例規範	NR1L-ComfortHMI-254	M7	"1. Select the Face airflow mode on the climate screen
+2. Press the Mode hard control four times, reading the mode after each press"	"1. Select the ""Face"" airflow mode on the climate screen
+2. Press the Mode hard control four times, reading the mode after each press"
+T418	Test Case Specification 測試用例規範	NR1L-ComfortHMI-254	R-C48(amend)	1	0
+U418	Test Case Specification 測試用例規範	NR1L-ComfortHMI-254	R-C48(amend)	1	0
+I419	Test Case Specification 測試用例規範	NR1L-ComfortHMI-255	R-C50+R-C50(amend)	"the user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+
+(press and hold the Mode hard control and read the airflow mode -> The Face/Feet airflow mode is active and the mode does not move further while the control is held)"	"The user will be shifted with each press, press and hold of the control will only move one mode over, it will not continue to move through modes.
+
+(press and hold the Mode hard control and read the airflow mode -> The Face/Feet airflow mode is active and the mode does not move further while the control is held)"
+L419	Test Case Specification 測試用例規範	NR1L-ComfortHMI-255	M7	"1. Select the Face airflow mode on the climate screen
+2. Press and hold the Mode hard control and read the airflow mode"	"1. Select the ""Face"" airflow mode on the climate screen
+2. Press and hold the Mode hard control and read the airflow mode"
+T419	Test Case Specification 測試用例規範	NR1L-ComfortHMI-255	R-C48(amend)	1	0
+U419	Test Case Specification 測試用例規範	NR1L-ComfortHMI-255	R-C48(amend)	1	0
+T420	Test Case Specification 測試用例規範	NR1L-ComfortHMI-256	R-C48(amend)	1	0
+U420	Test Case Specification 測試用例規範	NR1L-ComfortHMI-256	R-C48(amend)	1	0
+T421	Test Case Specification 測試用例規範	NR1L-ComfortHMI-257	R-C48(amend)	1	0
+U421	Test Case Specification 測試用例規範	NR1L-ComfortHMI-257	R-C48(amend)	1	0
+I422	Test Case Specification 測試用例規範	NR1L-ComfortHMI-258	R-C50+R-C50(amend)	"if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the airflow mode -> The airflow mode has moved to the next mode in the loop)"	"If the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the airflow mode -> The airflow mode has moved to the next mode in the loop)"
+T422	Test Case Specification 測試用例規範	NR1L-ComfortHMI-258	R-C48(amend)	1	0
+U422	Test Case Specification 測試用例規範	NR1L-ComfortHMI-258	R-C48(amend)	1	0
+I423	Test Case Specification 測試用例規範	NR1L-ComfortHMI-259	R-C50+R-C50(amend)	"if the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the area above the Climate main category control -> A small pop-up is shown above the Climate main category control)"	"If the user is not on Climate main when pressing the Mode hard control a small pop -up will appear above the Climate main category control
+
+(press the Mode hard control and read the area above the Climate main category control -> A small pop-up is shown above the Climate main category control)"
+T423	Test Case Specification 測試用例規範	NR1L-ComfortHMI-259	R-C48(amend)	1	0
+U423	Test Case Specification 測試用例規範	NR1L-ComfortHMI-259	R-C48(amend)	1	0
+I424	Test Case Specification 測試用例規範	NR1L-ComfortHMI-260	R-C50+R-C50(amend)	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(wait 3 seconds without further interaction -> The pop-up is no longer shown)"	"A small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(wait 3 seconds without further interaction -> The pop-up is no longer shown)"
+T424	Test Case Specification 測試用例規範	NR1L-ComfortHMI-260	R-C48(amend)	1	0
+U424	Test Case Specification 測試用例規範	NR1L-ComfortHMI-260	R-C48(amend)	1	0
+I425	Test Case Specification 測試用例規範	NR1L-ComfortHMI-426	R-C50+R-C50(amend)	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press the fan speed hard control and read the screen -> The pop-up is no longer shown)"	"A small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed)
+
+(press the fan speed hard control and read the screen -> The pop-up is no longer shown)"
+T425	Test Case Specification 測試用例規範	NR1L-ComfortHMI-426	R-C48(amend)	1	0
+U425	Test Case Specification 測試用例規範	NR1L-ComfortHMI-426	R-C48(amend)	1	0
+I426	Test Case Specification 測試用例規範	NR1L-ComfortHMI-261	R-C50+R-C50(amend)	"a small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the displayed screen -> The displayed screen is the one opened in step 1)"	"A small pop -up will appear above the Climate main category control (timeout after 3 seconds of inactivity or as soon as another button except Mode HC is pressed), the user will not be shifted to climate main.
+
+(press the Mode hard control and read the displayed screen -> The displayed screen is the one opened in step 1)"
+T426	Test Case Specification 測試用例規範	NR1L-ComfortHMI-261	R-C48(amend)	1	0
+U426	Test Case Specification 測試用例規範	NR1L-ComfortHMI-261	R-C48(amend)	1	0
+T427	Test Case Specification 測試用例規範	NR1L-ComfortHMI-262	R-C48(amend)	1	0
+U427	Test Case Specification 測試用例規範	NR1L-ComfortHMI-262	R-C48(amend)	1	0
+T428	Test Case Specification 測試用例規範	NR1L-ComfortHMI-263	R-C48(amend)	1	0
+U428	Test Case Specification 測試用例規範	NR1L-ComfortHMI-263	R-C48(amend)	1	0
+T429	Test Case Specification 測試用例規範	NR1L-ComfortHMI-225	R-C48(amend)	1	0
+U429	Test Case Specification 測試用例規範	NR1L-ComfortHMI-225	R-C48(amend)	1	0
+T430	Test Case Specification 測試用例規範	NR1L-ComfortHMI-226	R-C48(amend)	1	0
+U430	Test Case Specification 測試用例規範	NR1L-ComfortHMI-226	R-C48(amend)	1	0
+T431	Test Case Specification 測試用例規範	NR1L-ComfortHMI-227	R-C48(amend)	1	0
+U431	Test Case Specification 測試用例規範	NR1L-ComfortHMI-227	R-C48(amend)	1	0
+T432	Test Case Specification 測試用例規範	NR1L-ComfortHMI-228	R-C48(amend)	1	0
+U432	Test Case Specification 測試用例規範	NR1L-ComfortHMI-228	R-C48(amend)	1	0
+L433	Test Case Specification 測試用例規範	NR1L-ComfortHMI-229	M7	"1. Set RECIRC to open on the climate screen
+2. Press ""MAX A/C"" and read the ""RECIRC"" state and its LED"	"1. Set ""RECIRC"" to open on the climate screen
+2. Press ""MAX A/C"" and read the ""RECIRC"" state and its LED"
+T433	Test Case Specification 測試用例規範	NR1L-ComfortHMI-229	R-C48(amend)	1	0
+U433	Test Case Specification 測試用例規範	NR1L-ComfortHMI-229	R-C48(amend)	1	0
+T434	Test Case Specification 測試用例規範	NR1L-ComfortHMI-230	R-C48(amend)	1	0
+U434	Test Case Specification 測試用例規範	NR1L-ComfortHMI-230	R-C48(amend)	1	0
+T435	Test Case Specification 測試用例規範	NR1L-ComfortHMI-231	R-C48(amend)	1	0
+U435	Test Case Specification 測試用例規範	NR1L-ComfortHMI-231	R-C48(amend)	1	0
+T436	Test Case Specification 測試用例規範	NR1L-ComfortHMI-232	R-C48(amend)	1	0
+U436	Test Case Specification 測試用例規範	NR1L-ComfortHMI-232	R-C48(amend)	1	0
+I437	Test Case Specification 測試用例規範	NR1L-ComfortHMI-427	M7	"Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+
+(change RECIRC and read the ""MAX A/C"" button -> The ""MAX A/C"" button is no longer highlighted)"	"Changing temperature, recirculation, mode distribution, or pressing again MAX A/C brakes MAX A/C, (turns MAX A/C off) and the system goes back to the previous manual mode except for the element changed (temperature, or mode, or recirculation) and keeps the A/C on.
+
+(change ""RECIRC"" and read the ""MAX A/C"" button -> The ""MAX A/C"" button is no longer highlighted)"
+L437	Test Case Specification 測試用例規範	NR1L-ComfortHMI-427	M7	"1. Press ""MAX A/C"" on the climate screen
+2. Change RECIRC and read the ""MAX A/C"" button"	"1. Press ""MAX A/C"" on the climate screen
+2. Change ""RECIRC"" and read the ""MAX A/C"" button"
+T437	Test Case Specification 測試用例規範	NR1L-ComfortHMI-427	R-C48(amend)	1	0
+U437	Test Case Specification 測試用例規範	NR1L-ComfortHMI-427	R-C48(amend)	1	0
+T438	Test Case Specification 測試用例規範	NR1L-ComfortHMI-428	R-C48(amend)	1	0
+U438	Test Case Specification 測試用例規範	NR1L-ComfortHMI-428	R-C48(amend)	1	0
+T439	Test Case Specification 測試用例規範	NR1L-ComfortHMI-429	R-C48(amend)	1	0
+U439	Test Case Specification 測試用例規範	NR1L-ComfortHMI-429	R-C48(amend)	1	0
+T440	Test Case Specification 測試用例規範	NR1L-ComfortHMI-233	R-C48(amend)	1	0
+U440	Test Case Specification 測試用例規範	NR1L-ComfortHMI-233	R-C48(amend)	1	0
+T441	Test Case Specification 測試用例規範	NR1L-ComfortHMI-234	R-C48(amend)	1	0
+U441	Test Case Specification 測試用例規範	NR1L-ComfortHMI-234	R-C48(amend)	1	0
+T442	Test Case Specification 測試用例規範	NR1L-ComfortHMI-235	R-C48(amend)	1	0
+U442	Test Case Specification 測試用例規範	NR1L-ComfortHMI-235	R-C48(amend)	1	0
+T443	Test Case Specification 測試用例規範	NR1L-ComfortHMI-236	R-C48(amend)	1	0
+U443	Test Case Specification 測試用例規範	NR1L-ComfortHMI-236	R-C48(amend)	1	0
+T444	Test Case Specification 測試用例規範	NR1L-ComfortHMI-091	R-C48(amend)	1	0
+U444	Test Case Specification 測試用例規範	NR1L-ComfortHMI-091	R-C48(amend)	1	0
+T445	Test Case Specification 測試用例規範	NR1L-ComfortHMI-092	R-C48(amend)	1	0
+U445	Test Case Specification 測試用例規範	NR1L-ComfortHMI-092	R-C48(amend)	1	0
+T446	Test Case Specification 測試用例規範	NR1L-ComfortHMI-093	R-C48(amend)	1	0
+U446	Test Case Specification 測試用例規範	NR1L-ComfortHMI-093	R-C48(amend)	1	0
+T447	Test Case Specification 測試用例規範	NR1L-ComfortHMI-264	R-C48(amend)	1	0
+U447	Test Case Specification 測試用例規範	NR1L-ComfortHMI-264	R-C48(amend)	1	0
+L448	Test Case Specification 測試用例規範	NR1L-ComfortHMI-265	M7	"1. Turn the exterior rear-view mirror defrost on
+2. Turn AUTO on and read the exterior rear-view mirror defrost state
+3. Turn the climate system off and read the exterior rear-view mirror defrost state"	"1. Turn the exterior rear-view mirror defrost on
+2. Turn ""AUTO"" on and read the exterior rear-view mirror defrost state
+3. Turn the climate system off and read the exterior rear-view mirror defrost state"
+T448	Test Case Specification 測試用例規範	NR1L-ComfortHMI-265	R-C48(amend)	1	0
+U448	Test Case Specification 測試用例規範	NR1L-ComfortHMI-265	R-C48(amend)	1	0
+T449	Test Case Specification 測試用例規範	NR1L-ComfortHMI-094	R-C48(amend)	1	0
+U449	Test Case Specification 測試用例規範	NR1L-ComfortHMI-094	R-C48(amend)	1	0
+T450	Test Case Specification 測試用例規範	NR1L-ComfortHMI-462	R-C48(amend)	1	0
+U450	Test Case Specification 測試用例規範	NR1L-ComfortHMI-462	R-C48(amend)	1	0
+T451	Test Case Specification 測試用例規範	NR1L-ComfortHMI-095	R-C48(amend)	1	0
+U451	Test Case Specification 測試用例規範	NR1L-ComfortHMI-095	R-C48(amend)	1	0
+T452	Test Case Specification 測試用例規範	NR1L-ComfortHMI-096	R-C48(amend)	1	0
+U452	Test Case Specification 測試用例規範	NR1L-ComfortHMI-096	R-C48(amend)	1	0
+T453	Test Case Specification 測試用例規範	NR1L-ComfortHMI-097	R-C48(amend)	1	0
+U453	Test Case Specification 測試用例規範	NR1L-ComfortHMI-097	R-C48(amend)	1	0
+T454	Test Case Specification 測試用例規範	NR1L-ComfortHMI-114	R-C48(amend)	1	0
+U454	Test Case Specification 測試用例規範	NR1L-ComfortHMI-114	R-C48(amend)	1	0
+T455	Test Case Specification 測試用例規範	NR1L-ComfortHMI-115	R-C48(amend)	1	0
+U455	Test Case Specification 測試用例規範	NR1L-ComfortHMI-115	R-C48(amend)	1	0
+T456	Test Case Specification 測試用例規範	NR1L-ComfortHMI-116	R-C48(amend)	1	0
+U456	Test Case Specification 測試用例規範	NR1L-ComfortHMI-116	R-C48(amend)	1	0
+T457	Test Case Specification 測試用例規範	NR1L-ComfortHMI-117	R-C48(amend)	1	0
+U457	Test Case Specification 測試用例規範	NR1L-ComfortHMI-117	R-C48(amend)	1	0
+T458	Test Case Specification 測試用例規範	NR1L-ComfortHMI-118	R-C48(amend)	1	0
+U458	Test Case Specification 測試用例規範	NR1L-ComfortHMI-118	R-C48(amend)	1	0
+T459	Test Case Specification 測試用例規範	NR1L-ComfortHMI-119	R-C48(amend)	1	0
+U459	Test Case Specification 測試用例規範	NR1L-ComfortHMI-119	R-C48(amend)	1	0
+T460	Test Case Specification 測試用例規範	NR1L-ComfortHMI-120	R-C48(amend)	1	0
+U460	Test Case Specification 測試用例規範	NR1L-ComfortHMI-120	R-C48(amend)	1	0
+T461	Test Case Specification 測試用例規範	NR1L-ComfortHMI-121	R-C48(amend)	1	0
+U461	Test Case Specification 測試用例規範	NR1L-ComfortHMI-121	R-C48(amend)	1	0
+T462	Test Case Specification 測試用例規範	NR1L-ComfortHMI-122	R-C48(amend)	1	0
+U462	Test Case Specification 測試用例規範	NR1L-ComfortHMI-122	R-C48(amend)	1	0
+T463	Test Case Specification 測試用例規範	NR1L-ComfortHMI-123	R-C48(amend)	1	0
+U463	Test Case Specification 測試用例規範	NR1L-ComfortHMI-123	R-C48(amend)	1	0
+T464	Test Case Specification 測試用例規範	NR1L-ComfortHMI-124	R-C48(amend)	1	0
+U464	Test Case Specification 測試用例規範	NR1L-ComfortHMI-124	R-C48(amend)	1	0
+T465	Test Case Specification 測試用例規範	NR1L-ComfortHMI-361	R-C48(amend)	1	0
+U465	Test Case Specification 測試用例規範	NR1L-ComfortHMI-361	R-C48(amend)	1	0
+T466	Test Case Specification 測試用例規範	NR1L-ComfortHMI-125	R-C48(amend)	1	0
+U466	Test Case Specification 測試用例規範	NR1L-ComfortHMI-125	R-C48(amend)	1	0
+T467	Test Case Specification 測試用例規範	NR1L-ComfortHMI-362	R-C48(amend)	1	0
+U467	Test Case Specification 測試用例規範	NR1L-ComfortHMI-362	R-C48(amend)	1	0
+T468	Test Case Specification 測試用例規範	NR1L-ComfortHMI-126	R-C48(amend)	1	0
+U468	Test Case Specification 測試用例規範	NR1L-ComfortHMI-126	R-C48(amend)	1	0
+T469	Test Case Specification 測試用例規範	NR1L-ComfortHMI-378	R-C48(amend)	1	0
+U469	Test Case Specification 測試用例規範	NR1L-ComfortHMI-378	R-C48(amend)	1	0
+T470	Test Case Specification 測試用例規範	NR1L-ComfortHMI-379	R-C48(amend)	1	0
+U470	Test Case Specification 測試用例規範	NR1L-ComfortHMI-379	R-C48(amend)	1	0
+T471	Test Case Specification 測試用例規範	NR1L-ComfortHMI-380	R-C48(amend)	1	0
+U471	Test Case Specification 測試用例規範	NR1L-ComfortHMI-380	R-C48(amend)	1	0
+T472	Test Case Specification 測試用例規範	NR1L-ComfortHMI-381	R-C48(amend)	1	0
+U472	Test Case Specification 測試用例規範	NR1L-ComfortHMI-381	R-C48(amend)	1	0
+T473	Test Case Specification 測試用例規範	NR1L-ComfortHMI-463	R-C48(amend)	1	0
+U473	Test Case Specification 測試用例規範	NR1L-ComfortHMI-463	R-C48(amend)	1	0
+T474	Test Case Specification 測試用例規範	NR1L-ComfortHMI-464	R-C48(amend)	1	0
+U474	Test Case Specification 測試用例規範	NR1L-ComfortHMI-464	R-C48(amend)	1	0
+T475	Test Case Specification 測試用例規範	NR1L-ComfortHMI-465	R-C48(amend)	1	0
+U475	Test Case Specification 測試用例規範	NR1L-ComfortHMI-465	R-C48(amend)	1	0
+I476	Test Case Specification 測試用例規範	NR1L-ComfortHMI-467	§3 sibling	"When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(press ""A/C"" -> the system goes to the manual mode that most closely matches the AUTO mode exited)"	"When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(press ""A/C"" -> The ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode)"
+L476	Test Case Specification 測試用例規範	NR1L-ComfortHMI-467	§3 sibling	"1. Turn AUTO on from the climate screen
+2. Press ""A/C"""	"1. Turn ""AUTO"" on from the climate screen
+2. Press ""A/C"""
+M476	Test Case Specification 測試用例規範	NR1L-ComfortHMI-467	§3 sibling	"1. The ""AUTO"" button is highlighted
+2. PENDING: DR-47 the manual mode the system goes to when AUTO is broken without a mode button"	"1. The ""AUTO"" button is highlighted
+2. The ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode"
+T476	Test Case Specification 測試用例規範	NR1L-ComfortHMI-467	§3 sibling	1	0
+U476	Test Case Specification 測試用例規範	NR1L-ComfortHMI-467	§3 sibling	1	0
+AH476	Test Case Specification 測試用例規範	NR1L-ComfortHMI-467	§3 sibling		The specification does not name which manual mode the system enters when AUTO is broken by pressing A/C, so the mode reached after this step cannot be determined from the specification alone
+I477	Test Case Specification 測試用例規範	NR1L-ComfortHMI-468	§3 sibling	"When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(change the fan speed -> the system goes to the manual mode that most closely matches the AUTO mode exited)"	"When breaking Auto the system will go to the manual mode that most closely matches the auto mode exited, unless a specific mode button is pressed, in which case the system would go to that mode.
+
+(change the fan speed -> The ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode)"
+L477	Test Case Specification 測試用例規範	NR1L-ComfortHMI-468	§3 sibling	"1. Turn AUTO on from the climate screen
+2. Change the fan speed"	"1. Turn ""AUTO"" on from the climate screen
+2. Change the fan speed"
+M477	Test Case Specification 測試用例規範	NR1L-ComfortHMI-468	§3 sibling	"1. The ""AUTO"" button is highlighted
+2. PENDING: DR-47 the manual mode the system goes to when AUTO is broken without a mode button"	"1. The ""AUTO"" button is highlighted
+2. The ""AUTO"" button is no longer highlighted and the system is in the manual mode that most closely matches the exited AUTO mode"
+T477	Test Case Specification 測試用例規範	NR1L-ComfortHMI-468	§3 sibling	1	0
+U477	Test Case Specification 測試用例規範	NR1L-ComfortHMI-468	§3 sibling	1	0
+AH477	Test Case Specification 測試用例規範	NR1L-ComfortHMI-468	§3 sibling		The specification does not name which manual mode the system enters when AUTO is broken by changing the fan speed, so the mode reached after this step cannot be determined from the specification alone
+T478	Test Case Specification 測試用例規範	NR1L-ComfortHMI-469	§3 sibling	1	0
+U478	Test Case Specification 測試用例規範	NR1L-ComfortHMI-469	§3 sibling	1	0
+T479	Test Case Specification 測試用例規範	NR1L-ComfortHMI-470	§3 sibling	1	0
+U479	Test Case Specification 測試用例規範	NR1L-ComfortHMI-470	§3 sibling	1	0
+N480	Test Case Specification 測試用例規範	NR1L-ComfortHMI-471	§3 sibling	"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2
+CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677"	"CFTS043-HVAC Controls and Displays_Tree view_R1L-R scope_NEWR1L-53677
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.11
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+T480	Test Case Specification 測試用例規範	NR1L-ComfortHMI-471	§3 sibling	1	0
+U480	Test Case Specification 測試用例規範	NR1L-ComfortHMI-471	§3 sibling	1	0
+T481	Test Case Specification 測試用例規範	NR1L-ComfortHMI-472	§3 sibling	1	0
+U481	Test Case Specification 測試用例規範	NR1L-ComfortHMI-472	§3 sibling	1	0
+T482	Test Case Specification 測試用例規範	NR1L-ComfortHMI-473	§3 sibling	1	0
+U482	Test Case Specification 測試用例規範	NR1L-ComfortHMI-473	§3 sibling	1	0
+T483	Test Case Specification 測試用例規範	NR1L-ComfortHMI-474	§3 sibling	1	0
+U483	Test Case Specification 測試用例規範	NR1L-ComfortHMI-474	§3 sibling	1	0
+C484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		NRL-434151
+D484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		SWE1-HVAC-003-06
+F484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		NR1L-ComfortHMI-475
+G484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		Climate Control Interface
+H484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		Climate Modes
+I484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		"Manually selecting A/C, switching to another airflow mode (including front defrost), or changing fan speeds breaks Auto.
+
+(turn ""FRONT DEF"" on -> The ""AUTO"" button is no longer highlighted)"
+J484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		"1. The vehicle has an ATC climate system, in which AUTO is shown
+2. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+3. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16
+4. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"
+K484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		NA
+L484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		"1. Turn ""AUTO"" on from the climate screen
+2. Turn ""FRONT DEF"" on"
+M484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		"1. The ""AUTO"" button is highlighted
+2. The ""AUTO"" button is no longer highlighted"
+N484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+O484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		NEW
+P484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		P0
+R484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		功能測試 (Functional based ; no specific technique)
+S484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		NA
+T484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		0
+U484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		0
+V484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		1
+W484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		0
+X484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		0
+Y484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		1
+Z484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		1
+AA484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling		PeiPYHsu
+C485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		NRL-434162
+D485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		SWE1-HVAC-005-04
+F485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		NR1L-ComfortHMI-476
+G485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		Climate Control Interface
+H485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		Climate Modes
+I485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		"Recirc can automatically turn on AC.
+
+(turn ""RECIRC"" on and read the ""A/C"" button -> The ""A/C"" button is not highlighted)"
+J485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		"1. The climate screen is open and the climate system is on
+2. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+3. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16
+4. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"
+K485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		NA
+L485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		"1. Turn ""A/C"" off from the climate screen and note the ""A/C"" button
+2. Turn ""RECIRC"" on and read the ""A/C"" button"
+M485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		"1. The ""A/C"" button is not highlighted
+2. The ""A/C"" button is not highlighted"
+N485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		"HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.4
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_2.14
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_6.3
+HMI_Comfort_HMI_Logic_and_Flow_R1_SR24_Post_3A_CR24879_(September_25_2023)_16.2"
+O485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		NEW
+P485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		P1
+R485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		功能測試 (Functional based ; no specific technique)
+S485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		NA
+T485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		0
+U485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		0
+V485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		1
+W485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		0
+X485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		0
+Y485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		1
+Z485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		1
+AA485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		PeiPYHsu
+AH485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling		The specification states that Recirc can automatically turn on A/C but, unlike the Defrost sentence in the same clause, it does not say whether that change is shown on the A/C button; the expected result follows the analysis report leaf, which records the change as not shown
