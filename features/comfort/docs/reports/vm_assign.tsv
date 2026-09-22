@@ -3,6 +3,10 @@
 #   `Dec` 與 `PROXI Read` 不一致者，另一值以 [PROXI Read=n] 併列於同格。
 # V=Promaster、Y=Toro、Z=Fastback（工作簿欄名）。
 # rule_branch 對應 CMF-04 §1 之四列；`(test-setup 蘊含)` 為執行層之判斷，見上繳包 §2-3。
+# CMF-06 §2／R-C67（2026-09-22）：R-C67 裁「本交付三台皆非 EMEA ICS 車」，**本輪未套用**。
+#   其所指之 `-403`／`-404` 為**工作簿 F**（req `116-03`／`116-04`），該二列已為 V=Y=Z=0，無格可改。
+#   若套用，涵蓋面為帶正向 EMEA PC 之 119 條 TC（112 列／229 格），三台皆 0 由 65 升為 177 —— 見 A-CMF24。
+#   本表之值仍為 R-C62 之判定（＝候選本 v4 與交付候選本所填之值）。
 tc_id	req_id	V_Promaster	Y_Toro	Z_Fastback	all_zero	rule_branch	deciding_pc_lines	proxi_params	proxi_values_dec	per_axis_result
 NR1L-ComfortHMI-001	SWE1-HVAC-076-01	1	1	1		R-C62-3（PC 無配置軸）				
 NR1L-ComfortHMI-002	SWE1-HVAC-076-02	1	1	1		R-C62-3（PC 無配置軸）				

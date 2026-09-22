@@ -1,0 +1,7 @@
+# dr_summary.tsv —— CMF-06 §3-6：本交付之 Data Request 狀態總覽（2026-09-22）。
+# 全表見 features/comfort/DATA_REQUESTS.md；此處只列與本交付本直接相關者。
+dr	status	title	blocking	affected_req_ids	closed_by	note
+DR-46	CLOSED	$RECIRC_STAT$／$EBL_Stat$ 之 DBC message 與 raw 值	無（已結）	SWE1-HVAC-006-02, SWE1-HVAC-012-06, SWE1-HVAC-013-02, SWE1-HVAC-114-02	R-C64／R-C65（Pei 2026-09-22：平台 = Atlantis MID；命名以實際值為準）	四行已改為 Send CAN: STATUS_CLIMATE2.HVACRecirc_Sts / HVACRearDef_Sts = 2 (BLINK)；label 逐字取兩件 ATL-Mi DBC 之 VAL_
+DR-47	open	2.3（C2）之 the manual mode that most closely matches the auto mode exited 無值	不阻塞出貨；阻塞該三條之判定	SWE1-HVAC-003-07 (x2), SWE1-HVAC-030-04		ER 依 canon 8.4.1 照錄條文逐字，模糊由 Remarks 承載（R-C56）；問句：以 A/C 或風速中斷 AUTO 時系統進入之模式為何
+DR-48	open	2.4（C3）之 Recirc can automatically turn on AC 是否顯示該變化	不阻塞出貨；阻塞該列之判定	SWE1-HVAC-005-04 (x2)		037 leaf 寫 (change not shown) 而條文之 (Do not show this change) 只附於 Defrost 一句（R-C55）
+DR-49	open	Climate 畫面之 HMI entry path	不阻塞出貨；阻塞導航改寫（R-C66）	（全本之導航步驟，見 docs/reports/nav_rewrite_plan.tsv）		問句：哪一個 HMI 入口（Menu Bar / App Drawer 標籤）開啟 Climate 畫面？4.1 命名表只列 Comfort，無 Climate／HVAC；ADC5 只提 Climate Category Button。本包登記，由 Pei 送出

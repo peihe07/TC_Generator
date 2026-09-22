@@ -1555,3 +1555,35 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 #
 # 對象（sandbox 路徑）
 7b3912fcaf4780ff7490e76c2fba18bc00881f657521615b656266c3a89d6bd4  sandbox/revise_0922b/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260922_v4.xlsx
+
+# ENTRY 041 — 2026-09-22 — **交付候選本**：Comfort HMI（下放包 CMF-06）
+#
+#   type : delivery-candidate（**仍不入 delivered/、未交付**；待 Pei 填三格並確認 R-C67 後出貨）
+#   母本 : ENTRY 036 之對象（delivered/…_ComfortHMI_20260907.xlsx，3550d16d…）之複本
+#   產生 : scripts/cmf06_delivery.py（JSON 層本輪無改動；內容 ＝ ENTRY 040 之 v4）
+#   內容 : v4 之全部變更 ＋ 封面類分頁 10 格 ＋ J5 一格。**TC 分頁之車型欄與內容與 v4 逐格相同**
+#          - Cover 封面!G9 修訂日期 = 2026-09-22
+#          - ChangeHistory!A8=D、B8=一句（雙語）、C8=PeiPYHsu、D8=2026-09-22
+#          - Product Document!B8=2026-09-22、A14=V1.1、B14=一句、C14=許珮瑜 PeiPYHsu、D14=2026-09-22
+#          - Test Case Specification!J5 = 2026-09-22
+#   留空 : ChangeHistory!E8（核准者）、Cover!G7（核准者日期）、Cover!G8（審查者日期）—— 留給 Pei
+#   未套 : **R-C67（EMEA ICS）未套用** —— 其自書未經 Pei 確認，且實際涵蓋面為 112 列／229 格
+#          （非條文所估之 2 列／6 格），三台皆 0 將由 65 升為 177。見 A-CMF24
+#   未做 : 新列 476–485 之列高與樣式 —— xlsx_surgical 之寫入路徑依設計只 patch 儲存格值，
+#          列高與樣式不在其內（CMF-06 §3-4 之「做不到即報」）。量測值見上繳包 §3-4
+#   驗證 : zip member 57＝57；DV sqref 逐字相同；B 公式 row 10–601 原樣；
+#          差異僅限所改之四個 sheet xml；留空三格於產出檔仍為空；
+#          逐格對帳 0907 本（全部工作表，21,309 格）—— **未列於本包之格不符 0**；
+#          變更 3,465 格全數歸因（docs/reports/cmf06_delivery_cell_recon.tsv）；
+#          對 ENTRY 040（v4）之差異 **11 格**全數歸因（docs/reports/cmf06_vs_v4_cell_delta.tsv）
+#   lint : JSON 層 57/57 PASS、476 TCs、0 finding；交付本層 H=0 W=0 J=0 P=0 L=0 U=0
+#          （哨兵見 sandbox/delivery/lint/LINT_STATUS.txt）
+#   附件 : docs/reports/coverage.tsv（403 leaf → TC，含 5 條 BLOCKED）、
+#          docs/reports/dr_summary.tsv（DR-46 CLOSED；47／48／49 open）、
+#          docs/reports/rd_feedback.md（六項，供 Pei 送 RD）
+#   大小 : 242916 bytes
+#   未做 : 未入 delivered/；未覆寫 0907 本與 ENTRY 037–040；未跑 --gate／--regen；
+#          未改 RULINGS.sha.tsv；git 未執行
+#
+# 對象（sandbox 路徑）
+c2ddf95dcbe1656ef6f16746243fec7e89a0f0dd9f4be27e76d5814df57dbebf  sandbox/delivery/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260922.xlsx

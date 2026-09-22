@@ -1,0 +1,14 @@
+sheet	cell	item	v4	delivery
+Cover 封面	G9	CMF-06 §3-2 封面類分頁	2026-09-07 00:00:00	2026-09-22 00:00:00
+ChangeHistory 修訂履歷	A8	CMF-06 §3-2 封面類分頁		D
+ChangeHistory 修訂履歷	B8	CMF-06 §3-2 封面類分頁		"車型欄依 PROXI 逐條填值、DR-46 結案（CAN 訊號改用實際名與值）、Test Set 名稱修正、新增 sibling 10 條
+Filled the vehicle model columns per PROXI configuration, closed DR-46 by using the actual CAN signal names and values, corrected the Test Set names, and added 10 sibling test cases"
+ChangeHistory 修訂履歷	C8	CMF-06 §3-2 封面類分頁		PeiPYHsu
+ChangeHistory 修訂履歷	D8	CMF-06 §3-2 封面類分頁		2026-09-22 00:00:00
+Product Document 記錄封面頁	B8	CMF-06 §3-2 封面類分頁	2026-09-07 00:00:00	2026-09-22 00:00:00
+Product Document 記錄封面頁	A14	CMF-06 §3-2 封面類分頁		V1.1
+Product Document 記錄封面頁	B14	CMF-06 §3-2 封面類分頁		"車型欄依 PROXI 逐條填值、DR-46 結案（CAN 訊號改用實際名與值）、Test Set 名稱修正、新增 sibling 10 條
+Filled the vehicle model columns per PROXI configuration, closed DR-46 by using the actual CAN signal names and values, corrected the Test Set names, and added 10 sibling test cases"
+Product Document 記錄封面頁	C14	CMF-06 §3-2 封面類分頁		許珮瑜 PeiPYHsu
+Product Document 記錄封面頁	D14	CMF-06 §3-2 封面類分頁		2026-09-22
+Test Case Specification 測試用例規範	J5	CMF-06 §3-3 J5	2026/8/17	2026-09-22
