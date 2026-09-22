@@ -1057,6 +1057,45 @@ R-C42 一、二不變；三之原文保留於條文旁，標其修訂出處。
 
 ---
 
+## R-C68、R-C67(撤回) —— CMF-07 §1 ＋ CMF-06_review §2（2026-09-22）
+
+**出處**：`docs/fw036/handoff/down/20260922_CMF-07.md` §1
+（Pei 2026-09-22：「可以的話不寫 EMEA 也沒問題，因為不含在販售的範圍內」）；
+`down/20260922_CMF-06_review.md` §2（R-C67 撤回、`Product Document!B5` → `V1.1`）。
+
+**編號（live numbering）**：落帳前實測現行最大號為 **R-C67**，暫編＝實編。
+sha8 未產（GC-16 未落地）。
+
+```
+R-C68  EMEA ICS 出範圍
+EMEA ICS 不在本交付之販售範圍。**列保留、不刪**（R-C46：既有 F／E 不重編，
+TestRail ID 不丟；canon「每需求必有 TC 輸出」）；處置為：
+
+- 帶正向 EMEA PC（`The vehicle is an EMEA ICS vehicle, whose climate interface
+  is specified in chapter 16`）之 **119 條**：V／Y／Z 全 0（判準機械化：PC 含該句）。
+- 依 R-C63，不加 Remarks；車型欄即為該資訊。
+- `coverage.tsv` 加欄 `out_of_sales_scope`，該 119 條標 `EMEA`；`rd_feedback.md`
+  加第七項：EMEA ICS（chapter 16）之 SWE1 需求不在販售範圍，建議 037 標註。
+- 307 條否定式 EMEA PC 不動。
+```
+
+**R-C67 —— 撤回**（CMF-06_review §2）。其判準（三台皆非 EMEA ICS）由 **R-C68**
+以另一個理由（**不在販售範圍**，非「三台不是 EMEA 車」）取代；R-C67 原文依 R-TM13 保留，
+`vm_assign.tsv` 之 R-C67 註記劃線保留。撤回之由見 **A-CMF25**
+（其自估影響 2 列／6 格而實為 112 列／229 格，且所指之兩條號碼為工作簿 F）。
+
+**CMF-07 之落實（執行層，2026-09-22）**：
+
+- **R-C68 落地**：實改 **112 列／229 格**（與 CMF-07 §2 之預估逐格相符）。
+  三台 `1` 條數由 V 407／Y 21／Z 409 → **V 295／Y 16／Z 297**；
+  **三台皆 0 之 TC 由 65 → 177**（占 476 之 37%）。**119 條列全數保留，一條未刪。**
+- **`Product Document!B5`**：`Initial Release` → `V1.1`（CMF-06_review §2）。
+- **未執行「刪列」之一支**：CMF-07 §1 末段要求，若 Pei 之「不寫」意為刪列則報其代價而不執行。
+  Pei 之語為「不寫 EMEA 也沒問題」，分析層已取「保留不刪」之讀法並寫入 R-C68 條文本身，
+  故本輪依條文執行。**刪列之代價仍列於上繳包 §2-3**，以備 Pei 反轉。
+
+---
+
 ## R-C66 ～ R-C67、R-C44(confirm)、R-C60(amend)、R-C65(amend) —— CMF-06 §1（2026-09-22）
 
 **出處**：`docs/fw036/handoff/down/20260922_CMF-06.md` §1

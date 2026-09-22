@@ -1587,3 +1587,32 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 #
 # 對象（sandbox 路徑）
 c2ddf95dcbe1656ef6f16746243fec7e89a0f0dd9f4be27e76d5814df57dbebf  sandbox/delivery/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260922.xlsx
+
+# ENTRY 042 — 2026-09-22 — **交付候選本 v2**：Comfort HMI（下放包 CMF-07）
+#
+#   type : delivery-candidate（**仍不入 delivered/、未交付**；待 Pei 填三格並於 Excel 完成三個動作）
+#   母本 : ENTRY 036 之對象（delivered/…_ComfortHMI_20260907.xlsx，3550d16d…）之複本
+#   產生 : scripts/cmf07_delivery.py（JSON 層本輪無改動，476 TCs 同 ENTRY 040）
+#   內容 : 相對 ENTRY 041（交付本 v1）只差兩項 ——
+#          (1) R-C68：EMEA ICS 不在販售範圍（Pei 2026-09-22）。帶正向 EMEA PC 之 119 條 TC
+#              V／Y／Z 全 0，實改 112 列／229 格。**列保留、一條未刪**（R-C46）；
+#              依 R-C63 不加 Remarks。307 條否定式 EMEA PC 不動
+#          (2) Product Document 記錄封面頁!B5：Initial Release → V1.1（CMF-06_review §2）
+#   車型 : 三台 1 條數 V=295 Y=16 Z=297（v1 為 407／21／409）；三台皆 0 之 TC 65 → 177
+#   留空 : ChangeHistory!E8、Cover!G7、Cover!G8（同 v1，留給 Pei）
+#   驗證 : zip member 57＝57；DV sqref 逐字相同；B 公式 row 10–601 原樣；
+#          差異僅限所改之四個 sheet xml；留空三格於產出檔仍為空；
+#          逐格對帳 0907 本（全部工作表，21,309 格）—— **未列於本包之格不符 0**；
+#          變更 3,693 格全數歸因（docs/reports/cmf07_delivery_cell_recon.tsv）；
+#          對 ENTRY 041 之差異 **230 格**全數歸因 ＝ 車型欄 229 ＋ B5 1
+#          （docs/reports/cmf07_vs_v1_cell_delta.tsv）
+#   lint : JSON 層 57/57 PASS、476 TCs、0 finding；交付本層 H=0 W=0 J=0 P=0 L=0 U=0
+#          （與 v1 逐項相同；哨兵見 sandbox/delivery/lint_v2/LINT_STATUS.txt）
+#   附件 : coverage.tsv 加欄 out_of_sales_scope（99 leaf／119 TC 標 EMEA）；
+#          rd_feedback.md 加第 6 項（EMEA 不在販售範圍，建議 037 標註）
+#   未做 : 未入 delivered/；未刪任何列；未改 TC 內容；新列列高／樣式與 D14 日期格式仍待 Excel；
+#          未跑 --gate／--regen；未改 RULINGS.sha.tsv；git 未執行
+#   大小 : 242744 bytes
+#
+# 對象（sandbox 路徑）
+33717ddfe092642a38011ef5cd6913c0cda93f10b344973140d9a79771bfe5a5  sandbox/delivery/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260922_v2.xlsx
