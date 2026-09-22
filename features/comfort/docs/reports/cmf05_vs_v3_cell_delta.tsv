@@ -1,0 +1,679 @@
+cell	sheet	tc_id	item	v3	v4
+Y10	Test Case Specification 測試用例規範	NR1L-ComfortHMI-435	R-C48(amend2)/R-C62 車型欄	1	0
+Y11	Test Case Specification 測試用例規範	NR1L-ComfortHMI-436	R-C48(amend2)/R-C62 車型欄	1	0
+Y12	Test Case Specification 測試用例規範	NR1L-ComfortHMI-437	R-C48(amend2)/R-C62 車型欄	1	0
+Y13	Test Case Specification 測試用例規範	NR1L-ComfortHMI-438	R-C48(amend2)/R-C62 車型欄	1	0
+Y14	Test Case Specification 測試用例規範	NR1L-ComfortHMI-042	R-C48(amend2)/R-C62 車型欄	1	0
+Y15	Test Case Specification 測試用例規範	NR1L-ComfortHMI-032	R-C48(amend2)/R-C62 車型欄	1	0
+Y16	Test Case Specification 測試用例規範	NR1L-ComfortHMI-033	R-C48(amend2)/R-C62 車型欄	1	0
+Y17	Test Case Specification 測試用例規範	NR1L-ComfortHMI-034	R-C48(amend2)/R-C62 車型欄	1	0
+Y18	Test Case Specification 測試用例規範	NR1L-ComfortHMI-035	R-C48(amend2)/R-C62 車型欄	1	0
+Y19	Test Case Specification 測試用例規範	NR1L-ComfortHMI-036	R-C48(amend2)/R-C62 車型欄	1	0
+Y20	Test Case Specification 測試用例規範	NR1L-ComfortHMI-037	R-C48(amend2)/R-C62 車型欄	1	0
+V21	Test Case Specification 測試用例規範	NR1L-ComfortHMI-038	R-C48(amend2)/R-C62 車型欄	1	0
+Y21	Test Case Specification 測試用例規範	NR1L-ComfortHMI-038	R-C48(amend2)/R-C62 車型欄	1	0
+Z21	Test Case Specification 測試用例規範	NR1L-ComfortHMI-038	R-C48(amend2)/R-C62 車型欄	1	0
+Y22	Test Case Specification 測試用例規範	NR1L-ComfortHMI-039	R-C48(amend2)/R-C62 車型欄	1	0
+Y23	Test Case Specification 測試用例規範	NR1L-ComfortHMI-040	R-C48(amend2)/R-C62 車型欄	1	0
+Y24	Test Case Specification 測試用例規範	NR1L-ComfortHMI-127	R-C48(amend2)/R-C62 車型欄	1	0
+Y25	Test Case Specification 測試用例規範	NR1L-ComfortHMI-128	R-C48(amend2)/R-C62 車型欄	1	0
+Y26	Test Case Specification 測試用例規範	NR1L-ComfortHMI-129	R-C48(amend2)/R-C62 車型欄	1	0
+Y27	Test Case Specification 測試用例規範	NR1L-ComfortHMI-130	R-C48(amend2)/R-C62 車型欄	1	0
+Y28	Test Case Specification 測試用例規範	NR1L-ComfortHMI-131	R-C48(amend2)/R-C62 車型欄	1	0
+Y29	Test Case Specification 測試用例規範	NR1L-ComfortHMI-132	R-C48(amend2)/R-C62 車型欄	1	0
+Y30	Test Case Specification 測試用例規範	NR1L-ComfortHMI-386	R-C48(amend2)/R-C62 車型欄	1	0
+Y31	Test Case Specification 測試用例規範	NR1L-ComfortHMI-387	R-C48(amend2)/R-C62 車型欄	1	0
+Y32	Test Case Specification 測試用例規範	NR1L-ComfortHMI-133	R-C48(amend2)/R-C62 車型欄	1	0
+Y33	Test Case Specification 測試用例規範	NR1L-ComfortHMI-134	R-C48(amend2)/R-C62 車型欄	1	0
+V34	Test Case Specification 測試用例規範	NR1L-ComfortHMI-135	R-C48(amend2)/R-C62 車型欄	1	0
+Y34	Test Case Specification 測試用例規範	NR1L-ComfortHMI-135	R-C48(amend2)/R-C62 車型欄	1	0
+Z34	Test Case Specification 測試用例規範	NR1L-ComfortHMI-135	R-C48(amend2)/R-C62 車型欄	1	0
+Y35	Test Case Specification 測試用例規範	NR1L-ComfortHMI-363	R-C48(amend2)/R-C62 車型欄	1	0
+Y36	Test Case Specification 測試用例規範	NR1L-ComfortHMI-364	R-C48(amend2)/R-C62 車型欄	1	0
+Y37	Test Case Specification 測試用例規範	NR1L-ComfortHMI-136	R-C48(amend2)/R-C62 車型欄	1	0
+Y38	Test Case Specification 測試用例規範	NR1L-ComfortHMI-137	R-C48(amend2)/R-C62 車型欄	1	0
+Y39	Test Case Specification 測試用例規範	NR1L-ComfortHMI-138	R-C48(amend2)/R-C62 車型欄	1	0
+Y40	Test Case Specification 測試用例規範	NR1L-ComfortHMI-139	R-C48(amend2)/R-C62 車型欄	1	0
+Y41	Test Case Specification 測試用例規範	NR1L-ComfortHMI-140	R-C48(amend2)/R-C62 車型欄	1	0
+L42	Test Case Specification 測試用例規範	NR1L-ComfortHMI-141	M6+R-C64/DR-46	"1. PENDING: DR-46 DBC message and raw value for $RECIRC_STAT$ = ""not available/Blink""
+2. Read the ""RECIRC"" button on the climate screen"	"1. Send CAN: STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK)
+2. Read the ""RECIRC"" button on the climate screen"
+M42	Test Case Specification 測試用例規範	NR1L-ComfortHMI-141	R-C64/DR-46	"1. The climate screen is displayed
+2. The ""RECIRC"" button is greyed out"	"1. STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK) is sent
+2. The ""RECIRC"" button is greyed out"
+Y42	Test Case Specification 測試用例規範	NR1L-ComfortHMI-141	R-C48(amend2)/R-C62 車型欄	1	0
+Y43	Test Case Specification 測試用例規範	NR1L-ComfortHMI-142	R-C48(amend2)/R-C62 車型欄	1	0
+Y44	Test Case Specification 測試用例規範	NR1L-ComfortHMI-439	R-C48(amend2)/R-C62 車型欄	1	0
+Y45	Test Case Specification 測試用例規範	NR1L-ComfortHMI-365	R-C48(amend2)/R-C62 車型欄	1	0
+Y46	Test Case Specification 測試用例規範	NR1L-ComfortHMI-388	R-C48(amend2)/R-C62 車型欄	1	0
+Y47	Test Case Specification 測試用例規範	NR1L-ComfortHMI-366	R-C48(amend2)/R-C62 車型欄	1	0
+Y48	Test Case Specification 測試用例規範	NR1L-ComfortHMI-048	R-C48(amend2)/R-C62 車型欄	1	0
+Y49	Test Case Specification 測試用例規範	NR1L-ComfortHMI-049	R-C48(amend2)/R-C62 車型欄	1	0
+Y50	Test Case Specification 測試用例規範	NR1L-ComfortHMI-389	R-C48(amend2)/R-C62 車型欄	1	0
+Y51	Test Case Specification 測試用例規範	NR1L-ComfortHMI-050	R-C48(amend2)/R-C62 車型欄	1	0
+Y52	Test Case Specification 測試用例規範	NR1L-ComfortHMI-051	R-C48(amend2)/R-C62 車型欄	1	0
+Y53	Test Case Specification 測試用例規範	NR1L-ComfortHMI-052	R-C48(amend2)/R-C62 車型欄	1	0
+Y54	Test Case Specification 測試用例規範	NR1L-ComfortHMI-053	R-C48(amend2)/R-C62 車型欄	1	0
+Y55	Test Case Specification 測試用例規範	NR1L-ComfortHMI-054	R-C48(amend2)/R-C62 車型欄	1	0
+Y56	Test Case Specification 測試用例規範	NR1L-ComfortHMI-055	R-C48(amend2)/R-C62 車型欄	1	0
+Y57	Test Case Specification 測試用例規範	NR1L-ComfortHMI-390	R-C48(amend2)/R-C62 車型欄	1	0
+Y58	Test Case Specification 測試用例規範	NR1L-ComfortHMI-056	R-C48(amend2)/R-C62 車型欄	1	0
+Y59	Test Case Specification 測試用例規範	NR1L-ComfortHMI-057	R-C48(amend2)/R-C62 車型欄	1	0
+Y60	Test Case Specification 測試用例規範	NR1L-ComfortHMI-391	R-C48(amend2)/R-C62 車型欄	1	0
+Y61	Test Case Specification 測試用例規範	NR1L-ComfortHMI-058	R-C48(amend2)/R-C62 車型欄	1	0
+Y62	Test Case Specification 測試用例規範	NR1L-ComfortHMI-392	R-C48(amend2)/R-C62 車型欄	1	0
+Y63	Test Case Specification 測試用例規範	NR1L-ComfortHMI-059	R-C48(amend2)/R-C62 車型欄	1	0
+Y64	Test Case Specification 測試用例規範	NR1L-ComfortHMI-060	R-C48(amend2)/R-C62 車型欄	1	0
+Y65	Test Case Specification 測試用例規範	NR1L-ComfortHMI-061	R-C48(amend2)/R-C62 車型欄	1	0
+Y66	Test Case Specification 測試用例規範	NR1L-ComfortHMI-393	R-C48(amend2)/R-C62 車型欄	1	0
+Y67	Test Case Specification 測試用例規範	NR1L-ComfortHMI-394	R-C48(amend2)/R-C62 車型欄	1	0
+Y68	Test Case Specification 測試用例規範	NR1L-ComfortHMI-062	R-C48(amend2)/R-C62 車型欄	1	0
+Y69	Test Case Specification 測試用例規範	NR1L-ComfortHMI-395	R-C48(amend2)/R-C62 車型欄	1	0
+Y70	Test Case Specification 測試用例規範	NR1L-ComfortHMI-063	R-C48(amend2)/R-C62 車型欄	1	0
+Y71	Test Case Specification 測試用例規範	NR1L-ComfortHMI-066	R-C48(amend2)/R-C62 車型欄	1	0
+Y72	Test Case Specification 測試用例規範	NR1L-ComfortHMI-153	R-C48(amend2)/R-C62 車型欄	1	0
+Y73	Test Case Specification 測試用例規範	NR1L-ComfortHMI-154	R-C48(amend2)/R-C62 車型欄	1	0
+Y74	Test Case Specification 測試用例規範	NR1L-ComfortHMI-155	R-C48(amend2)/R-C62 車型欄	1	0
+Y75	Test Case Specification 測試用例規範	NR1L-ComfortHMI-156	R-C48(amend2)/R-C62 車型欄	1	0
+Y76	Test Case Specification 測試用例規範	NR1L-ComfortHMI-157	R-C48(amend2)/R-C62 車型欄	1	0
+Y77	Test Case Specification 測試用例規範	NR1L-ComfortHMI-396	R-C48(amend2)/R-C62 車型欄	1	0
+L78	Test Case Specification 測試用例規範	NR1L-ComfortHMI-158	M6+R-C64/DR-46	"1. Turn ""FRONT DEF"" on from the climate screen
+2. PENDING: DR-46 DBC message and raw value for $RECIRC_STAT$ = ""not available/Blink""
+3. Read the ""RECIRC"" button on the climate screen"	"1. Turn ""FRONT DEF"" on from the climate screen
+2. Send CAN: STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK)
+3. Read the ""RECIRC"" button on the climate screen"
+M78	Test Case Specification 測試用例規範	NR1L-ComfortHMI-158	M6+R-C64/DR-46	"1. The ""FRONT DEF"" button is highlighted
+2. The climate screen is displayed
+3. The ""RECIRC"" button is greyed out"	"1. The ""FRONT DEF"" button is highlighted
+2. STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK) is sent
+3. The ""RECIRC"" button is greyed out"
+Y78	Test Case Specification 測試用例規範	NR1L-ComfortHMI-158	R-C48(amend2)/R-C62 車型欄	1	0
+Y79	Test Case Specification 測試用例規範	NR1L-ComfortHMI-159	R-C48(amend2)/R-C62 車型欄	1	0
+L80	Test Case Specification 測試用例規範	NR1L-ComfortHMI-160	M6+R-C64/DR-46	"1. PENDING: DR-46 DBC message and raw value for $EBL_Stat$ = ""not available/Blink""
+2. Read the ""REAR DEFROST"" button on the climate screen"	"1. Send CAN: STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK)
+2. Read the ""REAR DEFROST"" button on the climate screen"
+M80	Test Case Specification 測試用例規範	NR1L-ComfortHMI-160	R-C64/DR-46	"1. The climate screen is displayed
+2. The ""REAR DEFROST"" button is greyed out"	"1. STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK) is sent
+2. The ""REAR DEFROST"" button is greyed out"
+Y80	Test Case Specification 測試用例規範	NR1L-ComfortHMI-160	R-C48(amend2)/R-C62 車型欄	1	0
+Y81	Test Case Specification 測試用例規範	NR1L-ComfortHMI-161	R-C48(amend2)/R-C62 車型欄	1	0
+Y82	Test Case Specification 測試用例規範	NR1L-ComfortHMI-162	R-C48(amend2)/R-C62 車型欄	1	0
+Y83	Test Case Specification 測試用例規範	NR1L-ComfortHMI-143	R-C48(amend2)/R-C62 車型欄	1	0
+Y84	Test Case Specification 測試用例規範	NR1L-ComfortHMI-144	R-C48(amend2)/R-C62 車型欄	1	0
+Y85	Test Case Specification 測試用例規範	NR1L-ComfortHMI-145	R-C48(amend2)/R-C62 車型欄	1	0
+Y86	Test Case Specification 測試用例規範	NR1L-ComfortHMI-146	R-C48(amend2)/R-C62 車型欄	1	0
+Y87	Test Case Specification 測試用例規範	NR1L-ComfortHMI-147	R-C48(amend2)/R-C62 車型欄	1	0
+Y88	Test Case Specification 測試用例規範	NR1L-ComfortHMI-148	R-C48(amend2)/R-C62 車型欄	1	0
+Y89	Test Case Specification 測試用例規範	NR1L-ComfortHMI-149	R-C48(amend2)/R-C62 車型欄	1	0
+Y90	Test Case Specification 測試用例規範	NR1L-ComfortHMI-150	R-C48(amend2)/R-C62 車型欄	1	0
+Y91	Test Case Specification 測試用例規範	NR1L-ComfortHMI-151	R-C48(amend2)/R-C62 車型欄	1	0
+J92	Test Case Specification 測試用例規範	NR1L-ComfortHMI-430	R-C64/PROXI	"1. The vehicle is not a single zone climate configuration, for which Sync is not shown
+2. The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+4. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"	"1. The vehicle is not a single zone climate configuration, for which Sync is not shown
+2. PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+4. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"
+V92	Test Case Specification 測試用例規範	NR1L-ComfortHMI-430	R-C48(amend2)/R-C62 車型欄	1	0
+Y92	Test Case Specification 測試用例規範	NR1L-ComfortHMI-430	R-C48(amend2)/R-C62 車型欄	1	0
+Z92	Test Case Specification 測試用例規範	NR1L-ComfortHMI-430	R-C48(amend2)/R-C62 車型欄	1	0
+J93	Test Case Specification 測試用例規範	NR1L-ComfortHMI-431	R-C64/PROXI	"1. The vehicle is not a single zone climate configuration, for which Sync is not shown
+2. The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+4. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"	"1. The vehicle is not a single zone climate configuration, for which Sync is not shown
+2. PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+4. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"
+V93	Test Case Specification 測試用例規範	NR1L-ComfortHMI-431	R-C48(amend2)/R-C62 車型欄	1	0
+Y93	Test Case Specification 測試用例規範	NR1L-ComfortHMI-431	R-C48(amend2)/R-C62 車型欄	1	0
+Z93	Test Case Specification 測試用例規範	NR1L-ComfortHMI-431	R-C48(amend2)/R-C62 車型欄	1	0
+Y94	Test Case Specification 測試用例規範	NR1L-ComfortHMI-440	R-C48(amend2)/R-C62 車型欄	1	0
+Y95	Test Case Specification 測試用例規範	NR1L-ComfortHMI-441	R-C48(amend2)/R-C62 車型欄	1	0
+Y96	Test Case Specification 測試用例規範	NR1L-ComfortHMI-442	R-C48(amend2)/R-C62 車型欄	1	0
+I97	Test Case Specification 測試用例規範	NR1L-ComfortHMI-443	R-C60	"ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+
+(select the ""Feet plus Windshield"" airflow mode -> The ""Feet plus Windshield"" button is highlighted and its size is increased)"	"ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+
+(select the Feet plus Windshield airflow mode -> The Feet plus Windshield button is highlighted and its size is increased)"
+L97	Test Case Specification 測試用例規範	NR1L-ComfortHMI-443	R-C60	"1. Open the climate screen
+2. Select the ""Feet plus Windshield"" airflow mode"	"1. Open the climate screen
+2. Select the Feet plus Windshield airflow mode"
+M97	Test Case Specification 測試用例規範	NR1L-ComfortHMI-443	R-C60	"1. The climate screen is displayed
+2. The ""Feet plus Windshield"" button is highlighted and its size is increased"	"1. The climate screen is displayed
+2. The Feet plus Windshield button is highlighted and its size is increased"
+Y97	Test Case Specification 測試用例規範	NR1L-ComfortHMI-443	R-C48(amend2)/R-C62 車型欄	1	0
+Y98	Test Case Specification 測試用例規範	NR1L-ComfortHMI-444	R-C48(amend2)/R-C62 車型欄	1	0
+Y99	Test Case Specification 測試用例規範	NR1L-ComfortHMI-445	R-C48(amend2)/R-C62 車型欄	1	0
+Y100	Test Case Specification 測試用例規範	NR1L-ComfortHMI-163	R-C48(amend2)/R-C62 車型欄	1	0
+Y101	Test Case Specification 測試用例規範	NR1L-ComfortHMI-164	R-C48(amend2)/R-C62 車型欄	1	0
+Y102	Test Case Specification 測試用例規範	NR1L-ComfortHMI-446	R-C48(amend2)/R-C62 車型欄	1	0
+Y103	Test Case Specification 測試用例規範	NR1L-ComfortHMI-447	R-C48(amend2)/R-C62 車型欄	1	0
+Y104	Test Case Specification 測試用例規範	NR1L-ComfortHMI-448	R-C48(amend2)/R-C62 車型欄	1	0
+Y105	Test Case Specification 測試用例規範	NR1L-ComfortHMI-449	R-C48(amend2)/R-C62 車型欄	1	0
+Y106	Test Case Specification 測試用例規範	NR1L-ComfortHMI-450	R-C48(amend2)/R-C62 車型欄	1	0
+Y107	Test Case Specification 測試用例規範	NR1L-ComfortHMI-451	R-C48(amend2)/R-C62 車型欄	1	0
+Y108	Test Case Specification 測試用例規範	NR1L-ComfortHMI-452	R-C48(amend2)/R-C62 車型欄	1	0
+Y109	Test Case Specification 測試用例規範	NR1L-ComfortHMI-453	R-C48(amend2)/R-C62 車型欄	1	0
+Y110	Test Case Specification 測試用例規範	NR1L-ComfortHMI-454	R-C48(amend2)/R-C62 車型欄	1	0
+Y111	Test Case Specification 測試用例規範	NR1L-ComfortHMI-455	R-C48(amend2)/R-C62 車型欄	1	0
+Y112	Test Case Specification 測試用例規範	NR1L-ComfortHMI-456	R-C48(amend2)/R-C62 車型欄	1	0
+V113	Test Case Specification 測試用例規範	NR1L-ComfortHMI-457	R-C48(amend2)/R-C62 車型欄	1	0
+Y113	Test Case Specification 測試用例規範	NR1L-ComfortHMI-457	R-C48(amend2)/R-C62 車型欄	1	0
+Z113	Test Case Specification 測試用例規範	NR1L-ComfortHMI-457	R-C48(amend2)/R-C62 車型欄	1	0
+Y114	Test Case Specification 測試用例規範	NR1L-ComfortHMI-152	R-C48(amend2)/R-C62 車型欄	1	0
+Y115	Test Case Specification 測試用例規範	NR1L-ComfortHMI-458	R-C48(amend2)/R-C62 車型欄	1	0
+Y116	Test Case Specification 測試用例規範	NR1L-ComfortHMI-466	R-C48(amend2)/R-C62 車型欄	1	0
+V117	Test Case Specification 測試用例規範	NR1L-ComfortHMI-043	R-C48(amend2)/R-C62 車型欄	1	0
+Y117	Test Case Specification 測試用例規範	NR1L-ComfortHMI-043	R-C48(amend2)/R-C62 車型欄	1	0
+Z117	Test Case Specification 測試用例規範	NR1L-ComfortHMI-043	R-C48(amend2)/R-C62 車型欄	1	0
+V118	Test Case Specification 測試用例規範	NR1L-ComfortHMI-044	R-C48(amend2)/R-C62 車型欄	1	0
+Y118	Test Case Specification 測試用例規範	NR1L-ComfortHMI-044	R-C48(amend2)/R-C62 車型欄	1	0
+Z118	Test Case Specification 測試用例規範	NR1L-ComfortHMI-044	R-C48(amend2)/R-C62 車型欄	1	0
+V119	Test Case Specification 測試用例規範	NR1L-ComfortHMI-045	R-C48(amend2)/R-C62 車型欄	1	0
+Z119	Test Case Specification 測試用例規範	NR1L-ComfortHMI-045	R-C48(amend2)/R-C62 車型欄	1	0
+V120	Test Case Specification 測試用例規範	NR1L-ComfortHMI-046	R-C48(amend2)/R-C62 車型欄	1	0
+Z120	Test Case Specification 測試用例規範	NR1L-ComfortHMI-046	R-C48(amend2)/R-C62 車型欄	1	0
+V121	Test Case Specification 測試用例規範	NR1L-ComfortHMI-047	R-C48(amend2)/R-C62 車型欄	1	0
+Y121	Test Case Specification 測試用例規範	NR1L-ComfortHMI-047	R-C48(amend2)/R-C62 車型欄	1	0
+Z121	Test Case Specification 測試用例規範	NR1L-ComfortHMI-047	R-C48(amend2)/R-C62 車型欄	1	0
+Y122	Test Case Specification 測試用例規範	NR1L-ComfortHMI-165	R-C48(amend2)/R-C62 車型欄	1	0
+Y123	Test Case Specification 測試用例規範	NR1L-ComfortHMI-166	R-C48(amend2)/R-C62 車型欄	1	0
+Y124	Test Case Specification 測試用例規範	NR1L-ComfortHMI-064	R-C48(amend2)/R-C62 車型欄	1	0
+Y125	Test Case Specification 測試用例規範	NR1L-ComfortHMI-065	R-C48(amend2)/R-C62 車型欄	1	0
+V126	Test Case Specification 測試用例規範	NR1L-ComfortHMI-015	R-C48(amend2)/R-C62 車型欄	1	0
+Y126	Test Case Specification 測試用例規範	NR1L-ComfortHMI-015	R-C48(amend2)/R-C62 車型欄	1	0
+Z126	Test Case Specification 測試用例規範	NR1L-ComfortHMI-015	R-C48(amend2)/R-C62 車型欄	1	0
+V127	Test Case Specification 測試用例規範	NR1L-ComfortHMI-397	R-C48(amend2)/R-C62 車型欄	1	0
+Y127	Test Case Specification 測試用例規範	NR1L-ComfortHMI-397	R-C48(amend2)/R-C62 車型欄	1	0
+Z127	Test Case Specification 測試用例規範	NR1L-ComfortHMI-397	R-C48(amend2)/R-C62 車型欄	1	0
+V128	Test Case Specification 測試用例規範	NR1L-ComfortHMI-398	R-C48(amend2)/R-C62 車型欄	1	0
+Y128	Test Case Specification 測試用例規範	NR1L-ComfortHMI-398	R-C48(amend2)/R-C62 車型欄	1	0
+Z128	Test Case Specification 測試用例規範	NR1L-ComfortHMI-398	R-C48(amend2)/R-C62 車型欄	1	0
+V129	Test Case Specification 測試用例規範	NR1L-ComfortHMI-016	R-C48(amend2)/R-C62 車型欄	1	0
+Y129	Test Case Specification 測試用例規範	NR1L-ComfortHMI-016	R-C48(amend2)/R-C62 車型欄	1	0
+Z129	Test Case Specification 測試用例規範	NR1L-ComfortHMI-016	R-C48(amend2)/R-C62 車型欄	1	0
+V130	Test Case Specification 測試用例規範	NR1L-ComfortHMI-017	R-C48(amend2)/R-C62 車型欄	1	0
+Y130	Test Case Specification 測試用例規範	NR1L-ComfortHMI-017	R-C48(amend2)/R-C62 車型欄	1	0
+Z130	Test Case Specification 測試用例規範	NR1L-ComfortHMI-017	R-C48(amend2)/R-C62 車型欄	1	0
+V131	Test Case Specification 測試用例規範	NR1L-ComfortHMI-399	R-C48(amend2)/R-C62 車型欄	1	0
+Y131	Test Case Specification 測試用例規範	NR1L-ComfortHMI-399	R-C48(amend2)/R-C62 車型欄	1	0
+Z131	Test Case Specification 測試用例規範	NR1L-ComfortHMI-399	R-C48(amend2)/R-C62 車型欄	1	0
+Y132	Test Case Specification 測試用例規範	NR1L-ComfortHMI-018	R-C48(amend2)/R-C62 車型欄	1	0
+Y133	Test Case Specification 測試用例規範	NR1L-ComfortHMI-019	R-C48(amend2)/R-C62 車型欄	1	0
+Y134	Test Case Specification 測試用例規範	NR1L-ComfortHMI-020	R-C48(amend2)/R-C62 車型欄	1	0
+Y135	Test Case Specification 測試用例規範	NR1L-ComfortHMI-021	R-C48(amend2)/R-C62 車型欄	1	0
+Y136	Test Case Specification 測試用例規範	NR1L-ComfortHMI-022	R-C48(amend2)/R-C62 車型欄	1	0
+Y137	Test Case Specification 測試用例規範	NR1L-ComfortHMI-023	R-C48(amend2)/R-C62 車型欄	1	0
+Y138	Test Case Specification 測試用例規範	NR1L-ComfortHMI-024	R-C48(amend2)/R-C62 車型欄	1	0
+Y139	Test Case Specification 測試用例規範	NR1L-ComfortHMI-025	R-C48(amend2)/R-C62 車型欄	1	0
+Y140	Test Case Specification 測試用例規範	NR1L-ComfortHMI-026	R-C48(amend2)/R-C62 車型欄	1	0
+Y141	Test Case Specification 測試用例規範	NR1L-ComfortHMI-027	R-C48(amend2)/R-C62 車型欄	1	0
+Y142	Test Case Specification 測試用例規範	NR1L-ComfortHMI-028	R-C48(amend2)/R-C62 車型欄	1	0
+Y143	Test Case Specification 測試用例規範	NR1L-ComfortHMI-029	R-C48(amend2)/R-C62 車型欄	1	0
+Y144	Test Case Specification 測試用例規範	NR1L-ComfortHMI-030	R-C48(amend2)/R-C62 車型欄	1	0
+Y145	Test Case Specification 測試用例規範	NR1L-ComfortHMI-031	R-C48(amend2)/R-C62 車型欄	1	0
+Y146	Test Case Specification 測試用例規範	NR1L-ComfortHMI-041	R-C48(amend2)/R-C62 車型欄	1	0
+V147	Test Case Specification 測試用例規範	NR1L-ComfortHMI-266	R-C48(amend2)/R-C62 車型欄	1	0
+Y147	Test Case Specification 測試用例規範	NR1L-ComfortHMI-266	R-C48(amend2)/R-C62 車型欄	1	0
+Z147	Test Case Specification 測試用例規範	NR1L-ComfortHMI-266	R-C48(amend2)/R-C62 車型欄	1	0
+V148	Test Case Specification 測試用例規範	NR1L-ComfortHMI-267	R-C48(amend2)/R-C62 車型欄	1	0
+Y148	Test Case Specification 測試用例規範	NR1L-ComfortHMI-267	R-C48(amend2)/R-C62 車型欄	1	0
+Z148	Test Case Specification 測試用例規範	NR1L-ComfortHMI-267	R-C48(amend2)/R-C62 車型欄	1	0
+V149	Test Case Specification 測試用例規範	NR1L-ComfortHMI-268	R-C48(amend2)/R-C62 車型欄	1	0
+Y149	Test Case Specification 測試用例規範	NR1L-ComfortHMI-268	R-C48(amend2)/R-C62 車型欄	1	0
+Z149	Test Case Specification 測試用例規範	NR1L-ComfortHMI-268	R-C48(amend2)/R-C62 車型欄	1	0
+Y150	Test Case Specification 測試用例規範	NR1L-ComfortHMI-269	R-C48(amend2)/R-C62 車型欄	1	0
+Y151	Test Case Specification 測試用例規範	NR1L-ComfortHMI-270	R-C48(amend2)/R-C62 車型欄	1	0
+V152	Test Case Specification 測試用例規範	NR1L-ComfortHMI-271	R-C48(amend2)/R-C62 車型欄	1	0
+Y152	Test Case Specification 測試用例規範	NR1L-ComfortHMI-271	R-C48(amend2)/R-C62 車型欄	1	0
+Z152	Test Case Specification 測試用例規範	NR1L-ComfortHMI-271	R-C48(amend2)/R-C62 車型欄	1	0
+V153	Test Case Specification 測試用例規範	NR1L-ComfortHMI-272	R-C48(amend2)/R-C62 車型欄	1	0
+Y153	Test Case Specification 測試用例規範	NR1L-ComfortHMI-272	R-C48(amend2)/R-C62 車型欄	1	0
+Z153	Test Case Specification 測試用例規範	NR1L-ComfortHMI-272	R-C48(amend2)/R-C62 車型欄	1	0
+V154	Test Case Specification 測試用例規範	NR1L-ComfortHMI-273	R-C48(amend2)/R-C62 車型欄	1	0
+Y154	Test Case Specification 測試用例規範	NR1L-ComfortHMI-273	R-C48(amend2)/R-C62 車型欄	1	0
+Z154	Test Case Specification 測試用例規範	NR1L-ComfortHMI-273	R-C48(amend2)/R-C62 車型欄	1	0
+V155	Test Case Specification 測試用例規範	NR1L-ComfortHMI-274	R-C48(amend2)/R-C62 車型欄	1	0
+Y155	Test Case Specification 測試用例規範	NR1L-ComfortHMI-274	R-C48(amend2)/R-C62 車型欄	1	0
+Z155	Test Case Specification 測試用例規範	NR1L-ComfortHMI-274	R-C48(amend2)/R-C62 車型欄	1	0
+V156	Test Case Specification 測試用例規範	NR1L-ComfortHMI-275	R-C48(amend2)/R-C62 車型欄	1	0
+Y156	Test Case Specification 測試用例規範	NR1L-ComfortHMI-275	R-C48(amend2)/R-C62 車型欄	1	0
+Z156	Test Case Specification 測試用例規範	NR1L-ComfortHMI-275	R-C48(amend2)/R-C62 車型欄	1	0
+V157	Test Case Specification 測試用例規範	NR1L-ComfortHMI-276	R-C48(amend2)/R-C62 車型欄	1	0
+Y157	Test Case Specification 測試用例規範	NR1L-ComfortHMI-276	R-C48(amend2)/R-C62 車型欄	1	0
+Z157	Test Case Specification 測試用例規範	NR1L-ComfortHMI-276	R-C48(amend2)/R-C62 車型欄	1	0
+V158	Test Case Specification 測試用例規範	NR1L-ComfortHMI-277	R-C48(amend2)/R-C62 車型欄	1	0
+Y158	Test Case Specification 測試用例規範	NR1L-ComfortHMI-277	R-C48(amend2)/R-C62 車型欄	1	0
+Z158	Test Case Specification 測試用例規範	NR1L-ComfortHMI-277	R-C48(amend2)/R-C62 車型欄	1	0
+V159	Test Case Specification 測試用例規範	NR1L-ComfortHMI-400	R-C48(amend2)/R-C62 車型欄	1	0
+Y159	Test Case Specification 測試用例規範	NR1L-ComfortHMI-400	R-C48(amend2)/R-C62 車型欄	1	0
+Z159	Test Case Specification 測試用例規範	NR1L-ComfortHMI-400	R-C48(amend2)/R-C62 車型欄	1	0
+V160	Test Case Specification 測試用例規範	NR1L-ComfortHMI-278	R-C48(amend2)/R-C62 車型欄	1	0
+Y160	Test Case Specification 測試用例規範	NR1L-ComfortHMI-278	R-C48(amend2)/R-C62 車型欄	1	0
+Z160	Test Case Specification 測試用例規範	NR1L-ComfortHMI-278	R-C48(amend2)/R-C62 車型欄	1	0
+V161	Test Case Specification 測試用例規範	NR1L-ComfortHMI-279	R-C48(amend2)/R-C62 車型欄	1	0
+Y161	Test Case Specification 測試用例規範	NR1L-ComfortHMI-279	R-C48(amend2)/R-C62 車型欄	1	0
+Z161	Test Case Specification 測試用例規範	NR1L-ComfortHMI-279	R-C48(amend2)/R-C62 車型欄	1	0
+V162	Test Case Specification 測試用例規範	NR1L-ComfortHMI-280	R-C48(amend2)/R-C62 車型欄	1	0
+Y162	Test Case Specification 測試用例規範	NR1L-ComfortHMI-280	R-C48(amend2)/R-C62 車型欄	1	0
+Z162	Test Case Specification 測試用例規範	NR1L-ComfortHMI-280	R-C48(amend2)/R-C62 車型欄	1	0
+V163	Test Case Specification 測試用例規範	NR1L-ComfortHMI-401	R-C48(amend2)/R-C62 車型欄	1	0
+Y163	Test Case Specification 測試用例規範	NR1L-ComfortHMI-401	R-C48(amend2)/R-C62 車型欄	1	0
+Z163	Test Case Specification 測試用例規範	NR1L-ComfortHMI-401	R-C48(amend2)/R-C62 車型欄	1	0
+V164	Test Case Specification 測試用例規範	NR1L-ComfortHMI-402	R-C48(amend2)/R-C62 車型欄	1	0
+Y164	Test Case Specification 測試用例規範	NR1L-ComfortHMI-402	R-C48(amend2)/R-C62 車型欄	1	0
+Z164	Test Case Specification 測試用例規範	NR1L-ComfortHMI-402	R-C48(amend2)/R-C62 車型欄	1	0
+V165	Test Case Specification 測試用例規範	NR1L-ComfortHMI-281	R-C48(amend2)/R-C62 車型欄	1	0
+Y165	Test Case Specification 測試用例規範	NR1L-ComfortHMI-281	R-C48(amend2)/R-C62 車型欄	1	0
+Z165	Test Case Specification 測試用例規範	NR1L-ComfortHMI-281	R-C48(amend2)/R-C62 車型欄	1	0
+V166	Test Case Specification 測試用例規範	NR1L-ComfortHMI-282	R-C48(amend2)/R-C62 車型欄	1	0
+Y166	Test Case Specification 測試用例規範	NR1L-ComfortHMI-282	R-C48(amend2)/R-C62 車型欄	1	0
+Z166	Test Case Specification 測試用例規範	NR1L-ComfortHMI-282	R-C48(amend2)/R-C62 車型欄	1	0
+V167	Test Case Specification 測試用例規範	NR1L-ComfortHMI-283	R-C48(amend2)/R-C62 車型欄	1	0
+Y167	Test Case Specification 測試用例規範	NR1L-ComfortHMI-283	R-C48(amend2)/R-C62 車型欄	1	0
+Z167	Test Case Specification 測試用例規範	NR1L-ComfortHMI-283	R-C48(amend2)/R-C62 車型欄	1	0
+V168	Test Case Specification 測試用例規範	NR1L-ComfortHMI-403	R-C48(amend2)/R-C62 車型欄	1	0
+Y168	Test Case Specification 測試用例規範	NR1L-ComfortHMI-403	R-C48(amend2)/R-C62 車型欄	1	0
+Z168	Test Case Specification 測試用例規範	NR1L-ComfortHMI-403	R-C48(amend2)/R-C62 車型欄	1	0
+V169	Test Case Specification 測試用例規範	NR1L-ComfortHMI-284	R-C48(amend2)/R-C62 車型欄	1	0
+Y169	Test Case Specification 測試用例規範	NR1L-ComfortHMI-284	R-C48(amend2)/R-C62 車型欄	1	0
+Z169	Test Case Specification 測試用例規範	NR1L-ComfortHMI-284	R-C48(amend2)/R-C62 車型欄	1	0
+V170	Test Case Specification 測試用例規範	NR1L-ComfortHMI-404	R-C48(amend2)/R-C62 車型欄	1	0
+Y170	Test Case Specification 測試用例規範	NR1L-ComfortHMI-404	R-C48(amend2)/R-C62 車型欄	1	0
+Z170	Test Case Specification 測試用例規範	NR1L-ComfortHMI-404	R-C48(amend2)/R-C62 車型欄	1	0
+V171	Test Case Specification 測試用例規範	NR1L-ComfortHMI-285	R-C48(amend2)/R-C62 車型欄	1	0
+Y171	Test Case Specification 測試用例規範	NR1L-ComfortHMI-285	R-C48(amend2)/R-C62 車型欄	1	0
+Z171	Test Case Specification 測試用例規範	NR1L-ComfortHMI-285	R-C48(amend2)/R-C62 車型欄	1	0
+V172	Test Case Specification 測試用例規範	NR1L-ComfortHMI-286	R-C48(amend2)/R-C62 車型欄	1	0
+Y172	Test Case Specification 測試用例規範	NR1L-ComfortHMI-286	R-C48(amend2)/R-C62 車型欄	1	0
+Z172	Test Case Specification 測試用例規範	NR1L-ComfortHMI-286	R-C48(amend2)/R-C62 車型欄	1	0
+V173	Test Case Specification 測試用例規範	NR1L-ComfortHMI-287	R-C48(amend2)/R-C62 車型欄	1	0
+Y173	Test Case Specification 測試用例規範	NR1L-ComfortHMI-287	R-C48(amend2)/R-C62 車型欄	1	0
+Z173	Test Case Specification 測試用例規範	NR1L-ComfortHMI-287	R-C48(amend2)/R-C62 車型欄	1	0
+V174	Test Case Specification 測試用例規範	NR1L-ComfortHMI-288	R-C48(amend2)/R-C62 車型欄	1	0
+Y174	Test Case Specification 測試用例規範	NR1L-ComfortHMI-288	R-C48(amend2)/R-C62 車型欄	1	0
+Z174	Test Case Specification 測試用例規範	NR1L-ComfortHMI-288	R-C48(amend2)/R-C62 車型欄	1	0
+V175	Test Case Specification 測試用例規範	NR1L-ComfortHMI-289	R-C48(amend2)/R-C62 車型欄	1	0
+Y175	Test Case Specification 測試用例規範	NR1L-ComfortHMI-289	R-C48(amend2)/R-C62 車型欄	1	0
+Z175	Test Case Specification 測試用例規範	NR1L-ComfortHMI-289	R-C48(amend2)/R-C62 車型欄	1	0
+V176	Test Case Specification 測試用例規範	NR1L-ComfortHMI-290	R-C48(amend2)/R-C62 車型欄	1	0
+Y176	Test Case Specification 測試用例規範	NR1L-ComfortHMI-290	R-C48(amend2)/R-C62 車型欄	1	0
+Z176	Test Case Specification 測試用例規範	NR1L-ComfortHMI-290	R-C48(amend2)/R-C62 車型欄	1	0
+V177	Test Case Specification 測試用例規範	NR1L-ComfortHMI-291	R-C48(amend2)/R-C62 車型欄	1	0
+Y177	Test Case Specification 測試用例規範	NR1L-ComfortHMI-291	R-C48(amend2)/R-C62 車型欄	1	0
+Z177	Test Case Specification 測試用例規範	NR1L-ComfortHMI-291	R-C48(amend2)/R-C62 車型欄	1	0
+V178	Test Case Specification 測試用例規範	NR1L-ComfortHMI-292	R-C48(amend2)/R-C62 車型欄	1	0
+Y178	Test Case Specification 測試用例規範	NR1L-ComfortHMI-292	R-C48(amend2)/R-C62 車型欄	1	0
+Z178	Test Case Specification 測試用例規範	NR1L-ComfortHMI-292	R-C48(amend2)/R-C62 車型欄	1	0
+V179	Test Case Specification 測試用例規範	NR1L-ComfortHMI-293	R-C48(amend2)/R-C62 車型欄	1	0
+Y179	Test Case Specification 測試用例規範	NR1L-ComfortHMI-293	R-C48(amend2)/R-C62 車型欄	1	0
+Z179	Test Case Specification 測試用例規範	NR1L-ComfortHMI-293	R-C48(amend2)/R-C62 車型欄	1	0
+V180	Test Case Specification 測試用例規範	NR1L-ComfortHMI-294	R-C48(amend2)/R-C62 車型欄	1	0
+Y180	Test Case Specification 測試用例規範	NR1L-ComfortHMI-294	R-C48(amend2)/R-C62 車型欄	1	0
+Z180	Test Case Specification 測試用例規範	NR1L-ComfortHMI-294	R-C48(amend2)/R-C62 車型欄	1	0
+V181	Test Case Specification 測試用例規範	NR1L-ComfortHMI-295	R-C48(amend2)/R-C62 車型欄	1	0
+Y181	Test Case Specification 測試用例規範	NR1L-ComfortHMI-295	R-C48(amend2)/R-C62 車型欄	1	0
+Z181	Test Case Specification 測試用例規範	NR1L-ComfortHMI-295	R-C48(amend2)/R-C62 車型欄	1	0
+V182	Test Case Specification 測試用例規範	NR1L-ComfortHMI-296	R-C48(amend2)/R-C62 車型欄	1	0
+Y182	Test Case Specification 測試用例規範	NR1L-ComfortHMI-296	R-C48(amend2)/R-C62 車型欄	1	0
+Z182	Test Case Specification 測試用例規範	NR1L-ComfortHMI-296	R-C48(amend2)/R-C62 車型欄	1	0
+L183	Test Case Specification 測試用例規範	NR1L-ComfortHMI-405	M7+R-C60	"1. Select the rear ""Face + Feet"" mode
+2. Read the rear airflow mode"	"1. Select the rear Face + Feet mode
+2. Read the rear airflow mode"
+V183	Test Case Specification 測試用例規範	NR1L-ComfortHMI-405	R-C48(amend2)/R-C62 車型欄	1	0
+Y183	Test Case Specification 測試用例規範	NR1L-ComfortHMI-405	R-C48(amend2)/R-C62 車型欄	1	0
+Z183	Test Case Specification 測試用例規範	NR1L-ComfortHMI-405	R-C48(amend2)/R-C62 車型欄	1	0
+V184	Test Case Specification 測試用例規範	NR1L-ComfortHMI-406	R-C48(amend2)/R-C62 車型欄	1	0
+Y184	Test Case Specification 測試用例規範	NR1L-ComfortHMI-406	R-C48(amend2)/R-C62 車型欄	1	0
+Z184	Test Case Specification 測試用例規範	NR1L-ComfortHMI-406	R-C48(amend2)/R-C62 車型欄	1	0
+V185	Test Case Specification 測試用例規範	NR1L-ComfortHMI-297	R-C48(amend2)/R-C62 車型欄	1	0
+Y185	Test Case Specification 測試用例規範	NR1L-ComfortHMI-297	R-C48(amend2)/R-C62 車型欄	1	0
+Z185	Test Case Specification 測試用例規範	NR1L-ComfortHMI-297	R-C48(amend2)/R-C62 車型欄	1	0
+V186	Test Case Specification 測試用例規範	NR1L-ComfortHMI-298	R-C48(amend2)/R-C62 車型欄	1	0
+Y186	Test Case Specification 測試用例規範	NR1L-ComfortHMI-298	R-C48(amend2)/R-C62 車型欄	1	0
+Z186	Test Case Specification 測試用例規範	NR1L-ComfortHMI-298	R-C48(amend2)/R-C62 車型欄	1	0
+V187	Test Case Specification 測試用例規範	NR1L-ComfortHMI-299	R-C48(amend2)/R-C62 車型欄	1	0
+Y187	Test Case Specification 測試用例規範	NR1L-ComfortHMI-299	R-C48(amend2)/R-C62 車型欄	1	0
+Z187	Test Case Specification 測試用例規範	NR1L-ComfortHMI-299	R-C48(amend2)/R-C62 車型欄	1	0
+V188	Test Case Specification 測試用例規範	NR1L-ComfortHMI-300	R-C48(amend2)/R-C62 車型欄	1	0
+Y188	Test Case Specification 測試用例規範	NR1L-ComfortHMI-300	R-C48(amend2)/R-C62 車型欄	1	0
+Z188	Test Case Specification 測試用例規範	NR1L-ComfortHMI-300	R-C48(amend2)/R-C62 車型欄	1	0
+V189	Test Case Specification 測試用例規範	NR1L-ComfortHMI-407	R-C48(amend2)/R-C62 車型欄	1	0
+Y189	Test Case Specification 測試用例規範	NR1L-ComfortHMI-407	R-C48(amend2)/R-C62 車型欄	1	0
+Z189	Test Case Specification 測試用例規範	NR1L-ComfortHMI-407	R-C48(amend2)/R-C62 車型欄	1	0
+V190	Test Case Specification 測試用例規範	NR1L-ComfortHMI-301	R-C48(amend2)/R-C62 車型欄	1	0
+Y190	Test Case Specification 測試用例規範	NR1L-ComfortHMI-301	R-C48(amend2)/R-C62 車型欄	1	0
+Z190	Test Case Specification 測試用例規範	NR1L-ComfortHMI-301	R-C48(amend2)/R-C62 車型欄	1	0
+Y191	Test Case Specification 測試用例規範	NR1L-ComfortHMI-302	R-C48(amend2)/R-C62 車型欄	1	0
+Y192	Test Case Specification 測試用例規範	NR1L-ComfortHMI-303	R-C48(amend2)/R-C62 車型欄	1	0
+Y193	Test Case Specification 測試用例規範	NR1L-ComfortHMI-459	R-C48(amend2)/R-C62 車型欄	1	0
+Y194	Test Case Specification 測試用例規範	NR1L-ComfortHMI-367	R-C48(amend2)/R-C62 車型欄	1	0
+Y195	Test Case Specification 測試用例規範	NR1L-ComfortHMI-408	R-C48(amend2)/R-C62 車型欄	1	0
+Y196	Test Case Specification 測試用例規範	NR1L-ComfortHMI-409	R-C48(amend2)/R-C62 車型欄	1	0
+Y197	Test Case Specification 測試用例規範	NR1L-ComfortHMI-368	R-C48(amend2)/R-C62 車型欄	1	0
+Y198	Test Case Specification 測試用例規範	NR1L-ComfortHMI-369	R-C48(amend2)/R-C62 車型欄	1	0
+Y199	Test Case Specification 測試用例規範	NR1L-ComfortHMI-370	R-C48(amend2)/R-C62 車型欄	1	0
+Y200	Test Case Specification 測試用例規範	NR1L-ComfortHMI-371	R-C48(amend2)/R-C62 車型欄	1	0
+Y201	Test Case Specification 測試用例規範	NR1L-ComfortHMI-372	R-C48(amend2)/R-C62 車型欄	1	0
+Y202	Test Case Specification 測試用例規範	NR1L-ComfortHMI-373	R-C48(amend2)/R-C62 車型欄	1	0
+Y203	Test Case Specification 測試用例規範	NR1L-ComfortHMI-067	R-C48(amend2)/R-C62 車型欄	1	0
+Y204	Test Case Specification 測試用例規範	NR1L-ComfortHMI-081	R-C48(amend2)/R-C62 車型欄	1	0
+Y205	Test Case Specification 測試用例規範	NR1L-ComfortHMI-068	R-C48(amend2)/R-C62 車型欄	1	0
+Y206	Test Case Specification 測試用例規範	NR1L-ComfortHMI-069	R-C48(amend2)/R-C62 車型欄	1	0
+Y207	Test Case Specification 測試用例規範	NR1L-ComfortHMI-070	R-C48(amend2)/R-C62 車型欄	1	0
+V208	Test Case Specification 測試用例規範	NR1L-ComfortHMI-460	R-C48(amend2)/R-C62 車型欄	1	0
+Y208	Test Case Specification 測試用例規範	NR1L-ComfortHMI-460	R-C48(amend2)/R-C62 車型欄	1	0
+Z208	Test Case Specification 測試用例規範	NR1L-ComfortHMI-460	R-C48(amend2)/R-C62 車型欄	1	0
+Y209	Test Case Specification 測試用例規範	NR1L-ComfortHMI-071	R-C48(amend2)/R-C62 車型欄	1	0
+Y210	Test Case Specification 測試用例規範	NR1L-ComfortHMI-072	R-C48(amend2)/R-C62 車型欄	1	0
+Y211	Test Case Specification 測試用例規範	NR1L-ComfortHMI-073	R-C48(amend2)/R-C62 車型欄	1	0
+Y212	Test Case Specification 測試用例規範	NR1L-ComfortHMI-074	R-C48(amend2)/R-C62 車型欄	1	0
+Y213	Test Case Specification 測試用例規範	NR1L-ComfortHMI-075	R-C48(amend2)/R-C62 車型欄	1	0
+Y214	Test Case Specification 測試用例規範	NR1L-ComfortHMI-076	R-C48(amend2)/R-C62 車型欄	1	0
+Y215	Test Case Specification 測試用例規範	NR1L-ComfortHMI-077	R-C48(amend2)/R-C62 車型欄	1	0
+Y216	Test Case Specification 測試用例規範	NR1L-ComfortHMI-078	R-C48(amend2)/R-C62 車型欄	1	0
+Y217	Test Case Specification 測試用例規範	NR1L-ComfortHMI-079	R-C48(amend2)/R-C62 車型欄	1	0
+Y218	Test Case Specification 測試用例規範	NR1L-ComfortHMI-080	R-C48(amend2)/R-C62 車型欄	1	0
+Y219	Test Case Specification 測試用例規範	NR1L-ComfortHMI-304	R-C48(amend2)/R-C62 車型欄	1	0
+Y220	Test Case Specification 測試用例規範	NR1L-ComfortHMI-305	R-C48(amend2)/R-C62 車型欄	1	0
+Y221	Test Case Specification 測試用例規範	NR1L-ComfortHMI-306	R-C48(amend2)/R-C62 車型欄	1	0
+Y222	Test Case Specification 測試用例規範	NR1L-ComfortHMI-307	R-C48(amend2)/R-C62 車型欄	1	0
+Y223	Test Case Specification 測試用例規範	NR1L-ComfortHMI-308	R-C48(amend2)/R-C62 車型欄	1	0
+Y224	Test Case Specification 測試用例規範	NR1L-ComfortHMI-309	R-C48(amend2)/R-C62 車型欄	1	0
+Y225	Test Case Specification 測試用例規範	NR1L-ComfortHMI-310	R-C48(amend2)/R-C62 車型欄	1	0
+Y226	Test Case Specification 測試用例規範	NR1L-ComfortHMI-311	R-C48(amend2)/R-C62 車型欄	1	0
+Y227	Test Case Specification 測試用例規範	NR1L-ComfortHMI-312	R-C48(amend2)/R-C62 車型欄	1	0
+Y228	Test Case Specification 測試用例規範	NR1L-ComfortHMI-313	R-C48(amend2)/R-C62 車型欄	1	0
+Y229	Test Case Specification 測試用例規範	NR1L-ComfortHMI-314	R-C48(amend2)/R-C62 車型欄	1	0
+Y230	Test Case Specification 測試用例規範	NR1L-ComfortHMI-382	R-C48(amend2)/R-C62 車型欄	1	0
+Y231	Test Case Specification 測試用例規範	NR1L-ComfortHMI-315	R-C48(amend2)/R-C62 車型欄	1	0
+Y232	Test Case Specification 測試用例規範	NR1L-ComfortHMI-316	R-C48(amend2)/R-C62 車型欄	1	0
+Y233	Test Case Specification 測試用例規範	NR1L-ComfortHMI-317	R-C48(amend2)/R-C62 車型欄	1	0
+Y234	Test Case Specification 測試用例規範	NR1L-ComfortHMI-318	R-C48(amend2)/R-C62 車型欄	1	0
+Y235	Test Case Specification 測試用例規範	NR1L-ComfortHMI-319	R-C48(amend2)/R-C62 車型欄	1	0
+Y236	Test Case Specification 測試用例規範	NR1L-ComfortHMI-320	R-C48(amend2)/R-C62 車型欄	1	0
+Y237	Test Case Specification 測試用例規範	NR1L-ComfortHMI-321	R-C48(amend2)/R-C62 車型欄	1	0
+Y238	Test Case Specification 測試用例規範	NR1L-ComfortHMI-322	R-C48(amend2)/R-C62 車型欄	1	0
+Y239	Test Case Specification 測試用例規範	NR1L-ComfortHMI-323	R-C48(amend2)/R-C62 車型欄	1	0
+Y240	Test Case Specification 測試用例規範	NR1L-ComfortHMI-324	R-C48(amend2)/R-C62 車型欄	1	0
+Y241	Test Case Specification 測試用例規範	NR1L-ComfortHMI-325	R-C48(amend2)/R-C62 車型欄	1	0
+Y242	Test Case Specification 測試用例規範	NR1L-ComfortHMI-326	R-C48(amend2)/R-C62 車型欄	1	0
+Y243	Test Case Specification 測試用例規範	NR1L-ComfortHMI-327	R-C48(amend2)/R-C62 車型欄	1	0
+Y244	Test Case Specification 測試用例規範	NR1L-ComfortHMI-328	R-C48(amend2)/R-C62 車型欄	1	0
+Y245	Test Case Specification 測試用例規範	NR1L-ComfortHMI-329	R-C48(amend2)/R-C62 車型欄	1	0
+Y246	Test Case Specification 測試用例規範	NR1L-ComfortHMI-330	R-C48(amend2)/R-C62 車型欄	1	0
+Y247	Test Case Specification 測試用例規範	NR1L-ComfortHMI-331	R-C48(amend2)/R-C62 車型欄	1	0
+Y248	Test Case Specification 測試用例規範	NR1L-ComfortHMI-332	R-C48(amend2)/R-C62 車型欄	1	0
+Y249	Test Case Specification 測試用例規範	NR1L-ComfortHMI-333	R-C48(amend2)/R-C62 車型欄	1	0
+Y250	Test Case Specification 測試用例規範	NR1L-ComfortHMI-334	R-C48(amend2)/R-C62 車型欄	1	0
+Y251	Test Case Specification 測試用例規範	NR1L-ComfortHMI-335	R-C48(amend2)/R-C62 車型欄	1	0
+Y252	Test Case Specification 測試用例規範	NR1L-ComfortHMI-336	R-C48(amend2)/R-C62 車型欄	1	0
+Y253	Test Case Specification 測試用例規範	NR1L-ComfortHMI-337	R-C48(amend2)/R-C62 車型欄	1	0
+Y254	Test Case Specification 測試用例規範	NR1L-ComfortHMI-338	R-C48(amend2)/R-C62 車型欄	1	0
+Y255	Test Case Specification 測試用例規範	NR1L-ComfortHMI-339	R-C48(amend2)/R-C62 車型欄	1	0
+Y256	Test Case Specification 測試用例規範	NR1L-ComfortHMI-340	R-C48(amend2)/R-C62 車型欄	1	0
+Y257	Test Case Specification 測試用例規範	NR1L-ComfortHMI-341	R-C48(amend2)/R-C62 車型欄	1	0
+Y258	Test Case Specification 測試用例規範	NR1L-ComfortHMI-342	R-C48(amend2)/R-C62 車型欄	1	0
+Y259	Test Case Specification 測試用例規範	NR1L-ComfortHMI-343	R-C48(amend2)/R-C62 車型欄	1	0
+Y260	Test Case Specification 測試用例規範	NR1L-ComfortHMI-344	R-C48(amend2)/R-C62 車型欄	1	0
+Y261	Test Case Specification 測試用例規範	NR1L-ComfortHMI-345	R-C48(amend2)/R-C62 車型欄	1	0
+Y262	Test Case Specification 測試用例規範	NR1L-ComfortHMI-346	R-C48(amend2)/R-C62 車型欄	1	0
+Y263	Test Case Specification 測試用例規範	NR1L-ComfortHMI-347	R-C48(amend2)/R-C62 車型欄	1	0
+Y264	Test Case Specification 測試用例規範	NR1L-ComfortHMI-348	R-C48(amend2)/R-C62 車型欄	1	0
+Y265	Test Case Specification 測試用例規範	NR1L-ComfortHMI-349	R-C48(amend2)/R-C62 車型欄	1	0
+Y266	Test Case Specification 測試用例規範	NR1L-ComfortHMI-350	R-C48(amend2)/R-C62 車型欄	1	0
+Y267	Test Case Specification 測試用例規範	NR1L-ComfortHMI-351	R-C48(amend2)/R-C62 車型欄	1	0
+Y268	Test Case Specification 測試用例規範	NR1L-ComfortHMI-352	R-C48(amend2)/R-C62 車型欄	1	0
+Y269	Test Case Specification 測試用例規範	NR1L-ComfortHMI-383	R-C48(amend2)/R-C62 車型欄	1	0
+Y270	Test Case Specification 測試用例規範	NR1L-ComfortHMI-353	R-C48(amend2)/R-C62 車型欄	1	0
+Y271	Test Case Specification 測試用例規範	NR1L-ComfortHMI-354	R-C48(amend2)/R-C62 車型欄	1	0
+Y272	Test Case Specification 測試用例規範	NR1L-ComfortHMI-355	R-C48(amend2)/R-C62 車型欄	1	0
+Y273	Test Case Specification 測試用例規範	NR1L-ComfortHMI-356	R-C48(amend2)/R-C62 車型欄	1	0
+Y274	Test Case Specification 測試用例規範	NR1L-ComfortHMI-357	R-C48(amend2)/R-C62 車型欄	1	0
+Y275	Test Case Specification 測試用例規範	NR1L-ComfortHMI-358	R-C48(amend2)/R-C62 車型欄	1	0
+Y276	Test Case Specification 測試用例規範	NR1L-ComfortHMI-359	R-C48(amend2)/R-C62 車型欄	1	0
+Y277	Test Case Specification 測試用例規範	NR1L-ComfortHMI-360	R-C48(amend2)/R-C62 車型欄	1	0
+Y280	Test Case Specification 測試用例規範	NR1L-ComfortHMI-003	R-C48(amend2)/R-C62 車型欄	1	0
+Y292	Test Case Specification 測試用例規範	NR1L-ComfortHMI-434	R-C48(amend2)/R-C62 車型欄	1	0
+Y293	Test Case Specification 測試用例規範	NR1L-ComfortHMI-167	R-C48(amend2)/R-C62 車型欄	1	0
+Y294	Test Case Specification 測試用例規範	NR1L-ComfortHMI-168	R-C48(amend2)/R-C62 車型欄	1	0
+Y295	Test Case Specification 測試用例規範	NR1L-ComfortHMI-169	R-C48(amend2)/R-C62 車型欄	1	0
+Y296	Test Case Specification 測試用例規範	NR1L-ComfortHMI-170	R-C48(amend2)/R-C62 車型欄	1	0
+Y297	Test Case Specification 測試用例規範	NR1L-ComfortHMI-171	R-C48(amend2)/R-C62 車型欄	1	0
+Y298	Test Case Specification 測試用例規範	NR1L-ComfortHMI-172	R-C48(amend2)/R-C62 車型欄	1	0
+Y299	Test Case Specification 測試用例規範	NR1L-ComfortHMI-173	R-C48(amend2)/R-C62 車型欄	1	0
+Y300	Test Case Specification 測試用例規範	NR1L-ComfortHMI-174	R-C48(amend2)/R-C62 車型欄	1	0
+Y301	Test Case Specification 測試用例規範	NR1L-ComfortHMI-175	R-C48(amend2)/R-C62 車型欄	1	0
+Y302	Test Case Specification 測試用例規範	NR1L-ComfortHMI-176	R-C48(amend2)/R-C62 車型欄	1	0
+Y303	Test Case Specification 測試用例規範	NR1L-ComfortHMI-177	R-C48(amend2)/R-C62 車型欄	1	0
+Y304	Test Case Specification 測試用例規範	NR1L-ComfortHMI-178	R-C48(amend2)/R-C62 車型欄	1	0
+Y305	Test Case Specification 測試用例規範	NR1L-ComfortHMI-179	R-C48(amend2)/R-C62 車型欄	1	0
+Y306	Test Case Specification 測試用例規範	NR1L-ComfortHMI-180	R-C48(amend2)/R-C62 車型欄	1	0
+Y307	Test Case Specification 測試用例規範	NR1L-ComfortHMI-181	R-C48(amend2)/R-C62 車型欄	1	0
+Y308	Test Case Specification 測試用例規範	NR1L-ComfortHMI-182	R-C48(amend2)/R-C62 車型欄	1	0
+V309	Test Case Specification 測試用例規範	NR1L-ComfortHMI-374	R-C48(amend2)/R-C62 車型欄	1	0
+Y309	Test Case Specification 測試用例規範	NR1L-ComfortHMI-374	R-C48(amend2)/R-C62 車型欄	1	0
+Y310	Test Case Specification 測試用例規範	NR1L-ComfortHMI-375	R-C48(amend2)/R-C62 車型欄	1	0
+V311	Test Case Specification 測試用例規範	NR1L-ComfortHMI-376	R-C48(amend2)/R-C62 車型欄	1	0
+Y311	Test Case Specification 測試用例規範	NR1L-ComfortHMI-376	R-C48(amend2)/R-C62 車型欄	1	0
+Y312	Test Case Specification 測試用例規範	NR1L-ComfortHMI-183	R-C48(amend2)/R-C62 車型欄	1	0
+Y313	Test Case Specification 測試用例規範	NR1L-ComfortHMI-377	R-C48(amend2)/R-C62 車型欄	1	0
+Y314	Test Case Specification 測試用例規範	NR1L-ComfortHMI-461	R-C48(amend2)/R-C62 車型欄	1	0
+Y315	Test Case Specification 測試用例規範	NR1L-ComfortHMI-184	R-C48(amend2)/R-C62 車型欄	1	0
+Y316	Test Case Specification 測試用例規範	NR1L-ComfortHMI-185	R-C48(amend2)/R-C62 車型欄	1	0
+Y317	Test Case Specification 測試用例規範	NR1L-ComfortHMI-186	R-C48(amend2)/R-C62 車型欄	1	0
+Y318	Test Case Specification 測試用例規範	NR1L-ComfortHMI-187	R-C48(amend2)/R-C62 車型欄	1	0
+Y319	Test Case Specification 測試用例規範	NR1L-ComfortHMI-188	R-C48(amend2)/R-C62 車型欄	1	0
+Y320	Test Case Specification 測試用例規範	NR1L-ComfortHMI-189	R-C48(amend2)/R-C62 車型欄	1	0
+Y321	Test Case Specification 測試用例規範	NR1L-ComfortHMI-190	R-C48(amend2)/R-C62 車型欄	1	0
+Y322	Test Case Specification 測試用例規範	NR1L-ComfortHMI-191	R-C48(amend2)/R-C62 車型欄	1	0
+Y323	Test Case Specification 測試用例規範	NR1L-ComfortHMI-192	R-C48(amend2)/R-C62 車型欄	1	0
+Y324	Test Case Specification 測試用例規範	NR1L-ComfortHMI-410	R-C48(amend2)/R-C62 車型欄	1	0
+Y325	Test Case Specification 測試用例規範	NR1L-ComfortHMI-193	R-C48(amend2)/R-C62 車型欄	1	0
+Y326	Test Case Specification 測試用例規範	NR1L-ComfortHMI-194	R-C48(amend2)/R-C62 車型欄	1	0
+Y327	Test Case Specification 測試用例規範	NR1L-ComfortHMI-195	R-C48(amend2)/R-C62 車型欄	1	0
+Y328	Test Case Specification 測試用例規範	NR1L-ComfortHMI-196	R-C48(amend2)/R-C62 車型欄	1	0
+Y329	Test Case Specification 測試用例規範	NR1L-ComfortHMI-197	R-C48(amend2)/R-C62 車型欄	1	0
+Y330	Test Case Specification 測試用例規範	NR1L-ComfortHMI-198	R-C48(amend2)/R-C62 車型欄	1	0
+Y331	Test Case Specification 測試用例規範	NR1L-ComfortHMI-199	R-C48(amend2)/R-C62 車型欄	1	0
+Y332	Test Case Specification 測試用例規範	NR1L-ComfortHMI-200	R-C48(amend2)/R-C62 車型欄	1	0
+Y333	Test Case Specification 測試用例規範	NR1L-ComfortHMI-201	R-C48(amend2)/R-C62 車型欄	1	0
+Y334	Test Case Specification 測試用例規範	NR1L-ComfortHMI-384	R-C48(amend2)/R-C62 車型欄	1	0
+Y335	Test Case Specification 測試用例規範	NR1L-ComfortHMI-202	R-C48(amend2)/R-C62 車型欄	1	0
+Y336	Test Case Specification 測試用例規範	NR1L-ComfortHMI-385	R-C48(amend2)/R-C62 車型欄	1	0
+Y337	Test Case Specification 測試用例規範	NR1L-ComfortHMI-082	R-C48(amend2)/R-C62 車型欄	1	0
+Y338	Test Case Specification 測試用例規範	NR1L-ComfortHMI-083	R-C48(amend2)/R-C62 車型欄	1	0
+Y339	Test Case Specification 測試用例規範	NR1L-ComfortHMI-084	R-C48(amend2)/R-C62 車型欄	1	0
+Y340	Test Case Specification 測試用例規範	NR1L-ComfortHMI-085	R-C48(amend2)/R-C62 車型欄	1	0
+Y341	Test Case Specification 測試用例規範	NR1L-ComfortHMI-086	R-C48(amend2)/R-C62 車型欄	1	0
+Y342	Test Case Specification 測試用例規範	NR1L-ComfortHMI-087	R-C48(amend2)/R-C62 車型欄	1	0
+V343	Test Case Specification 測試用例規範	NR1L-ComfortHMI-088	R-C48(amend2)/R-C62 車型欄	1	0
+Y343	Test Case Specification 測試用例規範	NR1L-ComfortHMI-088	R-C48(amend2)/R-C62 車型欄	1	0
+Z343	Test Case Specification 測試用例規範	NR1L-ComfortHMI-088	R-C48(amend2)/R-C62 車型欄	1	0
+Y344	Test Case Specification 測試用例規範	NR1L-ComfortHMI-089	R-C48(amend2)/R-C62 車型欄	1	0
+Y345	Test Case Specification 測試用例規範	NR1L-ComfortHMI-090	R-C48(amend2)/R-C62 車型欄	1	0
+Y346	Test Case Specification 測試用例規範	NR1L-ComfortHMI-203	R-C48(amend2)/R-C62 車型欄	1	0
+Y347	Test Case Specification 測試用例規範	NR1L-ComfortHMI-204	R-C48(amend2)/R-C62 車型欄	1	0
+Y348	Test Case Specification 測試用例規範	NR1L-ComfortHMI-205	R-C48(amend2)/R-C62 車型欄	1	0
+Y349	Test Case Specification 測試用例規範	NR1L-ComfortHMI-206	R-C48(amend2)/R-C62 車型欄	1	0
+Y350	Test Case Specification 測試用例規範	NR1L-ComfortHMI-207	R-C48(amend2)/R-C62 車型欄	1	0
+Y351	Test Case Specification 測試用例規範	NR1L-ComfortHMI-208	R-C48(amend2)/R-C62 車型欄	1	0
+Y352	Test Case Specification 測試用例規範	NR1L-ComfortHMI-411	R-C48(amend2)/R-C62 車型欄	1	0
+Y353	Test Case Specification 測試用例規範	NR1L-ComfortHMI-209	R-C48(amend2)/R-C62 車型欄	1	0
+Y354	Test Case Specification 測試用例規範	NR1L-ComfortHMI-412	R-C48(amend2)/R-C62 車型欄	1	0
+Y355	Test Case Specification 測試用例規範	NR1L-ComfortHMI-210	R-C48(amend2)/R-C62 車型欄	1	0
+V356	Test Case Specification 測試用例規範	NR1L-ComfortHMI-211	R-C48(amend2)/R-C62 車型欄	1	0
+Y356	Test Case Specification 測試用例規範	NR1L-ComfortHMI-211	R-C48(amend2)/R-C62 車型欄	1	0
+Z356	Test Case Specification 測試用例規範	NR1L-ComfortHMI-211	R-C48(amend2)/R-C62 車型欄	1	0
+Y357	Test Case Specification 測試用例規範	NR1L-ComfortHMI-212	R-C48(amend2)/R-C62 車型欄	1	0
+Y358	Test Case Specification 測試用例規範	NR1L-ComfortHMI-213	R-C48(amend2)/R-C62 車型欄	1	0
+Y359	Test Case Specification 測試用例規範	NR1L-ComfortHMI-214	R-C48(amend2)/R-C62 車型欄	1	0
+Y360	Test Case Specification 測試用例規範	NR1L-ComfortHMI-098	R-C48(amend2)/R-C62 車型欄	1	0
+Y361	Test Case Specification 測試用例規範	NR1L-ComfortHMI-413	R-C48(amend2)/R-C62 車型欄	1	0
+Y362	Test Case Specification 測試用例規範	NR1L-ComfortHMI-099	R-C48(amend2)/R-C62 車型欄	1	0
+Y363	Test Case Specification 測試用例規範	NR1L-ComfortHMI-100	R-C48(amend2)/R-C62 車型欄	1	0
+Y364	Test Case Specification 測試用例規範	NR1L-ComfortHMI-101	R-C48(amend2)/R-C62 車型欄	1	0
+Y365	Test Case Specification 測試用例規範	NR1L-ComfortHMI-102	R-C48(amend2)/R-C62 車型欄	1	0
+Y366	Test Case Specification 測試用例規範	NR1L-ComfortHMI-103	R-C48(amend2)/R-C62 車型欄	1	0
+Y367	Test Case Specification 測試用例規範	NR1L-ComfortHMI-104	R-C48(amend2)/R-C62 車型欄	1	0
+Y368	Test Case Specification 測試用例規範	NR1L-ComfortHMI-105	R-C48(amend2)/R-C62 車型欄	1	0
+Y369	Test Case Specification 測試用例規範	NR1L-ComfortHMI-106	R-C48(amend2)/R-C62 車型欄	1	0
+Y370	Test Case Specification 測試用例規範	NR1L-ComfortHMI-414	R-C48(amend2)/R-C62 車型欄	1	0
+Y371	Test Case Specification 測試用例規範	NR1L-ComfortHMI-415	R-C48(amend2)/R-C62 車型欄	1	0
+Y372	Test Case Specification 測試用例規範	NR1L-ComfortHMI-107	R-C48(amend2)/R-C62 車型欄	1	0
+Y373	Test Case Specification 測試用例規範	NR1L-ComfortHMI-108	R-C48(amend2)/R-C62 車型欄	1	0
+Y374	Test Case Specification 測試用例規範	NR1L-ComfortHMI-416	R-C48(amend2)/R-C62 車型欄	1	0
+Y375	Test Case Specification 測試用例規範	NR1L-ComfortHMI-109	R-C48(amend2)/R-C62 車型欄	1	0
+Y376	Test Case Specification 測試用例規範	NR1L-ComfortHMI-110	R-C48(amend2)/R-C62 車型欄	1	0
+Y377	Test Case Specification 測試用例規範	NR1L-ComfortHMI-111	R-C48(amend2)/R-C62 車型欄	1	0
+Y378	Test Case Specification 測試用例規範	NR1L-ComfortHMI-112	R-C48(amend2)/R-C62 車型欄	1	0
+Y379	Test Case Specification 測試用例規範	NR1L-ComfortHMI-417	R-C48(amend2)/R-C62 車型欄	1	0
+Y380	Test Case Specification 測試用例規範	NR1L-ComfortHMI-418	R-C48(amend2)/R-C62 車型欄	1	0
+Y381	Test Case Specification 測試用例規範	NR1L-ComfortHMI-419	R-C48(amend2)/R-C62 車型欄	1	0
+Y382	Test Case Specification 測試用例規範	NR1L-ComfortHMI-113	R-C48(amend2)/R-C62 車型欄	1	0
+Y383	Test Case Specification 測試用例規範	NR1L-ComfortHMI-420	R-C48(amend2)/R-C62 車型欄	1	0
+Y384	Test Case Specification 測試用例規範	NR1L-ComfortHMI-237	R-C48(amend2)/R-C62 車型欄	1	0
+Y385	Test Case Specification 測試用例規範	NR1L-ComfortHMI-238	R-C48(amend2)/R-C62 車型欄	1	0
+Y386	Test Case Specification 測試用例規範	NR1L-ComfortHMI-239	R-C48(amend2)/R-C62 車型欄	1	0
+Y387	Test Case Specification 測試用例規範	NR1L-ComfortHMI-240	R-C48(amend2)/R-C62 車型欄	1	0
+Y388	Test Case Specification 測試用例規範	NR1L-ComfortHMI-241	R-C48(amend2)/R-C62 車型欄	1	0
+Y389	Test Case Specification 測試用例規範	NR1L-ComfortHMI-242	R-C48(amend2)/R-C62 車型欄	1	0
+Y390	Test Case Specification 測試用例規範	NR1L-ComfortHMI-243	R-C48(amend2)/R-C62 車型欄	1	0
+Y391	Test Case Specification 測試用例規範	NR1L-ComfortHMI-244	R-C48(amend2)/R-C62 車型欄	1	0
+Y392	Test Case Specification 測試用例規範	NR1L-ComfortHMI-245	R-C48(amend2)/R-C62 車型欄	1	0
+Y393	Test Case Specification 測試用例規範	NR1L-ComfortHMI-421	R-C48(amend2)/R-C62 車型欄	1	0
+Y394	Test Case Specification 測試用例規範	NR1L-ComfortHMI-422	R-C48(amend2)/R-C62 車型欄	1	0
+Y395	Test Case Specification 測試用例規範	NR1L-ComfortHMI-423	R-C48(amend2)/R-C62 車型欄	1	0
+Y396	Test Case Specification 測試用例規範	NR1L-ComfortHMI-246	R-C48(amend2)/R-C62 車型欄	1	0
+Y397	Test Case Specification 測試用例規範	NR1L-ComfortHMI-247	R-C48(amend2)/R-C62 車型欄	1	0
+Y398	Test Case Specification 測試用例規範	NR1L-ComfortHMI-248	R-C48(amend2)/R-C62 車型欄	1	0
+Y399	Test Case Specification 測試用例規範	NR1L-ComfortHMI-249	R-C48(amend2)/R-C62 車型欄	1	0
+L400	Test Case Specification 測試用例規範	NR1L-ComfortHMI-250	M6+R-C64/DR-46	"1. PENDING: DR-46 DBC message and raw value for $EBL_Stat$ = ""not available/Blink""
+2. Read the ""REAR DEFROST"" button on the climate screen"	"1. Send CAN: STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK)
+2. Read the ""REAR DEFROST"" button on the climate screen"
+M400	Test Case Specification 測試用例規範	NR1L-ComfortHMI-250	R-C64/DR-46	"1. The climate screen is displayed
+2. The ""REAR DEFROST"" button is greyed out"	"1. STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK) is sent
+2. The ""REAR DEFROST"" button is greyed out"
+Y400	Test Case Specification 測試用例規範	NR1L-ComfortHMI-250	R-C48(amend2)/R-C62 車型欄	1	0
+Y401	Test Case Specification 測試用例規範	NR1L-ComfortHMI-215	R-C48(amend2)/R-C62 車型欄	1	0
+Y402	Test Case Specification 測試用例規範	NR1L-ComfortHMI-216	R-C48(amend2)/R-C62 車型欄	1	0
+Y403	Test Case Specification 測試用例規範	NR1L-ComfortHMI-217	R-C48(amend2)/R-C62 車型欄	1	0
+Y404	Test Case Specification 測試用例規範	NR1L-ComfortHMI-218	R-C48(amend2)/R-C62 車型欄	1	0
+Y405	Test Case Specification 測試用例規範	NR1L-ComfortHMI-219	R-C48(amend2)/R-C62 車型欄	1	0
+Y406	Test Case Specification 測試用例規範	NR1L-ComfortHMI-424	R-C48(amend2)/R-C62 車型欄	1	0
+Y407	Test Case Specification 測試用例規範	NR1L-ComfortHMI-425	R-C48(amend2)/R-C62 車型欄	1	0
+Y408	Test Case Specification 測試用例規範	NR1L-ComfortHMI-220	R-C48(amend2)/R-C62 車型欄	1	0
+Y409	Test Case Specification 測試用例規範	NR1L-ComfortHMI-221	R-C48(amend2)/R-C62 車型欄	1	0
+Y410	Test Case Specification 測試用例規範	NR1L-ComfortHMI-222	R-C48(amend2)/R-C62 車型欄	1	0
+Y411	Test Case Specification 測試用例規範	NR1L-ComfortHMI-223	R-C48(amend2)/R-C62 車型欄	1	0
+Y412	Test Case Specification 測試用例規範	NR1L-ComfortHMI-224	R-C48(amend2)/R-C62 車型欄	1	0
+J413	Test Case Specification 測試用例規範	NR1L-ComfortHMI-432	R-C64/PROXI	"1. The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16
+2. The vehicle is not a single zone climate configuration, for which Sync is not shown
+3. The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+4. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"	"1. The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16
+2. The vehicle is not a single zone climate configuration, for which Sync is not shown
+3. PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+4. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"
+V413	Test Case Specification 測試用例規範	NR1L-ComfortHMI-432	R-C48(amend2)/R-C62 車型欄	1	0
+Y413	Test Case Specification 測試用例規範	NR1L-ComfortHMI-432	R-C48(amend2)/R-C62 車型欄	1	0
+Z413	Test Case Specification 測試用例規範	NR1L-ComfortHMI-432	R-C48(amend2)/R-C62 車型欄	1	0
+J414	Test Case Specification 測試用例規範	NR1L-ComfortHMI-433	R-C64/PROXI	"1. The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16
+2. The vehicle is not a single zone climate configuration, for which Sync is not shown
+3. The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+4. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"	"1. The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16
+2. The vehicle is not a single zone climate configuration, for which Sync is not shown
+3. PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+4. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"
+V414	Test Case Specification 測試用例規範	NR1L-ComfortHMI-433	R-C48(amend2)/R-C62 車型欄	1	0
+Y414	Test Case Specification 測試用例規範	NR1L-ComfortHMI-433	R-C48(amend2)/R-C62 車型欄	1	0
+Z414	Test Case Specification 測試用例規範	NR1L-ComfortHMI-433	R-C48(amend2)/R-C62 車型欄	1	0
+Y415	Test Case Specification 測試用例規範	NR1L-ComfortHMI-251	R-C48(amend2)/R-C62 車型欄	1	0
+Y416	Test Case Specification 測試用例規範	NR1L-ComfortHMI-252	R-C48(amend2)/R-C62 車型欄	1	0
+Y417	Test Case Specification 測試用例規範	NR1L-ComfortHMI-253	R-C48(amend2)/R-C62 車型欄	1	0
+Y418	Test Case Specification 測試用例規範	NR1L-ComfortHMI-254	R-C48(amend2)/R-C62 車型欄	1	0
+Y419	Test Case Specification 測試用例規範	NR1L-ComfortHMI-255	R-C48(amend2)/R-C62 車型欄	1	0
+Y420	Test Case Specification 測試用例規範	NR1L-ComfortHMI-256	R-C48(amend2)/R-C62 車型欄	1	0
+Y421	Test Case Specification 測試用例規範	NR1L-ComfortHMI-257	R-C48(amend2)/R-C62 車型欄	1	0
+Y422	Test Case Specification 測試用例規範	NR1L-ComfortHMI-258	R-C48(amend2)/R-C62 車型欄	1	0
+Y423	Test Case Specification 測試用例規範	NR1L-ComfortHMI-259	R-C48(amend2)/R-C62 車型欄	1	0
+Y424	Test Case Specification 測試用例規範	NR1L-ComfortHMI-260	R-C48(amend2)/R-C62 車型欄	1	0
+Y425	Test Case Specification 測試用例規範	NR1L-ComfortHMI-426	R-C48(amend2)/R-C62 車型欄	1	0
+Y426	Test Case Specification 測試用例規範	NR1L-ComfortHMI-261	R-C48(amend2)/R-C62 車型欄	1	0
+Y427	Test Case Specification 測試用例規範	NR1L-ComfortHMI-262	R-C48(amend2)/R-C62 車型欄	1	0
+Y428	Test Case Specification 測試用例規範	NR1L-ComfortHMI-263	R-C48(amend2)/R-C62 車型欄	1	0
+Y429	Test Case Specification 測試用例規範	NR1L-ComfortHMI-225	R-C48(amend2)/R-C62 車型欄	1	0
+Y430	Test Case Specification 測試用例規範	NR1L-ComfortHMI-226	R-C48(amend2)/R-C62 車型欄	1	0
+Y431	Test Case Specification 測試用例規範	NR1L-ComfortHMI-227	R-C48(amend2)/R-C62 車型欄	1	0
+Y432	Test Case Specification 測試用例規範	NR1L-ComfortHMI-228	R-C48(amend2)/R-C62 車型欄	1	0
+Y433	Test Case Specification 測試用例規範	NR1L-ComfortHMI-229	R-C48(amend2)/R-C62 車型欄	1	0
+Y434	Test Case Specification 測試用例規範	NR1L-ComfortHMI-230	R-C48(amend2)/R-C62 車型欄	1	0
+Y435	Test Case Specification 測試用例規範	NR1L-ComfortHMI-231	R-C48(amend2)/R-C62 車型欄	1	0
+Y436	Test Case Specification 測試用例規範	NR1L-ComfortHMI-232	R-C48(amend2)/R-C62 車型欄	1	0
+Y437	Test Case Specification 測試用例規範	NR1L-ComfortHMI-427	R-C48(amend2)/R-C62 車型欄	1	0
+Y438	Test Case Specification 測試用例規範	NR1L-ComfortHMI-428	R-C48(amend2)/R-C62 車型欄	1	0
+Y439	Test Case Specification 測試用例規範	NR1L-ComfortHMI-429	R-C48(amend2)/R-C62 車型欄	1	0
+Y440	Test Case Specification 測試用例規範	NR1L-ComfortHMI-233	R-C48(amend2)/R-C62 車型欄	1	0
+Y441	Test Case Specification 測試用例規範	NR1L-ComfortHMI-234	R-C48(amend2)/R-C62 車型欄	1	0
+Y442	Test Case Specification 測試用例規範	NR1L-ComfortHMI-235	R-C48(amend2)/R-C62 車型欄	1	0
+Y443	Test Case Specification 測試用例規範	NR1L-ComfortHMI-236	R-C48(amend2)/R-C62 車型欄	1	0
+V444	Test Case Specification 測試用例規範	NR1L-ComfortHMI-091	R-C48(amend2)/R-C62 車型欄	1	0
+Y444	Test Case Specification 測試用例規範	NR1L-ComfortHMI-091	R-C48(amend2)/R-C62 車型欄	1	0
+Z444	Test Case Specification 測試用例規範	NR1L-ComfortHMI-091	R-C48(amend2)/R-C62 車型欄	1	0
+V445	Test Case Specification 測試用例規範	NR1L-ComfortHMI-092	R-C48(amend2)/R-C62 車型欄	1	0
+Y445	Test Case Specification 測試用例規範	NR1L-ComfortHMI-092	R-C48(amend2)/R-C62 車型欄	1	0
+Z445	Test Case Specification 測試用例規範	NR1L-ComfortHMI-092	R-C48(amend2)/R-C62 車型欄	1	0
+V446	Test Case Specification 測試用例規範	NR1L-ComfortHMI-093	R-C48(amend2)/R-C62 車型欄	1	0
+Y446	Test Case Specification 測試用例規範	NR1L-ComfortHMI-093	R-C48(amend2)/R-C62 車型欄	1	0
+Z446	Test Case Specification 測試用例規範	NR1L-ComfortHMI-093	R-C48(amend2)/R-C62 車型欄	1	0
+Y447	Test Case Specification 測試用例規範	NR1L-ComfortHMI-264	R-C48(amend2)/R-C62 車型欄	1	0
+Y448	Test Case Specification 測試用例規範	NR1L-ComfortHMI-265	R-C48(amend2)/R-C62 車型欄	1	0
+Y454	Test Case Specification 測試用例規範	NR1L-ComfortHMI-114	R-C48(amend2)/R-C62 車型欄	1	0
+Y455	Test Case Specification 測試用例規範	NR1L-ComfortHMI-115	R-C48(amend2)/R-C62 車型欄	1	0
+Y456	Test Case Specification 測試用例規範	NR1L-ComfortHMI-116	R-C48(amend2)/R-C62 車型欄	1	0
+Y457	Test Case Specification 測試用例規範	NR1L-ComfortHMI-117	R-C48(amend2)/R-C62 車型欄	1	0
+Y458	Test Case Specification 測試用例規範	NR1L-ComfortHMI-118	R-C48(amend2)/R-C62 車型欄	1	0
+Y459	Test Case Specification 測試用例規範	NR1L-ComfortHMI-119	R-C48(amend2)/R-C62 車型欄	1	0
+Y460	Test Case Specification 測試用例規範	NR1L-ComfortHMI-120	R-C48(amend2)/R-C62 車型欄	1	0
+Y461	Test Case Specification 測試用例規範	NR1L-ComfortHMI-121	R-C48(amend2)/R-C62 車型欄	1	0
+Y462	Test Case Specification 測試用例規範	NR1L-ComfortHMI-122	R-C48(amend2)/R-C62 車型欄	1	0
+Y463	Test Case Specification 測試用例規範	NR1L-ComfortHMI-123	R-C48(amend2)/R-C62 車型欄	1	0
+Y464	Test Case Specification 測試用例規範	NR1L-ComfortHMI-124	R-C48(amend2)/R-C62 車型欄	1	0
+Y465	Test Case Specification 測試用例規範	NR1L-ComfortHMI-361	R-C48(amend2)/R-C62 車型欄	1	0
+Y466	Test Case Specification 測試用例規範	NR1L-ComfortHMI-125	R-C48(amend2)/R-C62 車型欄	1	0
+Y467	Test Case Specification 測試用例規範	NR1L-ComfortHMI-362	R-C48(amend2)/R-C62 車型欄	1	0
+Y468	Test Case Specification 測試用例規範	NR1L-ComfortHMI-126	R-C48(amend2)/R-C62 車型欄	1	0
+Y469	Test Case Specification 測試用例規範	NR1L-ComfortHMI-378	R-C48(amend2)/R-C62 車型欄	1	0
+Y470	Test Case Specification 測試用例規範	NR1L-ComfortHMI-379	R-C48(amend2)/R-C62 車型欄	1	0
+Y471	Test Case Specification 測試用例規範	NR1L-ComfortHMI-380	R-C48(amend2)/R-C62 車型欄	1	0
+Y472	Test Case Specification 測試用例規範	NR1L-ComfortHMI-381	R-C48(amend2)/R-C62 車型欄	1	0
+Y473	Test Case Specification 測試用例規範	NR1L-ComfortHMI-463	R-C48(amend2)/R-C62 車型欄	1	0
+Y474	Test Case Specification 測試用例規範	NR1L-ComfortHMI-464	R-C48(amend2)/R-C62 車型欄	1	0
+Y475	Test Case Specification 測試用例規範	NR1L-ComfortHMI-465	R-C48(amend2)/R-C62 車型欄	1	0
+Y476	Test Case Specification 測試用例規範	NR1L-ComfortHMI-467	§3 sibling	1	0
+Y477	Test Case Specification 測試用例規範	NR1L-ComfortHMI-468	§3 sibling	1	0
+Y478	Test Case Specification 測試用例規範	NR1L-ComfortHMI-469	§3 sibling	1	0
+Y479	Test Case Specification 測試用例規範	NR1L-ComfortHMI-470	§3 sibling	1	0
+J480	Test Case Specification 測試用例規範	NR1L-ComfortHMI-471	§3 sibling	"1. The vehicle is not a single zone climate configuration, for which Sync is not shown
+2. The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+4. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"	"1. The vehicle is not a single zone climate configuration, for which Sync is not shown
+2. PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed
+4. The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16
+5. The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit"
+V480	Test Case Specification 測試用例規範	NR1L-ComfortHMI-471	§3 sibling	1	0
+Y480	Test Case Specification 測試用例規範	NR1L-ComfortHMI-471	§3 sibling	1	0
+Z480	Test Case Specification 測試用例規範	NR1L-ComfortHMI-471	§3 sibling	1	0
+Y481	Test Case Specification 測試用例規範	NR1L-ComfortHMI-472	§3 sibling	1	0
+Y483	Test Case Specification 測試用例規範	NR1L-ComfortHMI-474	§3 sibling	1	0
+Y484	Test Case Specification 測試用例規範	NR1L-ComfortHMI-475	§3 sibling	1	0
+Y485	Test Case Specification 測試用例規範	NR1L-ComfortHMI-476	§3 sibling	1	0

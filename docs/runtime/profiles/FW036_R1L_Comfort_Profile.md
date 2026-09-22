@@ -30,6 +30,19 @@
 - ~~Test Group = `Comfort`（**R-C6**）~~ → **Test Group = `Climate Control Interface`**（**R-C6(amend)**，CMF-01_review §3，2026-09-18：從 0907 本，整欄單一映射）；tc_id = `NR1L-ComfortHMI-{NNN}` 自 001
   （**R-C7**，序號由 generator 指派，LLM 不得自行產生）；
   author on new rows = `PeiPYHsu`
+- **命名以實際值為準（R-C64，Pei 2026-09-22）**：**作者側四欄**（`pre_conditions`／
+  `input_test_data`／`test_procedure`／`expected_result`）之 CAN 訊號名、PROXI 參數名與值，
+  **一律取實際檔案之名與值**（`forms/` 之 DBC、`forms/proxi/`、LID 對照表），
+  不取需求之 `$…$` 名；`test_item` 上半 verbatim 與 `reasoning` 保留需求原名（canon §8.7.5(b)）。
+  Remarks 不另載對照。**本條於本線覆蓋 canon §8.7.5(g)**。
+  平台為 **Atlantis（MID）**（**R-C65**）。
+  上游有三套命名而無任何一份對照表（A-CMF21）：需求 `$…$`／CFTS `$…$`／DBC 與 PROXI 之實際名。
+- **跨層指涉以 `req_id` 為準（A-CMF19，CMF-04_review §1，2026-09-22）**：
+  依 **R-C46**，既有 466 列之工作簿 `F`（TC ID）**不重編**，故工作簿 F 與 JSON `tc_id`
+  自 CMF-02 起即為**兩套號碼**，只在 row 476 起之新列上相同。
+  `lint036` 之報告以工作簿 F 為 `tc_id` 欄，`lint_tcs` 以 JSON tc_id ——
+  **跨層之指涉一律書 `Requirement ID`（req_id）**，它是唯一兩層共用且不重編之鍵。
+  引用任一層之號碼時須標明是哪一套。
 - **generator 凍結（R-C59，CMF-02_review §2，2026-09-21）**：`features/comfort/generated/*.json`
   自 CMF-02 起為**唯一語料真源**。CMF-02／CMF-03 之 patch 直接寫在該處，而各
   `gen_batch*.py`／`gen_pilot.py` 係整檔產出其 parent 之 JSON —— 重跑任何一支即覆寫
@@ -1193,8 +1206,21 @@ gate `no-tcid-in-prose`：散文欄位命中 tc_id → FAIL，指名該條與該
   | Z | Fastback | **1** |
 
   HDCC／DT 三份 PROXI 之七個氣候參數全 0 與此一致（該功能於 Atl-Hi 不存在）。
-  **逐軸細分**（三台之 PROXI 值並不相同）本輪只出 plan 不填：
-  `features/comfort/docs/reports/vm_axis_plan.tsv`，V／Y／Z 一律先填 `1`，待 Pei 看 plan 後裁。
+  ~~**逐軸細分**（三台之 PROXI 值並不相同）本輪只出 plan 不填：
+  `features/comfort/docs/reports/vm_axis_plan.tsv`，V／Y／Z 一律先填 `1`，待 Pei 看 plan 後裁。~~
+  → **逐 TC 填值（R-C62／R-C48(amend2)／R-C63，Pei 2026-09-22）**：
+  T＝U＝W＝X＝**0** 全列；**V／Y／Z 逐條**依 `docs/reports/vm_assign.tsv`（R-C62 之四分支）。
+
+  - **Toro 之基線（R-C48(amend2)）**：`Climate_Type=1 (Manual)`＋`Climate_Panel_Type=6 (3 knobs)`
+    ＋`Integrated_Climate_Touchscreen=1 (Present)` —— 正是 `2.14` 所排除之組態
+    （`For MTC with ICS … no HVAC menu bar icons, no HVAC screens and no HVAC pop ups will be displayed`），
+    故帶該排除式 PC 之 **454 條** Y 欄＝0。
+  - **實測（候選本 v4）**：V **407**／Y **21**／Z **409**；**V／Y／Z 皆 0 者 65 列**，
+    依 **R-C63** 照填出貨、不加 Remarks、不移除 —— 車型欄本身即為該資訊。
+  - **車型拆題實產 0 條**：71 條候選之差異軸於各該 TC 之**適用車型集合**內皆同值
+    （`vm_split_plan.tsv` 之 71 為三台全集下之啟發式上界）。
+  - **未對映之軸（R-C62-4）**：EMEA ICS（426 條）、ch9 之 additional Rear Climate（10 條）、
+    4 Zone（2 條）於 PROXI 無對應參數，三台維持 `1`，逐條見 `docs/reports/vm_unmapped.tsv`。
 
 ### 3.7.1 相似度之量測規約 [ADD]（下放包 64 §2，2026-08-16）
 

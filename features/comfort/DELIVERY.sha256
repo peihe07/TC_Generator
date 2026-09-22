@@ -1530,3 +1530,28 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 #
 # 對象（sandbox 路徑）
 5d3726825ff99cb11b39a4538c340c0fc0ffbd5acab116522381e47ba29817d2  sandbox/revise_0922/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260922.xlsx
+
+# ENTRY 040 — 2026-09-22 — **候選本 v4**：Comfort HMI Revise 候選本（下放包 CMF-05）
+#
+#   type : candidate（**不入 delivered/、未交付**；候選本之身分紀錄）
+#   母本 : ENTRY 036 之對象（delivered/…_ComfortHMI_20260907.xlsx，3550d16d…）之複本
+#   產生 : scripts/cmf05_apply.py（JSON 層）→ scripts/cmf05_revise.py（候選本）
+#   內容 : 車型欄逐 TC 填值（R-C62／R-C48(amend2)／R-C63）—— T=U=W=X=0 全列，
+#          V／Y／Z 依 docs/reports/vm_assign.tsv，實測 V=407 Y=21 Z=409、三台皆 0 者 65 列；
+#          **車型拆題實產 0 條**（差異軸於適用車型集合內同值）；
+#          DR-46 結案（R-C64／R-C65）—— 四條 PENDING 改 Send CAN:
+#          STATUS_CLIMATE2.HVACRecirc_Sts / HVACRearDef_Sts = 2 (BLINK)；
+#          5 條 PC 之 $Rear_HVAC_cfg$ → PROXI Rear_Climate = 1 (Present)；
+#          R-C60 合稱去引號 5 處。TC 總數維持 476
+#   驗證 : zip member 57＝57；DV sqref 逐字相同；B 公式 row 10–601 原樣；
+#          逐格對帳 0907 本（全部工作表，21,309 格）—— **未列於本包之格不符 0**；
+#          變更 3,454 格全數歸因（docs/reports/cmf05_candidate_cell_recon.tsv）；
+#          對 ENTRY 039（v3）之差異 608 格全數歸因（docs/reports/cmf05_vs_v3_cell_delta.tsv）
+#   lint : JSON 層 57/57 PASS、476 TCs、0 finding；候選本層 H=0 W=0 J=0 P=0 L=0 **U=0**
+#          （哨兵見 sandbox/revise_0922b/lint/LINT_STATUS.txt）
+#   大小 : 242197 bytes
+#   未做 : 未入 delivered/；未覆寫 0907 本與 ENTRY 037／038／039；未跑 --gate／--regen；
+#          未改 RULINGS.sha.tsv；git 未執行
+#
+# 對象（sandbox 路徑）
+7b3912fcaf4780ff7490e76c2fba18bc00881f657521615b656266c3a89d6bd4  sandbox/revise_0922b/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260922_v4.xlsx

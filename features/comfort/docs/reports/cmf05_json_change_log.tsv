@@ -1,0 +1,88 @@
+tc_id	field	item	before	after
+NR1L-ComfortHMI-141	test_procedure	R-C64/DR-46	"1. PENDING: DR-46 DBC message and raw value for $RECIRC_STAT$ = ""not available/Blink""
+2. Read the ""RECIRC"" button on the climate screen"	"1. Send CAN: STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK)
+2. Read the ""RECIRC"" button on the climate screen"
+NR1L-ComfortHMI-141	expected_result	R-C64/DR-46	"1. The climate screen is displayed
+2. The ""RECIRC"" button is greyed out"	"1. STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK) is sent
+2. The ""RECIRC"" button is greyed out"
+NR1L-ComfortHMI-158	test_procedure	R-C64/DR-46	"1. Turn ""FRONT DEF"" on from the climate screen
+2. PENDING: DR-46 DBC message and raw value for $RECIRC_STAT$ = ""not available/Blink""
+3. Read the ""RECIRC"" button on the climate screen"	"1. Turn ""FRONT DEF"" on from the climate screen
+2. Send CAN: STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK)
+3. Read the ""RECIRC"" button on the climate screen"
+NR1L-ComfortHMI-158	expected_result	R-C64/DR-46	"1. The ""FRONT DEF"" button is highlighted
+2. The climate screen is displayed
+3. The ""RECIRC"" button is greyed out"	"1. The ""FRONT DEF"" button is highlighted
+2. STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK) is sent
+3. The ""RECIRC"" button is greyed out"
+NR1L-ComfortHMI-160	test_procedure	R-C64/DR-46	"1. PENDING: DR-46 DBC message and raw value for $EBL_Stat$ = ""not available/Blink""
+2. Read the ""REAR DEFROST"" button on the climate screen"	"1. Send CAN: STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK)
+2. Read the ""REAR DEFROST"" button on the climate screen"
+NR1L-ComfortHMI-160	expected_result	R-C64/DR-46	"1. The climate screen is displayed
+2. The ""REAR DEFROST"" button is greyed out"	"1. STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK) is sent
+2. The ""REAR DEFROST"" button is greyed out"
+NR1L-ComfortHMI-250	test_procedure	R-C64/DR-46	"1. PENDING: DR-46 DBC message and raw value for $EBL_Stat$ = ""not available/Blink""
+2. Read the ""REAR DEFROST"" button on the climate screen"	"1. Send CAN: STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK)
+2. Read the ""REAR DEFROST"" button on the climate screen"
+NR1L-ComfortHMI-250	expected_result	R-C64/DR-46	"1. The climate screen is displayed
+2. The ""REAR DEFROST"" button is greyed out"	"1. STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK) is sent
+2. The ""REAR DEFROST"" button is greyed out"
+NR1L-ComfortHMI-430	pre_conditions	R-C64/PROXI	"1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)
+2. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"	"1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)
+2. [spec-derived] PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"
+NR1L-ComfortHMI-431	pre_conditions	R-C64/PROXI	"1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)
+2. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"	"1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)
+2. [spec-derived] PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"
+NR1L-ComfortHMI-471	pre_conditions	R-C64/PROXI	"1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)
+2. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"	"1. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)
+2. [spec-derived] PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+3. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+4. [spec-derived] The vehicle is not an EMEA ICS vehicle, whose climate interface is specified separately in chapter 16 (16.2)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"
+NR1L-ComfortHMI-432	pre_conditions	R-C64/PROXI	"1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)
+2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)
+3. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"	"1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)
+2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)
+3. [spec-derived] PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"
+NR1L-ComfortHMI-433	pre_conditions	R-C64/PROXI	"1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)
+2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)
+3. [ext-verbatim] The below requirements shall be implemented when the PROXI parameter $Rear_HVAC_cfg$ = [Present] — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"	"1. [spec-derived] The vehicle is an EMEA ICS vehicle, whose climate interface is specified in chapter 16 (16.2)
+2. [spec-derived] The vehicle is not a single zone climate configuration, for which Sync is not shown (16.11)
+3. [spec-derived] PROXI Rear_Climate = 1 (Present) — the vehicle is equipped with rear climate (CFTS043 NEWR1L-53677)
+4. [spec-derived] The vehicle does not have 3 knob HVAC controls with ICS, for which no HVAC screens or pop ups are displayed (2.14)
+5. [spec-derived] The vehicle is not configured with a non-foldable secondary lower screen containing comfort information, for which the comfort section is removed from the head unit (6.3)"
+NR1L-ComfortHMI-443	test_procedure	R-C60	"1. Open the climate screen
+2. Select the ""Feet plus Windshield"" airflow mode"	"1. Open the climate screen
+2. Select the Feet plus Windshield airflow mode"
+NR1L-ComfortHMI-443	expected_result	R-C60	"1. The climate screen is displayed
+2. The ""Feet plus Windshield"" button is highlighted and its size is increased"	"1. The climate screen is displayed
+2. The Feet plus Windshield button is highlighted and its size is increased"
+NR1L-ComfortHMI-443	test_item	R-C60	"ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+
+(select the ""Feet plus Windshield"" airflow mode -> The ""Feet plus Windshield"" button is highlighted and its size is increased)"	"ON state for the four airflow modes is shown by highlighting the button and increasing button size.
+
+(select the Feet plus Windshield airflow mode -> The Feet plus Windshield button is highlighted and its size is increased)"
+NR1L-ComfortHMI-405	test_procedure	R-C60	"1. Select the rear ""Face + Feet"" mode
+2. Read the rear airflow mode"	"1. Select the rear Face + Feet mode
+2. Read the rear airflow mode"

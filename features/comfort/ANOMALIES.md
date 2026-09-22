@@ -1469,3 +1469,36 @@ gate 之關鍵字表以**字面**比對，而語料之字面不一致時，綠�
 **A-CMF17 之教訓（記法）**：凡引用 lint036 之 `tc_id` 欄，一律標明其為**工作簿 F**；
 凡引用 JSON 者標明為 **JSON tc_id**。兩者只在 row 476 起之新列上相同。
 本上繳包起，跨層之指涉一律以 **`Requirement ID`（req_id）** 為準 —— 它是唯一兩層共用且不重編之鍵。
+
+---
+
+## A-CMF18 ～ A-CMF20 —— CMF-04_review §1（分析層自陳，2026-09-22）
+
+> **來源**：`docs/fw036/handoff/down/20260922_CMF-04_review.md` §1，文字逐字。
+
+| # | 分析層之誤 | 來源 |
+|---|---|---|
+| A-CMF18 | R-C61 寫「目標 H＝4→2」係以 R-C56 前之計數為底，未量 v2 之現值（H 已為 6）。自身未量即定目標 | review §1 |
+| A-CMF19 | 「補 `-146` Remarks」之裁定以執行層自報為據，未查工作簿 F 與 JSON tc_id 自 R-C46 起即為兩套號碼（分析層自己下的裁定）。**跨層指涉一律以 req_id 為準**，採為本線記法，落 profile | review §1 |
+| A-CMF20 | CMF-04 §1 之軸↔參數對映表由分析層直接給出，未先證條文語與 PROXI label 同一物；執行層證得 ATC／MTC 與 ICS 兩軸無法證，即本表有一半是假設 | review §1 |
+
+**A-CMF20 之後續**：Pei 2026-09-22 以 **R-C64** 裁定「以實際的值當內容」，
+該兩軸之對映據此**採用而不另證** —— 這不是把 A-CMF20 判為無效，
+而是把「證不出來」之處置由「停」改為「依實際檔案」。兩者都記，以免日後讀成對映已獲證明。
+
+### A-CMF21 —— `$Rear_HVAC_cfg$` 為第三套命名（執行層自陳，CMF-05，2026-09-22）
+
+PC 之 `[ext-verbatim]` 行逐字載 CFTS043 之 `$Rear_HVAC_cfg$`，
+而 `forms/proxi/` **六份檔中並無此參數名，只有 `Rear_Climate`**（逐檔實測，
+三台之命中格為 `PROXI Write_Read!R355C6`／Toro 之 `PROXI Write!R355C6`）。
+
+**這是本線第三次遇到同一件事**：
+需求之 `$RECIRC_STAT$`／`$EBL_Stat$` ↔ DBC 之 `HVACRecirc_Sts`／`HVACRearDef_Sts`（DR-46）、
+CFTS 之 `$Rear_HVAC_cfg$` ↔ PROXI 之 `Rear_Climate`、
+條文之 `ATC`／`MTC`／`ICS` ↔ PROXI 之 `Climate_Type`／`Integrated_Climate_Touchscreen`（A-CMF20）。
+`forms/FORMS.md` 對 LID 對照表之 (d) 欄早已記下同一性質：
+「LID 之左欄為 Logical Identifier，**不是 CAN 訊號名**。以 LID 名直接查 DBC 必然 0 命中」。
+
+**處置**：依 **R-C64**，作者側一律改用實際檔案之名與值；
+`test_item` 上半 verbatim 與 reasoning 保留需求原名。**上游無任何一份三方對照表**，
+此事實記於此，不另開 DR（Pei 2026-09-22 已裁「命名本來就不同，以實際的值當內容」）。

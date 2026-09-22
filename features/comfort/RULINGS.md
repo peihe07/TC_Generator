@@ -1057,6 +1057,77 @@ R-C42 一、二不變；三之原文保留於條文旁，標其修訂出處。
 
 ---
 
+## R-C63 ～ R-C65、R-C48(amend2)、R-C62(amend) —— CMF-05 §1（**Pei 裁定**，2026-09-22）
+
+**出處**：`docs/fw036/handoff/down/20260922_CMF-05.md` §1 —— Pei 2026-09-22 對
+`down/20260922_CMF-04_review.md` §3 三問之答，加 DR-46 之鑰一句。
+
+**編號（live numbering，CMF-05 §1）**：落帳前實測本檔之現行最大號為 **R-C62**
+（`grep -oE "^R-C[0-9]+"`，2026-09-22），暫編＝實編。sha8 未產（GC-16 未落地）。
+
+條文逐字（CMF-05 §1 表，R19-2）：
+
+```
+R-C48(amend2)  車型欄 —— Toro
+Toro 之 PROXI（`forms/proxi/Toro`）為準：`Climate_Type=1 (Manual)`、
+`Climate_Panel_Type=6 (3 knobs)`、`Integrated_Climate_Touchscreen=1 (Present)`。
+帶 2.14 排除式 PC 之 TC，Y 欄＝0
+```
+
+```
+R-C63  三台皆 0 之 TC
+照填出貨，不加 Remarks、不移除；車型欄本身即為該資訊
+```
+
+```
+R-C64  命名以實際值為準
+**作者側欄位（PC／ITD／Procedure／ER）之 CAN 訊號名、PROXI 參數名與值，
+一律取實際檔案之名與值**（DBC、`forms/proxi/`、LID 對照表），不取需求之 `$…$` 名。
+`test_item` 上半 verbatim 與 reasoning 保留需求原名（canon §8.7.5(b)）。
+Remarks 不另載對照。**本條於本線覆蓋 canon §8.7.5(g)**；
+ATC／MTC ↔ `Climate_Type`、ICS ↔ `Integrated_Climate_Touchscreen` 之對映據此採用，不另證
+```
+
+```
+R-C65  平台
+本交付之平台 ＝ **Atlantis（MID）**；LID → CAN 對映取
+`forms/Logical Identifiers and CAN Mapping v1_78.xlsx` 該欄
+```
+
+```
+R-C62(amend)  拆題上限
+CMF-04 §3 停點一（> 40）由 Pei「需要拆題」一語解除；上限改 **120**，
+實產仍逐條人工複判
+```
+
+**R-C48／R-C62 之旁標**：R-C48 與其 amend 之原文保留不改；Toro 之基線自 2026-09-22 起
+由 **R-C48(amend2)** 定。R-C62 之停點一上限由 **R-C62(amend)** 改為 120。
+
+**CMF-05 之落實（執行層，2026-09-22）**：
+
+- **R-C48(amend2)／R-C62／R-C63 —— 車型欄逐 TC 填入候選本 v4**：
+  T＝U＝W＝X＝0 全列；V／Y／Z 逐條取 `docs/reports/vm_assign.tsv`。
+  實測 **V 407／Y 21／Z 409**，**V／Y／Z 皆 0 者 65 列**（依 R-C63 照填）。
+- **R-C62(amend) —— 拆題實產 0 條**：71 條候選逐條複判後，其差異軸於各該 TC 之
+  **適用車型集合**內皆同值（Toro 依 R-C48(amend2) 為 0 後，餘下之 V／Z 於
+  `Climate_Type`＝2、`Rear_Climate`＝0 同值），63 條屬此；另 8 條三台皆 0，無可分之車型。
+  停點（> 120）未命中。詳見上繳包 §3。
+- **R-C64／R-C65 —— DR-46 結案**：四條之 `PENDING: DR-46` 行改為
+  `Send CAN: STATUS_CLIMATE2.HVACRecirc_Sts = 2 (BLINK)`（`006-02`／`012-06`）與
+  `Send CAN: STATUS_CLIMATE2.HVACRearDef_Sts = 2 (BLINK)`（`013-02`／`114-02`），
+  ER 依 canon §8.7.5(d)。**label 逐字為 `BLINK`（全大寫）** —— CMF-05 §4 所書之
+  `(Blink)` 取自 Atl-Hi `EBL_Stat` 之 `VAL_`，Atlantis（MID）之兩個訊號於兩份
+  Atl-Mi DBC 皆為 `"BLINK"`，三台大小寫一致，停點未命中。
+- **R-C64 —— `$…$` 清零**：`$Rear_HVAC_cfg$ = [Present]` 之 5 條 PC 改為
+  `PROXI Rear_Climate = 1 (Present)`（canon §8.7.5(e)），其 source class 由
+  `[ext-verbatim]` 改為 `[spec-derived]`（改寫後已非逐字引用）。
+  **作者側四欄之 `$…$` 殘留實測 0 處**；`test_item` 上半與下半本即 0 處。
+- **R-C60（CMF-05 §5）**：合稱之既有引號拿掉，實產 **5 處／4 行**
+  （`Feet plus Windshield` 4 處、`Face + Feet` 1 處 —— 後者未見於 R-C60 之條文而屬同類，
+  一併處置並於上繳包具名）。
+
+---
+
 ## R-C60 ～ R-C62 —— CMF-03_review §2 ＋ CMF-04 §1（分析層裁定，2026-09-22）
 
 **出處**：`docs/fw036/handoff/down/20260921_CMF-03_review.md` §2（R-C60／R-C61）；
