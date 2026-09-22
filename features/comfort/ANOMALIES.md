@@ -1451,3 +1451,21 @@ gate 之關鍵字表以**字面**比對，而語料之字面不一致時，綠�
 `The vehicle is not a single zone climate configuration, for which Sync is not shown (2.11)`
 並同步補 `2.11` 於其 N 欄；profile 之軸 2 `negation-users` 一併補此二條。
 **未擴充關鍵字表**（擴之即以另一份清單承擔一致性，與 R-C43 之理由同）。
+
+---
+
+## A-CMF14 ～ A-CMF17 —— CMF-03_review §1 ＋ 執行層自陳（2026-09-22）
+
+> **來源**：`docs/fw036/handoff/down/20260921_CMF-03_review.md` §1（A-CMF14～16，文字逐字）。
+> **A-CMF17 為執行層自陳**，非 review §1 之列。
+
+| # | 內容 | 來源 |
+|---|---|---|
+| A-CMF14 | CMF-01 上繳所稱「4 份 DBC 查無此二訊號」係 `grep` 未加 `-a` 之靜默結果，分析層照收未問「怎麼查的」——違反 R-G50 之精神（全稱否定須附查法與命中數）。執行層本輪自行更正 | review §1 |
+| A-CMF15 | CMF-02_review §3-3 之「導航改寫約 85 條」無量測依據；執行層量得兩個口徑為 336（上界）／115（已明寫導航步驟者）。85 作廢 | review §1 |
+| A-CMF16 | CMF-02_review 引 `R-G78`（僅為 GC-16 候選，未落地）與裸節號 `§8.6`，致 `canon_refs` 各 +1。`down/` 唯讀，不回修；後續下放包引 GC 候選一律寫「R-G78 候選（未落地）」 | review §1 |
+| A-CMF17 | **執行層把工作簿 F 欄讀成 JSON tc_id**：CMF-03 上繳 §8 自報 6 稱「`-146`（`014-04`）與 `json-275` 之 ER 含同一句」，實則 lint036 報之 `-146` 是 **row 156 之 F 欄值**，該列之 `Requirement ID` 為 `SWE1-HVAC-030-04`，**就是 `json-275` 本身**。依 R-C46，既有 466 列之 F **不重編**，故工作簿 F 與 JSON tc_id 自 CMF-02 起即為兩套號碼。該自報導致 CMF-03_review §2 下了一條「補 `-146` Remarks」之裁定，而**並無第四條可補**。CMF-04 未補，改回報 | 執行層自陳 |
+
+**A-CMF17 之教訓（記法）**：凡引用 lint036 之 `tc_id` 欄，一律標明其為**工作簿 F**；
+凡引用 JSON 者標明為 **JSON tc_id**。兩者只在 row 476 起之新列上相同。
+本上繳包起，跨層之指涉一律以 **`Requirement ID`（req_id）** 為準 —— 它是唯一兩層共用且不重編之鍵。

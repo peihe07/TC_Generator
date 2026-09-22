@@ -115,7 +115,7 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "The clause points to a table of vehicle-model specific recirc icons, but no cited section contains that table, so which icon is correct for a given vehicle model cannot be determined from the specification alone",
    "emea_ics_review": {
     "ch16_outline": "16.5",
     "verdict": "yes",

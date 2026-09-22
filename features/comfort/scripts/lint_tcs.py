@@ -146,6 +146,11 @@ AMBIGUITY_REMARKS = {
     "NR1L-ComfortHMI-467": "broken by pressing A/C",
     "NR1L-ComfortHMI-468": "broken by changing the fan speed",
     "NR1L-ComfortHMI-275": "the rear system enters",
+    # R-C61（CMF-03_review §2）—— 與 `-376` 同型：條文把某物之外觀委託給一份
+    # 對照（`the table`／`system configuration`），而該對照於 129 節全無內容；
+    # ER 依 §8.4.1 保留其模糊，改以 Remarks 承載並豁免 lint036 之 `H`／`W`
+    "NR1L-ComfortHMI-439": "table of vehicle-model specific recirc icons",
+    "NR1L-ComfortHMI-462": "the configuration-to-icon mapping",
 }
 # 67 §1 三 — content limits, hard, checked on every registered row.
 REMARKS_FORBIDDEN = ("R-C", "DR #", "A-CF", "§")

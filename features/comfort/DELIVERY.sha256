@@ -1508,3 +1508,25 @@ a558f0e1dda29352a15cfd21b71d224445b39e9c6422906e3872d0f1bcc9e936  output/archive
 #
 # 對象（sandbox 路徑）
 98ddf21a616b5f45e0b0cb0d2b163650d1b19090b8b48260cc0032148a31a47f  sandbox/revise_0921/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260921.xlsx
+
+# ENTRY 039 — 2026-09-22 — **候選本 v3**：Comfort HMI Revise 候選本（下放包 CMF-04 §5；**車型工作停在停點**）
+#
+#   type : candidate（**不入 delivered/、未交付**；候選本之身分紀錄）
+#   母本 : ENTRY 036 之對象（delivered/…_ComfortHMI_20260907.xlsx，3550d16d…）之複本
+#   產生 : scripts/cmf04_apply.py（JSON 層）→ scripts/cmf04_revise.py（候選本）
+#   內容 : **相對 ENTRY 038（v2）只差 2 格** —— R-C61 之兩條 Remarks
+#          （SWE1-HVAC-006-04、SWE1-HVAC-122-02）。**車型欄 T–Z 與 sibling 一格未動**：
+#          CMF-04 §3 之四個停點全數命中（拆題預估 72>40、全 0 之 TC 65 條、
+#          2.14 之 454 條使 Toro 全 0、無法證同一物之軸 3>2），vm_* 三表只出 plan
+#   驗證 : zip member 57＝57；DV sqref 逐字相同；B 公式 row 10–601 原樣；
+#          逐格對帳 0907 本（全部工作表，21,309 格）—— **未列於本包之格不符 0**；
+#          變更 2,865 格全數歸因（docs/reports/cmf04_candidate_cell_recon.tsv）；
+#          對 ENTRY 038 之差異 2 格全數歸因（docs/reports/cmf04_vs_0921_cell_delta.tsv）
+#   lint : JSON 層 57/57 PASS、476 TCs、0 finding；候選本層 H=0 W=0 J=0 P=0 L=0 U=4
+#          （哨兵見 sandbox/revise_0922/lint/LINT_STATUS.txt）
+#   大小 : 241549 bytes
+#   未做 : 未入 delivered/；未覆寫 0907 本與 ENTRY 037／038；未填 T–Z；未產車型 sibling；
+#          未跑 --gate／--regen；未改 RULINGS.sha.tsv；git 未執行
+#
+# 對象（sandbox 路徑）
+5d3726825ff99cb11b39a4538c340c0fc0ffbd5acab116522381e47ba29817d2  sandbox/revise_0922/FM-WI-FSM-036-A01 STLA 測試用例規範與結果_SWQT STLA Test Case Specification & Result_SWQT_ComfortHMI_20260922.xlsx

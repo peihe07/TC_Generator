@@ -22,7 +22,15 @@ if _spec is None or _spec.loader is None:
     pytest.skip("features/comfort linter not present", allow_module_level=True)
 _mod = importlib.util.module_from_spec(_spec)
 sys.modules["comfort_lint_tcs"] = _mod
-_spec.loader.exec_module(_mod)
+try:
+    _spec.loader.exec_module(_mod)
+except FileNotFoundError as exc:            # 匯入期即讀 data/*（gitignored 之衍生物）
+    # 模組層之 import 失敗會使 pytest **中斷整場收集**（Interrupted），
+    # 不只是這一檔失敗 —— 乾淨 checkout／CI 會整個測試套件跑不起來。
+    # 故缺衍生資料時以 skip 收場，與 tests/test_home_lint_tcs.py 之處置同。
+    del sys.modules["comfort_lint_tcs"]
+    pytest.skip(f"features/comfort derived data not built yet: {exc.filename}",
+                allow_module_level=True)
 upper_matches = _mod.upper_matches
 
 BODY = ("C2.) AUTO has on/ off state. A pop-up will be shown coming down from "

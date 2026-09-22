@@ -1,0 +1,3 @@
+tc_id	field	item	before	after
+NR1L-ComfortHMI-439	remarks	R-C61		The clause points to a table of vehicle-model specific recirc icons, but no cited section contains that table, so which icon is correct for a given vehicle model cannot be determined from the specification alone
+NR1L-ComfortHMI-462	remarks	R-C61		The clause makes the seat off icon depend on the system configuration and refers the reader to the Climate section, but no cited section gives the configuration-to-icon mapping, so the icon expected on this vehicle cannot be determined from the specification alone

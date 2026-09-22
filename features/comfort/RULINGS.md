@@ -1057,6 +1057,78 @@ R-C42 一、二不變；三之原文保留於條文旁，標其修訂出處。
 
 ---
 
+## R-C60 ～ R-C62 —— CMF-03_review §2 ＋ CMF-04 §1（分析層裁定，2026-09-22）
+
+**出處**：`docs/fw036/handoff/down/20260921_CMF-03_review.md` §2（R-C60／R-C61）；
+`docs/fw036/handoff/down/20260922_CMF-04.md` §1（R-C62）。皆依常設指示即時生效，Pei 可撤。
+
+**編號（live numbering，CMF-04 §1）**：落帳前實測本檔之現行最大號為 **R-C59**
+（`grep -oE "^R-C[0-9]+"`，2026-09-22）。暫編 R-C60～R-C62 **全數未被佔用，實編＝暫編**。
+
+sha8 未產：GC-16 未落地前，`RULINGS.sha.tsv` 不手改（CMF-04 前言）。
+
+條文逐字（review §2 表／CMF-04 §1，R19-2）：
+
+```
+R-C60  M7 第 4 問合稱
+`Face/Feet`、`Feet plus Windshield` **不加引號**，維持 state 句型
+（`The Face/Feet airflow mode is active`）；若該行為 Select 動作，寫
+`Select the airflow mode "Face" and "Feet"` —— **先量**工作簿與條文有無此雙鍵
+操作之逐字，查無則整行維持原樣並列 plan，不改
+```
+
+```
+R-C61  `H`／`W` 之 `matches`
+該四條之 `most closely matches` 為條文逐字（2.3／7.x 同句），**不改寫**。
+lint036 `H`／`W` 於 comfort 範圍對「已登 `AMBIGUITY_REMARKS` 且 Remarks 載
+ambiguity 句」之列豁免，做法比照 Security `FEATURE_EXEMPT_QUOTED`
+（位置條件式，非全列豁免）。目標 H＝4→2（`-035`／`-301`／`-440` 另三處先量是否
+同型，同型則一併登錄後豁免）
+```
+
+```
+R-C62  車型判定規則（CMF-04 §1）
+以 `vm_axis_plan.tsv` 為底，每條 TC 對三台（V Promaster／Y Toro／Z Fastback）定 1／0：
+
+一、PC 載配置軸，該軸有 PROXI 參數對應，三台之值使該 TC 於某台**不成立**
+    → 該台＝0，其餘＝1。**不拆**（TC 本身已是該軸之 sibling）
+二、同一 leaf 只有一條 TC，但其觸發／ER 依 PROXI 值在三台間**不同**
+    → **拆**：每台一組值一條 sibling，各標所屬台＝1；ID 接尾自 -477
+三、PC 無配置軸、內容不涉 PROXI 參數 → 三台＝1
+四、軸有但**無 PROXI 參數對應**（Auto Recirc、AUTO ECO 於 PC 從未逐字出現；
+    EMEA ICS 無參數）→ 三台維持 1，逐條列於 `vm_unmapped.tsv`，待 Pei
+
+PROXI 值取 `proxi_axis_values.tsv`；`Dec` 與 `PROXI Read` 不一致者，**以 `Dec`
+（含 label）為準**並在 `vm_assign.tsv` 註記另一值 —— 理由：label 只附於 `Dec`，
+`PROXI Read` 無法對應條文文字。此為分析層之判斷，請 Pei 核。
+```
+
+同表另二列（非編號裁定，照錄）：**R-C58 停點之適用** —— 准，不取字面代入
+`BCM_FD_27.EBL_Stat`；**軸 2 兩條補 PC ＋ `2.11`** —— 核，屬既存違規之顯化。
+
+**CMF-04 之落實（執行層，2026-09-22）**：
+
+- **R-C60 —— 不改任何一行**。條文側量測：`select … and … mode` **0 節**、
+  `press … and …(Face|Feet|Windshield)` **0 節**、`two mode buttons` **0 節**
+  → 雙鍵操作之逐字查無 → 依條文後半「整行維持原樣並列 plan」。
+  plan：`docs/reports/compound_label_plan.tsv`（42 列）。
+  **附帶查得**：0907 交付本自身即不一致 —— L＋M 兩欄之合稱已引號 2 處、未引號 11 處，
+  非 CMF-02／CMF-03 所造（三本實測同數）。
+- **R-C61 —— 落實**。`-439`（`006-04`）與 `-462`（`122-02`）經量測與 `-376`（`096-03`）
+  **同型**（條文把某物之外觀委託給一份對照，而該對照於 129 節全無內容），
+  補 Remarks 並登 `AMBIGUITY_REMARKS`；lint036 新增 `FEATURE_EXEMPT_REMARKED`。
+  **實測 H 6→0、W 5→0**（裁定所書之「H＝4→2」係以 R-C56 之前之計數為底，見上繳 §3-2）。
+  **0907 基線亦隨規則移動：H 4→3**（row 311 早已帶 Remarks），內容未變。
+- **`-146` 之更正**：CMF-03_review §2 所指之「`-146`」係**工作簿 F 欄**之值，其列
+  （row 156）之 `Requirement ID` 為 `SWE1-HVAC-030-04`，即 `json-275` ——
+  **Remarks 已於 CMF-03 補齊，無第四條可補**。該誤源於 CMF-03 上繳 §8 自報 6
+  把工作簿 F 讀成 JSON tc_id（既有 466 列之 F 依 R-C46 不重編，二者本就不同）。登 **A-CMF17**。
+- **R-C62 —— 未套用**：CMF-04 §3 之**四個停點全數命中**，車型欄與 sibling 一格未動，
+  只出 `vm_assign.tsv`／`vm_split_plan.tsv`／`vm_unmapped.tsv` 三表。
+  詳見 `docs/fw036/handoff/up/20260922_CMF-04.md` §2。
+
+---
+
 ## R-C54 ～ R-C59、R-C48(amend)、R-C49(amend)、R-C50(amend) —— CMF-02_review §2（分析層裁定，2026-09-21）
 
 **出處**：`docs/fw036/handoff/down/20260918_CMF-02_review.md` §2（依常設指示即時生效）；

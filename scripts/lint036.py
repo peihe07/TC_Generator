@@ -627,6 +627,18 @@ FEATURE_EXEMPT_QUOTED: dict[str, list[str]] = {"security": ["H"]}
 # 是否同此形態未經量測，全域放寬即是拿未量測之面換一行綠燈。
 # 該行仍受 `T`（說明之語言）與 `U`（佔位之可見性）覆蓋，不會變成沉默。
 FEATURE_EXEMPT_PENDING_LINE: dict[str, list[str]] = {"comfort": ["P"]}
+
+# **列級之條件式豁免**（R-C61，CMF-03_review §2）—— 只吞「該列帶已登錄之
+# ambiguity Remarks」之 `H`／`W` **關係類**命中（`RE_H_RELATION`／`RE_W_COMPARE`）。
+# 由來：canon §8.4.1 要求「ambiguous source → preserve ambiguity」，而保留下來之
+# 模糊語（`most closely matches`／`matches the vehicle's configuration`）正是 `H`／`W`
+# 所獵之字面 —— 兩道規則在同一行上相反。裁定：條文逐字之模糊**不改寫**，
+# 改以 Remarks 承載，並對該列豁免。
+# **豁免之依據是 Remarks 非空，不是 `matches` 這個字**：Comfort 之 JSON 層 gate
+# `remarks` 已強制「非空 Remarks 必為登錄於 `AMBIGUITY_REMARKS` 之句、≥ 40 字元、
+# 英文、無內部代號」，故「Remarks 非空」在本 feature 等價於「已登錄之 ambiguity」。
+# 施檢面縮到 feature；`RE_H` 之一般模糊語**不在豁免內**（只放寬關係類）。
+FEATURE_EXEMPT_REMARKED: dict[str, list[str]] = {"comfort": ["H", "W"]}
 RE_PENDING_LINE = re.compile(r"^\s*(?:\d+\.\s*)?PENDING:")
 
 
@@ -993,7 +1005,9 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
     # W：ER 有比較而上半無數值（profile 專屬）
     if profile:
         _up = split_lines(fields["test_item"])
-        if _up and not RE_W_NUMERAL.search(_up[0]):
+        w_remarked = ("W" in FEATURE_EXEMPT_REMARKED.get(profile or "", [])
+                      and bool(fields.get("remarks", "").strip()))
+        if _up and not RE_W_NUMERAL.search(_up[0]) and not w_remarked:
             for m in RE_W_COMPARE.finditer(er):
                 add("W", "er", f"比較關係 {m.group(0)!r}，而 test_item 上半無數值",
                     snippet_of(er, m.start()))
@@ -1011,6 +1025,10 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
 
     # H ER 模糊（R-SEC20(amend)(c)：引文內之命中依 `FEATURE_EXEMPT_QUOTED` 豁免）
     h_quoted = profile is not None and "H" in FEATURE_EXEMPT_QUOTED.get(profile, [])
+    # R-C61：本列帶已登錄之 ambiguity Remarks 者，其**關係類**命中豁免
+    h_remarked = (profile is not None
+                  and "H" in FEATURE_EXEMPT_REMARKED.get(profile, [])
+                  and bool(fields.get("remarks", "").strip()))
     for m in RE_H.finditer(er):
         if h_quoted and inside_spans((m.start(), m.end()), spans):
             continue
@@ -1018,6 +1036,8 @@ def check_row(fields: dict[str, str], row_no: int, tc_id: str,
     if profile:
         for m in RE_H_RELATION.finditer(er):
             if h_quoted and inside_spans((m.start(), m.end()), spans):
+                continue
+            if h_remarked:
                 continue
             add("H", "er", f"關係模糊語 {m.group(0)!r}", snippet_of(er, m.start()))
 
@@ -1480,7 +1500,8 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
     # 不逐列複述 —— 缺欄是工作簿之事實，不是每一列各自的違規。
     enabled = check_order(profile)
     remarks_idx = (security_remarks_idx(list(rows[header_row - 1]))
-                   if ("SS" in enabled or "RM-DIAG" in enabled) else None)
+                   if ("SS" in enabled or "RM-DIAG" in enabled
+                       or FEATURE_EXEMPT_REMARKED.get(profile or "")) else None)
     # R-DIAG11 列級豁免所需之 `Test Result` 欄
     tr_idx = (test_result_idx(list(rows[header_row - 1]))
               if ROW_EXEMPT_OOS.get(profile or "") else None)
@@ -1499,6 +1520,9 @@ def lint_sheet(ws, length_limit: int, profile: str | None = None) -> SheetResult
     for offset, raw in enumerate(rows[header_row:], start=header_row + 1):
         fields = {key: cell_text(raw[idx]) if idx < len(raw) else ""
                   for key, idx in columns.items() if key in FIELD_HEADERS}
+        # R-C61 之豁免判準所需（非檢查對象，故不入 FIELD_HEADERS）
+        fields["remarks"] = (cell_text(raw[remarks_idx])
+                             if remarks_idx is not None and remarks_idx < len(raw) else "")
         if not any(fields[k].strip() for k in ("test_item", "proc", "er")):
             continue
         tc_id = cell_text(raw[columns["tc_id"]]) if "tc_id" in columns else ""

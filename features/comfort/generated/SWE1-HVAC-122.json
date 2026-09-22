@@ -127,7 +127,7 @@
    "split_reason": "",
    "functional_safety": "NA",
    "estimated_test_time": "",
-   "remarks": "",
+   "remarks": "The clause makes the seat off icon depend on the system configuration and refers the reader to the Climate section, but no cited section gives the configuration-to-icon mapping, so the icon expected on this vehicle cannot be determined from the specification alone",
    "test_item_authored": "The off icon of seats shall depend on system configuration"
   }
  ]
