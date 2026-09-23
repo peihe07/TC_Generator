@@ -401,6 +401,31 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 
 ---
 
+## RDF-17 —— 同一動作於 R1 High／R1 Low 兩章異名（`Make Favorite` vs `Edit Favorite`）
+
+**觀察**：「把某台 AUX 相機設為最愛」之控制項，SYS1 兩章給出**不同之按鍵名**。
+
+**證據**（`SYS1_HMI_HeadUnitCameraSystems_…` cache 本）：
+
+| 章 | 節 | 座標 | 逐字 |
+|---|---|---|---|
+| §30（R1 High，`Favorite a camera – Camera App`）| §30.1.2 | `NRL-188129` | `From the AUX Cam settings menu, the user presses **“Make Favorite”**.` |
+| 同上 | §30.1.4 | `NRL-188131` | `the button in the settings menu updates to read **“Remove as favorite”**` |
+| §34.9（R1 Low，`AUX Cam Settings`）| §34.9.4 | `NRL-188192` | `From the AUX Cam settings menu, the user presses **“Edit Favorite”**` |
+
+兩句之句型**逐字相同**（`From the AUX Cam settings menu, the user presses “…”`），
+只按鍵名相異 —— 即同一動作、同一位置、兩個 label。
+
+**TC 側現行處置**：各依其來源之逐字書寫 —— `NR1L-RVCHMI-141`（§30.1.2）寫 `“Make Favorite”`、
+`NR1L-RVCHMI-162`（§34.9.4）寫 `“Edit Favorite”`；差異記於 `b05_plan.tsv` 之 note。
+**不統一、不造第三種**（§4.3.1）。
+
+**請求之動作**：確認實機之按鍵名。若兩者本即同一鍵，請更正其一；
+若 R1 Low 之鍵確為 `Edit Favorite`（即該鍵同時管新增與移除），請於 §34.9.4 補其行為說明
+—— 現行條文只寫「按下」，未寫按下之後果（§30 側有 §30.1.3～§30.1.6 四列說明，§34.9 側無）。
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -421,3 +446,4 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 | RDF-14 | `SWE1-RVC-136`／`-139`（SYS1 §34.3／§34.4）| 子列與父題皆逐字全等，僅圖不同 | A-CA36 |
 | RDF-15 | `PU0456`（Pop Up List）| 按鈕欄拼作 `<Nol>` | `NR1L-RVCHMI-137` |
 | RDF-16 | `SWE1-RVC-026`（SYS1 §8.2）| 橫幅時限 SYS1 5 秒 vs `PU0362` 10 | `NR1L-RVCHMI-173` |
+| RDF-17 | `SWE1-RVC-151`（SYS1 §34.9.4）| 同動作於 R1 High／Low 異名 | `NR1L-RVCHMI-141`／`-162` |

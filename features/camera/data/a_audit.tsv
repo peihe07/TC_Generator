@@ -1,0 +1,241 @@
+tc_id	req_id	leaf_section	test_set	sibling_tcs	axes	evidence	proposed_split	confidence	rationale
+NR1L-RVC-001	SWE-CAM-001	CFTS092-4781640	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-002	SWE-CAM-001	1141	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-003	SWE-CAM-015	1378	Display Arbitration	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-004	SWE-CAM-015	92	Display Arbitration	1	mode	狀態詞 automatic／reverse	0	L	`automatic`／`manual`／`reverse` 等狀態詞為該來源列之**既有脈絡**（A 本之 Automatic／Manual Display Mode 於 SYS2 本即分列），非同一列內之相異 mode
+NR1L-RVC-005	SWE-CAM-016	532	Display Arbitration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-006	SWE-CAM-016	548	Display Arbitration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-007	SWE-CAM-018	CFTS092-4781643	Display Arbitration	4	多觸發併列	6 個觸發步、4 種動作：Press／Select／Send／Set	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-008	SWE-CAM-018	CFTS092-4781643	Display Arbitration	4	多觸發併列	6 個觸發步、4 種動作：Press／Select／Send／Set	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-009	SWE-CAM-018	CFTS092-4781643	Display Arbitration	4	boundary	數值 10 s／8 mph；TC 內出現之數 ['1', '10', '12', '13', '14', '2']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-010	SWE-CAM-018	CFTS092-4781643	Display Arbitration	4	boundary	數值 10 s／8 mph；TC 內出現之數 ['1', '10', '12', '13', '14', '2']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-011	SWE-CAM-015	484	Display Arbitration	1	列舉；mode	並列 3 項 vs 兄弟 TC 1：BCM_FD_10.CmdIgnSts = RUN／RVC image active／Shift Lever changes to Reverse Shi ｜ 狀態詞 automatic／reverse	0	L	並列項為**同一觸發之 AND 條件**（`CmdIgnSts = RUN` ＋ `RVC image active` ＋ `Shift Lever = R`）或**同一觸發之多結果**（§5.7 允許），非須拆之替代項；`automatic`／`manual`／`reverse` 等狀態詞為該來源列之**既有脈絡**（A 本之 Automatic／Manual Display Mode 於 SYS2 本即分列），非同一列內之相異 mode
+NR1L-RVC-012	SWE-CAM-015	484	Display Arbitration	1	mode	狀態詞 automatic／reverse	0	L	`automatic`／`manual`／`reverse` 等狀態詞為該來源列之**既有脈絡**（A 本之 Automatic／Manual Display Mode 於 SYS2 本即分列），非同一列內之相異 mode
+NR1L-RVC-013	SWE-CAM-015	1065	Display Arbitration	1	列舉；mode	並列 2 項 vs 兄弟 TC 1：Gear shifted out of Reverse: Shift／Camera Delay Disabled: IPC_VEHICLE ｜ 狀態詞 automatic／reverse	0	L	並列項為**同一觸發之 AND 條件**（`CmdIgnSts = RUN` ＋ `RVC image active` ＋ `Shift Lever = R`）或**同一觸發之多結果**（§5.7 允許），非須拆之替代項；`automatic`／`manual`／`reverse` 等狀態詞為該來源列之**既有脈絡**（A 本之 Automatic／Manual Display Mode 於 SYS2 本即分列），非同一列內之相異 mode
+NR1L-RVC-014	SWE-CAM-015	1098	Display Arbitration	1	mode	狀態詞 automatic／reverse	0	L	`automatic`／`manual`／`reverse` 等狀態詞為該來源列之**既有脈絡**（A 本之 Automatic／Manual Display Mode 於 SYS2 本即分列），非同一列內之相異 mode
+NR1L-RVC-015	SWE-CAM-015	479	Display Arbitration	1	列舉；mode	並列 2 項 vs 兄弟 TC 1：Gear shifted out of Reverse to Shi／Camera Delay Enabled: IPC_VEHICLE_ ｜ 狀態詞 automatic／reverse	0	L	並列項為**同一觸發之 AND 條件**（`CmdIgnSts = RUN` ＋ `RVC image active` ＋ `Shift Lever = R`）或**同一觸發之多結果**（§5.7 允許），非須拆之替代項；`automatic`／`manual`／`reverse` 等狀態詞為該來源列之**既有脈絡**（A 本之 Automatic／Manual Display Mode 於 SYS2 本即分列），非同一列內之相異 mode
+NR1L-RVC-016	SWE-CAM-015	1099	Display Arbitration	1	negative；mode	來源否定句 'unless'；ER 無否定 ｜ 狀態詞 automatic／park／reverse	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接；`automatic`／`manual`／`reverse` 等狀態詞為該來源列之**既有脈絡**（A 本之 Automatic／Manual Display Mode 於 SYS2 本即分列），非同一列內之相異 mode
+NR1L-RVC-017	SWE-CAM-015	1576	Display Arbitration	2	列舉	"並列 4 項 vs 兄弟 TC 2：BCM_FD_10.CmdIgnSts != RUN,／BRAKE_FD_2.VehicleSpeedVSOSig >= c／Shift Lever status change to ""Park／RVC_ImageDefeat.Req = Pressed. the"	2	H	`SYS-RA-VF551_V2-496` 之 any-of 退出條件**四款**（`CmdIgnSts != RUN`／`VehicleSpeedVSOSig >= c_VEHSPD_MAX`／`ShiftLeverPosition = P`／`RVC_ImageDefeat.Req = Pressed`），而該來源列只有 `-017`（點火）與 `-018`（P 檔）**兩個** TC；**速度**與 **ImageDefeat** 兩支未驗。追加 2 列（記於本列，`-018` 不重複計）
+NR1L-RVC-018	SWE-CAM-015	1576	Display Arbitration	2	列舉	"並列 4 項 vs 兄弟 TC 2：BCM_FD_10.CmdIgnSts != RUN,／BRAKE_FD_2.VehicleSpeedVSOSig >= c／Shift Lever status change to ""Park／RVC_ImageDefeat.Req = Pressed. the"	0	L	同 `-017` 之來源列；追加數已記於 `-017`，本列不重複計
+NR1L-RVC-019	SWE-CAM-015	1378	Display Arbitration	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-020	SWE-CAM-015	1378	Display Arbitration	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-021	SWE-CAM-015	1442	Display Arbitration	2	negative	來源否定句 'shall not'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-022	SWE-CAM-015	1442	Display Arbitration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-023	SWE-CAM-016	CFTS092-4781638	Display Arbitration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-024	SWE-CAM-016	CFTS092-4781639	Display Arbitration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-025	SWE-CAM-016	CFTS092-4781637	Display Arbitration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-026	SWE-CAM-016	1100	Display Arbitration	1	negative；mode	來源否定句 'unless'；ER 無否定 ｜ 狀態詞 manual／park	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接；`automatic`／`manual`／`reverse` 等狀態詞為該來源列之**既有脈絡**（A 本之 Automatic／Manual Display Mode 於 SYS2 本即分列），非同一列內之相異 mode
+NR1L-RVC-027	SWE-CAM-016	534	Display Arbitration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-028	SWE-CAM-018	CFTS092-4781642	Display Arbitration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-029	SWE-CAM-018	1765	Display Arbitration	1	negative	來源否定句 'not'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-030	SWE-CAM-018	960	Display Arbitration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-031	SWE-CAM-018	960	Display Arbitration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-032	SWE-CAM-020	1603	Display Arbitration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-033	SWE-CAM-020	1603	Display Arbitration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-034	SWE-CAM-016	CFTS092-4781628	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-035	SWE-CAM-016	CFTS092-4781632	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-036	SWE-CAM-016	CFTS092-4781633	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-037	SWE-CAM-016	CFTS092-4781649	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-038	SWE-CAM-016	CFTS092-4781650	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-039	SWE-CAM-016	CFTS092-4781654	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-040	SWE-CAM-016	CFTS092-4781655	Additional Cameras	1	boundary	數值 8 mph／8 MPH；TC 內出現之數 ['1', '12', '2', '205', '2261', '3']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-041	SWE-CAM-016	CFTS092-4781657	Additional Cameras	1	boundary	數值 8 MPH；TC 內出現之數 ['1', '12', '2', '206', '2261', '3']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-042	SWE-CAM-016	CFTS092-4781658	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-043	SWE-CAM-016	CFTS092-4781656	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-044	SWE-CAM-016	CFTS092-4781660	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-045	SWE-CAM-016	CFTS092-4781661	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-046	SWE-CAM-016	CFTS092-4781641	Display Arbitration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-047	SWE-CAM-001	CFTS092-4781647	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-048	SWE-CAM-001	CFTS092-4781653	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-049	SWE-CAM-001	505	Startup and Shutdown	1	boundary	數值 five seconds；TC 內出現之數 ['0', '1', '2', '3', '4', '5']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-050	SWE-CAM-001	505	Startup and Shutdown	1	boundary	數值 five seconds；TC 內出現之數 ['0', '1', '2', '3', '4', '5']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-051	SWE-CAM-001	514	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-052	SWE-CAM-001	1624	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-053	SWE-CAM-001	507	Startup and Shutdown	1	boundary	數值 five seconds；TC 內出現之數 ['1', '2', '3', '4', '5']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-054	SWE-CAM-001	507	Startup and Shutdown	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-055	SWE-CAM-001	507	Startup and Shutdown	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-056	SWE-CAM-001	2197	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-057	SWE-CAM-001	1142	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-058	SWE-CAM-001	303	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-059	SWE-CAM-001	1137	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-060	SWE-CAM-001	820	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-061	SWE-CAM-001	1139	Startup and Shutdown	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Send	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-062	SWE-CAM-001	823	Startup and Shutdown	1	多觸發併列	4 個觸發步、3 種動作：Press／Select／Set	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-063	SWE-CAM-001	825	Startup and Shutdown	1	多觸發併列	4 個觸發步、3 種動作：Press／Select／Set	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-064	SWE-CAM-001	320	Startup and Shutdown	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Send	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-065	SWE-CAM-001	447	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-066	SWE-CAM-001	1835	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-067	SWE-CAM-001	2336	Startup and Shutdown	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Set	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-068	SWE-CAM-001	2338	Startup and Shutdown	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Set	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-069	SWE-CAM-012	549	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-070	SWE-CAM-012	1353	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-071	SWE-CAM-012	527	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-072	SWE-CAM-014	549	Startup and Shutdown	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-073	SWE-CAM-002	1922	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-074	SWE-CAM-002	1921	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-075	SWE-CAM-002	629	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-076	SWE-CAM-002	629	Configuration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-077	SWE-CAM-002	629	Configuration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-078	SWE-CAM-002	2024	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-079	SWE-CAM-002	599	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-080	SWE-CAM-002	1574	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-081	SWE-CAM-002	1575	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-082	SWE-CAM-002	1575	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-083	SWE-CAM-002	563	Configuration	2	negative	來源否定句 'No'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-084	SWE-CAM-002	563	Configuration	2	negative	來源否定句 'No'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-085	SWE-CAM-002	935	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-086	SWE-CAM-002	1919	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-087	SWE-CAM-002	935	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-088	SWE-CAM-002	1663	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-089	SWE-CAM-002	1455	Configuration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-090	SWE-CAM-002	1455	Configuration	2	negative	來源否定句 'not'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-091	SWE-CAM-002	1792	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-092	SWE-CAM-005	522	Configuration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-093	SWE-CAM-017	CFTS092-4781662	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-094	SWE-CAM-017	CFTS092-4781663	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-095	SWE-CAM-003	CFTS092-4781634	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-096	SWE-CAM-003	CFTS092-4781651	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-097	SWE-CAM-003	CFTS092-4781652	Additional Cameras	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-098	SWE-CAM-003	1578	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-099	SWE-CAM-003	1758	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-100	SWE-CAM-003	1762	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-101	SWE-CAM-003	1753	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-102	SWE-CAM-003	1680	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-103	SWE-CAM-003	1679	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-104	SWE-CAM-003	1725	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-105	SWE-CAM-003	520	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-106	SWE-CAM-003	509	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-107	SWE-CAM-003	526	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-108	SWE-CAM-003	1197	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-109	SWE-CAM-003	1642	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-110	SWE-CAM-003	1646	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-111	SWE-CAM-003	1917	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-112	SWE-CAM-003	1573	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-113	SWE-CAM-003	523	State Handling	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Send	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-114	SWE-CAM-003	1680	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-115	SWE-CAM-003	1684	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-116	SWE-CAM-003	1682	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-117	SWE-CAM-003	2359	State Handling	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-118	SWE-CAM-008	1046	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-119	SWE-CAM-008	1728	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-120	SWE-CAM-008	1666	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-121	SWE-CAM-008	1672	LVDS Messaging	1	negative	來源否定句 'no'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-122	SWE-CAM-008	1673	LVDS Messaging	1	boundary	數值 two LVDS；TC 內出現之數 ['0', '1', '2', '3']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-123	SWE-CAM-008	1674	LVDS Messaging	1	boundary	數值 two LVDS；TC 內出現之數 ['1', '2', '3']	0	L	邊界以 `limit±1` 夾之（`205`／`206`、`12`／`13`）而未寫出 limit 本身 —— **A-CA30** 所迫；或 limit 以**英文數字**書寫（`five seconds`／`two LVDS`）而偵測器只比對阿拉伯數字
+NR1L-RVC-124	SWE-CAM-008	1046	LVDS Messaging	4	negative	來源否定句 'never'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-125	SWE-CAM-008	1046	LVDS Messaging	4	negative	來源否定句 'never'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-126	SWE-CAM-008	1046	LVDS Messaging	4	negative	來源否定句 'never'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-127	SWE-CAM-008	1046	LVDS Messaging	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-128	SWE-CAM-008	2225	LVDS Messaging	1	多觸發併列	4 個觸發步、3 種動作：Press／Select／Set	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-129	SWE-CAM-008	2226	LVDS Messaging	1	多觸發併列	4 個觸發步、3 種動作：Press／Select／Set	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-130	SWE-CAM-009	595	LVDS Messaging	1	列舉	並列 2 項 vs 兄弟 TC 1：RVC display active on the Radio ve／Vehicle speed above c_VEHSPD_MAX B	0	L	並列項為**同一觸發之 AND 條件**（`CmdIgnSts = RUN` ＋ `RVC image active` ＋ `Shift Lever = R`）或**同一觸發之多結果**（§5.7 允許），非須拆之替代項
+NR1L-RVC-131	SWE-CAM-009	750	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-132	SWE-CAM-009	750	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-133	SWE-CAM-009	750	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-134	SWE-CAM-009	750	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-135	SWE-CAM-009	750	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-136	SWE-CAM-010	1924	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-137	SWE-CAM-010	1232	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-138	SWE-CAM-010	630	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-139	SWE-CAM-010	1102	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-140	SWE-CAM-010	1102	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-141	SWE-CAM-010	1134	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-142	SWE-CAM-010	1134	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-143	SWE-CAM-010	2203	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-144	SWE-CAM-010	2203	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-145	SWE-CAM-010	2476	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-146	SWE-CAM-010	2476	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-147	SWE-CAM-010	2476	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-148	SWE-CAM-010	2476	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-149	SWE-CAM-010	2476	LVDS Messaging	5	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-150	SWE-CAM-011	616	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-151	SWE-CAM-011	1711	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-152	SWE-CAM-011	1883	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-153	SWE-CAM-011	1884	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-154	SWE-CAM-011	615	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-155	SWE-CAM-011	1712	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-156	SWE-CAM-011	2035	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-157	SWE-CAM-011	2036	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-158	SWE-CAM-011	614	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-159	SWE-CAM-011	1713	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-160	SWE-CAM-011	613	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-161	SWE-CAM-011	1714	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-162	SWE-CAM-011	1158	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-163	SWE-CAM-011	1925	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-164	SWE-CAM-011	624	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-165	SWE-CAM-011	624	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-166	SWE-CAM-011	624	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-167	SWE-CAM-011	616	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-168	SWE-CAM-011	616	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-169	SWE-CAM-011	615	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-170	SWE-CAM-011	615	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-171	SWE-CAM-011	614	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-172	SWE-CAM-011	614	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-173	SWE-CAM-011	613	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-174	SWE-CAM-011	613	LVDS Messaging	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-175	SWE-CAM-011	2020	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-176	SWE-CAM-011	2298	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-177	SWE-CAM-011	2475	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-178	SWE-CAM-011	2022	LVDS Messaging	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-179	SWE-CAM-004	123	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-180	SWE-CAM-004	1589	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-181	SWE-CAM-004	926	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-182	SWE-CAM-004	1590	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-183	SWE-CAM-004	927	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-184	SWE-CAM-004	1591	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-185	SWE-CAM-004	1821	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-186	SWE-CAM-004	123	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-187	SWE-CAM-004	926	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-188	SWE-CAM-004	927	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-189	SWE-CAM-004	351	Diagnostics	1	negative	來源否定句 'without'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-190	SWE-CAM-004	628	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-191	SWE-CAM-004	1993	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-192	SWE-CAM-004	617	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-193	SWE-CAM-004	1994	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-194	SWE-CAM-004	1088	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-195	SWE-CAM-004	2132	Diagnostics	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-196	SWE-CAM-006	1662	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-197	SWE-CAM-006	931	Video Pipeline	1	列舉；negative	"並列 2 項 vs 兄弟 TC 1：Set the DTC to True／Display HMI as defined in the ""HMI ｜ 來源否定句 'does not'；ER 無否定"	0	L	並列項為**同一觸發之 AND 條件**（`CmdIgnSts = RUN` ＋ `RVC image active` ＋ `Shift Lever = R`）或**同一觸發之多結果**（§5.7 允許），非須拆之替代項；否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-198	SWE-CAM-006	1592	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-199	SWE-CAM-006	931	Video Pipeline	1	negative	來源否定句 'does not'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-200	SWE-CAM-006	2271	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-201	SWE-CAM-006	1164	Video Pipeline	1	列舉	並列 2 項 vs 兄弟 TC 1：The rearview image shall be displa／The rearview image shall be displa	1	M	`SYS-RA-VF551_V42-226` 含兩個 `The rearview image shall be displayed …` 子句（資料路徑之複製、與 `RESPONSE_TIME` 內之顯示），現有 TC 只驗後者之時限；前者（`Rear_Camera_Repetition.Data` 之複製）之可觀察性須先確認（LVDS 側），追加 1 列或併入 bench_verify
+NR1L-RVC-202	SWE-CAM-006	2357	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-203	SWE-CAM-006	2378	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-204	SWE-CAM-006	2366	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-205	SWE-CAM-006	2367	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-206	SWE-CAM-006	2370	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-207	SWE-CAM-006	2372	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-208	SWE-CAM-006	2396	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-209	SWE-CAM-006	1777	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-210	SWE-CAM-006	1836	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-211	SWE-CAM-006	1090	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-212	SWE-CAM-006	1996	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-213	SWE-CAM-019	1119	Video Pipeline	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-214	SWE-CAM-019	1115	Video Pipeline	1	boundary	數值 50 %；TC 內出現之數 ['1', '2', '3', '50']	1	M	`over 50%` 之邊界未夾（TC 只出現 `50`，無 `49`／`51`）；惟亮度量測本即需治具（`bench_verify.md` 已列），追加 1 列或於既有列加一個下界觀察點
+NR1L-RVC-215	SWE-CAM-021	1759	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-216	SWE-CAM-021	1760	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-217	SWE-CAM-021	1764	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-218	SWE-CAM-021	1751	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-219	SWE-CAM-021	1684	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-220	SWE-CAM-021	1682	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-221	SWE-CAM-021	1761	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-222	SWE-CAM-021	1752	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-223	SWE-CAM-021	1572	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-224	SWE-CAM-021	520	HMI Overlays	1	negative	來源否定句 'No'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-225	SWE-CAM-021	1725	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-226	SWE-CAM-022	520	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-227	SWE-CAM-022	1752	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-228	SWE-CAM-022	1761	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-229	SWE-CAM-022	1753	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-230	SWE-CAM-022	1578	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-231	SWE-CAM-022	1762	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-232	SWE-CAM-022	1758	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-233	SWE-CAM-023	523	HMI Overlays	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Send	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-234	SWE-CAM-023	523	HMI Overlays	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Send	0	L	偵測器把 `ENTER_SETTINGS_APP`／App Drawer 之**導航 hop** 計為觸發步（**GCB-11** 同因）；實際觸發只有一個
+NR1L-RVC-235	SWE-CAM-023	1708	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-236	SWE-CAM-023	1573	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-237	SWE-CAM-023	1707	HMI Overlays	1	negative	來源否定句 'Not'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-238	SWE-CAM-023	1705	HMI Overlays	1	negative	來源否定句 'Not'；ER 無否定	0	L	否定詞位於**前提子句**（`unless`／`without`）或該否定側已由**同源兄弟列**承接
+NR1L-RVC-239	SWE-CAM-023	2201	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）
+NR1L-RVC-240	SWE-CAM-023	2296	HMI Overlays	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（SYS2 `Description` 全文掃描）

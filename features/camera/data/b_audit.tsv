@@ -1,0 +1,198 @@
+tc_id	req_id	leaf_section	test_set	sibling_tcs	axes	evidence	proposed_split	confidence	rationale
+NR1L-RVCHMI-001	SWE1-RVC-041	6.1.2	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-002	SWE1-RVC-042	6.1.3	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-003	SWE1-RVC-043	6.1.5	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-004	SWE1-RVC-044	6.1.6	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-005	SWE1-RVC-048-01	6.5.1	Activation and Exit	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-006	SWE1-RVC-048-02	6.5.1	Activation and Exit	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-007	SWE1-RVC-048-03	6.5.1	Activation and Exit	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-008	SWE1-RVC-049	6.5.2	Activation and Exit	1	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-009	SWE1-RVC-050	6.5.3	Activation and Exit	1	format/type	型別配對 with/without camera app：'If the camera app is present'	0	L	該型別配對已由本列之 Procedure 同時驗（`-075`／`-089`），或匹配到的是設定名而非型別（`-069`），或其反向side 為來源未載之逆命題（`-009`／`-076`）
+NR1L-RVCHMI-010	SWE1-RVC-051-01	6.7.1	Activation and Exit	4	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-011	SWE1-RVC-051-02	6.7.1	Activation and Exit	4	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-012	SWE1-RVC-051-03	6.7.1	Activation and Exit	4	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-013	SWE1-RVC-051-04	6.7.1	Activation and Exit	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-014	SWE1-RVC-052	6.10.1	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-015	SWE1-RVC-007-01	7.1	Activation and Exit	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-016	SWE1-RVC-007-02	7.1	Activation and Exit	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-017	SWE1-RVC-008	7.2	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-018	SWE1-RVC-008-01	7.2.1	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-019	SWE1-RVC-008-02	7.2.2	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-020	SWE1-RVC-008-03	7.2.3	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-021	SWE1-RVC-008-04	7.2.4	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-022	SWE1-RVC-008-05	7.2.5	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-023	SWE1-RVC-008-06	7.2.6	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-024	SWE1-RVC-015	7.3	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-025	SWE1-RVC-016	7.3.1	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-026	SWE1-RVC-017	7.3.2	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-027	SWE1-RVC-018	7.3.3	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-028	SWE1-RVC-019-01	7.4	Activation and Exit	4	negative	來源否定句 'greyed'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-029	SWE1-RVC-019-02	7.4	Activation and Exit	4	negative	來源否定句 'greyed'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-030	SWE1-RVC-019-03	7.4	Activation and Exit	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-031	SWE1-RVC-019-04	7.4	Activation and Exit	4	negative	來源否定句 'greyed'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-032	SWE1-RVC-020	7.5	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-033	SWE1-RVC-021	7.5.1	Activation and Exit	1	boundary	數值 10 seconds；TC 內出現之數 ['1', '10', '12', '2', '206', '2261']	1	M	§7.5.1 之 10 秒寬限只驗「10 秒後消失」而未驗「10 秒前仍在」；與 `-035` 之 9／11 兩點形制不一致。追加 1 列（或併入本列加一步）以夾該窗
+NR1L-RVCHMI-034	SWE1-RVC-022	7.5.2	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-035	SWE1-RVC-023-01	7.5.3	Activation and Exit	3	boundary	數值 10 seconds／8 mph／10 seconds；TC 內出現之數 ['1', '11', '2', '2261', '3', '376']	0	L	邊界值以 `limit±1` 夾之而未寫出 limit 本身 —— 該寫法為 **A-CA30** 所迫（8 mph＝12.874752 km/h 無恰等之 raw），偵測器要求 limit 與 limit±1 同時出現故誤判
+NR1L-RVCHMI-036	SWE1-RVC-023-02	7.5.3	Activation and Exit	3	boundary	數值 10 seconds／8 mph／10 seconds；TC 內出現之數 ['1', '12', '2', '205', '206', '2261']	0	L	邊界值以 `limit±1` 夾之而未寫出 limit 本身 —— 該寫法為 **A-CA30** 所迫（8 mph＝12.874752 km/h 無恰等之 raw），偵測器要求 limit 與 limit±1 同時出現故誤判
+NR1L-RVCHMI-037	SWE1-RVC-023-03	7.5.3	Activation and Exit	3	boundary	數值 10 seconds／8 mph／10 seconds；TC 內出現之數 ['1', '2', '3', '4', '5']	0	L	邊界值以 `limit±1` 夾之而未寫出 limit 本身 —— 該寫法為 **A-CA30** 所迫（8 mph＝12.874752 km/h 無恰等之 raw），偵測器要求 limit 與 limit±1 同時出現故誤判
+NR1L-RVCHMI-038	SWE1-RVC-024-01	8.1	Activation and Exit	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-039	SWE1-RVC-024-02	8.1	Activation and Exit	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-040	SWE1-RVC-025-01	8.1.1	Activation and Exit	2	negative	來源否定句 'will not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-041	SWE1-RVC-025-02	8.1.1	Activation and Exit	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-042	SWE1-RVC-033	8.6	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-043	SWE1-RVC-034	8.7	Activation and Exit	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-044	SWE1-RVC-053	27.1.1	AUX Camera Access	1	format/type	型別配對 wired/wireless：'wired and wireless'	1	H	§27.1.1 逐字為 `wired and wireless Auxiliary cameras`，而本列之前提只佈**有線** AUX；無線側之 non-persistent/latching 行為可測（`Enable Wireless Cameras` ＋ 無線相機），追加 1 列
+NR1L-RVCHMI-045	SWE1-RVC-054	27.1.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-046	SWE1-RVC-055	27.1.3	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-047	SWE1-RVC-056	27.1.4	AUX Camera Access	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Send	0	L	偵測器把 `ENTER_CAMERA_SETTINGS`／App Drawer 之**導航 hop** 計為觸發步；實際觸發只有一個
+NR1L-RVCHMI-048	SWE1-RVC-057	27.1.5	AUX Camera Access	1	boundary	數值 four wireless；TC 內出現之數 ['1', '2', '3', '4', '5', '6']	0	L	邊界值以 `limit±1` 夾之而未寫出 limit 本身 —— 該寫法為 **A-CA30** 所迫（8 mph＝12.874752 km/h 無恰等之 raw），偵測器要求 limit 與 limit±1 同時出現故誤判
+NR1L-RVCHMI-049	SWE1-RVC-058	27.1.5.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-050	SWE1-RVC-059	27.2.1.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-051	SWE1-RVC-060	27.2.2.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-052	SWE1-RVC-061	27.2.3.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-053	SWE1-RVC-062	27.2.3.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-054	SWE1-RVC-063	27.2.4.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-055	SWE1-RVC-064	27.2.5.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-056	SWE1-RVC-065	27.2.6.1	AUX Camera Access	1	列舉	並列 5 項 vs 兄弟 TC 1：Rear View Camera／CHMSL/Cargo Camera／Trailer Reverse Guidance／FFCTL	4	H	§27.2.6.1 逐字列舉五款配備而本列以單一 ER 概括；依 CAM-10 審閱 §一-4「查表對映每項一列」應每款一列（RVC／CHMSL-Cargo／TRG／FFCTL／SVC），本列留 RVC，追加 4 列
+NR1L-RVCHMI-057	SWE1-RVC-066	27.2.6.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-058	SWE1-RVC-067	27.2.6.3	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-059	SWE1-RVC-068	27.2.6.4	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-060	SWE1-RVC-070	27.3.3	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-061	SWE1-RVC-071	27.3.4.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-062	SWE1-RVC-072	27.3.5.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-063	SWE1-RVC-073	27.4.1	AUX Camera Access	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Set	0	L	偵測器把 `ENTER_CAMERA_SETTINGS`／App Drawer 之**導航 hop** 計為觸發步；實際觸發只有一個
+NR1L-RVCHMI-064	SWE1-RVC-074	27.4.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-065	SWE1-RVC-075	27.4.2.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-066	SWE1-RVC-076	27.4.2.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-067	SWE1-RVC-077	27.4.3	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-068	SWE1-RVC-078	27.4.4	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-069	SWE1-RVC-079	27.4.5	AUX Camera Access	1	format/type	型別配對 wired/wireless：'Wireless Cameras setting is enabled (set'	0	L	該型別配對已由本列之 Procedure 同時驗（`-075`／`-089`），或匹配到的是設定名而非型別（`-069`），或其反向side 為來源未載之逆命題（`-009`／`-076`）
+NR1L-RVCHMI-070	SWE1-RVC-080	27.5.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-071	SWE1-RVC-081	27.5.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-072	SWE1-RVC-082-01	27.6.1	AUX Camera Access	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-073	SWE1-RVC-082-02	27.6.1	AUX Camera Access	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-074	SWE1-RVC-083	27.6.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-075	SWE1-RVC-084	27.7.1	AUX Camera Access	1	format/type	型別配對 wired/wireless：'Wired and Wireless'	0	L	該型別配對已由本列之 Procedure 同時驗（`-075`／`-089`），或匹配到的是設定名而非型別（`-069`），或其反向side 為來源未載之逆命題（`-009`／`-076`）
+NR1L-RVCHMI-076	SWE1-RVC-085	27.7.2	AUX Camera Access	1	format/type	型別配對 with/without camera app：'If the camera app is present'	0	L	該型別配對已由本列之 Procedure 同時驗（`-075`／`-089`），或匹配到的是設定名而非型別（`-069`），或其反向side 為來源未載之逆命題（`-009`／`-076`）
+NR1L-RVCHMI-077	SWE1-RVC-087	27.8.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-078	SWE1-RVC-088	27.8.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-079	SWE1-RVC-089	27.8.3	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-080	SWE1-RVC-090	27.8.4	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-081	SWE1-RVC-129	34.1.1.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-082	SWE1-RVC-130	34.1.2.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-083	SWE1-RVC-131	34.1.3.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-084	SWE1-RVC-132	34.1.4.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-085	SWE1-RVC-133	34.1.5.1	AUX Camera Access	1	列舉	並列 3 項 vs 兄弟 TC 1：RearView Camera／Cargo Camera／Apps Page	1	M	§34.1.5.1 列舉三項（RearView／Cargo／Apps Page），本列驗前兩項之並存與 Cargo 之可用；`Apps Page` 作為入口已被 Procedure 用到而未被**當作被列舉之項**驗。追加 1 列或於 ER 明載該項
+NR1L-RVCHMI-086	SWE1-RVC-134	34.3.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-087	SWE1-RVC-135	34.4.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-088	SWE1-RVC-137	34.4.3	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-089	SWE1-RVC-138	34.6	AUX Camera Access	1	format/type	型別配對 Backup only / Backup+Cargo：'Backup and Cargo'	0	L	該型別配對已由本列之 Procedure 同時驗（`-075`／`-089`），或匹配到的是設定名而非型別（`-069`），或其反向side 為來源未載之逆命題（`-009`／`-076`）
+NR1L-RVCHMI-090	SWE1-RVC-140	34.6.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-091	SWE1-RVC-141	34.6.3	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-092	SWE1-RVC-142	34.7.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-093	SWE1-RVC-143-01	34.7.2	AUX Camera Access	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-094	SWE1-RVC-143-02	34.7.2	AUX Camera Access	2	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-095	SWE1-RVC-144	34.8.1	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-096	SWE1-RVC-145	34.8.2	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-097	SWE1-RVC-146	34.8.3	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-098	SWE1-RVC-147	34.8.4	AUX Camera Access	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-099	SWE1-RVC-092	28.1	Camera View Switching	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-100	SWE1-RVC-093	28.2.1	Camera View Switching	1	boundary	數值 5 seconds；TC 內出現之數 ['1', '2', '3', '4', '6']	0	L	邊界值以 `limit±1` 夾之而未寫出 limit 本身 —— 該寫法為 **A-CA30** 所迫（8 mph＝12.874752 km/h 無恰等之 raw），偵測器要求 limit 與 limit±1 同時出現故誤判
+NR1L-RVCHMI-101	SWE1-RVC-094	28.2.2	Camera View Switching	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-102	SWE1-RVC-095	28.2.3	Camera View Switching	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-103	SWE1-RVC-096	28.2.4	Camera View Switching	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-104	SWE1-RVC-097	28.3.1	Camera View Switching	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-105	SWE1-RVC-098-01	28.3.2	Camera View Switching	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-106	SWE1-RVC-098-02	28.3.2	Camera View Switching	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-107	SWE1-RVC-099	28.4.1	Camera View Switching	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-108	SWE1-RVC-100	28.4.2	Camera View Switching	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-109	SWE1-RVC-101	28.6.1.1	Camera View Switching	1	mode	狀態詞 drive／neutral／reverse	1	M	§28.6.1.1 逐字為 `when in Neutral or Drive`，本列只驗 **Neutral** 一側；`Drive` 側可測，追加 1 列
+NR1L-RVCHMI-110	SWE1-RVC-103-01	28.7.1.1	Camera View Switching	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-111	SWE1-RVC-103-02	28.7.1.1	Camera View Switching	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-112	SWE1-RVC-104-01	28.7.1.2	Camera View Switching	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-113	SWE1-RVC-104-02	28.7.1.2	Camera View Switching	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-114	SWE1-RVC-105-01	28.7.2	Camera View Switching	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-115	SWE1-RVC-105-02	28.7.2	Camera View Switching	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-116	SWE1-RVC-105-03	28.7.2	Camera View Switching	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-117	SWE1-RVC-106-01	28.7.3	Camera View Switching	2	boundary	數值 10 seconds；TC 內出現之數 ['1', '11', '12', '2', '206', '2261']	0	L	邊界值以 `limit±1` 夾之而未寫出 limit 本身 —— 該寫法為 **A-CA30** 所迫（8 mph＝12.874752 km/h 無恰等之 raw），偵測器要求 limit 與 limit±1 同時出現故誤判
+NR1L-RVCHMI-118	SWE1-RVC-106-02	28.7.3	Camera View Switching	2	boundary	數值 10 seconds；TC 內出現之數 ['1', '12', '2', '206', '2261', '3']	0	L	邊界值以 `limit±1` 夾之而未寫出 limit 本身 —— 該寫法為 **A-CA30** 所迫（8 mph＝12.874752 km/h 無恰等之 raw），偵測器要求 limit 與 limit±1 同時出現故誤判
+NR1L-RVCHMI-119	SWE1-RVC-107	28.7.4	Camera View Switching	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-120	SWE1-RVC-108-01	28.8.1	Camera View Switching	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-121	SWE1-RVC-108-02	28.8.1	Camera View Switching	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-122	SWE1-RVC-108-03	28.8.1	Camera View Switching	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-123	SWE1-RVC-126	33.1.1	Wireless Camera Pairing	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-124	SWE1-RVC-127-01	33.1.2	Wireless Camera Pairing	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-125	SWE1-RVC-127-02	33.1.2	Wireless Camera Pairing	3	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-126	SWE1-RVC-127-03	33.1.2	Wireless Camera Pairing	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-127	SWE1-RVC-128	33.2.1	Wireless Camera Pairing	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-128	SWE1-RVC-109	29.1.1	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-129	SWE1-RVC-110-01	29.1.2	AUX Camera Settings	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-130	SWE1-RVC-110-02	29.1.2	AUX Camera Settings	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-131	SWE1-RVC-110-03	29.1.2	AUX Camera Settings	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-132	SWE1-RVC-110-04	29.1.2	AUX Camera Settings	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-133	SWE1-RVC-111	29.2.1	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-134	SWE1-RVC-112-01	29.2.2	AUX Camera Settings	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-135	SWE1-RVC-112-02	29.2.2	AUX Camera Settings	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-136	SWE1-RVC-112-03	29.2.2	AUX Camera Settings	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-137	SWE1-RVC-112-04	29.2.2	AUX Camera Settings	4	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-138	SWE1-RVC-113	29.2.3	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-139	SWE1-RVC-114-01	30.1.1	AUX Camera Settings	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-140	SWE1-RVC-114-02	30.1.1	AUX Camera Settings	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-141	SWE1-RVC-115	30.1.2	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-142	SWE1-RVC-116	30.1.3	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-143	SWE1-RVC-117	30.1.4	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-144	SWE1-RVC-118	30.1.5	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-145	SWE1-RVC-119-01	30.1.6	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-146	SWE1-RVC-119-02	30.1.6	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-147	SWE1-RVC-119-03	30.1.6	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-148	SWE1-RVC-120	31.1.1	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-149	SWE1-RVC-121-01	31.1.2	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-150	SWE1-RVC-121-02	31.1.2	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-151	SWE1-RVC-121-03	31.1.2	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-152	SWE1-RVC-122	31.1.3	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-153	SWE1-RVC-123	31.1.4	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-154	SWE1-RVC-124	31.1.5	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-155	SWE1-RVC-125-01	31.1.6	AUX Camera Settings	3	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-156	SWE1-RVC-125-02	31.1.6	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-157	SWE1-RVC-125-03	31.1.6	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-158	SWE1-RVC-148	34.9.1	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-159	SWE1-RVC-149	34.9.2.1	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-160	SWE1-RVC-150-01	34.9.2.2	AUX Camera Settings	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-161	SWE1-RVC-150-02	34.9.2.2	AUX Camera Settings	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-162	SWE1-RVC-151	34.9.4	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-163	SWE1-RVC-152-01	34.9.5	AUX Camera Settings	3	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-164	SWE1-RVC-152-02	34.9.5	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-165	SWE1-RVC-152-03	34.9.5	AUX Camera Settings	3	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-166	SWE1-RVC-153	34.9.6	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-167	SWE1-RVC-154	34.9.7	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-168	SWE1-RVC-155	34.9.8	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-169	SWE1-RVC-156	34.9.9	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-170	SWE1-RVC-157	34.10.1	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-171	SWE1-RVC-158	34.10.2	AUX Camera Settings	1	多觸發併列	4 個觸發步、3 種動作：Press／Select／Tap	0	L	偵測器把 `ENTER_CAMERA_SETTINGS`／App Drawer 之**導航 hop** 計為觸發步；實際觸發只有一個
+NR1L-RVCHMI-172	SWE1-RVC-159	34.10.3	AUX Camera Settings	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-173	SWE1-RVC-026	8.2	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-174	SWE1-RVC-027	8.3	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-175	SWE1-RVC-028	8.3.1	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-176	SWE1-RVC-029	8.3.2	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-177	SWE1-RVC-030	8.3.3	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-178	SWE1-RVC-031-01	8.4	Warning Banners	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-179	SWE1-RVC-031-02	8.4	Warning Banners	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-180	SWE1-RVC-032	8.4.1	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-181	SWE1-RVC-036	9.2	Warning Banners	1	boundary	數值 5 seconds；TC 內出現之數 ['1', '2', '3', '4', '6']	0	L	邊界值以 `limit±1` 夾之而未寫出 limit 本身 —— 該寫法為 **A-CA30** 所迫（8 mph＝12.874752 km/h 無恰等之 raw），偵測器要求 limit 與 limit±1 同時出現故誤判
+NR1L-RVCHMI-182	SWE1-RVC-037	9.2.1	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-183	SWE1-RVC-038	9.2.2	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-184	SWE1-RVC-039	9.2.3	Warning Banners	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-185	SWE1-RVC-001	6.2	PAM Integration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-186	SWE1-RVC-002-01	6.2.1	PAM Integration	2	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-187	SWE1-RVC-002-02	6.2.1	PAM Integration	2	negative	來源否定句 'not'；ER 無否定	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接
+NR1L-RVCHMI-188	SWE1-RVC-003	6.2.2	PAM Integration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-189	SWE1-RVC-004	6.3	PAM Integration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-190	SWE1-RVC-005	6.4	PAM Integration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-191	SWE1-RVC-006	6.5	PAM Integration	1	列舉	並列 3 項 vs 兄弟 TC 1：ParkSense／Front ParkSense／Side Distance Warning	0	L	三項為圖之腳註而非需求之並列項（`-191`）
+NR1L-RVCHMI-192	SWE1-RVC-035	8.8	PAM Integration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-193	SWE1-RVC-040	11.1	PAM Integration	1	none	無並列項／無數值單位／無否定句／單一觸發（全文掃描）	0	—	無並列項／無數值單位／無否定句／單一觸發（Description 全文掃描，已剝除影像 token）
+NR1L-RVCHMI-194	SWE1-RVC-045	6.2.2.1	Camera Settings	1	多觸發併列	6 個觸發步、4 種動作：Press／Select／Send／Set	0	L	偵測器把 `ENTER_CAMERA_SETTINGS`／App Drawer 之**導航 hop** 計為觸發步；實際觸發只有一個
+NR1L-RVCHMI-195	SWE1-RVC-046	6.2.2.2	Camera Settings	1	多觸發併列	5 個觸發步、3 種動作：Press／Select／Set	0	L	偵測器把 `ENTER_CAMERA_SETTINGS`／App Drawer 之**導航 hop** 計為觸發步；實際觸發只有一個
+NR1L-RVCHMI-196	SWE1-RVC-047-01	6.2.2.3	Camera Settings	2	negative；多觸發併列	來源否定句 'no'；ER 無否定 ｜ 4 個觸發步、3 種動作：Press／Select／Set	1	M	§6.2.2.3 之 `toggle between having fixed guidelines or **no guidelines**`，本列只驗 On 一側；Off 側（無固定輔助線）可測，追加 1 列。對照 `-195`（Active Guidelines）已驗 On／Off 兩側
+NR1L-RVCHMI-197	SWE1-RVC-047-02	6.2.2.3	Camera Settings	2	negative；多觸發併列	來源否定句 'no'；ER 無否定 ｜ 4 個觸發步、3 種動作：Press／Select／Set	0	L	來源之否定詞位於**前提子句**（`When not equipped …`／`if the setting is not enabled`）或該否定側已由**同源兄弟列**承接；偵測器把 `ENTER_CAMERA_SETTINGS`／App Drawer 之**導航 hop** 計為觸發步；實際觸發只有一個

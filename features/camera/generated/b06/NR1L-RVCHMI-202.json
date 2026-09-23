@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-202",
+  "req_id": "SWE1-RVC-053",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "When “Enhanced Camera App” Feature is present, wired and wireless Auxiliary cameras are non-persistent, latching views",
+  "source_object_id": "NRL-188029",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the wireless AUX view is non-persistent and latching with Enhanced Camera App",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. PENDING: DR-CAM-r the equipment flag for the \"Enhanced Camera App\" feature is not sourced\n6. The \"Enable Wireless Cameras\" setting is On\n7. A wireless AUX camera is connected\n8. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n9. The shift lever is in P\n10. The wireless AUX camera view is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n2. Read the HU display and check that the wireless AUX camera view is still displayed\n3. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P)\n4. Read the HU display and check that the wireless AUX camera view is no longer displayed",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent\n2. The wireless AUX camera view remains displayed, which is the latching behaviour\n3. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent\n4. The wireless AUX camera view is no longer displayed, which is the non-persistent behaviour",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.1.1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the wireless AUX view is non-persistent and latching with Enhanced Camera App",
+      "test_item": "When “Enhanced Camera App” Feature is present, wired and wireless Auxiliary cameras are non-persistent, latching views\n\n(the wireless AUX view is non-persistent and latching with Enhanced Camera App)"
+    }
+  ],
+  "reasoning": "**補生成之由**：拆解審計 **CAM-22 §5 #2**（`confidence = H`）—— §27.1.1 逐字為 `wired and wireless Auxiliary cameras`，而母列 `NR1L-RVCHMI-044` 之前提只佈**有線** AUX；本列佈**無線**側（§27.3.1.x 之硬體要求 ＋ `Enable Wireless Cameras` 設定）。latching／non-persistent 之可觀察定義同母列（H 本 §21.4／§21.5）。**既有 197 列不改**（DECISIONS 6-74）。"
+}

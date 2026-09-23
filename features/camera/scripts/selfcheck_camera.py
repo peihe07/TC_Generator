@@ -103,6 +103,18 @@ SYS1_BOOKS = ["SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A
               "(February_10th, 2023).xlsx",
               "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021).xlsx"]
 RE_B_REQ = re.compile(r"^SWE1-RVC-")
+# ── 第 10 項（**WARN 級**，DECISIONS 6-76）：拆解充分性之候選
+# 母體為來源 `Description` 全文（profile §7.7），先剝除影像 token
+# （其 URL 編碼 `%E5%9C%96%E7%89%87_…` 會被數值偵測器讀成 `96 %`，CAM-22 §7-1）。
+RE_IMG = re.compile(r"\(image:[^)]*\)|\b[\w%.]+\.(?:png|jpg|jpeg|gif)\b", re.I)
+RE_A10_NUM = re.compile(r"\b(\d+(?:[.,]\d+)?)\s*(seconds?|sec|mph|km/h|%|characters?|lines?)", re.I)
+RE_A10_NEG = re.compile(r"\b(cannot|greyed out|grey out|lock(?:ed)? out|unavailable|"
+                        r"does not|will not|shall not)\b", re.I)
+RE_A10_BULLET = re.compile(r"[\u25cf\u25cb\u25a0]\s*([A-Z][^\u25cf\u25cb\u25a0]{4,80})")
+RE_A10_SERIES = re.compile(r"((?:[A-Z][\w/ +]{2,30}, ){2,}(?:and |or )?[A-Z][\w/ +]{2,30})")
+# 導航 hop 之首詞（profile §5.3 之常數），第 10 項之多觸發偵測須排除（GCB-11 同因）
+NAV_HOP = re.compile(r'^\s*\d+\.\s*(Press "Apps"|Select "Settings"|Select "Camera"|'
+                     r'Select "Aux Cameras"|Select the Camera app)')
 
 
 def _txt(v) -> str:
@@ -186,6 +198,42 @@ def ceh_blocked() -> dict[str, str]:
     return out
 
 
+def strip_img(t: str) -> str:
+    return re.sub(r"\s+", " ", RE_IMG.sub(" ", t)).strip()
+
+
+def check10(desc: str, tc: dict, sibs: int) -> list[str]:
+    """第 10 項（WARN）：拆解充分性之候選軸。回傳命中之軸名。"""
+    axes: list[str] = []
+    blob = "\n".join(tc[k] for k in ("pre_conditions", "test_procedure", "expected_result"))
+    if desc:
+        items = [m.group(1).strip() for m in RE_A10_BULLET.finditer(desc)]
+        if not items:
+            m = RE_A10_SERIES.search(desc)
+            if m:
+                items = [x.strip() for x in re.split(r",\s*(?:and |or )?", m.group(1)) if x.strip()]
+        if len(items) > sibs:
+            axes.append(f"列舉({len(items)}>{sibs})")
+        nums = {n for n, _ in RE_A10_NUM.findall(desc) if n.isdigit()}
+        if nums:
+            innum = set(re.findall(r"\b(\d+)\b", blob))
+            # 6-76(a)：limit 與 limit±1 **任一**出現即通過（A-CA30 之故）
+            ok = {v for v in nums
+                  if v in innum or str(int(v) - 1) in innum or str(int(v) + 1) in innum}
+            if ok != nums:
+                axes.append("boundary(" + "／".join(sorted(nums - ok)) + ")")
+        if RE_A10_NEG.search(desc) and not RE_A10_NEG.search(tc["expected_result"]) and sibs < 2:
+            axes.append("negative")
+    # 6-76(b)：多觸發併列 —— 排除 §5.3 之導航 hop
+    trig = [ln for ln in tc["test_procedure"].split("\n")
+            if re.match(r"^\s*\d+\.\s*(Send CAN|Press|Select|Set |Type|Tap|Drag|Pinch|Plug)", ln)
+            and not NAV_HOP.match(ln)]
+    kinds = {re.match(r"^\s*\d+\.\s*(\w+)", t).group(1) for t in trig}
+    if len(trig) >= 3 and len(kinds) >= 3:
+        axes.append(f"多觸發({len(trig)}步/{len(kinds)}種)")
+    return axes
+
+
 def is_subsequence(short: list[str], full: list[str]) -> bool:
     """short 之 token 是否為 full 之保序子序列。"""
     it = iter(full)
@@ -211,11 +259,18 @@ def main() -> None:
     hit8a: list[tuple] = []      # PENDING 嵌入句中
     hit8b: list[tuple] = []      # 同一 DR 之 PENDING 跨 pre 與 er
     hit9: list[tuple] = []       # 不可注入之訊號
+    warn10: list[tuple] = []     # 第 10 項（WARN）：拆解充分性候選
     blocked = ceh_blocked()
     anom = ANOM.read_text(encoding="utf-8") if ANOM.exists() else ""
     no_source: list[tuple] = []
     checked = tcs = 0
 
+    # 先掃一遍以取 sibling 數（同一 source_object_id 之 TC 數）
+    sib_n: dict[str, int] = {}
+    for d in dirs:
+        for p in sorted(d.glob("NR1L-*.json")):
+            sid0 = json.loads(p.read_text(encoding="utf-8")).get("source_object_id")
+            sib_n[sid0] = sib_n.get(sid0, 0) + 1
     for d in dirs:
         for p in sorted(d.glob("NR1L-*.json")):
             doc = json.loads(p.read_text(encoding="utf-8"))
@@ -318,6 +373,12 @@ def main() -> None:
                          for m in RE_DRID.findall(ln)}
                 for dr in sorted(pre_dr & er_dr):
                     hit8b.append((tc_id, dr))
+                # ── 10 ── 拆解充分性（WARN，DECISIONS 6-76）
+                sid10 = doc.get("source_object_id")
+                dmap10 = desc1 if is_b else desc
+                ax10 = check10(strip_img(dmap10.get(sid10, "")), tc, sib_n.get(sid10, 1))
+                if ax10:
+                    warn10.append((tc_id, "／".join(ax10)))
                 # ── 4 ── verbatim 保序子序列
                 sid = doc.get("source_object_id")
                 verb = doc.get("test_item_verbatim", "")
@@ -342,6 +403,7 @@ def main() -> None:
     print(f"  8a PENDING 落點　：**命中 {len(hit8a)}**（嵌入句中）")
     print(f"  8b PENDING 跨兩欄：**命中 {len(hit8b)}**（提示，須逐列覆核）")
     print(f"  9 不可注入之訊號：**命中 {len(hit9)}**")
+    print(f" 10 拆解充分性　　 ：**候選 {len(warn10)}**（**WARN**，不阻上繳；DECISIONS 6-76）")
     for tc_id, anchor in unresolved:
         print(f"  [1 反查失敗] {tc_id}  {anchor}")
     for tc_id, anchor, sid in constant:
@@ -373,6 +435,8 @@ def main() -> None:
         print(f"  [8b 提示] {tc_id}  {dr} 同時見於 pre 與 er")
     for tc_id, sig, why in hit9:
         print(f"  [9 違反] {tc_id}  {sig} 不可注入（CEH：{why}）")
+    for tc_id, ax in warn10:
+        print(f"  [10 WARN] {tc_id}  {ax}")
     sys.exit(1 if (hit1 or unresolved or hit2 or hit3 or hit3b or hit4
                    or no_source or hit5 or hit6 or hit7 or hit8a or hit8b
                    or hit9) else 0)
