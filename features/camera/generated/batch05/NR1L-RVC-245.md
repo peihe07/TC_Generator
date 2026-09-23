@@ -1,0 +1,41 @@
+# NR1L-RVC-245 — SWE-CAM-019
+
+- **Test Group**：Rear View Camera｜**Test Set**：Video Pipeline
+- **Vehicle Model**：HDCC27=0｜DT27=0｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=0
+- **priority**：P2｜**design_method**：邊界值分析 (Boundary Value Analysis, BVA)
+- **specification_reference**：`VF551_V33_P226MCA_VF_1115`（來源列 `SYS-RA-VF551_V33-234`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> When the rear images are displayed on TLM_Display.GUI the setted brightness must be over 50%, in order to visualize better the images
+
+## reasoning
+
+同 `-244` 之補生成依據；本列取**下界之 off-point 49 %**。**出兩列而非一列之由**：下放包 CAM-24 §2 明載「49% 併入同列之對照步**不可**（§8.3）」，故依其指示分列。**惟本 feature 既有之前例為一列兩點** —— `NR1L-RVCHMI-036`（§7.5.3 之 8 mph，一列內 205／206 兩步）與 `-111`（pinch in／out）皆為一列，且已判過；兩種形制之取捨請分析層裁（見上繳 §7-1）。來源只寫 `must be over 50%` 而**未載低於門檻時之系統行為**，故本列之 ER 只判**量得之值低於門檻**，**不造「影像不顯示」之判準**（§8.4.1）。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. The HU display brightness is set to 49 %
+4. No camera image is displayed
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)
+2. Measure the brightness of the displayed rear image on the HU display
+```
+
+## expected_result
+
+```
+1. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent and the rear image is displayed
+2. The measured brightness is 49 %, which is below the 50 % required by the source
+```

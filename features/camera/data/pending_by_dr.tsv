@@ -1,4 +1,4 @@
-# CAM-14 §2-3　A 本 240 列之 PENDING ↔ DR 對照（母體：features/camera/generated 十目錄）
+# CAM-24 §3　A 本 245 列之 PENDING ↔ DR 對照（母體：features/camera/generated 十一目錄）
 # 『§7.5 佔位』＝ `Send CAN: X = PENDING (label)` 之賦值佔位，其 DR 號記於次一子項，不另計列
 dr_id	tc_count	occurrences	status	tc_ids
 DR-CAM-a	0	0	未結，SWE-CAM-024 BLOCKED（無 TC 列）	—
@@ -18,5 +18,7 @@ DR-CAM-n	0	0	未結，A 本無 PENDING 列	—
 DR-CAM-o	0	0	未結，A 本無 PENDING 列	—
 DR-CAM-p	2	2	未結，阻 A 本交付	NR1L-RVC-122;NR1L-RVC-123
 DR-CAM-q	14	14	未結，阻 A 本交付	NR1L-RVC-179;NR1L-RVC-181;NR1L-RVC-183;NR1L-RVC-186;NR1L-RVC-187;NR1L-RVC-188;NR1L-RVC-189;NR1L-RVC-190;NR1L-RVC-192;NR1L-RVC-194;NR1L-RVC-195;NR1L-RVC-197;NR1L-RVC-199;NR1L-RVC-211
+DR-CAM-r	0	0	未結，A 本無 PENDING 列	—
+DR-CAM-s	0	0	未結，A 本無 PENDING 列	—
 §7.5-placeholder	—	6	形制（非獨立未結項）	—
-TOTAL	43	54	240 列中 43 列含 PENDING	—
+TOTAL	43	54	245 列中 43 列含 PENDING	—
