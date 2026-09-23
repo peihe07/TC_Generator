@@ -2,7 +2,7 @@
   "tc_id": "NR1L-RVC-096",
   "req_id": "SWE-CAM-003",
   "test_group": "Rear View Camera",
-  "test_set": "Auxiliary Cameras",
+  "test_set": "Additional Cameras",
   "test_item_verbatim": "The HU shall follow this signal with an on-change $SVC_SoftBtn_Rq$ = [Not Pressed] signal within a time period of <Tsend>.",
   "source_object_id": "SYS-RA-CAM-086",
   "vehicle_model": {
@@ -29,5 +29,5 @@
       "test_item": "The HU shall follow this signal with an on-change $SVC_SoftBtn_Rq$ = [Not Pressed] signal within a time period of <Tsend>.\n\n(SVC_SoftBtn_Rq = Not Pressed on release, release the virtual button and read the bus for SVC_SoftBtn_Rq)"
     }
   ],
-  "reasoning": "驗證目標為 CFTS092 `SYS-RA-CAM-086`（Surround View 節）之 `$SVC_SoftBtn_Rq$ = [Not Pressed]` 側。**該訊號於四本 DBC 零命中**，其承載 message、raw 與 `<Tsend>` 皆標 `PENDING: DR-CAM-j`；按鍵動作與其可判後果仍可執行，故不整列 BLOCKED。本列承「放開後送 `[Not Pressed]`」，其按下側（`[Pressed]`）之來源 `SYS-RA-CAM-085` 承接列為 `SWE-CAM-016`（`NR1L-RVC-038`），兩者依 R-CAM10 各歸其列。本列來源屬 CFTS092 之 Cargo/CHMSL 或 Surround View 節，依 **R-CAM13(c)** 落 Test Set `Auxiliary Cameras`。"
+  "reasoning": "驗證目標為 CFTS092 `SYS-RA-CAM-086`（Surround View 節）之 `$SVC_SoftBtn_Rq$ = [Not Pressed]` 側。**該訊號於四本 DBC 零命中**，其承載 message、raw 與 `<Tsend>` 皆標 `PENDING: DR-CAM-j`；按鍵動作與其可判後果仍可執行，故不整列 BLOCKED。本列承「放開後送 `[Not Pressed]`」，其按下側（`[Pressed]`）之來源 `SYS-RA-CAM-085` 承接列為 `SWE-CAM-016`（`NR1L-RVC-038`），兩者依 R-CAM10 各歸其列。本列來源屬 CFTS092 之 Cargo/CHMSL 或 Surround View 節，依 **R-CAM13(c)** 落 Test Set `Additional Cameras`。"
 }

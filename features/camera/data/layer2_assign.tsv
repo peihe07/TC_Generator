@@ -15,7 +15,7 @@ A	SWE-CAM-013	leaf	VF551_V42		Diagnostics	Message: diagnosticRequest / Response
 A	SWE-CAM-014	leaf	VF551_V2, VF551_V3, VF551_V42		Startup and Shutdown	RVCM Power Notification Control
 A	SWE-CAM-015	leaf	VF551_V2, VF551_V3, VF551_V33, VF551_V4, VF551_V42, VF617_V5		Display Arbitration	Camera Auto Mode Arbitration Logic
 A	SWE-CAM-016	leaf	CFTS092, VF551_V2, VF551_V3, VF551_V4, VF551_V42, VF617_V5		Display Arbitration	Camera Manual Mode Arbitration Logic
-A	SWE-CAM-017	leaf	CFTS092, VF551_V2, VF551_V3		Auxiliary Cameras	Camera State Signaling
+A	SWE-CAM-017	leaf	CFTS092, VF551_V2, VF551_V3		Additional Cameras	Camera State Signaling
 A	SWE-CAM-018	leaf	CFTS092, VF551_V2, VF551_V33, VF551_V42, VF617_V5		Display Arbitration	Display Exit Conditions and Speed Thresholds
 A	SWE-CAM-019	leaf	VF551_V33		Video Pipeline	FMVSS 111 Safety Control
 A	SWE-CAM-020	leaf	VF551_V33		Display Arbitration	Bed Extender Interlock - Image Suppression

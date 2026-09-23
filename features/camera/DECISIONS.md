@@ -560,7 +560,7 @@ procedure 改回停送 **`STATUS_CCAN3`**；疑似誤植登 RDF-08，工作簿 `
 
 ### 6-51. B 本之 `Vehicle Model` 七欄判準
 
-`[PROPOSED — CAM-14 §3，待裁]`
+`[DECIDED — CAM-14 審閱 §一-5，Pei 2026-09-23]` **立 R-CAM18**（sha8 `bbf46504`）。
 SYS1 HMI 兩本之條文**不帶平台維度**（無 `PHDCC27`／`P637MCA` 之類之錨），
 故 **R-CAM3** 之車型軸於 B 本須改由**可佈性**判：
 
@@ -572,6 +572,40 @@ SYS1 HMI 兩本之條文**不帶平台維度**（無 `PHDCC27`／`P637MCA` 之�
 B01a 之實測結果：**19 列**五款全 `1`；**3 列**（`NR1L-RVCHMI-008`／`-012`／`-014`）
 因 Toro 2019 本缺 byte 177（`Surround_View_Camera`／`Forward_Facing_Camera`，**DR-CAM-l**）
 而 `Toro(2261)` = 0。
+
+### 6-52. A 本交付本補 4 列「僅填 D 欄」
+
+`[DECIDED — CAM-14 審閱 §一-1，Pei 2026-09-23]`
+依 **R-G42 一**後半，037 有列而無 TC 之需求須補一列僅填 D 欄。
+`SWE-CAM-007`／`-013`／`-024`／`-025` 四列補之，Test Set 與其餘欄留空，
+`AH` 註 `No TC — all sources delegated to SWE-CAM-nnn (R-CAM10)`（前三者）／
+`BLOCKED — DR-CAM-a`（`-024`）。**交付口徑 244 列**（TC 240 ＋ 佔位 4）。
+
+### 6-53. A-CA33 之兩欄分立
+
+`[DECIDED — CAM-14 審閱 §一-3，Pei 2026-09-23]`
+`SWE1-RVC-008-0n` 六列之 `specification_reference`（N 欄）寫 `…_7.2.n`
+（canon §9-16／§10.7：N 欄為該 TC **直接驗證**之章節）；
+`req_id`（D 欄）仍為 037 之 `SWE1-RVC-008-0n`（**R-G42 一**之 req_id 權威）。
+`-008` 本列（排他性驗證點）N 欄仍為 `…_7.2`。037 收摺為 `_7.2` 之事實記於各列 reasoning。
+
+### 6-54. B01a 改 23 列
+
+`[DECIDED — CAM-14 審閱 §一-4，Pei 2026-09-23]`
+`-008-06`（§7.2.6）併入 B01a 而不切開 §7.2 家族，B01a 由 22 列改 **23 列**
+（`NR1L-RVCHMI-023`）；`7.3.1`～`7.3.3` 歸 B01b。
+下放包 CAM-14 §3 之列示為分析層未查章節序即寫，記一筆（不影響產物）。
+
+### 6-55. A 本 Test Set `Auxiliary Cameras` 改名 `Additional Cameras`
+
+`[DECIDED — CAM-14 審閱 §一-2，Pei 2026-09-23]` **立 R-CAM13(d)**（sha8 `8301fefa`）。
+與第 9 組 `AUX Camera`（VF617_V5 之外接 AUX 輸入，與 B 本 `AUX Camera Access`／
+`AUX Camera Settings` 同義域）字面相近而域不同，故改名分辨；`AUX Camera` 保留不動。
+framework 重開二次（Tier 2）：重開前 sha16 `8569aa484b552b7c` → 重開後 `95b5e5ff567c491b`。
+實測 **18 筆** json 之 `test_set` 改名，`layer2_assign.tsv`／`batch02_plan.tsv`／
+`DATA_REQUESTS.md`／`RD_FEEDBACK.md` 同步；`coverage.tsv` 無 `test_set` 欄，不受影響。
+`docs/fw036/handoff/` 為唯讀史料，**不改**；framework 中記述 CAM-06 當時決定之兩句
+保留原名並加今名指標。
 
 ---
 

@@ -1,9 +1,9 @@
 # lint036 報告：b01a_lint.xlsx
 
-- 來源：`b01a_lint.xlsx`（唯讀）—— **lint 專用暫存簿**，由本目錄之 22 份 json
+- 來源：`b01a_lint.xlsx`（唯讀）—— **lint 專用暫存簿**，由本目錄之 23 份 json
   以母本第 9 列欄序組成，落於 session scratchpad，**未寫回任何交付工作簿**。
   組簿工具 `features/camera/scripts/lint_batch.py`
-- 資料列數：22
+- 資料列數：23
 - sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
 - L 閾值：50 tokens
 - profile：`camera`（P 採 R-1 v3；另跑 Q／R／T）
@@ -33,19 +33,19 @@
 | Q | 不可見字元（NBSP／全形空格／行尾空白） | 0 | 0 | 每行每欄 | 未校準（R-10(a)，21 包新增） |
 | R | Pre-Condition 版面（未編號行／多條件並列） | 0 | 0 | 每行 | 未校準（R-9(a)，21 包新增） |
 | T | PENDING 說明非英文 | 0 | 0 | 每次命中 | 未校準（R-14，21 包新增） |
-| U | PENDING 佔位（四欄全掃，含 ER 側） | 16 | 10 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
+| U | PENDING 佔位（四欄全掃，含 ER 側） | 18 | 11 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
 | V | 行首空白（IN §11） | 0 | 0 | 每行每欄 | 未校準（IN §11，27 包新增） |
-| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 22 | 22 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
+| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 23 | 23 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
 | W | ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6） | 0 | 0 | 每次命中 | **待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述 |
-| X | 導航路徑無固定入口（§5.8／R-G71） | 4 | 4 | 每行 | 未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改** |
+| X | 導航路徑無固定入口（§5.8／R-G71） | 5 | 5 | 每行 | 未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改** |
 | Y | PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式） | 0 | 0 | 每行 | 未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72 |
 | Z | Vehicle Model 七欄 1／0（R-CAM2，Camera profile 專屬） | 0 | 0 | 每列每欄；七欄全缺時每 sheet 記一筆 | 未校準（R-CAM2，CAM-02 新增）—— **feature 專屬**，僅 `--profile camera` 啟用；既有八本無此七欄，未啟用即不檢查（`Z=0` 在未啟用時是沉默，不是核可） |
 
-**總計：行計 42**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 46**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
-### U — PENDING 佔位（四欄全掃，含 ER 側）（行計 16／列計 10）
+### U — PENDING 佔位（四欄全掃，含 ER 側）（行計 18／列計 11）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -65,8 +65,10 @@
 | 25 | NR1L-RVCHMI-016 | pre | PENDING 佔位（DR-CAM-s） | 3. PENDING: DR-CAM-s the method to place the HU display into the thermal protect |
 | 31 | NR1L-RVCHMI-022 | proc | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the entry path to the Controls screen (Vehicle Page) is not |
 | 31 | NR1L-RVCHMI-022 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Controls screen (Vehicle Page) is displayed |
+| 32 | NR1L-RVCHMI-023 | proc | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the entry path to the Status bar Shortcut menu is not sourc |
+| 32 | NR1L-RVCHMI-023 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Status bar Shortcut menu is displayed |
 
-### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 22／列計 22）
+### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 23／列計 23）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -92,8 +94,9 @@
 | 29 | NR1L-RVCHMI-020 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 30 | NR1L-RVCHMI-021 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 31 | NR1L-RVCHMI-022 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 32 | NR1L-RVCHMI-023 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 
-### X — 導航路徑無固定入口（§5.8／R-G71）（行計 4／列計 4）
+### X — 導航路徑無固定入口（§5.8／R-G71）（行計 5／列計 5）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -101,4 +104,5 @@
 | 18 | NR1L-RVCHMI-009 | proc | 導航標的 'screen' 而同 TC 無固定入口 | 2. Read the Controls screen and check that no Rear View Camera soft control is o |
 | 19 | NR1L-RVCHMI-010 | proc | 導航標的 'screen' 而同 TC 無固定入口 | 2. Select the Rear View Camera soft control on the Controls screen |
 | 31 | NR1L-RVCHMI-022 | proc | 導航標的 'screen' 而同 TC 無固定入口 | 2. Select the associated button in the «Controls» screen (Vehicle Page) |
+| 32 | NR1L-RVCHMI-023 | proc | 導航標的 'menu' 而同 TC 無固定入口 | 2. Select the Camera shortcut icon in the Status bar Shortcut menu |
 

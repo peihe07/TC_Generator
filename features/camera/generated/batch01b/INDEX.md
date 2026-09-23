@@ -1,7 +1,7 @@
-# INDEX — batch01b（Auxiliary Cameras，下放包 CAM-06 §2-4）
+# INDEX — batch01b（Additional Cameras，下放包 CAM-06 §2-4）
 
 A-CA28 之 12 列（`SWE-CAM-016` 所引之 Cargo/CHMSL、Surround View、Forward Facing 三節條文），
-依 **R-CAM13** 全數生成。Test Group：`Rear View Camera`｜Test Set：**`Auxiliary Cameras`**
+依 **R-CAM13** 全數生成。Test Group：`Rear View Camera`｜Test Set：**`Additional Cameras`**
 （framework Part VIII 第 10 組，CAM-06 重開）｜TC ID `NR1L-RVC-034`～`-046`（**13 列**）
 ｜計畫 `features/camera/data/batch01b_plan.tsv`
 
@@ -29,4 +29,4 @@ A-CA28 之 12 列（`SWE-CAM-016` 所引之 Cargo/CHMSL、Surround View、Forwar
 `NR1L-RVC-045` 之 `Fastack (376)` 另勾 `0` —— `forms/P363_BH-CAN [07338]_3A_R2.dbc` 有 `BO_ 1283 RADIO_B3`
 但全本無 `CameraDisplaySts` 訊號，該平台之 ER 不可觀察。
 
-**`NR1L-RVC-046` 為追加列（CAM-07 §2，DECISIONS 6-17）** —— 來源 `SYS-RA-CAM-076` 屬 **Rear Camera 節**，故其 **Test Set 為 `Display Arbitration`**，非本目錄其餘列之 `Auxiliary Cameras`；五車型全勾（`PROXI Rear_View_Camera` 六本皆有）。落於本目錄只是落檔批次之便（framework VIII.2 註之反向例）。
+**`NR1L-RVC-046` 為追加列（CAM-07 §2，DECISIONS 6-17）** —— 來源 `SYS-RA-CAM-076` 屬 **Rear Camera 節**，故其 **Test Set 為 `Display Arbitration`**，非本目錄其餘列之 `Additional Cameras`；五車型全勾（`PROXI Rear_View_Camera` 六本皆有）。落於本目錄只是落檔批次之便（framework VIII.2 註之反向例）。

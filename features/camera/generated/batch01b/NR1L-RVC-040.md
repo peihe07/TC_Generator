@@ -1,6 +1,6 @@
 # NR1L-RVC-040 — SWE-CAM-016
 
-- **Test Group**：Rear View Camera｜**Test Set**：Auxiliary Cameras
+- **Test Group**：Rear View Camera｜**Test Set**：Additional Cameras
 - **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=1
 - **priority**：P1｜**design_method**：決策表 (Decision Table Testing)
 - **specification_reference**：`CFTS092-4781655`（來源列 `SYS-RA-CAM-090`）
@@ -11,7 +11,7 @@
 
 ## reasoning
 
-驗證目標為 CFTS092 `SYS-RA-CAM-090`（ObjectID 4781655，Surround View Camera 節）之「按下 SVC 鍵且車速低於 8 mph 時顯示影像並送 `SVC_DisplaySts`」。上半為摘句（§4.3.1）：原句 56 token 逾 50，刪去括號內之 `(HU receives the internal signal SVC IMAGE ON)` 八個 token，摘後 48 token；為原句 token 之保序子序列，條件（`$Speedometer$ < [8 MPH]`）與結果（顯示影像、送 `SVC_DisplaySts`）兩子句皆保留。速度供試值取 raw 205 = 12.8125 km/h = 7.9614 mph（< 8 mph）—— 四本 DBC 之 `VehicleSpeedVSOSig` 因子皆為 (0.0625,0) "Km/h"。**`SVC_DisplaySts` 於四本 DBC 零命中**，其 message 與 raw 值標 `PENDING: DR-CAM-j`；影像顯示側仍可判，故本列不整列 BLOCKED。門檻之達標側由 `NR1L-RVC-041` 承接（軟鍵灰階）。本列依 **R-CAM13(c)** 落 Test Set `Auxiliary Cameras`（framework Part VIII 第 10 組，CAM-06 重開）；其 SWE 列 `SWE-CAM-016` 於 Layer 2 仍歸 `Display Arbitration`，「組 ↔ SWE 列」與「TC ↔ Test Set」於本組分離。A-CA28 之「不生成」處置作廢。
+驗證目標為 CFTS092 `SYS-RA-CAM-090`（ObjectID 4781655，Surround View Camera 節）之「按下 SVC 鍵且車速低於 8 mph 時顯示影像並送 `SVC_DisplaySts`」。上半為摘句（§4.3.1）：原句 56 token 逾 50，刪去括號內之 `(HU receives the internal signal SVC IMAGE ON)` 八個 token，摘後 48 token；為原句 token 之保序子序列，條件（`$Speedometer$ < [8 MPH]`）與結果（顯示影像、送 `SVC_DisplaySts`）兩子句皆保留。速度供試值取 raw 205 = 12.8125 km/h = 7.9614 mph（< 8 mph）—— 四本 DBC 之 `VehicleSpeedVSOSig` 因子皆為 (0.0625,0) "Km/h"。**`SVC_DisplaySts` 於四本 DBC 零命中**，其 message 與 raw 值標 `PENDING: DR-CAM-j`；影像顯示側仍可判，故本列不整列 BLOCKED。門檻之達標側由 `NR1L-RVC-041` 承接（軟鍵灰階）。本列依 **R-CAM13(c)** 落 Test Set `Additional Cameras`（framework Part VIII 第 10 組，CAM-06 重開）；其 SWE 列 `SWE-CAM-016` 於 Layer 2 仍歸 `Display Arbitration`，「組 ↔ SWE 列」與「TC ↔ Test Set」於本組分離。A-CA28 之「不生成」處置作廢。
 
 ## pre_conditions
 

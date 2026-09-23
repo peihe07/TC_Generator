@@ -1,6 +1,6 @@
 # NR1L-RVC-094 — SWE-CAM-017
 
-- **Test Group**：Rear View Camera｜**Test Set**：Auxiliary Cameras
+- **Test Group**：Rear View Camera｜**Test Set**：Additional Cameras
 - **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
 - **priority**：P2｜**design_method**：功能測試 (Functional based ; no specific technique)
 - **specification_reference**：`CFTS092-4781663`（來源列 `SYS-RA-CAM-098`）

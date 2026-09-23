@@ -1,5 +1,5 @@
 swe_id	kind	test_set	section	disposition	batch	tc_id
-SWE1-RVC-007	umbrella	Activation and Exit	7.1	UMBRELLA — covered by children	b01a	—
+SWE1-RVC-007	umbrella	Activation and Exit	7.1	UMBRELLA — covered by children	—	—
 SWE1-RVC-007-01	leaf	Activation and Exit	7.1	PRODUCED	b01a	NR1L-RVCHMI-015
 SWE1-RVC-007-02	leaf	Activation and Exit	7.1	PRODUCED	b01a	NR1L-RVCHMI-016
 SWE1-RVC-008	leaf	Activation and Exit	7.2	PRODUCED	b01a	NR1L-RVCHMI-017
@@ -8,17 +8,42 @@ SWE1-RVC-008-02	leaf	Activation and Exit	7.2	PRODUCED	b01a	NR1L-RVCHMI-019
 SWE1-RVC-008-03	leaf	Activation and Exit	7.2	PRODUCED	b01a	NR1L-RVCHMI-020
 SWE1-RVC-008-04	leaf	Activation and Exit	7.2	PRODUCED	b01a	NR1L-RVCHMI-021
 SWE1-RVC-008-05	leaf	Activation and Exit	7.2	PRODUCED	b01a	NR1L-RVCHMI-022
+SWE1-RVC-008-06	leaf	Activation and Exit	7.2	PRODUCED	b01a	NR1L-RVCHMI-023
+SWE1-RVC-015	leaf	Activation and Exit	7.3	PRODUCED	b01b	NR1L-RVCHMI-024
+SWE1-RVC-016	leaf	Activation and Exit	7.3.1	PRODUCED	b01b	NR1L-RVCHMI-025
+SWE1-RVC-017	leaf	Activation and Exit	7.3.2	PRODUCED	b01b	NR1L-RVCHMI-026
+SWE1-RVC-018	leaf	Activation and Exit	7.3.3	PRODUCED	b01b	NR1L-RVCHMI-027
+SWE1-RVC-019	umbrella	Activation and Exit	7.4	UMBRELLA — covered by children	—	—
+SWE1-RVC-019-01	leaf	Activation and Exit	7.4	PRODUCED	b01b	NR1L-RVCHMI-028
+SWE1-RVC-019-02	leaf	Activation and Exit	7.4	PRODUCED	b01b	NR1L-RVCHMI-029
+SWE1-RVC-019-03	leaf	Activation and Exit	7.4	PRODUCED	b01b	NR1L-RVCHMI-030
+SWE1-RVC-019-04	leaf	Activation and Exit	7.4	PRODUCED	b01b	NR1L-RVCHMI-031
+SWE1-RVC-020	leaf	Activation and Exit	7.5	PRODUCED	b01b	NR1L-RVCHMI-032
+SWE1-RVC-021	leaf	Activation and Exit	7.5.1	PRODUCED	b01b	NR1L-RVCHMI-033
+SWE1-RVC-022	leaf	Activation and Exit	7.5.2	PRODUCED	b01b	NR1L-RVCHMI-034
+SWE1-RVC-023	umbrella	Activation and Exit	7.5.3	UMBRELLA — covered by children	—	—
+SWE1-RVC-023-01	leaf	Activation and Exit	7.5.3	PRODUCED	b01b	NR1L-RVCHMI-035
+SWE1-RVC-023-02	leaf	Activation and Exit	7.5.3	PRODUCED	b01b	NR1L-RVCHMI-036
+SWE1-RVC-023-03	leaf	Activation and Exit	7.5.3	PRODUCED	b01b	NR1L-RVCHMI-037
+SWE1-RVC-024	umbrella	Activation and Exit	8.1	UMBRELLA — covered by children	—	—
+SWE1-RVC-024-01	leaf	Activation and Exit	8.1	PRODUCED	b01b	NR1L-RVCHMI-038
+SWE1-RVC-024-02	leaf	Activation and Exit	8.1	PRODUCED	b01b	NR1L-RVCHMI-039
+SWE1-RVC-025	umbrella	Activation and Exit	8.1.1	UMBRELLA — covered by children	—	—
+SWE1-RVC-025-01	leaf	Activation and Exit	8.1.1	PRODUCED	b01b	NR1L-RVCHMI-040
+SWE1-RVC-025-02	leaf	Activation and Exit	8.1.1	PRODUCED	b01b	NR1L-RVCHMI-041
+SWE1-RVC-033	leaf	Activation and Exit	8.6	PRODUCED	b01b	NR1L-RVCHMI-042
+SWE1-RVC-034	leaf	Activation and Exit	8.7	PRODUCED	b01b	NR1L-RVCHMI-043
 SWE1-RVC-041	leaf	Activation and Exit	6.1.2	PRODUCED	b01a	NR1L-RVCHMI-001
 SWE1-RVC-042	leaf	Activation and Exit	6.1.3	PRODUCED	b01a	NR1L-RVCHMI-002
 SWE1-RVC-043	leaf	Activation and Exit	6.1.5	PRODUCED	b01a	NR1L-RVCHMI-003
 SWE1-RVC-044	leaf	Activation and Exit	6.1.6	PRODUCED	b01a	NR1L-RVCHMI-004
-SWE1-RVC-048	umbrella	Activation and Exit	6.5.1	UMBRELLA — covered by children	b01a	—
+SWE1-RVC-048	umbrella	Activation and Exit	6.5.1	UMBRELLA — covered by children	—	—
 SWE1-RVC-048-01	leaf	Activation and Exit	6.5.1	PRODUCED	b01a	NR1L-RVCHMI-005
 SWE1-RVC-048-02	leaf	Activation and Exit	6.5.1	PRODUCED	b01a	NR1L-RVCHMI-006
 SWE1-RVC-048-03	leaf	Activation and Exit	6.5.1	PRODUCED	b01a	NR1L-RVCHMI-007
 SWE1-RVC-049	leaf	Activation and Exit	6.5.2	PRODUCED	b01a	NR1L-RVCHMI-008
 SWE1-RVC-050	leaf	Activation and Exit	6.5.3	PRODUCED	b01a	NR1L-RVCHMI-009
-SWE1-RVC-051	umbrella	Activation and Exit	6.7.1	UMBRELLA — covered by children	b01a	—
+SWE1-RVC-051	umbrella	Activation and Exit	6.7.1	UMBRELLA — covered by children	—	—
 SWE1-RVC-051-01	leaf	Activation and Exit	6.7.1	PRODUCED	b01a	NR1L-RVCHMI-010
 SWE1-RVC-051-02	leaf	Activation and Exit	6.7.1	PRODUCED	b01a	NR1L-RVCHMI-011
 SWE1-RVC-051-03	leaf	Activation and Exit	6.7.1	PRODUCED	b01a	NR1L-RVCHMI-012

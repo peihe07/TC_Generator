@@ -12,6 +12,10 @@ process canon 仍為 `docs/fw036/FEATURE_ONBOARDING.md`。
 `Auxiliary Cameras`（9 → 10 組），`SWE-CAM-017` 自 `State Handling` 改歸該組。
 重開前 sha16 `c4fc9d2e5b7d1f44`，重開後 sha16 `ee74d26960d6c281`（CAM-06 落檔時）；
 **VIII.2 例外註擴為四列供稿後（CAM-07 §1-8）sha16 `8569aa484b552b7c`**。
+**重開二次（Tier 2，Pei 2026-09-23，CAM-14 審閱 §一-2，下放包 CAM-15 §1-2）**：
+第 10 組 Test Set 由 `Auxiliary Cameras` 改名 `Additional Cameras`（**R-CAM13(d)**）——
+與第 9 組 `AUX Camera`（VF617_V5 之外接 AUX 輸入）字面相近而域不同，故改名分辨；
+組數、歸屬、Layer 3 皆不變。重開後 sha16 `95b5e5ff567c491b`。
 （量測法：本檔全文，但本行**最後一個** sha16 欄位以 16 個 `0` 代入後取 sha256 前 16 碼
 —— 自指之故；量測法亦記於 profile §8。）
 重開範圍僅及 VIII.2 之組表與註、與本狀態行；VIII.3～VIII.8 未動。
@@ -75,7 +79,7 @@ Sub Categorization ∩ VF 章節之交集。**十組**（CAM-06 重開），**�
 | 7 | `Display Arbitration` | 015, 016, 018, 020 | Daemon／App | 4 | V2 1.13.2.1.x、V3 1.10.2.2/3、CFTS092 §1.3.6 |
 | 8 | `HMI Overlays` | 021, 022, 023, 025 | App | 4 | V2 1.13.2.1.4～8、V2 1.13.2.2.x |
 | 9 | `AUX Camera` | 024 | App | 1 | VF617_V5（**缺件，DR-CAM-a**）|
-| 10 | `Auxiliary Cameras` | 017 | Daemon | 1 | CFTS092 §1.3.5／§1.3.7／§1.3.8／§1.3.9 |
+| 10 | `Additional Cameras` | 017 | Daemon | 1 | CFTS092 §1.3.5／§1.3.7／§1.3.8／§1.3.9 |
 | | **合計** | | | **25** | |
 
 25 列之 `Categorization` 實測全為 `Functional Requirement`（無 Heading 列），
@@ -85,18 +89,18 @@ Sub Categorization ∩ VF 章節之交集。**十組**（CAM-06 重開），**�
 - ~~`-017` 依其 Description（`CameraDisplaySts`）歸 `State Handling`；其 VC/VM
   講 Air Suspension PROXI 與 4X→1X reset，與描述不對齊（**A-CA03**），
   RD 對齊後可能改歸 `HMI Overlays`。~~
-  **CAM-06 重開改歸 `Auxiliary Cameras`** —— `-017` 之 `CameraDisplaySts` 條文
+  **CAM-06 重開改歸 `Auxiliary Cameras`（今名 `Additional Cameras`，R-CAM13(d)）** —— `-017` 之 `CameraDisplaySts` 條文
   （CFTS092 `SYS-RA-CAM-097`／`-098`）位於 Forward Facing 節（§1.3.8），
   與新組之 Layer 3 對齊；VC/VM 錯位之 A-CA03 不因重開而結，改登 RDF-02。
-- **第 10 組 `Auxiliary Cameras` 之 Test Set 值不只由 `-017` 產出** ——
+- **第 10 組 `Additional Cameras` 之 Test Set 值不只由 `-017` 產出** ——
   依 **R-CAM13(c)**，他列所引之 Cargo/CHMSL、Surround View、Forward Facing 節條文，
-  其 TC 之 `Test Set` 亦寫 `Auxiliary Cameras`，而該 SWE 列於本表仍歸其原組。
+  其 TC 之 `Test Set` 亦寫 `Additional Cameras`，而該 SWE 列於本表仍歸其原組。
   **供稿者實測為四列**（CAM-06 審閱 §二-7 准）：
 
-  | SWE 列 | 本表之組 | 供 `Auxiliary Cameras` 之來源 |
+  | SWE 列 | 本表之組 | 供 `Additional Cameras` 之來源 |
   |---|---|---|
   | `SWE-CAM-016` | `Display Arbitration` | `CAM-063`／`-067`／`-068`／`-084`／`-085`／`-089`／`-090`／`-091`／`-092`／`-093`／`-095`／`-096`（12）|
-  | `SWE-CAM-017` | **`Auxiliary Cameras`**（本組）| `CAM-097`／`-098`（2）|
+  | `SWE-CAM-017` | **`Additional Cameras`**（本組）| `CAM-097`／`-098`（2）|
   | `SWE-CAM-001` | `Startup and Shutdown` | `CAM-088`（SVC 預設為 OFF，1）|
   | `SWE-CAM-003` | `State Handling` | `CAM-069`／`-086`／`-087`（3）|
 

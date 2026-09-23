@@ -2,7 +2,7 @@
 
 `SWE-CAM-001`（22）＋ `SWE-CAM-012`（3）＋ `SWE-CAM-014`（1）＝ **26 列**｜TC ID `NR1L-RVC-047`～`-072`｜計畫 `features/camera/data/batch02_plan.tsv`（CAM-07 §2 修訂後）
 
-Test Group：`Rear View Camera`。Test Set 除 `NR1L-RVC-048` 為 `Auxiliary Cameras`（來源屬 SVC 節，R-CAM13(c)）外，其餘 25 列皆為 `Startup and Shutdown`。
+Test Group：`Rear View Camera`。Test Set 除 `NR1L-RVC-048` 為 `Additional Cameras`（來源屬 SVC 節，R-CAM13(c)）外，其餘 25 列皆為 `Startup and Shutdown`。
 
 | TC ID | req | 來源列 | tc_title | 軸 | Vehicle Model = 1 | spec_reference | P |
 |---|---|---|---|---|---|---|---|

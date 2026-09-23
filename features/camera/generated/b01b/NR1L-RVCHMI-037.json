@@ -1,0 +1,34 @@
+{
+  "tc_id": "NR1L-RVCHMI-037",
+  "req_id": "SWE1-RVC-023-03",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "“X” soft control is pressed (PU0361). The user has the ability to press this soft control to close the camera at any time during the 10 seconds/speed threshold.",
+  "source_object_id": "NRL-142629",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "manual dismissal via the X soft control during the delay",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The \"Rear View Camera Delay\" setting is On\n4. The shift lever has just been moved from R to D\n5. The rear view camera image is displayed during the delay",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the camera image and check that the \"X\" soft control is available\n2. Press the \"X\" soft control\n3. Read the HU display and check that the camera image is turned off",
+      "expected_result": "1. The \"X\" soft control is shown on the camera image\n2. The \"X\" soft control registers the press\n3. The camera image is turned off and the last known HU display is shown again",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.3",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "manual dismissal via the X soft control during the delay",
+      "test_item": "“X” soft control is pressed (PU0361). The user has the ability to press this soft control to close the camera at any time during the 10 seconds/speed threshold.\n\n(manual dismissal via the X soft control during the delay)"
+    }
+  ],
+  "reasoning": "§7.5.3 之第三分支。verbatim 為該列 Description 之保序子序列 —— 刪去 `In ANY OTHER GEAR, the camera image will display an “X” in the upper right corner of the screen.` 一句（該句之位置驗證由 `-038` 承接，不重複）。`X` 之彈窗編號 `PU0361` 取 `forms/Pop Up List HMI R1 (26PI).xlsx` `Main` 分頁 —— 該列之 `Timeout` 欄為 `10`（與本條之 10 秒相符）、文字欄逐字 `A clear ‘X’ exit button is available in any gear.`；惟其 module 欄為 `Cargo Camera` 而非 RVC，記於 `remarks`（**profile §10** 第二類）。",
+  "remarks": "Popup PU0361 is listed under the Cargo Camera module in the Pop Up List; SYS1 RVC+PAM 7.5.3 cites it for the rear view camera."
+}

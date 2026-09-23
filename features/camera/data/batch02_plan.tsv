@@ -2,7 +2,7 @@ swe_id	source_id	anchor	vf_chapter	verification_point	axis	tc_count	note
 SWE-CAM-001	SYS-RA-CAM-062	CFTS092-4781627	—	camera off by default until activated	—	0	covered_by: NR1L-RVC-001；R-CAM12 疊層同句，錨取 Rear 節之 -075
 SWE-CAM-001	SYS-RA-CAM-075	CFTS092-4781640	—	camera off by default until activated	—	0	covered_by: NR1L-RVC-001（pilot02）
 SWE-CAM-001	SYS-RA-CAM-082	CFTS092-4781647	—	press X -> internal RVC IMAGE OFF -> rear image closed	none	1	
-SWE-CAM-001	SYS-RA-CAM-088	CFTS092-4781653	—	Surround View camera default setting is OFF	none	1	**Test Set `Auxiliary Cameras`**（R-CAM13(c)）—— `-001` 亦引 SVC 節，RDF-01 之同型
+SWE-CAM-001	SYS-RA-CAM-088	CFTS092-4781653	—	Surround View camera default setting is OFF	none	1	**Test Set `Additional Cameras`**（R-CAM13(c)）—— `-001` 亦引 SVC 節，RDF-01 之同型
 SWE-CAM-001	SYS-RA-VF551_V2-528	VF551_V2_PHDCC27_VF_505	1.13.2.2.3	"""Camera Not in Position"" overlay for 5 s when RHatchSts = Open"	車型 Atl-Hi	1	
 SWE-CAM-001	SYS-RA-VF551_V3-252	VF551_V3_P363_VF_505	1.10.2.1	same overlay, Atl-Mi wording + ISO 15008 clause	車型 Atl-Mi	1	
 SWE-CAM-001	SYS-RA-VF551_V33-226	VF551_V33_P226MCA_VF_514	1.11.1.2	same overlay for T_INITDISPLAY (2261)	車型 2261	1	
@@ -68,9 +68,9 @@ SWE-CAM-002	SYS-RA-VF617_V5-248	—	—	—	—	0	查無（DR-CAM-a）
 SWE-CAM-002	SYS-RA-VF617_V5-269	—	—	—	—	0	查無（DR-CAM-a）
 SWE-CAM-005	SYS-RA-VF551_V3-254	VF551_V3_P363_VF_522	1.10.2.1	RVCM image resolution is 1280 x 800	none	1	解析度有 SYS2 原文值；**格式（EVS HAL 支援之 format）於 SYS2 原文查無** —— 升級條件第 3 項，該面 PENDING
 SWE-CAM-005	SYS-RA-VF617_V5-183	—	—	—	—	0	查無（DR-CAM-a）
-SWE-CAM-003	SYS-RA-CAM-069	CFTS092-4781634	—	press X -> internal CHMC IMAGE OFF -> cargo image closed	none	1	**Test Set `Auxiliary Cameras`**（R-CAM13(c)）
-SWE-CAM-003	SYS-RA-CAM-086	CFTS092-4781651	—	SVC_SoftBtn_Rq = Not Pressed follows the release	none	1	**`Auxiliary Cameras`**；PENDING: DR-CAM-j
-SWE-CAM-003	SYS-RA-CAM-087	CFTS092-4781652	—	SVC_SoftBtn_Rq = Not Pressed continues until next keypress	none	1	**`Auxiliary Cameras`**；PENDING: DR-CAM-j
+SWE-CAM-003	SYS-RA-CAM-069	CFTS092-4781634	—	press X -> internal CHMC IMAGE OFF -> cargo image closed	none	1	**Test Set `Additional Cameras`**（R-CAM13(c)）
+SWE-CAM-003	SYS-RA-CAM-086	CFTS092-4781651	—	SVC_SoftBtn_Rq = Not Pressed follows the release	none	1	**`Additional Cameras`**；PENDING: DR-CAM-j
+SWE-CAM-003	SYS-RA-CAM-087	CFTS092-4781652	—	SVC_SoftBtn_Rq = Not Pressed continues until next keypress	none	1	**`Additional Cameras`**；PENDING: DR-CAM-j
 SWE-CAM-003	SYS-RA-VF551_V2-491	VF551_V2_PHDCC27_VF_1578	1.13.2.1.1	any preceding exit condition -> back to non-camera display	none	1	
 SWE-CAM-003	SYS-RA-VF551_V2-501	VF551_V2_PHDCC27_VF_1758	1.13.2.1.4	rear camera image displayed (1.13.2.1.4 branch)	none	1	
 SWE-CAM-003	SYS-RA-VF551_V2-507	VF551_V2_PHDCC27_VF_1762	1.13.2.1.6	rear camera image displayed (1.13.2.1.6 branch)	none	1	
@@ -115,7 +115,7 @@ SWE-CAM-003	SYS-RA-VF617_V5-300	—	—	—	—	0	查無（DR-CAM-a）
 SWE-CAM-003	SYS-RA-VF617_V5-301	—	—	—	—	0	查無（DR-CAM-a）
 SWE-CAM-003	SYS-RA-VF617V5-406	—	—	—	—	0	查無（DR-CAM-a）—— 且代號缺底線（`VF617V5`），登 RDF-05
 SWE-CAM-003	SYS-RA-VF617V5-407	—	—	—	—	0	查無（DR-CAM-a）—— 且代號缺底線（`VF617V5`），登 RDF-05
-SWE-CAM-017	SYS-RA-CAM-097	CFTS092-4781662	—	on-change CameraDisplaySts = Default within Tsend of the state change	none	1	**Test Set `Auxiliary Cameras`**（framework 第 10 組，`-017` 已改歸）
+SWE-CAM-017	SYS-RA-CAM-097	CFTS092-4781662	—	on-change CameraDisplaySts = Default within Tsend of the state change	none	1	**Test Set `Additional Cameras`**（framework 第 10 組，`-017` 已改歸）
 SWE-CAM-017	SYS-RA-CAM-098	CFTS092-4781663	—	CameraDisplaySts = Default continues until the next keypress	none	1	同上
 SWE-CAM-017	SYS-RA-VF551_V2-569	VF551_V2_PHDCC27_VF_1748	1.14.1	—	—	0	Out of Scope（R-CAM9）
 SWE-CAM-017	SYS-RA-VF551_V2-578	VF551_V2_PHDCC27_VF_356	1.14.1	—	—	0	Out of Scope（R-CAM9）；得作 Pre-Condition 措辭來源

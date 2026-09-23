@@ -21,7 +21,7 @@
       "input_test_data": "NA",
       "test_procedure": "1. Press the Radio hard key on the HU\n2. Read the HU display and check that the RVC+PAM layout is still displayed\n3. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P)\n4. Read the HU display and check that the RVC+PAM layout is no longer displayed",
       "expected_result": "1. The Radio hard key registers the press\n2. The RVC+PAM layout remains displayed\n3. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent\n4. The RVC+PAM layout is no longer displayed",
-      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2.4",
       "design_method": "狀態轉換 (State Transition Testing)",
       "priority": "P1",
       "split_flag": true,

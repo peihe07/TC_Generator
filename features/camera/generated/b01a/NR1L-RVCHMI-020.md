@@ -3,7 +3,7 @@
 - **Test Group**：Rear View Camera｜**Test Set**：Activation and Exit
 - **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
 - **priority**：P1｜**design_method**：功能測試 (Functional based ; no specific technique)
-- **specification_reference**：`SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2`（來源列 `NRL-142617`）
+- **specification_reference**：`SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2.3`（來源列 `NRL-142617`）
 
 ## test_item 上半（verbatim，SYS1 逐字）
 

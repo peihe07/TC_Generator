@@ -1,8 +1,8 @@
-# INDEX — batch02c（State Handling ＋ Auxiliary Cameras，下放包 CAM-09 §2）
+# INDEX — batch02c（State Handling ＋ Additional Cameras，下放包 CAM-09 §2）
 
 `SWE-CAM-003` 全 23 列｜TC ID `NR1L-RVC-095`～`-117`｜計畫 `features/camera/data/batch02_plan.tsv`
 
-Test Group：`Rear View Camera`。Test Set：`-095`～`-097` 為 `Auxiliary Cameras`（來源屬 Cargo/CHMSL 與 Surround View 節，R-CAM13(c)）；`-098`～`-117` 為 `State Handling`。
+Test Group：`Rear View Camera`。Test Set：`-095`～`-097` 為 `Additional Cameras`（來源屬 Cargo/CHMSL 與 Surround View 節，R-CAM13(c)）；`-098`～`-117` 為 `State Handling`。
 
 | TC ID | 來源列 | tc_title | 軸 | Vehicle Model = 1 | spec_reference | P |
 |---|---|---|---|---|---|---|

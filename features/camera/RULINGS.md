@@ -229,6 +229,26 @@ Atl-Hi 兩本與 `Promaster_ATL_MI`（637）、`Fastback_ATL_MI`（376），
 **`Toro_ATL_MI`（2261）之 PROXI 表止於 byte 172，三個參數皆查無**；
 六本之 default 值一律 `0 = Absent`。
 
+### R-CAM13(d)（修訂，2026-09-23，Pei 裁：CAM-14 審閱 §一-2）
+
+```text
+R-CAM13(d)  R-CAM13(c) 所定之 Test Set 名 `Auxiliary Cameras` 改為 `Additional Cameras`。
+  改名之由：A 本另有 Test Set `AUX Camera`（`SWE-CAM-024`，VF617_V5 之外接 AUX 輸入），
+  兩名字面相近而域不同 —— `Additional Cameras` 指車上其他相機（Cargo/CHMSL、
+  Surround View、Forward Facing、Clearpath），`AUX Camera` 指外接 AUX 輸入，
+  與 B 本 `AUX Camera Access`／`AUX Camera Settings` 同義域，保留不動。
+  R-CAM13(c) 之其餘內容（PROXI 前提、reasoning 註 Atl-Hi default 為 0）不變。
+```
+
+**原條 R-CAM13(c) 之逐字不動**（R-TM13／GCB-06：修訂段以同級錨自立，原條 fenced sha 不變）。
+
+**執行層落實（CAM-15 §1-2）**：`test_set` 欄實測 **18 筆** json 改名
+（`NR1L-RVC-034`～`-045`、`-048`、`-093`～`-097`），其 `.md` 由
+`features/camera/scripts/render_tc.py` 重生；`framework.md` VIII.2 第 10 組、
+`data/layer2_assign.tsv`、`data/batch02_plan.tsv`、`DATA_REQUESTS.md`（DR-CAM-j）、
+`RD_FEEDBACK.md` 同步。`coverage.tsv` 無 `test_set` 欄，不受影響。
+`docs/fw036/handoff/` 為唯讀史料，**不改**。
+
 ### R-CAM14 — 速度門檻之母錨 ＝ CFTS092-4781643（Pei 裁，2026-09-23）
 
 ```text
@@ -341,6 +361,26 @@ R-CAM17  上繳包中任何「查無／零命中／全等／逐字相符」之�
 **執行層落實（CAM-13）**：本包所有「查無」主張逐項附證據，見上繳包 §5。
 併登 `GC_BACKLOG.md` **GCB-08**，提請入全域 ledger。
 
+
+### R-CAM18 — B 本之 `Vehicle Model` 七欄以「可佈性」判（Pei 裁，2026-09-23：CAM-14 審閱 §一-5）
+
+```text
+R-CAM18  B 本（SYS1 HMI）之條文不帶平台維度（無 `PHDCC27`／`P637MCA` 之類之錨），
+  故 R-CAM3 之車型軸於 B 本改由**可佈性**判：
+  (a) 預設 —— 五款已出資平台（HDCC27、DT27、637、2261、376）皆 `1`；
+  (b) 該列之 PROXI 前提所用之 byte 於該平台之 PROXI 本**不存在** -> 該欄 `0`；
+  (c) 該列之觸發訊號於該平台之 DBC **不存在**（沿 A 本已定之 message 對照，R-CAM1(b)）
+      -> 該欄 `0`；
+  (d) (b)／(c) 判 `0` 者，該列之 reasoning 須**具名證據**（掃描字串、母體本數、命令、
+      命中數；R-CAM17）；
+  (e) `Commander (598)`／`Regengade (5210)` 恆 `0`（R-CAM2 不變）。
+  A 本不受本條影響 —— 其車型軸仍由 SYS2 之平台錨直接判（R-CAM3）。
+```
+
+**執行層落實（CAM-14／CAM-15）**：B01a 22 列中 19 列五款全 `1`；3 列
+（`NR1L-RVCHMI-008`／`-012`／`-014`）因 `Toro_ATL_MI` 之 2019 本缺 byte 177
+（`Surround_View_Camera`／`Forward_Facing_Camera`，**DR-CAM-l**）而 `Toro(2261)` = `0`。
+DECISIONS **6-51** 由 `[PROPOSED]` 轉 `[DECIDED]`。
 
 ---
 

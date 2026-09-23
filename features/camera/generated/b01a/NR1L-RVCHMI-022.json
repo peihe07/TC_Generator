@@ -21,7 +21,7 @@
       "input_test_data": "NA",
       "test_procedure": "1. PENDING: DR-CAM-g the entry path to the Controls screen (Vehicle Page) is not sourced\n2. Select the associated button in the «Controls» screen (Vehicle Page)\n3. Read the HU display and check that the RVC+PAM layout is displayed",
       "expected_result": "1. PENDING: DR-CAM-g the Controls screen (Vehicle Page) is displayed\n2. The associated button registers the selection\n3. The RVC+PAM layout is displayed",
-      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2.5",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P2",
       "split_flag": true,

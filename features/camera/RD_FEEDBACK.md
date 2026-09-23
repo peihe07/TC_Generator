@@ -29,7 +29,7 @@ Forward Facing 三節，與該 SWE 列之題名（Rear 之手動模式仲裁）�
 | Surround View Camera（§1.3.7）| `-083`(4781648) 起 | `-084`、`-085`、`-089`、`-090`、`-091`、`-092`、`-093` |
 | Forward Facing Camera（§1.3.8）| `-094`(4781659) 起 | `-095`、`-096` |
 
-**TC 側現行處置**：依 **R-CAM13** 全數生成，12 列落 Test Set `Auxiliary Cameras`
+**TC 側現行處置**：依 **R-CAM13** 全數生成，12 列落 Test Set `Additional Cameras`
 （`batch01b/`，`NR1L-RVC-034` 起），不再以 Test Group 不符為由略過。
 A-CA28 之「不生成」處置因而作廢。
 

@@ -21,7 +21,7 @@
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n2. Read the HU display and check that the RVC+PAM layout is displayed",
       "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent\n2. The RVC+PAM layout is displayed",
-      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.2.1",
       "design_method": "狀態轉換 (State Transition Testing)",
       "priority": "P1",
       "split_flag": true,

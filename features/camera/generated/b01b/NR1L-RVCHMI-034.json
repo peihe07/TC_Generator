@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-034",
+  "req_id": "SWE1-RVC-022",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "Gear != R and RVC timeout expired;",
+  "source_object_id": "NRL-142628",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "dismissal once the gear is not R and the RVC timeout expires",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The \"Rear View Camera Delay\" setting is On\n4. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n5. The shift lever is in R\n6. The RVC+PAM layout is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 4 (D) and record the timestamp\n2. Read the HU display and check that the RVC+PAM layout is still displayed\n3. Wait 10 seconds from the recorded timestamp\n4. Read the HU display and check that the RVC+PAM layout is no longer displayed",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 4 (D) is sent and its timestamp is recorded\n2. The RVC+PAM layout remains displayed during the timeout\n3. The 10 second interval elapses\n4. The RVC+PAM layout is no longer displayed and the last known HU display is shown again",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.2",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "dismissal once the gear is not R and the RVC timeout expires",
+      "test_item": "Gear != R and RVC timeout expired;\n\n(dismissal once the gear is not R and the RVC timeout expires)"
+    }
+  ],
+  "reasoning": "§7.5.2。`RVC timeout` 之值於本條未載，取同章 **§7.5.3** 之逐字 `After 10 seconds`（`Timer will start immediately once the vehicle is shifted from REVERSE`），並與 Pop Up List `PU0361` 之 timeout 欄 `10` 相符 —— 同一計時器之兩處記載，不另開 DR。`Rear View Camera Delay` 設為 On 以使計時器生效（§7.2.2／§7.5.3 之前提）。"
+}

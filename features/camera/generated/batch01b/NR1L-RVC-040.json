@@ -2,7 +2,7 @@
   "tc_id": "NR1L-RVC-040",
   "req_id": "SWE-CAM-016",
   "test_group": "Rear View Camera",
-  "test_set": "Auxiliary Cameras",
+  "test_set": "Additional Cameras",
   "test_item_verbatim": "When the Surround View Camera soft button is pressed and the vehicle speed is less than 8mph, ($Speedometer$ < [8 MPH]), the HU shall display the video image, as specified by HMI, and send the SVC_DisplaySts = [SVC image displayed] signal to the CVPM, within <Tsend> of keypress.",
   "source_object_id": "SYS-RA-CAM-090",
   "vehicle_model": {
@@ -29,5 +29,5 @@
       "test_item": "When the Surround View Camera soft button is pressed and the vehicle speed is less than 8mph, ($Speedometer$ < [8 MPH]), the HU shall display the video image, as specified by HMI, and send the SVC_DisplaySts = [SVC image displayed] signal to the CVPM, within <Tsend> of keypress.\n\n(SVC image below the speed threshold, press the virtual button below 8 mph and check that the video image is displayed)"
     }
   ],
-  "reasoning": "驗證目標為 CFTS092 `SYS-RA-CAM-090`（ObjectID 4781655，Surround View Camera 節）之「按下 SVC 鍵且車速低於 8 mph 時顯示影像並送 `SVC_DisplaySts`」。上半為摘句（§4.3.1）：原句 56 token 逾 50，刪去括號內之 `(HU receives the internal signal SVC IMAGE ON)` 八個 token，摘後 48 token；為原句 token 之保序子序列，條件（`$Speedometer$ < [8 MPH]`）與結果（顯示影像、送 `SVC_DisplaySts`）兩子句皆保留。速度供試值取 raw 205 = 12.8125 km/h = 7.9614 mph（< 8 mph）—— 四本 DBC 之 `VehicleSpeedVSOSig` 因子皆為 (0.0625,0) \"Km/h\"。**`SVC_DisplaySts` 於四本 DBC 零命中**，其 message 與 raw 值標 `PENDING: DR-CAM-j`；影像顯示側仍可判，故本列不整列 BLOCKED。門檻之達標側由 `NR1L-RVC-041` 承接（軟鍵灰階）。本列依 **R-CAM13(c)** 落 Test Set `Auxiliary Cameras`（framework Part VIII 第 10 組，CAM-06 重開）；其 SWE 列 `SWE-CAM-016` 於 Layer 2 仍歸 `Display Arbitration`，「組 ↔ SWE 列」與「TC ↔ Test Set」於本組分離。A-CA28 之「不生成」處置作廢。"
+  "reasoning": "驗證目標為 CFTS092 `SYS-RA-CAM-090`（ObjectID 4781655，Surround View Camera 節）之「按下 SVC 鍵且車速低於 8 mph 時顯示影像並送 `SVC_DisplaySts`」。上半為摘句（§4.3.1）：原句 56 token 逾 50，刪去括號內之 `(HU receives the internal signal SVC IMAGE ON)` 八個 token，摘後 48 token；為原句 token 之保序子序列，條件（`$Speedometer$ < [8 MPH]`）與結果（顯示影像、送 `SVC_DisplaySts`）兩子句皆保留。速度供試值取 raw 205 = 12.8125 km/h = 7.9614 mph（< 8 mph）—— 四本 DBC 之 `VehicleSpeedVSOSig` 因子皆為 (0.0625,0) \"Km/h\"。**`SVC_DisplaySts` 於四本 DBC 零命中**，其 message 與 raw 值標 `PENDING: DR-CAM-j`；影像顯示側仍可判，故本列不整列 BLOCKED。門檻之達標側由 `NR1L-RVC-041` 承接（軟鍵灰階）。本列依 **R-CAM13(c)** 落 Test Set `Additional Cameras`（framework Part VIII 第 10 組，CAM-06 重開）；其 SWE 列 `SWE-CAM-016` 於 Layer 2 仍歸 `Display Arbitration`，「組 ↔ SWE 列」與「TC ↔ Test Set」於本組分離。A-CA28 之「不生成」處置作廢。"
 }

@@ -1,8 +1,8 @@
-# INDEX — batch02b（Configuration ＋ Auxiliary Cameras，下放包 CAM-08 §3）
+# INDEX — batch02b（Configuration ＋ Additional Cameras，下放包 CAM-08 §3）
 
 `SWE-CAM-002`（19）＋ `SWE-CAM-005`（1）＋ `SWE-CAM-017`（2）＝ **22 列**｜TC ID `NR1L-RVC-073`～`-094`｜計畫 `features/camera/data/batch02_plan.tsv`
 
-Test Group：`Rear View Camera`。Test Set：`-073`～`-092` 為 `Configuration`；`-093`／`-094` 為 `Auxiliary Cameras`（`SWE-CAM-017` 已於 framework VIII.2 改歸該組）。
+Test Group：`Rear View Camera`。Test Set：`-073`～`-092` 為 `Configuration`；`-093`／`-094` 為 `Additional Cameras`（`SWE-CAM-017` 已於 framework VIII.2 改歸該組）。
 
 | TC ID | req | 來源列 | tc_title | 軸 | Vehicle Model = 1 | spec_reference | P |
 |---|---|---|---|---|---|---|---|

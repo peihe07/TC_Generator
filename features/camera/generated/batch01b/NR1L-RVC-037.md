@@ -1,6 +1,6 @@
 # NR1L-RVC-037 — SWE-CAM-016
 
-- **Test Group**：Rear View Camera｜**Test Set**：Auxiliary Cameras
+- **Test Group**：Rear View Camera｜**Test Set**：Additional Cameras
 - **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=1
 - **priority**：P1｜**design_method**：決策表 (Decision Table Testing)
 - **specification_reference**：`CFTS092-4781649`（來源列 `SYS-RA-CAM-084`）
@@ -11,7 +11,7 @@
 
 ## reasoning
 
-驗證目標為 CFTS092 `SYS-RA-CAM-084`（ObjectID 4781649，Surround View Camera 節）之「$SVC_SK_PRSNT$ = [1] 時啟用虛擬 Surround View Camera 鍵」。`$SVC_SK_PRSNT$` 為設定／參數標記（§8.7.5(f)），其車輛組態對應為 PROXI `Surround_View_Camera`（byte 177 bit 0），故以該 PROXI 行表達前提 —— 寫法沿 `NR1L-RVC-025` 之 `$RVC_SK_PRSNT$` ↔ `PROXI Rear_View_Camera` 前例。**入口 hop 不寫 App Drawer** —— `-025` 之 App Drawer hop 其 label 來自 B 本 SYS1 之 Menu Bar naming table，該表無 Surround View Camera 之對應列，不得沿用（§5.8、R-CAM1(b) 不得自造）；本列因而只讀該虛擬鍵之可選取狀態，不經導航 hop。不成立側（`$SVC_SK_PRSNT$ = [0]`）之 VC 敘述不生成 —— VC 不是來源（R-CAM13(d)）。本列依 **R-CAM13(c)** 落 Test Set `Auxiliary Cameras`（framework Part VIII 第 10 組，CAM-06 重開）；其 SWE 列 `SWE-CAM-016` 於 Layer 2 仍歸 `Display Arbitration`，「組 ↔ SWE 列」與「TC ↔ Test Set」於本組分離。A-CA28 之「不生成」處置作廢。三個 PROXI 參數之平台覆蓋為 `forms/proxi/` 六本之逐格實測：`Digital_CHMSL_Camera_Prsnt`（byte 222 bit 7）只存在於 Atl-Hi 兩本；`Surround_View_Camera`／`Forward_Facing_Camera`（byte 177 bit 0／1）存在於 Atl-Hi 兩本與 637（`Promaster_ATL_MI` row 762／763）、376（`Fastback_ATL_MI` row 760／761）；**2261（`Toro_ATL_MI`）之 PROXI 表止於 byte 172，三者皆查無**，故該平台一律勾 0。六本之 default 值皆為 `0 = Absent`（R-CAM13(c) 所令之註）。
+驗證目標為 CFTS092 `SYS-RA-CAM-084`（ObjectID 4781649，Surround View Camera 節）之「$SVC_SK_PRSNT$ = [1] 時啟用虛擬 Surround View Camera 鍵」。`$SVC_SK_PRSNT$` 為設定／參數標記（§8.7.5(f)），其車輛組態對應為 PROXI `Surround_View_Camera`（byte 177 bit 0），故以該 PROXI 行表達前提 —— 寫法沿 `NR1L-RVC-025` 之 `$RVC_SK_PRSNT$` ↔ `PROXI Rear_View_Camera` 前例。**入口 hop 不寫 App Drawer** —— `-025` 之 App Drawer hop 其 label 來自 B 本 SYS1 之 Menu Bar naming table，該表無 Surround View Camera 之對應列，不得沿用（§5.8、R-CAM1(b) 不得自造）；本列因而只讀該虛擬鍵之可選取狀態，不經導航 hop。不成立側（`$SVC_SK_PRSNT$ = [0]`）之 VC 敘述不生成 —— VC 不是來源（R-CAM13(d)）。本列依 **R-CAM13(c)** 落 Test Set `Additional Cameras`（framework Part VIII 第 10 組，CAM-06 重開）；其 SWE 列 `SWE-CAM-016` 於 Layer 2 仍歸 `Display Arbitration`，「組 ↔ SWE 列」與「TC ↔ Test Set」於本組分離。A-CA28 之「不生成」處置作廢。三個 PROXI 參數之平台覆蓋為 `forms/proxi/` 六本之逐格實測：`Digital_CHMSL_Camera_Prsnt`（byte 222 bit 7）只存在於 Atl-Hi 兩本；`Surround_View_Camera`／`Forward_Facing_Camera`（byte 177 bit 0／1）存在於 Atl-Hi 兩本與 637（`Promaster_ATL_MI` row 762／763）、376（`Fastback_ATL_MI` row 760／761）；**2261（`Toro_ATL_MI`）之 PROXI 表止於 byte 172，三者皆查無**，故該平台一律勾 0。六本之 default 值皆為 `0 = Absent`（R-CAM13(c) 所令之註）。
 
 ## pre_conditions
 

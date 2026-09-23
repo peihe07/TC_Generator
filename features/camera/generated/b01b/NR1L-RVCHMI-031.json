@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-031",
+  "req_id": "SWE1-RVC-019-04",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "Pushing the button both RVC & sensors shall be displayed.",
+  "source_object_id": "NRL-142625",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "pushing the button displays both the RVC image and the sensors",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI CVPAM_Presence = 1 (Present)\n4. The shift lever is in D\n5. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press the camera soft button on the HU\n2. Read the HU display and check that the rear view camera image and the PAM sensor area are both displayed",
+      "expected_result": "1. The camera soft button registers the press\n2. The rear view camera image and the PAM sensor area are both displayed",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.4",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "pushing the button displays both the RVC image and the sensors",
+      "test_item": "Pushing the button both RVC & sensors shall be displayed.\n\n(pushing the button displays both the RVC image and the sensors)"
+    }
+  ],
+  "reasoning": "§7.4 之末句。`both RVC & sensors` 之 sensors 即 PAM 感測區，故前提加 `CVPAM_Presence = 1`。本列為**手動活化**（按鍵），與 `-028`（自動活化之初始視角）分工。`CVPAM_Presence` 於 `Toro_ATL_MI` 0 命中 → **R-CAM18(b)** `Toro(2261)` 判 `0`。"
+}

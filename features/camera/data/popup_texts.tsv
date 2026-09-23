@@ -12,3 +12,4 @@ Check Entire Surroundings	Y	PU0446	Trailer Reverse Guidance	N/A	RVC	Check Entire
 Check Entire Surroundings	Y	PU0447	Rearview Camera with all features	10	RVC	Check Entire Surroundings <X> Zoom Icon	Main!A450:G450
 Check Entire Surroundings	Y	PU0467	Surround View Camera	10	RVC	Check Entire Surroundings Top View Rear View(Front View) <More Cams>	Main!A470:G470
 Check Entire Surroundings	Y	PU1102	Turn Signal Activated Blind Spot View	5	RVC-X	Check Entire Surroundings <X>	Main!A989:G989
+PU0361	Y	PU0361	Cargo Camera	10	Custom	A clear ‘X’ exit button is available in any gear.	Main!（PU0361 列）

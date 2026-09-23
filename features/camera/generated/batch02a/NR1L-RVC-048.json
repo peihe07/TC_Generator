@@ -2,7 +2,7 @@
   "tc_id": "NR1L-RVC-048",
   "req_id": "SWE-CAM-001",
   "test_group": "Rear View Camera",
-  "test_set": "Auxiliary Cameras",
+  "test_set": "Additional Cameras",
   "test_item_verbatim": "The default setting for the Surround View camera shall be OFF.",
   "source_object_id": "SYS-RA-CAM-088",
   "vehicle_model": {
@@ -29,5 +29,5 @@
       "test_item": "The default setting for the Surround View camera shall be OFF.\n\n(Surround View default is OFF, read the Camera settings and check that the Surround View setting is off after a factory reset)"
     }
   ],
-  "reasoning": "驗證目標為 CFTS092 `SYS-RA-CAM-088`（ObjectID 4781653，**Surround View Camera 節**）之「Surround View 相機之預設設定為 OFF」。**Test Set 為 `Auxiliary Cameras`**（R-CAM13(c)）—— 本列雖為 `SWE-CAM-001` 所引，其來源屬 SVC 節，依節別歸組；framework VIII.2 之四列供稿表已含本列。導航取 R-CAM8 之 `ENTER_CAMERA_SETTINGS` 三 hop（`HMI Settings List` `Settings` 分頁 row 464 `13. Camera`）；Surround View 之設定項見同分頁 row 465 `Surround View Camera Delay` 與 row 466 `Surround View Camera Guidelines`，**惟來源只講「預設為 OFF」而未指名哪一項**，ER 因而以「Surround View camera setting is off」書寫而不指定 label（§8.4.1 不自造）。「預設」以 factory default 之前提表達（Pre-Condition 3）。"
+  "reasoning": "驗證目標為 CFTS092 `SYS-RA-CAM-088`（ObjectID 4781653，**Surround View Camera 節**）之「Surround View 相機之預設設定為 OFF」。**Test Set 為 `Additional Cameras`**（R-CAM13(c)）—— 本列雖為 `SWE-CAM-001` 所引，其來源屬 SVC 節，依節別歸組；framework VIII.2 之四列供稿表已含本列。導航取 R-CAM8 之 `ENTER_CAMERA_SETTINGS` 三 hop（`HMI Settings List` `Settings` 分頁 row 464 `13. Camera`）；Surround View 之設定項見同分頁 row 465 `Surround View Camera Delay` 與 row 466 `Surround View Camera Guidelines`，**惟來源只講「預設為 OFF」而未指名哪一項**，ER 因而以「Surround View camera setting is off」書寫而不指定 label（§8.4.1 不自造）。「預設」以 factory default 之前提表達（Pre-Condition 3）。"
 }

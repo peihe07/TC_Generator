@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-035",
+  "req_id": "SWE1-RVC-023-01",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "When the vehicle is shifted from REVERSE to PARK or DRIVE/NEUTRAL (AGSM) ○ Camera image will stay displayed if Camera Delay Settings is on: ■ After 10 seconds, the camera image will be turned off. Timer will start immediately once the vehicle is shifted from REVERSE",
+  "source_object_id": "NRL-142629",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "10 second delay timer starts immediately on the shift out of REVERSE",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The \"Rear View Camera Delay\" setting is On\n4. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n5. The shift lever is in R\n6. The rear view camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P) and record the timestamp\n2. Read the HU display 9 seconds after the recorded timestamp and check that the camera image is still displayed\n3. Read the HU display 11 seconds after the recorded timestamp and check that the camera image is turned off",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent and its timestamp is recorded\n2. The camera image is still displayed 9 seconds after the shift out of REVERSE\n3. The camera image is turned off 11 seconds after the shift out of REVERSE",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.5.3",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "10 second delay timer starts immediately on the shift out of REVERSE",
+      "test_item": "When the vehicle is shifted from REVERSE to PARK or DRIVE/NEUTRAL (AGSM) ○ Camera image will stay displayed if Camera Delay Settings is on: ■ After 10 seconds, the camera image will be turned off. Timer will start immediately once the vehicle is shifted from REVERSE\n\n(10 second delay timer starts immediately on the shift out of REVERSE)"
+    }
+  ],
+  "reasoning": "§7.5.3 之第一分支。`After 10 seconds` 與 `Timer will start immediately once the vehicle is shifted from REVERSE` 皆為逐字；以 9 秒／11 秒兩點驗計時器之起點與長度（±1 秒為人工可達之觀察窗；更緊之窗須 bus analyzer，見 `bench_verify.md`）。退出檔位取 P（`PARK`，來源列舉之第一款）。verbatim 51 token 逾 §4.3.1 之 50 上限，刪 `or ANY OTHER GEAR (manual gearshift)` 一段（手排之列舉，與本列所取之 P 檔無涉）；該段末之 `;` 與 `gearshift` 黏字，依 CAM-11 之前例整體刪去，故 `(AGSM)` 後不留分號。刪後 45 token，保序子序列成立。"
+}

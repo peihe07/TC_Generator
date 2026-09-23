@@ -31,7 +31,7 @@ batch01 其餘 20 列、batch01b `-034`～`-045` 十二列、pilot02 十列逐�
 | 欄 | 值 |
 |---|---|
 | `req_id`／`test_group` | `SWE-CAM-016`／`Rear View Camera` |
-| **`test_set`** | **`Display Arbitration`**（非 `Auxiliary Cameras` —— 來源屬 Rear Camera 節）|
+| **`test_set`** | **`Display Arbitration`**（非 `Additional Cameras` —— 來源屬 Rear Camera 節）|
 | `source_object_id`／`specification_reference` | `SYS-RA-CAM-076`／`CFTS092-4781641` |
 | `test_item_verbatim` | `The Rear Camera Softkey button shall be accessible from the Controls screen.`（12 token）|
 | `vehicle_model` | HDCC27 1／DT27 1／637 1／2261 1／376 1（`PROXI Rear_View_Camera` 六本皆有）|
