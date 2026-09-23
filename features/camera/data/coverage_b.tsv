@@ -31,7 +31,7 @@ SWE1-RVC-021	leaf	Activation and Exit	7.5.1	PRODUCED	b01b;b06	NR1L-RVCHMI-033;NR
 SWE1-RVC-022	leaf	Activation and Exit	7.5.2	PRODUCED	b01b	NR1L-RVCHMI-034
 SWE1-RVC-023	umbrella	Activation and Exit	7.5.3	UMBRELLA — covered by children	—	—
 SWE1-RVC-023-01	leaf	Activation and Exit	7.5.3	PRODUCED	b01b	NR1L-RVCHMI-035
-SWE1-RVC-023-02	leaf	Activation and Exit	7.5.3	PRODUCED	b01b	NR1L-RVCHMI-036
+SWE1-RVC-023-02	leaf	Activation and Exit	7.5.3	PRODUCED	b01b;b07	NR1L-RVCHMI-036;NR1L-RVCHMI-207
 SWE1-RVC-023-03	leaf	Activation and Exit	7.5.3	PRODUCED	b01b	NR1L-RVCHMI-037
 SWE1-RVC-024	umbrella	Activation and Exit	8.1	UMBRELLA — covered by children	—	—
 SWE1-RVC-024-01	leaf	Activation and Exit	8.1	PRODUCED	b01b	NR1L-RVCHMI-038
@@ -133,7 +133,7 @@ SWE1-RVC-101	leaf	Camera View Switching	28.6.1.1	PRODUCED	b03;b06	NR1L-RVCHMI-10
 SWE1-RVC-102	leaf	Camera View Switching	28.6.1.2	No TC — cross-reference only (A-CA36)	b03	—
 SWE1-RVC-103	umbrella	Camera View Switching	28.7.1.1	UMBRELLA — covered by children	—	—
 SWE1-RVC-103-01	leaf	Camera View Switching	28.7.1.1	PRODUCED	b03	NR1L-RVCHMI-110
-SWE1-RVC-103-02	leaf	Camera View Switching	28.7.1.1	PRODUCED	b03	NR1L-RVCHMI-111
+SWE1-RVC-103-02	leaf	Camera View Switching	28.7.1.1	PRODUCED	b03;b07	NR1L-RVCHMI-111;NR1L-RVCHMI-208
 SWE1-RVC-104	umbrella	Camera View Switching	28.7.1.2	UMBRELLA — covered by children	—	—
 SWE1-RVC-104-01	leaf	Camera View Switching	28.7.1.2	PRODUCED	b03	NR1L-RVCHMI-112
 SWE1-RVC-104-02	leaf	Camera View Switching	28.7.1.2	PRODUCED	b03	NR1L-RVCHMI-113
@@ -166,7 +166,7 @@ SWE1-RVC-114	umbrella	AUX Camera Settings	30.1.1	UMBRELLA — covered by childre
 SWE1-RVC-114-01	leaf	AUX Camera Settings	30.1.1	PRODUCED	b04a	NR1L-RVCHMI-139
 SWE1-RVC-114-02	leaf	AUX Camera Settings	30.1.1	PRODUCED	b04a	NR1L-RVCHMI-140
 SWE1-RVC-115	leaf	AUX Camera Settings	30.1.2	PRODUCED	b04a	NR1L-RVCHMI-141
-SWE1-RVC-116	leaf	AUX Camera Settings	30.1.3	PRODUCED	b04a	NR1L-RVCHMI-142
+SWE1-RVC-116	leaf	AUX Camera Settings	30.1.3	PRODUCED	b04a;b07	NR1L-RVCHMI-142;NR1L-RVCHMI-209;NR1L-RVCHMI-210
 SWE1-RVC-117	leaf	AUX Camera Settings	30.1.4	PRODUCED	b04a	NR1L-RVCHMI-143
 SWE1-RVC-118	leaf	AUX Camera Settings	30.1.5	PRODUCED	b04a	NR1L-RVCHMI-144
 SWE1-RVC-119	umbrella	AUX Camera Settings	30.1.6	UMBRELLA — covered by children	—	—

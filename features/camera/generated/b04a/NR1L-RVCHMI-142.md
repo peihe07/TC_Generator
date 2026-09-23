@@ -12,6 +12,7 @@
 ## reasoning
 
 §30.1.3 逐字載**三**條清除路徑（`OK`／`‘X’`／`after 5 seconds` 自動），三者皆驗。`5 seconds` 為來源逐字，觀察點取 6 秒（＋1 秒為人工可達之窗，見 `bench_verify.md`）。`the confirmation screen above` 指該列之圖（`image159.png`），其內容不可抽，故 ER 只判彈窗之**出現與清除**，**不造其文字**（§8.4.1）。
+**CAM-24 審閱 §一-1 之補正**：本列原含多個邊界點／觸發，依 canon **§8.3**（boundary 每點一 TC）與 **§5.7**（不同觸發須拆），收斂為單點，其餘點拆出為 `NR1L-RVCHMI-209`（`X` 清除）與 `-210`（5 秒自動清除）（`b07/`）。分析層記一筆：該形制經批次審閱而未抓（**A-CA37**）。
 
 ## pre_conditions
 
@@ -30,10 +31,6 @@
 ```
 1. Press OK on the confirmation pop-up
 2. Read the HU display and check that the pop-up is cleared
-3. Press "Make Favorite" again and press ‘X’ on the confirmation pop-up
-4. Read the HU display and check that the pop-up is cleared
-5. Press "Make Favorite" again and record the timestamp
-6. Read the HU display 6 seconds after the recorded timestamp and check that the pop-up is cleared
 ```
 
 ## expected_result
@@ -41,8 +38,4 @@
 ```
 1. OK registers the press
 2. The confirmation pop-up is cleared
-3. ‘X’ registers the press
-4. The confirmation pop-up is cleared
-5. The confirmation pop-up is displayed and its timestamp is recorded
-6. The confirmation pop-up is cleared without any user input 6 seconds after it appeared
 ```

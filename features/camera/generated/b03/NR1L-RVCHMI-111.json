@@ -16,18 +16,18 @@
   },
   "tcs": [
     {
-      "tc_title": "the zoom functionality is a pinch on the wireless AUX video feed",
+      "tc_title": "the pinch outwards gesture zooms the wireless AUX video feed in",
       "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. A wireless AUX camera is connected\n7. The wireless AUX camera view is displayed",
       "input_test_data": "NA",
-      "test_procedure": "1. Pinch outwards on the camera image with two fingers\n2. Read the camera image and check that it has zoomed in\n3. Pinch inwards on the camera image with two fingers\n4. Read the camera image and check that it has zoomed out",
-      "expected_result": "1. The outward pinch gesture is registered on the camera image\n2. The camera image zooms in\n3. The inward pinch gesture is registered on the camera image\n4. The camera image zooms out",
+      "test_procedure": "1. Pinch outwards on the camera image with two fingers\n2. Read the camera image and check that it has zoomed in",
+      "expected_result": "1. The outward pinch gesture is registered on the camera image\n2. The camera image zooms in",
       "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.7.1.1",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P2",
       "split_flag": true,
-      "split_reason": "the zoom functionality is a pinch on the wireless AUX video feed",
-      "test_item": "Manipulate the image (zoom/pan, rotate image, mirror image) -The zoom functionality will be a pinch to zoom\n\n(the zoom functionality is a pinch on the wireless AUX video feed)"
+      "split_reason": "the pinch outwards gesture zooms the wireless AUX video feed in",
+      "test_item": "Manipulate the image (zoom/pan, rotate image, mirror image) -The zoom functionality will be a pinch to zoom\n\n(the pinch outwards gesture zooms the wireless AUX video feed in)"
     }
   ],
-  "reasoning": "§28.7.1.1 之 zoom 一支（`-The zoom functionality will be a pinch to zoom`）。`pinch to zoom` 之雙向（放大／縮小）皆驗 —— 單向不足以判該手勢已繫於 zoom。verbatim 為該列 Description 之保序子序列（刪 pan 一支，由 `-110` 承接）。"
+  "reasoning": "§28.7.1.1 之 zoom 一支（`-The zoom functionality will be a pinch to zoom`）。`pinch to zoom` 之雙向（放大／縮小）皆驗 —— 單向不足以判該手勢已繫於 zoom。verbatim 為該列 Description 之保序子序列（刪 pan 一支，由 `-110` 承接）。\n**CAM-24 審閱 §一-1 之補正**：本列原含多個邊界點／觸發，依 canon **§8.3**（boundary 每點一 TC）與 **§5.7**（不同觸發須拆），收斂為單點，其餘點拆出為 `NR1L-RVCHMI-208`（pinch in）（`b07/`）。分析層記一筆：該形制經批次審閱而未抓（**A-CA37**）。"
 }

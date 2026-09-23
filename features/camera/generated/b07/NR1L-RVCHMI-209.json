@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-209",
+  "req_id": "SWE1-RVC-116",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The pop-up updates to show the confirmation screen above. User presses or‘X’to clear,",
+  "source_object_id": "NRL-188130",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the favorite confirmation is cleared by pressing X",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. A wired AUX camera is connected\n3. The confirmation pop-up is displayed after \"Make Favorite\" was pressed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press ‘X’ on the confirmation pop-up\n2. Read the HU display and check that the pop-up is cleared",
+      "expected_result": "1. ‘X’ registers the press\n2. The confirmation pop-up is cleared",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_30.1.3",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "the favorite confirmation is cleared by pressing X",
+      "test_item": "The pop-up updates to show the confirmation screen above. User presses or‘X’to clear,\n\n(the favorite confirmation is cleared by pressing X)"
+    }
+  ],
+  "reasoning": "**補正之由**：**CAM-24 審閱 §一-1** —— canon **§8.3**（boundary 每點一 TC）與**§5.7**（不同觸發須拆）勝於本 feature 之既有前例；母列 `NR1L-RVCHMI-142` 原含多點／多觸發，已原地收斂為單點，本列承接其餘者。母列之 reasoning 已註本列之 ID。分析層記一筆：該形制經批次審閱而未抓（**A-CA37**）。§30.1.3 逐字載**三條**清除路徑（`OK`／`‘X’`／`after 5 seconds` 自動），三者為**三個相異之觸發**（兩個按鍵 ＋ 一個逾時），依 **§5.7** 各一列；母列留 `OK`，本列驗 `‘X’`，`-210` 驗逾時。verbatim 為該列 Description 之保序子序列 —— 只刪 `OK` 一字與 `else pop-up dismissed …` 之後段；`or‘X’to` 於來源為**單一黏字 token**（`or`、引號與 `to` 相連），依 CAM-11 前例**整體保留**，故上半讀作 `User presses or‘X’to clear,`（該讀法為逐字忠實之代價，§4.3.1）。`the confirmation screen above` 指該列之圖（`image159.png`），內容不可抽，依 **DECISIONS 6-69** 只判彈窗之出現與清除，不造其文字。"
+}

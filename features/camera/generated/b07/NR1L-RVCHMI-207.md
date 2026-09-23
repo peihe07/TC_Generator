@@ -1,4 +1,4 @@
-# NR1L-RVCHMI-036 — SWE1-RVC-023-02
+# NR1L-RVCHMI-207 — SWE1-RVC-023-02
 
 - **Test Group**：Rear View Camera｜**Test Set**：Activation and Exit
 - **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
@@ -11,8 +11,7 @@
 
 ## reasoning
 
-§7.5.3 之第二分支，來源逐字載門檻值 `(8mph)` —— 與 profile §9 之 `c_VEHSPD_MAX` = 8 mph 相符。8 mph ＝ 12.874752 km/h，解析度 0.0625 之下無恰等於之 raw（**A-CA30**），故以 205（12.8125，門檻下）與 206（12.875，門檻上）成對驗之。本列驗「延遲期間因速度而提前結束」，與 `-035`（計時器自然到期）分工。
-**CAM-24 審閱 §一-1 之補正**：本列原含多個邊界點／觸發，依 canon **§8.3**（boundary 每點一 TC）與 **§5.7**（不同觸發須拆），收斂為單點，其餘點拆出為 `NR1L-RVCHMI-207`（205，off-point）（`b07/`）。分析層記一筆：該形制經批次審閱而未抓（**A-CA37**）。
+**補正之由**：**CAM-24 審閱 §一-1** —— canon **§8.3**（boundary 每點一 TC）與**§5.7**（不同觸發須拆）勝於本 feature 之既有前例；母列 `NR1L-RVCHMI-036` 原含多點／多觸發，已原地收斂為單點，本列承接其餘者。母列之 reasoning 已註本列之 ID。分析層記一筆：該形制經批次審閱而未抓（**A-CA37**）。本列為門檻之 **off-point**（raw 205 ＝ 12.8125 km/h，門檻下方最近之可注入點）；母列留 **on-point**（raw 206 ＝ 12.875 km/h）。8 mph ＝ 12.874752 km/h，解析度 0.0625 之下無恰等於之 raw（**A-CA30**），故兩點皆為最近之可注入點而非門檻值本身。
 
 ## pre_conditions
 
@@ -32,13 +31,13 @@
 ## test_procedure
 
 ```
-1. Send CAN: BRAKE_FD_2.VehicleSpeedVSOSig = 206 (12.875 km/h)
-2. Read the HU display and check that the camera image is turned off
+1. Send CAN: BRAKE_FD_2.VehicleSpeedVSOSig = 205 (12.8125 km/h)
+2. Read the HU display and check that the camera image is still displayed
 ```
 
 ## expected_result
 
 ```
-1. BRAKE_FD_2.VehicleSpeedVSOSig = 206 (12.875 km/h) is sent
-2. The camera image is turned off
+1. BRAKE_FD_2.VehicleSpeedVSOSig = 205 (12.8125 km/h) is sent
+2. The camera image is still displayed
 ```

@@ -39,3 +39,7 @@
 1. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent and the rear image is displayed
 2. The measured brightness is 49 %, which is below the 50 % required by the source
 ```
+
+## remarks
+
+The source states only that the brightness must be over 50%; it does not state the system behaviour below the threshold. The ER therefore checks the measured level only.
