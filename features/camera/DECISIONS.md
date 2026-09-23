@@ -607,6 +607,28 @@ framework 重開二次（Tier 2）：重開前 sha16 `8569aa484b552b7c` → 重�
 `docs/fw036/handoff/` 為唯讀史料，**不改**；framework 中記述 CAM-06 當時決定之兩句
 保留原名並加今名指標。
 
+### 6-56. `CVPAM_Presence` 為 PAM 配備旗標
+
+`[DECIDED — CAM-15 審閱 §一-3，Pei 2026-09-23]`
+B 本凡需「車輛是否提供 PAM」之前提，一律取 PROXI `CVPAM_Presence`（byte 173 bit 1，
+`0 = Absent`／`1 = Present`）。**不取** `PAM_Configuration`（byte 118 bit 4–5）——
+其值域只有 `0 = Rear`／`1 = Front And Rear`，無「無 PAM」之值（實測 637 本，值域二項）。
+該 byte 於 `Toro_ATL_MI` 零命中，依 **R-CAM18(b)** 該欄判 `0`。
+
+### 6-57. RVC timeout 之 10 秒兩處同載，不另開 DR
+
+`[DECIDED — CAM-15 審閱 §一-4，Pei 2026-09-23]`
+SYS1 RVC+PAM §7.5.1／§7.5.2 只寫 `RVC timeout expired` 而未載值；
+其值取同章 §7.5.3 之逐字 `After 10 seconds`，並與 `forms/Pop Up List HMI R1 (26PI).xlsx`
+之 `PU0361` `Timeout` 欄 `10` 相符 —— **同一計時器之兩處記載**，不視為缺件，不開 DR。
+
+### 6-58. A 本交付候選 ＝ dry-run v2
+
+`[DECIDED — CAM-15 審閱 §一-6，Pei 2026-09-23]`
+`features/camera/sandbox/a_dryrun/…_dryrun2.xlsx`（244 列，sha256 `f194046c923fd85f…`）
+為 A 本之**交付候選**。Phase 7（`--write`／tag／寫 `delivered/`）待 Pei 之准，
+且須先結 **DR-CAM-f／g／i／j／k／m／p／q 八條**或由 Pei 裁降 NA（canon §8.4.3、R-G42 七）。
+
 ---
 
 ## Sign-off

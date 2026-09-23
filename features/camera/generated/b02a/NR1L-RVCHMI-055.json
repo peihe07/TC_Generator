@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-055",
+  "req_id": "SWE1-RVC-064",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "HMI BP V-3: Push Button Control",
+  "source_object_id": "NRL-188047",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the AUX camera soft control behaves as a push button control",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. A wired AUX camera is connected\n3. The shift lever is in P\n4. The AUX camera soft controls are displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press and hold the AUX 1 soft control without releasing\n2. Read the HU display and check that the AUX 1 view has not yet been activated\n3. Release the AUX 1 soft control\n4. Read the HU display and check that the AUX 1 view is displayed",
+      "expected_result": "1. The AUX 1 soft control shows its pressed state\n2. The AUX 1 view is not yet displayed while the control is held\n3. The AUX 1 soft control is released\n4. The AUX 1 view is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.2.5.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the AUX camera soft control behaves as a push button control",
+      "test_item": "HMI BP V-3: Push Button Control\n\n(the AUX camera soft control behaves as a push button control)"
+    }
+  ],
+  "reasoning": "§27.2.5.1 為 `Soft Controls Requirements:` 節下之一句，指向 **HMI Behaviour Pattern V-3**（`Push Button Control`）—— 該 pattern 之定義在 Core HMI 之行為樣式表，屬**外部規格**，依 canon **§8.4.2**（R-CAM13(b)）不測其內容；本列只驗該控制項**是 push button 型**：按下不觸發、放開才觸發（push button 與 toggle／latch 之可觀察差別）。"
+}

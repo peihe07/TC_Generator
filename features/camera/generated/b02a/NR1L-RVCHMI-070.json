@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-070",
+  "req_id": "SWE1-RVC-080",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "If the ‘Enable wireless cameras’ setting is ON, when a wireless aux camera is selected from any location, the camera may be asleep and take up to a few seconds to activate. When this occurs, a message will show letting the customer know the camera is “connecting”.",
+  "source_object_id": "NRL-188073",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "a connecting message is shown while a sleeping wireless AUX camera wakes",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. No wireless projection session is active\n7. A wireless AUX camera is connected and asleep",
+      "input_test_data": "NA",
+      "test_procedure": "1. Select the wireless AUX camera entry from the Aux Cameras list\n2. Read the HU display and check that a message tells the customer the camera is connecting\n3. Read the HU display and check that the wireless AUX camera view is displayed once it has activated",
+      "expected_result": "1. The wireless AUX camera entry registers the selection\n2. PENDING: DR-CAM-h a message showing that the camera is \"connecting\" is displayed; its verbatim text is not in the R1 HMI pop-up list\n3. The wireless AUX camera view is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.5.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "a connecting message is shown while a sleeping wireless AUX camera wakes",
+      "test_item": "If the ‘Enable wireless cameras’ setting is ON, when a wireless aux camera is selected from any location, the camera may be asleep and take up to a few seconds to activate. When this occurs, a message will show letting the customer know the camera is “connecting”.\n\n(a connecting message is shown while a sleeping wireless AUX camera wakes)"
+    }
+  ],
+  "reasoning": "§27.5.1 逐字載 `a message will show letting the customer know the camera is “connecting”`，惟該訊息之逐字文字**查無** —— `forms/Pop Up List HMI R1 (26PI).xlsx` `Main` 分頁中 module 為 `Camera`／`Aux Camera` 之列，其訊息欄含 `connect` 者 15 筆，**無一為 `connecting` 之狀態訊息**（皆為 Add／Authenticating／Connection Complete／Connection ERROR／Delete 等流程畫面）→ **`PENDING: DR-CAM-h`**（依下放包 §2 之規定）。`take up to a few seconds` 無數值，不造時限，ER 只判訊息之出現與後續之活化。"
+}

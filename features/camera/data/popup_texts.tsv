@@ -13,3 +13,7 @@ Check Entire Surroundings	Y	PU0447	Rearview Camera with all features	10	RVC	Chec
 Check Entire Surroundings	Y	PU0467	Surround View Camera	10	RVC	Check Entire Surroundings Top View Rear View(Front View) <More Cams>	Main!A470:G470
 Check Entire Surroundings	Y	PU1102	Turn Signal Activated Blind Spot View	5	RVC-X	Check Entire Surroundings <X>	Main!A989:G989
 PU0361	Y	PU0361	Cargo Camera	10	Custom	A clear ‘X’ exit button is available in any gear.	Main!（PU0361 列）
+PU0459	Y	PU0459	Aux Camera	N/A		No camera connected. Camera unavailable. Make sure camera is ON and within range	Main!（PU0459 列）
+PU1517	Y	PU1517	Camera	3	2	Wireless Cameras disabled.  <OK>	Main!（PU1517 列）
+PU1518	Y	PU1518	Camera	N/A	2	Do you want to disconnect Apple CarPlay and enable Wireless Cameras? Apple CarPlay can be connected using the USB port when Wireless Cameras are enabled.  <Yes>   <No>	Main!（PU1518 列）
+Connecting message (27.5.1／27.6.2)	N		Camera／Aux Camera				Main!（module=Camera／Aux Camera 之訊息欄掃 `connect`，15 筆皆非 connecting 狀態訊息 → DR-CAM-h）

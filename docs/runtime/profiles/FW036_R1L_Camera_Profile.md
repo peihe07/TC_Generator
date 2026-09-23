@@ -309,6 +309,21 @@ grep -n -i -e "<SWE-CAM-nnn>" -e "<該列所涉之訊號名>" features/camera/AN
 ＋ 訊號名出現於 ANOMALIES 任一處，240 列掃得 58 命中，經核幾乎全為可注入之訊號）；
 收緊後 240 列命中 0（CAM-14 上繳 §1-1 之證據表）。
 
+### 7.7 逐字母體須取全文（CAM-15 審閱 §一-5，Pei 2026-09-23）
+
+**R-CAM17 之延伸**：`test_item` 上半之逐字母體、以及任何「來源如此寫」之主張，
+其讀取**須取該列 `Description` 之全文**；不得以截斷輸出（`print(desc[:N])`、
+終端折行、表格欄寬）判斷來源之內容。
+
+沿革：CAM-15 之 `NR1L-RVCHMI-037` 初稿把 verbatim 寫成
+`“X” soft control is presse`，並在 reasoning 裡斷言「來源末字缺 `d`」——
+該截斷出自 CAM-14 時執行層自己的 `print(desc[:300])`，**來源本身完整**
+（`“X” soft control is pressed (PU0361). In ANY OTHER GEAR, …`）。
+重讀全文後改正（CAM-15 上繳 §6-3(a)）。
+
+作法：讀 `Description` 時一律不切片；需要摘要輸出時，
+**先把全文長度與 token 數印出來**，再決定摘句，且摘句之依據為全文而非輸出。
+
 ## 8. framework 重開之 sha16 量測法（CAM-06 審閱 §一-1，Pei 2026-09-23）
 
 `features/camera/framework.md` 之狀態行自載其重開後 sha16 —— 該值**自指**

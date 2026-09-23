@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-068",
+  "req_id": "SWE1-RVC-078",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "The ‘Enable wireless cameras’ setting is dynamically updated.",
+  "source_object_id": "NRL-188070",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the enable wireless cameras setting updates dynamically",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. No wireless projection session is active\n7. The Aux Cameras list is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Start a wired projection session that takes screen focus\n2. Read the Aux Cameras list and check that \"Enable Wireless Cameras\" now reads Off\n3. End the projection session\n4. Read the Aux Cameras list and check that \"Enable Wireless Cameras\" reflects the current state",
+      "expected_result": "1. The projection session takes screen focus and the \"Wireless Cameras disabled.\" pop-up is displayed\n2. The \"Enable Wireless Cameras\" setting reads Off without the list being reopened\n3. The projection session ends\n4. The \"Enable Wireless Cameras\" setting reflects the current state without the list being reopened",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.4.4",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the enable wireless cameras setting updates dynamically",
+      "test_item": "The ‘Enable wireless cameras’ setting is dynamically updated.\n\n(the enable wireless cameras setting updates dynamically)"
+    }
+  ],
+  "reasoning": "§27.4.4 之 `dynamically updated` 指**不需重新進入該清單即反映現值**，故以「清單開著時由外部事件改變該設定」驗之。該外部事件取 §27.4.5 之投影插入（其彈窗 `PU1517` 文字逐字 `Wireless Cameras disabled.`），為本節內唯一載明會改變該設定之事件。與 `-069`（§27.4.5）之分工：後者驗**設定被關閉與其彈窗**，本列驗**清單之即時更新**。"
+}

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-049",
+  "req_id": "SWE1-RVC-058",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "The authentication method is via token pass through QR code.",
+  "source_object_id": "NRL-188034",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "wireless AUX authentication passes a token through a QR code",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. No wireless camera is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Start the add wireless camera process from the Aux Cameras list\n2. Read the HU display and check that a QR code is presented for the camera to scan\n3. Complete the QR code scan with the wireless camera\n4. Read the HU display and check that the camera is authenticated",
+      "expected_result": "1. The add wireless camera process starts\n2. A QR code is presented on the HU display\n3. The wireless camera scans the QR code\n4. The HU shows that the camera is authenticated",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.1.5.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "wireless AUX authentication passes a token through a QR code",
+      "test_item": "The authentication method is via token pass through QR code.\n\n(wireless AUX authentication passes a token through a QR code)"
+    }
+  ],
+  "reasoning": "§27.1.5.1 之 `token pass through QR code`。其流程之逐字畫面取 `forms/Pop Up List HMI R1 (26PI).xlsx` `Main` 之 `PU0854`（`Add Aux Camera <insert camera number>` / `QR Code Setup Process`）與 `PU0857`（`Authenticating \"[Insert Camera Name]\" to Uconnect HotSpot`）。與 `-051`（§27.3.5.1）之分工：後者之條文載**傳遞之內容**（WiFi network credentials）與其依據（Cyber Security requirements），本列載**方法**（token via QR code）。"
+}

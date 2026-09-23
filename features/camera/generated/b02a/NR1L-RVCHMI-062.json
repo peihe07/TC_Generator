@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-062",
+  "req_id": "SWE1-RVC-072",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "Head unit will authenticate the camera by passing WiFi network credentials via QR code scan per Cyber Security requirements",
+  "source_object_id": "NRL-188063",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the head unit passes WiFi network credentials to the camera via the QR code scan",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. No wireless camera is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Start the add wireless camera process from the Aux Cameras list\n2. Complete the QR code scan with the wireless camera\n3. Read the HU display and check that the camera has joined the head unit WiFi network",
+      "expected_result": "1. A QR code is presented on the HU display\n2. The wireless camera scans the QR code and joins the head unit WiFi network\n3. The HU shows that the camera is connected",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.3.5.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the head unit passes WiFi network credentials to the camera via the QR code scan",
+      "test_item": "Head unit will authenticate the camera by passing WiFi network credentials via QR code scan per Cyber Security requirements\n\n(the head unit passes WiFi network credentials to the camera via the QR code scan)"
+    }
+  ],
+  "reasoning": "§27.3.5.1 之驗證點為**所傳遞之內容**（WiFi network credentials）及其結果（相機加入 HU 之網路）。逐字畫面取 `PU0857`（`Authenticating \"[Insert Camera Name]\" to Uconnect HotSpot`）與 `PU0454`（`Wireless Camera Connection Complete` / `Successfully connected to`）。`per Cyber Security requirements` 指向**外部規格**，依 §8.4.2 不測其內容。與 `-049`（§27.1.5.1）之分工：後者驗**方法**（token via QR code），本列驗**內容與結果**。"
+}

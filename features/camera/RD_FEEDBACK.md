@@ -262,6 +262,30 @@ the HU shall not display any rear view camera image and the soft key shall not b
 
 ---
 
+## RDF-11 —— `“X”` 退出鍵之位置：SYS1 載 upper right，Pop Up List `PU0170` 載 bottom right
+
+**觀察**：同一個 `X` 退出鍵，兩份來源文件載其位置**相反**。
+
+**證據**：
+
+| 來源 | 座標 | 逐字 |
+|---|---|---|
+| SYS1 RVC+PAM（cache 本）§7.5.3 | `NRL-142629` | `In ANY OTHER GEAR, the camera image will display an “X” in the **upper right** corner of the screen.` |
+| SYS1 RVC+PAM（cache 本）§8.1 | `NRL-142631` | `an “X” exit button will be placed in the **upper-right** corner of the screen (PU0170)` |
+| `forms/Pop Up List HMI R1 (26PI).xlsx` `Main`，`PU0170`（module `Rearview Camera`）| —— | `A clear ‘X’ exit button will be placed in the **bottom right** corner while the user is in Drive and camera delay is active.` |
+
+SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.1 本身即引 `PU0170`，
+故非兩條獨立需求之差異，而是同一需求之兩處記載不一。
+
+**TC 側現行處置**：依 **§4.3.1** 以 SYS1 之逐字為 ER —— `NR1L-RVCHMI-038` 判
+`the "X" exit button is shown in the upper-right corner of the camera image`；
+差異註於該列之 `Remarks` 欄（profile §10 第二類）。**不改彈窗表、不造第三種位置。**
+
+**請求之動作**：確認 `X` 鍵之實際位置，並更正兩份文件中之錯者。
+疑為彈窗表之舊稿（其文字欄另載 `[v.SR12]` 之版本註）。
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -276,3 +300,4 @@ the HU shall not display any rear view camera image and the soft key shall not b
 | RDF-08 | `SWE-CAM-011`（`V3-281`）| gating 標的誤植 | batch03b |
 | RDF-09 | `SWE-CAM-011`（`V3-283`）| `a)` 子句標的誤植 | batch03b |
 | RDF-10 | `SWE-CAM-004`（`V42-590`）| 同句誤植致缺清除側 | batch03c |
+| RDF-11 | `SWE1-RVC-024-01`（SYS1 §8.1）| 同一需求兩處位置記載相反 | A-CA34／`NR1L-RVCHMI-038` |

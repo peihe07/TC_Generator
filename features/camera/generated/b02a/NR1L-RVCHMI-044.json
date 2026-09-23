@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-044",
+  "req_id": "SWE1-RVC-053",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "When “Enhanced Camera App” Feature is present, wired and wireless Auxiliary cameras are non-persistent, latching views",
+  "source_object_id": "NRL-188029",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "wired and wireless AUX views are non-persistent latching with Enhanced Camera App",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PENDING: DR-CAM-r the equipment flag for the \"Enhanced Camera App\" feature is not sourced\n3. A wired AUX camera is connected\n4. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n5. The shift lever is in P\n6. The AUX 1 camera view is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n2. Read the HU display and check that the AUX 1 camera view is still displayed\n3. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P)\n4. Read the HU display and check that the AUX 1 camera view is no longer displayed",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent\n2. The AUX 1 camera view remains displayed, which is the latching behaviour\n3. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent\n4. The AUX 1 camera view is no longer displayed, which is the non-persistent behaviour",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.1.1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "wired and wireless AUX views are non-persistent latching with Enhanced Camera App",
+      "test_item": "When “Enhanced Camera App” Feature is present, wired and wireless Auxiliary cameras are non-persistent, latching views\n\n(wired and wireless AUX views are non-persistent latching with Enhanced Camera App)"
+    }
+  ],
+  "reasoning": "`latching` 與 `non-persistent` 之可觀察定義取 H 本 **§21.4**（`Non-persistent views with Timer`）與 **§21.5**（`Latching Views`）之對照：latching ＝ 觸發條件改變時仍保持該視角、non-persistent ＝ 觸發條件消失後自行退出。故以 P → R（latching 不被 reverse 搶走）→ P（non-persistent 退出）之往返驗之。「Enhanced Camera App」配備旗標六本 PROXI 零命中 → **DR-CAM-r**（CAM-14 已開）。"
+}

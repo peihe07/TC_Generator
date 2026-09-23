@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-067",
+  "req_id": "SWE1-RVC-077",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "If the setting is selected without any wireless projection session active, wireless cameras are activated without any popup displayed.",
+  "source_object_id": "NRL-188069",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the setting activates silently when no wireless projection session is active",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is Off\n6. No wireless projection session is active\n7. The Aux Cameras list is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Set \"Enable Wireless Cameras\" = \"On\"\n2. Read the HU display and check that no pop-up is displayed\n3. Read the Aux Cameras list and check that the wireless camera entries are available",
+      "expected_result": "1. The \"Enable Wireless Cameras\" setting is On\n2. No pop-up is displayed\n3. The wireless camera entries are available in the Aux Cameras list",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.4.3",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "the setting activates silently when no wireless projection session is active",
+      "test_item": "If the setting is selected without any wireless projection session active, wireless cameras are activated without any popup displayed.\n\n(the setting activates silently when no wireless projection session is active)"
+    }
+  ],
+  "reasoning": "§27.4.3 為 §27.4.2 之補集分支（無投影時）。驗證重點在 `without any popup displayed` ——故 ER 明寫「無彈窗」。與 `-064`（§27.4.2）成一對：前者有投影 → 有彈窗，本列無投影 → 無彈窗。否定句式用 `check that no …`。"
+}
