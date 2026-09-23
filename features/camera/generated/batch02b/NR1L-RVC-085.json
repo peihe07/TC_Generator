@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-085",
+  "req_id": "SWE-CAM-002",
+  "test_group": "Rear View Camera",
+  "test_set": "Configuration",
+  "test_item_verbatim": "· The Head Unit shall enable Digital Rear View Camera behavior when PROXI Rear_View_Camera = Present.",
+  "source_object_id": "SYS-RA-VF551_V2-536",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "PROXI Present enables the RVC behaviour, set the PROXI parameter and check that the camera function is enabled",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The shift lever is in P",
+      "input_test_data": "NA",
+      "test_procedure": "1. Cycle the ignition to RUN so that the HU reads the PROXI configuration\n2. Press \"Apps\" on Menu Bar to open App Drawer\n3. Read the App Drawer and check that \"Rear View Camera\" is present and selectable",
+      "expected_result": "1. The HU completes start-up and reads the PROXI configuration\n2. The App Drawer is displayed\n3. The \"Rear View Camera\" entry is present in the App Drawer and can be selected",
+      "specification_reference": "VF551_V2_PHDCC27_VF_935",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "PROXI Present enables the RVC behaviour",
+      "test_item": "· The Head Unit shall enable Digital Rear View Camera behavior when PROXI Rear_View_Camera = Present.\n\n(PROXI Present enables the RVC behaviour, set the PROXI parameter and check that the camera function is enabled)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V2-536` 之「PROXI `Rear_View_Camera = Present` 時啟用 Digital Rear View Camera 行為」。`SYS-RA-VF551_V3-212`（逐字同句）與 `SYS-RA-VF551_V42-209`（同一前提之宣告式）依同義列不另出 TC，plan 記 covered_by；**本列因而承全五車型** —— 該 PROXI 參數六本皆有（byte 86 bit 0）。**不生成 Absent 側**（DECISIONS 6-18／RDF-06）—— `-002` 之 20 個 in-scope 來源逐字掃描，`Absent`／`= 0`／`not present` 三串零命中，無 negative 之需求可依。「已啟用」之可判後果取 App Drawer 之項目可選（沿 `NR1L-RVC-025` 之既定寫法）。R-CAM3(f)：本列無 `Send CAN` 步，不寫 CAN source 行。"
+}

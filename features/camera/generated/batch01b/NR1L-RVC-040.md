@@ -40,5 +40,5 @@
 ```
 1. BRAKE_FD_2.VehicleSpeedVSOSig = 205 (12.8125 km/h) is sent
 2. The virtual Surround View Camera button registers the press
-3. The Surround View Camera video image is displayed on the HU display and PENDING: DR-CAM-j the SVC_DisplaySts = SVC image displayed signal is transmitted to the CVPM within Tsend of the keypress
+3. The Surround View Camera video image is displayed on the HU display and PENDING: DR-CAM-j the SVC_DisplaySts = SVC image displayed signal is sent to the CVPM within Tsend of the keypress
 ```

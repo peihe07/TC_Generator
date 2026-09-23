@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "X exit button, read the HU display and check that the screen shown before the camera was opened is restored",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. The shift lever is in P",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The shift lever is in P",
       "input_test_data": "NA",
       "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Rear View Camera\" in the App Drawer\n3. Press \"X\" on the rear view camera image\n4. Read the HU display and check that the screen shown before the camera was opened is restored",
       "expected_result": "1. The App Drawer is displayed\n2. The rear view camera image is displayed with the \"X\" exit button overlaid\n3. The rear view camera image is closed\n4. The screen that was displayed before the camera image was opened is shown again",

@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "IGN_LK triggers Power_Down True and Tpower, Atl-Mi, switch the ignition to IGN_LK and read the bus for the shutdown notification",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
       "input_test_data": "NA",
-      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK)\n2. Read the bus analyzer recording and check the PowerShutDownNotifcation message\n3. Hold for 5 s and check the supply to the RVCM on the LVDS link",
-      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) is sent\n2. PowerShutDownNotifcation.Power_Down = True is transmitted over LVDS to the RVCM\n3. The HU keeps supplying power to the RVCM over LVDS for 5 s",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK)\n2. Read the bus analyzer recording and check the PowerShutDownNotifcation message\n3. Hold for 5 s\n4. Read the LVDS supply to the RVCM and check that it is still present",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) is sent\n2. PowerShutDownNotifcation.Power_Down = True is sent over LVDS to the RVCM\n3. The signal is held for 5 s\n4. The HU is still supplying power to the RVCM over LVDS",
       "specification_reference": "VF551_V3_P363_VF_549",
       "design_method": "狀態轉換 (State Transition Testing)",
       "priority": "P1",

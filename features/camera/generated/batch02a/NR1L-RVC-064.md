@@ -18,9 +18,8 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
-4. PENDING: DR-CAM-i the CmdIgnSts value that corresponds to Ignition_Pre_Off is not sourced
-5. The camera delay setting is set to "On"
+3. PENDING: DR-CAM-i the CmdIgnSts value that corresponds to Ignition_Pre_Off is not sourced
+4. The camera delay setting is set to "On"
 ```
 
 ## input_test_data

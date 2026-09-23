@@ -70,7 +70,7 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 |---|---|---|---|
 | A-CA25 | **`LTM_OperationalModeSts.Info` 之 `Ignition_Pre_Off` 對 `CmdIgnSts` 之值無對應來源** | 於 SYS2 `VF551_V33`／`VF551_V42`／`VF551_V2` 三本全文搜尋同時含 `OperationalModeSts` 與 `CmdIgnSts`／`IGN_LK`／`BCM_FD` 之列，**零命中**。`NR1L-RVC-002` 暫用 `1 (IGN_LK)` 並標 `PENDING: DR-CAM-i` | PENDING —— **DR-CAM-i** |
 | A-CA26 | ~~`SWE-CAM-015` 之 Atl-Mi 自動模式進入原句逾 lint L 上限~~ | — | **RESOLVED**（CAM-04 審閱 §二-3）—— **前提不成立**：canon §4.3.1 明文「超限須摘句，全文以 specification_reference 指回」，逾限不是改驗證點之理由。`NR1L-RVC-004` 已回取 `SYS-RA-VF551_V3-260`（51 → 33 token 摘句），`-003` 回取 `SYS-RA-VF551_V2-498`（29 token，無須摘句）|
-| A-CA27 | **交付語料無 §5.4 兩行式指令之例** | 全語料（三本基準 ＋ 10 本 delivered）掃 `$ ` 起首之指令行，**零命中**。`NR1L-RVC-001`／`-002` 之 adb 步驟為全案首見 | PENDING（見上繳包 §2.4 之「新句型」清單）|
+| A-CA27 | **交付語料無 §5.4 兩行式指令之例** | 全語料（三本基準 ＋ 10 本 delivered）掃 `$ ` 起首之指令行，**零命中**。`NR1L-RVC-001`／`-002` 之 adb 步驟為全案首見 **【加註 2026-09-23，CAM-07 審閱 §一-6】**：母體於 2026-09-17／18 增 Security 六本後，`$ ` 起首之命令行實測為 **275 條**（17 本），本項之「零命中」**已不成立**；惟其中與 LVDS 相關者（`lvds`／`PowerShutDownNotifcation`／`vehicleUpdate` 三串）**仍為 0**，`sources/raw/*sysad*` 之 10 本 docx 亦 0，故「LVDS 觀察無可抄之命令句式」之結論不變。原列逐字不改（其為 CAM-05 當時之忠實紀錄）| PENDING（見上繳包 §2.4 之「新句型」清單）|
 
 ## E4. batch01 生成中發現（CAM-05）
 

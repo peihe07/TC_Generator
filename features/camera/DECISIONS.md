@@ -351,6 +351,34 @@ batch02 計畫 73 TC 逾上限 40，切為三批：
 **無 Absent 側之行為條文**。TC 不得自造 negative（§8.4.1 勝於 §7 之配對要求）；
 缺口登 `RD_FEEDBACK.md` **RDF-06**。
 
+### 6-19. selfcheck 第 1 項之兩類放寬，准
+
+`[DECIDED — CAM-07 審閱 §一-1，Pei 2026-09-23]`
+**常數錨**（反查所得之列 `Category = Information` 且 037 未引 → 不在 R-CAM10 射程）與
+**合一錨**（R-CAM10(b) 之多錨 TC，改判 `req_id` ＝ 諸錨承接列之最小者）兩類**准**，
+判準逐字如上繳包 CAM-07 §2-1。**兩類皆逐列印出之作法保留** —— 不得改為沉默通過。
+
+### 6-20. `-068` 之設定 label 對應，准為來源對應
+
+`[DECIDED — CAM-07 審閱 §一-3，Pei 2026-09-23]`
+`HMI Settings List` `Settings` 分頁 **row 470** `Rear View Camera with Rear Door`
+↔ `RVC_Swing_Doors_Check.Req` 之對應，以該列 `F` 欄 `VF551` ＋ `H` 欄
+`Display Rear View camera while rear cargo…` 之語意足以定位，**非 §8.4.1 之造值**。
+不退 PENDING；reasoning 保留「對應由 `H` 欄語意建立」一句。
+
+### 6-21. `-061` 不補第三列
+
+`[DECIDED — CAM-07 審閱 §一-7，Pei 2026-09-23]`
+`NR1L-RVC-061` 只驗 Off 側之保留（預設即 Off，無法構造「設為預設之相反值」），
+以 `-060`（On 之生效）互補即足；**不生成第三列**，reasoning 已具名即可。
+
+### 6-22. A-CA27 加註而不改列
+
+`[DECIDED — CAM-07 審閱 §一-6，Pei 2026-09-23]`
+A-CA27 之「全語料 `$ ` 命令行零命中」為 CAM-05 當時之忠實紀錄，**原列逐字不改**；
+另加註 2026-09-23 之複測：母體增 Security 六本後為 **275 條**，
+惟 LVDS 相關仍 **0**，故「LVDS 無可抄之命令句式」之結論不變。
+
 ---
 
 ## Sign-off

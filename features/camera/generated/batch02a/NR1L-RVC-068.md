@@ -18,8 +18,7 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. The vehicle brand is Ram (HDCC27, DT27, 637)
-4. No camera image is displayed
+3. No camera image is displayed
 ```
 
 ## input_test_data
@@ -32,8 +31,8 @@
 1. Press "Apps" on Menu Bar to open App Drawer
 2. Select "Settings" in the App Drawer
 3. Select "Camera"
-4. Select "Rear View Camera with Rear Door" and set it to on
-5. Select "Rear View Camera with Rear Door" and set it to off
+4. Set "Rear View Camera with Rear Door" = "On"
+5. Set "Rear View Camera with Rear Door" = "Off"
 ```
 
 ## expected_result
@@ -42,6 +41,6 @@
 1. The App Drawer is displayed
 2. The "Settings" screen is displayed
 3. The "Camera" settings screen is displayed
-4. The "Rear View Camera with Rear Door" setting is on
-5. The "Rear View Camera with Rear Door" setting is off
+4. The "Rear View Camera with Rear Door" setting is set to "On"
+5. The "Rear View Camera with Rear Door" setting is set to "Off"
 ```

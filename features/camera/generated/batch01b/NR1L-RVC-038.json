@@ -20,7 +20,7 @@
       "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-j the SVC_SoftBtn_Rq signal is not present in the four DBC files in forms\n4. The shift lever is in P\n5. No camera image is displayed",
       "input_test_data": "NA",
       "test_procedure": "1. Connect a bus analyzer to the vehicle bus and start recording\n2. Press the virtual Surround View Camera button on the HU display\n3. Read the bus analyzer recording and check the SVC_SoftBtn_Rq signal and the time between the keypress and its transmission",
-      "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. The virtual Surround View Camera button registers the press\n3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Pressed is transmitted within Tsend of the keypress (signal, message and Tsend value all have no source)",
+      "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. The virtual Surround View Camera button registers the press\n3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Pressed is sent within Tsend of the keypress (signal, message and Tsend value all have no source)",
       "specification_reference": "CFTS092-4781650",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",

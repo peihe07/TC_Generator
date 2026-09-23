@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "LTM starts reading Rear_Camera.Data at Ignition_On, switch the ignition to RUN and check that the camera data path is open",
-      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the camera service status and check that the Rear_Camera data path is open\n   $ adb shell dumpsys media.camera",
       "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n2. The Rear_Camera data path is open and the HU is reading Rear_Camera.Data",

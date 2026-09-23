@@ -18,8 +18,7 @@
 ```
 1. The HU is in Standby state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
-4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
+3. A bus analyzer is connected to the LVDS link between the HU and the RVCM
 ```
 
 ## input_test_data
@@ -37,5 +36,5 @@
 
 ```
 1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up
-2. PowerShutDownNotifcation.Power_Down = False is transmitted
+2. PowerShutDownNotifcation.Power_Down = False is sent
 ```

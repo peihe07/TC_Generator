@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "grid lines request OFF sets DynamicGrid_Req OFF, turn the guidelines setting off and read the bus for DynamicGrid_Req",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. The vehicle brand is not Ram (2261 Fiat, 376 Abarth)\n5. No camera image is displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The vehicle brand is not Ram (2261 Fiat, 376 Abarth)\n4. No camera image is displayed",
       "input_test_data": "NA",
-      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Select \"Rear View Camera Active Guidelines\" and set it to off\n5. Read the bus analyzer recording and check TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req",
-      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" settings screen is displayed\n4. The \"Rear View Camera Active Guidelines\" setting is off\n5. TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req = 0 (Dynamic Gridlines OFF) is transmitted",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Set \"Rear View Camera Active Guidelines\" = \"Off\"\n5. Read TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req and check that it is 0 (Dynamic Gridlines OFF)",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" settings screen is displayed\n4. The \"Rear View Camera Active Guidelines\" setting is set to \"Off\"\n5. TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req = 0 (Dynamic Gridlines OFF) is sent",
       "specification_reference": "VF551_V33_P226MCA_VF_824\nVF551_V33_P226MCA_VF_825",
       "design_method": "決策表 (Decision Table Testing)",
       "priority": "P1",

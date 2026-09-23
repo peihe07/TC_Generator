@@ -18,8 +18,7 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
-4. The shift lever is in P
+3. The shift lever is in P
 ```
 
 ## input_test_data

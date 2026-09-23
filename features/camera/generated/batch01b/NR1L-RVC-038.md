@@ -40,5 +40,5 @@
 ```
 1. The bus analyzer is recording the vehicle bus
 2. The virtual Surround View Camera button registers the press
-3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Pressed is transmitted within Tsend of the keypress (signal, message and Tsend value all have no source)
+3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Pressed is sent within Tsend of the keypress (signal, message and Tsend value all have no source)
 ```

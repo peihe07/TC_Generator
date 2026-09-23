@@ -56,14 +56,14 @@
 | 12 | NR1L-RVC-036 | proc | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g open the Controls screen |
 | 12 | NR1L-RVC-036 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Controls screen is displayed |
 | 14 | NR1L-RVC-038 | pre | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j the SVC_SoftBtn_Rq signal is not present in the four DBC fi |
-| 14 | NR1L-RVC-038 | er | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Pressed is transmitted within |
+| 14 | NR1L-RVC-038 | er | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Pressed is sent within Tsend  |
 | 15 | NR1L-RVC-039 | proc | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g open the Controls screen |
 | 15 | NR1L-RVC-039 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Controls screen is displayed |
 | 16 | NR1L-RVC-040 | pre | PENDING 佔位（DR-CAM-j） | 4. PENDING: DR-CAM-j the SVC_DisplaySts signal is not present in the four DBC fi |
 | 16 | NR1L-RVC-040 | er | PENDING 佔位（DR-CAM-j） | 3. The Surround View Camera video image is displayed on the HU display and PENDI |
 | 19 | NR1L-RVC-043 | pre | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j CFTS020 defines no TGW_DISP_STAT value for the Surround Vie |
 | 19 | NR1L-RVC-043 | er | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j the HU transmits TELEMATIC_DISPLAY2.TGW_DISP_STATSts with t |
-| 21 | NR1L-RVC-045 | er | PENDING 佔位（DR-CAM-j） | 3. RADIO_B3.CameraDisplaySts = 3 (View_3) is transmitted on change and PENDING:  |
+| 21 | NR1L-RVC-045 | er | PENDING 佔位（DR-CAM-j） | 3. RADIO_B3.CameraDisplaySts = 3 (View_3) is sent on change and PENDING: DR-CAM- |
 | 22 | NR1L-RVC-046 | proc | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g open the Controls screen |
 | 22 | NR1L-RVC-046 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Controls screen is displayed |
 

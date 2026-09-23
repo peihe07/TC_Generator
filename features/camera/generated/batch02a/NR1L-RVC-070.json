@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "Power_Down False transmitted, power up the HU and read the bus for the shutdown notification",
-      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)\n2. Read the bus analyzer recording and check the PowerShutDownNotifcation message",
-      "expected_result": "1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n2. PowerShutDownNotifcation.Power_Down = False is transmitted",
+      "expected_result": "1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n2. PowerShutDownNotifcation.Power_Down = False is sent",
       "specification_reference": "VF551_V2_PHDCC27_VF_1353",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",

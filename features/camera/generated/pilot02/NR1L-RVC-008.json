@@ -17,9 +17,9 @@
   "tcs": [
     {
       "tc_title": "not Ram, read the HU display and check that the rear view camera image is no longer displayed",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n4. The vehicle brand is not Ram (2261 Fiat, 376 Abarth)\n5. The vehicle speed is below 8 mph",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The vehicle brand is not Ram (2261 Fiat, 376 Abarth)\n4. The vehicle speed is below 8 mph",
       "input_test_data": "NA",
-      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Set \"Rear View Camera Delay\" = \"On\"\n5. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n6. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 4 (D)\n7. Wait for 10 s\n8. Read the HU display and check that the rear view camera image is no longer displayed",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Set \"Rear View Camera Delay\" = \"On\"\n5. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)\n6. Send CAN: STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted)\n7. Wait for 10 s\n8. Read the HU display and check that the rear view camera image is no longer displayed",
       "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" settings screen is displayed\n4. The \"Rear View Camera Delay\" setting is set to \"On\"\n5. The rear view camera image is displayed in Automatic Display Mode\n6. The rear view camera image stays displayed after the gear leaves reverse\n7. The rear view camera image stays displayed for the whole 10 s period\n8. The rear view camera image is no longer displayed and the previous screen is shown again",
       "specification_reference": "CFTS092-4781643",
       "design_method": "狀態轉換 (State Transition Testing)",

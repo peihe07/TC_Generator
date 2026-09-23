@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "init default Rear_Camera_Enable.Info is FALSE, power up after a factory reset and check the initial value",
-      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The HU has been restored to its factory default settings\n4. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The HU has been restored to its factory default settings",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the HU display and check that no rear view camera image is displayed",
       "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n2. No rear view camera image is displayed",

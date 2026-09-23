@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "values stored to NVM at Ignition_Pre_Off, switch the ignition off and check that the values are stored",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. PENDING: DR-CAM-i the CmdIgnSts value that corresponds to Ignition_Pre_Off is not sourced\n5. The camera delay setting is set to \"On\"",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-i the CmdIgnSts value that corresponds to Ignition_Pre_Off is not sourced\n4. The camera delay setting is set to \"On\"",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK)\n2. Disconnect and reconnect the battery supply to the HU\n3. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n4. Press \"Apps\" on Menu Bar to open App Drawer\n5. Select \"Settings\" in the App Drawer\n6. Select \"Camera\"\n7. Read the \"Camera\" settings screen and check the state of the camera delay setting",
       "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) is sent and the HU leaves the RUN power state\n2. The HU is fully de-energised and energised again\n3. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n4. The App Drawer is displayed\n5. The \"Settings\" screen is displayed\n6. The \"Camera\" settings screen is displayed\n7. The camera delay setting is still on",

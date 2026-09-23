@@ -19,7 +19,6 @@
 1. The HU is in Standby state
 2. PROXI Rear_View_Camera = 1 (Present)
 3. The camera delay setting was set to "On" before the HU was switched off
-4. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
 ```
 
 ## input_test_data

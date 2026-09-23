@@ -18,9 +18,8 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)
-4. The vehicle brand is not Ram (2261 Fiat, 376 Abarth)
-5. The vehicle speed is below 8 mph
+3. The vehicle brand is not Ram (2261 Fiat, 376 Abarth)
+4. The vehicle speed is below 8 mph
 ```
 
 ## input_test_data
@@ -34,8 +33,8 @@
 2. Select "Settings" in the App Drawer
 3. Select "Camera"
 4. Set "Rear View Camera Delay" = "On"
-5. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
-6. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 4 (D)
+5. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)
+6. Send CAN: STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted)
 7. Wait for 10 s
 8. Read the HU display and check that the rear view camera image is no longer displayed
 ```

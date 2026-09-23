@@ -18,8 +18,7 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
-4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
+3. A bus analyzer is connected to the LVDS link between the HU and the RVCM
 ```
 
 ## input_test_data
@@ -31,13 +30,15 @@
 ```
 1. Send CAN: BCM_FD_10.CmdIgnSts = 1 (IGN_LK)
 2. Read the bus analyzer recording and check the PowerShutDownNotifcation message
-3. Hold for 5 s and check the supply to the RVCM on the LVDS link
+3. Hold for 5 s
+4. Read the LVDS supply to the RVCM and check that it is still present
 ```
 
 ## expected_result
 
 ```
 1. BCM_FD_10.CmdIgnSts = 1 (IGN_LK) is sent
-2. PowerShutDownNotifcation.Power_Down = True is transmitted over LVDS to the RVCM
-3. The HU keeps supplying power to the RVCM over LVDS for 5 s
+2. PowerShutDownNotifcation.Power_Down = True is sent over LVDS to the RVCM
+3. The signal is held for 5 s
+4. The HU is still supplying power to the RVCM over LVDS
 ```

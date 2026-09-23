@@ -18,9 +18,8 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)
-4. The rear view camera image is displayed in Automatic Display Mode
-5. The shift lever is in R
+3. The rear view camera image is displayed in Automatic Display Mode
+4. The shift lever is in R
 ```
 
 ## input_test_data

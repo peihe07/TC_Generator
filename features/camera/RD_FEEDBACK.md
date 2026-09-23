@@ -177,6 +177,28 @@ the HU shall not display any rear view camera image and the soft key shall not b
 
 ---
 
+## RDF-07 —— `SYS-RA-VF551_V33-420` 之 `Rear_Camer_Enable.Info` 拼寫缺字
+
+**觀察**：同一句內之兩個訊號名拼寫不一致 —— `Rear_Camera_Enable.Req` 正確，
+緊接之 `Rear_Camer_Enable.Info` **少一個 `a`**。該句為 2261 關機時寫入 NVM 之清單，
+拼寫錯誤使機器對映多出一個查無項。
+
+**證據**（VF551_V33 §1.13.2.1.1，`SYS-RA-VF551_V33-420`，anchor `VF551_V33_P226MCA_VF_320`）：
+
+> During the transition LTM_OperationalModeSts.Info=="Ignition_Pre_Off", LTM stores DTC and
+> **Rear_Camera_Enable.Req Rear_Camer_Enable.Info** values into its non volatile memory.
+
+同本之他列一律作 `Rear_Camera_Enable.Info`（例 `SYS-RA-VF551_V33-214`：
+`Consider Rear_Camera_Enable.Info="FALSE" as the init default value.`）。
+
+**TC 側現行處置**：`NR1L-RVC-064` 之 test_item 上半依 §4.3.1 **逐字照錄不更正**
+（更正即破壞保序子序列之機器判準）；reasoning 已具名該拼寫。
+
+**請求之動作**：更正為 `Rear_Camera_Enable.Info`（一處）。
+
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -187,3 +209,4 @@ the HU shall not display any rear view camera image and the soft key shall not b
 | RDF-04 | `SWE-CAM-018`（`-016` 同型）| `e.g.` 使判準不確定 | —— |
 | RDF-05 | `SWE-CAM-003` | 來源代號拼寫 | DR-CAM-a（須分類）|
 | RDF-06 | `SWE-CAM-002` | 配備需求缺 Absent 側 | DECISIONS 6-18 |
+| RDF-07 | `SWE-CAM-001`（`V33-420`）| 訊號名拼寫缺字 | `NR1L-RVC-064` |

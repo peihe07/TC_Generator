@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "stored delay and grid line values survive an ignition cycle, set the values, cycle the ignition and check that they are kept",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The camera delay setting is set to \"Off\"\n4. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The camera delay setting is set to \"Off\"",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK)\n2. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n3. Press \"Apps\" on Menu Bar to open App Drawer\n4. Select \"Settings\" in the App Drawer\n5. Select \"Camera\"\n6. Read the \"Camera\" settings screen and check the state of the camera delay setting",
       "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) is sent and the HU leaves the RUN power state\n2. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n3. The App Drawer is displayed\n4. The \"Settings\" screen is displayed\n5. The \"Camera\" settings screen is displayed\n6. The camera delay setting is still off",

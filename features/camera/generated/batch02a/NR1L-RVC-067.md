@@ -32,8 +32,8 @@
 1. Press "Apps" on Menu Bar to open App Drawer
 2. Select "Settings" in the App Drawer
 3. Select "Camera"
-4. Select "ParkView Backup Camera Delay" and set it to on
-5. Select "ParkView Backup Camera Delay" and set it to off
+4. Set "ParkView Backup Camera Delay" = "On"
+5. Set "ParkView Backup Camera Delay" = "Off"
 ```
 
 ## expected_result
@@ -42,6 +42,6 @@
 1. The App Drawer is displayed
 2. The "Settings" screen is displayed
 3. The "Camera" settings screen is displayed
-4. The "ParkView Backup Camera Delay" setting is on
-5. The "ParkView Backup Camera Delay" setting is off
+4. The "ParkView Backup Camera Delay" setting is set to "On"
+5. The "ParkView Backup Camera Delay" setting is set to "Off"
 ```

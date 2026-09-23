@@ -146,6 +146,19 @@ ER: The "Camera" settings screen is displayed
 Gear_Stat.info = [REVERSE] > Reverse_Deb` 與 `the Head Unit shall display the RVC
 image … Automatic mode`。全量另五例見 `up/20260916_CAM-05.md` §2.3。
 
+### 5.1 `J`（行首大寫）之豁免 —— 上半逐字（CAM-07 審閱 §一-2，Pei 准）
+
+`test_item` 上半為來源逐字（§4.3.1），其首字若在 SYS2 `Description` 中本即小寫，
+**`J` 不適用**。改為大寫將同時破壞兩件事：§4.3.1 之逐字忠實、
+`selfcheck_camera.py` 第 4 項之「保序子序列」機器判準。
+
+實例（batch02a 五列）：`-051`／`-052`（`when`）、`-055`（`a)`）、`-056`（`implement`）、
+`-070`（`a.`）。**交付語料前例**：`features/*/delivered/` 之 test_item 首行 2223 筆中
+10 筆首字小寫（`power`／`vehicle_setting`，兩本皆已交付）。
+
+本豁免為 **profile 側之判讀**，lint 側仍會報 `J`；其根治見 `GC_BACKLOG.md` **GCB-07**。
+逐列之 reasoning 須具名該豁免（五列已具名）。
+
 ## 6. CFTS092 疊層同句之取錨（R-CAM12）
 
 CFTS092 之 Camera 節界：`SYS-RA-CAM-060`(4781625) Cargo/CHMSL、
@@ -208,14 +221,36 @@ EOF
 
 ---
 
-## 9. 車型軸（R-CAM3）與品牌軸（R-CAM5）
+## 9. 標定常數表（實測，CAM-06／CAM-07 查得；CAM-07 審閱 §一-9 記入）
+
+逐格實測之值，**交付前之複驗以本表為準**；TC 之 ER 不再留符號。
+
+| 常數 | 值 | 單位 | 適用 | 座標（SYS-RA id：名／值／單位）|
+|---|---|---|---|---|
+| `c_VEHSPD_MAX` | **8** | `mph` | Atl-Hi（V2）、376（V3）| V2 §1.8.13 `-139`／`-138`／`-135`；V3 §1.14.1 `-607`／`-608`／`-611` |
+| `MAX_SPEED` | **13,0** | `Km/h` | 2261（V33）、637（V42）| V33 §1.14.1 `-503`／`-504`／`-507`；V42 §1.14.1 `-655`／`-656`／`-659` |
+| `T_INITDISPLAY` | **5,0** | `sec` | 2261（V33）、637（V42）| V33 §1.14.1 `-479`／`-480`／`-483`；V42 `-631`／`-632`／`-635` |
+| `Tpower` | **5** | `sec` | Atl-Hi（V2）、Atl-Mi（V3）| V3 §1.14.1 `-583`／`-584`／`-587`；V2 §1.8.13 `-163`／`-162` |
+| `Reverse_Deb` | **750** | `ms` | Atl-Hi（V2）| V2 §1.8.13 `-151`／`-150`／`-147` |
+
+**兩個速度門檻為同一門檻之兩種標定**：8 mph ＝ 12.874752 km/h，與 13,0 km/h 相差
+0.125 km/h，落在 V33／V42 所載之 ±`0,5` 容差內（`-506`／`-658`）。
+其可判性之差異見 A-CA30／A-CA31：Atl-Hi 側「恰等於 8 mph」之 raw 不存在
+（12.874752 非 0.0625 之倍數），2261／637 側 13.0 ÷ 0.0625 ＝ 208 為整數點，存在。
+
+V33／V42 之表以**逗號為小數點**（`13,0`／`5,0`），TC 之 Pre-Condition 逐字照錄該寫法，
+procedure 之 raw 換算則以小數點書寫（`13.0625 km/h`）。
+
+---
+
+## 10. 車型軸（R-CAM3）與品牌軸（R-CAM5）
 
 拆分判準逐字見 `features/camera/RULINGS.md` R-CAM3、R-CAM5。
 平台 ↔ VF ↔ PROXI 對照表同檔；品牌對照見本檔 §3.2。
 二軸同時成立時**以車型軸為外層**（R-CAM5(d)）。
 `forms/proxi/` 六平台十檔**不得改名、不得移動**（CAM-01 §0）。
 
-### 9.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
+### 10.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
 
 `SWE-CAM-002` 之 Ignition 前提**不得用 `BCM_FD_9.PowerModeSts`**
 （CameraEventHal 表：Atl-H、`Supported by Harman = N`、`MD fake CEH status
@@ -232,7 +267,7 @@ Atl-H | Y | verified`。該未結項關閉。
 
 ---
 
-## 10. 未決（本檔不得自行補齊）
+## 11. 未決（本檔不得自行補齊）
 
 CAM-01 之七項未決**全數已裁**（R-CAM4～R-CAM8、DECISIONS §6-6）。
 CAM-02 新生之未決：

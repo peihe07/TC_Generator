@@ -18,9 +18,8 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Forward_Facing_Camera = 1 (Present)
-3. CAN source: RADIO_B3.CameraDisplaySts (HDCC27, DT27) / RADIO_B3.CameraDisplaySts (637)
-4. The shift lever is in P
-5. No camera image is displayed
+3. The shift lever is in P
+4. No camera image is displayed
 ```
 
 ## input_test_data
@@ -32,7 +31,7 @@
 ```
 1. Connect a bus analyzer to the vehicle bus and start recording
 2. Press the virtual Forward Facing Camera button on the HU display
-3. Read the bus analyzer recording and check RADIO_B3.CameraDisplaySts and the time between the keypress and its transmission
+3. Read RADIO_B3.CameraDisplaySts and check that it is 3 (View_3), and check the time between the keypress and its transmission
 ```
 
 ## expected_result
@@ -40,5 +39,5 @@
 ```
 1. The bus analyzer is recording the vehicle bus
 2. The virtual Forward Facing Camera button registers the press
-3. RADIO_B3.CameraDisplaySts = 3 (View_3) is transmitted on change and PENDING: DR-CAM-j within Tsend of the keypress
+3. RADIO_B3.CameraDisplaySts = 3 (View_3) is sent on change and PENDING: DR-CAM-j within Tsend of the keypress
 ```

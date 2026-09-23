@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "CameraDisplaySts View_3 on FFC keypress, press the virtual button and read the bus for RADIO_B3.CameraDisplaySts",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Forward_Facing_Camera = 1 (Present)\n3. CAN source: RADIO_B3.CameraDisplaySts (HDCC27, DT27) / RADIO_B3.CameraDisplaySts (637)\n4. The shift lever is in P\n5. No camera image is displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Forward_Facing_Camera = 1 (Present)\n3. The shift lever is in P\n4. No camera image is displayed",
       "input_test_data": "NA",
-      "test_procedure": "1. Connect a bus analyzer to the vehicle bus and start recording\n2. Press the virtual Forward Facing Camera button on the HU display\n3. Read the bus analyzer recording and check RADIO_B3.CameraDisplaySts and the time between the keypress and its transmission",
-      "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. The virtual Forward Facing Camera button registers the press\n3. RADIO_B3.CameraDisplaySts = 3 (View_3) is transmitted on change and PENDING: DR-CAM-j within Tsend of the keypress",
+      "test_procedure": "1. Connect a bus analyzer to the vehicle bus and start recording\n2. Press the virtual Forward Facing Camera button on the HU display\n3. Read RADIO_B3.CameraDisplaySts and check that it is 3 (View_3), and check the time between the keypress and its transmission",
+      "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. The virtual Forward Facing Camera button registers the press\n3. RADIO_B3.CameraDisplaySts = 3 (View_3) is sent on change and PENDING: DR-CAM-j within Tsend of the keypress",
       "specification_reference": "CFTS092-4781661",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",

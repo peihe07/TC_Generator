@@ -21,6 +21,14 @@ CAM-05 審閱 §三-3（Pei 2026-09-23）令 `selfcheck_r_cam10.py` 更名本檔
 4. **verbatim 保序子序列** —— `test_item_verbatim` 之 token 須為
    `source_object_id` 所指來源 `Description` 之**保序子序列**（摘句之機器判準，
    CAM-05 審閱 §一-4）；全句者自然成立，摘句者據此驗字元級忠實度。
+5. **CAN source 行之適用條件**（**R-CAM3(f)**，CAM-07 審閱 §二-1）—— Pre-Condition 之
+   `CAN source:` 行只為「TC **同時**勾 Atl-Hi（`HDCC27`／`DT27`）與 Atl-Mi
+   （`VF(ProMaster)637`／`Toro(2261)`／`Fastack (376)`）車型，**且** Procedure 含
+   `Send CAN` 步」而設。單一 EE 之列直接以該平台訊息名寫，不加該行；
+   無 `Send CAN` 步者該行無代換對象。二條件任一不成立而仍有該行者命中。
+6. **設定操作句式**（canon §5.8(e)，CAM-07 審閱 §二-2）—— Procedure 不得寫
+   `Select "<label>" and set it to <value>`；一律 `Set "<label>" = "<Option>"`，
+   `<Option>` 逐字取 HMI Settings List 該列之選項 label。命中即違規。
 
 資料：`features/camera/data/layer3_a_vf_chapters.tsv`（A 本 541 個來源引用之全量展開）
 ＋ 六本 SYS2 之 `Basic Report` 分頁（`F` 欄錨、`D` 欄 Description）。
@@ -50,6 +58,12 @@ SYS2 = {"CFTS092": "sys2_cfts092_sysra_v01", "VF551_V2": "sys2_vf551_v2_sysra_v0
 # 步 1 之點火送值：`Send CAN: <msg>.CmdIgnSts = 4 (RUN)`，訊息名依 EE 而異（R-CAM3(e)）
 RE_RUN_STEP1 = re.compile(r"CmdIgnSts\s*=\s*(4\s*\(RUN\)|\[?RUN\]?)", re.I)
 RE_STEP = re.compile(r"^\s*\d+\.\s")
+# 第 5 項：Pre-Condition 之 CAN source 行；第 6 項：canon §5.8(e) 之反例句式
+RE_CANSRC = re.compile(r"^\s*\d+\.\s*CAN source:", re.I)
+RE_SENDCAN = re.compile(r"Send CAN:", re.I)
+RE_SETSTYLE = re.compile(r'Select\s+".+?"\s+and\s+set\s+it\s+to', re.I)
+VM_HI = ("HDCC27", "DT27")
+VM_MI = ("VF(ProMaster)637", "Toro(2261)", "Fastack (376)")
 
 
 def _txt(v) -> str:
@@ -108,6 +122,8 @@ def main() -> None:
     unresolved: list[tuple] = []
     constant: list[tuple] = []   # 標定常數錨（Information 且 037 未引）
     merged: list[tuple] = []     # R-CAM10(b) 合一錨
+    hit5: list[tuple] = []       # CAN source 行之適用條件（R-CAM3(f)）
+    hit6: list[tuple] = []       # 設定操作句式（canon §5.8(e)）
     no_source: list[tuple] = []
     checked = tcs = 0
 
@@ -153,6 +169,24 @@ def main() -> None:
                 # ── 3 ── Full-Operation 前提 ＋ 步 1 送 RUN
                 if "Full-Operation" in tc["pre_conditions"] and steps and RE_RUN_STEP1.search(steps[0]):
                     hit3.append((tc_id, steps[0].strip()))
+                # ── 5 ── CAN source 行之適用條件（R-CAM3(f)）
+                src_lines = [ln for ln in tc["pre_conditions"].split("\n") if RE_CANSRC.match(ln)]
+                if src_lines:
+                    vmv = doc["vehicle_model"]
+                    two_ee = (any(vmv.get(k) == "1" for k in VM_HI)
+                              and any(vmv.get(k) == "1" for k in VM_MI))
+                    has_send = bool(RE_SENDCAN.search(tc["test_procedure"]))
+                    if not (two_ee and has_send):
+                        why = []
+                        if not two_ee:
+                            why.append("未同時勾兩 EE")
+                        if not has_send:
+                            why.append("無 Send CAN 步")
+                        hit5.append((tc_id, "／".join(why), src_lines[0].strip()[:70]))
+                # ── 6 ── 設定操作句式（canon §5.8(e)）
+                for ln in tc["test_procedure"].split("\n"):
+                    if RE_SETSTYLE.search(ln):
+                        hit6.append((tc_id, ln.strip()[:80]))
                 # ── 4 ── verbatim 保序子序列
                 sid = doc.get("source_object_id")
                 verb = doc.get("test_item_verbatim", "")
@@ -168,6 +202,8 @@ def main() -> None:
     print(f"  2 proc ≥ 2 步　　：**命中 {len(hit2)}**")
     print(f"  3 RUN 重複　　　 ：**命中 {len(hit3)}**")
     print(f"  4 verbatim 子序列：無來源可比 {len(no_source)}；**命中 {len(hit4)}**")
+    print(f"  5 CAN source 行　：**命中 {len(hit5)}**")
+    print(f"  6 設定操作句式　 ：**命中 {len(hit6)}**")
     for tc_id, anchor in unresolved:
         print(f"  [1 反查失敗] {tc_id}  {anchor}")
     for tc_id, anchor, sid in constant:
@@ -185,7 +221,12 @@ def main() -> None:
         print(f"  [4 無來源] {tc_id}  source_object_id={sid}")
     for tc_id, sid, n_v, n_s in hit4:
         print(f"  [4 違反] {tc_id}  verbatim（{n_v} token）非 {sid}（{n_s} token）之保序子序列")
-    sys.exit(1 if (hit1 or unresolved or hit2 or hit3 or hit4 or no_source) else 0)
+    for tc_id, why, snip in hit5:
+        print(f"  [5 違反] {tc_id}  {why}：{snip}")
+    for tc_id, snip in hit6:
+        print(f"  [6 違反] {tc_id}  {snip}")
+    sys.exit(1 if (hit1 or unresolved or hit2 or hit3 or hit4 or no_source
+                   or hit5 or hit6) else 0)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,44 @@
+# NR1L-RVC-081 — SWE-CAM-002
+
+- **Test Group**：Rear View Camera｜**Test Set**：Configuration
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P1｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`VF551_V2_PHDCC27_VF_1575`（來源列 `SYS-RA-VF551_V2-520`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> When Digital RVC configuration is True and display is active, the head unit shall transmit following signals: - TELEMATIC_FD_14.TGW_CAMERA_DISP_STAT = DISP_DIGITAL_RVC_CAMERA - vehicleUpdate_1.TGW_CAMERA_DISP_STAT = DISP_DIGITAL_RVC_CAMERA.
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V2-520` 之「Digital RVC 已組態且畫面啟用時，兩側皆送 `DISP_DIGITAL_RVC_CAMERA`」。與 `NR1L-RVC-080` 成 active／non-camera 一對。`Rear_View_Camera_Type = 1 (Digital)` 為 Atl-Hi PROXI byte 212 bit 6–7 之實測（`DT28_ATL_HI` row 931 `1=Digital`；`HDCC27_initial` 同列 `0=Analogic`）；Analog 分支由 `NR1L-RVC-082`（`V4-125`）承接。只勾 Atl-Hi 之由同 `-080`（`TELEMATIC_FD_14` 只在 Atl-Hi 本）。LVDS 之 `vehicleUpdate_*`／`gridZoomRequest`／`PowerShutDownNotifcation` 非 CAN 訊號（四本 DBC 零命中），觀察以 bus analyzer 於 HU ↔ RVCM 之 LVDS 鏈路進行；**不造命令**（交付語料 17 本之 275 條 `$ ` 命令行中與 LVDS 相關者為 0，A-CA27 加註）。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. PROXI Rear_View_Camera_Type = 1 (Digital)
+4. No camera image is displayed
+5. A bus analyzer is connected to the LVDS link between the HU and the RVCM
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
+2. Read TELEMATIC_FD_14.TGW_CAMERA_DISP_STAT and check that it is 1 (DISP_DIGITAL_RVC_CAMERA)
+3. Read vehicleUpdate_1.TGW_CAMERA_DISP_STAT and check that it is DISP_DIGITAL_RVC_CAMERA
+```
+
+## expected_result
+
+```
+1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent and the rear view camera image is displayed
+2. TELEMATIC_FD_14.TGW_CAMERA_DISP_STAT = 1 (DISP_DIGITAL_RVC_CAMERA) is sent
+3. vehicleUpdate_1.TGW_CAMERA_DISP_STAT = DISP_DIGITAL_RVC_CAMERA is sent over LVDS
+```

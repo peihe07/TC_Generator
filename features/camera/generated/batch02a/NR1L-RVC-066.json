@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "delay request restored on ignition transition, 637, cycle the ignition and check that the delay setting is restored",
-      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The camera delay setting was set to \"On\" before the HU was switched off\n4. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The camera delay setting was set to \"On\" before the HU was switched off",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)\n3. Send CAN: STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted)\n4. Read the HU display and check that the rear view camera image is still displayed",
       "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n2. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent and the rear view camera image is displayed\n3. STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted) is sent\n4. The rear view camera image is still displayed",

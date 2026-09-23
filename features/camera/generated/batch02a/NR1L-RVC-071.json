@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "power to the RVCM within 500 ms, Atl-Mi, switch the ignition to RUN and check the supply timing and the notification",
-      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the bus analyzer recording and check the time between step 1 and the supply to the RVCM\n3. Read the bus analyzer recording and check the PowerShutDownNotifcation message",
-      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The HU supplies power to the RVCM within 500 ms of step 1\n3. PowerShutDownNotifcation.Power_Down = False is transmitted",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The HU supplies power to the RVCM within 500 ms of step 1\n3. PowerShutDownNotifcation.Power_Down = False is sent",
       "specification_reference": "VF551_V3_P363_VF_527",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
       "priority": "P1",
