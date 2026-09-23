@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-038",
+  "req_id": "SWE-CAM-016",
+  "test_group": "Rear View Camera",
+  "test_set": "Auxiliary Cameras",
+  "test_item_verbatim": "When the Surround View Camera soft button pressed, the HU shall send an on-change $SVC_SoftBtn_Rq$ = [Pressed] within <Tsend> of keypress.",
+  "source_object_id": "SYS-RA-CAM-085",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "SVC_SoftBtn_Rq sent on keypress, press the virtual button and read the bus for SVC_SoftBtn_Rq",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-j the SVC_SoftBtn_Rq signal is not present in the four DBC files in forms\n4. The shift lever is in P\n5. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Connect a bus analyzer to the vehicle bus and start recording\n2. Press the virtual Surround View Camera button on the HU display\n3. Read the bus analyzer recording and check the SVC_SoftBtn_Rq signal and the time between the keypress and its transmission",
+      "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. The virtual Surround View Camera button registers the press\n3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Pressed is transmitted within Tsend of the keypress (signal, message and Tsend value all have no source)",
+      "specification_reference": "CFTS092-4781650",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "SVC_SoftBtn_Rq sent on keypress",
+      "test_item": "When the Surround View Camera soft button pressed, the HU shall send an on-change $SVC_SoftBtn_Rq$ = [Pressed] within <Tsend> of keypress.\n\n(SVC_SoftBtn_Rq sent on keypress, press the virtual button and read the bus for SVC_SoftBtn_Rq)"
+    }
+  ],
+  "reasoning": "驗證目標為 CFTS092 `SYS-RA-CAM-085`（ObjectID 4781650，Surround View Camera 節）之「按下 SVC 軟鍵後於 <Tsend> 內送出 on-change `$SVC_SoftBtn_Rq$ = [Pressed]`」。**`SVC_SoftBtn_Rq` 於 `forms/` 四本 DBC 全文字面掃描零命中**，其承載 message、raw 值與 `<Tsend>` 之值皆無來源，三者一併標 `PENDING: DR-CAM-j`。觀察手段依 §5.4 之兩行式以 bus analyzer 書寫，不造命令。不成立側（`[Not Pressed]`，`SYS-RA-CAM-086`／`-087`）之承接列為 `SWE-CAM-003`（R-CAM10），屬 batch02 之範圍，本列不承。本列依 **R-CAM13(c)** 落 Test Set `Auxiliary Cameras`（framework Part VIII 第 10 組，CAM-06 重開）；其 SWE 列 `SWE-CAM-016` 於 Layer 2 仍歸 `Display Arbitration`，「組 ↔ SWE 列」與「TC ↔ Test Set」於本組分離。A-CA28 之「不生成」處置作廢。"
+}

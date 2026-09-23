@@ -11,7 +11,7 @@
 
 ## reasoning
 
-驗證目標為 SYS-RA-VF551_V2-533 之「ShiftLeverPosition != R 時疊加 Image Defeat [X] 軟鍵」。上半為摘句（§4.3.1）：原句 33 RE_TOKEN 含 a) 子句（R 檔不中斷），本列只取主句 17 RE_TOKEN，a) 子句由 NR1L-RVC-022 承接。前提須 Delay 為 On 之外的任一使影像於 D 檔續顯之情境，本列沿用自動模式退檔後之短暫續顯窗。V3-249／V4-115／V42-299 為三本同義列，依 R-CAM3(e) 不另拆，訊息名分寫於 CAN source 行。
+驗證目標為 SYS-RA-VF551_V2-533 之「ShiftLeverPosition != R 時疊加 Image Defeat [X] 軟鍵」。上半為摘句（§4.3.1）：原句 33 RE_TOKEN 含 a) 子句（R 檔不中斷），本列只取主句 17 RE_TOKEN，a) 子句由 NR1L-RVC-022 承接。前提須 Delay 為 On 之外的任一使影像於 D 檔續顯之情境，本列沿用自動模式退檔後之短暫續顯窗。V3-249／V4-115／V42-299 為三本同義列，依 R-CAM3(e) 不另拆，訊息名分寫於 CAN source 行。【CAM-06 §2-1】依審閱 §二-2 補 Pre-Condition `The camera delay setting is set to "On"` —— 退出 R 後影像是否續顯取決於 Delay 設定，未定即不可判（§4.4、§8.7.1）；Delay 為 On 時續顯窗由 Ttimer1 確定，本列之「D 檔下仍見影像並疊加 [X]」因而可判。
 
 ## pre_conditions
 
@@ -19,7 +19,8 @@
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
 3. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)
-4. The rear view camera image is displayed in Automatic Display Mode
+4. The camera delay setting is set to "On"
+5. The rear view camera image is displayed in Automatic Display Mode
 ```
 
 ## input_test_data

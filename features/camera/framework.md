@@ -8,10 +8,15 @@ process canon 仍為 `docs/fw036/FEATURE_ONBOARDING.md`。
 ## Part VIII — Camera (two books: SWRA Service + RVC-HMI)
 
 **狀態：已簽核並鎖定。** Pei 於 2026-09-16 簽核（CAM-02 審閱 §三-5，Tier 2）。
+**重開一次（Tier 2，Pei 2026-09-23，下放包 CAM-06 §1）**：A 本 Layer 2 加第 10 組
+`Auxiliary Cameras`（9 → 10 組），`SWE-CAM-017` 自 `State Handling` 改歸該組。
+重開前 sha16 `c4fc9d2e5b7d1f44`，重開後 sha16 `ee74d26960d6c281`
+（量測法：本檔全文，但本行之該欄位以 16 個 `0` 代入後取 sha256 前 16 碼 —— 自指之故）。
+重開範圍僅及 VIII.2 之組表與本狀態行；VIII.3～VIII.8 未動。
 
 ```
 Layer 1  `Rear View Camera`（R-CAM4(a)）
-Layer 2  A 本 9 組 25／B 本 8 組 230；未歸屬 0、歧義 0
+Layer 2  A 本 10 組 25／B 本 8 組 230；未歸屬 0、歧義 0（A 本第 10 組為 CAM-06 重開所增）
 Layer 3  A 本 = VF 章節號（V4 依 R-CAM7）＋ CFTS092 §1.3.x；B 本 = SYS1 Outline Number（RVC+PAM 依 R-CAM6）
 ```
 
@@ -54,29 +59,38 @@ B 本 037 標題作 `SWE1-RVC-HMI`；依 PH-01 R-PH 前例，`HMI` 為文件類�
 
 ### VIII.2 Layer 2 — A 本（Service 層，25 leaf）
 
-Sub Categorization ∩ VF 章節之交集。九組，**實測 25/25、未歸屬 0**
+Sub Categorization ∩ VF 章節之交集。**十組**（CAM-06 重開），**實測 25/25、未歸屬 0**
 （逐列 `features/camera/data/layer2_assign.tsv`，`book` 欄 = `A`）。
 
 | # | Test Set | SWE-CAM | Sub Cat | leaf | 主要 VF 章 |
 |---:|---|---|---|---:|---|
 | 1 | `Startup and Shutdown` | 001, 012, 014 | Daemon／NCD HAL | 3 | V33 1.11.1.2、V2 1.14.1、V3 1.10.2 |
 | 2 | `Configuration` | 002, 005 | Daemon／EVS HAL | 2 | V2 1.13.1、V3 1.10.2.1、V42 1.11.2.1 |
-| 3 | `State Handling` | 003, 017 | Daemon | 2 | V42 1.11.1.2、CFTS092 §1.3.8 |
+| 3 | `State Handling` | 003 | Daemon | 1 | V42 1.11.1.2 |
 | 4 | `Diagnostics` | 004, 013 | Daemon／NCD HAL | 2 | V2 1.10.2.1、V42 1.13.2.1.2.0.x |
 | 5 | `LVDS Messaging` | 007, 008, 009, 010, 011 | NCD HAL | 5 | V2 1.13.1、V2 1.10.3.2、V42 1.11.2.1 |
 | 6 | `Video Pipeline` | 006, 019 | EVS HAL／Daemon | 2 | V42 1.11.1.2.0.3.2、V33 1.11.1.2.2 |
 | 7 | `Display Arbitration` | 015, 016, 018, 020 | Daemon／App | 4 | V2 1.13.2.1.x、V3 1.10.2.2/3、CFTS092 §1.3.6 |
 | 8 | `HMI Overlays` | 021, 022, 023, 025 | App | 4 | V2 1.13.2.1.4～8、V2 1.13.2.2.x |
 | 9 | `AUX Camera` | 024 | App | 1 | VF617_V5（**缺件，DR-CAM-a**）|
+| 10 | `Auxiliary Cameras` | 017 | Daemon | 1 | CFTS092 §1.3.5／§1.3.7／§1.3.8／§1.3.9 |
 | | **合計** | | | **25** | |
 
 25 列之 `Categorization` 實測全為 `Functional Requirement`（無 Heading 列），
 故 leaf ＝ 列。
 
 註：
-- `-017` 依其 Description（`CameraDisplaySts`）歸 `State Handling`；其 VC/VM
+- ~~`-017` 依其 Description（`CameraDisplaySts`）歸 `State Handling`；其 VC/VM
   講 Air Suspension PROXI 與 4X→1X reset，與描述不對齊（**A-CA03**），
-  RD 對齊後可能改歸 `HMI Overlays`。
+  RD 對齊後可能改歸 `HMI Overlays`。~~
+  **CAM-06 重開改歸 `Auxiliary Cameras`** —— `-017` 之 `CameraDisplaySts` 條文
+  （CFTS092 `SYS-RA-CAM-097`／`-098`）位於 Forward Facing 節（§1.3.8），
+  與新組之 Layer 3 對齊；VC/VM 錯位之 A-CA03 不因重開而結，改登 RDF-02。
+- **第 10 組 `Auxiliary Cameras` 之 Test Set 值不只由 `-017` 產出** ——
+  依 **R-CAM13(c)**，他列（現為 `SWE-CAM-016`）所引之 Cargo/CHMSL、Surround View、
+  Forward Facing 節條文，其 TC 之 `Test Set` 亦寫 `Auxiliary Cameras`，
+  而該 SWE 列於本表仍歸其原組（`-016` 仍在 `Display Arbitration`）。
+  本表之「組 ↔ SWE 列」對應與「TC ↔ Test Set」對應於此分離，為本 feature 之唯一例外。
 - `AUX Camera` 為單列 Test Set，屬 §4.2「genuine outlier」，且**全數待 DR-CAM-a**
   （12/12 來源皆 `VF617_V5`，不可解析）。
 - `-014` 之 Sub Cat 為 `NormalCameraDaemon` 而 Description 以「NCD HAL shall…」

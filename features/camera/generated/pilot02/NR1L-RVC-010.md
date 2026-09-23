@@ -1,27 +1,27 @@
 # NR1L-RVC-010 — SWE-CAM-018
 
 - **Test Group**：Rear View Camera｜**Test Set**：Display Arbitration
-- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=1
 - **priority**：P1｜**design_method**：邊界值分析 (Boundary Value Analysis, BVA)
-- **specification_reference**：`VF551_V2_PHDCC27_VF_1577`（來源列 `SYS-RA-VF551_V2-490`）
+- **specification_reference**：`CFTS092-4781643`（來源列 `SYS-RA-CAM-078`）
 
 ## test_item 上半（verbatim，SYS2 逐字）
 
-> · The Ttimer2 shall start when BRAKE_FD_2.VehicleSpeedVSOSig >= c_VEHSPD_MAX.
+> Rear Camera display image shall remain displayed until display timer is greater than 10s AND vehicle speed is above 8 mph.
 
 ## reasoning
 
-驗證目標為車速門檻之邊界，即 SYS-RA-VF551_V2-490 之 "The Ttimer2 shall start when BRAKE_FD_2.VehicleSpeedVSOSig >= c_VEHSPD_MAX"（含等於）。錨不取 SYS-RA-VF551_V2-496 —— 該退出條文同為 SWE-CAM-015 所引，依 R-CAM10 委派 SWE-CAM-015。邊界換算：BRAKE_FD_2.VehicleSpeedVSOSig 於 PDT27_E2A_R1_FDCAN8.dbc BO_ 258 之 SG_ 為 (0.0625,0) [0|511.875] "Km/h"，VAL_ 僅 8191 "SNA"；8 mph = 12.874752 km/h 非 0.0625 之整數倍，故 raw 205 = 12.8125 km/h = 7.9614 mph 為 off-point、raw 206 = 12.875 km/h = 8.000154 mph 為 on-point（A-CA22）。本列承 off-point：raw 205 未達門檻，Ttimer2 不起算，影像於 10 s 延遲期內續顯；on-point 由 NR1L-RVC-009 承接（§8.3 每點一 TC）。本列只勾 Atl-Hi —— VF551_V33（2261）之同一判準逐字為 "STATUS_CCAN3.VehicleSpeedVSOSig >(greater) MAX_SPEED"（不含等於），邊界 ER 與本列相反；V3（376）為 BRAKE1.VehicleSpeedVSOSig（異名同判準），V42（637）只見 reset 語意。全量時依 VF 家族分寫（CAM-03 審閱 §一-7）。CFTS092 SYS-RA-CAM-078 以 "above 8 mph" 且與 10 s 為 all-of，與 VF 之 >= 相斥（A-CA21），於此具名。
+驗證目標為車速門檻之邊界，即 SYS-RA-VF551_V2-490 之 "The Ttimer2 shall start when BRAKE_FD_2.VehicleSpeedVSOSig >= c_VEHSPD_MAX"（含等於）。錨不取 SYS-RA-VF551_V2-496 —— 該退出條文同為 SWE-CAM-015 所引，依 R-CAM10 委派 SWE-CAM-015。邊界換算：BRAKE_FD_2.VehicleSpeedVSOSig 於 PDT27_E2A_R1_FDCAN8.dbc BO_ 258 之 SG_ 為 (0.0625,0) [0|511.875] "Km/h"，VAL_ 僅 8191 "SNA"；8 mph = 12.874752 km/h 非 0.0625 之整數倍，故 raw 205 = 12.8125 km/h = 7.9614 mph 為 off-point、raw 206 = 12.875 km/h = 8.000154 mph 為 on-point（A-CA22）。本列承 off-point：raw 205 未達門檻，Ttimer2 不起算，影像於 10 s 延遲期內續顯；on-point 由 NR1L-RVC-009 承接（§8.3 每點一 TC）。本列只勾 Atl-Hi —— VF551_V33（2261）之同一判準逐字為 "STATUS_CCAN3.VehicleSpeedVSOSig >(greater) MAX_SPEED"（不含等於），邊界 ER 與本列相反；V3（376）為 BRAKE1.VehicleSpeedVSOSig（異名同判準），V42（637）只見 reset 語意。全量時依 VF 家族分寫（CAM-03 審閱 §一-7）。CFTS092 SYS-RA-CAM-078 以 "above 8 mph" 且與 10 s 為 all-of，與 VF 之 >= 相斥（A-CA21），於此具名。【CAM-06 §2-3】依 **R-CAM14** 改錨 —— 速度門檻之母錨改為 `CFTS092-4781643`（`SYS-RA-CAM-078`，Rear Camera 節），test_item 上半隨錨改為該列逐字（21 token，無須摘句）；原錨 `VF551_V2_PHDCC27_VF_1577`（`SYS-RA-VF551_V2-490`）之 Ttimer2 起算條文留本段互參。**Vehicle Model 加勾 376** —— VF551_V3 §1.14.1 之 `c_VEHSPD_MAX`（`SYS-RA-VF551_V3-607`）值 `8`（`-608`）、單位 `mph`（`-611`），與 V2 §1.8.13 之 `c_VEHSPD_MAX = 8 mph` 同數，供試 raw 因而相同。**637 仍勾 0** —— VF551_V42 §1.14.1 之 `MAX_SPEED`（`SYS-RA-VF551_V42-655`）為 `13,0 Km/h`（`-656`／`-659`），與 8 mph（12.874752 km/h）不同數，本列之 raw 206／205 對 637 會得相反之 ER，依 R-CAM3 應另拆 sibling —— 回報歸 Pei（A-CA31）。**CAN source 行之 376 訊息名不取 `BRAKE1`** —— R-CAM14 所指之 `BRAKE1` 為 VF551_V3 文面之名，`forms/P363_BH-CAN [07338]_3A_R2.dbc` 全本無 `BRAKE1` message，`VehicleSpeedVSOSig` 位於 `BO_ 994 STATUS_CCAN3`（factor 0.0625 "Km/h"，與四本 DBC 同），故依 R-CAM3(e) 之固定句式寫 `STATUS_CCAN3.VehicleSpeedVSOSig (637, 2261, 376)`，與 batch01 `NR1L-RVC-026` 之既有寫法一致。**Pre-Condition 刪 `PROXI Rear_View_Camera_Type = 1 (Digital)`** —— 該參數只存在於 Atl-Hi 兩本 PROXI（row 931），376 之 PROXI 表查無，本列既涵蓋 376 即不得以該參數為前提。
 
 ## pre_conditions
 
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. PROXI Rear_View_Camera_Type = 1 (Digital)
+3. CAN source: BRAKE_FD_2.VehicleSpeedVSOSig (HDCC27, DT27) / STATUS_CCAN3.VehicleSpeedVSOSig (637, 2261, 376)
 4. The camera delay setting is set to "On"
 5. The rear view camera image is displayed in Automatic Display Mode
-6. The calibration c_VEHSPD_MAX corresponds to 8 mph per CFTS092 4781643
+6. The calibration c_VEHSPD_MAX = 8 mph per VF551_V2 1.8.13 and VF551_V3 1.14.1
 ```
 
 ## input_test_data

@@ -21,6 +21,7 @@ Urgency 回報。
 | DR-CAM-g | **「Controls page」之 HMI entry path** —— SYS1 匯出中給出進入 Controls 頁之逐字 hop label 者 | MISSING | A 本 `-016`（手動入口之 controls page 分支）；B 本 `Activation and Exit` 中凡走 controls page 者 | pilot `NR1L-RVC-005`／`-006` 改走 App Drawer 路徑而不受阻；controls page 分支之 TC 須待此件 | A-CA24 | **中** |
 | DR-CAM-i | **`LTM_OperationalModeSts` ↔ `CmdIgnSts` 之值對應表**（V33／V42 之 I/O 表或 LID 對應文件）| MISSING | A 本 `-001` 之關機側（pilot `NR1L-RVC-002`）；全量後凡以 `LTM_OperationalModeSts.Info` 為條件之 V33／V42 列 | 關機序列之 CAN 觸發值無來源，TC 以 `PENDING: DR-CAM-i` 標記 | A-CA25 | **中** |
 | DR-CAM-h | **Pop Up List 之 camera out-of-position 條目** —— `Camera Not in position`／`Camera Out of Position` 於 `forms/Pop Up List HMI R1 (26PI).xlsx` 兩串皆 0 命中 | MISSING | A 本 `-025`、B 本 `SWE1-RVC-039`（`Warning Banners`）| 最終畫面文字無權威；A-CA20 無法依 DECISIONS 6-9 之裁定結案 | A-CA20 | **中** —— pilot 不觸及 `-025`，不阻塞本包 |
+| DR-CAM-j | **Auxiliary Cameras 之訊號定義**：(1) `SVC_SoftBtn_Rq`、(2) `SVC_DisplaySts` 之承載 message 與 `VAL_`（`forms/` 四本 DBC 字面掃描皆零命中）；(3) `$TGW_DISP_STAT$` 之 **Surround View 值**（`TELEMATIC_DISPLAY2.TGW_DISP_STATSts` 之 `VAL_` 十六項無此項；CFTS020 `R1LR_Atl-H_25PI3.5_Cabin_CFTS_020 ICS and DCSD_20250910_1124.reqifz` 全文之值域亦無，`SVC` 零命中）；(4) `<Tsend>`／`<Tdisplay>` 之時限值 | MISSING | A 本 `-016` 之 Cargo/CHMSL／SVC／FFC 節（`batch01b` 之 `NR1L-RVC-038`／`-040`／`-043`／`-045`）| 四列之訊號側 ER 標 `PENDING: DR-CAM-j`；影像側與按鍵側仍可判，不整列 BLOCKED | A-CA32、RDF-01 | **中** —— `Auxiliary Cameras` 組交付前須結 |
 
 ## §5.3 常數之 PENDING 承接（R-G71）
 

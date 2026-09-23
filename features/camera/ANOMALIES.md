@@ -80,6 +80,13 @@ Registration is Tier 1 (record + propose); disposition is Tier 2.
 | A-CA29 | **`BED_EXTENDER` 三訊號實作可能未接線** | CameraEventHal 表：`BedExtenderSts`／`BedExtenderFailSts`／`IncompleteBedExtenderSts` 三者皆 Atl-M、`Supported by Harman = N`、`MD fake CEH status = Not yet`；且**該 message 不存在於 forms/ 之四本 DBC**（全文字面掃描：FDCAN8 僅 `Bed Lowering Mode` 與拖車名 `Flatbed`，其餘三本零命中）| `NR1L-RVC-032`／`-033` 依下放包 §3 仍依規格生成（CAN bench 可送），raw 值與 VAL label 標 `PENDING: DR-CAM-f` | PENDING —— DR-CAM-f |
 | A-CA30 | **`>` 與 `>=` 之分歧在 CAN 匯流排上不可觀察**（A-CA21 之補充實測） | 速度訊號之 `SG_` 因子為 `(0.0625,0) "Km/h"`；8 mph = 12.874752 km/h 非 0.0625 之整數倍 —— raw 205 = 7.9614 mph 必低於門檻、raw 206 = 8.000154 mph 必高於門檻，**「恰等於 8 mph」之 raw 不存在**。故 V33 之 `>(greater)` 與 V2／V4 之 `>=` 在測試層同值（`NR1L-RVC-030` 與 `-009` 之 ER 相同）| A-CA21 之相斥**在本專案之量測解析度下不可判**；若上游確認 `c_VEHSPD_MAX` 以 km/h 標定且恰為某 raw 值，該分歧才成為可測 | PENDING（待 `c_VEHSPD_MAX` 標定值，A-CA22）|
 
+## E5. CAM-06 生成中發現
+
+| # | 事由 | 實測 | 狀態 |
+|---|---|---|---|
+| A-CA31 | **速度門檻之標定值在 V2 與 V33 各有其數，A-CA30 之前提因而只對 Atl-Hi 成立** | VF551_V2 §1.8.13 表：`c_VEHSPD_MAX` ＝ **8**，單位欄逐格 **`mph`**（`SYS-RA-VF551_V2-139` 名／`-138` 值／`-135` 單位）。VF551_V33 §1.14.1 表：`MAX_SPEED` ＝ **13,0**，單位欄 **`Km/h`**，容差 `0,5`、範圍 `[10,0;18,0]`（`-503`／`-504`／`-507`／`-506`／`-505`）。**兩者皆載有單位**，A-CA22 所疑之「無標定單位」不成立。13.0 ÷ 0.0625 ＝ **208**（整數）—— 2261 之等值 raw **存在**，`>(greater)` 於門檻點可判；8 mph ＝ 12.874752 km/h 非 0.0625 之倍數，Atl-Hi 側仍不可判 | `NR1L-RVC-030`／`-031` 之供試值由 raw 206／205 改為 **raw 209／208**，Pre-Condition 之「MAX_SPEED corresponds to 8 mph」（無來源之推定）改為逐格實測之 `MAX_SPEED = 13,0 Km/h`。A-CA30 之處置（`-030`／`-031` 與 `-009`／`-010` 維持分列）**不變**，惟其理由由「運算子不可判」改為「兩平台之標定本不同數」。登 RDF-03，**A-CA30／A-CA22 之結案歸 Pei** |
+| A-CA32 | **`-063`／`-089` 之 Controls screen 入口與 `-076` 同缺 HMI 來源** | R-CAM13 令 `-016` 之 12 列全數生成，其中 `SYS-RA-CAM-063`（Cargo/CHMSL）與 `-089`（SVC）之條文為「shall be accessible from the Controls screen」，與 batch01 因 DR-CAM-g 而不生成之 `-076`（Rear）同句型；Controls screen 之 hop 於 B 本 SYS1 匯出與 HMI Settings List 皆查無 | 該二列**生成**（R-CAM13 之「不得略過」優先），入口 hop 之 label 與 ER 標 `PENDING: DR-CAM-g`；`-076` 是否比照改為生成，歸 Pei（batch01 現況仍為不生成）|
+
 ## E. 同名異體
 
 | # | 事由 | 實測 | 狀態 |

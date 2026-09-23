@@ -26,7 +26,7 @@
 | I-sibling | 同 Requirement ID 括號行逐字重複 | 0 | 0 | 每列 | 未校準（M15） |
 | J | 行首大寫 | 0 | 0 | 每行 | 已校準（行計口徑） |
 | K | CJK 字元 | 0 | 0 | 每列每欄 | 已校準（分級待 R-5） |
-| L | test_item 上半過長 (>50 tokens) | 0 | 0 | 每列 | 已校準（閾值待 R-3） |
+| L | test_item 上半過長 (>50 tokens) | 0 | 0 | 每列 | 已校準（R-3 = 50，canon §4.3.1 明文；超限依 R-DIAG21 摘句，不豁免） |
 | M | 空欄三態 | 0 | 0 | 每列每欄 | 已校準 |
 | N | 行尾多餘句號 | 0 | 0 | 每行 | 已校準 |
 | P | 訊號寫法不合 R-1 v2 | 0 | 0 | 每次命中 | 已校準（SWC 0708：195 —— proc 11／er 184，見上繳 09） |
@@ -35,13 +35,13 @@
 | T | PENDING 說明非英文 | 0 | 0 | 每次命中 | 未校準（R-14，21 包新增） |
 | U | PENDING 佔位（四欄全掃，含 ER 側） | 4 | 2 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
 | V | 行首空白（IN §11） | 0 | 0 | 每行每欄 | 未校準（IN §11，27 包新增） |
-| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 22 | 22 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
+| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 23 | 23 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
 | W | ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6） | 0 | 0 | 每次命中 | **待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述 |
 | X | 導航路徑無固定入口（§5.8／R-G71） | 0 | 0 | 每行 | 未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改** |
 | Y | PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式） | 0 | 0 | 每行 | 未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72 |
 | Z | Vehicle Model 七欄 1／0（R-CAM2，Camera profile 專屬） | 0 | 0 | 每列每欄；七欄全缺時每 sheet 記一筆 | 未校準（R-CAM2，CAM-02 新增）—— **feature 專屬**，僅 `--profile camera` 啟用；既有八本無此七欄，未啟用即不檢查（`Z=0` 在未啟用時是沉默，不是核可） |
 
-**總計：行計 26**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 27**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
@@ -54,7 +54,7 @@
 | 32 | NR1L-RVC-033 | pre | PENDING 佔位（DR-CAM-f） | 4. PENDING: DR-CAM-f the BED_EXTENDER message is not present in the four DBC fil |
 | 32 | NR1L-RVC-033 | proc | PENDING 佔位（DR-CAM-f） | 1. Send CAN: BED_EXTENDER.IncompleteBedExtenderSts = PENDING (PENDING: DR-CAM-f  |
 
-### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 22／列計 22）
+### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 23／列計 23）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -73,6 +73,7 @@
 | 22 | NR1L-RVC-023 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 23 | NR1L-RVC-024 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 24 | NR1L-RVC-025 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 25 | NR1L-RVC-026 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 26 | NR1L-RVC-027 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 27 | NR1L-RVC-028 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 28 | NR1L-RVC-029 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |

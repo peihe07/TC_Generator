@@ -1,0 +1,41 @@
+# NR1L-RVC-044 — SWE-CAM-016
+
+- **Test Group**：Rear View Camera｜**Test Set**：Auxiliary Cameras
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=1
+- **priority**：P1｜**design_method**：決策表 (Decision Table Testing)
+- **specification_reference**：`CFTS092-4781660`（來源列 `SYS-RA-CAM-095`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> When the HU receives the $OFFroad_Camera$ = [Present] the HU shall activate the virtual Forward Facing Camera button for user select-ability. See {CFTS044-2122} for exceptions to this requirement.
+
+## reasoning
+
+驗證目標為 CFTS092 `SYS-RA-CAM-095`（ObjectID 4781660，Forward Facing Camera 節）之「`$OFFroad_Camera$ = [Present]` 時啟用虛擬 Forward Facing Camera 鍵」。`$OFFroad_Camera$` 為設定／參數標記（§8.7.5(f)），其車輛組態對應為 PROXI `Forward_Facing_Camera`（byte 177 bit 1），寫法沿 `NR1L-RVC-025` 之前例。原句末之 `See {CFTS044-2122} for exceptions to this requirement.` 為例外指引，其例外條件只存在於 CFTS044、037 未引，依 **R-CAM13(b)** 屬 §8.4.2 所擋之外部規格，不生成；本列只驗成立側。入口 hop 不寫 App Drawer，理由同 `NR1L-RVC-037`。本列依 **R-CAM13(c)** 落 Test Set `Auxiliary Cameras`（framework Part VIII 第 10 組，CAM-06 重開）；其 SWE 列 `SWE-CAM-016` 於 Layer 2 仍歸 `Display Arbitration`，「組 ↔ SWE 列」與「TC ↔ Test Set」於本組分離。A-CA28 之「不生成」處置作廢。三個 PROXI 參數之平台覆蓋為 `forms/proxi/` 六本之逐格實測：`Digital_CHMSL_Camera_Prsnt`（byte 222 bit 7）只存在於 Atl-Hi 兩本；`Surround_View_Camera`／`Forward_Facing_Camera`（byte 177 bit 0／1）存在於 Atl-Hi 兩本與 637（`Promaster_ATL_MI` row 762／763）、376（`Fastback_ATL_MI` row 760／761）；**2261（`Toro_ATL_MI`）之 PROXI 表止於 byte 172，三者皆查無**，故該平台一律勾 0。六本之 default 值皆為 `0 = Absent`（R-CAM13(c) 所令之註）。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Forward_Facing_Camera = 1 (Present)
+3. The shift lever is in P
+4. No camera image is displayed
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Set PROXI Forward_Facing_Camera = 1 (Present) and cycle the ignition to RUN so that the HU reads the PROXI configuration
+2. Read the HU display and check that the virtual Forward Facing Camera button is present and selectable
+```
+
+## expected_result
+
+```
+1. The HU starts up and reads the PROXI configuration at ignition RUN
+2. The virtual Forward Facing Camera button is shown in the available state and can be selected
+```

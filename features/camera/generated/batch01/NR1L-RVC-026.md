@@ -11,7 +11,7 @@
 
 ## reasoning
 
-驗證目標為 SYS-RA-VF551_V3-265 之「手動模式下 RVC 影像續顯，直至 Ttimer2 到期或其他三條件之一成立」，即手動啟動對速度限制之旁路。上半為摘句（§4.3.1）：原句 93 RE_TOKEN，保留主句與其 unless 四條件清單，刪去其後之 a) Ttimer2 起停細則（該細則由 NR1L-RVC-029 承接），摘後 48 RE_TOKEN。速度值之換算見 DECISIONS 6-10（raw 206 = 12.875 km/h = 8.000154 mph）。
+驗證目標為 SYS-RA-VF551_V3-265 之「手動模式下 RVC 影像續顯，直至 Ttimer2 到期或其他三條件之一成立」，即手動啟動對速度限制之旁路。上半為摘句（§4.3.1）：原句 93 RE_TOKEN，保留主句與其 unless 四條件清單，刪去其後之 a) Ttimer2 起停細則（該細則由 NR1L-RVC-029 承接），摘後 48 RE_TOKEN。速度值之換算見 DECISIONS 6-10（raw 206 = 12.875 km/h = 8.000154 mph）。【CAM-06 §2-1】依審閱 §二-3 改 ER2 —— 原句 `stays displayed until Ttimer2 maxes out` 於讀取當下不可判「until」（§6 可判性），改為 `The rear view camera image is still displayed`。Ttimer2 到期之退出由 NR1L-RVC-029（歸零語意）與 NR1L-RVC-028（駕駛按鍵關閉）承接，本列只承手動模式對速度限制之旁路（§8.2.1 委派）。
 
 ## pre_conditions
 
@@ -38,5 +38,5 @@
 
 ```
 1. BRAKE_FD_2.VehicleSpeedVSOSig = 206 (12.875 km/h) is sent
-2. The rear view camera image stays displayed until Ttimer2 maxes out
+2. The rear view camera image is still displayed
 ```

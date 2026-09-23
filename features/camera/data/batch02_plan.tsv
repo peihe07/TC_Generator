@@ -1,0 +1,124 @@
+swe_id	source_id	anchor	vf_chapter	verification_point	axis	tc_count	note
+SWE-CAM-001	SYS-RA-CAM-062	CFTS092-4781627	—	camera off by default until activated	—	0	covered_by: NR1L-RVC-001；R-CAM12 疊層同句，錨取 Rear 節之 -075
+SWE-CAM-001	SYS-RA-CAM-075	CFTS092-4781640	—	camera off by default until activated	—	0	covered_by: NR1L-RVC-001（pilot02）
+SWE-CAM-001	SYS-RA-CAM-082	CFTS092-4781647	—	press X -> internal RVC IMAGE OFF -> rear image closed	none	1	
+SWE-CAM-001	SYS-RA-CAM-088	CFTS092-4781653	—	Surround View camera default setting is OFF	none	1	**Test Set `Auxiliary Cameras`**（R-CAM13(c)）—— `-001` 亦引 SVC 節，RDF-01 之同型
+SWE-CAM-001	SYS-RA-VF551_V2-528	VF551_V2_PHDCC27_VF_505	1.13.2.2.3	"""Camera Not in Position"" overlay for 5 s when RHatchSts = Open"	車型 Atl-Hi	1	
+SWE-CAM-001	SYS-RA-VF551_V3-252	VF551_V3_P363_VF_505	1.10.2.1	same overlay, Atl-Mi wording + ISO 15008 clause	車型 Atl-Mi	1	
+SWE-CAM-001	SYS-RA-VF551_V33-226	VF551_V33_P226MCA_VF_514	1.11.1.2	same overlay for T_INITDISPLAY (2261)	車型 2261	1	
+SWE-CAM-001	SYS-RA-VF551_V33-228	VF551_V33_P226MCA_VF_1624	1.11.1.2	same overlay gated by BedExtender Not_Active (2261)	車型 2261	1	PENDING: DR-CAM-f（BED_EXTENDER 不在四本 DBC）
+SWE-CAM-001	SYS-RA-VF551_V2-531	VF551_V2_PHDCC27_VF_507	1.13.2.2.4	"""Check Entire Surroundings"" overlay on entering camera display"	車型 Atl-Hi	1	
+SWE-CAM-001	SYS-RA-VF551_V4-116	VF551_V4_PHDCC27_VF_507	—	same sentence (V4)	—	0	covered_by: V2-531 之 TC —— 逐字同句、同平台（HDCC27）
+SWE-CAM-001	SYS-RA-VF551_V3-251	VF551_V3_P363_VF_507	1.10.2.1	same overlay + a) removal when display shorter than 5 s	車型 Atl-Mi	2	主句 1 ＋ a) 子句 1
+SWE-CAM-001	SYS-RA-VF551_V42-230	VF551_V42_P637MCA_VF_2197	1.11.1.2.0.2.1	same overlay for T_INITDISPLAY (637)	車型 637	1	
+SWE-CAM-001	SYS-RA-VF551_V42-258	VF551_V42_P637MCA_VF_2362	1.11.1.2.0.3.1	same sentence, second section	—	0	covered_by: V42-230 之 TC
+SWE-CAM-001	SYS-RA-VF551_V33-233	VF551_V33_P226MCA_VF_1142	1.11.1.2.1	"""Check surroundings for safety"" overlay (2261 wording)"	車型 2261	1	畫面文字與他平台相異，另列
+SWE-CAM-001	SYS-RA-VF551_V33-213	VF551_V33_P226MCA_VF_303	1.11.1.2	Ignition_On + PROXI Present -> LTM starts reading Rear_Camera.Data	車型 2261	1	
+SWE-CAM-001	SYS-RA-VF551_V33-214	VF551_V33_P226MCA_VF_1137	1.11.1.2	init default values after power-up	車型 2261	1	與 -215／-217 同一驗證點（三來源一 TC）
+SWE-CAM-001	SYS-RA-VF551_V33-215	VF551_V33_P226MCA_VF_1123	1.11.1.2	init default RVC_ACTIVE = False	—	0	covered_by: V33-214 之 TC
+SWE-CAM-001	SYS-RA-VF551_V33-217	VF551_V33_P226MCA_VF_1138	1.11.1.2	init default DelayOff = Off / GridLines = On	—	0	covered_by: V33-214 之 TC
+SWE-CAM-001	SYS-RA-VF551_V33-216	VF551_V33_P226MCA_VF_820	1.11.1.2	Ignition_On -> LTM starts reading DelayOff / GridLines requests	車型 2261	1	
+SWE-CAM-001	SYS-RA-VF551_V33-219	VF551_V33_P226MCA_VF_1139	1.11.1.2	stored DelayOff / GridLines values kept at next Ignition_On	車型 2261	1	
+SWE-CAM-001	SYS-RA-VF551_V33-220	VF551_V33_P226MCA_VF_1141	1.11.1.2	Ignition_Pre_Off stops reading Rear_Camera.Data	—	0	covered_by: NR1L-RVC-002（pilot02）
+SWE-CAM-001	SYS-RA-VF551_V33-221	VF551_V33_P226MCA_VF_822	1.11.1.2	GridLines request ON branch	車型 2261	1	其 ER（DynamicGrid_Req = ON）之來源 V33-222 承接列為 SWE-CAM-003 —— 見 §4 之結構性回報
+SWE-CAM-001	SYS-RA-VF551_V33-223	VF551_V33_P226MCA_VF_824	1.11.1.2	GridLines request OFF branch	車型 2261	1	同上（V33-224）
+SWE-CAM-001	SYS-RA-VF551_V33-420	VF551_V33_P226MCA_VF_320	1.13.2.1.1	Ignition_Pre_Off stores DTC and Rear_Camera_Enable into NVM	車型 2261	1	PENDING: DR-CAM-i（Ignition_Pre_Off 之 CAN 對應）
+SWE-CAM-001	SYS-RA-VF551_V33-426	VF551_V33_P226MCA_VF_447	1.13.2.1.3	Enable = TRUE -> repetition data for T_INITDISPLAY -> Enable = FALSE	車型 2261	1	
+SWE-CAM-001	SYS-RA-VF551_V42-217	VF551_V42_P637MCA_VF_1835	1.11.1.2	stored DelayOff restored on ignition transition (637)	車型 637	1	
+SWE-CAM-001	SYS-RA-VF551_V42-221	VF551_V42_P637MCA_VF_2336	1.11.1.2.0.1	user can select DelayOff = ON / OFF	車型 637	1	
+SWE-CAM-001	SYS-RA-VF551_V42-223	VF551_V42_P637MCA_VF_2338	1.11.1.2.0.1	user can select RVC_Swing_Doors_Check = ON / OFF	車型 637	1	
+SWE-CAM-012	SYS-RA-VF551_V2-550	VF551_V2_PHDCC27_VF_549	1.14.1	IGN_LK -> Power_Down = True over LVDS + power for Tpower	車型 Atl-Hi	1	LVDS 觀察依 §5.4 兩行式；見升級條件第 2 項
+SWE-CAM-012	SYS-RA-VF551_V2-553	VF551_V2_PHDCC27_VF_1353	1.14.1	Power_Down = False transmitted	車型 Atl-Hi	1	
+SWE-CAM-012	SYS-RA-VF551_V3-205	VF551_V3_P363_VF_527	1.10.2	power to the RVCM within 500 ms on RUN/IGN_START + Power_Down = False	車型 Atl-Mi	1	
+SWE-CAM-012	SYS-RA-VF551_V2-582	VF551_V2_PHDCC27_VF_1661	1.14.1	—	—	0	Out of Scope（R-CAM9）
+SWE-CAM-012	SYS-RA-VF551_V42-216	VF551_V42_P637MCA_VF_1777	1.11.1.2	—	—	0	委派 SWE-CAM-006（R-CAM10）
+SWE-CAM-012	SYS-RA-VF551_V42-219	VF551_V42_P637MCA_VF_1836	1.11.1.2	—	—	0	委派 SWE-CAM-006（R-CAM10）
+SWE-CAM-014	SYS-RA-VF551_V3-206	VF551_V3_P363_VF_549	1.10.2	IGN_LK -> Power_Down = True + power for Tpower (Atl-Mi)	車型 Atl-Mi	1	`-014` 只承 RVCM Power Notification Control 獨有者；其餘四列委派 SWE-CAM-012
+SWE-CAM-014	SYS-RA-VF551_V2-550	VF551_V2_PHDCC27_VF_549	1.14.1	—	—	0	委派 SWE-CAM-012（R-CAM10）
+SWE-CAM-014	SYS-RA-VF551_V2-553	VF551_V2_PHDCC27_VF_1353	1.14.1	—	—	0	委派 SWE-CAM-012
+SWE-CAM-014	SYS-RA-VF551_V3-205	VF551_V3_P363_VF_527	1.10.2	—	—	0	委派 SWE-CAM-012
+SWE-CAM-014	SYS-RA-VF551_V42-216	VF551_V42_P637MCA_VF_1777	1.11.1.2	—	—	0	委派 SWE-CAM-006
+SWE-CAM-014	SYS-RA-VF551_V2-582	VF551_V2_PHDCC27_VF_1661	1.14.1	—	—	0	Out of Scope（R-CAM9）
+SWE-CAM-002	SYS-RA-VF551_V2-446	VF551_V2_PHDCC27_VF_1922	1.13.1	VC_VehLineRVCM = VEH_DJ for HDCC + Body Type 4	車型 Atl-Hi	1	
+SWE-CAM-002	SYS-RA-VF551_V2-447	VF551_V2_PHDCC27_VF_1921	1.13.1	VC_VehLineRVCM = VEH_D2 for HDCC + Body Type 1	車型 Atl-Hi	1	
+SWE-CAM-002	SYS-RA-VF551_V2-751	VF551_V2_PDT27_VF_629	1.10.3.2	VC_VehLineRVCM = VEH_DT for DT	車型 DT27	1	
+SWE-CAM-002	SYS-RA-VF551_V3-287	VF551_V3_P363_VF_629	1.10.3.2	VC_VehLineRVCM = VEH_363 / VEH_376 per PROXI	車型 376	2	a) 與 b) 兩分支各一
+SWE-CAM-002	SYS-RA-VF551_V42-327	VF551_V42_P637MCA_VF_2024	1.11.2.1	VC_VehLineRVCM = VEH_637MCA	車型 637	1	
+SWE-CAM-002	SYS-RA-VF551_V2-484	VF551_V2_PHDCC27_VF_599	1.13.1	ZoomViewReq = Default when RVC not active	none	1	
+SWE-CAM-002	SYS-RA-VF551_V3-270	VF551_V3_P363_VF_595	1.10.2.4	same sentence (V3)	—	0	covered_by: V2-484 之 TC
+SWE-CAM-002	SYS-RA-VF551_V2-519	VF551_V2_PHDCC27_VF_1574	1.13.2.1.10	TGW_CAMERA_DISP_STAT = DISP_NON_CAMERA on both buses	車型 Atl-Hi	1	
+SWE-CAM-002	SYS-RA-VF551_V4-126	VF551_V4_PHDCC27_VF_1574	—	same, analog VF	—	0	covered_by: V2-519 之 TC
+SWE-CAM-002	SYS-RA-VF551_V2-520	VF551_V2_PHDCC27_VF_1575	1.13.2.2	TGW_CAMERA_DISP_STAT = DISP_DIGITAL_RVC_CAMERA when active	車型 Atl-Hi	1	
+SWE-CAM-002	SYS-RA-VF551_V4-125	VF551_V4_PHDCC27_VF_1575	—	TGW_CAMERA_DISP_STAT = DISP_ANALOG_RVC_CAMERA when active	車型 Atl-Hi	1	Analog 分支（PROXI Rear_View_Camera_Type = 0）
+SWE-CAM-002	SYS-RA-VF551_V3-257	VF551_V3_P363_VF_563	1.10.2.1	RADIO_B2.TGW_CAMERA_DISP_STAT a) active / b) no camera	車型 Atl-Mi	2	
+SWE-CAM-002	SYS-RA-VF551_V2-536	VF551_V2_PHDCC27_VF_935	1.13.2.2.6	enable Digital RVC behaviour when PROXI Rear_View_Camera = Present	none	1	
+SWE-CAM-002	SYS-RA-VF551_V3-212	VF551_V3_P363_VF_935	1.10.2.1	same sentence (V3)	—	0	covered_by: V2-536 之 TC
+SWE-CAM-002	SYS-RA-VF551_V42-209	VF551_V42_P637MCA_VF_1784	1.11.1.2	all requirements apply only when PROXI Present	—	0	covered_by: V2-536 之 TC（同一前提宣告）
+SWE-CAM-002	SYS-RA-VF551_V2-555	VF551_V2_PHDCC27_VF_1919	1.14.1	enable RVC when PROXI Present AND Type = Digital	車型 Atl-Hi	1	
+SWE-CAM-002	SYS-RA-VF551_V4-112	VF551_V4_PHDCC27_VF_935	—	enable Analog RVC when PROXI Present AND Type = Analog	車型 Atl-Hi	1	
+SWE-CAM-002	SYS-RA-VF551_V2-538	VF551_V2_PHDCC27_VF_1663	1.13.2.2.6	the listed LVDS signals are transmitted	車型 Atl-Hi	1	逐訊號清單，§5.4 兩行式；見升級條件第 2 項
+SWE-CAM-002	SYS-RA-VF551_V3-258	VF551_V3_P363_VF_1455	1.10.2.1	Rear_Camera_Enable.Info TRUE / FALSE follows display state	車型 Atl-Mi	2	
+SWE-CAM-002	SYS-RA-VF551_V42-322	VF551_V42_P637MCA_VF_1792	1.11.2.1	Gear_Box_Type gated to vehicleUpdate_1.VC_Trans_Equipped	車型 637	1	
+SWE-CAM-002	SYS-RA-VF617_V5-170	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-002	SYS-RA-VF617_V5-171	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-002	SYS-RA-VF617_V5-245	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-002	SYS-RA-VF617_V5-246	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-002	SYS-RA-VF617_V5-247	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-002	SYS-RA-VF617_V5-248	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-002	SYS-RA-VF617_V5-269	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-005	SYS-RA-VF551_V3-254	VF551_V3_P363_VF_522	1.10.2.1	RVCM image resolution is 1280 x 800	none	1	解析度有 SYS2 原文值；**格式（EVS HAL 支援之 format）於 SYS2 原文查無** —— 升級條件第 3 項，該面 PENDING
+SWE-CAM-005	SYS-RA-VF617_V5-183	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-CAM-069	CFTS092-4781634	—	press X -> internal CHMC IMAGE OFF -> cargo image closed	none	1	**Test Set `Auxiliary Cameras`**（R-CAM13(c)）
+SWE-CAM-003	SYS-RA-CAM-086	CFTS092-4781651	—	SVC_SoftBtn_Rq = Not Pressed follows the release	none	1	**`Auxiliary Cameras`**；PENDING: DR-CAM-j
+SWE-CAM-003	SYS-RA-CAM-087	CFTS092-4781652	—	SVC_SoftBtn_Rq = Not Pressed continues until next keypress	none	1	**`Auxiliary Cameras`**；PENDING: DR-CAM-j
+SWE-CAM-003	SYS-RA-VF551_V2-491	VF551_V2_PHDCC27_VF_1578	1.13.2.1.1	any preceding exit condition -> back to non-camera display	none	1	
+SWE-CAM-003	SYS-RA-VF551_V2-501	VF551_V2_PHDCC27_VF_1758	1.13.2.1.4	rear camera image displayed (1.13.2.1.4 branch)	none	1	
+SWE-CAM-003	SYS-RA-VF551_V2-507	VF551_V2_PHDCC27_VF_1762	1.13.2.1.6	rear camera image displayed (1.13.2.1.6 branch)	none	1	
+SWE-CAM-003	SYS-RA-VF551_V2-509	VF551_V2_PHDCC27_VF_1753	1.13.2.1.7	display reflects current information after exiting camera mode	none	1	
+SWE-CAM-003	SYS-RA-VF551_V2-513	VF551_V2_PHDCC27_VF_1680	1.13.2.1.8	Transition_time is less than 1000 ms	車型 Atl-Hi	1	
+SWE-CAM-003	SYS-RA-VF551_V2-514	VF551_V2_PHDCC27_VF_1679	1.13.2.1.9	RUN + softkey -> transition within Transition_time	車型 Atl-Hi	1	
+SWE-CAM-003	SYS-RA-VF551_V2-523	VF551_V2_PHDCC27_VF_1725	1.13.2.2.1	no flicker in the two listed scenarios	none	1	
+SWE-CAM-003	SYS-RA-VF551_V2-524	VF551_V2_PHDCC27_VF_520	1.13.2.2.2	no blank display in the two listed scenarios	none	1	
+SWE-CAM-003	SYS-RA-VF551_V2-534	VF551_V2_PHDCC27_VF_509	1.13.2.2.5	soft key available only when CmdIgnSts = RUN	none	1	與 NR1L-RVC-023（錨 CFTS092-4781638）為同一行為之不同來源；本列為其承接列（R-CAM10）
+SWE-CAM-003	SYS-RA-VF551_V2-535	VF551_V2_PHDCC27_VF_526	1.13.2.2.5	soft key controls implemented per VF664 and HMI logic and flow	none	1	VF664 為外部規格但 037 有引 —— R-CAM13(b) 須生成；VF664 缺件，hop 與 ER 標 PENDING（新 DR 待開）
+SWE-CAM-003	SYS-RA-VF551_V33-222	VF551_V33_P226MCA_VF_823	1.11.1.2	LTM sets DynamicGrid_Req = Dynamic Gridlines ON	車型 2261	1	其觸發條件之來源 V33-221 承接列為 SWE-CAM-001 —— 結構性回報，見 §4
+SWE-CAM-003	SYS-RA-VF551_V33-224	VF551_V33_P226MCA_VF_825	1.11.1.2	LTM sets DynamicGrid_Req = Dynamic Gridlines OFF	車型 2261	1	同上（V33-223）
+SWE-CAM-003	SYS-RA-VF551_V33-241	VF551_V33_P226MCA_VF_1368	1.11.1.2.2	OR (LTM_OperationalModeSts.Info = Ignition_OFF)	—	0	條件片段（3 token），非獨立驗證點；併入 V33 之退出點
+SWE-CAM-003	SYS-RA-VF551_V33-432	VF551_V33_P226MCA_VF_1197	1.13.2.1.5	Info = SNA -> last values kept for TIME_W_RVC2	車型 2261	1	
+SWE-CAM-003	SYS-RA-VF551_V33-440	VF551_V33_P226MCA_VF_1642	1.13.2.1.8	BedExtenderFailSts = Fail_Present -> previous BedExtender values used	車型 2261	1	PENDING: DR-CAM-f
+SWE-CAM-003	SYS-RA-VF551_V33-443	VF551_V33_P226MCA_VF_1646	1.13.2.1.9	BED_EXTENDER timeout beyond TIME_W_RVC -> last valid values used	車型 2261	1	PENDING: DR-CAM-f
+SWE-CAM-003	SYS-RA-VF551_V4-095	VF551_V4_PHDCC27_VF_1917	—	ShiftLeverPosition = TRANSM_FD_4 when Hybrid_Type is not REPB/FCEV	車型 Atl-Hi	1	
+SWE-CAM-003	SYS-RA-VF551_V4-105	VF551_V4_PHDCC27_VF_1920	—	same sentence	—	0	covered_by: V4-095 之 TC
+SWE-CAM-003	SYS-RA-VF551_V4-096	VF551_V4_PHDCC27_VF_1918	—	ShiftLeverPosition = PT_SYSTEM_FD_1 when Hybrid_Type is REPB/FCEV	—	0	**不生成** —— hybrid 分支之 PT_SYSTEM_FD_1.ShiftLeverPosition_PT 不可注入（A-CA15，同 batch01 之 V2-552）
+SWE-CAM-003	SYS-RA-VF551_V4-106	VF551_V4_PHDCC27_VF_1921	—	same sentence	—	0	同上
+SWE-CAM-003	SYS-RA-VF551_V4-117	VF551_V4_PHDCC27_VF_1573	—	warning text follows ISO 15008 and exceeds 18 arc minutes	none	1	量測型；需字高治具，可判性待確認
+SWE-CAM-003	SYS-RA-VF551_V4-119	VF551_V4_PHDCC27_VF_523	—	warning text available in each language per LanguageSelection	none	1	
+SWE-CAM-003	SYS-RA-VF551_V4-130	VF551_V4_PHDCC27_VF_1680	—	Transition_time is less than 2 seconds (V4)	車型 Atl-Hi	1	與 V2-513 之 1000 ms 不同值，另列
+SWE-CAM-003	SYS-RA-VF551_V4-131	VF551_V4_PHDCC27_VF_1684	—	Audio Mode ON behaviour	none	1	
+SWE-CAM-003	SYS-RA-VF551_V4-138	VF551_V4_PHDCC27_VF_1682	—	Audio Mode OFF behaviour	none	1	
+SWE-CAM-003	SYS-RA-VF551_V42-215	VF551_V42_P637MCA_VF_1824	1.11.1.2	IF Ignition ON / Start / Prplsn_On THEN	—	0	條件 header，非獨立驗證點
+SWE-CAM-003	SYS-RA-VF551_V42-218	VF551_V42_P637MCA_VF_1804	1.11.1.2	IF Ignition_Off THEN	—	0	條件 header，非獨立驗證點
+SWE-CAM-003	SYS-RA-VF551_V42-255	VF551_V42_P637MCA_VF_2359	1.11.1.2.0.3	ignition ON + RVC_Softbutton Active + internal True -> request ignored	車型 637	1	
+SWE-CAM-003	SYS-RA-VF551_V2-536	VF551_V2_PHDCC27_VF_935	1.13.2.2.6	—	—	0	委派 SWE-CAM-002
+SWE-CAM-003	SYS-RA-VF551_V2-555	VF551_V2_PHDCC27_VF_1919	1.14.1	—	—	0	委派 SWE-CAM-002
+SWE-CAM-003	SYS-RA-VF551_V42-209	VF551_V42_P637MCA_VF_1784	1.11.1.2	—	—	0	委派 SWE-CAM-002
+SWE-CAM-003	SYS-RA-VF551_V42-217	VF551_V42_P637MCA_VF_1835	1.11.1.2	—	—	0	委派 SWE-CAM-001
+SWE-CAM-003	SYS-RA-VF551_V42-221	VF551_V42_P637MCA_VF_2336	1.11.1.2.0.1	—	—	0	委派 SWE-CAM-001
+SWE-CAM-003	SYS-RA-VF551_V42-223	VF551_V42_P637MCA_VF_2338	1.11.1.2.0.1	—	—	0	委派 SWE-CAM-001
+SWE-CAM-003	SYS-RA-VF617_V5-087	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-VF617_V5-090	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-VF617_V5-169	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-VF617_V5-189	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-VF617_V5-233	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-VF617_V5-261	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-VF617_V5-300	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-VF617_V5-301	—	—	—	—	0	查無（DR-CAM-a）
+SWE-CAM-003	SYS-RA-VF617V5-406	—	—	—	—	0	查無（DR-CAM-a）—— 且代號缺底線（`VF617V5`），登 RDF-05
+SWE-CAM-003	SYS-RA-VF617V5-407	—	—	—	—	0	查無（DR-CAM-a）—— 且代號缺底線（`VF617V5`），登 RDF-05
+SWE-CAM-017	SYS-RA-CAM-097	CFTS092-4781662	—	on-change CameraDisplaySts = Default within Tsend of the state change	none	1	**Test Set `Auxiliary Cameras`**（framework 第 10 組，`-017` 已改歸）
+SWE-CAM-017	SYS-RA-CAM-098	CFTS092-4781663	—	CameraDisplaySts = Default continues until the next keypress	none	1	同上
+SWE-CAM-017	SYS-RA-VF551_V2-569	VF551_V2_PHDCC27_VF_1748	1.14.1	—	—	0	Out of Scope（R-CAM9）
+SWE-CAM-017	SYS-RA-VF551_V2-578	VF551_V2_PHDCC27_VF_356	1.14.1	—	—	0	Out of Scope（R-CAM9）；得作 Pre-Condition 措辭來源
+SWE-CAM-017	SYS-RA-VF551_V2-580	VF551_V2_PHDCC27_VF_89	1.14.1	—	—	0	Out of Scope（R-CAM9）；得作 Pre-Condition 措辭來源
+SWE-CAM-017	SYS-RA-VF551_V3-185	VF551_V3_P363_VF_89	1.10.1.1	—	—	0	Out of Scope（R-CAM9）
+SWE-CAM-017	（VC／VM 欄之 Air Suspension／4X→1X）	—	—	—	—	0	**不生成** —— 對應不到任一所引來源，依 R-CAM13(d) 登 RDF-02

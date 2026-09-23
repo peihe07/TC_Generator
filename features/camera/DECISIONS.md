@@ -292,6 +292,27 @@ Part VIII 整段搬至 **`features/camera/framework.md`**（沿其他 15 本 fea
 > **編號衝突須回報**：下放包 §1 令「DECISIONS **6-11** `[DECIDED]` pilot 判過」，
 > 惟 6-11 已於 CAM-04 §1(e) 用於 framework 落點。本項因而落為 **6-12**，6-11 不動。
 
+### 6-13. framework Part VIII 重開一次（A 本 Layer 2 第 10 組）
+
+`[DECIDED — 下放包 CAM-06 §1，Pei 2026-09-23]`
+**A 本 Layer 2 由 9 組改為 10 組**，新增 `Auxiliary Cameras`
+（Layer 3 ＝ CFTS092 §1.3.5 Cargo/CHMSL、§1.3.7 Surround View、
+§1.3.8 Forward Facing、§1.3.9 Clearpath）；`SWE-CAM-017` 自 `State Handling`
+改歸該組（`State Handling` 剩 `-003` 一列）。
+
+重開前 sha16 `c4fc9d2e5b7d1f44` → 重開後 `ee74d26960d6c281`
+（量測法見 framework 狀態行）。`layer2_assign.tsv` 同步；25/25、未歸屬 0 不變。
+
+依 **R-CAM13(c)**，他列所引之三節條文其 TC 之 `Test Set` 亦寫 `Auxiliary Cameras`，
+故「組 ↔ SWE 列」與「TC ↔ Test Set」在本組分離 —— 本 feature 之唯一例外，
+已記入 framework VIII.2 註。
+
+### 6-14. A-CA28 之處置作廢，12 列全數生成
+
+`[DECIDED — 下放包 CAM-06 §1（R-CAM13），Pei 2026-09-23]`
+CAM-05 §3 之「`-016` 之 12 列不生成」與 CAM-05 審閱 §三-1 之「同意不生成」**皆作廢**。
+12 列落 `batch01b/`，ID 自 `NR1L-RVC-034` 起，Test Set `Auxiliary Cameras`。
+
 ---
 
 ## Sign-off

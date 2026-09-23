@@ -185,6 +185,46 @@ R-CAM12  CFTS092 疊層同句之取錨
 —— `SYS-RA-CAM-062`（4781627，Cargo 節）↔ **`SYS-RA-CAM-075`（4781640，Rear 節）**，
 即本條所規範者。`NR1L-RVC-001` 之錨依此由 `CFTS092-4781627` 改為 **`CFTS092-4781640`**。
 
+### R-CAM13 — 037 所引之來源一律拆解；§8.4.2 只擋「RD 未引」之外部規格（Pei 裁，2026-09-23）
+
+```text
+R-CAM13  037 所引之來源一律拆解；§8.4.2 只擋「RD 未引」之外部規格
+  (a) SWE 列所引之每一 SYS-RA 來源（排除 Out of Scope 與 R-CAM10 委派者）皆須落入至少一個 TC 之
+      驗證點；TC 作者不得以 Test Group／節別不符為由略過（§8.2 RD 為需求單位之權威）。
+  (b) §8.4.2「不測外部規格」僅適用於 037 未引、只出現在被參考文件中之行為。
+  (c) 節別與 Test Group 不符者（Cargo/CHMSL、SVC、FFC 節條文）落 Test Set `Auxiliary Cameras`，
+      Pre-Condition 以 PROXI 表達該相機之配備（`Digital_CHMSL_Camera_Prsnt = 1`／
+      `Surround_View_Camera = 1`／`Forward_Facing_Camera = 1`），reasoning 註明 Atl-Hi default 為 0。
+  (d) VC／VM 欄不是來源；其內容對應得到所引來源者一併生成，對應不到者登 RD_FEEDBACK。
+  審閱 §三-1「不生成」與 CAM-05 §3 之 A-CA28 處置作廢。
+```
+
+**執行層落實（CAM-06 §1）**：A-CA28 之 12 列全數改為生成，落 `batch01b/`，
+Test Set `Auxiliary Cameras`，ID `NR1L-RVC-034` 起；逐列對應見
+`features/camera/data/batch01b_plan.tsv`。
+(c) 之三個 PROXI 參數之平台覆蓋為實測（`forms/proxi/` 六本）——
+`Digital_CHMSL_Camera_Prsnt`（byte 222 bit 7）只存在於 Atl-Hi 兩本；
+`Surround_View_Camera`／`Forward_Facing_Camera`（byte 177 bit 0／1）存在於
+Atl-Hi 兩本與 `Promaster_ATL_MI`（637）、`Fastback_ATL_MI`（376），
+**`Toro_ATL_MI`（2261）之 PROXI 表止於 byte 172，三個參數皆查無**；
+六本之 default 值一律 `0 = Absent`。
+
+### R-CAM14 — 速度門檻之母錨 ＝ CFTS092-4781643（Pei 裁，2026-09-23）
+
+```text
+R-CAM14  速度門檻之母錨 = CFTS092-4781643
+  Rear View Camera 之速度退出門檻（8 mph）以 `CFTS092-4781643`（SYS-RA-CAM-078）為錨，
+  五車型以 R-CAM3(e) CAN source 行分寫訊息名（`BRAKE_FD_2` Atl-Hi／`BRAKE1` 376／
+  `STATUS_CCAN3` 637, 2261），VF 條文留 reasoning 互參。
+  2261 因 VF551_V33 為 `>(greater)` 而條文相異，維持分列（`-030`／`-031`）。
+  `>` 與 `>=` 於 CAN 解析度不可判（A-CA30）之根本解列 RD_FEEDBACK（標定單位）。
+```
+
+**執行層落實（CAM-06 §2-3）**：`NR1L-RVC-009`／`-010` 之錨由
+`VF551_V2_PHDCC27_VF_1577`（`SYS-RA-VF551_V2-490`）改為 **`CFTS092-4781643`**，
+Vehicle Model 由 Atl-Hi 兩欄擴為 `HDCC27`／`DT27`／`637`／`376` 四欄
+（2261 維持 0，由 `-030`／`-031` 承接），CAN source 行依本條三分寫。
+
 ---
 
 ## 平台 ↔ VF ↔ PROXI 對照（下放包 §2 附表，分析層實測 `forms/proxi/` 六本）

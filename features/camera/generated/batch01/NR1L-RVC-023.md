@@ -11,7 +11,7 @@
 
 ## reasoning
 
-驗證目標為 CFTS092 SYS-RA-CAM-073（ObjectID 4781638，Rear Camera 節）之「軟鍵僅於 $PowerMode$ = [IGN_RUN] 時可選取」之成立側。$PowerMode$ 為設定／參數標記（§8.7.5(f)），其 CAN 對應依 VF551_V2-534 為 BCM_FD_10.CmdIgnSts，故以 4 (RUN) 表達。**錨不取 VF551_V2-534** —— 該來源同為 SWE-CAM-003 所引，依 R-CAM10 委派 SWE-CAM-003。入口 hop 取 §5.3 已鎖定之 ENTER_APP_DRAWER 與 Menu Bar §4.1 naming table 之 "Rear View Camera"（NRL-127734）。不成立側（PowerMode != IGN_RUN）由 NR1L-RVC-024 承接。訊息名依 R-CAM3(e) 分寫於 CAN source 行。
+驗證目標為 CFTS092 SYS-RA-CAM-073（ObjectID 4781638，Rear Camera 節）之「軟鍵僅於 $PowerMode$ = [IGN_RUN] 時可選取」之成立側。$PowerMode$ 為設定／參數標記（§8.7.5(f)），其 CAN 對應依 VF551_V2-534 為 BCM_FD_10.CmdIgnSts，故以 4 (RUN) 表達。**錨不取 VF551_V2-534** —— 該來源同為 SWE-CAM-003 所引，依 R-CAM10 委派 SWE-CAM-003。入口 hop 取 §5.3 已鎖定之 ENTER_APP_DRAWER 與 Menu Bar §4.1 naming table 之 "Rear View Camera"（NRL-127734）。不成立側（PowerMode != IGN_RUN）由 NR1L-RVC-024 承接。訊息名依 R-CAM3(e) 分寫於 CAN source 行。【CAM-06 §2-1】步 1 之 `Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)` 已刪 —— Pre-Condition 1 之 Full-Operation 其定義已含 IGN RUN，重送為重複（審閱 §二-1，§4.4）；ER 隨之重編為兩項。Pre-Condition 3 之 CAN source 行保留，其用途改為 $PowerMode$ 之 EE 對照（R-CAM3(e) 之訊息名分寫），不再對應任何 Send CAN 步。
 
 ## pre_conditions
 
@@ -30,15 +30,13 @@
 ## test_procedure
 
 ```
-1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)
-2. Press "Apps" on Menu Bar to open App Drawer
-3. Read the App Drawer and check that "Rear View Camera" is selectable
+1. Press "Apps" on Menu Bar to open App Drawer
+2. Read the App Drawer and check that "Rear View Camera" is selectable
 ```
 
 ## expected_result
 
 ```
-1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent
-2. The App Drawer is displayed
-3. The "Rear View Camera" entry is shown in the available state and can be selected
+1. The App Drawer is displayed
+2. The "Rear View Camera" entry is shown in the available state and can be selected
 ```
