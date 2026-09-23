@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-150",
+  "req_id": "SWE1-RVC-121-02",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The camera name begins to overwrite the default name as soon as the user begins typing, or presses backspace.",
+  "source_object_id": "NRL-188137",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the default name is overwritten as soon as typing or backspace begins",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. A wired AUX camera is connected\n3. The camera name is the default name\n4. The full QWERTY keyboard is shown for editing the camera name",
+      "input_test_data": "NA",
+      "test_procedure": "1. Type one character on the keyboard\n2. Read the name field and check that the default name has been overwritten\n3. Clear the field and reopen the name edit\n4. Press backspace on the keyboard\n5. Read the name field and check that the default name has been overwritten",
+      "expected_result": "1. The character is entered\n2. The name field no longer shows the default name\n3. The name edit is reopened with the default name\n4. The backspace is registered\n5. The name field no longer shows the default name",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_31.1.2",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "the default name is overwritten as soon as typing or backspace begins",
+      "test_item": "The camera name begins to overwrite the default name as soon as the user begins typing, or presses backspace.\n\n(the default name is overwritten as soon as typing or backspace begins)"
+    }
+  ],
+  "reasoning": "§31.1.2 之第二個驗證點。來源以 `or` 並列**兩個**觸發（開始輸入／按 backspace），兩者皆驗 —— backspace 一支尤須驗，因其直覺上是刪除既有字而非覆寫。verbatim 為該列 Description 之保序子序列（刪首句與末句）。"
+}

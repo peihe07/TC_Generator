@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-147",
+  "req_id": "SWE1-RVC-119-03",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The rest of the cameras will be labeled : 2,3,4…etc.",
+  "source_object_id": "NRL-188133",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the non favorite cameras are labeled 2 3 4 and so on",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PENDING: DR-CAM-r the equipment flag for the \"Camera App\" feature is not sourced\n3. Three wired AUX cameras are connected\n4. AUX 1 has been made favorite",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select the Camera app in the App Drawer\n3. Read the camera icons and check the labels of the cameras that are not the favorite",
+      "expected_result": "1. The App Drawer is displayed\n2. The Camera app home page is displayed\n3. The cameras that are not the favorite are labeled 2 and 3 in order",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_30.1.6",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the non favorite cameras are labeled 2 3 4 and so on",
+      "test_item": "The rest of the cameras will be labeled : 2,3,4…etc.\n\n(the non favorite cameras are labeled 2 3 4 and so on)"
+    }
+  ],
+  "reasoning": "§30.1.6 之第三個後果。`2,3,4…etc.` 之驗證須有**兩台以上非最愛**之相機方判得其序，故前提佈三台（一台最愛 ＋ 兩台非最愛）。`…etc.` 為開放式列舉，不造第四台之判準（§8.4.1）。"
+}

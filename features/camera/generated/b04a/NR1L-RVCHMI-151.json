@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-151",
+  "req_id": "SWE1-RVC-121-03",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The user presses OK to confirm the change.",
+  "source_object_id": "NRL-188137",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "pressing OK confirms the camera name change",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. A wired AUX camera is connected\n3. The full QWERTY keyboard is shown for editing the camera name\n4. A new name has been typed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press OK\n2. Read the HU display and check that the pop-up has closed and the new name is in effect",
+      "expected_result": "1. OK registers the press\n2. The name edit pop-up closes and the new name is in effect",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_31.1.2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "pressing OK confirms the camera name change",
+      "test_item": "The user presses OK to confirm the change.\n\n(pressing OK confirms the camera name change)"
+    }
+  ],
+  "reasoning": "§31.1.2 之第三個驗證點。`in effect` 之各處反映由 §31.1.3～§31.1.5（`-152`～`-154`）承接，本列只驗**確認動作本身**。"
+}

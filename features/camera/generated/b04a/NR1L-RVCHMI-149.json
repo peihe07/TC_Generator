@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-149",
+  "req_id": "SWE1-RVC-121-01",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The pop-up updates to show a full QWERTY keyboard.",
+  "source_object_id": "NRL-188137",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "a full QWERTY keyboard is shown for editing the camera name",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. A wired AUX camera is connected\n3. The \"Edit Name\" soft control has been pressed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the pop-up and check that a full QWERTY keyboard is shown\n2. Read the keyboard and check that the letter keys A to Z are all present",
+      "expected_result": "1. A full QWERTY keyboard is shown in the pop-up\n2. The letter keys A to Z are all present, which is what makes the keyboard full",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_31.1.2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "a full QWERTY keyboard is shown for editing the camera name",
+      "test_item": "The pop-up updates to show a full QWERTY keyboard.\n\n(a full QWERTY keyboard is shown for editing the camera name)"
+    }
+  ],
+  "reasoning": "§31.1.2 載三個驗證點（鍵盤顯示、開始輸入即覆寫預設名、按 OK 確認），三列各驗一個。`full QWERTY` 為逐字；不驗個別按鍵之配置（Core HMI 之鍵盤規格為外部規格，§8.4.2）。"
+}

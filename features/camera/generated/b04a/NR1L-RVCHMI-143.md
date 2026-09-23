@@ -1,0 +1,45 @@
+# NR1L-RVCHMI-143 — SWE1-RVC-117
+
+- **Test Group**：Rear View Camera｜**Test Set**：AUX Camera Settings
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
+- **priority**：P1｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_30.1.4`（來源列 `NRL-188131`）
+
+## test_item 上半（verbatim，SYS1 逐字）
+
+> Once the camera has been made favorite, the button in the settings menu updates to read “Remove as favorite”. Pressing this will remove the favorite designation from that camera (and all related effects).
+
+## reasoning
+
+§30.1.4 之兩個驗證點（標籤更新、按下即移除）。`(and all related effects)` 之具體效果由同節 §30.1.5（線項之星號，`-144`）與 §30.1.6（首頁之星號與 filter，`-145`～`-147`）所載，故 ER 以**星號消失**為其可觀察結果，不另造效果。與 `-130`／`-136`（§29.1.2／§29.2.2 之 `Add/Remove as a favorite`）之分工：後兩者只驗該項**被提供**（標籤翻轉），本列驗**移除之後果**。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. A wired AUX camera is connected
+3. The wired camera has been made favorite
+4. The individual AUX Cam settings pop-up for the wired camera is displayed
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Read the pop-up and check that the button reads "Remove as favorite"
+2. Press "Remove as favorite"
+3. Exit the AUX Cam settings menu
+4. Read the camera line item and check that no star is shown
+```
+
+## expected_result
+
+```
+1. The button reads "Remove as favorite"
+2. "Remove as favorite" registers the press
+3. The AUX Cam settings menu is exited
+4. No star is shown in that camera's line item, which shows that the favorite designation and its related effects have been removed
+```

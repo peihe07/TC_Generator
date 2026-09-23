@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-133",
+  "req_id": "SWE1-RVC-111",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The user can access the individual AUX Cam settings pop-up by pressing anywhere on the camera line item in the settings menu",
+  "source_object_id": "NRL-188123",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the wireless AUX cam settings popup opens by pressing the camera line item",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. A wireless AUX camera is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Select \"Aux Cameras\"\n5. Press the wireless AUX camera line item anywhere on the line\n6. Read the HU display and check that the individual AUX Cam settings pop-up is displayed",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" list is displayed\n4. The \"Aux Cameras\" settings menu is displayed\n5. The camera line item registers the press\n6. The individual AUX Cam settings pop-up for that camera is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_29.2.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "the wireless AUX cam settings popup opens by pressing the camera line item",
+      "test_item": "The user can access the individual AUX Cam settings pop-up by pressing anywhere on the camera line item in the settings menu\n\n(the wireless AUX cam settings popup opens by pressing the camera line item)"
+    }
+  ],
+  "reasoning": "§29.2 之父題逐字為 `Wireless AUX Cam Settings`。與 `-128`（§29.1.1）之關係見該列 reasoning（父題相異，R-CAM16(c) 不適用委派）；本列之前提為**無線**相機，故加 §27.3.1.x 之硬體要求與 `Enable Wireless Cameras` 設定。"
+}

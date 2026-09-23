@@ -17,3 +17,4 @@ PU0459	Y	PU0459	Aux Camera	N/A		No camera connected. Camera unavailable. Make su
 PU1517	Y	PU1517	Camera	3	2	Wireless Cameras disabled.  <OK>	Main!（PU1517 列）
 PU1518	Y	PU1518	Camera	N/A	2	Do you want to disconnect Apple CarPlay and enable Wireless Cameras? Apple CarPlay can be connected using the USB port when Wireless Cameras are enabled.  <Yes>   <No>	Main!（PU1518 列）
 Connecting message (27.5.1／27.6.2)	N		Camera／Aux Camera				Main!（module=Camera／Aux Camera 之訊息欄掃 `connect`，15 筆皆非 connecting 狀態訊息 → DR-CAM-h）
+PU1518 vs PU1519	Y	PU1518／PU1519	Camera	N/A	2	兩者皆為投影衝突之 <Yes>/<No> 確認彈窗，觸發相異：PU1518 = 使用者「啟用 Enable Wireless Cameras 設定」或「按下無線相機鍵以觀看影像」；PU1519 = 使用者「新增一台無線相機」（Add camera）。文字亦異：前者 …and enable Wireless Cameras?，後者 …and add a wireless camera?	Main!（r1301／r1302；CAM-18 審閱 §一-4）
