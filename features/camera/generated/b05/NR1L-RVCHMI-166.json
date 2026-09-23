@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-166",
+  "req_id": "SWE1-RVC-153",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The pop-up updates to show a full QWERTY keyboard. The user uses this to edit the name of the camera. The camera name begins to overwrite the default name as soon as the user begins typing, or presses backspace.",
+  "source_object_id": "NRL-188194",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the QWERTY keyboard opens and typing overwrites the default name on R1 Low",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is an R1 Low head unit\n3. Only wired AUX cameras are fitted\n4. No wireless AUX feature is offered\n5. A wired AUX camera is connected\n6. The camera name is the default name\n7. \"Edit Name\" has been pressed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the pop-up and check that a full QWERTY keyboard is shown\n2. Type one character on the keyboard\n3. Read the name field and check that the default name has been overwritten\n4. Clear the field, reopen the name edit and press backspace\n5. Read the name field and check that the default name has been overwritten",
+      "expected_result": "1. A full QWERTY keyboard is shown in the pop-up\n2. The character is entered\n3. The name field no longer shows the default name\n4. The backspace is registered\n5. The name field no longer shows the default name",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.9.6",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "the QWERTY keyboard opens and typing overwrites the default name on R1 Low",
+      "test_item": "The pop-up updates to show a full QWERTY keyboard. The user uses this to edit the name of the camera. The camera name begins to overwrite the default name as soon as the user begins typing, or presses backspace.\n\n(the QWERTY keyboard opens and typing overwrites the default name on R1 Low)"
+    }
+  ],
+  "reasoning": "§34.9.6（47 token）為 R1 Low 側之單一 leaf，**037 未拆子列**，故其三個驗證點（鍵盤、覆寫、backspace）合一列驗之 —— 與 R1 High 側 §31.1.2 之**三個子列**（`-149`～`-151`）相對。兩節之 Description 非逐字全等（49 vs 47 token）。本列不驗 `OK` 確認（§34.9.6 之末句 `The user presses OK to confirm the change` 於本節與 §31.1.2 同，惟其後果由 §34.9.7 之 `-167` 承接）。§34 之章標題逐字為 `R1 Low Wired AUX Cameras`（`NRL-188152`）；HU 等級**無 PROXI 編碼**（六串六本各 0 命中，CAM-17 證據 5），依 **DECISIONS 6-64** 不以此判車型，前提以散文書寫。"
+}

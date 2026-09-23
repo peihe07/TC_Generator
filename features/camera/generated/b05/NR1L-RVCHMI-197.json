@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-197",
+  "req_id": "SWE1-RVC-047-02",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera Settings",
+  "test_item_verbatim": "Note: User shall only have the ability to choose one type of guidelines at a time",
+  "source_object_id": "NRL-187343",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "only one type of guidelines can be chosen at a time",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The \"Rear View Camera Active Guidelines\" setting is On\n4. The \"Rear View Camera Fixed Guidelines\" setting is Off",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Set \"Rear View Camera Fixed Guidelines\" = \"On\"\n5. Read the \"Camera\" list and check the state of \"Rear View Camera Active Guidelines\"",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" list is displayed\n4. The \"Rear View Camera Fixed Guidelines\" setting is On\n5. The \"Rear View Camera Active Guidelines\" setting has changed to Off, which shows that only one type of guidelines can be chosen at a time",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_6.2.2.3",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "only one type of guidelines can be chosen at a time",
+      "test_item": "Note: User shall only have the ability to choose one type of guidelines at a time\n\n(only one type of guidelines can be chosen at a time)"
+    }
+  ],
+  "reasoning": "§6.2.2.3 末之 `Note:` 一句。其可觀察形制為**開一即關另一**（互斥）——以 Active 開著時開 Fixed，驗 Active 自動關閉。verbatim 為該列 Description 之保序子序列（只取 `Note:` 一句，前段由 `-196` 承接）。本列跨兩個設定，故不設「出廠預設」之前提，改直接佈定兩者之初始態。"
+}

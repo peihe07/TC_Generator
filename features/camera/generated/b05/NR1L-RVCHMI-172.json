@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-172",
+  "req_id": "SWE1-RVC-159",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "DT and HDCC programs with SVC and Camera app will not have access to AUX cameras via the left corner of views",
+  "source_object_id": "NRL-188201",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "DT and HDCC with SVC and camera app have no AUX access via the left corner in settings",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-r the equipment flag for the \"Camera App\" feature is not sourced\n4. A wired AUX camera is connected\n5. The Vehicle Surround View is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the left corner of the Vehicle Surround View and check that no AUX camera soft control is present\n2. Press \"Apps\" on Menu Bar to open App Drawer\n3. Select the Camera app in the App Drawer\n4. Select the AUX filter and check that the AUX camera soft control is present",
+      "expected_result": "1. No AUX camera soft control is shown in the left corner of the Vehicle Surround View\n2. The App Drawer is displayed\n3. The Camera app home page is displayed\n4. The AUX camera soft control is shown in the AUX filter",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.10.3",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "DT and HDCC with SVC and camera app have no AUX access via the left corner in settings",
+      "test_item": "DT and HDCC programs with SVC and Camera app will not have access to AUX cameras via the left corner of views\n\n(DT and HDCC with SVC and camera app have no AUX access via the left corner in settings)"
+    }
+  ],
+  "reasoning": "**來源逐字點名平台** `DT and HDCC programs` → `Vehicle Model` 只勾 `HDCC27`／`DT27`，依 **R-CAM3**（來源直接載平台）。本列與 §34.7.1（`NR1L-RVCHMI-092`）之 Description **差一個 image token**（該列 24 token 含 `(image: …)`，本列 22 token 無），分群實測相異；且父題相異（§34.10 `Accessing AUX Cameras Camera app` vs §34.7 `Accessing AUX Cameras from Surround View`）→ 依 **R-CAM16(c)** 各自出 TC。分工：`-092` 自 **Surround View** 之脈絡驗，本列自 **Camera app** 之脈絡驗替代入口。"
+}

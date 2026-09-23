@@ -697,6 +697,44 @@ CAM-18 下放包之「31 leaf ＋ 6 leaf」實為 framework VIII.3 之**全列�
 與下放包不符時**依實測執行並回報**（不自行擴批）。
 `popup_texts.tsv` 併記 `PU1518`／`PU1519` 之分辨（審閱 §一-4）。
 
+### 6-67. 批次切點取章界而非取滿上限
+
+`[DECIDED — CAM-19 審閱 §一-1，Pei 2026-09-23]`
+下放包所給之列數上限（如「≤ 43」）為**上限非目標**。切點應取**章界或流程界**，
+使同一流程不被拆散；B04a 取 §31.1.6 ↔ §34.9.1（R1 High ↔ R1 Low）之章界 30 列，
+不取第 40 列（該列落在 §34.9 名稱編輯流程中段）。與 **DECISIONS 6-64** 同軸。
+
+### 6-68. `Aux Cameras` 之子項 label 取 SYS1 逐字
+
+`[DECIDED — CAM-19 審閱 §一-2，Pei 2026-09-23]`
+`forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` `Settings` 分頁之
+`10. Aux Cameras`（row 474）／`10.1 Aux Cameras`（row 475）**之下無任何子項**
+（row 476 已是 `11. Trailer Reverse Guidance`），row 475 備註逐字
+`See Head Unit Camera Systems Logic & Flow`。
+故其子項 label 一律取 SYS1 之逐字（`“Make Favorite”`／`“Remove as favorite”`／`“Edit Name”` 等），
+**非 Settings List 缺件**，不開 DR。
+
+### 6-69. 「來源只給圖」型 —— 不造文字、不掛 DR
+
+`[DECIDED — CAM-19 審閱 §一-4，Pei 2026-09-23]` **通則**：
+來源條文以 `(image: …)`／`as shown above`／`Below screen` 指向一張**不可抽之圖**，
+而該圖為其唯一之文字來源者：
+
+1. ER 只判該畫面之**出現、清除、可操作**等**結構性**可觀察項，**不造其文字**（§8.4.1）；
+2. **不掛 `PENDING: DR-CAM-h`** —— 該條為「Pop Up List **查無**」之缺件，
+   本型為「來源**只給圖**」，兩者成因相異；
+3. reasoning 須具名該圖之檔名（如 `image159.png`）與「內容不可抽」之事實。
+
+沿革：CAM-19 之 `NR1L-RVCHMI-142`（§30.1.3 之確認彈窗，`image159.png`）。
+
+### 6-70. lint `X` 之 10 列不消
+
+`[DECIDED — CAM-19 審閱 §一-5，Pei 2026-09-23]`
+B04a 之 `X` 10 列成因為 lint 之固定入口清單未納 profile §5.3 之導航常數，
+**非 TC 內容之缺陷**，不改寫步驟消之（實測改寫後計數不變）。
+併登 `GC_BACKLOG.md` **GCB-11** 提請全域修 lint。
+各批之 `X` 計數仍須於上繳包回報並具名成因。
+
 ---
 
 ## Sign-off

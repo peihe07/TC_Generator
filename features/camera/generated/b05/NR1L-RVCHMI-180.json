@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-180",
+  "req_id": "SWE1-RVC-032",
+  "test_group": "Rear View Camera",
+  "test_set": "Warning Banners",
+  "test_item_verbatim": "RVC3.1) The message/button overlaid execution should only be performed when there is no other option to fit every UI element on the screen.",
+  "source_object_id": "NRL-142639",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "overlaying is used only when the UI elements cannot otherwise fit",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Radio_Display_Type = 7 (12\" 1200x1920)\n4. The shift lever is in R\n5. The rear view camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the camera view and check where the UI elements are placed\n2. Read the camera view and check that no element is overlaid on the camera image",
+      "expected_result": "1. The UI elements are placed outside the camera image because the display is large enough to fit them\n2. No element is overlaid on the camera image",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_8.4.1",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "overlaying is used only when the UI elements cannot otherwise fit",
+      "test_item": "RVC3.1) The message/button overlaid execution should only be performed when there is no other option to fit every UI element on the screen.\n\n(overlaying is used only when the UI elements cannot otherwise fit)"
+    }
+  ],
+  "reasoning": "§8.4.1 之 `only ... when there is no other option to fit` 之否定側須以**版面足夠大**之機型驗之，故前提取 `Radio_Display_Type = 7`（12 吋直式，byte 185 值域逐字 `7 = 12\" 1200x1920`）——該尺寸為本表之最大者之一，最可能容得下全部元素。**本列之判為條件式**：若該機型仍疊層，即表示「無其他選項」之判斷不同，須回報而非判 FAIL；此點記入 `bench_verify.md`。"
+}

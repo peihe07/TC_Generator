@@ -1,0 +1,43 @@
+# NR1L-RVCHMI-163 — SWE1-RVC-152-01
+
+- **Test Group**：Rear View Camera｜**Test Set**：AUX Camera Settings
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
+- **priority**：P1｜**design_method**：邊界值分析 (Boundary Value Analysis, BVA)
+- **specification_reference**：`SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.9.5`（來源列 `NRL-188193`）
+
+## test_item 上半（verbatim，SYS1 逐字）
+
+> There is a 7 character limit per each line.
+
+## reasoning
+
+§34.9.5 載三個判準，三列各驗一個（`-163`～`-165`）。與 §31.1.6（`NR1L-RVCHMI-155`～`-157`，R1 High）之關係：兩列之 Description **非逐字全等**（41 vs 37 token，CAM-19 證據 3 實測不同群），故非 R-CAM16(c) 之委派款；其**語序亦不同**（§31.1.6 先講 `2 lines with 7 characters`，本節先講 `7 character limit per each line`）。§34 之章標題逐字為 `R1 Low Wired AUX Cameras`（`NRL-188152`）；HU 等級**無 PROXI 編碼**（六串六本各 0 命中，CAM-17 證據 5），依 **DECISIONS 6-64** 不以此判車型，前提以散文書寫。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. The head unit is an R1 Low head unit
+3. Only wired AUX cameras are fitted
+4. No wireless AUX feature is offered
+5. A wired AUX camera is connected
+6. The full QWERTY keyboard is shown for editing the camera name
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Type 7 characters and read the name field
+2. Type an 8th character and read the name field
+```
+
+## expected_result
+
+```
+1. The 7 characters are shown on one line
+2. The 8th character starts a second line
+```

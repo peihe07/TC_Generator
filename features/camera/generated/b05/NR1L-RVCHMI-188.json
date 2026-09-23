@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-188",
+  "req_id": "SWE1-RVC-003",
+  "test_group": "Rear View Camera",
+  "test_set": "PAM Integration",
+  "test_item_verbatim": "PAM2.2) Are expected PAM features Rear ParkSense, Front+Rear ParkSense and Side Distance Warning.",
+  "source_object_id": "NRL-142608",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the expected PAM feature set is Rear ParkSense Front plus Rear ParkSense and Side Distance Warning",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI CVPAM_Presence = 1 (Present)\n4. PROXI PAM_Configuration = 1 (Front And Rear)\n5. The RVC+PAM layout is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the RVC+PAM layout and check that the Rear ParkSense visualization is present\n2. Read the RVC+PAM layout and check that the Front ParkSense visualization is present\n3. Read the RVC+PAM layout and check that the Side Distance Warning visualization is present",
+      "expected_result": "1. The Rear ParkSense visualization is shown\n2. The Front ParkSense visualization is shown\n3. The Side Distance Warning visualization is shown",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.2.2",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the expected PAM feature set is Rear ParkSense Front plus Rear ParkSense and Side Distance Warning",
+      "test_item": "PAM2.2) Are expected PAM features Rear ParkSense, Front+Rear ParkSense and Side Distance Warning.\n\n(the expected PAM feature set is Rear ParkSense Front plus Rear ParkSense and Side Distance Warning)"
+    }
+  ],
+  "reasoning": "§6.2.2 逐字列舉三款 PAM 功能，三者皆驗。`Front+Rear ParkSense` 於 PROXI 之對應值為 `PAM_Configuration = 1 (Front And Rear)`；`Side Distance Warning`（SDW）於 §11.1 之註逐字載其偵測條件（`When SDW is not capable of detecting ... vehicle must move forward`），該條件之測試由 `-193` 承接，本列只驗其**視覺存在**。"
+}

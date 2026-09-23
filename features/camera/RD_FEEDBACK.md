@@ -355,6 +355,52 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 
 ---
 
+## RDF-15 —— Pop Up List `PU0456` 之按鈕欄拼作 `<Nol>`
+
+**觀察**：刪除相機之確認彈窗，其**按鈕欄**與**訊息文字欄**之第二個按鈕拼法不一致。
+
+**證據**（`forms/Pop Up List HMI R1 (26PI).xlsx` `Main` 分頁，`PU0456`，module `Aux Camera`）：
+
+| 欄 | 逐字 |
+|---|---|
+| 按鈕欄 | `<X>` / `<Yes>` / **`<Nol>`** |
+| 觸發欄 | `Displayed when user selects "Delete Camera"` |
+| 訊息文字欄 | `Delete Camera?  <X>` … `Are you sure you want to delete [Insert Camera Name] from Uconnect?  <Yes>  <No>` |
+
+同表之同型彈窗（`PU1518`／`PU1519`）其按鈕欄皆作 `<No>`，故 `<Nol>` 為**孤例**。
+
+**TC 側現行處置**：`NR1L-RVCHMI-137` 之 ER 依**訊息文字欄**書寫（`<Yes>` 與 `<No>`），
+差異註於該列之 `Remarks`（profile §10 第二類）。**不改彈窗表、不造第三種拼法。**
+
+**請求之動作**：更正 `PU0456` 按鈕欄之 `<Nol>` 為 `<No>`。
+
+---
+
+## RDF-16 —— `Check Entire Surroundings` 之時限：SYS1 載 5 秒，Pop Up List `PU0362` 載 10
+
+**觀察**：同一個橫幅訊息，其顯示時限於 SYS1 與彈窗表**相差一倍**。
+
+**證據**：
+
+| 來源 | 座標 | 逐字 |
+|---|---|---|
+| SYS1 RVC+PAM §8.2 | `NRL-142633` | `a message stating “Check Entire Surroundings” (**PU0362**) will be displayed for **5 seconds**` |
+| SYS1 RVC+PAM §9.2 | `NRL-142646` | `Display “Check Entire Surroundings” for **5 seconds** for the following events` |
+| SYS1 HeadUnitCameraSystems §28.2.1 | `NRL-188092` | `“check entire surroundings message is shown for **5 seconds**` |
+| `forms/Pop Up List HMI R1 (26PI).xlsx` `Main` r365 `PU0362` | —— | module `Surround View Camera`；文字欄 `Check Entire Surroundings`；**Timeout 欄 `10`** |
+
+同表之其餘同訊息列亦為 10：`PU0447`（`Rearview Camera with all features`，10）、
+`PU0467`（`Surround View Camera`，10）；**只有** `PU1102`（`Turn Signal Activated Blind Spot View`）為 5。
+即 SYS1 三處皆 5，彈窗表之相機類三處皆 10。
+
+**TC 側現行處置**：依 **§4.3.1** 以 SYS1 之逐字為 ER —— `NR1L-RVCHMI-173`（§8.2）以 4／6 秒兩點
+驗其 5 秒窗；差異註於該列之 `Remarks`（profile §10 第二類）。**不改彈窗表、不取折衷值。**
+
+**請求之動作**：確認該橫幅之實際時限，並更正 SYS1 或彈窗表之錯者。
+`§8.2` 本身即引 `PU0362`，故非兩條獨立需求之差異，而是同一需求之兩處記載不一（同 RDF-11 之型）。
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -373,3 +419,5 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 | RDF-12 | `SWE1-RVC-069`（SYS1 §27.3.2）| 來源自陳 `N/A` 而 037 列為 leaf | A-CA35／R-CAM16(b) |
 | RDF-13 | `SWE1-RVC-073`／`-078`／`-079`（SYS1 §27.4.x）| 設定名大小寫三處不一 | `NR1L-RVCHMI-063` 等 |
 | RDF-14 | `SWE1-RVC-136`／`-139`（SYS1 §34.3／§34.4）| 子列與父題皆逐字全等，僅圖不同 | A-CA36 |
+| RDF-15 | `PU0456`（Pop Up List）| 按鈕欄拼作 `<Nol>` | `NR1L-RVCHMI-137` |
+| RDF-16 | `SWE1-RVC-026`（SYS1 §8.2）| 橫幅時限 SYS1 5 秒 vs `PU0362` 10 | `NR1L-RVCHMI-173` |

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-158",
+  "req_id": "SWE1-RVC-148",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The user can access the individual AUX Cam settings pop-up by pressing anywhere on the camera line item in the settings menu",
+  "source_object_id": "NRL-188186",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the individual AUX Cam settings popup opens from the line item on R1 Low",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is an R1 Low head unit\n3. Only wired AUX cameras are fitted\n4. No wireless AUX feature is offered\n5. A wired AUX camera is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Select \"Aux Cameras\"\n5. Press the AUX camera line item anywhere on the line\n6. Read the HU display and check that the individual AUX Cam settings pop-up is displayed",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" list is displayed\n4. The \"Aux Cameras\" settings menu is displayed\n5. The camera line item registers the press\n6. The individual AUX Cam settings pop-up for that camera is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.9.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "the individual AUX Cam settings popup opens from the line item on R1 Low",
+      "test_item": "The user can access the individual AUX Cam settings pop-up by pressing anywhere on the camera line item in the settings menu\n\n(the individual AUX Cam settings popup opens from the line item on R1 Low)"
+    }
+  ],
+  "reasoning": "§34.9 之父題逐字為 `AUX Cam Settings`。本列與 §29.1.1（`NR1L-RVCHMI-128`）／§29.2.1（`-133`）之 Description **僅 image token 不同**（正規化後仍相異），且三者之父題各異（`AUX Cam Settings`／`Wired AUX Cam Settings`／`Wireless AUX Cam Settings`）——依 **R-CAM16(c)** 父題相異者各自出 TC。§34 之章標題逐字為 `R1 Low Wired AUX Cameras`（`NRL-188152`）；HU 等級**無 PROXI 編碼**（六串六本各 0 命中，CAM-17 證據 5），依 **DECISIONS 6-64** 不以此判車型，前提以散文書寫。"
+}

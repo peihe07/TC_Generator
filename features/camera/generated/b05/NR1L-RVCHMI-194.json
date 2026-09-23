@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-194",
+  "req_id": "SWE1-RVC-045",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera Settings",
+  "test_item_verbatim": "Rear View Camera Delay (on/off) – maintain camera image after shifting out of REVERSE for up to 10 sec or until vehicle speed reaches 8 mph Factory Default => OFF",
+  "source_object_id": "NRL-187341",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "Rear View Camera Delay holds the image for 10 seconds or until 8 mph and defaults to Off",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n4. The HU has been reset to its factory defaults",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Read the \"Camera\" list and check the state of \"Rear View Camera Delay\"\n5. Set \"Rear View Camera Delay\" = \"On\"\n6. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n7. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P) and record the timestamp\n8. Read the HU display 11 seconds after the recorded timestamp",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" list is displayed\n4. \"Rear View Camera Delay\" is Off, which is the factory default\n5. The \"Rear View Camera Delay\" setting is On\n6. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent and the rear view camera image is displayed\n7. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent and the camera image is maintained\n8. The camera image is no longer displayed 11 seconds after the shift out of REVERSE",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_6.2.2.1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "Rear View Camera Delay holds the image for 10 seconds or until 8 mph and defaults to Off",
+      "test_item": "Rear View Camera Delay (on/off) – maintain camera image after shifting out of REVERSE for up to 10 sec or until vehicle speed reaches 8 mph Factory Default => OFF\n\n(Rear View Camera Delay holds the image for 10 seconds or until 8 mph and defaults to Off)"
+    }
+  ],
+  "reasoning": "§6.2 之父題逐字為 `Rear View Camera: Head Unit Settings`，§6.2.2 為 `System Settings`。本列之三個逐字事實皆驗：設定名（`Rear View Camera Delay`，與 HMI Settings List row 467 之 `Rear View Camera Delay*` 相符，`*` 依 **R-CAM5(a)** 不入 hop）、`up to 10 sec`／`8 mph` 之判準、`Factory Default => OFF`。10 秒之終點取 11 秒觀察（同 B01b `-035` 之形制）；8 mph 一支由 B01b `-036` 承接，本列不重驗。"
+}

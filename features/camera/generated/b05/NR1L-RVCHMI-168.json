@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-168",
+  "req_id": "SWE1-RVC-155",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Settings",
+  "test_item_verbatim": "The updated name also is reflected in the settings menu line item for that camera.",
+  "source_object_id": "NRL-188196",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the updated name is reflected in the R1 Low settings menu line item",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is an R1 Low head unit\n3. Only wired AUX cameras are fitted\n4. No wireless AUX feature is offered\n5. Two wired AUX cameras are connected\n6. The AUX 1 camera name has just been changed and confirmed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Exit the individual AUX Cam settings pop-up\n2. Read the line item of the renamed camera\n3. Read the line item of the other camera",
+      "expected_result": "1. The AUX Cam settings menu is displayed\n2. The line item of the renamed camera reads the new name\n3. The line item of the other camera still reads its own name",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.9.8",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the updated name is reflected in the R1 Low settings menu line item",
+      "test_item": "The updated name also is reflected in the settings menu line item for that camera.\n\n(the updated name is reflected in the R1 Low settings menu line item)"
+    }
+  ],
+  "reasoning": "§34.9.8 與 §31.1.4（`-153`）之 Description **逐字全等**（皆 17 token），惟**父題相異** —— 本列之父為 §34.9 `AUX Cam Settings`（R1 Low），`-153` 之父為 §31.1 `Editing AUX Cam Name`（R1 High）——依 **R-CAM16(c)** 父題相異者各自出 TC。§34 之章標題逐字為 `R1 Low Wired AUX Cameras`（`NRL-188152`）；HU 等級**無 PROXI 編碼**（六串六本各 0 命中，CAM-17 證據 5），依 **DECISIONS 6-64** 不以此判車型，前提以散文書寫。"
+}

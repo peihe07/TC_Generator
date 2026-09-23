@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-185",
+  "req_id": "SWE1-RVC-001",
+  "test_group": "Rear View Camera",
+  "test_set": "PAM Integration",
+  "test_item_verbatim": "PAM2) PAM feature have multiple configurations and scopes and actual vehicle content should be defined by proxy configurations.",
+  "source_object_id": "NRL-142606",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the PAM content follows the proxy configuration",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI CVPAM_Presence = 1 (Present)\n4. PROXI PAM_Configuration = 0 (Rear)\n5. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n6. The shift lever is in P\n7. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n2. Read the RVC+PAM layout and check which PAM sensor zones are shown\n3. Set PROXI PAM_Configuration = 1 (Front And Rear)\n4. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n5. Read the RVC+PAM layout and check which PAM sensor zones are shown",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent and the RVC+PAM layout is displayed\n2. Only the rear PAM sensor zones are shown\n3. PROXI PAM_Configuration = 1 (Front And Rear) is applied\n4. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent and the RVC+PAM layout is displayed\n5. Both the front and the rear PAM sensor zones are shown",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_6.2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "the PAM content follows the proxy configuration",
+      "test_item": "PAM2) PAM feature have multiple configurations and scopes and actual vehicle content should be defined by proxy configurations.\n\n(the PAM content follows the proxy configuration)"
+    }
+  ],
+  "reasoning": "§6.2 之 `defined by proxy configurations` 須以**兩個不同之 proxy 值**驗得，故取 PROXI `PAM_Configuration`（byte 118 bit 4–5）之值域逐字 `0 = Rear`／`1 = Front And Rear`（實測 637 本，值域二項，**DECISIONS 6-56** 已定）。PAM 之**有無**則取 `CVPAM_Presence`（byte 173 bit 1，6-56）。`CVPAM_Presence` 於 `Toro_ATL_MI` 零命中 → **R-CAM18(b)** `Toro(2261)` 判 `0`。"
+}
