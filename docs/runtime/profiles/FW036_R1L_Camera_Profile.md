@@ -324,6 +324,26 @@ grep -n -i -e "<SWE-CAM-nnn>" -e "<該列所涉之訊號名>" features/camera/AN
 作法：讀 `Description` 時一律不切片；需要摘要輸出時，
 **先把全文長度與 token 數印出來**，再決定摘句，且摘句之依據為全文而非輸出。
 
+### 7.8 彈窗文字之 ER 形制（CAM-16 審閱 §一-6，Pei 2026-09-23）
+
+來源條文轉指 Pop Up List 時，ER **陳述逐字文字並以括號附 PU 號**，
+**不寫比較句** —— `matches`／`is the same as`／`is identical to` 皆為 lint `H`
+（關係模糊語）與 `W`（比較關係而 test_item 上半無數值）之命中詞。
+
+```
+✗  The pop-up text matches PU0459 in the R1 HMI pop-up list
+✓  The pop-up reads "No camera connected. Camera unavailable. Make sure camera is
+   ON and within range" (PU0459 of the R1 HMI pop-up list)
+```
+
+**比對之判準只在 ER**，Procedure 只寫讀取動作（`Read the pop-up text on the HU display`），
+不寫 `compare it word for word with …` —— 該句既是判準又在 Procedure，違 §5.4 之動作／判準分離。
+
+彈窗文字**查無**者依 §7.5 之形制掛 `PENDING: DR-CAM-h`（該條已於 CAM-17 擴為
+「Pop Up List 之 camera 相關缺件」兩項）。
+
+沿革：CAM-16 之 B02a 初稿四列命中 `H`、三列命中 `W`，改為本形制後兩類皆 0（CAM-16 上繳 §4-1）。
+
 ## 8. framework 重開之 sha16 量測法（CAM-06 審閱 §一-1，Pei 2026-09-23）
 
 `features/camera/framework.md` 之狀態行自載其重開後 sha16 —— 該值**自指**

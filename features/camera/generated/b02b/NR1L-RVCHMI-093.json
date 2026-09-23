@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-093",
+  "req_id": "SWE1-RVC-143-01",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "<X> not available in REVERSE, unless acting as a back button within camera views.",
+  "source_object_id": "NRL-188179",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the X control is not available in REVERSE except when it acts as a back button",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is an R1 Low head unit\n3. Only wired AUX cameras are fitted\n4. No wireless AUX feature is offered\n5. PROXI Rear_View_Camera = 1 (Present)\n6. A wired AUX camera is connected\n7. The shift lever is in R\n8. The back-up camera view is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the back-up camera view and check that no <X> control is present\n2. Select the AUX camera soft control within the view\n3. Read the AUX camera view and check that an <X> control is present and acts as a back button\n4. Select the <X> control",
+      "expected_result": "1. No <X> control is shown in the back-up camera view while the gear is R\n2. The AUX camera view is displayed\n3. An <X> control is shown in the AUX camera view\n4. The back-up camera view is shown again, which shows that the <X> acted as a back button",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.7.2",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "the X control is not available in REVERSE except when it acts as a back button",
+      "test_item": "<X> not available in REVERSE, unless acting as a back button within camera views.\n\n(the X control is not available in REVERSE except when it acts as a back button)"
+    }
+  ],
+  "reasoning": "§34.7.2 之前半（例外條款）。`unless acting as a back button within camera views` 之可觀察形制為：按下後**回到前一個相機視角**（而非退出相機）。verbatim 為該列 Description 之保序子序列（刪後半，由 `-094` 承接）。"
+}

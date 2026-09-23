@@ -629,6 +629,30 @@ SYS1 RVC+PAM §7.5.1／§7.5.2 只寫 `RVC timeout expired` 而未載值；
 為 A 本之**交付候選**。Phase 7（`--write`／tag／寫 `delivered/`）待 Pei 之准，
 且須先結 **DR-CAM-f／g／i／j／k／m／p／q 八條**或由 Pei 裁降 NA（canon §8.4.3、R-G42 七）。
 
+### 6-59. 來源自陳 `N/A` 之零 TC 形制
+
+`[DECIDED — CAM-16 審閱 §一-1，Pei 2026-09-23]` **立 R-CAM16(b)**（sha8 `ed984422`）。
+零 TC 自此有**三種**形制，不可混記：委派（R-CAM16）／Heading／**自陳 `N/A`**（R-CAM16(b)）。
+`SWE1-RVC-069` 為第一例；同時登 **RDF-12**（037 不應將該列列為 leaf）。
+零 TC 列於 plan 表以 `tc_id = —` 同表記載，不另立表（審閱 §一-3 准）；
+`coverage_b.tsv` 為該處置之**權威**。
+
+### 6-60. DR-CAM-h 擴題
+
+`[DECIDED — CAM-16 審閱 §一-2，Pei 2026-09-23]`
+DR-CAM-h 由「Pop Up List 之 camera out-of-position 條目」擴為
+「**Pop Up List 之 camera 相關缺件**」兩項：(1) out-of-position 兩串；(2) `connecting` 狀態訊息。
+與 **DR-CAM-g**（CAM-15 擴為「HMI 入口路徑之逐字來源」）同法 ——
+**沿用既有 DR 而擴其題時，須於 `DATA_REQUESTS.md` 明文改題並保留原題**，不得默默沿用。
+本項同時補記 CAM-16 §4-3 之自報（當時沿用而未擴題）。
+
+### 6-61. `Enable Wireless Cameras` 取彈窗表之拼法
+
+`[DECIDED — CAM-16 審閱 §一-4，Pei 2026-09-23]`
+SYS1 §27.4.1（全小寫）／§27.4.4（句首大寫）／§27.4.5（全詞首字大寫）三處不一；
+hop label 取**彈窗表**（`PU1517`／`PU1518`）之 `Enable Wireless Cameras`
+—— 與 §27.4.5 相同，四處中佔二處且為最終畫面之權威。登 **RDF-13**。
+
 ---
 
 ## Sign-off

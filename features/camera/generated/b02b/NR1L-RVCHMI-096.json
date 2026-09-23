@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-096",
+  "req_id": "SWE1-RVC-145",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "If AUX camera is not connected, display blue screen “camera system unavailable”",
+  "source_object_id": "NRL-188182",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "a blue camera system unavailable screen is displayed when the AUX camera is not connected",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is an R1 Low head unit\n3. Only wired AUX cameras are fitted\n4. No wireless AUX feature is offered\n5. No AUX camera is connected\n6. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Press the AUX button in the App Drawer\n3. Read the HU display and check the screen colour and the message text",
+      "expected_result": "1. The App Drawer is displayed\n2. The AUX button registers the press\n3. The AUX 1 screen is a blue screen and reads \"camera system unavailable\"",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.8.2",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "a blue camera system unavailable screen is displayed when the AUX camera is not connected",
+      "test_item": "If AUX camera is not connected, display blue screen “camera system unavailable”\n\n(a blue camera system unavailable screen is displayed when the AUX camera is not connected)"
+    }
+  ],
+  "reasoning": "§34.8.2 逐字載畫面色（`blue screen`）與訊息（`“camera system unavailable”`），故 ER 直接取來源之逐字（**§4.3.1**），**不掛 DR-CAM-h**。`forms/Pop Up List HMI R1 (26PI).xlsx` 之 `Camera System Unavailable` 命中 6 筆，module 分別為 `Rearview Camera`（`PU0169`／`PU0170`）、`Interior Camera`（`PU0844`）、`Turn Signal Activated Blind Spot View`（`PU1103`）、`Trailer Surround View Camera`（`PU1240`／`PU1270`）—— **無 `Aux Camera` module 之條目**；惟本條之文字已由來源自載，不需彈窗表補足。"
+}

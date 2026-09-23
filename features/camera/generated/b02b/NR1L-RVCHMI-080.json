@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-080",
+  "req_id": "SWE1-RVC-090",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "Signal strength and battery for each wireless camera is indicated below More AUX button",
+  "source_object_id": "NRL-188086",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "signal strength and battery are indicated below the More AUX button",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. Two wireless AUX cameras are connected\n7. PROXI Rear_View_Camera = 1 (Present)\n8. The rear view camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the area below the \"More AUX\" button and check that a signal strength indication is shown for each connected wireless camera\n2. Read the area below the \"More AUX\" button and check that a battery indication is shown for each connected wireless camera",
+      "expected_result": "1. A signal strength indication is shown for each of the two connected wireless cameras\n2. A battery indication is shown for each of the two connected wireless cameras",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.8.4",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "signal strength and battery are indicated below the More AUX button",
+      "test_item": "Signal strength and battery for each wireless camera is indicated below More AUX button\n\n(signal strength and battery are indicated below the More AUX button)"
+    }
+  ],
+  "reasoning": "§27.8.4 之 `for each wireless camera` 須以**兩台**驗得，故前提佈兩台無線相機。兩項指示（訊號強度、電量）各一步，因兩者為相異之可觀察項。`below More AUX button` 為位置之逐字。"
+}

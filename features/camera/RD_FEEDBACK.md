@@ -286,6 +286,75 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 
 ---
 
+## RDF-12 —— `SWE1-RVC-069` 之來源自陳 `N/A`，037 不應將其列為 leaf
+
+**觀察**：037 B 本把 `SWE1-RVC-069` 之 `Categorization` 填為需求類（非 `Heading`、非 `Out of scope`），
+使其成為一個**應出 TC 而無從出**之 leaf。
+
+**證據**：其 `HMI Source ID` 指向 SYS1 HeadUnitCameraSystems cache 本 §27.3.2（`NRL-188058`），
+該列 `Description` **全文 4 token**：`First surface needs: N/A`（依 profile §7.7 取全文實測）。
+同層鄰居為 §27.3.1（`Technical hardware requirements – (R1 High only due to architecture)`）、
+§27.3.3（`Pop-up Messages …`）、§27.3.4（`Lock out conditions / Requirements`）、
+§27.3.5（`Signals from head unit …`）—— 即 §27.3 之子節為 HMI 規格之**結構欄位**，
+`First surface needs` 一欄於本 feature 填 `N/A`。
+
+**TC 側現行處置**：依 **R-CAM16(b)** 記零 TC，`coverage_b.tsv` 之 disposition 為
+`No TC — source states N/A (A-CA35)`，`tc_count = 0`；**不造來源未載之判準**（§8.4.1）。
+
+**請求之動作**：將該列之 `Categorization` 改為 `Out of scope`（或 `Heading`），
+使「037 之 leaf 數」與「應出 TC 之列數」一致。
+同型列之全案掃描結果見 CAM-17 上繳 §3 證據表第 2 項。
+
+---
+
+## RDF-13 —— `Enable Wireless Cameras` 設定名之大小寫三處不一
+
+**觀察**：同一個設定，SYS1 與彈窗表之拼法不一致，且 SYS1 內部亦不一致。
+
+**證據**：
+
+| 來源 | 座標 | 逐字 |
+|---|---|---|
+| SYS1 HeadUnitCameraSystems §27.4.1 | `NRL-188065` | `the user has to activate the **‘enable wireless cameras’** setting.` |
+| SYS1 同本 §27.4.4 | `NRL-188070` | `The **‘Enable wireless cameras’** setting is dynamically updated.` |
+| SYS1 同本 §27.4.5 | `NRL-188071` | `If the **Enable Wireless Cameras** setting is enabled (setting ON) …` |
+| `forms/Pop Up List HMI R1 (26PI).xlsx` `PU1517`／`PU1518` | —— | `the **Enable Wireless Cameras** setting is enabled` |
+
+三種拼法：全小寫、句首大寫、全詞首字大寫。
+
+**TC 側現行處置**：hop label 取**彈窗表之拼法** `Enable Wireless Cameras`（與 §27.4.5 相同，
+四處中佔二處且為最終畫面之權威）；B02a 六列（`NR1L-RVCHMI-063`～`-069`、`-071`～`-073` 中涉該設定者）
+依此書寫。
+
+**請求之動作**：統一為畫面上之實際標籤，並更正 §27.4.1／§27.4.4。
+
+---
+
+## RDF-14 —— SYS1 §34.3／§34.4 之子列逐字全等且父題全等，僅圖不同
+
+**觀察**：`SYS1_HMI_HeadUnitCameraSystems_…` 之 §34.3、§34.4、§34.5 三節**父題逐字全等**
+（`Accessing Aux Cameras – Backup Cam Only`），只 image token 不同；
+其子列亦成對全等，使 037 產生**無法分辨之重複 leaf**。
+
+**證據**（正規化後與原始格皆全等）：
+
+| 群 | 列 | 逐字 |
+|---|---|---|
+| A | §34.3.1、§34.4.1、§34.6.1 | `CHMSL cam only configuration does not exist` |
+| B | §34.3.2、§34.4.2、§34.6.2 | `Below screen is also accessed when shifting to REVERSE, but <X> is not present` |
+
+群 B 之 §34.6.2 其父題為 `Accessing Aux Cameras – Backup and Cargo Cam`（配置含 Cargo），
+**與 §34.3／§34.4 不同**，故可分辨；而 §34.3.2 與 §34.4.2 之父題全等，**不可分辨**。
+
+**TC 側現行處置**：不可分辨者委派 —— `SWE1-RVC-136`（§34.4.2）委派 `NR1L-RVCHMI-086`（§34.3.2）、
+`SWE1-RVC-139`（§34.6.1）委派 `NR1L-RVCHMI-087`（§34.4.1，章節號較小者承接）；
+`coverage_b.tsv` 記零 TC（**A-CA36**）。**不造來源未載之區別**（§8.4.1）。
+
+**請求之動作**：說明 §34.3／§34.4／§34.5 三節之差異（何者為哪一種螢幕配置），
+或合併重複之子列。若差異只在圖，請在 `Description` 內以文字載明。
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -301,3 +370,6 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 | RDF-09 | `SWE-CAM-011`（`V3-283`）| `a)` 子句標的誤植 | batch03b |
 | RDF-10 | `SWE-CAM-004`（`V42-590`）| 同句誤植致缺清除側 | batch03c |
 | RDF-11 | `SWE1-RVC-024-01`（SYS1 §8.1）| 同一需求兩處位置記載相反 | A-CA34／`NR1L-RVCHMI-038` |
+| RDF-12 | `SWE1-RVC-069`（SYS1 §27.3.2）| 來源自陳 `N/A` 而 037 列為 leaf | A-CA35／R-CAM16(b) |
+| RDF-13 | `SWE1-RVC-073`／`-078`／`-079`（SYS1 §27.4.x）| 設定名大小寫三處不一 | `NR1L-RVCHMI-063` 等 |
+| RDF-14 | `SWE1-RVC-136`／`-139`（SYS1 §34.3／§34.4）| 子列與父題皆逐字全等，僅圖不同 | A-CA36 |

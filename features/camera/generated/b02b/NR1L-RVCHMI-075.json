@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-075",
+  "req_id": "SWE1-RVC-084",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "All Wired and Wireless Aux cameras will be accessible via the controls page and apps drawer",
+  "source_object_id": "NRL-188079",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "wired and wireless AUX cameras are accessible from the controls page and apps drawer",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. A wired AUX camera and a wireless AUX camera are both connected\n7. The shift lever is in P\n8. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. PENDING: DR-CAM-g the entry path to the Controls screen is not sourced\n2. Read the Controls screen and check that both the wired and the wireless AUX soft controls are present\n3. Press \"Apps\" on Menu Bar to open App Drawer\n4. Read the App Drawer and check that both the wired and the wireless AUX soft controls are present",
+      "expected_result": "1. PENDING: DR-CAM-g the Controls screen is displayed\n2. The wired AUX and the wireless AUX soft controls are both shown on the Controls screen\n3. The App Drawer is displayed\n4. The wired AUX and the wireless AUX soft controls are both shown in the App Drawer",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.7.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "wired and wireless AUX cameras are accessible from the controls page and apps drawer",
+      "test_item": "All Wired and Wireless Aux cameras will be accessible via the controls page and apps drawer\n\n(wired and wireless AUX cameras are accessible from the controls page and apps drawer)"
+    }
+  ],
+  "reasoning": "§27.7.1 之 `All Wired and Wireless` 為本列之驗證重點 —— 兩種 AUX 皆須在**兩個**入口出現，故四格皆驗。與 `-057`（§27.2.6.2，`Apps Drawer`）之分工：後者為 `Accessible from` 節之入口列舉（只驗 App Drawer 一個入口、不分有線無線），本列為 §27.7 之完整性要求。Controls 頁之進入路徑無逐字來源 → **DR-CAM-g**（其第 (1) 項）。"
+}

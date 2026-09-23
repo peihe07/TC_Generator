@@ -344,6 +344,24 @@ R-CAM16  SWE 列之所有來源依 R-CAM10（含 (b)）委派他列者，其 TC 
 `coverage.tsv` 於本輪新建（A 本 25 列全量），兩列依本條記載。
 
 
+### R-CAM16(b)（增補，2026-09-23，Pei 裁：CAM-16 審閱 §一-1）
+
+```text
+R-CAM16(b)  零 TC 之**第三種形制**：來源列之 `Description` **自陳無需求**
+  （`N/A`／`Not applicable`／空）者，其 TC 數為 0 而非覆蓋缺口。
+  該列於 `coverage`（A 本 `coverage.tsv`／B 本 `coverage_b.tsv`）記一行：
+    disposition = `No TC — source states N/A (A-CAnn)`，`tc_count = 0`。
+  **不得**與 R-CAM16 之委派形制或 Heading 形制混記 —— 三者之成因相異：
+    委派：行為已由承接列驗證；Heading：行為在其子列；**自陳 N/A：來源明言無此需求**。
+  同時登 RDF，指出 037 不應將該列列為 leaf（`Categorization` 應為 Heading 或 Out of scope）。
+```
+
+**原條 R-CAM16 之逐字不動**（R-TM13／GCB-06：修訂段以同級錨自立）。
+
+**執行層落實（CAM-16／CAM-17）**：B 本 `SWE1-RVC-069`（SYS1 §27.3.2，`NRL-188058`）——
+其 Description 全文 4 token `First surface needs: N/A`（依 profile §7.7 取全文實測）。
+`coverage_b.tsv` 依本款記載；**RDF-12** 同時登。
+
 ### R-CAM17 — 量測主張須附證據（Pei 裁，2026-09-23：CAM-12 審閱 §二-1）
 
 ```text

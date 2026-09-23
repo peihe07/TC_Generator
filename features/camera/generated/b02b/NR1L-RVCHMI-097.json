@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-097",
+  "req_id": "SWE1-RVC-146",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "If AUX 2 connected, but AUX 1 not connected, system shall display blue screen “camera system unavailable” with customer option to select AUX 2",
+  "source_object_id": "NRL-188183",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "AUX 2 can be selected from the unavailable screen when only AUX 2 is connected",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is an R1 Low head unit\n3. Only wired AUX cameras are fitted\n4. No wireless AUX feature is offered\n5. AUX 2 is connected\n6. AUX 1 is not connected\n7. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Press the AUX button in the App Drawer\n3. Read the HU display and check the screen colour, the message text and the offered option\n4. Select the AUX 2 option\n5. Read the HU display and check that the AUX 2 camera view is displayed",
+      "expected_result": "1. The App Drawer is displayed\n2. The AUX button registers the press\n3. The AUX 1 screen is a blue screen, reads \"camera system unavailable\" and offers an option to select AUX 2\n4. The AUX 2 option registers the selection\n5. The AUX 2 camera view is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.8.3",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "AUX 2 can be selected from the unavailable screen when only AUX 2 is connected",
+      "test_item": "If AUX 2 connected, but AUX 1 not connected, system shall display blue screen “camera system unavailable” with customer option to select AUX 2\n\n(AUX 2 can be selected from the unavailable screen when only AUX 2 is connected)"
+    }
+  ],
+  "reasoning": "§34.8.3 為 §34.8.2 之分支（AUX 1 未連線但 AUX 2 已連線），其增量為 `with customer option to select AUX 2`。與 `-096` 之分工：後者驗**全未連線**之畫面，本列驗**部分連線**時之選項與其後果。H 本 §28.3.2 為同型條文（`with customer option to select More AUX`），屬 `Camera View Switching` 組，不在本批。"
+}

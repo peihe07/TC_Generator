@@ -1,0 +1,34 @@
+{
+  "tc_id": "NR1L-RVCHMI-084",
+  "req_id": "SWE1-RVC-132",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "Personalization settings to be grouped within the “Cameras” line",
+  "source_object_id": "NRL-188161",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "camera personalization settings are grouped under the Cameras line on R1 Low",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is an R1 Low head unit\n3. Only wired AUX cameras are fitted\n4. No wireless AUX feature is offered\n5. A wired AUX camera is connected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Read the \"Camera\" list and check that the AUX camera personalization entries are grouped there",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" list is displayed\n4. The AUX camera personalization entries are listed under the \"Camera\" line and not elsewhere",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.1.4.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "camera personalization settings are grouped under the Cameras line on R1 Low",
+      "test_item": "Personalization settings to be grouped within the “Cameras” line\n\n(camera personalization settings are grouped under the Cameras line on R1 Low)"
+    }
+  ],
+  "reasoning": "本列與 §27.2.4.1（`NR1L-RVCHMI-054`）逐字全等。§34 之章標題逐字為 **`R1 Low Wired AUX Cameras`**（`NRL-188152`），與 §27 之 `R1 High Wired &Wireless Auxiliary Cameras`（`NRL-188027`）成對 —— 兩章之差別為 **HU 等級**（R1 Low 只有有線 AUX；§27.3.1 逐字 `Technical hardware requirements – (R1 High only due to architecture)`）。HU 等級**無 PROXI 編碼** —— 掃描字串 `Radio_Type`／`Trim_Level`／`Head_Unit_Type`／`Infotainment_Level`／`R1_Low`／`Uconnect` 於六本各 0 命中，故依下放包 §2 **不以此判車型**，前提以散文書寫（profile §7.3）。設定表之標題實測為 `13. Camera`（單數）而來源寫 `“Cameras”`（複數），同 `-054` 記於 `remarks`。",
+  "remarks": "SYS1 34.1.4.1 names the group \"Cameras\"; the HMI Settings List heading is \"13. Camera\" (singular). ER follows the Settings List."
+}
