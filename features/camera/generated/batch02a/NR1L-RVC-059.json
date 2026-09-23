@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-059",
+  "req_id": "SWE-CAM-001",
+  "test_group": "Rear View Camera",
+  "test_set": "Startup and Shutdown",
+  "test_item_verbatim": "Consider Rear_Camera_Enable.Info=\"FALSE\" as the init default value.",
+  "source_object_id": "SYS-RA-VF551_V33-214",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "init default Rear_Camera_Enable.Info is FALSE, power up after a factory reset and check the initial value",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The HU has been restored to its factory default settings\n4. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the HU display and check that no rear view camera image is displayed",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n2. No rear view camera image is displayed",
+      "specification_reference": "VF551_V33_P226MCA_VF_1137",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "init default Rear_Camera_Enable.Info is FALSE",
+      "test_item": "Consider Rear_Camera_Enable.Info=\"FALSE\" as the init default value.\n\n(init default Rear_Camera_Enable.Info is FALSE, power up after a factory reset and check the initial value)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V33-214` 之「`Rear_Camera_Enable.Info=\"FALSE\"` 為初始預設值」。**`Rear_Camera_Enable.Info` 為內部訊號**（`forms/` 四本 DBC 字面掃描零命中；`SYS-RA-VF551_V3-258` 亦自稱 `internal signal`），不可於匯流排觀察；依 §6 以其可判後果書寫 —— Enable 為 FALSE 即開機後不顯示影像。`SYS-RA-VF551_V33-215`（`RVC_ACTIVE=False` 之初值）與 `-217`（`DelayOff=Off`／`GridLines=On` 之初值）為同一驗證點（開機預設值）之其餘兩項；`-215` 明載「internal at this functionality」更不可觀察，二者依 plan 記 covered_by 本列，不另出 TC。"
+}

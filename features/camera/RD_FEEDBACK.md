@@ -146,6 +146,37 @@ DR-CAM-a（缺件）處理，不生成。
 
 ---
 
+## RDF-06 —— `SWE-CAM-002` 只有配備成立側，無 Absent 側之行為
+
+**觀察**：`SWE-CAM-002`（`PROXI based Camera Configuration and State`）之題名為
+「以 PROXI 決定相機組態與狀態」，但其 20 個 in-scope 來源**全為成立側**
+（`PROXI Rear_View_Camera = Present` 時啟用某行為），**無一條規定 Absent 時之行為**。
+配備型需求缺 negative 側，測試無從驗「未配備時不啟用」。
+
+**證據**（`-002` 之 in-scope 來源逐條，`features/camera/data/batch02_plan.tsv`）：
+
+- `SYS-RA-VF551_V2-536`：`… shall enable Digital Rear View Camera behavior when
+  PROXI Rear_View_Camera = Present.`
+- `SYS-RA-VF551_V2-555`：`… shall enable Rear View Camera behavior when PROXI
+  Rear_View_Camera = Present and Rear_View_Camera_Type = Digital`
+- `SYS-RA-VF551_V3-212`／`SYS-RA-VF551_V4-112`：同型（V3 Digital／V4 Analog）
+- `SYS-RA-VF551_V42-209`：`All the following requirements shall be implemented only if
+  the PROXI parameter Rear_View_Camera is set to "Present".`
+- 其餘 15 條為訊號 gating 與 LVDS 送出，皆以「已配備」為隱含前提
+- **`Absent`／`= 0`／`not present` 三串於 `-002` 之 20 條來源逐字掃描：零命中**
+
+對照：CFTS092 側之 VC 欄**有**寫 negative（如 `SYS-RA-CAM-084` 之
+`$SVC_SK_PRSNT$ = [0] -> SVC 按鍵不顯示`），但 VC 不是來源（R-CAM13(d)）。
+
+**TC 側現行處置**：**不生成 negative**（DECISIONS 6-18；CAM-06 審閱 §二-9）——
+§8.4.1 之「不得自造規格」勝於 §7 之正負配對要求。缺口只登本條。
+
+**請求之動作**：補一條 Absent 側之需求（例：`When PROXI Rear_View_Camera = Absent,
+the HU shall not display any rear view camera image and the soft key shall not be present.`），
+或明文宣告 Absent 側不在 R1L 範圍。
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -155,3 +186,4 @@ DR-CAM-a（缺件）處理，不生成。
 | RDF-03 | `SWE-CAM-018` | 標定值跨文件不一 | A-CA21／A-CA22／A-CA30 |
 | RDF-04 | `SWE-CAM-018`（`-016` 同型）| `e.g.` 使判準不確定 | —— |
 | RDF-05 | `SWE-CAM-003` | 來源代號拼寫 | DR-CAM-a（須分類）|
+| RDF-06 | `SWE-CAM-002` | 配備需求缺 Absent 側 | DECISIONS 6-18 |

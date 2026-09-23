@@ -10,9 +10,11 @@ process canon 仍為 `docs/fw036/FEATURE_ONBOARDING.md`。
 **狀態：已簽核並鎖定。** Pei 於 2026-09-16 簽核（CAM-02 審閱 §三-5，Tier 2）。
 **重開一次（Tier 2，Pei 2026-09-23，下放包 CAM-06 §1）**：A 本 Layer 2 加第 10 組
 `Auxiliary Cameras`（9 → 10 組），`SWE-CAM-017` 自 `State Handling` 改歸該組。
-重開前 sha16 `c4fc9d2e5b7d1f44`，重開後 sha16 `ee74d26960d6c281`
-（量測法：本檔全文，但本行之該欄位以 16 個 `0` 代入後取 sha256 前 16 碼 —— 自指之故）。
-重開範圍僅及 VIII.2 之組表與本狀態行；VIII.3～VIII.8 未動。
+重開前 sha16 `c4fc9d2e5b7d1f44`，重開後 sha16 `ee74d26960d6c281`（CAM-06 落檔時）；
+**VIII.2 例外註擴為四列供稿後（CAM-07 §1-8）sha16 `8569aa484b552b7c`**。
+（量測法：本檔全文，但本行**最後一個** sha16 欄位以 16 個 `0` 代入後取 sha256 前 16 碼
+—— 自指之故；量測法亦記於 profile §8。）
+重開範圍僅及 VIII.2 之組表與註、與本狀態行；VIII.3～VIII.8 未動。
 
 ```
 Layer 1  `Rear View Camera`（R-CAM4(a)）
@@ -87,10 +89,21 @@ Sub Categorization ∩ VF 章節之交集。**十組**（CAM-06 重開），**�
   （CFTS092 `SYS-RA-CAM-097`／`-098`）位於 Forward Facing 節（§1.3.8），
   與新組之 Layer 3 對齊；VC/VM 錯位之 A-CA03 不因重開而結，改登 RDF-02。
 - **第 10 組 `Auxiliary Cameras` 之 Test Set 值不只由 `-017` 產出** ——
-  依 **R-CAM13(c)**，他列（現為 `SWE-CAM-016`）所引之 Cargo/CHMSL、Surround View、
-  Forward Facing 節條文，其 TC 之 `Test Set` 亦寫 `Auxiliary Cameras`，
-  而該 SWE 列於本表仍歸其原組（`-016` 仍在 `Display Arbitration`）。
+  依 **R-CAM13(c)**，他列所引之 Cargo/CHMSL、Surround View、Forward Facing 節條文，
+  其 TC 之 `Test Set` 亦寫 `Auxiliary Cameras`，而該 SWE 列於本表仍歸其原組。
+  **供稿者實測為四列**（CAM-06 審閱 §二-7 准）：
+
+  | SWE 列 | 本表之組 | 供 `Auxiliary Cameras` 之來源 |
+  |---|---|---|
+  | `SWE-CAM-016` | `Display Arbitration` | `CAM-063`／`-067`／`-068`／`-084`／`-085`／`-089`／`-090`／`-091`／`-092`／`-093`／`-095`／`-096`（12）|
+  | `SWE-CAM-017` | **`Auxiliary Cameras`**（本組）| `CAM-097`／`-098`（2）|
+  | `SWE-CAM-001` | `Startup and Shutdown` | `CAM-088`（SVC 預設為 OFF，1）|
+  | `SWE-CAM-003` | `State Handling` | `CAM-069`／`-086`／`-087`（3）|
+
   本表之「組 ↔ SWE 列」對應與「TC ↔ Test Set」對應於此分離，為本 feature 之唯一例外。
+  **反向亦有一例**：`SWE-CAM-016` 之 `CAM-076`（Rear Camera 節）其 TC
+  （`NR1L-RVC-046`）落 `Display Arbitration` 而非本組 —— 判準是**來源列所屬之節**，
+  不是該 TC 所在之目錄（DECISIONS 6-17）。
 - `AUX Camera` 為單列 Test Set，屬 §4.2「genuine outlier」，且**全數待 DR-CAM-a**
   （12/12 來源皆 `VF617_V5`，不可解析）。
 - `-014` 之 Sub Cat 為 `NormalCameraDaemon` 而 Description 以「NCD HAL shall…」

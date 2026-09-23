@@ -20,8 +20,8 @@ SWE-CAM-001	SYS-RA-VF551_V33-217	VF551_V33_P226MCA_VF_1138	1.11.1.2	init default
 SWE-CAM-001	SYS-RA-VF551_V33-216	VF551_V33_P226MCA_VF_820	1.11.1.2	Ignition_On -> LTM starts reading DelayOff / GridLines requests	車型 2261	1	
 SWE-CAM-001	SYS-RA-VF551_V33-219	VF551_V33_P226MCA_VF_1139	1.11.1.2	stored DelayOff / GridLines values kept at next Ignition_On	車型 2261	1	
 SWE-CAM-001	SYS-RA-VF551_V33-220	VF551_V33_P226MCA_VF_1141	1.11.1.2	Ignition_Pre_Off stops reading Rear_Camera.Data	—	0	covered_by: NR1L-RVC-002（pilot02）
-SWE-CAM-001	SYS-RA-VF551_V33-221	VF551_V33_P226MCA_VF_822	1.11.1.2	GridLines request ON branch	車型 2261	1	其 ER（DynamicGrid_Req = ON）之來源 V33-222 承接列為 SWE-CAM-003 —— 見 §4 之結構性回報
-SWE-CAM-001	SYS-RA-VF551_V33-223	VF551_V33_P226MCA_VF_824	1.11.1.2	GridLines request OFF branch	車型 2261	1	同上（V33-224）
+SWE-CAM-001	SYS-RA-VF551_V33-221	VF551_V33_P226MCA_VF_822	1.11.1.2	GridLines request ON -> LTM sets DynamicGrid_Req = Dynamic Gridlines ON	車型 2261	1	**IF ＋ THEN 合一（R-CAM10(b)，CAM-06 審閱 §二-4）** —— 與 V33-222 同一 TC，spec_reference 兩行（V33-221 條件側 ＋ V33-222 動作側）；TC 歸 SWE ID 較小者 SWE-CAM-001
+SWE-CAM-001	SYS-RA-VF551_V33-223	VF551_V33_P226MCA_VF_824	1.11.1.2	GridLines request OFF -> LTM sets DynamicGrid_Req = Dynamic Gridlines OFF	車型 2261	1	同上，與 V33-224 合一
 SWE-CAM-001	SYS-RA-VF551_V33-420	VF551_V33_P226MCA_VF_320	1.13.2.1.1	Ignition_Pre_Off stores DTC and Rear_Camera_Enable into NVM	車型 2261	1	PENDING: DR-CAM-i（Ignition_Pre_Off 之 CAN 對應）
 SWE-CAM-001	SYS-RA-VF551_V33-426	VF551_V33_P226MCA_VF_447	1.13.2.1.3	Enable = TRUE -> repetition data for T_INITDISPLAY -> Enable = FALSE	車型 2261	1	
 SWE-CAM-001	SYS-RA-VF551_V42-217	VF551_V42_P637MCA_VF_1835	1.11.1.2	stored DelayOff restored on ignition transition (637)	車型 637	1	
@@ -80,9 +80,9 @@ SWE-CAM-003	SYS-RA-VF551_V2-514	VF551_V2_PHDCC27_VF_1679	1.13.2.1.9	RUN + softke
 SWE-CAM-003	SYS-RA-VF551_V2-523	VF551_V2_PHDCC27_VF_1725	1.13.2.2.1	no flicker in the two listed scenarios	none	1	
 SWE-CAM-003	SYS-RA-VF551_V2-524	VF551_V2_PHDCC27_VF_520	1.13.2.2.2	no blank display in the two listed scenarios	none	1	
 SWE-CAM-003	SYS-RA-VF551_V2-534	VF551_V2_PHDCC27_VF_509	1.13.2.2.5	soft key available only when CmdIgnSts = RUN	none	1	與 NR1L-RVC-023（錨 CFTS092-4781638）為同一行為之不同來源；本列為其承接列（R-CAM10）
-SWE-CAM-003	SYS-RA-VF551_V2-535	VF551_V2_PHDCC27_VF_526	1.13.2.2.5	soft key controls implemented per VF664 and HMI logic and flow	none	1	VF664 為外部規格但 037 有引 —— R-CAM13(b) 須生成；VF664 缺件，hop 與 ER 標 PENDING（新 DR 待開）
-SWE-CAM-003	SYS-RA-VF551_V33-222	VF551_V33_P226MCA_VF_823	1.11.1.2	LTM sets DynamicGrid_Req = Dynamic Gridlines ON	車型 2261	1	其觸發條件之來源 V33-221 承接列為 SWE-CAM-001 —— 結構性回報，見 §4
-SWE-CAM-003	SYS-RA-VF551_V33-224	VF551_V33_P226MCA_VF_825	1.11.1.2	LTM sets DynamicGrid_Req = Dynamic Gridlines OFF	車型 2261	1	同上（V33-223）
+SWE-CAM-003	SYS-RA-VF551_V2-535	VF551_V2_PHDCC27_VF_526	1.13.2.2.5	soft key controls implemented per VF664 and HMI logic and flow	none	1	VF664 為外部規格但 037 有引 —— R-CAM13(b) 須生成；**PENDING: DR-CAM-k**（VF664 全文件查無，CAM-06 審閱 §三）
+SWE-CAM-003	SYS-RA-VF551_V33-222	VF551_V33_P226MCA_VF_823	1.11.1.2	LTM sets DynamicGrid_Req = Dynamic Gridlines ON	車型 2261	0	委派 SWE-CAM-001（R-CAM10(b) 合一）—— 其動作側與條件側 V33-221 同一 TC
+SWE-CAM-003	SYS-RA-VF551_V33-224	VF551_V33_P226MCA_VF_825	1.11.1.2	LTM sets DynamicGrid_Req = Dynamic Gridlines OFF	車型 2261	0	委派 SWE-CAM-001（R-CAM10(b) 合一）—— 同上（V33-223）
 SWE-CAM-003	SYS-RA-VF551_V33-241	VF551_V33_P226MCA_VF_1368	1.11.1.2.2	OR (LTM_OperationalModeSts.Info = Ignition_OFF)	—	0	條件片段（3 token），非獨立驗證點；併入 V33 之退出點
 SWE-CAM-003	SYS-RA-VF551_V33-432	VF551_V33_P226MCA_VF_1197	1.13.2.1.5	Info = SNA -> last values kept for TIME_W_RVC2	車型 2261	1	
 SWE-CAM-003	SYS-RA-VF551_V33-440	VF551_V33_P226MCA_VF_1642	1.13.2.1.8	BedExtenderFailSts = Fail_Present -> previous BedExtender values used	車型 2261	1	PENDING: DR-CAM-f

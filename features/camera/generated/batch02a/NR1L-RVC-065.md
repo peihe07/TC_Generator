@@ -1,0 +1,43 @@
+# NR1L-RVC-065 — SWE-CAM-001
+
+- **Test Group**：Rear View Camera｜**Test Set**：Startup and Shutdown
+- **Vehicle Model**：HDCC27=0｜DT27=0｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=0
+- **priority**：P2｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`VF551_V33_P226MCA_VF_447`（來源列 `SYS-RA-VF551_V33-426`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> If the Rear_Camera_Enable.Info="TRUE" then LTM displays the Rear_Camera.Data on Rear_Camera_Repetition.Data for T_INITDISPLAY time and then LTM sets Rear_Camera_Enable.Info=(equal)"FALSE".
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V33-426` 之「`Rear_Camera_Enable.Info="TRUE"` 時，LTM 於 `Rear_Camera_Repetition.Data` 顯示 `Rear_Camera.Data` 達 `T_INITDISPLAY` 後，將 `Rear_Camera_Enable.Info` 設為 `"FALSE"`」。`T_INITDISPLAY` 之標定值為 **5,0 sec**（V33 §1.14.1 `SYS-RA-VF551_V33-479` 名／`-480` 值／`-483` 單位；V42 同值 `-631`／`-632`／`-635`），與 V2／V3 之 `for five seconds` 同數，ER 因而以 5 秒書寫。`Rear_Camera_Enable.Info` 與 `Rear_Camera_Repetition.Data` 皆為內部訊號／資料（四本 DBC 零命中），依 §6 以畫面之可判後果書寫。**ER3 之措辭已避開不可判之 `until`**（審閱 §二-3 之同型）——以「超過 5 秒後讀取」之定點觀察取代「持續至…為止」。本列與 `NR1L-RVC-059`（初值為 FALSE）成一對：`-059` 驗初值、本列驗其被置 TRUE 後之回落。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. The shift lever is in P
+4. No camera image is displayed
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)
+2. Read the HU display within 5 s and check that the rear view camera image is displayed
+3. Read the HU display more than 5 s after step 1 and check the rear view camera image
+```
+
+## expected_result
+
+```
+1. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent
+2. The rear view camera image is displayed
+3. The rear view camera image is no longer refreshed from Rear_Camera_Repetition.Data
+```

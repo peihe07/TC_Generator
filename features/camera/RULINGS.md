@@ -220,10 +220,56 @@ R-CAM14  速度門檻之母錨 = CFTS092-4781643
   `>` 與 `>=` 於 CAN 解析度不可判（A-CA30）之根本解列 RD_FEEDBACK（標定單位）。
 ```
 
-**執行層落實（CAM-06 §2-3）**：`NR1L-RVC-009`／`-010` 之錨由
+**執行層落實（CAM-06 §2-3，CAM-07 §1 更正）**：`NR1L-RVC-009`／`-010` 之錨由
 `VF551_V2_PHDCC27_VF_1577`（`SYS-RA-VF551_V2-490`）改為 **`CFTS092-4781643`**，
-Vehicle Model 由 Atl-Hi 兩欄擴為 `HDCC27`／`DT27`／`637`／`376` 四欄
-（2261 維持 0，由 `-030`／`-031` 承接），CAN source 行依本條三分寫。
+Vehicle Model 由 Atl-Hi 兩欄擴為 `HDCC27`／`DT27`／`376` **三欄**
+（**637 與 2261 皆為 0**，由 `-030`／`-031` 承接 —— 二者之門檻皆為 `MAX_SPEED = 13,0 Km/h`）。
+CAM-06 上繳時本段誤書為「四欄」，實際落檔一律為三欄；本輪更正，見上繳包 CAM-07 §5。
+
+**本條 (b)／(c) 兩段之修訂依 R-TM13 以同級錨自立**（GCB-06 —— 寫在本標題下會改本條之
+fenced sha）。原條文中關於 376 訊息名之一句依 R-TM13 加刪除線保留：
+
+> 五車型以 R-CAM3(e) CAN source 行分寫訊息名（`BRAKE_FD_2` Atl-Hi／~~`BRAKE1` 376~~／
+> `STATUS_CCAN3` 637, 2261）
+
+**作廢理由**：`BRAKE1` 為 VF551_V3 之**文面名**，非可注入之 message ——
+`forms/P363_BH-CAN [07338]_3A_R2.dbc`（376）全本無 `BRAKE1`，`VehicleSpeedVSOSig`
+位於 `BO_ 994 STATUS_CCAN3`。見 R-CAM14(c)。
+
+### R-CAM14(b)（增補，2026-09-23，Pei 裁：CAM-06 審閱 §二-1）
+
+```text
+R-CAM14(b)  637 之速度門檻併入 2261 之分列（`-030`／`-031`），不入 8 mph 之列。
+  VF551_V42 之 `MAX_SPEED`（`SYS-RA-VF551_V42-655` 名／`-656` 值 `13,0`／`-659` 單位 `Km/h`）
+  與 VF551_V33 同數同單位，觸發訊號同為 `STATUS_CCAN3.VehicleSpeedVSOSig`，
+  故 `-030`／`-031` 之 Vehicle Model 加勾 `VF(ProMaster)637`，
+  `specification_reference` 加第二行 `SYS-RA-VF551_V42-656` 之 anchor。
+  V42 無速度退出條文（只有 reset 語意），reasoning 註明「以 V33 條文 ＋ V42 常數承載」。
+  `-009`／`-010`（`c_VEHSPD_MAX = 8 mph`）因而只涵蓋 HDCC27／DT27／376。
+```
+
+### R-CAM14(c)（修訂，2026-09-23，Pei 裁：CAM-06 審閱 §二-2）
+
+```text
+R-CAM14(c)  訊息名以 DBC 為準（R-17）。
+  376 之速度訊號寫 `STATUS_CCAN3.VehicleSpeedVSOSig`，不寫 `BRAKE1`；
+  R-CAM3(e) 之 CAN source 行因而為兩分支而非三分支：
+    `CAN source: BRAKE_FD_2.VehicleSpeedVSOSig (HDCC27, DT27) / STATUS_CCAN3.VehicleSpeedVSOSig (637, 2261, 376)`
+  `BRAKE1` 為 VF551_V3 之文面名，留 reasoning 互參，不入工作簿任何欄。
+  取代 R-CAM14 原文之「`BRAKE1` 376」一句。
+```
+
+### R-CAM10(b)（增補，2026-09-23，Pei 裁：CAM-06 審閱 §二-4）
+
+```text
+R-CAM10(b)  同一行為之 IF 來源與 THEN 來源分屬兩承接列時，合為一個 TC。
+  `specification_reference` 以多行承載兩錨（selfcheck 第 1 項逐行反查，兩錨各須通過）；
+  該 TC 歸 **SWE ID 較小之承接列**（req_id 取小者），
+  另一列於 plan 與 reasoning 註明「委派 SWE-CAM-nnn」，不另出 TC。
+  本段為 R-CAM10 之例外而非推翻：R-CAM10 管「同一來源不得兩列共錨」，
+  本段管「同一行為之兩個來源不得拆成兩個半截 TC」。
+  合一後之 verbatim 逾 50 token 且無法以保序子序列兼顧兩來源者，回退為兩 TC 並回報。
+```
 
 ---
 

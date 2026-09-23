@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-071",
+  "req_id": "SWE-CAM-012",
+  "test_group": "Rear View Camera",
+  "test_set": "Startup and Shutdown",
+  "test_item_verbatim": "· The Head Unit shall provide power to the RVCM within 500ms when STATUS_BH_BCM2.CmdIgnSts = [RUN OR IGN_START] is received. a) The Head Unit shall transmit PowerShutDownNotifcation.Power_Down = [False].",
+  "source_object_id": "SYS-RA-VF551_V3-205",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "power to the RVCM within 500 ms, Atl-Mi, switch the ignition to RUN and check the supply timing and the notification",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read the bus analyzer recording and check the time between step 1 and the supply to the RVCM\n3. Read the bus analyzer recording and check the PowerShutDownNotifcation message",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent\n2. The HU supplies power to the RVCM within 500 ms of step 1\n3. PowerShutDownNotifcation.Power_Down = False is transmitted",
+      "specification_reference": "VF551_V3_P363_VF_527",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "power to the RVCM within 500 ms, Atl-Mi",
+      "test_item": "· The Head Unit shall provide power to the RVCM within 500ms when STATUS_BH_BCM2.CmdIgnSts = [RUN OR IGN_START] is received. a) The Head Unit shall transmit PowerShutDownNotifcation.Power_Down = [False].\n\n(power to the RVCM within 500 ms, Atl-Mi, switch the ignition to RUN and check the supply timing and the notification)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V3-205` 之「收到 `STATUS_BH_BCM2.CmdIgnSts = [RUN OR IGN_START]` 後 500 ms 內對 RVCM 供電」與其 `a)` 子句「送 `Power_Down = [False]`」。原句 29 token，未逾 50，主句與 a) 子句一併保留（同一觸發之連帶後果，§5.7 多行 ER）。供試取 `RUN`；`IGN_START` 為同一 OR 分支之另一值，其 ER 相同，不另拆（§8.3 無新驗證點）。**車型勾三 Atl-Mi** —— V42（637）之對應來源 `SYS-RA-VF551_V42-216`／`-219` 依 R-CAM10 委派 `SWE-CAM-006`（Video Pipeline），V33（2261）無同義條文，故本列為 Atl-Mi 側唯一承接者。**LVDS 之觀察不造命令**（升級條件 2 之處置）—— 交付語料 17 本之 `$ ` 命令行 275 條**無一條與 LVDS 相關**（`lvds`／`PowerShutDownNotifcation`／`vehicleUpdate` 三串零命中）；`sources/raw/*sysad*` 之 10 本 docx 亦零命中。故 ER 以 bus analyzer 之訊息名與值書寫，procedure 之觀察步依 §5.4 兩行式但第二行為 bus analyzer 之動作而非 shell 命令。"
+}

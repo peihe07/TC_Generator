@@ -181,14 +181,41 @@ V4 之 `VF章節`(I) 欄 **321/321 全空**。本包實測其 `Description`(D) �
 **163 筆一致（89%）**，不一致者係兩份 VF 文件章節編號本不相同所致。
 **[PROPOSED]** —— 採此法或仍回查 docx，見 DECISIONS §6。
 
-## 8. 車型軸（R-CAM3）與品牌軸（R-CAM5）
+## 8. framework 重開之 sha16 量測法（CAM-06 審閱 §一-1，Pei 2026-09-23）
+
+`features/camera/framework.md` 之狀態行自載其重開後 sha16 —— 該值**自指**
+（寫入即改變被量測之檔面），故量測法須明文且可複驗：
+
+> 取本檔全文，將**狀態行中最後一個 sha16 欄位**以 16 個 `0` 代入，
+> 對該字串取 UTF-8 sha256，前 16 碼即為所載之值。
+
+複驗：
+
+```bash
+python3 - <<'EOF'
+import hashlib
+s = open('features/camera/framework.md', encoding='utf-8').read()
+print(hashlib.sha256(s.replace('<所載之 sha16>', '0'*16).encode()).hexdigest()[:16])
+EOF
+```
+
+沿革：`c4fc9d2e5b7d1f44`（重開前，非自指，為一般檔案 sha16）→
+`ee74d26960d6c281`（CAM-06 重開落檔）→ `8569aa484b552b7c`（CAM-07 §1-8 例外註擴充）。
+**重開前之值不適用本量測法** —— 該時狀態行尚無 sha 欄位。
+
+`rulings_hash.py` 之條文指紋不適用於本檔（framework 非 ruling 錨點檔），
+兩者之量測口徑不可混用。
+
+---
+
+## 9. 車型軸（R-CAM3）與品牌軸（R-CAM5）
 
 拆分判準逐字見 `features/camera/RULINGS.md` R-CAM3、R-CAM5。
 平台 ↔ VF ↔ PROXI 對照表同檔；品牌對照見本檔 §3.2。
 二軸同時成立時**以車型軸為外層**（R-CAM5(d)）。
 `forms/proxi/` 六平台十檔**不得改名、不得移動**（CAM-01 §0）。
 
-### 8.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
+### 9.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
 
 `SWE-CAM-002` 之 Ignition 前提**不得用 `BCM_FD_9.PowerModeSts`**
 （CameraEventHal 表：Atl-H、`Supported by Harman = N`、`MD fake CEH status
@@ -205,7 +232,7 @@ Atl-H | Y | verified`。該未結項關閉。
 
 ---
 
-## 9. 未決（本檔不得自行補齊）
+## 10. 未決（本檔不得自行補齊）
 
 CAM-01 之七項未決**全數已裁**（R-CAM4～R-CAM8、DECISIONS §6-6）。
 CAM-02 新生之未決：

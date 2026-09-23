@@ -1,0 +1,41 @@
+# NR1L-RVC-070 — SWE-CAM-012
+
+- **Test Group**：Rear View Camera｜**Test Set**：Startup and Shutdown
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P1｜**design_method**：功能測試 (Functional based ; no specific technique)
+- **specification_reference**：`VF551_V2_PHDCC27_VF_1353`（來源列 `SYS-RA-VF551_V2-553`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> a. The Head Unit shall transmit PowerShutDownNotifcation.Power_Down = False.
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V2-553` 之「HU 送 `PowerShutDownNotifcation.Power_Down = False`」。原句為 `a.` 子句（9 token），其上位句即 `-550` 之關機序列；`False` 為**非關機態**之值，故觸發取開機（`CmdIgnSts = RUN`）而非 IGN_LK ——與 `NR1L-RVC-069` 成 True／False 一對（§8.3 每點一 TC）。**LVDS 之觀察不造命令**（升級條件 2 之處置）—— 交付語料 17 本之 `$ ` 命令行 275 條**無一條與 LVDS 相關**（`lvds`／`PowerShutDownNotifcation`／`vehicleUpdate` 三串零命中）；`sources/raw/*sysad*` 之 10 本 docx 亦零命中。故 ER 以 bus analyzer 之訊息名與值書寫，procedure 之觀察步依 §5.4 兩行式但第二行為 bus analyzer 之動作而非 shell 命令。**lint `J`（首字小寫）之豁免**：本列 test_item 上半為來源逐字，其首字本即小寫；§4.3.1 之逐字忠實優先於 `J` 之版面規則。交付語料實測有前例 —— `features/*/delivered/` 十本之 2223 筆 test_item 首行中，10 筆首字小寫（`power`／`vehicle_setting` 兩本，皆已交付）。見上繳包 §3-3。
+
+## pre_conditions
+
+```
+1. The HU is in Standby state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
+4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)
+2. Read the bus analyzer recording and check the PowerShutDownNotifcation message
+```
+
+## expected_result
+
+```
+1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up
+2. PowerShutDownNotifcation.Power_Down = False is transmitted
+```

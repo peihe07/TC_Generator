@@ -313,6 +313,44 @@ Part VIII 整段搬至 **`features/camera/framework.md`**（沿其他 15 本 fea
 CAM-05 §3 之「`-016` 之 12 列不生成」與 CAM-05 審閱 §三-1 之「同意不生成」**皆作廢**。
 12 列落 `batch01b/`，ID 自 `NR1L-RVC-034` 起，Test Set `Auxiliary Cameras`。
 
+### 6-15. `NR1L-RVC-023` 之 Pre-Condition 3 刪除
+
+`[DECIDED — CAM-06 審閱 §二-3，Pei 2026-09-23]`
+R-CAM3(e) 之 CAN source 句式為配合 `Send CAN` 步而設；CAM-06 已刪該步（RUN 重複），
+無代換對象即不留該行。`$PowerMode$ = [IGN_RUN]` 之前提已由 `The HU is in the Full-Operation state`
+一行承載。CAM-06 上繳 §5-5 所請之確認到此結案。
+
+### 6-16. batch02 三切
+
+`[DECIDED — CAM-06 審閱 §二-5，Pei 2026-09-23]`
+batch02 計畫 73 TC 逾上限 40，切為三批：
+
+| 批 | 範圍 | 計畫 TC |
+|---|---|---:|
+| **batch02a** | `SWE-CAM-001` ＋ `-012`／`-014` | **26**（22 ＋ 3 ＋ 1）|
+| batch02b | `SWE-CAM-002`／`-005`／`-017` | 22 |
+| batch02c | `SWE-CAM-003` | **23**（原 25）|
+
+**註（執行層）**：R-CAM10(b) 准合一後，`V33-221`＋`-222`／`V33-223`＋`-224` 四個來源
+由 4 TC 收為 **2 TC**。該二 TC 歸 SWE ID 較小之 `SWE-CAM-001`（其原計畫已各列 1 TC，**數不變 22**），
+減少的是 `SWE-CAM-003`（25 → **23**）。batch02 總計 73 → **71**；
+**batch02a ＝ 26 ≤ 30，CAM-07 §5 之升級條件第 1 項不觸發**。
+
+### 6-17. A-CA32 之 `SYS-RA-CAM-076` 改為生成
+
+`[DECIDED — CAM-06 審閱 §二-8，Pei 2026-09-23]`
+`-076`（Rear Camera 節之 Controls screen softkey 句）比照 `-063`／`-089` **生成**，
+帶 `PENDING: DR-CAM-g`。CAM-05 §3.1「不生成」作廢。
+落 `batch01b/` 之 `NR1L-RVC-046`，惟其 **Test Set 為 `Display Arbitration`**
+（該列屬 Rear Camera 節，不適用 R-CAM13(c) 之 `Auxiliary Cameras`）。
+
+### 6-18. `SWE-CAM-002` 不生成 negative
+
+`[DECIDED — CAM-06 審閱 §二-9／§一-7，Pei 2026-09-23]`
+`-002` 之 20 個 in-scope 來源全為成立側（`PROXI Rear_View_Camera = Present` 時啟用），
+**無 Absent 側之行為條文**。TC 不得自造 negative（§8.4.1 勝於 §7 之配對要求）；
+缺口登 `RD_FEEDBACK.md` **RDF-06**。
+
 ---
 
 ## Sign-off

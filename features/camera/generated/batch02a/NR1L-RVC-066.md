@@ -1,0 +1,45 @@
+# NR1L-RVC-066 — SWE-CAM-001
+
+- **Test Group**：Rear View Camera｜**Test Set**：Startup and Shutdown
+- **Vehicle Model**：HDCC27=0｜DT27=0｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P1｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`VF551_V42_P637MCA_VF_1835`（來源列 `SYS-RA-VF551_V42-217`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> When the signal LTM_OperationalModeSts.Info switches from "Ignition_Off" or "Initialization" to "Ignition ON" or "Ignition_Start" or "Ignition_On_Prplsn_On", the LTM shall restore the previously stored value for Rear_Camera_DelayOff.Req.
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V42-217` 之「`LTM_OperationalModeSts.Info` 自 `Ignition_Off`／`Initialization` 轉入 `Ignition ON`／`Ignition_Start`／`Ignition_On_Prplsn_On` 時，LTM 還原前次儲存之 `Rear_Camera_DelayOff.Req`」。`LTM_OperationalModeSts.Info` 為 V33／V42 之來源名，依 §8.7.5(f) 保留；其對 `CmdIgnSts` 之值對應除 `Ignition_Pre_Off` 外皆以 RUN 表達（DR-CAM-i 只及該一值）。**與 2261 之 `NR1L-RVC-061` 為不同平台之不同條文**（V42 明列三個目標態、V33 只寫 `At next "Ignition_On"`），逐字相異故拆列（R-CAM3）。「已還原」之可判後果取 Delay 生效 —— 退出 R 後影像續顯。
+
+## pre_conditions
+
+```
+1. The HU is in Standby state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. The camera delay setting was set to "On" before the HU was switched off
+4. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)
+2. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)
+3. Send CAN: STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted)
+4. Read the HU display and check that the rear view camera image is still displayed
+```
+
+## expected_result
+
+```
+1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up
+2. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent and the rear view camera image is displayed
+3. STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted) is sent
+4. The rear view camera image is still displayed
+```

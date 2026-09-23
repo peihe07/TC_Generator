@@ -5,6 +5,15 @@ CAM-05 審閱 §三-3（Pei 2026-09-23）令 `selfcheck_r_cam10.py` 更名本檔
 
 1. **R-CAM10 錨反查** —— `specification_reference` 之錨反查回 SYS-RA 來源，
    該來源之承接列須為本 TC 之 `req_id`（承接列 ＝ 引用該來源之最小 SWE ID）。
+   **例外（CAM-07 §2，R-CAM14(b) 所迫）**：反查所得之列其 `Category` 為 `Information`
+   **且**於 `layer3_a_vf_chapters.tsv` 零命中者，為**標定常數錨**（VF 常數表之值列，
+   037 從未引用）。R-CAM10 之規範對象為「037 兩列以上共引同一來源」，
+   未被 037 引用之列不可能被共引，故不在其射程 —— 另計一類「常數錨」，不判違反。
+   其餘無法反查者仍為 `反查失敗`。
+   **多錨之例外（R-CAM10(b)，CAM-06 審閱 §二-4）**：同一行為之 IF 來源與 THEN 來源
+   分屬兩承接列時合為一個 TC，其 `specification_reference` 有兩個（以上）非常數錨。
+   該情形之判準改為「`req_id` ＝ 諸錨承接列之**最小者**」，逐錨相等之要求不適用；
+   另計一類「合一錨」。單錨 TC 仍逐錨相等。
 2. **proc ≥ 2 步** —— §10.5；lint 之 `E` 只判 proc/er 對齊，不判步數
    （CAM-05 §5-2 之 `NR1L-RVC-027` 初稿即 1 步而未被 lint 攔下）。
 3. **RUN 重複** —— Pre-Condition 已含 `Full-Operation`（其定義已含 IGN RUN）
@@ -58,13 +67,14 @@ def owners() -> dict[str, str]:
     return out
 
 
-def sys2_index() -> tuple[dict[str, str], dict[str, str]]:
-    """回傳（錨 -> SYS-RA id、SYS-RA id -> Description 逐字）。
+def sys2_index() -> tuple[dict[str, str], dict[str, str], dict[str, str]]:
+    """回傳（錨 -> SYS-RA id、SYS-RA id -> Description 逐字、SYS-RA id -> Category）。
 
     R-CAM11 之後 `specification_reference` 寫 SYS2 `F` 欄之值，故錨須反查。
     """
     a2s: dict[str, str] = {}
     desc: dict[str, str] = {}
+    cat: dict[str, str] = {}
     for label, doc in SYS2.items():
         path = glob.glob(str(ROOT / f"sources/raw/{doc}/*.xlsx"))[0]
         wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
@@ -73,11 +83,12 @@ def sys2_index() -> tuple[dict[str, str], dict[str, str]]:
             if not sid or sid == "SYS2 Sys-RA-Feature-ID":
                 continue
             desc[sid] = _txt(str(r[3]).replace("_x000D_", " ") if r[3] is not None else "")
+            cat[sid] = _txt(r[10])
             if anchor:
                 key = f"CFTS092-{anchor}" if label == "CFTS092" else anchor
                 a2s.setdefault(key, sid)
         wb.close()
-    return a2s, desc
+    return a2s, desc, cat
 
 
 def is_subsequence(short: list[str], full: list[str]) -> bool:
@@ -89,12 +100,14 @@ def is_subsequence(short: list[str], full: list[str]) -> bool:
 def main() -> None:
     dirs = [Path(a) for a in sys.argv[1:]] or [ROOT / "features/camera/generated/pilot02"]
     own = owners()
-    a2s, desc = sys2_index()
+    a2s, desc, cat = sys2_index()
     hit1: list[tuple] = []      # R-CAM10
     hit2: list[tuple] = []      # proc < 2
     hit3: list[tuple] = []      # RUN 重複
     hit4: list[tuple] = []      # 非保序子序列
     unresolved: list[tuple] = []
+    constant: list[tuple] = []   # 標定常數錨（Information 且 037 未引）
+    merged: list[tuple] = []     # R-CAM10(b) 合一錨
     no_source: list[tuple] = []
     checked = tcs = 0
 
@@ -104,7 +117,8 @@ def main() -> None:
             req, tc_id = doc["req_id"], doc["tc_id"]
             for tc in doc["tcs"]:
                 tcs += 1
-                # ── 1 ── R-CAM10 錨反查
+                # ── 1 ── R-CAM10 錨反查（含 (b) 之多錨合一）
+                owned: list[tuple[str, str, str]] = []   # (anchor, sid, holder)
                 for anchor in tc["specification_reference"].split("\n"):
                     anchor = anchor.strip()
                     if not anchor:
@@ -114,8 +128,24 @@ def main() -> None:
                     if sid is None:
                         unresolved.append((tc_id, anchor))
                         continue
-                    if own.get(sid) != req:
-                        hit1.append((tc_id, req, anchor, sid, own.get(sid)))
+                    holder = own.get(sid)
+                    if holder is None and cat.get(sid, "").lower() == "information":
+                        constant.append((tc_id, anchor, sid))   # 標定常數錨，不在 R-CAM10 射程
+                    else:
+                        owned.append((anchor, sid, holder))
+                if len(owned) >= 2:
+                    # R-CAM10(b)：req_id 須為諸錨承接列之最小者
+                    holders = [h for _, _, h in owned]
+                    if None in holders or req != min(holders):
+                        hit1.append((tc_id, req, "＋".join(a for a, _, _ in owned),
+                                     "＋".join(sid for _, sid, _ in owned),
+                                     f"min={None if None in holders else min(holders)}"))
+                    else:
+                        merged.append((tc_id, req, [(a, sid, h) for a, sid, h in owned]))
+                else:
+                    for anchor, sid, holder in owned:
+                        if holder != req:
+                            hit1.append((tc_id, req, anchor, sid, holder))
                 # ── 2 ── proc ≥ 2 步
                 steps = [ln for ln in tc["test_procedure"].split("\n") if RE_STEP.match(ln)]
                 if len(steps) < 2:
@@ -134,12 +164,17 @@ def main() -> None:
                     hit4.append((tc_id, sid, len(_txt(verb).split()), len(desc[sid].split())))
 
     print(f"Camera 自檢：批次 {[str(d) for d in dirs]}（TC {tcs} 筆）")
-    print(f"  1 R-CAM10 錨反查：檢查錨 {checked} 個；無法反查 {len(unresolved)}；**命中 {len(hit1)}**")
+    print(f"  1 R-CAM10 錨反查：檢查錨 {checked} 個；無法反查 {len(unresolved)}；常數錨 {len(constant)}；**命中 {len(hit1)}**")
     print(f"  2 proc ≥ 2 步　　：**命中 {len(hit2)}**")
     print(f"  3 RUN 重複　　　 ：**命中 {len(hit3)}**")
     print(f"  4 verbatim 子序列：無來源可比 {len(no_source)}；**命中 {len(hit4)}**")
     for tc_id, anchor in unresolved:
         print(f"  [1 反查失敗] {tc_id}  {anchor}")
+    for tc_id, anchor, sid in constant:
+        print(f"  [1 常數錨] {tc_id}  {anchor} = {sid}（Category=Information，037 未引）")
+    for tc_id, req, items in merged:
+        detail = "；".join(f"{sid}→{h}" for _, sid, h in items)
+        print(f"  [1 合一錨] {tc_id}（{req}）R-CAM10(b)：{detail}")
     for tc_id, req, anchor, sid, holder in hit1:
         print(f"  [1 違反] {tc_id}（{req}）錨 {anchor} = {sid}，承接列為 {holder}")
     for tc_id, n in hit2:

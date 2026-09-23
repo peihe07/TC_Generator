@@ -8,7 +8,7 @@
   "vehicle_model": {
     "HDCC27": "0",
     "DT27": "0",
-    "VF(ProMaster)637": "0",
+    "VF(ProMaster)637": "1",
     "Commander (598)": "0",
     "Regengade (5210)": "0",
     "Toro(2261)": "1",
@@ -17,11 +17,11 @@
   "tcs": [
     {
       "tc_title": "2261 off-point, read the HU display within the delay period and check that the rear view camera image is still displayed",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. LTM_OperationalModeSts.Info = \"Ignition_On_EngOn\"\n4. The camera delay setting is set to \"On\"\n5. The rear view camera image is displayed in Automatic Display Mode\n6. The calibration MAX_SPEED = 13,0 Km/h per VF551_V33 1.14.1",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. LTM_OperationalModeSts.Info = \"Ignition_On_EngOn\"\n4. The camera delay setting is set to \"On\"\n5. The rear view camera image is displayed in Automatic Display Mode\n6. The calibration MAX_SPEED = 13,0 Km/h per VF551_V33 1.14.1 and VF551_V42 1.14.1",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted)\n2. Send CAN: STATUS_CCAN3.VehicleSpeedVSOSig = 208 (13.0 km/h)\n3. Read the HU display within the delay period and check that the rear view camera image is still displayed",
       "expected_result": "1. STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted) is sent and the rear view camera image stays displayed\n2. STATUS_CCAN3.VehicleSpeedVSOSig = 208 (13.0 km/h) is sent\n3. The rear view camera image is still displayed within the delay period",
-      "specification_reference": "VF551_V33_P226MCA_VF_532",
+      "specification_reference": "VF551_V33_P226MCA_VF_532\nVF551_V42_P637MCA_VF_960",
       "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
       "priority": "P1",
       "split_flag": true,
@@ -29,5 +29,5 @@
       "test_item": "IF ( (STATUS_CCAN3.VehicleSpeedVSOSig>(greater) MAX_SPEED AND LTM_OperationalModeSts.Info =\"Ignition_On_EngOn\" ) OR (after T_DISPLAY time STATUS_CCAN4.ReverseGearSts==(equal) \"Not_Inserted\" ) THEN\n\n(2261 off-point, read the HU display within the delay period and check that the rear view camera image is still displayed)"
     }
   ],
-  "reasoning": "驗證目標為 VF551_V33（Toro 2261）之速度門檻未達側：raw 205 = 12.8125 km/h = 7.9614 mph，低於 MAX_SPEED，影像於延遲期內續顯。與 NR1L-RVC-030 成 on／off 一對（§8.3 每點一 TC）。V33 之另一支退出條件（after T_DISPLAY time ReverseGearSts = Not_Inserted）即 Delay 到期，由 NR1L-RVC-007／-008 承接（§8.2.1）。【CAM-06 §2-1／§2-3】(1) 依審閱 §二-4 補 Pre-Condition `LTM_OperationalModeSts.Info = \"Ignition_On_EngOn\"` —— V33 逐字之條件含引擎運轉態，原 Pre-Condition 未表達（§8.7.1）；來源名保留（§8.7.5(f)），其 CAN 對應同 DR-CAM-i 之範圍。(2) **供試值改正**：原 Pre-Condition `MAX_SPEED corresponds to 8 mph per CFTS092 4781643` 為無來源之推定。本包逐格實測 VF551_V33 §1.14.1 常數表 —— `MAX_SPEED`（`SYS-RA-VF551_V33-503`）值 `13,0`（`-504`）、單位 `Km/h`（`-507`）、容差 `0,5`（`-506`）、範圍 `[10,0;18,0]`（`-505`）。13.0 ÷ 0.0625 = 208 為整數，**等值 raw 存在**，故 `>(greater)` 於門檻點可判：raw 209 = 13.0625 km/h 嚴格大於、raw 208 = 13.0 km/h 不大於。供試值因而由 206／205 改為 209／208。A-CA30 之「不可判」只對 Atl-Hi（`c_VEHSPD_MAX = 8 mph`，12.874752 km/h 非 0.0625 之倍數）成立；本列與 NR1L-RVC-009／-010 之差別不再是運算子，而是**兩平台之標定本不同數**（A-CA31、RDF-03）。容差 ±0,5 km/h 為 EOL 標定之範圍，208／209 為規格標稱之門檻點。"
+  "reasoning": "驗證目標為 VF551_V33（Toro 2261）之速度門檻未達側：raw 205 = 12.8125 km/h = 7.9614 mph，低於 MAX_SPEED，影像於延遲期內續顯。與 NR1L-RVC-030 成 on／off 一對（§8.3 每點一 TC）。V33 之另一支退出條件（after T_DISPLAY time ReverseGearSts = Not_Inserted）即 Delay 到期，由 NR1L-RVC-007／-008 承接（§8.2.1）。【CAM-06 §2-1／§2-3】(1) 依審閱 §二-4 補 Pre-Condition `LTM_OperationalModeSts.Info = \"Ignition_On_EngOn\"` —— V33 逐字之條件含引擎運轉態，原 Pre-Condition 未表達（§8.7.1）；來源名保留（§8.7.5(f)），其 CAN 對應同 DR-CAM-i 之範圍。(2) **供試值改正**：原 Pre-Condition `MAX_SPEED corresponds to 8 mph per CFTS092 4781643` 為無來源之推定。本包逐格實測 VF551_V33 §1.14.1 常數表 —— `MAX_SPEED`（`SYS-RA-VF551_V33-503`）值 `13,0`（`-504`）、單位 `Km/h`（`-507`）、容差 `0,5`（`-506`）、範圍 `[10,0;18,0]`（`-505`）。13.0 ÷ 0.0625 = 208 為整數，**等值 raw 存在**，故 `>(greater)` 於門檻點可判：raw 209 = 13.0625 km/h 嚴格大於、raw 208 = 13.0 km/h 不大於。供試值因而由 206／205 改為 209／208。A-CA30 之「不可判」只對 Atl-Hi（`c_VEHSPD_MAX = 8 mph`，12.874752 km/h 非 0.0625 之倍數）成立；本列與 NR1L-RVC-009／-010 之差別不再是運算子，而是**兩平台之標定本不同數**（A-CA31、RDF-03）。容差 ±0,5 km/h 為 EOL 標定之範圍，208／209 為規格標稱之門檻點。【CAM-07 §2】依 **R-CAM14(b)** 併入 637 —— VF551_V42 §1.14.1 之 `MAX_SPEED`（`SYS-RA-VF551_V42-655` 名／`-656` 值 `13,0`／`-659` 單位 `Km/h`）與 V33 同數同單位，觸發訊號同為 `STATUS_CCAN3.VehicleSpeedVSOSig`（`forms/Project__637MCA_BH-CAN_R1_…dbc` `BO_ 994`，factor (0.0625,0) \"Km/h\"），供試 raw 209／208 對 637 與 2261 同值，故不另拆列、亦不需 R-CAM3(e) 之 CAN source 行（兩平台訊息名相同）。`specification_reference` 加第二行 `VF551_V42_P637MCA_VF_960`（`SYS-RA-VF551_V42-656`）以承載 637 之標定；**V42 無速度退出條文**（`-264` 之門檻分支因 `TRANSM2.ShiftLeverPosition` DBC 查無而不生成、`-265` 只有 reset 語意），故本列以 **V33 條文 ＋ V42 常數**承載 637。該第二錨之 SYS-RA 列 `Category` 為 `Information` 且 037 從未引用，非 R-CAM10 之射程 —— selfcheck 第 1 項因而新增「常數錨」一類（見上繳包 §2）。"
 }

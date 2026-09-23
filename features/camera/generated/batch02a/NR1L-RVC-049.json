@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-049",
+  "req_id": "SWE-CAM-001",
+  "test_group": "Rear View Camera",
+  "test_set": "Startup and Shutdown",
+  "test_item_verbatim": "· The Head Unit shall implement the warning text overlay that displays the text, \"Camera Not in Position\" for five seconds in the upper center part of the display of the event followed by ''check entire surroundings'' per the HMI definition when BCM_FD_9.RHatchSts = Open.",
+  "source_object_id": "SYS-RA-VF551_V2-528",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "Camera Not in Position overlay, Atl-Hi, open the rear hatch and check the warning text overlay",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The rear view camera image is displayed\n4. BCM_FD_9.RHatchSts = 0 (Closed)",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: BCM_FD_9.RHatchSts = 1 (Open)\n2. Read the upper center part of the HU display within 5 s and check the warning text\n3. Read the upper center part of the HU display after the first text is removed and check the following text",
+      "expected_result": "1. BCM_FD_9.RHatchSts = 1 (Open) is sent\n2. The text \"Camera Not in Position\" is overlaid on the upper center part of the display\n3. The text \"check entire surroundings\" is overlaid after the first text",
+      "specification_reference": "VF551_V2_PHDCC27_VF_505",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "Camera Not in Position overlay, Atl-Hi",
+      "test_item": "· The Head Unit shall implement the warning text overlay that displays the text, \"Camera Not in Position\" for five seconds in the upper center part of the display of the event followed by ''check entire surroundings'' per the HMI definition when BCM_FD_9.RHatchSts = Open.\n\n(Camera Not in Position overlay, Atl-Hi, open the rear hatch and check the warning text overlay)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V2-528` 之「`BCM_FD_9.RHatchSts = Open` 時於畫面上方中央疊加 \"Camera Not in Position\" 五秒，其後接 ''check entire surroundings''」。訊號實測：`RHatchSts` 於 `forms/PDT27_E2A_R1_FDCAN8.dbc` `BO_ 1066 BCM_FD_9`，`VAL_ 0 \"Closed\" 1 \"Open\"`，可注入。Atl-Mi 之同一行為由 `NR1L-RVC-050`（V3，637／376）與 `-051`（V33，2261）承接 —— 三本之訊息名相異（`BCM_FD_9`／`STATUS_BH_BCM1`／`STATUS_BH_BCM`）**且條文逐字相異**（V3 多 ISO 字型句、V33 以 `T_INITDISPLAY` 表時長），故依 R-CAM3 拆列而非 R-CAM3(e) 折行。畫面文字之權威性另見 A-CA20／DR-CAM-h（`Camera Not in position` 於 Pop Up List 查無）；本列依 §8.4.1 以來源原文書寫。"
+}

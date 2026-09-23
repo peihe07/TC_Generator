@@ -1,0 +1,43 @@
+# NR1L-RVC-069 — SWE-CAM-012
+
+- **Test Group**：Rear View Camera｜**Test Set**：Startup and Shutdown
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P1｜**design_method**：狀態轉換 (State Transition Testing)
+- **specification_reference**：`VF551_V2_PHDCC27_VF_549`（來源列 `SYS-RA-VF551_V2-550`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> · When BCM_FD_10.CmdIgnSts = IGN_LK is received, then the Head Unit shall do the following: 1. Transmit PowerShutDownNotifcation.Power_Down = True over LVDS to the RVCM 2. Provide power to the RVCM over LVDS for the duration Tpower regardless of the internal power modes of the radio.
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V2-550` 之兩項後果：收到 `CmdIgnSts = IGN_LK` 後 (1) 以 LVDS 送 `PowerShutDownNotifcation.Power_Down = True`、(2) 於 `Tpower` 期間持續對 RVCM 供電，**不受無線電內部電源模式影響**。原句 46 token，未逾 50，無須摘句。`Tpower` 之標定值為 **5 sec**（V2 §1.8.13 表 `SYS-RA-VF551_V2-163` 名／`-162` 值；V3 §1.14.1 同值 `-583`／`-584`／`-587` 單位 `sec`），故步 3 寫 `Hold for 5 s`。**LVDS 之觀察不造命令**（升級條件 2 之處置）—— 交付語料 17 本之 `$ ` 命令行 275 條**無一條與 LVDS 相關**（`lvds`／`PowerShutDownNotifcation`／`vehicleUpdate` 三串零命中）；`sources/raw/*sysad*` 之 10 本 docx 亦零命中。故 ER 以 bus analyzer 之訊息名與值書寫，procedure 之觀察步依 §5.4 兩行式但第二行為 bus analyzer 之動作而非 shell 命令。Atl-Mi 之同一行為由 `NR1L-RVC-072`（V3-206，`SWE-CAM-014`）承接。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
+4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: BCM_FD_10.CmdIgnSts = 1 (IGN_LK)
+2. Read the bus analyzer recording and check the PowerShutDownNotifcation message
+3. Hold for 5 s and check the supply to the RVCM on the LVDS link
+```
+
+## expected_result
+
+```
+1. BCM_FD_10.CmdIgnSts = 1 (IGN_LK) is sent
+2. PowerShutDownNotifcation.Power_Down = True is transmitted over LVDS to the RVCM
+3. The HU keeps supplying power to the RVCM over LVDS for 5 s
+```
