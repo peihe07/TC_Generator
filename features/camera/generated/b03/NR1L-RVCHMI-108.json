@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-108",
+  "req_id": "SWE1-RVC-100",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera View Switching",
+  "test_item_verbatim": "When attempted to activate when greyed out, a popup appears",
+  "source_object_id": "NRL-188101",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "a popup appears when a greyed out wireless AUX control is activated",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. No wireless camera is within range or powered on\n7. The AUX camera list is displayed with the wireless AUX soft controls greyed out",
+      "input_test_data": "NA",
+      "test_procedure": "1. Select the greyed out wireless AUX soft control\n2. Read the pop-up text on the HU display",
+      "expected_result": "1. The greyed out soft control registers the selection and a pop-up appears\n2. The pop-up reads \"Camera Unavailable . Please go to camera settings and connect the wireless camera.\" (PU0851 of the R1 HMI pop-up list)",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.4.2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "a popup appears when a greyed out wireless AUX control is activated",
+      "test_item": "When attempted to activate when greyed out, a popup appears\n\n(a popup appears when a greyed out wireless AUX control is activated)"
+    }
+  ],
+  "reasoning": "§28.4.2 只寫「出現一個 popup」而未載其文字；逐字取 **`PU0851`**（module `Aux Camera`；觸發欄逐字 `Message displays when trying to push the AUX camera button and a wireless camera is not connected (applies to all wireless cameras)`）——與本條之情境（無線不可用時嘗試啟用）相符。`PU0459`（`No camera connected …`）之觸發欄為 `a camera is not connected`（不限無線），已由 B02a `-060` 用於 §27.3.3，兩者不重複。ER 形制依 **profile §7.8**。"
+}

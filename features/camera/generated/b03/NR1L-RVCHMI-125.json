@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-125",
+  "req_id": "SWE1-RVC-127-02",
+  "test_group": "Rear View Camera",
+  "test_set": "Wireless Camera Pairing",
+  "test_item_verbatim": "Pressing YES will disconnect the wireless projection session and enable the wireless cameras and start the pairing process.",
+  "source_object_id": "NRL-188147",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "pressing YES disconnects projection enables wireless cameras and starts pairing",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is Off\n6. A wireless projection session is active\n7. The PU1519 pop-up is displayed after the 'Add camera' button was selected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Select <Yes> on the pop-up\n2. Read the HU display and check that the wireless projection session has ended\n3. Read the Aux Cameras list and check that \"Enable Wireless Cameras\" is now On\n4. Read the HU display and check that the pairing process has started",
+      "expected_result": "1. The <Yes> button registers the selection and the pop-up closes\n2. The wireless projection session is disconnected\n3. The \"Enable Wireless Cameras\" setting is On\n4. The pairing process starts and the QR Code Setup Process is displayed (PU0854)",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_33.1.2",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "pressing YES disconnects projection enables wireless cameras and starts pairing",
+      "test_item": "Pressing YES will disconnect the wireless projection session and enable the wireless cameras and start the pairing process.\n\n(pressing YES disconnects projection enables wireless cameras and starts pairing)"
+    }
+  ],
+  "reasoning": "§33.1.2 之 YES 支，其三個後果（斷開投影、啟用設定、啟動配對）皆驗 —— 來源以 `and` 並列三者，缺一即未落地（**R-CAM13(a)**）。與 B02a `-065`（§27.4.2.1）之分工：後者之後果只有**兩個**（啟用、斷開），無配對流程；兩列之觸發按鍵（設定 vs `Add camera`）與來源列皆不同（**R-CAM10**）。"
+}

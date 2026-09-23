@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-119",
+  "req_id": "SWE1-RVC-107",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera View Switching",
+  "test_item_verbatim": "Signal strength and battery be available on wireless aux views",
+  "source_object_id": "NRL-188114",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "signal strength and battery are available on the wireless AUX views",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. Two wireless AUX cameras are connected\n7. The wireless AUX 1 camera view is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the wireless AUX 1 view and check that the signal strength and the battery are shown\n2. Switch to the wireless AUX 2 view\n3. Read the wireless AUX 2 view and check that the signal strength and the battery are shown",
+      "expected_result": "1. The signal strength and the battery are shown on the wireless AUX 1 view\n2. The wireless AUX 2 view is displayed\n3. The signal strength and the battery are shown on the wireless AUX 2 view",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.7.4",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "signal strength and battery are available on the wireless AUX views",
+      "test_item": "Signal strength and battery be available on wireless aux views\n\n(signal strength and battery are available on the wireless AUX views)"
+    }
+  ],
+  "reasoning": "§28.7.4 之 `views`（複數）須以兩個視角驗得，故前提佈兩台無線相機。與 `-102`（§28.2.3）之分工見該列 reasoning（時序 vs 恆可得）。與 B02b `-080`（§27.8.4，`below More AUX button`）之分工：後者驗其**位置**（More AUX 按鍵下方），本列驗其**於各無線視角皆可得**。"
+}

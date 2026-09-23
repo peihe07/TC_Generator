@@ -362,6 +362,28 @@ R-CAM16(b)  零 TC 之**第三種形制**：來源列之 `Description` **自陳�
 其 Description 全文 4 token `First surface needs: N/A`（依 profile §7.7 取全文實測）。
 `coverage_b.tsv` 依本款記載；**RDF-12** 同時登。
 
+### R-CAM16(c)（增補，2026-09-23，Pei 裁：CAM-17 審閱 §一-1）
+
+```text
+R-CAM16(c)  零 TC 之**第四種形制**（B 本專用）：B 本（SYS1 為逐字母體）之列，其 Description
+  (i) 與同組另一列**逐字全等且父題亦逐字全等**者，或
+  (ii) **全文為交叉引用句**（`refer to …`／`For details … please refer to …`）者，
+  由**章節號較小者**承接（沿 R-CAM10(b) 之最小者承接），其餘列 TC 數為 0 而非缺口。
+  `coverage_b.tsv` 記一行：
+    (i) disposition = `No TC — verbatim duplicate of §x.y.z (A-CAnn)`，
+    (ii) disposition = `No TC — cross-reference only (A-CAnn)`，`tc_count = 0`。
+  **父題相異者不適用** —— 其前提或情境因父節而異，各自出 TC。
+  同時登 RDF（來源文件有無法分辨之重複列）。
+```
+
+**原條 R-CAM16 與 R-CAM16(b) 之逐字皆不動**（R-TM13／GCB-06）。
+
+**執行層落實（CAM-17／CAM-18）**：B02b 四列適用 ——
+`SWE1-RVC-086`（§27.7.3）／`-091`（§27.8.5）為 (ii)；
+`SWE1-RVC-136`（§34.4.2，委派 §34.3.2）／`-139`（§34.6.1，委派 §34.4.1）為 (i)。
+不適用之對照：§34.6.2 與 §34.3.2 逐字全等而父題相異（`Backup and Cargo Cam` vs `Backup Cam Only`），
+各自出 TC（`NR1L-RVCHMI-090`／`-086`）。逐群實測見 **A-CA36**，RD 回饋見 **RDF-14**。
+
 ### R-CAM17 — 量測主張須附證據（Pei 裁，2026-09-23：CAM-12 審閱 §二-1）
 
 ```text

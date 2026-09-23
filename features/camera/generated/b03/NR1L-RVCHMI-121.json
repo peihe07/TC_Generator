@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-121",
+  "req_id": "SWE1-RVC-108-02",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera View Switching",
+  "test_item_verbatim": "From the AUX camera video feed, however, access to the other AUX views is available below the camera feed",
+  "source_object_id": "NRL-188116",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the other AUX views are accessible below the camera feed on 12 inch portrait",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. PROXI Radio_Display_Type = 7 (12\" 1200x1920)\n7. Two wireless AUX cameras are connected\n8. The wireless AUX 1 camera view is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the area below the camera feed and check that the other AUX view is offered there\n2. Select the wireless AUX 2 entry below the camera feed\n3. Read the HU display and check that the wireless AUX 2 view is displayed",
+      "expected_result": "1. The wireless AUX 2 entry is shown below the camera feed\n2. The wireless AUX 2 entry registers the selection\n3. The wireless AUX 2 camera view is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.8.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the other AUX views are accessible below the camera feed on 12 inch portrait",
+      "test_item": "From the AUX camera video feed, however, access to the other AUX views is available below the camera feed\n\n(the other AUX views are accessible below the camera feed on 12 inch portrait)"
+    }
+  ],
+  "reasoning": "§28.8.1 之第二支（`below the camera feed`）。該位置為 12 吋直式之特有排版，與 §28.7 之橫式（soft control 在視角內）相對。verbatim 為該列 Description 之保序子序列 —— 保留首片語 `From the AUX camera video feed,`（否則上半以小寫 `however,` 起首而命中 lint `J`，且 **profile §5.1 之豁免不適用** ——該豁免之要件為「上半與來源 `Description` 之**首 token** 相同」，本列非自首 token 起）。"
+}

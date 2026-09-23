@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-123",
+  "req_id": "SWE1-RVC-126",
+  "test_group": "Rear View Camera",
+  "test_set": "Wireless Camera Pairing",
+  "test_item_verbatim": "If the ‘enable wireless cameras’ setting is not enabled, no wireless projection session is active and the user selects the ‘Add camera’ button, the setting is automatically enabled and the pairing process is started",
+  "source_object_id": "NRL-188146",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "Add camera auto-enables the setting and starts pairing when no projection is active",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is Off\n6. No wireless projection session is active\n7. The Aux Cameras list is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Select the 'Add camera' button\n2. Read the Aux Cameras list and check that \"Enable Wireless Cameras\" is now On\n3. Read the HU display and check that the pairing process has started",
+      "expected_result": "1. The 'Add camera' button registers the selection\n2. The \"Enable Wireless Cameras\" setting is On and no pop-up was displayed\n3. The pairing process starts and the display reads \"Add Aux Camera <insert camera number>\" with the QR Code Setup Process (PU0854)",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_33.1.1",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "Add camera auto-enables the setting and starts pairing when no projection is active",
+      "test_item": "If the ‘enable wireless cameras’ setting is not enabled, no wireless projection session is active and the user selects the ‘Add camera’ button, the setting is automatically enabled and the pairing process is started\n\n(Add camera auto-enables the setting and starts pairing when no projection is active)"
+    }
+  ],
+  "reasoning": "§33 之父題逐字為 `Adding a New Wireless Camera (QR Code Method)`（`NRL-188144`），§33.1 為 `Connecting a New Wireless Camera – interaction with ’enable wireless cameras’ setting`。配對流程之逐字畫面取 **`PU0854`**（module `Aux Camera`，Timeout 欄 `60 seconds`）。`(please refer to next pages)` 為交叉引用之括號句，其標的即 §33.2（`-127`），**非全文交叉引用**，故本列仍出 TC（R-CAM16(c)(ii) 不適用）。與 B02a `-071`（§27.5.2）之分工：後者由**選取無線相機**觸發自動啟用，本列由 **`Add camera` 按鍵**觸發並另啟配對流程。"
+}

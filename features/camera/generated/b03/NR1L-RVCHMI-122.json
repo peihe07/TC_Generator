@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-122",
+  "req_id": "SWE1-RVC-108-03",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera View Switching",
+  "test_item_verbatim": "From the AUX camera video feed, however, access to the other AUX views is available via the more aux button on the view",
+  "source_object_id": "NRL-188116",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the other AUX views are accessible via the more aux button on the view",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. PROXI Radio_Display_Type = 7 (12\" 1200x1920)\n7. Two wireless AUX cameras are connected\n8. The wireless AUX 1 camera view is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press the more aux button on the view\n2. Read the list and check that the other AUX view is offered\n3. Select the wireless AUX 2 entry\n4. Read the HU display and check that the wireless AUX 2 view is displayed",
+      "expected_result": "1. The more aux button registers the press\n2. The wireless AUX 2 entry is shown in the list\n3. The wireless AUX 2 entry registers the selection\n4. The wireless AUX 2 camera view is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.8.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the other AUX views are accessible via the more aux button on the view",
+      "test_item": "From the AUX camera video feed, however, access to the other AUX views is available via the more aux button on the view\n\n(the other AUX views are accessible via the more aux button on the view)"
+    }
+  ],
+  "reasoning": "§28.8.1 之第三支（`via the more aux button on the view`）。與 `-121` 成一對：同一目的（進入另一個 AUX 視角）之**兩個入口**，來源以 `or` 並列，可觀察路徑不同故分列。"
+}

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-126",
+  "req_id": "SWE1-RVC-127-03",
+  "test_group": "Rear View Camera",
+  "test_set": "Wireless Camera Pairing",
+  "test_item_verbatim": "Pressing NO will maintain wireless projection session and stop the pairing process.",
+  "source_object_id": "NRL-188147",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "pressing NO keeps the projection session and stops the pairing process",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is Off\n6. A wireless projection session is active\n7. The PU1519 pop-up is displayed after the 'Add camera' button was selected",
+      "input_test_data": "NA",
+      "test_procedure": "1. Select <No> on the pop-up\n2. Read the HU display and check that the wireless projection session is still active\n3. Read the HU display and check that no pairing process has started",
+      "expected_result": "1. The <No> button registers the selection and the pop-up closes\n2. The wireless projection session is still active\n3. No pairing process is started and no QR code is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_33.1.2",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "pressing NO keeps the projection session and stops the pairing process",
+      "test_item": "Pressing NO will maintain wireless projection session and stop the pairing process.\n\n(pressing NO keeps the projection session and stops the pairing process)"
+    }
+  ],
+  "reasoning": "§33.1.2 之 NO 支，其兩個後果（保持投影、停止配對）皆驗。與 `-125` 成一對正反例；兩列之來源列同為 `NRL-188147` 而**驗證點相異**（同一列之兩個分支，依 §4.3.1 分列），故 `specification_reference` 相同。否定句式用 `check that no …`。"
+}

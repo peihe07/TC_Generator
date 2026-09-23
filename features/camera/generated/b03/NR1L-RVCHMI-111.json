@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-111",
+  "req_id": "SWE1-RVC-103-02",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera View Switching",
+  "test_item_verbatim": "Manipulate the image (zoom/pan, rotate image, mirror image) -The zoom functionality will be a pinch to zoom",
+  "source_object_id": "NRL-188110",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the zoom functionality is a pinch on the wireless AUX video feed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. A wireless AUX camera is connected\n7. The wireless AUX camera view is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Pinch outwards on the camera image with two fingers\n2. Read the camera image and check that it has zoomed in\n3. Pinch inwards on the camera image with two fingers\n4. Read the camera image and check that it has zoomed out",
+      "expected_result": "1. The outward pinch gesture is registered on the camera image\n2. The camera image zooms in\n3. The inward pinch gesture is registered on the camera image\n4. The camera image zooms out",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.7.1.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the zoom functionality is a pinch on the wireless AUX video feed",
+      "test_item": "Manipulate the image (zoom/pan, rotate image, mirror image) -The zoom functionality will be a pinch to zoom\n\n(the zoom functionality is a pinch on the wireless AUX video feed)"
+    }
+  ],
+  "reasoning": "§28.7.1.1 之 zoom 一支（`-The zoom functionality will be a pinch to zoom`）。`pinch to zoom` 之雙向（放大／縮小）皆驗 —— 單向不足以判該手勢已繫於 zoom。verbatim 為該列 Description 之保序子序列（刪 pan 一支，由 `-110` 承接）。"
+}

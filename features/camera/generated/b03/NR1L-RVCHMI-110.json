@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-110",
+  "req_id": "SWE1-RVC-103-01",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera View Switching",
+  "test_item_verbatim": "Manipulate the image (zoom/pan, rotate image, mirror image) -The pan functionality will be a drag/ swipe to pan",
+  "source_object_id": "NRL-188110",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the pan functionality is a drag or swipe on the wireless AUX video feed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. A wireless AUX camera is connected\n7. The wireless AUX camera view is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Drag across the camera image with one finger\n2. Read the camera image and check that it has panned in the direction of the drag",
+      "expected_result": "1. The drag gesture is registered on the camera image\n2. The camera image pans in the direction of the drag",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.7.1.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the pan functionality is a drag or swipe on the wireless AUX video feed",
+      "test_item": "Manipulate the image (zoom/pan, rotate image, mirror image) -The pan functionality will be a drag/ swipe to pan\n\n(the pan functionality is a drag or swipe on the wireless AUX video feed)"
+    }
+  ],
+  "reasoning": "§28.7.1 之父句逐字為 `From the Wireless AUX camera video feed, the user can:`（`NRL-188109`），故前提取無線 AUX 視角。本列取 §28.7.1.1 之 pan 一支（`-The pan functionality will be a drag/ swipe to pan`）；zoom 一支由 `-111` 承接。rotate／mirror 之操作入口在 §28.7.2（`-114`～`-116`），本節只載其為可操作之項，不重複驗。"
+}

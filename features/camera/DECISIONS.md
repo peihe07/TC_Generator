@@ -653,6 +653,31 @@ SYS1 §27.4.1（全小寫）／§27.4.4（句首大寫）／§27.4.5（全詞首
 hop label 取**彈窗表**（`PU1517`／`PU1518`）之 `Enable Wireless Cameras`
 —— 與 §27.4.5 相同，四處中佔二處且為最終畫面之權威。登 **RDF-13**。
 
+### 6-62. B 本之逐字同句／純交叉引用之零 TC 形制
+
+`[DECIDED — CAM-17 審閱 §一-1，Pei 2026-09-23]` **立 R-CAM16(c)**（sha8 `d9212990`）。
+零 TC 自此有**四種**形制：委派（R-CAM16）／Heading／自陳 `N/A`（R-CAM16(b)）／
+**逐字重複或純交叉引用**（R-CAM16(c)）。
+判準之關鍵為**父題是否亦全等** —— 父題相異者其前提或情境因父節而異，各自出 TC
+（§34.6.2 對 §34.3.2 即此例）。`coverage_b.tsv` 之四列已依該款文面重記。
+
+### 6-63. DR 擴題通則提請全域
+
+`[DECIDED — CAM-17 審閱 §一-2，Pei 2026-09-23]`
+DECISIONS **6-60** 之通則（沿用既有 DR 而擴其範圍時須明文改題並保留原題）
+併登 `docs/fw036/handoff/GC_BACKLOG.md` **GCB-10**，提請入全域 ledger。
+立條之由為本線兩次實例：DR-CAM-g（CAM-15，已明文改題）與 DR-CAM-h（CAM-16 未擴題，CAM-17 補正）。
+
+### 6-64. §27 ↔ §34 八群同句各自出 TC；HU 等級以散文前提書寫
+
+`[DECIDED — CAM-17 審閱 §一-3，Pei 2026-09-23]`
+§27（`R1 High Wired &Wireless Auxiliary Cameras`）與 §34（`R1 Low Wired AUX Cameras`）
+之八群逐字同句列**各自出 TC** —— 兩章之 HU 等級不同，其 AUX 種類（有線＋無線 vs 只有有線）
+使前提相異，不適用 R-CAM16(c)（該款要求父題亦全等）。
+**HU 等級無 PROXI 編碼**（`Radio_Type`／`Trim_Level`／`Head_Unit_Type`／`Infotainment_Level`／
+`R1_Low`／`Uconnect` 六串於 `forms/proxi/` 六本各 0 命中），故不以此判車型（**R-CAM18** 不適用），
+前提以散文書寫（**profile §7.3**）。
+
 ---
 
 ## Sign-off

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-112",
+  "req_id": "SWE1-RVC-104-01",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera View Switching",
+  "test_item_verbatim": "Reset the image once it’s been manipulated",
+  "source_object_id": "NRL-188111",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the manipulated image can be reset",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is a touchscreen radio\n3. The head unit has WiFi hotspot capability\n4. A MOPAR-provided wireless camera is available\n5. The \"Enable Wireless Cameras\" setting is On\n6. A wireless AUX camera is connected\n7. The wireless AUX camera view is displayed\n8. The image has been zoomed in and panned",
+      "input_test_data": "NA",
+      "test_procedure": "1. Select \"Edit image\" in the camera view\n2. Select the \"Reset\" soft control\n3. Read the camera image and check that it is back to its unmanipulated state",
+      "expected_result": "1. The \"Edit image\" control registers the selection\n2. The \"Reset\" soft control registers the selection\n3. The camera image is shown without the zoom and the pan that were applied",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.7.1.2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the manipulated image can be reset",
+      "test_item": "Reset the image once it’s been manipulated\n\n(the manipulated image can be reset)"
+    }
+  ],
+  "reasoning": "§28.7.1.2 之前半。`Reset` 之入口取同節 §28.7.2 之逐字（`User selects Edit image to access the “Rotate 90”, “Mirror Image” and “Reset” soft controls`）。與 `-116`（§28.7.2 之 Reset 一支）之分工：後者驗該 soft control **之存在與可達**，本列驗其**作用**（影像回復）。"
+}

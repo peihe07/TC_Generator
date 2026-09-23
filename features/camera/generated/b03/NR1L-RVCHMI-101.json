@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-101",
+  "req_id": "SWE1-RVC-094",
+  "test_group": "Rear View Camera",
+  "test_set": "Camera View Switching",
+  "test_item_verbatim": "Accessing aux camera does not reset“Check Entire Surroundings” timer.",
+  "source_object_id": "NRL-188093",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "accessing the AUX camera does not reset the check entire surroundings timer",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. A wired AUX camera is connected\n4. The rear view camera image is displayed\n5. The \"Check Entire Surroundings\" message has been shown for 3 seconds",
+      "input_test_data": "NA",
+      "test_procedure": "1. Select the AUX camera soft control within the view\n2. Read the HU display 2 seconds after the selection and check that the message is no longer shown",
+      "expected_result": "1. The AUX camera view is displayed\n2. The \"Check Entire Surroundings\" message is no longer shown, which shows that the timer continued from the earlier view and was not restarted",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_28.2.2",
+      "design_method": "負向測試 (Negative / Invalid)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "accessing the AUX camera does not reset the check entire surroundings timer",
+      "test_item": "Accessing aux camera does not reset“Check Entire Surroundings” timer.\n\n(accessing the AUX camera does not reset the check entire surroundings timer)"
+    }
+  ],
+  "reasoning": "§28.2.2 之驗證點為**計時器不重置**：於原視角已跑 3 秒後切換，若不重置則再 2 秒（合計 5 秒）即消失；若重置則 5 秒後才消失。故觀察點取切換後 2 秒。5 秒之值取同節 §28.2.1（`-100`）之來源逐字。否定句式用 `does not`／`no longer`，不用 `check whether`。"
+}
