@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-143",
+  "req_id": "SWE-CAM-010",
+  "test_group": "Rear View Camera",
+  "test_set": "LVDS Messaging",
+  "test_item_verbatim": "LTM shall send: - vehicleUpdate_1.VC_Trans_Equipped equal to \"Automatic\" IF the PROXI parameter Gear_Box_Type is different from \"MTX\" - vehicleUpdate_1.VC_Trans_Equipped equal to \"Manual\" IF the PROXI parameter Gear_Box_Type is equal to \"MTX\"",
+  "source_object_id": "SYS-RA-VF551_V42-323",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "VC_Trans_Equipped = Automatic (637), set the PROXI value and read the LVDS link",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Gear_Box_Type = 4 (ATX)\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read vehicleUpdate_1.VC_Trans_Equipped and check that it is Automatic",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration\n2. vehicleUpdate_1.VC_Trans_Equipped = Automatic is sent over LVDS",
+      "specification_reference": "VF551_V42_P637MCA_VF_2203",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "VC_Trans_Equipped = Automatic (637)",
+      "test_item": "LTM shall send: - vehicleUpdate_1.VC_Trans_Equipped equal to \"Automatic\" IF the PROXI parameter Gear_Box_Type is different from \"MTX\" - vehicleUpdate_1.VC_Trans_Equipped equal to \"Manual\" IF the PROXI parameter Gear_Box_Type is equal to \"MTX\"\n\n(VC_Trans_Equipped = Automatic (637), set the PROXI value and read the LVDS link)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V42-323` 之 `Automatic` 分支（31 token，未逾 50，兩分支共用上半）。PROXI `Gear_Box_Type` 為 byte 101 bit 0–2，`Promaster_ATL_MI` row 447 之列舉含 `1 = MTX`；`!= \"MTX\"` 之代表值取 Atl-Hi 兩本所載之 `4 = ATX`（`HDCC28_ATL_HI` row 442）。**與 `NR1L-RVC-091`（`V42-322`）之分工**：`-322` 只宣告 gating 之存在（3 token、無等式），本二列驗其**具體對映**（`V42-323` 有逐值條文）—— 兩來源不同、可判性亦不同。依 R-CAM15(c)，V42 列承 637。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。"
+}

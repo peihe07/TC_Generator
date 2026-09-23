@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-119",
+  "req_id": "SWE-CAM-008",
+  "test_group": "Rear View Camera",
+  "test_set": "LVDS Messaging",
+  "test_item_verbatim": "a. When IPC_VEHICLE_SETUP.DynamicGrid is missing OR until received during wake up, the HU shall set LVDS gridZoomRequest.DynamicGridRQSts = Default.",
+  "source_object_id": "SYS-RA-VF551_V2-450",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "Default until DynamicGrid is received, withhold the CAN signal and read the LVDS signal",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. A bus analyzer is connected to the LVDS link between the HU and the RVCM\n4. IPC_VEHICLE_SETUP is not transmitted on the bus",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)\n2. Read gridZoomRequest.DynamicGridRQSts and check that it is Default",
+      "expected_result": "1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up\n2. gridZoomRequest.DynamicGridRQSts = Default is sent over LVDS",
+      "specification_reference": "VF551_V2_PHDCC27_VF_1728",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "Default until DynamicGrid is received",
+      "test_item": "a. When IPC_VEHICLE_SETUP.DynamicGrid is missing OR until received during wake up, the HU shall set LVDS gridZoomRequest.DynamicGridRQSts = Default.\n\n(Default until DynamicGrid is received, withhold the CAN signal and read the LVDS signal)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V2-450` 之「`IPC_VEHICLE_SETUP.DynamicGrid` 缺席，或喚醒期間尚未收到時，HU 送 `DynamicGridRQSts = Default`」。「缺席」以**停送該訊息**表達（Pre-Condition 4），「喚醒期間尚未收到」以開機後之讀取表達 ——二者於本列同時成立，為來源之 `OR` 兩支之交集，一次觀察即可判（§5.7）。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。**lint `J`（首字小寫）之豁免**：本列 test_item 上半為來源逐字，其首字為來源之子句編號 `a.`；依 **profile §5.1**，§4.3.1 之逐字忠實優先於版面規則。"
+}

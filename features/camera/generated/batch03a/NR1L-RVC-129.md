@@ -1,0 +1,47 @@
+# NR1L-RVC-129 — SWE-CAM-008
+
+- **Test Group**：Rear View Camera｜**Test Set**：LVDS Messaging
+- **Vehicle Model**：HDCC27=0｜DT27=0｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P1｜**design_method**：決策表 (Decision Table Testing)
+- **specification_reference**：`VF551_V42_P637MCA_VF_2226`（來源列 `SYS-RA-VF551_V42-320`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> IF the internal signal DynamicGrid.Req is equal to "OFF" THEN LTM shall send LVDS gridZoomRequest.DynamicGridRQSts equal to "OFF"
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V42-320` 之「內部訊號 `DynamicGrid.Req = "OFF"` 時，LTM 送 `gridZoomRequest.DynamicGridRQSts = "OFF"`」。**`DynamicGrid.Req` 為內部訊號**（四本 DBC 零命中），以其 HMI 設定項表達 ——`HMI Settings List` `Settings` row 468 之基礎 label `Rear View Camera Active Guidelines*`，`*` 不入 hop（R-CAM5(a)）；637 之 `Brand_Configuration_2 = 11 (RAM)`（R-CAM5(c)′），RAM 欄之逐字 label 為 `ParkView Backup Camera Active Guidelines`（`brand_labels.tsv` row 468）。本列只勾 637，品牌分支單一，依 R-CAM5(e) 寫 Pre-Condition 而不另拆 sibling。**與 `-062`／`-063`（2261）之分工**：後者驗同一設定對 **CAN** 之 `TELEMATIC_VEHICLE_SETUP.DynamicGrid_Req`（V33 條文），本列驗其對 **LVDS** 之 `gridZoomRequest.DynamicGridRQSts`（V42 條文）—— 標的匯流排與條文皆不同。依 R-CAM15(c)，V42 列承 637。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. The vehicle brand is Ram (HDCC27, DT27, 637)
+4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Press "Apps" on Menu Bar to open App Drawer
+2. Select "Settings" in the App Drawer
+3. Select "Camera"
+4. Set "ParkView Backup Camera Active Guidelines" = "Off"
+5. Read gridZoomRequest.DynamicGridRQSts and check that it is OFF
+```
+
+## expected_result
+
+```
+1. The App Drawer is displayed
+2. The "Settings" screen is displayed
+3. The "Camera" settings screen is displayed
+4. The "ParkView Backup Camera Active Guidelines" setting is set to "Off"
+5. gridZoomRequest.DynamicGridRQSts = OFF is sent over LVDS
+```

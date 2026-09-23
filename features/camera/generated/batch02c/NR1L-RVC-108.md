@@ -11,7 +11,7 @@
 
 ## reasoning
 
-驗證目標為 `SYS-RA-VF551_V33-432` 之「`LTM_OperationalModeSts.Info = "SNA"` 時，LTM 於 `TIME_W_RVC2` 期間沿用該些訊號之最後值」。**`TIME_W_RVC2` ＝ 50 ms**（V33 §1.14.1 `SYS-RA-VF551_V33-587` 名／`-588` 值 `50`／`-591` 單位 `ms`；範圍 `[50;100]`、容差 `10`），故觀察窗寫 50 ms。`LTM_OperationalModeSts` 之 `CmdIgnSts` 對應仍為 DR-CAM-i 之範圍，SNA 之產生改以「停送該訊息」表達（訊號逾時即為 SNA，不需知其 raw）—— 此為規避 DR-CAM-i 之可執行寫法。
+驗證目標為 `SYS-RA-VF551_V33-432` 之「`LTM_OperationalModeSts.Info = "SNA"` 時，LTM 於 `TIME_W_RVC2` 期間沿用該些訊號之最後值」。**`TIME_W_RVC2` ＝ 50 ms**（V33 §1.14.1 `SYS-RA-VF551_V33-587` 名／`-588` 值 `50`／`-591` 單位 `ms`；範圍 `[50;100]`、容差 `10`），故觀察窗寫 50 ms。`LTM_OperationalModeSts` 之 `CmdIgnSts` 對應仍為 DR-CAM-i 之範圍，SNA 之產生改以「停送該訊息」表達（訊號逾時即為 SNA，不需知其 raw）—— 此為規避 DR-CAM-i 之可執行寫法。【CAM-10 §1】**判定以 bus analyzer 時戳為準** —— 50 ms 之觀察窗於人工不可達（CAM-09 審閱 §二）；執行時以匯流排錄製之時戳判該窗內之畫面／訊號狀態，不以目視計時。本列歸入交付前實機驗證清單（`features/camera/data/bench_verify.md`）。
 
 ## pre_conditions
 

@@ -308,6 +308,22 @@ batch01 之 `-012`／`-014`／`-016` 與 batch02a 之 `-050`（(c)：637 ＋ 376
 自 batch02b 起為落檔前之逐列判準。
 
 
+### R-CAM16 — 全來源委派之 SWE 列，其零 TC 非缺口（Pei 裁，2026-09-23：CAM-09 審閱 §一-3）
+
+```text
+R-CAM16  SWE 列之所有來源依 R-CAM10（含 (b)）委派他列者，其 TC 數為 0 而**非覆蓋缺口**。
+  該列於 `features/camera/data/coverage.tsv` 記一行：
+    disposition = `No TC — all sources delegated to SWE-CAM-nnn (R-CAM10)`，`tc_count = 0`。
+  與 Heading 列之零 TC（`No TC — Heading; refer to child IDs`，R-BLM2／R-POP5 前例）
+  並列為**兩種**零 TC 形制，不可混記：前者之行為已由承接列驗證，後者之行為在其子列。
+```
+
+**執行層落實（CAM-10 §1）**：A 本現有兩列適用 ——
+`SWE-CAM-007`（唯一來源 `SYS-RA-VF551_V42-216` 委派 `SWE-CAM-006`）與
+`SWE-CAM-013`（三個來源全數委派 `SWE-CAM-004`）。
+`coverage.tsv` 於本輪新建（A 本 25 列全量），兩列依本條記載。
+
+
 ---
 
 ## 平台 ↔ VF ↔ PROXI 對照（下放包 §2 附表，分析層實測 `forms/proxi/` 六本）

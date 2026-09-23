@@ -410,6 +410,48 @@ CAM-08 之 19 列（23 筆）因而未觸發；條文自 CAM-09 起明寫「相�
 `SYS-RA-VF551_V4-125` 逐字只列 `TELEMATIC_FD_14` 一項而無 LVDS 側，
 ER 因而只兩項；依 §8.4.1 不補來源未載者。
 
+### 6-28. selfcheck 第 3 項「雙向」之實作，准
+
+`[DECIDED — CAM-09 審閱 §一-1，Pei 2026-09-23]`
+**3a**（Full-Operation 首行 ∧ 步 1 送 RUN）與 **3b**（Standby 首行 ∧ 無點火步）
+兩述詞各自獨立之實作為正確；審閱原文之「矛盾」即 3b 之意。
+
+### 6-29. R-CAM16 —— 全來源委派之零 TC 形制
+
+`[DECIDED — CAM-09 審閱 §一-3，Pei 2026-09-23]`
+見 `RULINGS.md` R-CAM16。`coverage.tsv` 於本輪新建（A 本 25 列全量），
+`SWE-CAM-007`／`-013` 兩列依該條記載，**不視為覆蓋缺口**。
+
+### 6-30. batch03 難點 A ～ E 之處置
+
+`[DECIDED — CAM-09 審閱 §一-4 ～ §一-8，Pei 2026-09-23]`
+
+| 難點 | 處置 |
+|---|---|
+| A LVDS 訊息週期 | 開 **DR-CAM-p**；`V2-479`／`-480` 之時序面 PENDING，值切換之結果照寫 |
+| B DTC 無命令句式 | **散文書寫** `Read the DTC list with the diagnostic tool and check that …`（profile §7.3）；Pei 若供 Diagnostics 交付本則改抄 |
+| C `V3-281`／`-283` 標的誤植 | **RDF-08／09**；verbatim 逐字不改，ER 以正確標的書寫 |
+| D `V42-590` 同句 | **RDF-10**；plan 記 covered_by，**不造** Communications 之清除側 |
+| E `V42-210` 轉指 PDO | ER 只驗「依 `Radio_Display_Type` 縮放」，具體解析度不比對（DR-CAM-m 範圍）|
+
+### 6-31. `-099`／`-100` 之章節判讀，准
+
+`[DECIDED — CAM-09 審閱 §一-9，Pei 2026-09-23]`
+V2 本 `VF章節` 欄於 `-499`～`-511` 區落後一組；`-501` 屬 Audio Mode ON、`-507` 屬 Audio Mode OFF
+之判讀成立，兩列維持（不同前提之不同驗證點）。
+
+### 6-32. batch03 切法，准
+
+`[DECIDED — CAM-09 審閱 §一-11，Pei 2026-09-23]`
+**batch03a** `-008`／`-009`／`-010` ＝ 23；**batch03b** `-011` ＝ 29；
+**batch03c** `-004`／`-006`／`-019` ＝ 36。三批皆 ≤ 40。
+
+### 6-33. 交付前實機驗證清單
+
+`[DECIDED — CAM-09 審閱 §二，Pei 2026-09-23]`
+`features/camera/data/bench_verify.md` 新建，記交付前須由 Pei 實機驗一次之列：
+`NR1L-RVC-058`／`-092`（`dumpsys` 輸出之可判性）、`-108`（50 ms 觀察窗須以時戳判）。
+
 ---
 
 ## Sign-off

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-142",
+  "req_id": "SWE-CAM-010",
+  "test_group": "Rear View Camera",
+  "test_set": "LVDS Messaging",
+  "test_item_verbatim": "· The Head Unit shall gate PROXI Gear_Box_Type to vehicleUpdate_1.VC_Trans_Equipped. a) The Head Unit shall send LVDS vehicleUpdate_1.VC_Trans_Equipped = [Automatic] when PROXI Gear_Box_Type != [MTX]. b) The Head Unit shall send LVDS vehicleUpdate_1.VC_Trans_Equipped = [Manual] when PROXI Gear_Box_Type = [MTX].",
+  "source_object_id": "SYS-RA-VF551_V3-288",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "VC_Trans_Equipped = Manual, set the PROXI value and read the LVDS link",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Gear_Box_Type = 1 (MTX)\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)\n2. Read vehicleUpdate_1.VC_Trans_Equipped and check that it is Manual",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration\n2. vehicleUpdate_1.VC_Trans_Equipped = Manual is sent over LVDS",
+      "specification_reference": "VF551_V3_P363_VF_1134",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "VC_Trans_Equipped = Manual",
+      "test_item": "· The Head Unit shall gate PROXI Gear_Box_Type to vehicleUpdate_1.VC_Trans_Equipped. a) The Head Unit shall send LVDS vehicleUpdate_1.VC_Trans_Equipped = [Automatic] when PROXI Gear_Box_Type != [MTX]. b) The Head Unit shall send LVDS vehicleUpdate_1.VC_Trans_Equipped = [Manual] when PROXI Gear_Box_Type = [MTX].\n\n(VC_Trans_Equipped = Manual, set the PROXI value and read the LVDS link)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V3-288` 之 `b)` 分支。原句 40 token，未逾 50，主句與兩個子句一併保留（兩分支之 TC 共用同一上半，以括號下半區分，形制同 batch01 之 `NR1L-RVC-017`／`-018`）。依 **R-CAM15(b)**，V42（637）於本驗證點有對應條文（`V42-323`），故 V3 列只承 376。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。"
+}

@@ -199,6 +199,69 @@ the HU shall not display any rear view camera image and the soft key shall not b
 
 ---
 
+## RDF-08 —— `SYS-RA-VF551_V3-281` 之 gating 標的誤植
+
+**觀察**：主句之 gating 標的與其 `a)` 子句所指不一致 —— 主句寫「gate 到 `STATUS_CCAN5.LWSAngle`」
+（即**來源訊號自身**，gating 至自己無意義），`a)` 子句則寫 `vehicleUpdate_2.LwsAngle`（正確之 LVDS 標的）。
+
+**證據**（VF551_V3 §1.10.2，`SYS-RA-VF551_V3-281`，anchor `VF551_V3_P363_VF_615`）：
+
+> · The Head Unit shall gate BH-CAN STATUS_CCAN5.LWSAngle to LVDS **STATUS_CCAN5.LWSAngle**
+> a) The Head Unit shall send LVDS **vehicleUpdate_2.LwsAngle** = [SNA] when BH-CAN
+> STATUS_CCAN3.VehicleSpeedVSOSig is missing…
+
+同本之兄弟列一律作 `to LVDS vehicleUpdate_2.<Signal>`（`-280` 速度、`-282` 排檔）。
+另注意其 `a)` 子句之**條件**亦寫 `STATUS_CCAN3.VehicleSpeedVSOSig is missing` ——
+與主句之 `STATUS_CCAN5.LWSAngle` 不同訊號，疑為第二處誤植。
+
+**TC 側現行處置**：test_item 上半逐字不改（§4.3.1）；ER 以 `a)` 子句之正確標的
+`vehicleUpdate_2.LwsAngle` 書寫，reasoning 具名該誤植（CAM-09 審閱 §一-6）。
+
+**請求之動作**：主句標的更正為 `vehicleUpdate_2.LwsAngle`；並確認 `a)` 子句之條件訊號。
+
+---
+
+## RDF-09 —— `SYS-RA-VF551_V3-283` 之 `a)` 子句標的誤植
+
+**觀察**：`a)` 子句之送出標的寫成**來源側之 CAN 訊號**而非 LVDS 訊號。
+
+**證據**（VF551_V3 §1.10.2，`SYS-RA-VF551_V3-283`，anchor `VF551_V3_P363_VF_613`）：
+
+> · The Head Unit shall gate BH-CAN STATUS_CCAN4.ReverseGearSts to LVDS vehicleUpdate_2.ReverseGearSts
+> a) The Head Unit shall send LVDS **STATUS_CCAN4.ReverseGearSts** = [SNA] when BH-CAN
+> STATUS_CCAN4.ReverseGearSts is missing…
+
+主句之標的正確（`vehicleUpdate_2.ReverseGearSts`），`a)` 子句卻回寫來源名。
+
+**TC 側現行處置**：同 RDF-08 —— 上半逐字不改，ER 以主句之標的書寫。
+
+**請求之動作**：`a)` 子句之標的更正為 `vehicleUpdate_2.ReverseGearSts`。
+
+---
+
+## RDF-10 —— `SYS-RA-VF551_V42-590` 與 `-584` 逐字同句，Communications_Timeout 缺清除側
+
+**觀察**：V42 之三組 DTC 條文（Internal／External／Communications）各應有 set／clear 一對，
+惟 **Communications 組之清除側（`-590`）其句子寫的是 `InternalErrorStatus`** ——
+與 Internal 組之清除側（`-584`）逐字同句。結果：**`Communications_Timeout` 之清除側無條文**。
+
+**證據**（VF551_V42，三組之節序）：
+
+| 組 | set | clear |
+|---|---|---|
+| Internal | `-583`（`systemStatus.InternalErrorStatus = "True"`）| `-584`：`Once the systemStatus.**InternalErrorStatus** signal is set to "False", LTM shall: set the DTC to not present …` |
+| External | `-586`（`ExternalErrorStatus = "True"`）| `-587`：`Once the systemStatus.**ExternalErrorStatus** signal is set to "False" …` |
+| **Communications** | `-589`（`Communications_Timeout = "True"`）| `-590`：`Once the systemStatus.**InternalErrorStatus** signal is set to "False" …` ← **應為 `Communications_Timeout`** |
+
+`-584` 與 `-590` 之 `Description` 逐字相同，只 anchor 不同（`…VF_1993` vs `…VF_1995`）。
+
+**TC 側現行處置**：`batch03_plan.tsv` 之 `-590` 列記 `covered_by: V42-584`，
+**不造 Communications 之清除側**（§8.4.1）。該側之覆蓋缺口由本條承接。
+
+**請求之動作**：`-590` 之訊號名更正為 `systemStatus.Communications_Timeout`。
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -210,3 +273,6 @@ the HU shall not display any rear view camera image and the soft key shall not b
 | RDF-05 | `SWE-CAM-003` | 來源代號拼寫 | DR-CAM-a（須分類）|
 | RDF-06 | `SWE-CAM-002` | 配備需求缺 Absent 側 | DECISIONS 6-18 |
 | RDF-07 | `SWE-CAM-001`（`V33-420`）| 訊號名拼寫缺字 | `NR1L-RVC-064` |
+| RDF-08 | `SWE-CAM-011`（`V3-281`）| gating 標的誤植 | batch03b |
+| RDF-09 | `SWE-CAM-011`（`V3-283`）| `a)` 子句標的誤植 | batch03b |
+| RDF-10 | `SWE-CAM-004`（`V42-590`）| 同句誤植致缺清除側 | batch03c |

@@ -221,6 +221,18 @@ V4 之 `VF章節`(I) 欄 **321/321 全空**。本包實測其 `Description`(D) �
 **LVDS 訊號（`vehicleUpdate_*`／`gridZoomRequest`／`PowerShutDownNotifcation`）無 DBC**，
 其值一律以來源 label 逐字書寫（§8.7.5(f)），不套 `<raw> (<label>)`。
 
+### 7.3 無命令句式可抄時之書寫（CAM-09 審閱 §一-5，Pei 2026-09-23）
+
+本 feature 有兩類觀察**於全語料查無可抄之命令句式**，一律以散文書寫，**不造命令**：
+
+| 類 | 書寫 | 實測依據 |
+|---|---|---|
+| **DTC 之讀取** | `Read the DTC list with the diagnostic tool and check that …` | 交付語料 17 本之 275 條 `$ ` 命令行中與 `DTC` 同格者 **0**；`features/*/generated/` 全部 json 之 `$ ` 命令行共 **9 條，全在 camera 本身**（`adb logcat`／`dumpsys media.camera`）。Diagnostics 線之交付本不在本 repo |
+| **LVDS 訊息之觀察** | `Read <message>.<Signal> and check that it is <label>`，Pre-Condition 先置 `A bus analyzer is connected to the LVDS link between the HU and the RVCM` | A-CA27 之加註：LVDS 相關之 `$ ` 命令行為 0（交付語料與 `sources/raw/*sysad*` 十本 docx 皆然）|
+
+Pei 日後若提供 Diagnostics 線之交付本，DTC 側改抄其句式（記 DECISIONS）。
+`adb` 兩行式（§5.4）只用於 **daemon／camera service 狀態**之觀察，其句式沿 pilot02 之既有用例。
+
 ## 8. framework 重開之 sha16 量測法（CAM-06 審閱 §一-1，Pei 2026-09-23）
 
 `features/camera/framework.md` 之狀態行自載其重開後 sha16 —— 該值**自指**
@@ -259,6 +271,8 @@ EOF
 | `T_INITDISPLAY` | **5,0** | `sec` | 2261（V33）、637（V42）| V33 §1.14.1 `-479`／`-480`／`-483`；V42 `-631`／`-632`／`-635` |
 | `Tpower` | **5** | `sec` | Atl-Hi（V2）、Atl-Mi（V3）| V3 §1.14.1 `-583`／`-584`／`-587`；V2 §1.8.13 `-163`／`-162` |
 | `Reverse_Deb` | **750** | `ms` | Atl-Hi（V2）| V2 §1.8.13 `-151`／`-150`／`-147` |
+| `TIME_W_RVC` | **2,5** | `sec` | 2261（V33）、637（V42）| V33 §1.14.1 `-515`／`-516`／`-519` |
+| `TIME_W_RVC2` | **50** | `ms` | 2261（V33）| V33 §1.14.1 `-587`／`-588`／`-591`（範圍 `[50;100]`、容差 `10`）|
 
 **兩個速度門檻為同一門檻之兩種標定**：8 mph ＝ 12.874752 km/h，與 13,0 km/h 相差
 0.125 km/h，落在 V33／V42 所載之 ±`0,5` 容差內（`-506`／`-658`）。

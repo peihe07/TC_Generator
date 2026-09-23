@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-121",
+  "req_id": "SWE-CAM-008",
+  "test_group": "Rear View Camera",
+  "test_set": "LVDS Messaging",
+  "test_item_verbatim": "· When there is no user change to Dynamic Gridlines, the HU shall send the default value gridZoomRequest.DynamicGridRQSts = [Default] to the RVCM.",
+  "source_object_id": "SYS-RA-VF551_V2-478",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "Default when the user has not changed the setting, leave the setting untouched and read the LVDS signal",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The HU has been restored to its factory default settings\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read gridZoomRequest.DynamicGridRQSts without changing the Dynamic Gridlines setting\n2. Read the recording and check the value of gridZoomRequest.DynamicGridRQSts",
+      "expected_result": "1. The LVDS link is recorded\n2. gridZoomRequest.DynamicGridRQSts = Default is sent to the RVCM",
+      "specification_reference": "VF551_V2_PHDCC27_VF_1672",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "Default when the user has not changed the setting",
+      "test_item": "· When there is no user change to Dynamic Gridlines, the HU shall send the default value gridZoomRequest.DynamicGridRQSts = [Default] to the RVCM.\n\n(Default when the user has not changed the setting, leave the setting untouched and read the LVDS signal)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V2-478` 之「使用者未變更 Dynamic Gridlines 時，HU 送預設值 `[Default]`」。**與 `-119` 之分工**：`-119` 之 Default 係**來源訊號缺席**所致，本列之 Default 係**使用者未操作**所致 —— 兩者之前提不同（本列之 `IPC_VEHICLE_SETUP` 正常傳送），失效態亦不同（§8.2.1）。「未變更」以原廠預設之前提表達。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。"
+}
