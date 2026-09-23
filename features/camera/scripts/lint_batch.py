@@ -52,6 +52,8 @@ for p in sorted(GEN.glob("NR1L-RVC-*.json")):
     for col, name in VM.items():
         ws[f"{col}{row}"] = d["vehicle_model"][name]
     ws[f"AA{row}"] = "PeiPYHsu"
+    if d.get("remarks"):
+        ws[f"AH{row}"] = d["remarks"]      # Remarks 備註（R-13 之來源／誤植註）
     row += 1
 wb.save(OUT)
 

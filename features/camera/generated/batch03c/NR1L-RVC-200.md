@@ -1,0 +1,41 @@
+# NR1L-RVC-200 — SWE-CAM-006
+
+- **Test Group**：Rear View Camera｜**Test Set**：Video Pipeline
+- **Vehicle Model**：HDCC27=0｜DT27=0｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P2｜**design_method**：功能測試 (Functional based ; no specific technique)
+- **specification_reference**：`VF551_V42_P637MCA_VF_2271`（來源列 `SYS-RA-VF551_V42-210`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> LTM shall scale the image received by RVCM over LVDS, according to the PROXI parameter Radio_Display_Type. Refer to HMI and PDO documents for the correct aspect ratio and resolutions to adopt, according to the installed radio display.
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V42-210` 之「LTM 依 PROXI `Radio_Display_Type` 縮放 RVCM 之影像」。**ER 只驗「依 `Radio_Display_Type` 縮放」，不比對具體解析度／aspect ratio**（DECISIONS 6-30 難點 E）—— 來源末之 `Refer to HMI and PDO documents` 為轉指，PDO 不在素材（DR-CAM-m 之範圍）。PROXI 值取 `Promaster_ATL_MI` **row 801** 之實測 `Y = 1`，列舉 `1 = 7" 1280x768`。依 R-CAM15(c)，V42 列承 637。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. PROXI Radio_Display_Type = 1 (7" 1280x768)
+4. No camera image is displayed
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)
+2. Read the HU display and check that the rear view image fills the display without distortion
+```
+
+## expected_result
+
+```
+1. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent and the rear view camera image is displayed
+2. The image is scaled to the display that PROXI Radio_Display_Type configures
+```

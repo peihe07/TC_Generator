@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-185",
+  "req_id": "SWE-CAM-004",
+  "test_group": "Rear View Camera",
+  "test_set": "Diagnostics",
+  "test_item_verbatim": "When Ignition is On AND the gear status is no longer \"SNA\" the Head Unit shall: o heal the DTC. o RVCM and Head Unit functionalities revert back to operating conditions as per Functional Requirements.",
+  "source_object_id": "SYS-RA-VF551_V2-205",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "ignition On and gear no longer SNA heals the DTC, restore the gear signal and read the DTC list",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. TRANSM_FD_4 is not transmitted on the bus so that the gear status is SNA\n4. A DTC is set for the gear status",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P)\n2. Read the DTC list with the diagnostic tool and check the DTC state\n3. Read the HU display and check that the camera functions are available again",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent and the gear status is no longer SNA\n2. The DTC is healed and is no longer present\n3. The RVCM and Head Unit functionalities operate as per the Functional Requirements",
+      "specification_reference": "VF551_V2_PHDCC27_VF_1821",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "ignition On and gear no longer SNA heals the DTC",
+      "test_item": "When Ignition is On AND the gear status is no longer \"SNA\" the Head Unit shall: o heal the DTC. o RVCM and Head Unit functionalities revert back to operating conditions as per Functional Requirements.\n\n(ignition On and gear no longer SNA heals the DTC, restore the gear signal and read the DTC list)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V2-205` 之「點火為 On 且檔位不再為 SNA 時，HU 治癒（heal）該 DTC 並使功能回復」。`SYS-RA-VF551_V2-208` 與本列**逐字同句**（同本之另一節），依同義列不另出 TC，plan 記 covered_by。「檔位為 SNA」以**停送 `TRANSM_FD_4`** 表達（訊號逾時即 SNA，不需注入 raw 15）。點火之 On 態由 `The HU is in the Full-Operation state` 承載（profile §4.1）。DTC 之讀取以散文書寫（profile §7.3）—— 全語料無 DTC 相關之命令句式可抄，**不造命令**。"
+}

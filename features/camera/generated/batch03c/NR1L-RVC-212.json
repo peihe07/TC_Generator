@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-212",
+  "req_id": "SWE-CAM-006",
+  "test_group": "Rear View Camera",
+  "test_set": "Video Pipeline",
+  "test_item_verbatim": "Once the LTM receives the LVDS Video Signal, LTM shall: set the DTC to not present according to the \"TLM Diagnostic Requirement\" document. All related functionalities shall revert back to normal operation conditions",
+  "source_object_id": "SYS-RA-VF551_V42-593",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "video received clears the DTC (637), reconnect the video link and read the DTC list",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The LVDS video link between the RVCM and the HU is disconnected\n4. A specific DTC is set for the missing video",
+      "input_test_data": "NA",
+      "test_procedure": "1. Reconnect the LVDS video link between the RVCM and the HU\n2. Read the DTC list with the diagnostic tool and check the DTC state\n3. Send CAN: STATUS_CCAN5.ShiftLeverPosition = 2 (R)\n4. Read the HU display and check that the rearview image is displayed",
+      "expected_result": "1. The LVDS Video Signal is received by the LTM again\n2. The DTC is set to not present\n3. STATUS_CCAN5.ShiftLeverPosition = 2 (R) is sent\n4. The rearview image is displayed and all related functionalities operate normally",
+      "specification_reference": "VF551_V42_P637MCA_VF_1996",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "video received clears the DTC (637)",
+      "test_item": "Once the LTM receives the LVDS Video Signal, LTM shall: set the DTC to not present according to the \"TLM Diagnostic Requirement\" document. All related functionalities shall revert back to normal operation conditions\n\n(video received clears the DTC (637), reconnect the video link and read the DTC list)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V42-593` 之「收到 LVDS Video Signal 後將 DTC 設為 not present，相關功能回復正常」。與 `-211` 成失效／回復一對。「功能回復」之可判面取影像可再顯示（§6）。DTC 之讀取以散文書寫（profile §7.3）—— 全語料無 DTC 相關之命令句式可抄，**不造命令**。依 R-CAM15(c)，V42 列承 637。"
+}

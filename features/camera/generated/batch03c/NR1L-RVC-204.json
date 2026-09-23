@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-204",
+  "req_id": "SWE-CAM-006",
+  "test_group": "Rear View Camera",
+  "test_set": "Video Pipeline",
+  "test_item_verbatim": "IF the signal LTM_OperationalModeSts.Info is equal to \"Ignition_Off\" or \"Initialization\" THEN LTM shall stop to copy the ADAS_LVDS_RRCamera_Cable into Rear_Camera_Repetition.Data and not display the rearview image.",
+  "source_object_id": "SYS-RA-VF551_V42-262",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "Ignition_Off stops the copy, switch the ignition off and check that the image stops",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-i the CmdIgnSts value that corresponds to Ignition_Off is not sourced\n4. The rearview image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK)\n2. Read the HU display and check that no rearview image is displayed",
+      "expected_result": "1. STATUS_BH_BCM2.CmdIgnSts = 1 (IGN_LK) is sent and the HU leaves the RUN power state\n2. No rearview image is displayed",
+      "specification_reference": "VF551_V42_P637MCA_VF_2366",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "Ignition_Off stops the copy",
+      "test_item": "IF the signal LTM_OperationalModeSts.Info is equal to \"Ignition_Off\" or \"Initialization\" THEN LTM shall stop to copy the ADAS_LVDS_RRCamera_Cable into Rear_Camera_Repetition.Data and not display the rearview image.\n\n(Ignition_Off stops the copy, switch the ignition off and check that the image stops)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V42-262` 之「`LTM_OperationalModeSts.Info` 為 `Ignition_Off` 或 `Initialization` 時，停止複製且不顯示 rearview 影像」。`LTM_OperationalModeSts.Info` 為來源名（§8.7.5(f) 保留）；其 `CmdIgnSts` 對應仍為 DR-CAM-i 之範圍，procedure 以 `IGN_LK` 為最接近之關機轉態（沿 pilot02 `NR1L-RVC-002` 之前例）。依 R-CAM15(c)，V42 列承 637。"
+}

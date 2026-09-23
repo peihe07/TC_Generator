@@ -486,6 +486,30 @@ V2 本 `VF章節` 欄於 `-499`～`-511` 區落後一組；`-501` 屬 Audio Mode
 與來源措辭逐字相符。Pre-Condition 改 `PROXI CAN node 27 (ASM/ASCM) = 1 (Present)`，
 **不需 PENDING**，審閱之退回到此解除。
 
+### 6-40. 8b 擴用至六列，准
+
+`[DECIDED — CAM-11 審閱 §一-3，Pei 2026-09-23]`
+`-038`／`-040`／`-043`／`-096`／`-097`／`-107` 之 Pre-Condition 重複 PENDING 之刪除，
+為 §8.4.3 同一原則之一致適用，准。
+
+### 6-41. `NR1L-RVC-170` 依來源逐字，不以判讀代換觸發
+
+`[DECIDED — CAM-11 審閱 §二-2，Pei 2026-09-23]`
+`SYS-RA-VF551_V3-281` 之 `a)` 子句條件為 `STATUS_CCAN3.VehicleSpeedVSOSig is missing`；
+CAM-11 判其誤植而改停送 `STATUS_CCAN5`，違 §8.1／§8.4.1。
+procedure 改回停送 **`STATUS_CCAN3`**；疑似誤植登 RDF-08，工作簿 `Remarks` 註
+`Condition per source text; suspected typo, see RDF-08`。
+**`STATUS_CCAN5` 缺失 → SNA 之行為無逐字來源，不生成**，待 RDF-08 回覆。
+
+### 6-42. `Steering_Ratio_Rack_Pinion_Type` 之處置
+
+`[DECIDED — CAM-11 審閱 §一-2；執行層 CAM-12 §1 重掃]`
+以同義字（`Steering`／`Rack`／`Pinion`／`Ratio`）重掃 Atl-Hi 三本 PROXI ——
+**查得**：byte 88 bit 0–1，三本 **row 410**，值 `0=Type_1 (Rebel 144.5" WB, 55 C-Factor…)`，
+與來源之參數名**逐字相符**。`NR1L-RVC-164` 之 Pre-Condition 改為
+`PROXI Steering_Ratio_Rack_Pinion_Type = 0 (Type_1)`，**不併入 DR-CAM-n、不標 PENDING**。
+（CAM-11 上繳所稱之「掃描零命中」不成立 —— 該掃描實未執行，見 CAM-12 §5-1。）
+
 ---
 
 ## Sign-off

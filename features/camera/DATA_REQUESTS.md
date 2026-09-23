@@ -28,6 +28,7 @@ Urgency 回報。
 | DR-CAM-n | **Atl-Hi PROXI `Body_Types` 之列舉**（byte 231 bit 0–2）—— `forms/proxi/HDCC28_ATL_HI`／`DT28_ATL_HI`／`HDCC27_initial` 三本之 row 1018 **只載現值**（`7 = Type 7`），`I` 欄無 `0 = …`／`1 = …` 之列舉；`SYS-RA-VF551_V2-446`／`-447` 所引之 `Type 4 - DJ`／`Type 1 - D2` 因而無 raw 可實測 | MISSING | A 本 `SWE-CAM-002`（`batch02b` 之 `NR1L-RVC-073`／`-074`）| 兩列之 Pre-Condition 以 label 式書寫（`PROXI Body_Types = Type 4 - DJ`，§8.7.5(e)），補件後可改為 `<raw> (<label>)` | DECISIONS 6-24 | **中** |
 | DR-CAM-o | **`IPC_VEHICLE_SETUP.LanguageSelection` 之語言 ↔ raw 對照，與 HU 所支援之語言清單** ——訊號本身存在（`IPC_VEHICLE_SETUP` 於三本 BH-CAN 皆有、`LanguageSelection` 16 命中），惟其 `VAL_` 之語言對照與「HU 所用之各語言」之清單於本 feature 素材查無 | MISSING | A 本 `SWE-CAM-003`（`batch02c` 之 `NR1L-RVC-113`）| 供試語言之 raw 標 `PENDING: DR-CAM-o`；各語言之逐字譯文亦無來源，ER 只驗「與語言設定一致」不比對字串 | —— | **低** —— 單列受影響 |
 | DR-CAM-p | **LVDS 訊息之傳送週期** —— `SYS-RA-VF551_V2-479`／`-480` 要求 `gridZoomRequest.DynamicGridRQSts` 先送 `[OFF]`／`[ON]` **two LVDS message cycles** 後再送穩態值；「一個 LVDS message cycle」之時間值於 SYS2 全本與 `forms/` 皆查無 | MISSING | A 本 `SWE-CAM-008`（`batch03a` 之兩列）| 值切換之**結果**照寫；**時序面**（兩週期之長度）標 `PENDING: DR-CAM-p` | CAM-09 上繳 §4-3 難點 A | **中** |
+| DR-CAM-q | **DTC 之識別碼** —— `DTC Criteria Matrix`（V2 所引）與 `"TLM Diagnostic Requirement" document`（V42 所引）兩份文件不在本 feature 之素材；`SWE-CAM-004`／`-006` 之條文只寫「set the DTC as defined in …」而未載碼值 | MISSING | A 本 `SWE-CAM-004`（`batch03c` 之 11 列）與 `SWE-CAM-006`（3 列）| ER 只判「有／無 DTC」而不指名碼值，缺碼標 `PENDING: DR-CAM-q`；DTC 之讀取本身以散文書寫（profile §7.3）| —— | **高** —— `Diagnostics` 組交付前必結 |
 
 ## §5.3 常數之 PENDING 承接（R-G71）
 

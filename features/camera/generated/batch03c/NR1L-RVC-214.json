@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-214",
+  "req_id": "SWE-CAM-019",
+  "test_group": "Rear View Camera",
+  "test_set": "Video Pipeline",
+  "test_item_verbatim": "When the rear images are displayed on TLM_Display.GUI the setted brightness must be over 50%, in order to visualize better the images (refers to FMVSS 111 and according to ECE-REG46 regulations).",
+  "source_object_id": "SYS-RA-VF551_V33-234",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "displayed brightness is above 50 %, display the image and measure the brightness",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)\n2. Read the brightness of the displayed rear image on the HU display and check its level",
+      "expected_result": "1. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent and the rear image is displayed\n2. The brightness of the displayed rear image is over 50 %",
+      "specification_reference": "VF551_V33_P226MCA_VF_1115",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "displayed brightness is above 50 %",
+      "test_item": "When the rear images are displayed on TLM_Display.GUI the setted brightness must be over 50%, in order to visualize better the images (refers to FMVSS 111 and according to ECE-REG46 regulations).\n\n(displayed brightness is above 50 %, display the image and measure the brightness)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V33-234` 之「rear 影像顯示於 `TLM_Display.GUI` 時，亮度須超過 50 %（FMVSS 111 與 ECE-REG46）」。**量測手段來源未載，不造工具**（§8.4.1）—— procedure 只寫 `Read the brightness … and check its level`，由人工以亮度治具量測；本列已列入 `bench_verify.md`。來源之 `setted` 為 SYS2 之拼寫，依逐字原則不更正。"
+}

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-206",
+  "req_id": "SWE-CAM-006",
+  "test_group": "Rear View Camera",
+  "test_set": "Video Pipeline",
+  "test_item_verbatim": "LTM shall continue to: copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data and display the rearview image AND set the signal Rear_Camera_Enable.Info equal to \"TRUE\" until one of the following conditions occurs: the T_Timer expires OR the signal RVC_ImageDefeat.Req is equal to \"Pressed\"",
+  "source_object_id": "SYS-RA-VF551_V42-266",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "copy continues with Enable and RVC_ACTIVE true, keep the trigger active and check that the image continues",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The rearview image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_CCAN5.ShiftLeverPosition = 2 (R)\n2. Hold for 5 s\n3. Read the HU display and check that the rearview image is still displayed",
+      "expected_result": "1. STATUS_CCAN5.ShiftLeverPosition = 2 (R) is sent\n2. The signal is held for 5 s\n3. The rearview image is still displayed",
+      "specification_reference": "VF551_V42_P637MCA_VF_2370",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "copy continues with Enable and RVC_ACTIVE true",
+      "test_item": "LTM shall continue to: copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data and display the rearview image AND set the signal Rear_Camera_Enable.Info equal to \"TRUE\" until one of the following conditions occurs: the T_Timer expires OR the signal RVC_ImageDefeat.Req is equal to \"Pressed\"\n\n(copy continues with Enable and RVC_ACTIVE true, keep the trigger active and check that the image continues)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V42-266` 之「LTM 持續複製並顯示，且 `Rear_Camera_Enable.Info` 與 `RVC_ACTIVE` 皆為 TRUE」。上半為摘句（§4.3.1）：原句 51 token 逾 50，刪一個內部變數之設定子句。**兩個內部訊號不可觀察**（四本 DBC 零命中），依 §6 以影像之續顯為可判後果。`5 s` 為觀察窗而非來源之標定值，不入 test_item。依 R-CAM15(c)，V42 列承 637。"
+}

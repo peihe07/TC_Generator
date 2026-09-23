@@ -209,6 +209,18 @@ V4 之 `VF章節`(I) 欄 **321/321 全空**。本包實測其 `Description`(D) �
 
 ### 7.2 訊號 raw 之查證順序（CAM-08 審閱 §一-6）
 
+**第一步：以來源措辭逐字掃 PROXI 表／以訊號名（非訊息名）掃 DBC。**
+
+- **PROXI**：來源之參數措辭常與 PROXI 表之參數名**逐字相同** ——
+  `CAN node 27 (ASM/ASCM)`（`NR1L-RVC-138`）與 `Steering_Ratio_Rack_Pinion_Type`
+  （`NR1L-RVC-164`）皆為其例，兩者初稿都誤判為「查無」。
+- **DBC**：以**訊號名**掃，不以訊息名 —— 訊息名於 SYS2 與 DBC 常不同
+  （`TRANSM2` ↔ `STATUS_CCAN5`、`ENGINE1` ↔ `STATUS_CCAN4`、`GE` ↔ `STATUS_CCAN5`，
+  `batch03b` 三例），以訊息名掃會得到假的「查無」。
+  大小寫亦須放寬（`LwsAngle` ↔ `LWSAngle`）。
+  訊號名查得而訊息名不同者：**verbatim 逐字不改**（R-13），procedure／ER 改以 DBC 之承載訊息書寫，
+  `Remarks` 欄註明兩者之差。訊號名本身查無者才標 `PENDING`。
+
 寫 `<MSG>.<Signal> = <raw> (<label>)` 前，**先以訊號名自身**查四本 DBC 之 `VAL_`，
 再決定寫法；**不得以同名近似之訊號代查**。
 
@@ -249,6 +261,23 @@ Pei 日後若提供 Diagnostics 線之交付本，DTC 側改抄其句式（記 D
 **查表對映不適用等價類**（CAM-10 審閱 §一-4）：`V42-326` 型之「每個 PROXI 值 → 每個 LVDS 值」
 為規格明定之獨立輸出，任一項錯即漏網（§7），故**全覆蓋、每項一列**，
 不以 §8.3 之邊界＋代表值取代。
+
+### 7.5 `PENDING` 與 lint `P` 之調和形制（CAM-11 審閱 §一-1，Pei 2026-09-23）
+
+CAN 賦值步之值缺來源時，**不得**把 `PENDING` 寫成該步之開頭 ——
+`P`（R-1 v2(a)）要求 Procedure 之 CAN 賦值行為 `Send CAN: <MSG>.<Sig> = <raw> (<label>)`；
+而 selfcheck 第 8a 項要求 `PENDING:` 置於項或子項之行首。兩者之調和形制為：
+
+```
+1. Send CAN: BED_EXTENDER.BedExtenderSts = PENDING (Active)
+a. PENDING: DR-CAM-f the raw value and VAL label for Active are not sourced
+```
+
+賦值行維持 `= <raw> (<label>)` 之形（`<raw>` 以 `PENDING` 佔位、`<label>` 為來源之逐字值），
+說明移至 `a.` 子項之行首。兩項因而同時為 0。
+
+沿革：CAM-11 初稿寫成 `1. PENDING: DR-CAM-f set X to Y`，`P` 由 0 升為 4；
+改為本形制後兩者皆 0（CAM-11 上繳 §4-1）。
 
 ## 8. framework 重開之 sha16 量測法（CAM-06 審閱 §一-1，Pei 2026-09-23）
 

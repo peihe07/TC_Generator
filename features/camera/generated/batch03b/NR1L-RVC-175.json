@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "ShiftLeverPosition = SNA when ShiftLeverPosition is missing, stop the CAN message and read vehicleUpdate_2.ShiftLeverPosition",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-f the TRANSM2 message is not present in the four DBC files in forms\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
       "input_test_data": "NA",
-      "test_procedure": "1. Stop transmitting TRANSM2 on the bus\n2. Read vehicleUpdate_2.ShiftLeverPosition and check that it is SNA",
-      "expected_result": "1. TRANSM2 is no longer received by the LTM\n2. vehicleUpdate_2.ShiftLeverPosition = SNA is sent over LVDS",
+      "test_procedure": "1. Stop transmitting STATUS_CCAN5 on the bus\n2. Read vehicleUpdate_2.ShiftLeverPosition and check that it is SNA",
+      "expected_result": "1. STATUS_CCAN5 is no longer received by the LTM\n2. vehicleUpdate_2.ShiftLeverPosition = SNA is sent over LVDS",
       "specification_reference": "VF551_V42_P637MCA_VF_2020",
       "design_method": "決策表 (Decision Table Testing)",
       "priority": "P1",
@@ -29,5 +29,6 @@
       "test_item": "- IF the LTM does not receive the signal TRANSM2.ShiftLeverPosition, LTM shall send LVDS vehicleUpdate_2.ShiftLeverPosition equal to \"SNA\".\n\n(ShiftLeverPosition = SNA when ShiftLeverPosition is missing, stop the CAN message and read vehicleUpdate_2.ShiftLeverPosition)"
     }
   ],
-  "reasoning": "驗證目標為 `SYS-RA-VF551_V42-308` 之「LTM 未收到 `TRANSM2` 時，LVDS 側送 `SNA`」。**`TRANSM2` 不在 `forms/` 四本 DBC**（A-CA23／DR-CAM-f）；停送之動作不需知其 raw，ER 仍可判。「訊號缺失」以**停送該 CAN 訊息**表達（下放包 §3）—— 逾時門檻之值於來源未載，**不造**（§8.4.1），ER 只判 SNA 之出現而不判其時限。依 R-CAM15(c)，V42 列承 637。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。"
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V42-308` 之「LTM 未收到 `TRANSM2` 時，LVDS 側送 `SNA`」。**`TRANSM2` 不在 `forms/` 四本 DBC**（A-CA23／DR-CAM-f）；停送之動作不需知其 raw，ER 仍可判。「訊號缺失」以**停送該 CAN 訊息**表達（下放包 §3）—— 逾時門檻之值於來源未載，**不造**（§8.4.1），ER 只判 SNA 之出現而不判其時限。依 R-CAM15(c)，V42 列承 637。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。**重掃依 profile §7.2 以訊號名自身為字串**（CAM-11 審閱 §二-1）：`ShiftLeverPosition` 於 `Project__637MCA_BH-CAN_R1_…dbc` 命中一處 —— `BO_ 998 STATUS_CCAN5`（`7|4@0+ (1,0) [0|15]`，`VAL_ … 1 \"P\" 2 \"R\" … 15 \"SNA\"`）。**來源之訊息名 `TRANSM2` 與 DBC 不同** —— test_item 上半之 verbatim 逐字不改（R-13）；procedure 與 ER 改以 DBC 之承載訊息 `STATUS_CCAN5`（`BO_ 998`）書寫，使該步可執行。`PENDING: DR-CAM-f` 因而**撤除**（CAM-11 審閱 §二-1）。（`TRANSM2` 之候選替代早已記於 DR-CAM-f 之 note，本輪以訊號名重掃予以確認。）",
+  "remarks": "Source names the message TRANSM2; the DBC carries ShiftLeverPosition in STATUS_CCAN5 (BO_ 998). See DR-CAM-f."
 }

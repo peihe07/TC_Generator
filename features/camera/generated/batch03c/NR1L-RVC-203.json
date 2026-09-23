@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-203",
+  "req_id": "SWE-CAM-006",
+  "test_group": "Rear View Camera",
+  "test_set": "Video Pipeline",
+  "test_item_verbatim": "not copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data and not display the rearview image.",
+  "source_object_id": "SYS-RA-VF551_V42-274",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "cable video not copied and no image, leave the trigger inactive and check that no image is displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_CCAN5.ShiftLeverPosition = 1 (P)\n2. Read the HU display and check that no rearview image is displayed",
+      "expected_result": "1. STATUS_CCAN5.ShiftLeverPosition = 1 (P) is sent\n2. No rearview image is displayed",
+      "specification_reference": "VF551_V42_P637MCA_VF_2378",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "cable video not copied and no image",
+      "test_item": "not copy the ADAS_LVDS_RRCamera_Cable output video into Rear_Camera_Repetition.Data and not display the rearview image.\n\n(cable video not copied and no image, leave the trigger inactive and check that no image is displayed)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V42-274` 之「不複製 cable 影像、不顯示 rearview 影像」之側。與 `-202` 成正負一對（§8.3 每點一 TC）。依 R-CAM15(c)，V42 列承 637。**lint `J`（首字小寫）之豁免**：本列 test_item 上半為來源逐字，其首字本即小寫；依 **profile §5.1**，§4.3.1 之逐字忠實優先於版面規則。"
+}
