@@ -19,7 +19,7 @@
       "tc_title": "warning text follows the language setting, change the language and check the warning text",
       "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. No camera image is displayed",
       "input_test_data": "NA",
-      "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = PENDING (PENDING: DR-CAM-o raw value and VAL label for a second language)\n2. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n3. Read the warning text overlaid on the upper center of the display and check its language",
+      "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = PENDING (a second language)\na. PENDING: DR-CAM-o the raw value and VAL label for a second language are not sourced\n2. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n3. Read the warning text overlaid on the upper center of the display and check its language",
       "expected_result": "1. The language selection is changed to the second language\n2. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent and the warning text is overlaid\n3. The warning text is shown in the second language that was selected in step 1",
       "specification_reference": "VF551_V4_PHDCC27_VF_523",
       "design_method": "決策表 (Decision Table Testing)",

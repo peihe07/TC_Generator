@@ -18,8 +18,7 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. PENDING: DR-CAM-p the duration of one LVDS message cycle is not sourced
-4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
+3. A bus analyzer is connected to the LVDS link between the HU and the RVCM
 ```
 
 ## input_test_data
@@ -37,5 +36,6 @@
 
 ```
 1. IPC_VEHICLE_SETUP.DynamicGrid = 0 (Dynamic Gridlines OFF) is sent
-2. gridZoomRequest.DynamicGridRQSts = OFF is sent and PENDING: DR-CAM-p it is sent for two LVDS message cycles before the steady value follows
+2. gridZoomRequest.DynamicGridRQSts = OFF is sent
+a. PENDING: DR-CAM-p it is sent for two LVDS message cycles before the steady value follows
 ```

@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "OFF for two LVDS cycles on user change, disable the gridlines and read the LVDS signal over the following cycles",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-p the duration of one LVDS message cycle is not sourced\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
       "input_test_data": "NA",
       "test_procedure": "1. Send CAN: IPC_VEHICLE_SETUP.DynamicGrid = 0 (Dynamic Gridlines OFF)\n2. Read the recording of gridZoomRequest.DynamicGridRQSts from the moment of step 1 and check the values that are sent",
-      "expected_result": "1. IPC_VEHICLE_SETUP.DynamicGrid = 0 (Dynamic Gridlines OFF) is sent\n2. gridZoomRequest.DynamicGridRQSts = OFF is sent and PENDING: DR-CAM-p it is sent for two LVDS message cycles before the steady value follows",
+      "expected_result": "1. IPC_VEHICLE_SETUP.DynamicGrid = 0 (Dynamic Gridlines OFF) is sent\n2. gridZoomRequest.DynamicGridRQSts = OFF is sent\na. PENDING: DR-CAM-p it is sent for two LVDS message cycles before the steady value follows",
       "specification_reference": "VF551_V2_PHDCC27_VF_1673",
       "design_method": "狀態轉換 (State Transition Testing)",
       "priority": "P1",

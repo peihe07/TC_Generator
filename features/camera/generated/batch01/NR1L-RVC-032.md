@@ -30,7 +30,8 @@
 ## test_procedure
 
 ```
-1. Send CAN: BED_EXTENDER.BedExtenderSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for Active)
+1. Send CAN: BED_EXTENDER.BedExtenderSts = PENDING (Active)
+a. PENDING: DR-CAM-f the raw value and VAL label for Active are not sourced
 2. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)
 3. Read the HU display and check that no camera image is displayed and that the "Camera Not in position" message is shown
 ```

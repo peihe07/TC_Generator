@@ -1,9 +1,9 @@
 # lint036 報告：batch03a_lint.xlsx
 
-- 來源：`batch03a_lint.xlsx`（唯讀）—— **lint 專用暫存簿**，由本目錄之 29 份 json
+- 來源：`batch03a_lint.xlsx`（唯讀）—— **lint 專用暫存簿**，由本目錄之 32 份 json
   以母本第 9 列欄序組成，落於 session scratchpad，**未寫回任何交付工作簿**。
   組簿工具 `features/camera/scripts/lint_batch.py`
-- 資料列數：29
+- 資料列數：32
 - sheet：`Test Case Specification 測試用例規範`（header 第 9 列）
 - L 閾值：50 tokens
 - profile：`camera`（P 採 R-1 v3；另跑 Q／R／T）
@@ -33,15 +33,15 @@
 | Q | 不可見字元（NBSP／全形空格／行尾空白） | 0 | 0 | 每行每欄 | 未校準（R-10(a)，21 包新增） |
 | R | Pre-Condition 版面（未編號行／多條件並列） | 0 | 0 | 每行 | 未校準（R-9(a)，21 包新增） |
 | T | PENDING 說明非英文 | 0 | 0 | 每次命中 | 未校準（R-14，21 包新增） |
-| U | PENDING 佔位（四欄全掃，含 ER 側） | 4 | 2 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
+| U | PENDING 佔位（四欄全掃，含 ER 側） | 2 | 2 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
 | V | 行首空白（IN §11） | 0 | 0 | 每行每欄 | 未校準（IN §11，27 包新增） |
-| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 29 | 29 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
+| I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 32 | 32 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
 | W | ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6） | 0 | 0 | 每次命中 | **待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述 |
 | X | 導航路徑無固定入口（§5.8／R-G71） | 0 | 0 | 每行 | 未校準（§5.8／R-G71，GC-07 新增）—— **WARN 只報不改** |
 | Y | PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式） | 0 | 0 | 每行 | 未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72 |
 | Z | Vehicle Model 七欄 1／0（R-CAM2，Camera profile 專屬） | 0 | 0 | 每列每欄；七欄全缺時每 sheet 記一筆 | 未校準（R-CAM2，CAM-02 新增）—— **feature 專屬**，僅 `--profile camera` 啟用；既有八本無此七欄，未啟用即不檢查（`Z=0` 在未啟用時是沉默，不是核可） |
 
-**總計：行計 34**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 35**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
@@ -51,16 +51,14 @@
 | ---: | --- | --- | --- | --- |
 | 11 | NR1L-RVC-119 | test_item | 首字小寫 'a.' | a. When IPC_VEHICLE_SETUP.DynamicGrid is missing OR until received during wake u |
 
-### U — PENDING 佔位（四欄全掃，含 ER 側）（行計 4／列計 2）
+### U — PENDING 佔位（四欄全掃，含 ER 側）（行計 2／列計 2）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
-| 14 | NR1L-RVC-122 | pre | PENDING 佔位（DR-CAM-p） | 3. PENDING: DR-CAM-p the duration of one LVDS message cycle is not sourced |
-| 14 | NR1L-RVC-122 | er | PENDING 佔位（DR-CAM-p） | 2. gridZoomRequest.DynamicGridRQSts = OFF is sent and PENDING: DR-CAM-p it is se |
-| 15 | NR1L-RVC-123 | pre | PENDING 佔位（DR-CAM-p） | 3. PENDING: DR-CAM-p the duration of one LVDS message cycle is not sourced |
-| 15 | NR1L-RVC-123 | er | PENDING 佔位（DR-CAM-p） | 2. gridZoomRequest.DynamicGridRQSts = ON is sent and PENDING: DR-CAM-p it is sen |
+| 14 | NR1L-RVC-122 | er | PENDING 佔位（DR-CAM-p） | a. PENDING: DR-CAM-p it is sent for two LVDS message cycles before the steady va |
+| 15 | NR1L-RVC-123 | er | PENDING 佔位（DR-CAM-p） | a. PENDING: DR-CAM-p it is sent for two LVDS message cycles before the steady va |
 
-### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 29／列計 29）
+### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 32／列計 32）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -93,4 +91,7 @@
 | 36 | NR1L-RVC-144 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 37 | NR1L-RVC-145 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 | 38 | NR1L-RVC-146 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 39 | NR1L-RVC-147 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 40 | NR1L-RVC-148 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
+| 41 | NR1L-RVC-149 | expected_result | **窗未完整宣告** —— 訖點無片語可抽，本列不參與 I-cross 比對（R-SU33(b)：ER 須明載窗之起訖） | 起 availability-check → 訖 **未載** |
 

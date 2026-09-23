@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "SVC_SoftBtn_Rq = Not Pressed continues, wait without pressing anything and check that the signal keeps being sent",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-j the SVC_SoftBtn_Rq signal is not present in the four DBC files in forms\n4. The shift lever is in P\n5. No camera image is displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. The shift lever is in P\n4. No camera image is displayed",
       "input_test_data": "NA",
       "test_procedure": "1. Connect a bus analyzer to the vehicle bus and start recording\n2. Hold for 10 s without pressing any button on the HU\n3. Read the bus analyzer recording and check the SVC_SoftBtn_Rq signal",
       "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. No button is pressed for 10 s\n3. PENDING: DR-CAM-j SVC_SoftBtn_Rq = Not Pressed is still sent after 10 s",

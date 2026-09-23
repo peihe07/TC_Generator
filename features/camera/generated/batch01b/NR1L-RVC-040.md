@@ -19,8 +19,7 @@
 1. The HU is in the Full-Operation state
 2. PROXI Surround_View_Camera = 1 (Present)
 3. CAN source: BRAKE_FD_2.VehicleSpeedVSOSig (HDCC27, DT27) / STATUS_CCAN3.VehicleSpeedVSOSig (637, 2261, 376)
-4. PENDING: DR-CAM-j the SVC_DisplaySts signal is not present in the four DBC files in forms
-5. No camera image is displayed
+4. No camera image is displayed
 ```
 
 ## input_test_data
@@ -40,5 +39,6 @@
 ```
 1. BRAKE_FD_2.VehicleSpeedVSOSig = 205 (12.8125 km/h) is sent
 2. The virtual Surround View Camera button registers the press
-3. The Surround View Camera video image is displayed on the HU display and PENDING: DR-CAM-j the SVC_DisplaySts = SVC image displayed signal is sent to the CVPM within Tsend of the keypress
+3. The Surround View Camera video image is displayed on the HU display
+a. PENDING: DR-CAM-j the SVC_DisplaySts = SVC image displayed signal is sent to the CVPM within Tsend of the keypress
 ```

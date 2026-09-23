@@ -30,7 +30,8 @@
 ## test_procedure
 
 ```
-1. Send CAN: BED_EXTENDER.BedExtenderFailSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for Fail_Present)
+1. Send CAN: BED_EXTENDER.BedExtenderFailSts = PENDING (Fail_Present)
+a. PENDING: DR-CAM-f the raw value and VAL label for Fail_Present are not sourced
 2. Read the HU display and check the rear view camera image
 ```
 

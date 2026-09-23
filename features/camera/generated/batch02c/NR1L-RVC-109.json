@@ -19,7 +19,7 @@
       "tc_title": "fallback on fail status, check that the previously known bed extender values are still used",
       "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-f the BED_EXTENDER message is not present in the four DBC files in forms\n4. LTM_OperationalModeSts.Info = \"Ignition_On\"\n5. The rear view camera image is displayed",
       "input_test_data": "NA",
-      "test_procedure": "1. Send CAN: BED_EXTENDER.BedExtenderFailSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for Fail_Present)\n2. Read the HU display and check the rear view camera image",
+      "test_procedure": "1. Send CAN: BED_EXTENDER.BedExtenderFailSts = PENDING (Fail_Present)\na. PENDING: DR-CAM-f the raw value and VAL label for Fail_Present are not sourced\n2. Read the HU display and check the rear view camera image",
       "expected_result": "1. The bed extender fail status is reported as Fail_Present\n2. The rear view camera image keeps behaving according to the bed extender values that were valid before step 1",
       "specification_reference": "VF551_V33_P226MCA_VF_1642",
       "design_method": "狀態轉換 (State Transition Testing)",

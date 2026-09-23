@@ -50,7 +50,7 @@
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
 | 29 | NR1L-RVC-092 | pre | PENDING 佔位（DR-CAM-m） | 3. PENDING: DR-CAM-m the image formats supported by the EVS HAL are not sourced  |
-| 30 | NR1L-RVC-093 | er | PENDING 佔位（DR-CAM-j） | 2. RADIO_B3.CameraDisplaySts = 0 (Default) is sent on change and PENDING: DR-CAM |
+| 30 | NR1L-RVC-093 | er | PENDING 佔位（DR-CAM-j） | a. PENDING: DR-CAM-j within Tsend of the state change |
 
 ### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 22／列計 22）
 

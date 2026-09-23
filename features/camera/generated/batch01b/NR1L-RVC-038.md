@@ -18,9 +18,8 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Surround_View_Camera = 1 (Present)
-3. PENDING: DR-CAM-j the SVC_SoftBtn_Rq signal is not present in the four DBC files in forms
-4. The shift lever is in P
-5. No camera image is displayed
+3. The shift lever is in P
+4. No camera image is displayed
 ```
 
 ## input_test_data

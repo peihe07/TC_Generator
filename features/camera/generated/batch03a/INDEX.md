@@ -1,6 +1,6 @@
 # INDEX — batch03a（LVDS Messaging，下放包 CAM-10 §2）
 
-`SWE-CAM-008`＋`-009`＋`-010`｜TC ID `NR1L-RVC-118`～`-146`（**29 列**）｜計畫 `features/camera/data/batch03_plan.tsv`（本輪修訂，見上繳包 §2-2）
+`SWE-CAM-008`＋`-009`＋`-010`｜TC ID `NR1L-RVC-118`～`-149`（**32 列**）｜計畫 `features/camera/data/batch03_plan.tsv`（本輪修訂，見上繳包 §2-2）
 
 Test Group：`Rear View Camera`｜Test Set：全 29 列 `LVDS Messaging`。
 
@@ -35,13 +35,16 @@ Test Group：`Rear View Camera`｜Test Set：全 29 列 `LVDS Messaging`。
 | `NR1L-RVC-144` | `SWE-CAM-010` | `SYS-RA-VF551_V42-323` | VC_Trans_Equipped = Manual (637) | 決策表 | VF(ProMaster)637 | `VF551_V42_P637MCA_VF_2203` | P1 |
 | `NR1L-RVC-145` | `SWE-CAM-010` | `SYS-RA-VF551_V42-326` | VC_WHL_BASE_LENGTH = Not_Used (637) | 決策表 | VF(ProMaster)637 | `VF551_V42_P637MCA_VF_2476` | P2 |
 | `NR1L-RVC-146` | `SWE-CAM-010` | `SYS-RA-VF551_V42-326` | VC_WHL_BASE_LENGTH = Length_1 (637) | 決策表 | VF(ProMaster)637 | `VF551_V42_P637MCA_VF_2476` | P1 |
+| `NR1L-RVC-147` | `SWE-CAM-010` | `SYS-RA-VF551_V42-326` | VC_WHL_BASE_LENGTH = Length_2 (637) | 決策表 | VF(ProMaster)637 | `VF551_V42_P637MCA_VF_2476` | P2 |
+| `NR1L-RVC-148` | `SWE-CAM-010` | `SYS-RA-VF551_V42-326` | VC_WHL_BASE_LENGTH = Length_3 (637) | 決策表 | VF(ProMaster)637 | `VF551_V42_P637MCA_VF_2476` | P2 |
+| `NR1L-RVC-149` | `SWE-CAM-010` | `SYS-RA-VF551_V42-326` | VC_WHL_BASE_LENGTH = Length_4 (637) | 決策表 | VF(ProMaster)637 | `VF551_V42_P637MCA_VF_2476` | P2 |
 
-全部 29 列之 `Commander (598)`／`Regengade (5210)`／`Toro(2261)` 皆為 `0` ——
+全部 32 列之 `Commander (598)`／`Regengade (5210)`／`Toro(2261)` 皆為 `0` ——
 前二者依 R-CAM2(b)；`Toro(2261)` 因 `SWE-CAM-008`／`-009`／`-010` 三列之 in-scope 來源
 無一出自 VF551_V33（2261 之本），依 R-CAM15 不勾。
 
-**摘句十一列**：`-124`～`-127`（`V3-284` 78 → 24～31）、`-131`～`-135`（`V2-486` 80 → 32～35）、
-`-145`／`-146`（`V42-326` 73 → 17）。其餘十八列未逾 50 token。
+**摘句十四列**：`-124`～`-127`（`V3-284` 78 → 24～31）、`-131`～`-135`（`V2-486` 80 → 32～35）、
+`-145`～`-149`（`V42-326` 73 → 17）。其餘十八列未逾 50 token。
 
 **`V2-486` 拆為五列**（`-131`～`-135`）—— `a.`～`e.` 為五個獨立驗證點；併為一列則摘句
 無法在 50 token 內同時保留條件與五個結果子句（升級條件第 3 項之正解，見上繳包 §2-2）。
@@ -49,3 +52,7 @@ Test Group：`Rear View Camera`｜Test Set：全 29 列 `LVDS Messaging`。
 **PENDING**：`-122`／`-123`（`DR-CAM-p`，LVDS 訊息週期）。
 
 **`J` 一列豁免**：`-119` 之上半首字為來源子句編號 `a.`（profile §5.1）。
+
+**`-147`～`-149` 為 CAM-11 §2 之補列**（CAM-10 審閱 §一-4）—— `V42-326` 之五個查表對映全覆蓋、每項一列；查表對映之每一項為規格明定之獨立輸出，§8.3 之等價類不適用。
+
+**`-138` 之 Pre-Condition 3 已改為實測值** `PROXI CAN node 27 (ASM/ASCM) = 1 (Present)`（CAM-11 §2 查證，DECISIONS 6-39）。

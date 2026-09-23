@@ -37,5 +37,6 @@
 
 ```
 1. The Forward Facing Camera image is closed
-2. RADIO_B3.CameraDisplaySts = 0 (Default) is sent on change and PENDING: DR-CAM-j within Tsend of the state change
+2. RADIO_B3.CameraDisplaySts = 0 (Default) is sent on change
+a. PENDING: DR-CAM-j within Tsend of the state change
 ```

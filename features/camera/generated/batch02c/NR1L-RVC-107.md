@@ -18,9 +18,8 @@
 ```
 1. The HU is in the Full-Operation state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. PENDING: DR-CAM-k VF664 is not present in sources or forms
-4. The shift lever is in P
-5. No camera image is displayed
+3. The shift lever is in P
+4. No camera image is displayed
 ```
 
 ## input_test_data

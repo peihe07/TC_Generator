@@ -20,7 +20,7 @@
       "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Forward_Facing_Camera = 1 (Present)\n3. The shift lever is in P\n4. No camera image is displayed",
       "input_test_data": "NA",
       "test_procedure": "1. Connect a bus analyzer to the vehicle bus and start recording\n2. Press the virtual Forward Facing Camera button on the HU display\n3. Read RADIO_B3.CameraDisplaySts and check that it is 3 (View_3), and check the time between the keypress and its transmission",
-      "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. The virtual Forward Facing Camera button registers the press\n3. RADIO_B3.CameraDisplaySts = 3 (View_3) is sent on change and PENDING: DR-CAM-j within Tsend of the keypress",
+      "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. The virtual Forward Facing Camera button registers the press\n3. RADIO_B3.CameraDisplaySts = 3 (View_3) is sent on change\na. PENDING: DR-CAM-j within Tsend of the keypress",
       "specification_reference": "CFTS092-4781661",
       "design_method": "功能測試 (Functional based ; no specific technique)",
       "priority": "P1",

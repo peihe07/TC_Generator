@@ -20,7 +20,7 @@
       "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Forward_Facing_Camera = 1 (Present)\n3. The Forward Facing Camera image is displayed\n4. A bus analyzer is connected to the vehicle bus",
       "input_test_data": "NA",
       "test_procedure": "1. Press the \"X\" exit button on the top right corner of the HU display\n2. Read RADIO_B3.CameraDisplaySts and check that it is 0 (Default), and check the time between step 1 and its transmission",
-      "expected_result": "1. The Forward Facing Camera image is closed\n2. RADIO_B3.CameraDisplaySts = 0 (Default) is sent on change and PENDING: DR-CAM-j within Tsend of the state change",
+      "expected_result": "1. The Forward Facing Camera image is closed\n2. RADIO_B3.CameraDisplaySts = 0 (Default) is sent on change\na. PENDING: DR-CAM-j within Tsend of the state change",
       "specification_reference": "CFTS092-4781662",
       "design_method": "狀態轉換 (State Transition Testing)",
       "priority": "P1",

@@ -19,7 +19,7 @@
       "tc_title": "Camera Not in position with bed extender clear, 2261, open the rear hatch with the bed extender clear and check the overlaid message",
       "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-f the BED_EXTENDER message is not present in the four DBC files in forms\n4. The rear view camera image is displayed\n5. STATUS_BH_BCM.RHatchSts = 0 (Closed)",
       "input_test_data": "NA",
-      "test_procedure": "1. Send CAN: BED_EXTENDER.BedExtenderSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for Not_Active)\n2. Send CAN: BED_EXTENDER.IncompleteBedExtenderSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for False)\n3. Send CAN: STATUS_BH_BCM.RHatchSts = 1 (Open)\n4. Read the HU display within 5 s and check the message overlaid on the rear view camera image",
+      "test_procedure": "1. Send CAN: BED_EXTENDER.BedExtenderSts = PENDING (Not_Active)\na. PENDING: DR-CAM-f the raw value and VAL label for Not_Active are not sourced\n2. Send CAN: BED_EXTENDER.IncompleteBedExtenderSts = PENDING (False)\na. PENDING: DR-CAM-f the raw value and VAL label for False are not sourced\n3. Send CAN: STATUS_BH_BCM.RHatchSts = 1 (Open)\n4. Read the HU display within 5 s and check the message overlaid on the rear view camera image",
       "expected_result": "1. The bed extender status is reported as Not_Active\n2. The incomplete bed extender status is reported as False\n3. STATUS_BH_BCM.RHatchSts = 1 (Open) is sent\n4. The message \"Camera Not in position\" is overlaid on the rear view camera image for 5 s",
       "specification_reference": "VF551_V33_P226MCA_VF_1624",
       "design_method": "決策表 (Decision Table Testing)",

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-168",
+  "req_id": "SWE-CAM-011",
+  "test_group": "Rear View Camera",
+  "test_set": "LVDS Messaging",
+  "test_item_verbatim": "· The Head Unit shall gate BH-CAN STATUS_CCAN3.VehicleSpeedVSOSig to LVDS vehicleUpdate_2.VehicleSpeedVSOSig a) The Head Unit shall send LVDS vehicleUpdate_2.VehicleSpeedVSOSig = [SNA] when BH-CAN STATUS_CCAN3.VehicleSpeedVSOSig is missing",
+  "source_object_id": "SYS-RA-VF551_V3-280",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "VehicleSpeedVSOSig = SNA when VehicleSpeedVSOSig is missing, stop the CAN message and read vehicleUpdate_2.VehicleSpeedVSOSig",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "input_test_data": "NA",
+      "test_procedure": "1. Stop transmitting STATUS_CCAN3 on the bus\n2. Read vehicleUpdate_2.VehicleSpeedVSOSig and check that it is SNA",
+      "expected_result": "1. STATUS_CCAN3 is no longer received by the HU\n2. vehicleUpdate_2.VehicleSpeedVSOSig = SNA is sent over LVDS",
+      "specification_reference": "VF551_V3_P363_VF_616",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "VehicleSpeedVSOSig = SNA when VehicleSpeedVSOSig is missing",
+      "test_item": "· The Head Unit shall gate BH-CAN STATUS_CCAN3.VehicleSpeedVSOSig to LVDS vehicleUpdate_2.VehicleSpeedVSOSig a) The Head Unit shall send LVDS vehicleUpdate_2.VehicleSpeedVSOSig = [SNA] when BH-CAN STATUS_CCAN3.VehicleSpeedVSOSig is missing\n\n(VehicleSpeedVSOSig = SNA when VehicleSpeedVSOSig is missing, stop the CAN message and read vehicleUpdate_2.VehicleSpeedVSOSig)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V3-280` 之 `a)` 子句（缺失 → `SNA`）。「訊號缺失」以**停送該 CAN 訊息**表達（下放包 §3）—— 逾時門檻之值於來源未載，**不造**（§8.4.1），ER 只判 SNA 之出現而不判其時限。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。"
+}

@@ -452,6 +452,40 @@ V2 本 `VF章節` 欄於 `-499`～`-511` 區落後一組；`-501` 屬 Audio Mode
 `features/camera/data/bench_verify.md` 新建，記交付前須由 Pei 實機驗一次之列：
 `NR1L-RVC-058`／`-092`（`dumpsys` 輸出之可判性）、`-108`（50 ms 觀察窗須以時戳判）。
 
+### 6-34. `V2-486` 拆五列，准
+
+`[DECIDED — CAM-10 審閱 §一-1，Pei 2026-09-23]`
+拆列為 §8.2.2 之正解；**升級條件 3 自 CAM-11 起改寫為「摘句不可行且*不可拆*時停」**
+（記入 profile §7.4）。
+
+### 6-35. `V3-284` 四列，准
+
+`[DECIDED — CAM-10 審閱 §一-2]` CAM-09 計畫漏列 c／d 之 Atl-Mi 分支，由執行層補正。
+
+### 6-36. `coverage.tsv` 25 列全量、沿 security 本格式，准
+
+`[DECIDED — CAM-10 審閱 §一-3]` 下放包指 `vehicle_setting` 為分析層之錯（該檔不存在）。
+
+### 6-37. `V42-326` 擴為五列
+
+`[DECIDED — CAM-10 審閱 §一-4]`
+查表對映之每一項為規格明定之獨立輸出，**§8.3 之等價類不適用**（任一項錯即漏網，§7）。
+`-145`／`-146` 保留，補 `-147`～`-149`，batch03a 29 → **32**。
+
+### 6-38. LVDS 注入能力入 `bench_verify.md`
+
+`[DECIDED — CAM-10 審閱 §一-5]`
+`-131`～`-133` 三列保留；`bench_verify.md` 加一列「LVDS 模擬器注入 RVCM → HU 訊號之能力」。
+若交付前確認無此能力，三列於工作簿 `Remarks` 註「需 LVDS 模擬器」而**非刪**。
+
+### 6-39. `-138` 之 PROXI 查證
+
+`[DECIDED — CAM-10 審閱 §一-6；執行層 CAM-11 §2 查證]`
+`CAN node 27 (ASM/ASCM)` **確為 PROXI 表之參數名**（byte 29 bit 3）——
+`HDCC28_ATL_HI`／`DT28_ATL_HI` row 32 實測 `1=Present`、`HDCC27_initial` `0=Absent`，
+與來源措辭逐字相符。Pre-Condition 改 `PROXI CAN node 27 (ASM/ASCM) = 1 (Present)`，
+**不需 PENDING**，審閱之退回到此解除。
+
 ---
 
 ## Sign-off

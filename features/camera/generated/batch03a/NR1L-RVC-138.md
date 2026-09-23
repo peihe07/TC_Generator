@@ -11,14 +11,14 @@
 
 ## reasoning
 
-驗證目標為 `SYS-RA-VF551_V2-445` 之「HU 將 PROXI `CAN node 27 (ASM/ASCM)` 之值 gate 至 LVDS `vehicleUpdate_1.NetCfg_ASCM`」。來源以 `PROXI CAN node 27 (ASM/ASCM) value` 稱之，非 PROXI 表之參數名；其 raw 無從實測，Pre-Condition 依 §8.7.5(e) 以來源措辭逐字書寫。**PROXI 值 ↔ LVDS 值之對照表於 SYS2 查無**，故 ER 只驗「該 LVDS 訊號反映該 PROXI 值」而不寫具體對映（同 `NR1L-RVC-091` 之處置，DECISIONS 6-25）。Atl-Mi 之對應：`Wheelbase` 由 `-139`／`-140`（V3）與 `-145`／`-146`（V42）承接，其來源**有**逐值對照故可寫具體值。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。
+驗證目標為 `SYS-RA-VF551_V2-445` 之「HU 將 PROXI `CAN node 27 (ASM/ASCM)` 之值 gate 至 LVDS `vehicleUpdate_1.NetCfg_ASCM`」。**CAM-11 §2 查證結果**：`CAN node 27 (ASM/ASCM)` **確為 PROXI 表之參數名**（byte 29 bit 3）——`HDCC28_ATL_HI` 與 `DT28_ATL_HI` row 32 實測 `1=Present`、`HDCC27_initial` row 32 `0=Absent`；來源之措辭與 PROXI 表之參數名**逐字相符**。Pre-Condition 因而改寫為 `PROXI CAN node 27 (ASM/ASCM) = 1 (Present)`，**不需 PENDING**（CAM-10 審閱 §一-6 之退回已解）。**PROXI 值 ↔ LVDS 值之對照表於 SYS2 查無**，故 ER 只驗「該 LVDS 訊號反映該 PROXI 值」而不寫具體對映（同 `NR1L-RVC-091` 之處置，DECISIONS 6-25）。Atl-Mi 之對應：`Wheelbase` 由 `-139`／`-140`（V3）與 `-145`／`-146`（V42）承接，其來源**有**逐值對照故可寫具體值。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。
 
 ## pre_conditions
 
 ```
 1. The HU is in Standby state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. PROXI CAN node 27 (ASM/ASCM) is configured as present
+3. PROXI CAN node 27 (ASM/ASCM) = 1 (Present)
 4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
 ```
 

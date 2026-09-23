@@ -37,6 +37,12 @@ CAM-05 審閱 §三-3（Pei 2026-09-23）令 `selfcheck_r_cam10.py` 更名本檔
    （`Cycle the ignition`／`Turn the ignition`／`Power on the HU`／`Power cycle`）；
    一律 `Send CAN: <MSG>.CmdIgnSts = <raw> (<label>)`（單 EE 直寫，跨 EE 依 R-CAM3(e)／(f)）。
    其目的子句（`… so that the HU reads the PROXI configuration`）移入 ER。
+8. **`PENDING:` 之落點**（§8.4.3，CAM-10 審閱 §二-1）——
+   `8a`：`PENDING:` 只得出現於**編號項或子項之行首**（`1. PENDING: …`／`a. PENDING: …`），
+   不得嵌入句中 —— 嵌入者其缺值之範圍不可辨。
+   `8b`：同一 `DR-CAM-x` 之 `PENDING` 同時出現於 `pre_conditions` 與 `expected_result` 者，
+   多為缺值只在 ER 而 Pre-Condition 重複宣告；**佔位只落於缺值之欄**（§8.4.3）。
+   本項為**提示**（兩欄確各有缺值時為誤報），命中須逐列覆核。
 
 資料：`features/camera/data/layer3_a_vf_chapters.tsv`（A 本 541 個來源引用之全量展開）
 ＋ 六本 SYS2 之 `Basic Report` 分頁（`F` 欄錨、`D` 欄 Description）。
@@ -76,6 +82,10 @@ RE_STANDBY = re.compile(r"^\s*1\.\s*The HU is in Standby state", re.I)
 RE_FULLOP1 = re.compile(r"^\s*1\.\s*The HU is in the Full-Operation state", re.I)
 VM_HI = ("HDCC27", "DT27")
 VM_MI = ("VF(ProMaster)637", "Toro(2261)", "Fastack (376)")
+# 第 8 項：PENDING 之落點
+RE_PEND_OK = re.compile(r"^\s*(?:\d+\.|[a-z]\.)\s*PENDING:")
+RE_PEND_ANY = re.compile(r"PENDING:")
+RE_DRID = re.compile(r"DR-CAM-[a-z]")
 
 
 def _txt(v) -> str:
@@ -138,6 +148,8 @@ def main() -> None:
     hit6: list[tuple] = []       # 設定操作句式（canon §5.8(e)）
     hit3b: list[tuple] = []      # Standby 首行卻無點火步
     hit7: list[tuple] = []       # 散文式點火動作
+    hit8a: list[tuple] = []      # PENDING 嵌入句中
+    hit8b: list[tuple] = []      # 同一 DR 之 PENDING 跨 pre 與 er
     no_source: list[tuple] = []
     checked = tcs = 0
 
@@ -210,6 +222,17 @@ def main() -> None:
                 for ln in tc["test_procedure"].split("\n"):
                     if RE_SETSTYLE.search(ln):
                         hit6.append((tc_id, ln.strip()[:80]))
+                # ── 8 ── PENDING 之落點（§8.4.3）
+                for fld in ("pre_conditions", "test_procedure", "expected_result"):
+                    for ln in tc[fld].split("\n"):
+                        if RE_PEND_ANY.search(ln) and not RE_PEND_OK.match(ln):
+                            hit8a.append((tc_id, fld, ln.strip()[:80]))
+                pre_dr = {m for ln in tc["pre_conditions"].split("\n") if "PENDING:" in ln
+                          for m in RE_DRID.findall(ln)}
+                er_dr = {m for ln in tc["expected_result"].split("\n") if "PENDING:" in ln
+                         for m in RE_DRID.findall(ln)}
+                for dr in sorted(pre_dr & er_dr):
+                    hit8b.append((tc_id, dr))
                 # ── 4 ── verbatim 保序子序列
                 sid = doc.get("source_object_id")
                 verb = doc.get("test_item_verbatim", "")
@@ -229,6 +252,8 @@ def main() -> None:
     print(f"  5 CAN source 行　：**命中 {len(hit5)}**")
     print(f"  6 設定操作句式　 ：**命中 {len(hit6)}**")
     print(f"  7 點火動作 CAN 式：**命中 {len(hit7)}**")
+    print(f"  8a PENDING 落點　：**命中 {len(hit8a)}**（嵌入句中）")
+    print(f"  8b PENDING 跨兩欄：**命中 {len(hit8b)}**（提示，須逐列覆核）")
     for tc_id, anchor in unresolved:
         print(f"  [1 反查失敗] {tc_id}  {anchor}")
     for tc_id, anchor, sid in constant:
@@ -254,8 +279,12 @@ def main() -> None:
         print(f"  [6 違反] {tc_id}  {snip}")
     for tc_id, kw, snip in hit7:
         print(f"  [7 違反] {tc_id}  {kw!r}：{snip}")
+    for tc_id, fld, snip in hit8a:
+        print(f"  [8a 違反] {tc_id}  {fld}：{snip}")
+    for tc_id, dr in hit8b:
+        print(f"  [8b 提示] {tc_id}  {dr} 同時見於 pre 與 er")
     sys.exit(1 if (hit1 or unresolved or hit2 or hit3 or hit3b or hit4
-                   or no_source or hit5 or hit6 or hit7) else 0)
+                   or no_source or hit5 or hit6 or hit7 or hit8a or hit8b) else 0)
 
 
 if __name__ == "__main__":

@@ -39,5 +39,6 @@
 ```
 1. The bus analyzer is recording the vehicle bus
 2. The virtual Forward Facing Camera button registers the press
-3. RADIO_B3.CameraDisplaySts = 3 (View_3) is sent on change and PENDING: DR-CAM-j within Tsend of the keypress
+3. RADIO_B3.CameraDisplaySts = 3 (View_3) is sent on change
+a. PENDING: DR-CAM-j within Tsend of the keypress
 ```

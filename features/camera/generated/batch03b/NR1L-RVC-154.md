@@ -1,0 +1,40 @@
+# NR1L-RVC-154 — SWE-CAM-011
+
+- **Test Group**：Rear View Camera｜**Test Set**：LVDS Messaging
+- **Vehicle Model**：HDCC27=0｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P2｜**design_method**：功能測試 (Functional based ; no specific technique)
+- **specification_reference**：`VF551_V2_PDT27_VF_615`（來源列 `SYS-RA-VF551_V2-745`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> The Head Unit shall gate FD-CAN8 EPS_FD_1.LwsAngle to LVDS vehicleUpdate_2.LwsAngle
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V2-745`（`VF551_V2_PDT27` 前綴）之 DT27 分支。**訊號實測可書寫**：`EPS_FD_1`（`BO_ 264`，FDCAN8）之 `SG_ LwsAngle : 7|16@0+ (0.1,-720) [-720|720] "°"` —— raw 7200 = 0.0 度。與 `-152`（HDCC27，`STEERING1`）為同一 LVDS 標的之兩個平台來源，訊息名相異故拆列。LVDS 訊號無 DBC（四本零命中），其值以來源 label 逐字書寫、觀察以 bus analyzer 進行，**不造命令**（profile §7.2／§7.3）。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. A bus analyzer is connected to the LVDS link between the HU and the RVCM
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: EPS_FD_1.LwsAngle = 7200 (0.0 degrees)
+2. Read vehicleUpdate_2.LwsAngle and check that it reports the value sent in step 1
+```
+
+## expected_result
+
+```
+1. EPS_FD_1.LwsAngle = 7200 (0.0 degrees) is sent
+2. vehicleUpdate_2.LwsAngle reports the same value and is sent over LVDS
+```

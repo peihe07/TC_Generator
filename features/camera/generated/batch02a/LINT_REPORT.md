@@ -60,8 +60,8 @@
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
 | 15 | NR1L-RVC-052 | pre | PENDING 佔位（DR-CAM-f） | 3. PENDING: DR-CAM-f the BED_EXTENDER message is not present in the four DBC fil |
-| 15 | NR1L-RVC-052 | proc | PENDING 佔位（DR-CAM-f） | 1. Send CAN: BED_EXTENDER.BedExtenderSts = PENDING (PENDING: DR-CAM-f raw value  |
-| 15 | NR1L-RVC-052 | proc | PENDING 佔位（DR-CAM-f） | 2. Send CAN: BED_EXTENDER.IncompleteBedExtenderSts = PENDING (PENDING: DR-CAM-f  |
+| 15 | NR1L-RVC-052 | proc | PENDING 佔位（DR-CAM-f） | a. PENDING: DR-CAM-f the raw value and VAL label for Not_Active are not sourced |
+| 15 | NR1L-RVC-052 | proc | PENDING 佔位（DR-CAM-f） | a. PENDING: DR-CAM-f the raw value and VAL label for False are not sourced |
 | 27 | NR1L-RVC-064 | pre | PENDING 佔位（DR-CAM-i） | 3. PENDING: DR-CAM-i the CmdIgnSts value that corresponds to Ignition_Pre_Off is |
 
 ### I-cross — 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3）（行計 26／列計 26）

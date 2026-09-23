@@ -28,7 +28,8 @@
 ## test_procedure
 
 ```
-1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = PENDING (PENDING: DR-CAM-o raw value and VAL label for a second language)
+1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = PENDING (a second language)
+a. PENDING: DR-CAM-o the raw value and VAL label for a second language are not sourced
 2. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
 3. Read the warning text overlaid on the upper center of the display and check its language
 ```

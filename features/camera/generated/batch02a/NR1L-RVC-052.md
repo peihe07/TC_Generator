@@ -30,8 +30,10 @@
 ## test_procedure
 
 ```
-1. Send CAN: BED_EXTENDER.BedExtenderSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for Not_Active)
-2. Send CAN: BED_EXTENDER.IncompleteBedExtenderSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for False)
+1. Send CAN: BED_EXTENDER.BedExtenderSts = PENDING (Not_Active)
+a. PENDING: DR-CAM-f the raw value and VAL label for Not_Active are not sourced
+2. Send CAN: BED_EXTENDER.IncompleteBedExtenderSts = PENDING (False)
+a. PENDING: DR-CAM-f the raw value and VAL label for False are not sourced
 3. Send CAN: STATUS_BH_BCM.RHatchSts = 1 (Open)
 4. Read the HU display within 5 s and check the message overlaid on the rear view camera image
 ```

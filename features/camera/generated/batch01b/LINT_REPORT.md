@@ -33,7 +33,7 @@
 | Q | 不可見字元（NBSP／全形空格／行尾空白） | 0 | 0 | 每行每欄 | 未校準（R-10(a)，21 包新增） |
 | R | Pre-Condition 版面（未編號行／多條件並列） | 0 | 0 | 每行 | 未校準（R-9(a)，21 包新增） |
 | T | PENDING 說明非英文 | 0 | 0 | 每次命中 | 未校準（R-14，21 包新增） |
-| U | PENDING 佔位（四欄全掃，含 ER 側） | 17 | 9 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
+| U | PENDING 佔位（四欄全掃，含 ER 側） | 14 | 9 | 每次命中 | 計數用（A-PM16：ER 側原不受任何檢查覆蓋） |
 | V | 行首空白（IN §11） | 0 | 0 | 每行每欄 | 未校準（IN §11，27 包新增） |
 | I-cross | 跨 req_id：觀測窗相同且違例類有交集（R-SU34 v3） | 13 | 13 | 每列每配對（一組命中記二列） | 警示器非判準（R-SU34 v3(c)）—— 命中一律送人裁，不自動判 FAIL |
 | W | ER 含比較關係而 test_item 上半無數值（下放包 47 §二 #6） | 0 | 0 | 每次命中 | **待人裁非 FAIL** —— 輸出分二段（下放包 48 §二）：(a) 已裁段只報列數、(b) 新命中段逐列陳述 |
@@ -41,11 +41,11 @@
 | Y | PROXI 舊式（R-G70 v4.1：`$Param$ is set to` 為 VF230 同義舊式） | 0 | 0 | 每行 | 未校準（R-G70 v4.1，GC-10 新增）—— **WARN 只報不改**；既有交付本不回修（R-TM13），回修依 R-G72 |
 | Z | Vehicle Model 七欄 1／0（R-CAM2，Camera profile 專屬） | 0 | 0 | 每列每欄；七欄全缺時每 sheet 記一筆 | 未校準（R-CAM2，CAM-02 新增）—— **feature 專屬**，僅 `--profile camera` 啟用；既有八本無此七欄，未啟用即不檢查（`Z=0` 在未啟用時是沉默，不是核可） |
 
-**總計：行計 33**（列計不加總——同一列可觸發多項檢查）
+**總計：行計 30**（列計不加總——同一列可觸發多項檢查）
 
 ## 明細
 
-### U — PENDING 佔位（四欄全掃，含 ER 側）（行計 17／列計 9）
+### U — PENDING 佔位（四欄全掃，含 ER 側）（行計 14／列計 9）
 
 | 列 | TC ID | 欄位 | 說明 | 片段 |
 | ---: | --- | --- | --- | --- |
@@ -55,15 +55,12 @@
 | 11 | NR1L-RVC-035 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Controls screen is displayed |
 | 12 | NR1L-RVC-036 | proc | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g open the Controls screen |
 | 12 | NR1L-RVC-036 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Controls screen is displayed |
-| 14 | NR1L-RVC-038 | pre | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j the SVC_SoftBtn_Rq signal is not present in the four DBC fi |
 | 14 | NR1L-RVC-038 | er | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Pressed is sent within Tsend  |
 | 15 | NR1L-RVC-039 | proc | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g open the Controls screen |
 | 15 | NR1L-RVC-039 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Controls screen is displayed |
-| 16 | NR1L-RVC-040 | pre | PENDING 佔位（DR-CAM-j） | 4. PENDING: DR-CAM-j the SVC_DisplaySts signal is not present in the four DBC fi |
-| 16 | NR1L-RVC-040 | er | PENDING 佔位（DR-CAM-j） | 3. The Surround View Camera video image is displayed on the HU display and PENDI |
-| 19 | NR1L-RVC-043 | pre | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j CFTS020 defines no TGW_DISP_STAT value for the Surround Vie |
+| 16 | NR1L-RVC-040 | er | PENDING 佔位（DR-CAM-j） | a. PENDING: DR-CAM-j the SVC_DisplaySts = SVC image displayed signal is sent to  |
 | 19 | NR1L-RVC-043 | er | PENDING 佔位（DR-CAM-j） | 3. PENDING: DR-CAM-j the HU transmits TELEMATIC_DISPLAY2.TGW_DISP_STATSts with t |
-| 21 | NR1L-RVC-045 | er | PENDING 佔位（DR-CAM-j） | 3. RADIO_B3.CameraDisplaySts = 3 (View_3) is sent on change and PENDING: DR-CAM- |
+| 21 | NR1L-RVC-045 | er | PENDING 佔位（DR-CAM-j） | a. PENDING: DR-CAM-j within Tsend of the keypress |
 | 22 | NR1L-RVC-046 | proc | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g open the Controls screen |
 | 22 | NR1L-RVC-046 | er | PENDING 佔位（DR-CAM-g） | 1. PENDING: DR-CAM-g the Controls screen is displayed |
 

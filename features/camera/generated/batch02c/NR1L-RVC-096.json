@@ -17,7 +17,7 @@
   "tcs": [
     {
       "tc_title": "SVC_SoftBtn_Rq = Not Pressed on release, release the virtual button and read the bus for SVC_SoftBtn_Rq",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-j the SVC_SoftBtn_Rq signal is not present in the four DBC files in forms\n4. The shift lever is in P\n5. No camera image is displayed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. The shift lever is in P\n4. No camera image is displayed",
       "input_test_data": "NA",
       "test_procedure": "1. Connect a bus analyzer to the vehicle bus and start recording\n2. Press and release the virtual Surround View Camera button on the HU display\n3. Read the bus analyzer recording and check the SVC_SoftBtn_Rq signal after the release",
       "expected_result": "1. The bus analyzer is recording the vehicle bus\n2. The virtual Surround View Camera button registers the press and the release\n3. PENDING: DR-CAM-j an on-change SVC_SoftBtn_Rq = Not Pressed is sent within Tsend of the release",

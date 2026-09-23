@@ -19,7 +19,7 @@
       "tc_title": "incomplete bed extender, read the HU display and check that no camera image is displayed and that the \"Camera Not in position\" message is shown",
       "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The TTM module is present on the vehicle at CAN node 63\n4. PENDING: DR-CAM-f the BED_EXTENDER message is not present in the four DBC files in forms\n5. No camera image is displayed",
       "input_test_data": "NA",
-      "test_procedure": "1. Send CAN: BED_EXTENDER.IncompleteBedExtenderSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for True)\n2. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)\n3. Read the HU display and check that no camera image is displayed and that the \"Camera Not in position\" message is shown",
+      "test_procedure": "1. Send CAN: BED_EXTENDER.IncompleteBedExtenderSts = PENDING (True)\na. PENDING: DR-CAM-f the raw value and VAL label for True are not sourced\n2. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)\n3. Read the HU display and check that no camera image is displayed and that the \"Camera Not in position\" message is shown",
       "expected_result": "1. The incomplete bed extender status is reported as True\n2. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent\n3. No camera image is displayed and the \"Camera Not in position\" message is overlaid on the screen",
       "specification_reference": "VF551_V33_P226MCA_VF_1603",
       "design_method": "決策表 (Decision Table Testing)",
