@@ -379,6 +379,37 @@ A-CA27 之「全語料 `$ ` 命令行零命中」為 CAM-05 當時之忠實紀�
 另加註 2026-09-23 之複測：母體增 Security 六本後為 **275 條**，
 惟 LVDS 相關仍 **0**，故「LVDS 無可抄之命令句式」之結論不變。
 
+### 6-23. 升級條件之命中以「相異 TC 列」計
+
+`[DECIDED — CAM-08 審閱 §一-1，Pei 2026-09-23]`
+selfcheck 各項之命中門檻一律以**相異 TC 列**計，非命中筆數。
+CAM-08 之 19 列（23 筆）因而未觸發；條文自 CAM-09 起明寫「相異 TC 列」。
+
+### 6-24. `Body_Types` 不寫 raw
+
+`[DECIDED — CAM-08 審閱 §一-2，Pei 2026-09-23]`
+`NR1L-RVC-073`／`-074` 之 Pre-Condition 改 `PROXI Body_Types = Type 4 - DJ`／`= Type 1 - D2`
+（§8.7.5(e)：值取來源 label 逐字），**不寫 raw** —— Atl-Hi 兩本 PROXI 之 byte 231 只載現值
+`7 = Type 7`（row 1018）而無列舉，無從實測。列舉之補件為 **DR-CAM-n**。
+
+### 6-25. `-091` 接受現狀
+
+`[DECIDED — CAM-08 審閱 §一-3，Pei 2026-09-23]`
+`SYS-RA-VF551_V42-322` 逐字僅 `Gear_Box_Type to vehicleUpdate_1.VC_Trans_Equipped`（3 token、無等式），
+其可判性弱係來源如此；ER 只驗「該 LVDS 訊號反映該 PROXI 值」為正確處置，reasoning 已具名。
+
+### 6-26. `-088` 不拆 14 列
+
+`[DECIDED — CAM-08 審閱 §一-4，Pei 2026-09-23]`
+`SYS-RA-VF551_V2-538` 之十四個 LVDS 訊號為**清單完整性**之單一驗證點；
+各訊號之值語意已分別委派其來源列，不拆為 14 列。
+
+### 6-27. `-082` 之 ER 兩項接受
+
+`[DECIDED — CAM-08 審閱 §一-5，Pei 2026-09-23]`
+`SYS-RA-VF551_V4-125` 逐字只列 `TELEMATIC_FD_14` 一項而無 LVDS 側，
+ER 因而只兩項；依 §8.4.1 不補來源未載者。
+
 ---
 
 ## Sign-off

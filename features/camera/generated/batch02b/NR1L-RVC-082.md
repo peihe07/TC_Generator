@@ -1,7 +1,7 @@
 # NR1L-RVC-082 — SWE-CAM-002
 
 - **Test Group**：Rear View Camera｜**Test Set**：Configuration
-- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **Vehicle Model**：HDCC27=1｜DT27=0｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
 - **priority**：P2｜**design_method**：狀態轉換 (State Transition Testing)
 - **specification_reference**：`VF551_V4_PHDCC27_VF_1575`（來源列 `SYS-RA-VF551_V4-125`）
 
@@ -11,7 +11,7 @@
 
 ## reasoning
 
-驗證目標為 `SYS-RA-VF551_V4-125` 之 Analog 分支。V4 為 HDCC27 之類比相機變體（R-CAM11 之 `VF551_V4_PHDCC27` 前綴），其條文**只列 `TELEMATIC_FD_14` 一項**而無 LVDS 側 —— 逐字如此，ER 因而只兩項（§8.4.1 不補來源未載者）。`Rear_View_Camera_Type = 0 (Analogic)` 之 label 取 `HDCC27_initial` row 931 之實測值。與 `-081` 成 Digital／Analog 一對（R-CAM3 之 PROXI 前提值相異即拆列）。LVDS 之 `vehicleUpdate_*`／`gridZoomRequest`／`PowerShutDownNotifcation` 非 CAN 訊號（四本 DBC 零命中），觀察以 bus analyzer 於 HU ↔ RVCM 之 LVDS 鏈路進行；**不造命令**（交付語料 17 本之 275 條 `$ ` 命令行中與 LVDS 相關者為 0，A-CA27 加註）。
+驗證目標為 `SYS-RA-VF551_V4-125` 之 Analog 分支。V4 為 HDCC27 之類比相機變體（R-CAM11 之 `VF551_V4_PHDCC27` 前綴），其條文**只列 `TELEMATIC_FD_14` 一項**而無 LVDS 側 —— 逐字如此，ER 因而只兩項（§8.4.1 不補來源未載者）。`Rear_View_Camera_Type = 0 (Analogic)` 之 label 取 `HDCC27_initial` row 931 之實測值。與 `-081` 成 Digital／Analog 一對（R-CAM3 之 PROXI 前提值相異即拆列）。LVDS 之 `vehicleUpdate_*`／`gridZoomRequest`／`PowerShutDownNotifcation` 非 CAN 訊號（四本 DBC 零命中），觀察以 bus analyzer 於 HU ↔ RVCM 之 LVDS 鏈路進行；**不造命令**（交付語料 17 本之 275 條 `$ ` 命令行中與 LVDS 相關者為 0，A-CA27 加註）。【CAM-09 §1 自查】**DT27 改勾 0** —— V4 本之 anchor 前綴只有 `PHDCC27`（R-CAM11），RULINGS 平台表亦只將 V4 對應 `HDCC27 Atl-Hi`；DT27 之 V 本為 `V2 (PDT27 anchor)`。CAM-08 落檔時誤勾 DT27，本輪更正。實測佐證：`DT28_ATL_HI` row 931 之 `Rear_View_Camera_Type = 1 (Digital)`，該平台本無類比相機之組態。
 
 ## pre_conditions
 

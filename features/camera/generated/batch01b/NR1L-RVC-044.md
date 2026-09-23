@@ -16,10 +16,11 @@
 ## pre_conditions
 
 ```
-1. The HU is in the Full-Operation state
+1. The HU is in Standby state
 2. PROXI Forward_Facing_Camera = 1 (Present)
-3. The shift lever is in P
-4. No camera image is displayed
+3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
+4. The shift lever is in P
+5. No camera image is displayed
 ```
 
 ## input_test_data
@@ -29,13 +30,13 @@
 ## test_procedure
 
 ```
-1. Set PROXI Forward_Facing_Camera = 1 (Present) and cycle the ignition to RUN so that the HU reads the PROXI configuration
+1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)
 2. Read the HU display and check that the virtual Forward Facing Camera button is present and selectable
 ```
 
 ## expected_result
 
 ```
-1. The HU starts up and reads the PROXI configuration at ignition RUN
+1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration
 2. The virtual Forward Facing Camera button is shown in the available state and can be selected
 ```

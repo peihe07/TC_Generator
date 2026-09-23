@@ -18,7 +18,8 @@
 ```
 1. The HU is in Standby state
 2. PROXI Rear_View_Camera = 1 (Present)
-3. The shift lever is in P
+3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)
+4. The shift lever is in P
 ```
 
 ## input_test_data
@@ -28,7 +29,7 @@
 ## test_procedure
 
 ```
-1. Cycle the ignition to RUN so that the HU reads the PROXI configuration
+1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)
 2. Press "Apps" on Menu Bar to open App Drawer
 3. Read the App Drawer and check that "Rear View Camera" is present and selectable
 ```
@@ -36,7 +37,7 @@
 ## expected_result
 
 ```
-1. The HU completes start-up and reads the PROXI configuration
+1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration
 2. The App Drawer is displayed
 3. The "Rear View Camera" entry is present in the App Drawer and can be selected
 ```

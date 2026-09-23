@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "PROXI Present enables the RVC behaviour, set the PROXI parameter and check that the camera function is enabled",
-      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The shift lever is in P",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. The shift lever is in P",
       "input_test_data": "NA",
-      "test_procedure": "1. Cycle the ignition to RUN so that the HU reads the PROXI configuration\n2. Press \"Apps\" on Menu Bar to open App Drawer\n3. Read the App Drawer and check that \"Rear View Camera\" is present and selectable",
-      "expected_result": "1. The HU completes start-up and reads the PROXI configuration\n2. The App Drawer is displayed\n3. The \"Rear View Camera\" entry is present in the App Drawer and can be selected",
+      "test_procedure": "1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)\n2. Press \"Apps\" on Menu Bar to open App Drawer\n3. Read the App Drawer and check that \"Rear View Camera\" is present and selectable",
+      "expected_result": "1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration\n2. The App Drawer is displayed\n3. The \"Rear View Camera\" entry is present in the App Drawer and can be selected",
       "specification_reference": "VF551_V2_PHDCC27_VF_935",
       "design_method": "決策表 (Decision Table Testing)",
       "priority": "P1",

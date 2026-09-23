@@ -16,7 +16,7 @@
 ## pre_conditions
 
 ```
-1. The HU is in the Full-Operation state
+1. The HU is in Standby state
 2. PROXI Rear_View_Camera = 1 (Present)
 3. PROXI Vehicle_Line_Configuration = 124 (DT (7C hex))
 4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
@@ -29,13 +29,13 @@
 ## test_procedure
 
 ```
-1. Cycle the ignition to RUN so that the HU reads the PROXI configuration
+1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)
 2. Read vehicleUpdate_1.VC_VehLineRVCM and check that it is VEH_DT
 ```
 
 ## expected_result
 
 ```
-1. The HU completes start-up and reads the PROXI configuration
+1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration
 2. vehicleUpdate_1.VC_VehLineRVCM = VEH_DT is sent over LVDS
 ```

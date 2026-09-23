@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "VC_VehLineRVCM = VEH_DT, read the LVDS link and check that VC_VehLineRVCM is VEH_DT",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Vehicle_Line_Configuration = 124 (DT (7C hex))\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Vehicle_Line_Configuration = 124 (DT (7C hex))\n4. A bus analyzer is connected to the LVDS link between the HU and the RVCM",
       "input_test_data": "NA",
-      "test_procedure": "1. Cycle the ignition to RUN so that the HU reads the PROXI configuration\n2. Read vehicleUpdate_1.VC_VehLineRVCM and check that it is VEH_DT",
-      "expected_result": "1. The HU completes start-up and reads the PROXI configuration\n2. vehicleUpdate_1.VC_VehLineRVCM = VEH_DT is sent over LVDS",
+      "test_procedure": "1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)\n2. Read vehicleUpdate_1.VC_VehLineRVCM and check that it is VEH_DT",
+      "expected_result": "1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration\n2. vehicleUpdate_1.VC_VehLineRVCM = VEH_DT is sent over LVDS",
       "specification_reference": "VF551_V2_PDT27_VF_629",
       "design_method": "決策表 (Decision Table Testing)",
       "priority": "P2",

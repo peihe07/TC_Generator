@@ -16,8 +16,12 @@ CAM-05 審閱 §三-3（Pei 2026-09-23）令 `selfcheck_r_cam10.py` 更名本檔
    另計一類「合一錨」。單錨 TC 仍逐錨相等。
 2. **proc ≥ 2 步** —— §10.5；lint 之 `E` 只判 proc/er 對齊，不判步數
    （CAM-05 §5-2 之 `NR1L-RVC-027` 初稿即 1 步而未被 lint 攔下）。
-3. **RUN 重複** —— Pre-Condition 已含 `Full-Operation`（其定義已含 IGN RUN）
-   而步 1 又送 `CmdIgnSts = ... (RUN)`（CAM-05 審閱 §二-1，同型第二次出現）。
+3. **電源態 ↔ 點火步之一致性（雙向）**（CAM-08 審閱 §二-2）——
+   `3a 重複`：Pre-Condition 首行為 `Full-Operation`（其定義已含 IGN RUN）而步 1 又送
+   `CmdIgnSts = ... (RUN)`（CAM-05 審閱 §二-1）。二者擇一處置：**非開機類**刪步 1；
+   **開機類**（該 TC 之驗證目標即開機序列）首行改 `Standby`（profile §4）。
+   `3b 矛盾`：Pre-Condition 首行為 `Standby`（HU 已斷電）而 Procedure **無**任何點火步 ——
+   該態下不送點火則 HU 不會起來，其後各步皆不可執行。
 4. **verbatim 保序子序列** —— `test_item_verbatim` 之 token 須為
    `source_object_id` 所指來源 `Description` 之**保序子序列**（摘句之機器判準，
    CAM-05 審閱 §一-4）；全句者自然成立，摘句者據此驗字元級忠實度。
@@ -29,6 +33,10 @@ CAM-05 審閱 §三-3（Pei 2026-09-23）令 `selfcheck_r_cam10.py` 更名本檔
 6. **設定操作句式**（canon §5.8(e)，CAM-07 審閱 §二-2）—— Procedure 不得寫
    `Select "<label>" and set it to <value>`；一律 `Set "<label>" = "<Option>"`，
    `<Option>` 逐字取 HMI Settings List 該列之選項 label。命中即違規。
+7. **點火動作須為 CAN 式**（CAM-08 審閱 §二-1）—— Procedure 不得以散文寫點火
+   （`Cycle the ignition`／`Turn the ignition`／`Power on the HU`／`Power cycle`）；
+   一律 `Send CAN: <MSG>.CmdIgnSts = <raw> (<label>)`（單 EE 直寫，跨 EE 依 R-CAM3(e)／(f)）。
+   其目的子句（`… so that the HU reads the PROXI configuration`）移入 ER。
 
 資料：`features/camera/data/layer3_a_vf_chapters.tsv`（A 本 541 個來源引用之全量展開）
 ＋ 六本 SYS2 之 `Basic Report` 分頁（`F` 欄錨、`D` 欄 Description）。
@@ -62,6 +70,10 @@ RE_STEP = re.compile(r"^\s*\d+\.\s")
 RE_CANSRC = re.compile(r"^\s*\d+\.\s*CAN source:", re.I)
 RE_SENDCAN = re.compile(r"Send CAN:", re.I)
 RE_SETSTYLE = re.compile(r'Select\s+".+?"\s+and\s+set\s+it\s+to', re.I)
+# 第 7 項：散文式點火動作；第 3b 項：Standby 首行卻無點火步
+RE_IGNPROSE = re.compile(r"\b(Cycle the ignition|Turn the ignition|Power on the HU|Power cycle)", re.I)
+RE_STANDBY = re.compile(r"^\s*1\.\s*The HU is in Standby state", re.I)
+RE_FULLOP1 = re.compile(r"^\s*1\.\s*The HU is in the Full-Operation state", re.I)
 VM_HI = ("HDCC27", "DT27")
 VM_MI = ("VF(ProMaster)637", "Toro(2261)", "Fastack (376)")
 
@@ -124,6 +136,8 @@ def main() -> None:
     merged: list[tuple] = []     # R-CAM10(b) 合一錨
     hit5: list[tuple] = []       # CAN source 行之適用條件（R-CAM3(f)）
     hit6: list[tuple] = []       # 設定操作句式（canon §5.8(e)）
+    hit3b: list[tuple] = []      # Standby 首行卻無點火步
+    hit7: list[tuple] = []       # 散文式點火動作
     no_source: list[tuple] = []
     checked = tcs = 0
 
@@ -166,9 +180,18 @@ def main() -> None:
                 steps = [ln for ln in tc["test_procedure"].split("\n") if RE_STEP.match(ln)]
                 if len(steps) < 2:
                     hit2.append((tc_id, len(steps)))
-                # ── 3 ── Full-Operation 前提 ＋ 步 1 送 RUN
-                if "Full-Operation" in tc["pre_conditions"] and steps and RE_RUN_STEP1.search(steps[0]):
+                # ── 3a ── Full-Operation 首行 ＋ 步 1 送 RUN（重複）
+                pre_first = tc["pre_conditions"].split("\n")[0]
+                if RE_FULLOP1.match(pre_first) and steps and RE_RUN_STEP1.search(steps[0]):
                     hit3.append((tc_id, steps[0].strip()))
+                # ── 3b ── Standby 首行卻無點火步（矛盾）
+                if RE_STANDBY.match(pre_first) and not RE_RUN_STEP1.search(tc["test_procedure"]):
+                    hit3b.append((tc_id, pre_first.strip()))
+                # ── 7 ── 散文式點火動作
+                for ln in tc["test_procedure"].split("\n"):
+                    m7 = RE_IGNPROSE.search(ln)
+                    if m7:
+                        hit7.append((tc_id, m7.group(0), ln.strip()[:80]))
                 # ── 5 ── CAN source 行之適用條件（R-CAM3(f)）
                 src_lines = [ln for ln in tc["pre_conditions"].split("\n") if RE_CANSRC.match(ln)]
                 if src_lines:
@@ -200,10 +223,12 @@ def main() -> None:
     print(f"Camera 自檢：批次 {[str(d) for d in dirs]}（TC {tcs} 筆）")
     print(f"  1 R-CAM10 錨反查：檢查錨 {checked} 個；無法反查 {len(unresolved)}；常數錨 {len(constant)}；**命中 {len(hit1)}**")
     print(f"  2 proc ≥ 2 步　　：**命中 {len(hit2)}**")
-    print(f"  3 RUN 重複　　　 ：**命中 {len(hit3)}**")
+    print(f"  3a 電源態 ↔ 點火：**命中 {len(hit3)}**（Full-Operation 首行 ＋ 步 1 送 RUN）")
+    print(f"  3b 電源態 ↔ 點火：**命中 {len(hit3b)}**（Standby 首行 ＋ 無點火步）")
     print(f"  4 verbatim 子序列：無來源可比 {len(no_source)}；**命中 {len(hit4)}**")
     print(f"  5 CAN source 行　：**命中 {len(hit5)}**")
     print(f"  6 設定操作句式　 ：**命中 {len(hit6)}**")
+    print(f"  7 點火動作 CAN 式：**命中 {len(hit7)}**")
     for tc_id, anchor in unresolved:
         print(f"  [1 反查失敗] {tc_id}  {anchor}")
     for tc_id, anchor, sid in constant:
@@ -216,7 +241,9 @@ def main() -> None:
     for tc_id, n in hit2:
         print(f"  [2 違反] {tc_id}  procedure 只有 {n} 步")
     for tc_id, step in hit3:
-        print(f"  [3 違反] {tc_id}  Full-Operation 前提下步 1 又送 RUN：{step}")
+        print(f"  [3a 違反] {tc_id}  Full-Operation 首行而步 1 又送 RUN：{step}")
+    for tc_id, line in hit3b:
+        print(f"  [3b 違反] {tc_id}  Standby 首行而 Procedure 無點火步：{line}")
     for tc_id, sid in no_source:
         print(f"  [4 無來源] {tc_id}  source_object_id={sid}")
     for tc_id, sid, n_v, n_s in hit4:
@@ -225,8 +252,10 @@ def main() -> None:
         print(f"  [5 違反] {tc_id}  {why}：{snip}")
     for tc_id, snip in hit6:
         print(f"  [6 違反] {tc_id}  {snip}")
-    sys.exit(1 if (hit1 or unresolved or hit2 or hit3 or hit4 or no_source
-                   or hit5 or hit6) else 0)
+    for tc_id, kw, snip in hit7:
+        print(f"  [7 違反] {tc_id}  {kw!r}：{snip}")
+    sys.exit(1 if (hit1 or unresolved or hit2 or hit3 or hit3b or hit4
+                   or no_source or hit5 or hit6 or hit7) else 0)
 
 
 if __name__ == "__main__":

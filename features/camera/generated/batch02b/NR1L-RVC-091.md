@@ -16,7 +16,7 @@
 ## pre_conditions
 
 ```
-1. The HU is in the Full-Operation state
+1. The HU is in Standby state
 2. PROXI Rear_View_Camera = 1 (Present)
 3. PROXI Gear_Box_Type = 1 (MTX)
 4. A bus analyzer is connected to the LVDS link between the HU and the RVCM
@@ -29,13 +29,13 @@
 ## test_procedure
 
 ```
-1. Cycle the ignition to RUN so that the HU reads the PROXI configuration
+1. Send CAN: STATUS_BH_BCM2.CmdIgnSts = 4 (RUN)
 2. Read vehicleUpdate_1.VC_Trans_Equipped and check that it reports the PROXI Gear_Box_Type value
 ```
 
 ## expected_result
 
 ```
-1. The HU completes start-up and reads the PROXI configuration
+1. STATUS_BH_BCM2.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration
 2. vehicleUpdate_1.VC_Trans_Equipped reports the PROXI Gear_Box_Type value and is sent over LVDS
 ```

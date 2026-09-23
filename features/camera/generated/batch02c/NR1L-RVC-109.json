@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-109",
+  "req_id": "SWE-CAM-003",
+  "test_group": "Rear View Camera",
+  "test_set": "State Handling",
+  "test_item_verbatim": "If the LTM_OperationalModeSts.Info==\"Ignition_On\" OR LTM_OperationalModeSts.Info==\"Ignition_On_EngOn\", and LTM receive BED_EXTENDER.BedExtenderFailSts =(equal to) Fail_Present, LTM must: use the previous value of BED_EXTENDER.BedExtenderSts and BED_EXTENDER.IncompleteBedExtenderSts signals.",
+  "source_object_id": "SYS-RA-VF551_V33-440",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "fallback on fail status, check that the previously known bed extender values are still used",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-f the BED_EXTENDER message is not present in the four DBC files in forms\n4. LTM_OperationalModeSts.Info = \"Ignition_On\"\n5. The rear view camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: BED_EXTENDER.BedExtenderFailSts = PENDING (PENDING: DR-CAM-f raw value and VAL label for Fail_Present)\n2. Read the HU display and check the rear view camera image",
+      "expected_result": "1. The bed extender fail status is reported as Fail_Present\n2. The rear view camera image keeps behaving according to the bed extender values that were valid before step 1",
+      "specification_reference": "VF551_V33_P226MCA_VF_1642",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "fallback on fail status",
+      "test_item": "If the LTM_OperationalModeSts.Info==\"Ignition_On\" OR LTM_OperationalModeSts.Info==\"Ignition_On_EngOn\", and LTM receive BED_EXTENDER.BedExtenderFailSts =(equal to) Fail_Present, LTM must: use the previous value of BED_EXTENDER.BedExtenderSts and BED_EXTENDER.IncompleteBedExtenderSts signals.\n\n(fallback on fail status, check that the previously known bed extender values are still used)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V33-440` 之「BedExtenderFailSts = Fail_Present時，LTM 沿用 `BedExtenderSts`／`IncompleteBedExtenderSts` 之前一個值」。**`BED_EXTENDER` 不在四本 DBC**（A-CA29／DR-CAM-f），raw 與 VAL label 標 PENDING。`Fail_Present` 之 raw 無來源，故步 1 標 PENDING；其後之可判面（影像沿用舊值）仍可執行。兩列與 `NR1L-RVC-032`／`-033`（抑制影像）之分工：後者驗 BedExtender **有效值**之效果，本二列驗其**失效／逾時**之回退策略（§8.2.1）。"
+}

@@ -17,10 +17,10 @@
   "tcs": [
     {
       "tc_title": "SVC_SK_PRSNT activates the virtual button, read the HU screen and check that the virtual Surround View Camera button is selectable",
-      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. The shift lever is in P\n4. No camera image is displayed",
+      "pre_conditions": "1. The HU is in Standby state\n2. PROXI Surround_View_Camera = 1 (Present)\n3. CAN source: BCM_FD_10.CmdIgnSts (HDCC27, DT27) / STATUS_BH_BCM2.CmdIgnSts (637, 2261, 376)\n4. The shift lever is in P\n5. No camera image is displayed",
       "input_test_data": "NA",
-      "test_procedure": "1. Set PROXI Surround_View_Camera = 1 (Present) and cycle the ignition to RUN so that the HU reads the PROXI configuration\n2. Read the HU display and check that the virtual Surround View Camera button is present and selectable",
-      "expected_result": "1. The HU starts up and reads the PROXI configuration at ignition RUN\n2. The virtual Surround View Camera button is shown in the available state and can be selected",
+      "test_procedure": "1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)\n2. Read the HU display and check that the virtual Surround View Camera button is present and selectable",
+      "expected_result": "1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration\n2. The virtual Surround View Camera button is shown in the available state and can be selected",
       "specification_reference": "CFTS092-4781649",
       "design_method": "決策表 (Decision Table Testing)",
       "priority": "P1",

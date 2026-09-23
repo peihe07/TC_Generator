@@ -134,6 +134,19 @@ ER: The "Camera" settings screen is displayed
 `Full-Operation` 與 `ignition is off` 互斥，不得並列（§4.4；CAM-04 審閱 §二-2）。
 每行一個條件（lint `R`）；不得以 `Insert`／`Press`／`Select`／`Set` 等動詞起首（lint `D`）。
 
+### 4.1 開機類 TC 之判別（CAM-08 審閱 §二-1／§二-2）
+
+**Procedure 步 1 為點火（`Send CAN: <MSG>.CmdIgnSts = 4 (RUN)`）者，
+Pre-Condition 首行必為 `The HU is in Standby state`** —— `Full-Operation` 之定義已含 IGN RUN，
+與「送點火使其開機」互斥。反之，首行為 `Standby` 而 Procedure 無點火步者，
+其後各步不可執行。兩向皆由 `selfcheck_camera.py` **第 3 項（雙向）**施檢。
+
+**點火動作一律 CAN 式**，不得以散文寫（`Cycle the ignition`／`Turn the ignition`／
+`Power on the HU`／`Power cycle`）；其目的子句（`… so that the HU reads the PROXI
+configuration`）移入 ER。施檢：**第 7 項**。
+電池斷電（`Disconnect and reconnect the battery supply to the HU`）**不在此列** ——
+其為 NVM 驗證所需之另一動作（`NR1L-RVC-064`），非點火。
+
 ## 5. `test_item` 上半逾 50 token 之摘句（§4.3.1）
 
 **逾限不是改驗證點之理由**（CAM-04 審閱 §二-3）。摘句以「與括號下半之測試目的
@@ -193,6 +206,20 @@ V4 之 `VF章節`(I) 欄 **321/321 全空**。本包實測其 `Description`(D) �
 交叉驗證：與結構同型之 V3（其 I 欄有值）比對同文字列，183 筆可比者中
 **163 筆一致（89%）**，不一致者係兩份 VF 文件章節編號本不相同所致。
 **[PROPOSED]** —— 採此法或仍回查 docx，見 DECISIONS §6。
+
+### 7.2 訊號 raw 之查證順序（CAM-08 審閱 §一-6）
+
+寫 `<MSG>.<Signal> = <raw> (<label>)` 前，**先以訊號名自身**查四本 DBC 之 `VAL_`，
+再決定寫法；**不得以同名近似之訊號代查**。
+
+反例（CAM-08 §5-2 自報）：因先查了 `TGW_DISP_STATSts`（`BO_ 1500 TELEMATIC_DISPLAY2`）
+而認定 `TGW_CAMERA_DISP_STAT` 無 `VAL_`，遂只寫 label，lint `P` 攔下 5 筆。
+實測 `TGW_CAMERA_DISP_STAT` 自有其 `VAL_` ——
+`TELEMATIC_FD_14`（`BO_ 1465`，FDCAN8）與 `RADIO_B2`（`BO_ 1282`，P363／637MCA）皆載
+`0 "DISP_NON_CAMERA" 1 "DISP_DIGITAL_RVC_CAMERA" 2 "DISP_ANALOG_RVC_CAMERA" …`。
+
+**LVDS 訊號（`vehicleUpdate_*`／`gridZoomRequest`／`PowerShutDownNotifcation`）無 DBC**，
+其值一律以來源 label 逐字書寫（§8.7.5(f)），不套 `<raw> (<label>)`。
 
 ## 8. framework 重開之 sha16 量測法（CAM-06 審閱 §一-1，Pei 2026-09-23）
 

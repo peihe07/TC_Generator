@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-102",
+  "req_id": "SWE-CAM-003",
+  "test_group": "Rear View Camera",
+  "test_set": "State Handling",
+  "test_item_verbatim": "The Head unit shall implement Transition_time as performance variable with value less than 1000 ms.",
+  "source_object_id": "SYS-RA-VF551_V2-513",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "Transition_time under 1000 ms, measure the transition into the camera image",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n2. Measure the time between step 1 and the moment the rear view camera image is fully displayed",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent\n2. The measured time is less than 1000 ms",
+      "specification_reference": "VF551_V2_PHDCC27_VF_1680",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "Transition_time under 1000 ms",
+      "test_item": "The Head unit shall implement Transition_time as performance variable with value less than 1000 ms.\n\n(Transition_time under 1000 ms, measure the transition into the camera image)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V2-513` 之「`Transition_time` 之效能值小於 1000 ms」。`Transition_time` 於 V2 §1.13.2.1.8 載 `less than 1000 ms`、V4 載 `less than 2 seconds` ——**兩本之值不同**，故 `-102` 與 `-113` 分列而非同義列（R-CAM3 之 ER 可觀察結果相異）。量測手段來源未載，依 §8.4.1 不造工具，procedure 只寫 `Measure the time between …`。"
+}

@@ -29,7 +29,7 @@
 ## test_procedure
 
 ```
-1. Cycle the ignition to RUN so that the HU reads the PROXI configuration
+1. Send CAN: BCM_FD_10.CmdIgnSts = 4 (RUN)
 2. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
 3. Read the HU display and check that the rear view camera image is displayed
 ```
@@ -37,7 +37,7 @@
 ## expected_result
 
 ```
-1. The HU completes start-up and reads the PROXI configuration
+1. BCM_FD_10.CmdIgnSts = 4 (RUN) is sent and the HU completes start-up and reads the PROXI configuration
 2. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent
 3. The rear view camera image is displayed
 ```
