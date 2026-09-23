@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-229",
+  "req_id": "SWE-CAM-022",
+  "test_group": "Rear View Camera",
+  "test_set": "HMI Overlays",
+  "test_item_verbatim": "c. After exiting rear camera mode, the Head Unit display shall reflect the changes and show current information.",
+  "source_object_id": "SYS-RA-VF551_V4-134",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "display reflects the changes after exiting (analog), leave camera mode and check that the display reflects the changes",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Rear_View_Camera_Type = 0 (Analogic)\n4. The camera delay setting is set to \"Off\"\n5. The rear view camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P)\n2. Read the HU display and check the information shown on the restored display",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent and the rear camera image is closed\n2. The restored display reflects the changes and shows current information",
+      "specification_reference": "VF551_V4_PHDCC27_VF_1753",
+      "design_method": "狀態轉換 (State Transition Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "display reflects the changes after exiting (analog)",
+      "test_item": "c. After exiting rear camera mode, the Head Unit display shall reflect the changes and show current information.\n\n(display reflects the changes after exiting (analog), leave camera mode and check that the display reflects the changes)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V4-134`。與 `NR1L-RVC-101`（`V2-509`，數位側，`SWE-CAM-003`）逐字同句而本與承接列皆不同。V4 為 HDCC27 之**類比相機變體**，Pre-Condition 以 `PROXI Rear_View_Camera_Type = 0 (Analogic)` 與 V2 之數位側區別（`HDCC27_initial` row 931 實測 `0=Analogic`）。**只勾 HDCC27** —— V4 本之 anchor 前綴只有 `PHDCC27`（R-CAM11）。**lint `J`（首字小寫）之豁免**：本列 test_item 上半為來源逐字，其首字本即小寫；依 **profile §5.1**，§4.3.1 之逐字忠實優先於版面規則。"
+}

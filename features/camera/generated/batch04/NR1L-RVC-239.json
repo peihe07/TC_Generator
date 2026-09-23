@@ -1,0 +1,34 @@
+{
+  "tc_id": "NR1L-RVC-239",
+  "req_id": "SWE-CAM-023",
+  "test_group": "Rear View Camera",
+  "test_set": "HMI Overlays",
+  "test_item_verbatim": "- IF the PROXI parameter Gear_Box_Type is different from \"MTX\" AND the signal TRANSM2.ShiftLeverPosition becomes different from \"R\" before T_INITDISPLAY, THEN the warning text shall be removed",
+  "source_object_id": "SYS-RA-VF551_V42-231",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "warning text removed before T_INITDISPLAY (non-MTX), leave reverse before the overlay expires and check that the text is removed",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Gear_Box_Type = 4 (ATX)\n4. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_CCAN5.ShiftLeverPosition = 2 (R)\n2. Send CAN: STATUS_CCAN5.ShiftLeverPosition = 1 (P) less than 5 s after step 1\n3. Read the HU display and check the warning text",
+      "expected_result": "1. STATUS_CCAN5.ShiftLeverPosition = 2 (R) is sent and the warning text is overlaid\n2. STATUS_CCAN5.ShiftLeverPosition = 1 (P) is sent\n3. The warning text is removed",
+      "specification_reference": "VF551_V42_P637MCA_VF_2201",
+      "design_method": "邊界值分析 (Boundary Value Analysis, BVA)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "warning text removed before T_INITDISPLAY (non-MTX)",
+      "test_item": "- IF the PROXI parameter Gear_Box_Type is different from \"MTX\" AND the signal TRANSM2.ShiftLeverPosition becomes different from \"R\" before T_INITDISPLAY, THEN the warning text shall be removed\n\n(warning text removed before T_INITDISPLAY (non-MTX), leave reverse before the overlay expires and check that the text is removed)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V42-231` 之「Gear_Box_Type 非 MTX 且排檔於 `T_INITDISPLAY` 之前離開 R 時，移除警示文字」。**`T_INITDISPLAY` ＝ 5,0 sec**（V42 §1.14.1 `-631`／`-632`／`-635`，profile §9），故步 2 寫 5 秒內。**觸發訊號之訊息名依 profile §7.2 以訊號名重掃** —— 來源寫 `TRANSM2`，該訊號於 637MCA 本命中 `STATUS_CCAN5`，procedure 因而以其書寫（同 `NR1L-RVC-175`／`-176` 之處置），verbatim 逐字不改（R-13）。警示文字本身之顯示由 `NR1L-RVC-056`（`V42-230`，`SWE-CAM-001`）承接，本列只驗其提前移除（§8.2.1）。依 R-CAM15(c)，V42 列承 637。",
+  "remarks": "Source names the message TRANSM2; the DBC carries the signal in STATUS_CCAN5. See DR-CAM-f."
+}

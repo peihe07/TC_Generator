@@ -11,7 +11,7 @@
 
 ## reasoning
 
-驗證目標為 `SYS-RA-VF551_V4-119` 之「警示文字須提供 HU 所用之各語言，並對應 `IPC_VEHICLE_SETUP.LanguageSelection`」。**訊號存在**（`IPC_VEHICLE_SETUP` 於三本 BH-CAN 皆有，`LanguageSelection` 16 命中），惟**各語言之 raw 對照與 HU 所支援之語言清單於本 feature 之素材查無** ——供試語言之 raw 標 `PENDING: DR-CAM-o`（新開）。各語言之逐字譯文亦無來源，ER 因而只驗「與語言設定一致」而不比對字串（§8.4.1）。**只勾 HDCC27** —— V4 本之 anchor 前綴只有 `PHDCC27`（R-CAM11），RULINGS 平台表亦只將 V4 對應 `HDCC27 Atl-Hi`。
+驗證目標為 `SYS-RA-VF551_V4-119` 之「警示文字須提供 HU 所用之各語言，並對應 `IPC_VEHICLE_SETUP.LanguageSelection`」。**觸發不走 CAN** —— `IPC_VEHICLE_SETUP.LanguageSelection` 依 **A-CA17** 不可注入（CameraEventHal 表：Atl-H、`Supported by Harman = N`、`MD fake CEH status = Not yet`），該項明令「以 **HMI 語言設定**為觸發（§5.8(e)），不走 CAN」。hop 取 `forms/HMI Settings List R1 SR25 Post R1L-R (Feb 13 2026).xlsx` `Settings` 分頁 **row 146** `Language`（`D` 欄 `>` 為次選單），其選項於 **row 147** 載為 `List items: 1) Language 1, 2) Language 2, 3) Language 3, …` —— 為**佔位式**而非實際語言名，故 procedure 只寫「選一個與現用不同之語言」而不指名（§8.4.1）。**CAM-12 之 `Send CAN: … LanguageSelection` 寫法作廢**，`PENDING: DR-CAM-o` 隨之撤除。各語言之逐字譯文亦無來源，ER 因而只驗「與語言設定一致」而不比對字串（§8.4.1）。**只勾 HDCC27** —— V4 本之 anchor 前綴只有 `PHDCC27`（R-CAM11），RULINGS 平台表亦只將 V4 對應 `HDCC27 Atl-Hi`。
 
 ## pre_conditions
 
@@ -28,16 +28,21 @@
 ## test_procedure
 
 ```
-1. Send CAN: IPC_VEHICLE_SETUP.LanguageSelection = PENDING (a second language)
-a. PENDING: DR-CAM-o the raw value and VAL label for a second language are not sourced
-2. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
-3. Read the warning text overlaid on the upper center of the display and check its language
+1. Press "Apps" on Menu Bar to open App Drawer
+2. Select "Settings" in the App Drawer
+3. Select "Language"
+4. Select a language other than the one in use
+5. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
+6. Read the warning text overlaid on the upper center of the display and check its language
 ```
 
 ## expected_result
 
 ```
-1. The language selection is changed to the second language
-2. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent and the warning text is overlaid
-3. The warning text is shown in the second language that was selected in step 1
+1. The App Drawer is displayed
+2. The "Settings" screen is displayed
+3. The "Language" screen is displayed with the selectable languages
+4. The newly selected language is in use on the HU
+5. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent and the warning text is overlaid
+6. The warning text is shown in the newly selected language
 ```

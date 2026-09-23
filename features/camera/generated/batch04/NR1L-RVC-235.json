@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-235",
+  "req_id": "SWE-CAM-023",
+  "test_group": "Rear View Camera",
+  "test_set": "HMI Overlays",
+  "test_item_verbatim": "a. The warning text shall be in accordance with ISO font 15008 and sized greater than 18 arc minutes.",
+  "source_object_id": "SYS-RA-VF551_V2-527",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "0"
+  },
+  "tcs": [
+    {
+      "tc_title": "warning text font and size, measure the warning text on screen",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n2. Read the warning text overlaid on the upper center of the display and check its font and its size",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent and the warning text is overlaid\n2. The warning text follows ISO font 15008 and its size is greater than 18 arc minutes",
+      "specification_reference": "VF551_V2_PHDCC27_VF_1708",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "warning text font and size",
+      "test_item": "a. The warning text shall be in accordance with ISO font 15008 and sized greater than 18 arc minutes.\n\n(warning text font and size, measure the warning text on screen)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V2-527` 之「警示文字遵 ISO font 15008 且字高大於 18 arc minutes」。本列之來源為 `a.` 子句（`shall be in accordance with`）。**量測手段來源未載，不造工具**（§8.4.1）；本列與 `-235`／`-236` 一併列入 `bench_verify.md` 之字高治具項。與 `NR1L-RVC-112`（`V4-117`，`SWE-CAM-003`）之關係：來源不同本、承接列不同，各歸其列（R-CAM10）。**lint `J`（首字小寫）之豁免**：本列 test_item 上半為來源逐字，其首字本即小寫；依 **profile §5.1**，§4.3.1 之逐字忠實優先於版面規則。"
+}

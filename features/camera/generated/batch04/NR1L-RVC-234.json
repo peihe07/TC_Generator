@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-234",
+  "req_id": "SWE-CAM-023",
+  "test_group": "Rear View Camera",
+  "test_set": "HMI Overlays",
+  "test_item_verbatim": "· The warning text shall be available in all languages supported by the Head Unit and text display shall correspond to the Language signal, IPC_VEHICLE_SETUP.LanguageSelection.",
+  "source_object_id": "SYS-RA-VF551_V3-253",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "warning text follows the language setting, change the language and check the warning text",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Language\"\n4. Select a language other than the one in use\n5. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)\n6. Read the warning text overlaid on the upper center of the display and check its language",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Language\" screen is displayed with the selectable languages\n4. The newly selected language is in use on the HU\n5. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent and the warning text is overlaid\n6. The warning text is shown in the newly selected language",
+      "specification_reference": "VF551_V3_P363_VF_523",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "warning text follows the language setting",
+      "test_item": "· The warning text shall be available in all languages supported by the Head Unit and text display shall correspond to the Language signal, IPC_VEHICLE_SETUP.LanguageSelection.\n\n(warning text follows the language setting, change the language and check the warning text)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V3-253` 之「警示文字須提供 HU 之各語言，並對應 `IPC_VEHICLE_SETUP.LanguageSelection`」。**觸發不走 CAN** —— 該訊號依 **A-CA17** 不可注入（CameraEventHal：Atl-H、`N`／`Not yet`），明令以 **HMI 語言設定**為觸發（§5.8(e)）。hop 取 `HMI Settings List` `Settings` 分頁 **row 146** `Language`；其選項於 **row 147** 為佔位式 `1) Language 1, 2) Language 2, …`，故只寫「選一個與現用不同之語言」而不指名（§8.4.1，DR-CAM-o）。Atl-Mi 本之措辭為 `all languages supported by` 而非 `each language used by`，逐字相異故分列；依 R-CAM15(b)，V42 於本驗證點無對應條文而 V4 有（`-119`），V3 列承其母體 376。"
+}

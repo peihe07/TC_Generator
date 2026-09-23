@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVC-224",
+  "req_id": "SWE-CAM-021",
+  "test_group": "Rear View Camera",
+  "test_set": "HMI Overlays",
+  "test_item_verbatim": "· No display blanking or flicker shall occur while Head Unit is displaying RVC image and during the display transitions between RVC image and non camera modes.",
+  "source_object_id": "SYS-RA-VF551_V3-255",
+  "vehicle_model": {
+    "HDCC27": "0",
+    "DT27": "0",
+    "VF(ProMaster)637": "0",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "no blanking or flicker (Atl-Mi), enter and leave the camera image and check for blanking and flicker",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The camera delay setting is set to \"Off\"\n4. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: STATUS_CCAN4.ReverseGearSts = 1 (Inserted)\n2. Read the HU display while the rear view camera image is shown and check for blanking and flicker\n3. Send CAN: STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted)\n4. Read the HU display during the transition back to the non-camera display and check for blanking and flicker",
+      "expected_result": "1. STATUS_CCAN4.ReverseGearSts = 1 (Inserted) is sent and the rear view camera image is displayed\n2. Neither blanking nor flicker occurs while the RVC image is displayed\n3. STATUS_CCAN4.ReverseGearSts = 0 (Not_Inserted) is sent and the rear view camera image is closed\n4. Neither blanking nor flicker occurs during the transition between RVC and non camera modes",
+      "specification_reference": "VF551_V3_P363_VF_520",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "no blanking or flicker (Atl-Mi)",
+      "test_item": "· No display blanking or flicker shall occur while Head Unit is displaying RVC image and during the display transitions between RVC image and non camera modes.\n\n(no blanking or flicker (Atl-Mi), enter and leave the camera image and check for blanking and flicker)"
+    }
+  ],
+  "reasoning": "驗證目標為 `SYS-RA-VF551_V3-255` 之「顯示 RVC 影像期間與其切換之間，不得有畫面變黑或閃爍」。**Atl-Mi 本將兩性質寫成一句**（V2 分為 `-523` 閃爍／`-524` 變黑兩列，由 `NR1L-RVC-104`／`-105` 承接），故本列以一列兩情境承之，ER 四項（§5.7）。依 **R-CAM15(b)**：V42 於本驗證點無對應條文、V33 亦無，**惟 V4 有 `-121`／`-122`（HDCC27 之類比側）**，故 V3 列承其母體 376。"
+}

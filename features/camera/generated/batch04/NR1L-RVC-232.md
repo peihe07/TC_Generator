@@ -1,0 +1,41 @@
+# NR1L-RVC-232 — SWE-CAM-022
+
+- **Test Group**：Rear View Camera｜**Test Set**：HMI Overlays
+- **Vehicle Model**：HDCC27=1｜DT27=0｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P1｜**design_method**：決策表 (Decision Table Testing)
+- **specification_reference**：`VF551_V4_PHDCC27_VF_1758`（來源列 `SYS-RA-VF551_V4-142`）
+
+## test_item 上半（verbatim，SYS2 逐字）
+
+> a. The head unit shall display the rear camera image.
+
+## reasoning
+
+驗證目標為 `SYS-RA-VF551_V4-142` 之 `a.` 子句。與 `NR1L-RVC-099`（`V2-501`，數位側）逐字同句。V4 為 HDCC27 之**類比相機變體**，Pre-Condition 以 `PROXI Rear_View_Camera_Type = 0 (Analogic)` 與 V2 之數位側區別（`HDCC27_initial` row 931 實測 `0=Analogic`）。**只勾 HDCC27** —— V4 本之 anchor 前綴只有 `PHDCC27`（R-CAM11）。**lint `J`（首字小寫）之豁免**：本列 test_item 上半為來源逐字，其首字本即小寫；依 **profile §5.1**，§4.3.1 之逐字忠實優先於版面規則。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. PROXI Rear_View_Camera_Type = 0 (Analogic)
+4. No camera image is displayed
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)
+2. Read the HU display and check that the rear camera image is displayed
+```
+
+## expected_result
+
+```
+1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent
+2. The rear camera image is displayed
+```

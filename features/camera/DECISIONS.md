@@ -510,6 +510,26 @@ procedure 改回停送 **`STATUS_CCAN3`**；疑似誤植登 RDF-08，工作簿 `
 `PROXI Steering_Ratio_Rack_Pinion_Type = 0 (Type_1)`，**不併入 DR-CAM-n、不標 PENDING**。
 （CAM-11 上繳所稱之「掃描零命中」不成立 —— 該掃描實未執行，見 CAM-12 §5-1。）
 
+### 6-43. `SWE-CAM-024` 全 BLOCKED 之交付台帳形制
+
+`[DECIDED — CAM-12 審閱 §二-4，Pei 2026-09-23]`
+工作簿**不出列**；`coverage.tsv` 記 `BLOCKED — DR-CAM-a`；
+交付包附未結 DR 清單（canon §8.4.3）。是否降 NA 由 Pei 於交付時裁。
+
+### 6-44. V3 `-186`～`-188` 一句涵蓋 set／clear，四步不拆
+
+`[DECIDED — CAM-12 審閱 §二-5，Pei 2026-09-23]` 條文結構相異，接受。
+
+### 6-45. `remarks` 欄
+
+`[DECIDED — CAM-12 審閱 §二-6，Pei 2026-09-23]`
+接受；用途限「來源與 DBC 名稱差異」「疑似誤植」「需特殊治具」三類，記於 profile §10。
+
+### 6-46. DR-CAM-q（DTC 碼值）
+
+`[DECIDED — CAM-12 審閱 §二-7，Pei 2026-09-23]`
+14 列 PENDING 接受；**`Diagnostics` 組交付前必結**。
+
 ---
 
 ## Sign-off

@@ -319,6 +319,9 @@ EOF
 | `Reverse_Deb` | **750** | `ms` | Atl-Hi（V2）| V2 §1.8.13 `-151`／`-150`／`-147` |
 | `TIME_W_RVC` | **2,5** | `sec` | 2261（V33）、637（V42）| V33 §1.14.1 `-515`／`-516`／`-519` |
 | `TIME_W_RVC2` | **50** | `ms` | 2261（V33）| V33 §1.14.1 `-587`／`-588`／`-591`（範圍 `[50;100]`、容差 `10`）|
+| `RESPONSE_TIME` | **2,0** | `sec` | 637（V42）| V42 §1.14.1 `-679`／`-680`／`-683` |
+| `Time_POWER` | **500** | `ms` | 637（V42）| V42 §1.14.1 `-739`／`-740`／`-743` |
+| `Tpower`（V42）| **5** | `sec` | 637（V42）| V42 §1.14.1 `-703`／`-704`／`-707` —— 與 V2／V3 同值 |
 
 **兩個速度門檻為同一門檻之兩種標定**：8 mph ＝ 12.874752 km/h，與 13,0 km/h 相差
 0.125 km/h，落在 V33／V42 所載之 ±`0,5` 容差內（`-506`／`-658`）。
@@ -330,14 +333,30 @@ procedure 之 raw 換算則以小數點書寫（`13.0625 km/h`）。
 
 ---
 
-## 10. 車型軸（R-CAM3）與品牌軸（R-CAM5）
+## 10. `remarks` 欄之用途（CAM-12 審閱 §二-6，Pei 2026-09-23）
+
+json 之可選 `remarks` 欄寫入工作簿之 **`AH` 欄（Remarks 備註）**，
+其用途**限下列三類**，不得作一般註解：
+
+| 類 | 句式 | 實例 |
+|---|---|---|
+| **來源與 DBC 名稱差異** | `Source names the message X; the DBC carries <Sig> in Y (BO_ n). See DR-CAM-f.` | `-175`／`-176`／`-178`／`-201`／`-239`／`-240` |
+| **疑似誤植** | `Condition per source text; suspected typo, see RDF-nn` | `-170` |
+| **需特殊治具** | 該列之執行需模擬器／量測治具者（與 `bench_verify.md` 對應）| —— |
+
+`remarks` **不取代 reasoning** —— reasoning 為生成之依據（不入工作簿），
+`remarks` 為執行者於工作簿上所需之提醒（入工作簿）。
+
+---
+
+## 11. 車型軸（R-CAM3）與品牌軸（R-CAM5）
 
 拆分判準逐字見 `features/camera/RULINGS.md` R-CAM3、R-CAM5。
 平台 ↔ VF ↔ PROXI 對照表同檔；品牌對照見本檔 §3.2。
 二軸同時成立時**以車型軸為外層**（R-CAM5(d)）。
 `forms/proxi/` 六平台十檔**不得改名、不得移動**（CAM-01 §0）。
 
-### 10.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
+### 11.1 Ignition 前提之訊號（CAM-01 審閱 §二-1 更正，CAM-02 §2 任務 6）
 
 `SWE-CAM-002` 之 Ignition 前提**不得用 `BCM_FD_9.PowerModeSts`**
 （CameraEventHal 表：Atl-H、`Supported by Harman = N`、`MD fake CEH status
@@ -354,7 +373,7 @@ Atl-H | Y | verified`。該未結項關閉。
 
 ---
 
-## 11. 未決（本檔不得自行補齊）
+## 12. 未決（本檔不得自行補齊）
 
 CAM-01 之七項未決**全數已裁**（R-CAM4～R-CAM8、DECISIONS §6-6）。
 CAM-02 新生之未決：
