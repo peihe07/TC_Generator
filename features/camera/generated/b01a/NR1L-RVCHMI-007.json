@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-007",
+  "req_id": "SWE1-RVC-048-03",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "The Rear View Camera can be manually activated via camera app",
+  "source_object_id": "NRL-187347",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "manual activation via the camera app home page",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-r the equipment flag for the \"Camera App\" feature is not sourced\n4. The shift lever is in P\n5. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select the Camera app in the App Drawer\n3. Select the Rear View Camera soft control on the Camera app home page\n4. Read the HU display and check that the rear view camera image is displayed",
+      "expected_result": "1. The App Drawer is displayed\n2. The Camera app home page is displayed\n3. The Rear View Camera soft control registers the selection\n4. The rear view camera image is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_6.5.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "manual activation via the camera app home page",
+      "test_item": "The Rear View Camera can be manually activated via camera app\n\n(manual activation via the camera app home page)"
+    }
+  ],
+  "reasoning": "驗證目標為 §6.5.1 之 camera app 一支。verbatim 為保序子序列（刪 `the controls page, apps drawer, or`，並留 `camera app`）。hop label `Camera app home page` 逐字取 H 本 **§27.2.6.3**；入口（自 App Drawer 進 Camera app）取 §18.3.1.1 之逐字。「Camera App」之配備旗標於六本 PROXI 零命中（掃描字串 `Camera_App`，六本各 0）→ **DR-CAM-r**。"
+}

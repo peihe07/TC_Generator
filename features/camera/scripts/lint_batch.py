@@ -39,7 +39,7 @@ ws.title = "Test Case Specification 測試用例規範"
 for col, txt in HDR.items():
     ws[f"{col}9"] = txt
 row = 10
-for p in sorted(GEN.glob("NR1L-RVC-*.json")):
+for p in sorted(GEN.glob("NR1L-*.json")):
     d = json.loads(p.read_text(encoding="utf-8")); t = d["tcs"][0]
     ws[f"B{row}"] = row - 9
     ws[f"D{row}"] = d["req_id"]; ws[f"F{row}"] = d["tc_id"]

@@ -1,0 +1,43 @@
+# NR1L-RVCHMI-005 — SWE1-RVC-048-01
+
+- **Test Group**：Rear View Camera｜**Test Set**：Activation and Exit
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=1｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=1｜Fastack (376)=1
+- **priority**：P1｜**design_method**：功能測試 (Functional based ; no specific technique)
+- **specification_reference**：`SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_6.5.1`（來源列 `NRL-187347`）
+
+## test_item 上半（verbatim，SYS1 逐字）
+
+> The Rear View Camera can be manually activated via the controls page,
+
+## reasoning
+
+驗證目標為 §6.5.1 三入口之 controls page 一支。verbatim 為該列 Description 之保序子序列（刪 `, apps drawer, or camera app`，**profile §5** 之摘句）。Controls 頁之進入路徑於 SYS1 匯出無逐字來源 → **DR-CAM-g**，沿 batch01b（`NR1L-RVC-034` 等五列）之形制。`Controls screen` 為 H 本 §12.2.1.1.3 與 R 本 §7.2.5 之逐字用語，非自造。互參 A 本 `SWE-CAM-016`（crossref `precondition-or-hop`）。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. PROXI Rear_View_Camera = 1 (Present)
+3. The shift lever is in P
+4. No camera image is displayed
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. PENDING: DR-CAM-g open the Controls screen
+2. Select the Rear View Camera soft control on the Controls screen
+3. Read the HU display and check that the rear view camera image is displayed
+```
+
+## expected_result
+
+```
+1. PENDING: DR-CAM-g the Controls screen is displayed
+2. The Rear View Camera soft control registers the selection
+3. The rear view camera image is displayed
+```

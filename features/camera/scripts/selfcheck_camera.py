@@ -37,6 +37,13 @@ CAM-05 審閱 §三-3（Pei 2026-09-23）令 `selfcheck_r_cam10.py` 更名本檔
    （`Cycle the ignition`／`Turn the ignition`／`Power on the HU`／`Power cycle`）；
    一律 `Send CAN: <MSG>.CmdIgnSts = <raw> (<label>)`（單 EE 直寫，跨 EE 依 R-CAM3(e)／(f)）。
    其目的子句（`… so that the HU reads the PROXI configuration`）移入 ER。
+9. **不可注入之訊號**（profile §7.6，CAM-13 審閱 §一-3）——
+   Procedure 之 `Send CAN: <MSG>.<Sig>` 其訊號於 `CameraEventHal status.xlsx` 為
+   `Supported by Harman = N` **且** `MD fake CEH status = Not yet`（A-CA16 之「兩者皆是」），
+   **並且** `ANOMALIES.md` 有同時提及該訊號與「不可注入／不走 CAN」之列者 → 命中。
+   兩個條件皆須成立 —— 只有 `N` 而 CEH 註 `could emulate` 者可注入，不命中。
+   該類訊號不可注入，TC 須改以其等價之可判態表達（A-CA16／A-CA17 之處置）。
+
 8. **`PENDING:` 之落點**（§8.4.3，CAM-10 審閱 §二-1）——
    `8a`：`PENDING:` 只得出現於**編號項或子項之行首**（`1. PENDING: …`／`a. PENDING: …`），
    不得嵌入句中 —— 嵌入者其缺值之範圍不可辨。
@@ -86,6 +93,16 @@ VM_MI = ("VF(ProMaster)637", "Toro(2261)", "Fastack (376)")
 RE_PEND_OK = re.compile(r"^\s*(?:\d+\.|[a-z]\.)\s*PENDING:")
 RE_PEND_ANY = re.compile(r"PENDING:")
 RE_DRID = re.compile(r"DR-CAM-[a-z]")
+# 第 9 項：不可注入之訊號（CEH 表 ＋ ANOMALIES）
+CEH = ROOT / "sources/raw/camera_event_hal_status"
+ANOM = ROOT / "features/camera/ANOMALIES.md"
+RE_SENDSIG = re.compile(r"Send CAN:\s*([A-Za-z0-9_]+\.[A-Za-z0-9_]+)")
+# B 本（SYS1）之錨母體：`spec-index/cache/` 兩本（R-CAM6 裁 cache 本為追溯母體）
+SYS1_CACHE = ROOT / "spec-index/cache"
+SYS1_BOOKS = ["SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_"
+              "(February_10th, 2023).xlsx",
+              "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021).xlsx"]
+RE_B_REQ = re.compile(r"^SWE1-RVC-")
 
 
 def _txt(v) -> str:
@@ -127,6 +144,48 @@ def sys2_index() -> tuple[dict[str, str], dict[str, str], dict[str, str]]:
     return a2s, desc, cat
 
 
+def sys1_index() -> tuple[dict[str, str], dict[str, str]]:
+    """回傳（`{檔名}_{章節號}` 錨 -> Polarion ID、Polarion ID -> Description 逐字）。
+
+    檔名之 token 化依 canon §10.7(b)：**只換空白**，其餘字元逐字（DECISIONS 6-48）。
+    """
+    a2p: dict[str, str] = {}
+    desc: dict[str, str] = {}
+    for book in SYS1_BOOKS:
+        path = SYS1_CACHE / book
+        if not path.exists():
+            continue
+        stem = path.stem.replace(" ", "_")
+        wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        for r in wb["Basic Report"].iter_rows(min_row=2, values_only=True):
+            pid, outline = _txt(r[0]), _txt(r[2])
+            if not pid or not outline:
+                continue
+            a2p.setdefault(f"{stem}_{outline}", pid)
+            desc.setdefault(pid, _txt(str(r[3]).replace("_x000D_", " ")
+                                      if r[3] is not None else ""))
+        wb.close()
+    return a2p, desc
+
+
+def ceh_blocked() -> dict[str, str]:
+    """CameraEventHal 表中 `N`／`Not yet` 之訊號 -> 其理由欄。"""
+    out: dict[str, str] = {}
+    paths = glob.glob(str(CEH / "*.xlsx"))
+    if not paths:
+        return out
+    wb = openpyxl.load_workbook(paths[0], read_only=True, data_only=True)
+    for r in wb.worksheets[0].iter_rows(values_only=True):
+        sig = _txt(r[0])
+        if not sig or sig.lower().startswith("source signal"):
+            continue
+        sup, fake = _txt(r[3]).upper(), _txt(r[5]).lower()
+        if sup == "N" and "not yet" in fake:      # A-CA16 之「兩者皆是」
+            out[sig] = _txt(r[7]) or f"Harman={sup or '-'} / CEH={fake or '-'}"
+    wb.close()
+    return out
+
+
 def is_subsequence(short: list[str], full: list[str]) -> bool:
     """short 之 token 是否為 full 之保序子序列。"""
     it = iter(full)
@@ -137,6 +196,7 @@ def main() -> None:
     dirs = [Path(a) for a in sys.argv[1:]] or [ROOT / "features/camera/generated/pilot02"]
     own = owners()
     a2s, desc, cat = sys2_index()
+    a2p, desc1 = sys1_index()
     hit1: list[tuple] = []      # R-CAM10
     hit2: list[tuple] = []      # proc < 2
     hit3: list[tuple] = []      # RUN 重複
@@ -150,6 +210,9 @@ def main() -> None:
     hit7: list[tuple] = []       # 散文式點火動作
     hit8a: list[tuple] = []      # PENDING 嵌入句中
     hit8b: list[tuple] = []      # 同一 DR 之 PENDING 跨 pre 與 er
+    hit9: list[tuple] = []       # 不可注入之訊號
+    blocked = ceh_blocked()
+    anom = ANOM.read_text(encoding="utf-8") if ANOM.exists() else ""
     no_source: list[tuple] = []
     checked = tcs = 0
 
@@ -160,12 +223,19 @@ def main() -> None:
             for tc in doc["tcs"]:
                 tcs += 1
                 # ── 1 ── R-CAM10 錨反查（含 (b) 之多錨合一）
+                is_b = bool(RE_B_REQ.match(req))
                 owned: list[tuple[str, str, str]] = []   # (anchor, sid, holder)
                 for anchor in tc["specification_reference"].split("\n"):
                     anchor = anchor.strip()
                     if not anchor:
                         continue
                     checked += 1
+                    if is_b:
+                        # B 本：錨為 `{SYS1 檔名}_{章節號}`，只驗可反查 ——
+                        # R-CAM10 之委派制以 037 A 本之 SYS-RA 對照為母體，不及於 B 本
+                        if anchor not in a2p:
+                            unresolved.append((tc_id, anchor))
+                        continue
                     sid = a2s.get(anchor)
                     if sid is None:
                         unresolved.append((tc_id, anchor))
@@ -222,6 +292,21 @@ def main() -> None:
                 for ln in tc["test_procedure"].split("\n"):
                     if RE_SETSTYLE.search(ln):
                         hit6.append((tc_id, ln.strip()[:80]))
+                # ── 9 ── 不可注入之訊號（CEH ＋ ANOMALIES）
+                for m9 in RE_SENDSIG.finditer(tc["test_procedure"]):
+                    sig = m9.group(1)
+                    why = blocked.get(sig)
+                    if why is None:
+                        # CEH 之訊號名可能被截斷（欄寬），以前綴比對補之
+                        why = next((v for k, v in blocked.items()
+                                    if sig.startswith(k) or k.startswith(sig)), None)
+                    if why is None:
+                        continue
+                    stem = sig.split(".")[-1][:18]
+                    blocked_line = any(stem in ln and ("不可注入" in ln or "不走 CAN" in ln)
+                                       for ln in anom.split("\n"))
+                    if blocked_line:
+                        hit9.append((tc_id, sig, why[:60]))
                 # ── 8 ── PENDING 之落點（§8.4.3）
                 for fld in ("pre_conditions", "test_procedure", "expected_result"):
                     for ln in tc[fld].split("\n"):
@@ -236,12 +321,14 @@ def main() -> None:
                 # ── 4 ── verbatim 保序子序列
                 sid = doc.get("source_object_id")
                 verb = doc.get("test_item_verbatim", "")
+                desc_map = desc1 if is_b else desc
                 if not sid or not verb:
                     no_source.append((tc_id, sid))
-                elif sid not in desc:
+                elif sid not in desc_map:
                     no_source.append((tc_id, sid))
-                elif not is_subsequence(_txt(verb).split(), desc[sid].split()):
-                    hit4.append((tc_id, sid, len(_txt(verb).split()), len(desc[sid].split())))
+                elif not is_subsequence(_txt(verb).split(), desc_map[sid].split()):
+                    hit4.append((tc_id, sid, len(_txt(verb).split()),
+                                 len(desc_map[sid].split())))
 
     print(f"Camera 自檢：批次 {[str(d) for d in dirs]}（TC {tcs} 筆）")
     print(f"  1 R-CAM10 錨反查：檢查錨 {checked} 個；無法反查 {len(unresolved)}；常數錨 {len(constant)}；**命中 {len(hit1)}**")
@@ -254,6 +341,7 @@ def main() -> None:
     print(f"  7 點火動作 CAN 式：**命中 {len(hit7)}**")
     print(f"  8a PENDING 落點　：**命中 {len(hit8a)}**（嵌入句中）")
     print(f"  8b PENDING 跨兩欄：**命中 {len(hit8b)}**（提示，須逐列覆核）")
+    print(f"  9 不可注入之訊號：**命中 {len(hit9)}**")
     for tc_id, anchor in unresolved:
         print(f"  [1 反查失敗] {tc_id}  {anchor}")
     for tc_id, anchor, sid in constant:
@@ -283,8 +371,11 @@ def main() -> None:
         print(f"  [8a 違反] {tc_id}  {fld}：{snip}")
     for tc_id, dr in hit8b:
         print(f"  [8b 提示] {tc_id}  {dr} 同時見於 pre 與 er")
+    for tc_id, sig, why in hit9:
+        print(f"  [9 違反] {tc_id}  {sig} 不可注入（CEH：{why}）")
     sys.exit(1 if (hit1 or unresolved or hit2 or hit3 or hit3b or hit4
-                   or no_source or hit5 or hit6 or hit7 or hit8a or hit8b) else 0)
+                   or no_source or hit5 or hit6 or hit7 or hit8a or hit8b
+                   or hit9) else 0)
 
 
 if __name__ == "__main__":

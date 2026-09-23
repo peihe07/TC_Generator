@@ -279,6 +279,36 @@ a. PENDING: DR-CAM-f the raw value and VAL label for Active are not sourced
 沿革：CAM-11 初稿寫成 `1. PENDING: DR-CAM-f set X to Y`，`P` 由 0 升為 4；
 改為本形制後兩者皆 0（CAM-11 上繳 §4-1）。
 
+### 7.6 生成前之 ANOMALIES 預掃（CAM-13 審閱 §一-3，Pei 2026-09-23）
+
+每批步驟 A 判軸之前，**先掃該 SWE 列相關之 `features/camera/ANOMALIES.md`**，
+以免把已裁為「不可注入」之訊號再寫成 `Send CAN:` 步。
+沿革：CAM-13 之 `-113` 用 `Send CAN: IPC_VEHICLE_SETUP.LanguageSelection`，
+而 A-CA17（2026-09-16）已裁該訊號不走 CAN、觸發須改由 HMI 語言設定；自查後改寫。
+
+掃法（逐列，母體為 `features/camera/ANOMALIES.md`）：
+
+```
+grep -n -i -e "<SWE-CAM-nnn>" -e "<該列所涉之訊號名>" features/camera/ANOMALIES.md
+```
+
+命中之項若其處置為「不走 CAN／不可注入」，該訊號**不得**出現於 `Send CAN:` 步；
+改以 ANOMALIES 指定之替代觸發（HMI hop、治具、PROXI 設定）書寫，
+無替代者以 §7.5 之形制掛 `PENDING`。
+
+**selfcheck 第 9 項**為其機械化後衛，判準為兩條件**皆**成立：
+
+1. 該訊號於 `sources/raw/camera_event_hal_status/*.xlsx` 之
+   `Supported by Harman` 欄為 `N` **且** `MD fake CEH status` 欄含 `Not yet`
+   —— 即 A-CA16 所稱之「兩者皆是」。只有 `N` 而 CEH 註 `could emulate`
+   （如 `STATUS_BH_BCM2.CmdIgnSts`，profile §11.1 之 Atl-Mi 點火訊號）者**可**注入，不命中；
+   註 `verified` 者（如 `IPC_VEHICLE_SETUP.DynamicGrid`）亦不命中。
+2. `ANOMALIES.md` 有**同一列**同時提及該訊號名與「不可注入」或「不走 CAN」者。
+
+兩條件取交集之由：CEH 表單獨為據時偽陽過多（初版判準 `N` **或** `Not yet`
+＋ 訊號名出現於 ANOMALIES 任一處，240 列掃得 58 命中，經核幾乎全為可注入之訊號）；
+收緊後 240 列命中 0（CAM-14 上繳 §1-1 之證據表）。
+
 ## 8. framework 重開之 sha16 量測法（CAM-06 審閱 §一-1，Pei 2026-09-23）
 
 `features/camera/framework.md` 之狀態行自載其重開後 sha16 —— 該值**自指**

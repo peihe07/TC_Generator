@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-012",
+  "req_id": "SWE1-RVC-051-03",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "When not equipped with a camera app but equipped with “enhanced camera app” the rear view will have the SVC bar present in the view",
+  "source_object_id": "NRL-187352",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "0",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "SVC bar present in the rear view with enhanced camera app",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PROXI Surround_View_Camera = 1 (Present)\n4. PENDING: DR-CAM-r the equipment flag for the \"Enhanced Camera App\" feature is not sourced\n5. The rear view camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Read the rear view camera image and check that the SVC bar is present in the view\n2. Read the SVC bar and check that its soft controls are selectable",
+      "expected_result": "1. The SVC bar is shown in the rear view camera image\n2. The soft controls in the SVC bar can be selected",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_6.7.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "SVC bar present in the rear view with enhanced camera app",
+      "test_item": "When not equipped with a camera app but equipped with “enhanced camera app” the rear view will have the SVC bar present in the view\n\n(SVC bar present in the rear view with enhanced camera app)"
+    }
+  ],
+  "reasoning": "驗證目標為 §6.7.1 之 SVC bar 一支。`SVC bar` 為該列 Description 之逐字用語；其可選性取 H 本 **§22.2.13**（`All views listed above will have the black bar with all soft controls present when accessed via Vehicle Surround View, soft control via the controls page, or apps drawer`）。SVC bar 之存在以 `PROXI Surround_View_Camera = 1` 為前提；Toro 缺 byte 177（**DR-CAM-l**）→ `Toro(2261)` 判 0。"
+}

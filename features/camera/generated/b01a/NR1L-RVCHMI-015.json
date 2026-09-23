@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-015",
+  "req_id": "SWE1-RVC-007-01",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "ATTENTION: Camera display has higher priority than any other screen.",
+  "source_object_id": "NRL-142613",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "camera display takes priority over the screen currently shown",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n4. The Radio display is shown\n5. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n2. Read the HU display and check that the rear view camera image has replaced the Radio display",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent\n2. The rear view camera image is displayed in place of the Radio display",
+      "specification_reference": "SYS1_HMI_RVC+PAM_R1_Low_SR24_1A_(June_25_2021)_7.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "camera display takes priority over the screen currently shown",
+      "test_item": "ATTENTION: Camera display has higher priority than any other screen.\n\n(camera display takes priority over the screen currently shown)"
+    }
+  ],
+  "reasoning": "驗證目標為 §7.1 首句之優先權。verbatim 取該句逐字（Description 之保序子序列，刪熱保護之第二句 —— 該句由 `-016` 承接）。以 Radio 顯示中入 R 檔驗「覆蓋既有畫面」。與 A 本 `SWE-CAM-015`（`NR1L-RVC-011` 等）之分工：後者驗**自動活化之判準**，本列驗**相對於其他畫面之優先權**；兩者來源與承接列皆不同（**R-CAM10**）。"
+}

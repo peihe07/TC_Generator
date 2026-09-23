@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-013",
+  "req_id": "SWE1-RVC-051-04",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "Note: <X> only available in P, N, or D",
+  "source_object_id": "NRL-187352",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "X exit control offered in P, N and D and not in R",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-r the equipment flag for the \"Enhanced Camera App\" feature is not sourced\n4. CAN source: TRANSM_FD_4.ShiftLeverPosition (HDCC27, DT27) / STATUS_CCAN4.ReverseGearSts (637, 2261, 376)\n5. The rear view camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 1 (P)\n2. Read the rear view camera image and check that the \"X\" exit control is available\n3. Send CAN: TRANSM_FD_4.ShiftLeverPosition = 2 (R)\n4. Read the rear view camera image and check that the \"X\" exit control is not available",
+      "expected_result": "1. TRANSM_FD_4.ShiftLeverPosition = 1 (P) is sent and the \"X\" exit control is shown\n2. The \"X\" exit control can be selected\n3. TRANSM_FD_4.ShiftLeverPosition = 2 (R) is sent\n4. The \"X\" exit control is not shown",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_6.7.1",
+      "design_method": "決策表 (Decision Table Testing)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "X exit control offered in P, N and D and not in R",
+      "test_item": "Note: <X> only available in P, N, or D\n\n(X exit control offered in P, N and D and not in R)"
+    }
+  ],
+  "reasoning": "驗證目標為 §6.7.1 末之 `Note: <X> only available in P, N, or D`（Description 逐字）。P 為正例、R 為反例（唯一不在列舉內之常見檔位），N／D 與 P 同屬列舉內而可觀察結果相同，不另拆（**profile §5** 之同結果不拆）。raw 與 label 取 `PDT27_E2A_R1_FDCAN8.dbc` 之 `VAL_ … ShiftLeverPosition 1 \"P\" 2 \"R\"`。"
+}

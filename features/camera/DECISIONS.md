@@ -530,6 +530,49 @@ procedure 改回停送 **`STATUS_CCAN3`**；疑似誤植登 RDF-08，工作簿 `
 `[DECIDED — CAM-12 審閱 §二-7，Pei 2026-09-23]`
 14 列 PENDING 接受；**`Diagnostics` 組交付前必結**。
 
+### 6-47. CAM-13 §2-2 三處（`-025` 無來源、`-023`／`-021` 實際範圍）
+
+`[DECIDED — CAM-13 審閱 §一-1，Pei 2026-09-23]`
+**確認**，三處皆 R-CAM10 反查之結果；`SWE-CAM-025` 為 R-CAM16（來源全數委派 → 零 TC，非缺口）第三例。
+下放包 CAM-13 §2 之列數預期係分析層未查 plan 即寫，記一筆（不影響產物）。
+
+### 6-48. SYS1 檔名之 token 化 —— 只換空白
+
+`[DECIDED — CAM-13 審閱 §一-2，Pei 2026-09-23]`
+依 canon §10.7(b)「空格→底線」，`+`、`( )`、`,` 等字元**逐字保留**：
+`…_(February_10th,_2023)_6.1.2`、`…RVC+PAM_…_(June_25_2021)_7.3.1`。
+`recon_b_rows.tsv` 與 `b_plan.tsv` 之 `spec_reference` 欄已一併重生（CAM-14 §1-2）。
+機械保證缺如，登 **GCB-09**（同檔名拼寫變體 lint）。
+
+### 6-49. 生成前之 ANOMALIES 預掃
+
+`[DECIDED — CAM-13 審閱 §一-3，Pei 2026-09-23]`
+入 profile **§7.6**；selfcheck 增**第 9 項**為後衛。
+判準取 CEH（`N` **且** `Not yet`）與 ANOMALIES（同列提及訊號 ＋「不可注入／不走 CAN」）之**交集** ——
+單以 CEH 為據時 240 列得 58 命中而幾乎全為偽陽（`could emulate`／`verified` 亦被 `N` 掃到）；
+收緊後 240 列命中 0。
+
+### 6-50. B 本 `est_tc` 1／leaf 基準
+
+`[DECIDED — CAM-13 審閱 §一-5，Pei 2026-09-23]`
+`b_plan.tsv` 之 `est_tc` 以每 leaf 1 筆為**規劃基準**，非承諾；
+各批步驟 A 逐列判軸後得實數，與基準之差於該批上繳包具名說明。
+
+### 6-51. B 本之 `Vehicle Model` 七欄判準
+
+`[PROPOSED — CAM-14 §3，待裁]`
+SYS1 HMI 兩本之條文**不帶平台維度**（無 `PHDCC27`／`P637MCA` 之類之錨），
+故 **R-CAM3** 之車型軸於 B 本須改由**可佈性**判：
+
+1. 該列之 PROXI 前提所用之 byte 於該平台之 PROXI 本**存在** → 該欄 `1`；缺 → `0`。
+2. 該列之觸發訊號於該平台之 DBC 存在（沿 A 本已定之 message 對照，**R-CAM1(b)**）→ `1`。
+3. 兩者皆不涉（純 HMI hop）→ 五款已出資平台全 `1`。
+4. `Commander (598)`／`Regengade (5210)` 一律 `0`（**R-CAM2** 不變）。
+
+B01a 之實測結果：**19 列**五款全 `1`；**3 列**（`NR1L-RVCHMI-008`／`-012`／`-014`）
+因 Toro 2019 本缺 byte 177（`Surround_View_Camera`／`Forward_Facing_Camera`，**DR-CAM-l**）
+而 `Toro(2261)` = 0。
+
 ---
 
 ## Sign-off

@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-011",
+  "req_id": "SWE1-RVC-051-02",
+  "test_group": "Rear View Camera",
+  "test_set": "Activation and Exit",
+  "test_item_verbatim": "When not equipped with a camera app but equipped with “enhanced camera app” the rear view can be accessed via apps drawer",
+  "source_object_id": "NRL-187352",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "rear view via the apps drawer with enhanced camera app and no camera app",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. PENDING: DR-CAM-r the equipment flags for the \"Camera App\" and \"Enhanced Camera App\" features are not sourced\n4. The shift lever is in P\n5. No camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select the Rear View Camera soft control in the App Drawer\n3. Read the HU display and check that the rear view camera image is displayed",
+      "expected_result": "1. The App Drawer is displayed\n2. The Rear View Camera soft control registers the selection\n3. The rear view camera image is displayed",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_6.7.1",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "rear view via the apps drawer with enhanced camera app and no camera app",
+      "test_item": "When not equipped with a camera app but equipped with “enhanced camera app” the rear view can be accessed via apps drawer\n\n(rear view via the apps drawer with enhanced camera app and no camera app)"
+    }
+  ],
+  "reasoning": "驗證目標為 §6.7.1 之 apps drawer 一支。verbatim 為保序子序列（刪 `the controls page and`與 `and will have the SVC bar …` 之後段）。hop 句式沿 A 本 `NR1L-RVC-113`。配備前提同 `-010`，**DR-CAM-r**。"
+}
