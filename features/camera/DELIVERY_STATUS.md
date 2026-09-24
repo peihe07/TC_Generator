@@ -1,6 +1,6 @@
 # Camera（FW036 R1L）—— 交付狀態
 
-**一頁式閘表**，供 Pei 作 Phase 7 之依據。日期 2026-09-24（CAM-24 §4 建檔；CAM-26 §3 更新；**CAM-27 §4 終態**）。
+**一頁式閘表**，供 Pei 作 Phase 7 之依據。日期 2026-09-24（CAM-24 §4 建檔；CAM-26 §3 更新；**CAM-27 §4 終態**；CAM-28 來源改版核對）。
 日後 DR 結案／bench 驗畢時由執行層更新本檔，並於該輪上繳包記其新 sha。
 
 ---
@@ -125,6 +125,10 @@ render_tc.py --verify  二十二目錄 465 份 md 逐位元相符 465／相異 0
   A dryrun4 另帶入 CAM-25 已改而 dryrun3 未含之 `NR1L-RVC-245` `Remarks`（6-85）。
 - 2026-09-24 **終態**（CAM-27）。6-87 落定、立 **R-CAM19(f)**（6-88）；`NR1L-RVCHMI-087` 車型補正（A-CA39 RESOLVED）；
   B 候選改指 `dryrun4`；RDF-18／GCB-13 落檔。TC 數不變（465）。
+- 2026-09-24 **來源改版核對**（CAM-28，§9 第四種觸發）。REF 之 VF551_V2／V3／CFTS092 dependency 本與 V2 R2 docx 登 MANIFEST；
+  V2 被引用 17 ID 之 Description 差異全為 `_x000D_`／空白（(a) NO-OP 94／(b) 0／(c) 0），**TC 0 列改動**，
+  兩本候選不變（A dryrun4／B dryrun4）。RD 驗證標準對帳 `data/rd_vc_crosscheck.tsv`、七車型欄對帳 `data/vm_crosscheck.tsv`，
+  其 PARTIAL／RD-ONLY 與車型差異**待 Pei 裁**，未改任何列。
 
 ## 9　生成階段結束
 
@@ -134,6 +138,7 @@ CAM-26 為 R-CAM19 之追溯補齊、CAM-27 為收尾）。**CAM-26 時開立之
 
 1. **DR 結案或裁降 NA** —— §3 之 13 條；結案時該列之 `PENDING` 改為實值、本檔重算；
 2. **Pei 之實機回饋** —— §4 之 105 列；其結果可能改寫 ER 或新增 PENDING；
-3. **Phase 7 之執行** —— §8 之五項前置齊備後，寫 `features/camera/delivered/` 並 tag。
+3. **Phase 7 之執行** —— §8 之五項前置齊備後，寫 `features/camera/delivered/` 並 tag；
+4. **來源改版**（DECISIONS **6-89**，CAM-28 增）—— 既有 TC 所引來源出新版時，依 (a) NO-OP／(b) verbatim 改新版逐字／(c) Procedure／ER 依新版重寫處置，不生成新 TC。
 
 **不再因生成而變更。**

@@ -1,0 +1,185 @@
+# CAM-28 §4　RD 驗證標準（VC）／驗證方法（VM）↔ A 本 TC 對帳（只對帳不生成；R-CAM13(d)：VC／VM 欄非來源）
+# 母體：既有本 CFTS092 37／V2 103／V3 41 列之 VC 非空列（dependency 本逐列同）。state：COVERED／PARTIAL／RD-ONLY（有 TC 者）；NO-TC（037 有引而無 TC 錨）；NOT-CITED（037 未引）
+# missing_points 以 ` || ` 分隔，逐字摘自 RD VC；`[not in source]` ＝該點不見於來源 Description
+book	sys_ra_id	anchor	tc_ids	state	missing_points	method_gap	plan_note
+CFTS092	SYS-RA-CAM-061	CFTS092-4781626	—	NOT-CITED	—	—	—
+CFTS092	SYS-RA-CAM-062	CFTS092-4781627	—	NO-TC	—	—	covered_by: NR1L-RVC-001；R-CAM12 疊層同句，錨取 Rear 節之 -075
+CFTS092	SYS-RA-CAM-063	CFTS092-4781628	NR1L-RVC-034	COVERED	—	—	—
+CFTS092	SYS-RA-CAM-064	CFTS092-4781629	—	NO-TC	—	—	無 plan 紀錄
+CFTS092	SYS-RA-CAM-065	CFTS092-4781630	—	NO-TC	—	—	無 plan 紀錄
+CFTS092	SYS-RA-CAM-066	CFTS092-4781631	—	NO-TC	—	—	無 plan 紀錄
+CFTS092	SYS-RA-CAM-067	CFTS092-4781632	NR1L-RVC-035	PARTIAL	button size and visual style shall follow the definition of HMI document	—	—
+CFTS092	SYS-RA-CAM-068	CFTS092-4781633	NR1L-RVC-036	PARTIAL	the internal signal CHMC_IMAGE_ON shall be generated or received by the HU || [not in source] remain stable without flickering or black screen	Observe the HU internal log or CAN trace for the signal CHMC_IMAGE_ON.	—
+CFTS092	SYS-RA-CAM-069	CFTS092-4781634	NR1L-RVC-095	PARTIAL	the HU shall generate and receive the internal signal CHMC IMAGE OFF || [not in source] the cargo camera image shall immediately disappear from the HU display	check logs	—
+CFTS092	SYS-RA-CAM-071	CFTS092-4781636	—	NOT-CITED	—	—	—
+CFTS092	SYS-RA-CAM-072	CFTS092-4781637	NR1L-RVC-025	PARTIAL	[not in source] When the $RVC_SK_PRSNT$ signal status is [Not Present], the RVC button shall be disabled or hidden	—	—
+CFTS092	SYS-RA-CAM-073	CFTS092-4781638	NR1L-RVC-023	PARTIAL	The soft button shall not be selectable when $PowerMode$ = [OFF], [ACC], or any other state	Use system diagnostic or simulation tools to change the $PowerMode$ signal among [OFF], [ACC], and [IGN_RUN].	—
+CFTS092	SYS-RA-CAM-074	CFTS092-4781639	NR1L-RVC-024	PARTIAL	When $PowerMode changes from [IGN_RUN] to any other state (e.g., ACC, OFF) (only ACC is tested; OFF not verified)	—	—
+CFTS092	SYS-RA-CAM-075	CFTS092-4781640	NR1L-RVC-001	COVERED	—	—	—
+CFTS092	SYS-RA-CAM-076	CFTS092-4781641	NR1L-RVC-046	PARTIAL	[not in source] after select the softkey button, it shall launch RVC display correctly	—	—
+CFTS092	SYS-RA-CAM-077	CFTS092-4781642	NR1L-RVC-028	PARTIAL	The Rear Camera image shall remain continuously displayed on the head unit screen once activated. || The image shall not disappear automatically unless the driver performs a softkey press to disable it.	—	—
+CFTS092	SYS-RA-CAM-078	CFTS092-4781643	NR1L-RVC-007;NR1L-RVC-008;NR1L-RVC-009;NR1L-RVC-010	PARTIAL	The camera image shall not disappear until both of the following conditions are satisfied: Display timer exceeds 10 seconds, and Vehicle speed exceeds 8 mph (no TC holds speed > 8 mph and checks the image stays until the 10 s timer expires; RVC-009 expects closing within 10 s, RVC-007/008 expect closing after 10 s below 8 mph)	—	—
+CFTS092	SYS-RA-CAM-079	CFTS092-4781644	—	NO-TC	—	—	無 plan 紀錄
+CFTS092	SYS-RA-CAM-080	CFTS092-4781645	—	NO-TC	—	—	無 plan 紀錄
+CFTS092	SYS-RA-CAM-081	CFTS092-4781646	—	NO-TC	—	—	無 plan 紀錄
+CFTS092	SYS-RA-CAM-082	CFTS092-4781647	NR1L-RVC-047	PARTIAL	the system shall generate and receive the internal signal RVC IMAGE OFF || [not in source] the HU shall stop displaying the rear-view camera image immediately || [not in source] No residual or frozen image of the rear view shall remain visible on the display.	Internal logs or CAN traces show the signal RVC IMAGE OFF triggered	—
+CFTS092	SYS-RA-CAM-084	CFTS092-4781649	NR1L-RVC-037	PARTIAL	[not in source] When $SVC_SK_PRSNT$ = [0] -> The SVC button shall not be visible or shall remain disabled || [not in source] No other camera-related buttons or functions shall be unintentionally affected	—	—
+CFTS092	SYS-RA-CAM-085	CFTS092-4781650	NR1L-RVC-038	PARTIAL	No unintended or repeated signal transmission shall occur unless another keypress event is detected.	—	—
+CFTS092	SYS-RA-CAM-086	CFTS092-4781651	NR1L-RVC-096	COVERED	—	—	—
+CFTS092	SYS-RA-CAM-087	CFTS092-4781652	NR1L-RVC-097	PARTIAL	When a new keypress occurs, the signal state changes accordingly (e.g., to [Pressed] or another defined state). || [not in source] No interruption, delay, or missing transmission of $SVC_SoftBtn_Rq$ occurs during the “Not Pressed” state.	—	—
+CFTS092	SYS-RA-CAM-088	CFTS092-4781653	NR1L-RVC-048	PARTIAL	When the system (HU) is powered ON or rebooted, the Surround View camera shall remain OFF by default. || [not in source] internal status signals ($Surround_View_Status = OFF) || [not in source] The default OFF state shall persist after system reset, power cycle, or software update.	Power on the HU and observe the initial state of the Surround View function	—
+CFTS092	SYS-RA-CAM-089	CFTS092-4781654	NR1L-RVC-039	PARTIAL	[not in source] When the Softkey is selected, the system correctly launches or switches to the Surround View Camera display. || [not in source] The Softkey is positioned according to UI design specifications (layout, label, and icon match design documents). || [not in source] The button remains accessible under all expected system states where camera functions are enabled (e.g., vehicle in park, ignition ON).	Use system log or debug monitor to confirm correct triggering of the SVC application upon Softkey activation.	—
+CFTS092	SYS-RA-CAM-090	CFTS092-4781655	NR1L-RVC-040	PARTIAL	The video display and signal transmission shall occur within the specified timing window (<Tsend>) || If the vehicle speed is ≥ 8 mph, pressing the SVC button shall not activate the display	—	—
+CFTS092	SYS-RA-CAM-091	CFTS092-4781656	NR1L-RVC-043	COVERED	—	—	—
+CFTS092	SYS-RA-CAM-092	CFTS092-4781657	NR1L-RVC-041	PARTIAL	The grey-out action shall be completed within <Tdisplay> (defined display update time). || [not in source] When the vehicle speed drops below 8 MPH, the button shall return to active (selectable) state || [not in source] The system shall not allow activation of the Surround View Camera when the button is greyed out.	—	—
+CFTS092	SYS-RA-CAM-093	CFTS092-4781658	NR1L-RVC-042	PARTIAL	The Surround View Camera display status remains unchanged within the specified time <Tdisplay>. || [not in source] When the Speedometer signal returns to a valid value, the camera soft button behavior returns to normal	—	—
+CFTS092	SYS-RA-CAM-095	CFTS092-4781660	NR1L-RVC-044	PARTIAL	[not in source] $OFFroad_Camera$ = [Absent] FFC button shall not be displayed or selectable	—	—
+CFTS092	SYS-RA-CAM-096	CFTS092-4781661	NR1L-RVC-045	PARTIAL	[not in source] The CVPM shall correctly receive the $CameraDisplaySts$ message and update the display to the corresponding Forward Camera view (View 3)	—	—
+CFTS092	SYS-RA-CAM-097	CFTS092-4781662	NR1L-RVC-093	COVERED	—	—	—
+CFTS092	SYS-RA-CAM-098	CFTS092-4781663	NR1L-RVC-094	PARTIAL	Upon the next keypress, the HU shall update or stop sending $CameraDisplaySts$ according to the corresponding display transition logic. || [not in source] The signal transmission interval and timing shall comply with the system’s defined CAN message cycle time	—	—
+CFTS092	SYS-RA-CAM-103	CFTS092-4781668	—	NOT-CITED	—	—	—
+CFTS092	SYS-RA-CAM-104	CFTS092-4781669	—	NOT-CITED	—	—	—
+V2	SYS-RA-VF551_V2-205	VF551_V2_PHDCC27_VF_1821	NR1L-RVC-185	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-208	VF551_V2_PHDCC27_VF_1593	—	NO-TC	—	—	covered_by: V2-205 之 TC —— 逐字同句（同本之另一節）
+V2	SYS-RA-VF551_V2-211	VF551_V2_PHDCC27_VF_1592	NR1L-RVC-198	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-212	VF551_V2_PHDCC27_VF_931	NR1L-RVC-197	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-214	VF551_V2_PHDCC27_VF_1591	NR1L-RVC-184	PARTIAL	[not in source] remains False for at least T_healing milliseconds || [not in source] resetting the fault detection counter (FDC) || [not in source] potentially changing the status bytes (e.g., "confirmed" status bit set to False or DTC moved to "history"	—	—
+V2	SYS-RA-VF551_V2-215	VF551_V2_PHDCC27_VF_927	NR1L-RVC-183	PARTIAL	[not in source] this state persists for at least T_debounce milliseconds || [not in source] with the correct status bytes (e.g., "confirmed" status bit set, occurrence counter incremented)	Simulate a communication timeout for a specific critical message or link (e.g., stop transmitting a required CAN message, or disconnect an LVDS link to a camera). Maintain this timeout condition for longer than T_debounce.	—
+V2	SYS-RA-VF551_V2-217	VF551_V2_PHDCC27_VF_1590	NR1L-RVC-182	PARTIAL	[not in source] remains False for at least T_healing milliseconds || [not in source] resetting the fault detection counter (FDC) || [not in source] potentially changing the status bytes (e.g., "confirmed" status bit set to False or DTC moved to "history"	—	—
+V2	SYS-RA-VF551_V2-218	VF551_V2_PHDCC27_VF_926	NR1L-RVC-181	PARTIAL	[not in source] this state persists for at least T_debounce milliseconds || [not in source] with the correct status bytes (e.g., "confirmed" status bit set, occurrence counter incremented)	—	—
+V2	SYS-RA-VF551_V2-220	VF551_V2_PHDCC27_VF_1589	NR1L-RVC-180	PARTIAL	[not in source] remains False for at least T_healing milliseconds || [not in source] resetting the fault detection counter (FDC) || [not in source] potentially changing the status bytes (e.g., "confirmed" status bit set to False or DTC moved to "history"	—	—
+V2	SYS-RA-VF551_V2-221	VF551_V2_PHDCC27_VF_123	NR1L-RVC-179	PARTIAL	[not in source] this state persists for at least T_debounce milliseconds || [not in source] with the correct status bytes (e.g., "confirmed" status bit set, occurrence counter incremented)	If it's an internal software signal, use a debugger or software injection framework.	—
+V2	SYS-RA-VF551_V2-442	VF551_V2_PHDCC27_VF_1925	NR1L-RVC-163	PARTIAL	for all defined states and ranges	Timing Tests: Transmit PROXI PAM_Tuning_Set messages at varying rates (nominal, higher, lower) ... Fault Injection (Missing) ... Fault Injection (Invalid)	—
+V2	SYS-RA-VF551_V2-443	VF551_V2_PHDCC27_VF_1924	NR1L-RVC-136	RD-ONLY	—	Nominal Cases: Transmit PROXI Dual_Rear_Wheels_Present for all valid states (e.g., "Present", "Not Present"). Timing Tests ... Fault Injection (Missing) ... Fault Injection (Invalid)	—
+V2	SYS-RA-VF551_V2-444	VF551_V2_PHDCC27_VF_1232	NR1L-RVC-137	RD-ONLY	—	Nominal Cases: Transmit PROXI Wheelbase values across its entire valid range, including minimum, maximum, nominal, and boundary values. Timing Tests ... Fault Injection (Missing) ... Fault Injection (Invalid)	—
+V2	SYS-RA-VF551_V2-445	VF551_V2_PHDCC27_VF_630	NR1L-RVC-138	PARTIAL	for all defined states and ranges	Nominal Cases: Program/transmit all valid values ... Timing Tests ... Fault Injection (Missing) ... Fault Injection (Invalid)	—
+V2	SYS-RA-VF551_V2-446	VF551_V2_PHDCC27_VF_1922	NR1L-RVC-073	RD-ONLY	—	Negative Test Cases: Program various other valid combinations (e.g., HDCC with different Body_Types, different Vehicle_Line_Configuration with Type 4 - DJ ...) || Fault Injection (Missing) ... Fault Injection (Invalid)	—
+V2	SYS-RA-VF551_V2-447	VF551_V2_PHDCC27_VF_1921	NR1L-RVC-074	RD-ONLY	—	Negative Test Cases: Program various other valid combinations (e.g., HDCC with different Body_Types, different Vehicle_Line_Configuration with Type 1 - D2 ...) || Fault Injection (Missing) ... Fault Injection (Invalid)	—
+V2	SYS-RA-VF551_V2-448	VF551_V2_PHDCC27_VF_624	NR1L-RVC-164	PARTIAL	for all defined states and ranges	Transmit all valid values for Steering_Ratio_Rack_Pinion_Type across its entire defined range (e.g., minimum, maximum, nominal, and boundary values) ... Timing Tests ... Fault Injection (Missing) ... Fault Injection (Invalid)	—
+V2	SYS-RA-VF551_V2-449	VF551_V2_PHDCC27_VF_1727	—	NO-TC	—	—	covered_by: V2-477 之 TC —— 逐字近同之 `b.` 子句
+V2	SYS-RA-VF551_V2-450	VF551_V2_PHDCC27_VF_1728	NR1L-RVC-119	PARTIAL	[not in source] no valid message for this signal being received on the CAN bus for a period exceeding X milliseconds	Simulate IPC_VEHICLE_SETUP.DynamicGrid messages being transmitted normally and then abruptly stopping ... (with varying durations of loss, including just above/below X ms timeout) || IPC_VEHICLE_SETUP.DynamicGrid appearing after the Y second wake-up window || Simulate intermittent loss and recovery	—
+V2	SYS-RA-VF551_V2-451	VF551_V2_PHDCC27_VF_1046	NR1L-RVC-118	RD-ONLY	—	Vary the DynamicGrid values to cover all defined states (e.g., Enabled, Disabled). Vary the transmission rate ... Simulate missing DynamicGrid messages ... Simulate invalid DynamicGrid values	—
+V2	SYS-RA-VF551_V2-452	VF551_V2_PHDCC27_VF_1714	NR1L-RVC-161	PARTIAL	continue to transmit LVDS vehicleUpdate_2.ASCM_Stat = [SNA] as long as the ASCM_FD_2.ASCM_Stat signal remains missing	Vary the duration of the "missing" period, including durations just above and below the defined timeout (X ms). Simulate intermittent loss and recovery	—
+V2	SYS-RA-VF551_V2-453	VF551_V2_PHDCC27_VF_613	NR1L-RVC-160	RD-ONLY	—	Vary the ASCM_Stat values to cover all defined states (e.g., active, passive, fault, unavailable). Vary the transmission rate	—
+V2	SYS-RA-VF551_V2-454	VF551_V2_PHDCC27_VF_2038	—	NO-TC	—	—	**不生成** —— 同上（hybrid 分支之 SNA 側）
+V2	SYS-RA-VF551_V2-455	VF551_V2_PHDCC27_VF_2037	—	NO-TC	—	—	**不生成** —— hybrid 分支之 PT_SYSTEM_FD_1 不可注入（A-CA15）
+V2	SYS-RA-VF551_V2-456	VF551_V2_PHDCC27_VF_2036	NR1L-RVC-157	PARTIAL	correctly evaluate the condition: Hybrid_Type != "Range Electric Paradigm Breaker" AND Hybrid_Type != "Fuel Cell Electric Vehicle"	Transmit Hybrid_Type messages for all defined types, explicitly including "Range Electric Paradigm Breaker", "Fuel Cell Electric Vehicle", and at least one other type	—
+V2	SYS-RA-VF551_V2-457	VF551_V2_PHDCC27_VF_2035	NR1L-RVC-156	PARTIAL	correctly evaluate the condition: Hybrid_Type != "Range Electric Paradigm Breaker" AND Hybrid_Type != "Fuel Cell Electric Vehicle"	inject FD-CAN8 TRANSM_FD_4.ShiftLeverPosition with a full range of values (Park, Reverse, Neutral, Drive, etc.) || Simultaneously inject Hybrid_Type values for all defined types	—
+V2	SYS-RA-VF551_V2-458	VF551_V2_PHDCC27_VF_1884	NR1L-RVC-153	RD-ONLY	—	Vary the duration of the "missing" period and the characteristics of the "missing" event (e.g., intermittent loss, complete loss)	—
+V2	SYS-RA-VF551_V2-459	VF551_V2_PHDCC27_VF_1883	NR1L-RVC-152	PARTIAL	precise adherence to any defined scaling factors, unit conversions, and sign conventions (e.g., degrees, radians, direction)	Full range of steering angles (lock-to-lock). Rapid steering inputs and slow, deliberate turns ... Defined invalid states (e.g., SNA if applicable on CAN, message timeouts, implausible values)	—
+V2	SYS-RA-VF551_V2-460	VF551_V2_PHDCC27_VF_1711	NR1L-RVC-151	PARTIAL	[not in source] not received by the Head Unit for a duration exceeding T_missing_timeout milliseconds	—	—
+V2	SYS-RA-VF551_V2-461	VF551_V2_PHDCC27_VF_616	NR1L-RVC-150	PARTIAL	at all valid input ranges, considering any specified scaling or conversion factors	inject ... messages with known, varying vehicle speed values and different update rates	—
+V2	SYS-RA-VF551_V2-477	VF551_V2_PHDCC27_VF_1666	NR1L-RVC-120	PARTIAL	under any operating condition, including power-up, normal operation, error conditions, mode changes, and power-down sequences	Continuously monitor the gridZoomRequest.DynamicGridRQSts signal over extended test periods covering all possible operational states and transitions	—
+V2	SYS-RA-VF551_V2-478	VF551_V2_PHDCC27_VF_1672	NR1L-RVC-121	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-479	VF551_V2_PHDCC27_VF_1673	NR1L-RVC-122	RD-ONLY	—	simulate a customer selecting the "Disable Dynamic Gridlines" option on the Head Unit's HMI	—
+V2	SYS-RA-VF551_V2-480	VF551_V2_PHDCC27_VF_1674	NR1L-RVC-123	RD-ONLY	—	simulate a customer selecting the "Enable Dynamic Gridlines" option on the Head Unit's HMI	—
+V2	SYS-RA-VF551_V2-483	VF551_V2_PHDCC27_VF_1158	NR1L-RVC-162	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-484	VF551_V2_PHDCC27_VF_599	NR1L-RVC-079	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-485	VF551_V2_PHDCC27_VF_595	NR1L-RVC-130	PARTIAL	c. each value of systemStatus.ZoomViewRes	—	—
+V2	SYS-RA-VF551_V2-486	VF551_V2_PHDCC27_VF_750	NR1L-RVC-131;NR1L-RVC-132;NR1L-RVC-133;NR1L-RVC-134;NR1L-RVC-135	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-488	VF551_V2_PHDCC27_VF_484	NR1L-RVC-011	PARTIAL	wait for reverse debounce time (Reverse_Deb = 750 ms) || [not in source] defeat button should not display on screen	—	—
+V2	SYS-RA-VF551_V2-489	VF551_V2_PHDCC27_VF_1765	NR1L-RVC-029	PARTIAL	[not in source] IGN != RUN (BCM_FD_10.CmdIgnSts != RUN) || [not in source] RVC image defeat button is pressed. || [not in source] VehicleSpeed >= c_VEHSPD_MAX and last for 10 seconds (Ttimer2)	10. wait more than 10 seconds ... 10. Still display RVC camera image on screen.	—
+V2	SYS-RA-VF551_V2-490	VF551_V2_PHDCC27_VF_1577	—	NO-TC	—	—	covered_by: NR1L-RVC-009 / -010
+V2	SYS-RA-VF551_V2-491	VF551_V2_PHDCC27_VF_1578	NR1L-RVC-098	PARTIAL	Precondition: Head Unit is in Manual Display mode || IGN != RUN (BCM_FD_10.CmdIgnSts != RUN) || RVC image defeat button is pressed. || VehicleSpeed >= c_VEHSPD_MAX and last for 10 seconds (Ttimer2)	—	—
+V2	SYS-RA-VF551_V2-492	VF551_V2_PHDCC27_VF_486	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-493	VF551_V2_PHDCC27_VF_487	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-495	VF551_V2_PHDCC27_VF_1065	NR1L-RVC-013	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-496	VF551_V2_PHDCC27_VF_1576	NR1L-RVC-017;NR1L-RVC-018;NR1L-RVC-241;NR1L-RVC-242	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-497	VF551_V2_PHDCC27_VF_479	NR1L-RVC-015	PARTIAL	The RVC image shall last for Ttimer1 (10 seconds)	—	—
+V2	SYS-RA-VF551_V2-498	VF551_V2_PHDCC27_VF_1378	NR1L-RVC-019;NR1L-RVC-020;NR1L-RVC-003	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-500	VF551_V2_PHDCC27_VF_1759	NR1L-RVC-215	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-501	VF551_V2_PHDCC27_VF_1758	NR1L-RVC-099	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-502	VF551_V2_PHDCC27_VF_1681	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-503	VF551_V2_PHDCC27_VF_1761	NR1L-RVC-221	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-504	VF551_V2_PHDCC27_VF_1760	NR1L-RVC-216	PARTIAL	App shall not interrupt the rear camera image display if Audio Mode is OFF. (anchored TC runs in Audio Mode ON)	—	—
+V2	SYS-RA-VF551_V2-505	VF551_V2_PHDCC27_VF_1682	NR1L-RVC-220	PARTIAL	[not in source] The entertainment and non-entertainment features shall be functional as Audio Mode OFF behavior (TC checks non-entertainment only)	—	—
+V2	SYS-RA-VF551_V2-506	VF551_V2_PHDCC27_VF_1764	NR1L-RVC-217	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-507	VF551_V2_PHDCC27_VF_1762	NR1L-RVC-100	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-508	VF551_V2_PHDCC27_VF_1683	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-509	VF551_V2_PHDCC27_VF_1753	NR1L-RVC-101	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-510	VF551_V2_PHDCC27_VF_1752	NR1L-RVC-222	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-511	VF551_V2_PHDCC27_VF_1751	NR1L-RVC-218	PARTIAL	when the head unit executes entertainment and non-entertainment features (TC only opens App Drawer; no entertainment feature executed)	—	—
+V2	SYS-RA-VF551_V2-512	VF551_V2_PHDCC27_VF_1684	NR1L-RVC-219	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-513	VF551_V2_PHDCC27_VF_1680	NR1L-RVC-102	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-514	VF551_V2_PHDCC27_VF_1679	NR1L-RVC-103	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-519	VF551_V2_PHDCC27_VF_1574	NR1L-RVC-080	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-520	VF551_V2_PHDCC27_VF_1575	NR1L-RVC-081	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-523	VF551_V2_PHDCC27_VF_1725	NR1L-RVC-104	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-524	VF551_V2_PHDCC27_VF_520	NR1L-RVC-105	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-526	VF551_V2_PHDCC27_VF_523	NR1L-RVC-233	PARTIAL	accurately reflect the current value of the IPC_VEHICLE_SETUP.LanguageSelection signal received by the Head Unit (TC changes language via HU Settings UI, signal not driven/checked)	Connect the Head Unit to a test bench with a CAN simulator or signal generator	—
+V2	SYS-RA-VF551_V2-527	VF551_V2_PHDCC27_VF_1708	NR1L-RVC-235	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-528	VF551_V2_PHDCC27_VF_505	NR1L-RVC-049	PARTIAL	(or is 'Open' upon camera activation)	—	—
+V2	SYS-RA-VF551_V2-529	VF551_V2_PHDCC27_VF_1572	NR1L-RVC-223	RD-ONLY	—	At various precise time points before 5 seconds (e.g., 1 second, 3 seconds, 4.9 seconds), simulate a transition to a non-camera display	—
+V2	SYS-RA-VF551_V2-530	VF551_V2_PHDCC27_VF_1573	NR1L-RVC-236	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-531	VF551_V2_PHDCC27_VF_507	NR1L-RVC-053	PARTIAL	for five seconds (TC reads within 5 s but does not verify 5 s display duration)	Systematically trigger transitions from various non-camera display modes	—
+V2	SYS-RA-VF551_V2-532	VF551_V2_PHDCC27_VF_534	NR1L-RVC-027	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-533	VF551_V2_PHDCC27_VF_1442	NR1L-RVC-021;NR1L-RVC-022	PARTIAL	if and only if ShiftLeverPosition is not R (e.g., P, N, D) (only D verified; P, N not verified; absence of [X] in R not verified)	Set ShiftLeverPosition to P, N, and D sequentially.	—
+V2	SYS-RA-VF551_V2-534	VF551_V2_PHDCC27_VF_509	NR1L-RVC-106	PARTIAL	available (enabled and visible) state when BCM_FD_10.CmdIgnSts is exactly RUN || unavailable (greyed out or hidden) state when BCM_FD_10.CmdIgnSts is not RUN (e.g., OFF, ACC) (only ACC verified, OFF not)	—	—
+V2	SYS-RA-VF551_V2-535	VF551_V2_PHDCC27_VF_526	NR1L-RVC-107	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-536	VF551_V2_PHDCC27_VF_935	NR1L-RVC-085	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-537	VF551_V2_PHDCC27_VF_504	—	NOT-CITED	—	—	—
+V2	SYS-RA-VF551_V2-538	VF551_V2_PHDCC27_VF_1663	NR1L-RVC-088	PARTIAL	transmit its value on the LVDS interface accurately, reflecting its internal state or the most current vehicle data (TC checks presence only, no values)	provide controlled and varying inputs for vehicle-derived signals (VehicleSpeedVSOSig, LwsAngle, ShiftLeverPosition, VC_WHL_BASE_LENGTH, VC_RR_DuallyPrsnt) ... with the expected values and timing	—
+V2	SYS-RA-VF551_V2-539	VF551_V2_PHDCC27_VF_1662	NR1L-RVC-196	PARTIAL	[not in source] continuously receive a stable, correctly formatted video stream from the rear camera || [not in source] available for display with expected resolution and frame rate	verify ... nominal (non-error) states for systemStatus.ExternalErrorStatus, systemStatus.InternalErrorStatus, systemStatus.Communications_Timeout. Verify systemStatus.ZoomViewRes is correctly reported.	—
+V2	SYS-RA-VF551_V2-540	VF551_V2_PHDCC27_VF_1707	NR1L-RVC-237	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-541	VF551_V2_PHDCC27_VF_1706	—	NO-TC	—	—	委派 SWE-CAM-016（R-CAM10）
+V2	SYS-RA-VF551_V2-542	VF551_V2_PHDCC27_VF_1705	NR1L-RVC-238	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-543	VF551_V2_PHDCC27_VF_533	—	NO-TC	—	—	委派 SWE-CAM-016（R-CAM10）
+V2	SYS-RA-VF551_V2-544	VF551_V2_PHDCC27_VF_1704	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-545	VF551_V2_PHDCC27_VF_532	NR1L-RVC-005	PARTIAL	set APP_Menu_BACKUP.Req= Pressed (internal signal not checked; TC checks camera display only)	—	—
+V2	SYS-RA-VF551_V2-546	VF551_V2_PHDCC27_VF_1703	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-547	VF551_V2_PHDCC27_VF_531	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-548	VF551_V2_PHDCC27_VF_1702	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-549	VF551_V2_PHDCC27_VF_548	NR1L-RVC-006	PARTIAL	set RVC_ImageDefeat.Req = Pressed (internal signal not checked; TC checks screen restore only)	—	—
+V2	SYS-RA-VF551_V2-551	VF551_V2_PHDCC27_VF_2034	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-552	VF551_V2_PHDCC27_VF_2033	—	NO-TC	—	—	**不生成** —— hybrid 分支之 PT_SYSTEM_FD_1.ShiftLeverPosition_PT 不可注入（A-CA15）
+V2	SYS-RA-VF551_V2-555	VF551_V2_PHDCC27_VF_1919	NR1L-RVC-086	COVERED	—	—	—
+V2	SYS-RA-VF551_V2-743	VF551_V2_PDT27_VF_1808	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-744	VF551_V2_PDT27_VF_1809	—	NO-TC	—	—	無 plan 紀錄
+V2	SYS-RA-VF551_V2-745	VF551_V2_PDT27_VF_615	NR1L-RVC-154	PARTIAL	For every update of EPS_FD_1.LwsAngle (TC sends single value 0.0 deg) || [not in source] end-to-end latency from CAN input to LVDS output shall not exceed the defined system threshold (e.g., <50ms)	sweep EPS_FD_1.LwsAngle from -540.0° to +540.0° || Use a dual-channel oscilloscope to measure the time difference between the CAN message arrival and the LVDS message dispatch	—
+V2	SYS-RA-VF551_V2-746	VF551_V2_PDT27_VF_1712	NR1L-RVC-155	PARTIAL	[not in source] within its defined timeout window (e.g., >500ms)	Observe the HMI to ensure the dynamic guidelines are either removed or displayed as "faulty" according to HMI specs.	—
+V2	SYS-RA-VF551_V2-747	VF551_V2_PDT27_VF_614	NR1L-RVC-158	PARTIAL	When Hybrid_Type is set to a non-EV value (e.g., ICE) (Hybrid_Type not configured in TC) || every update of TRANSM_FD_4.ShiftLeverPosition (single value R only) || [not in source] within 50ms	Step 5 (Negative): Change variant to BEV and verify that TRANSM_FD_4 data is NOT gated to the LVDS.	—
+V2	SYS-RA-VF551_V2-748	VF551_V2_PDT27_VF_1713	NR1L-RVC-159	PARTIAL	For ICE or HEV variants (Hybrid_Type not configured in TC) || [not in source] not received within its specified timeout window	Verify that the UI or downstream module reacts appropriately to the SNA status.	—
+V2	SYS-RA-VF551_V2-749	VF551_V2_PDT27_VF_1824	—	NO-TC	—	—	**不生成** —— hybrid 分支（A-CA15）
+V2	SYS-RA-VF551_V2-750	VF551_V2_PDT27_VF_1825	—	NO-TC	—	—	**不生成** —— 同上
+V2	SYS-RA-VF551_V2-751	VF551_V2_PDT27_VF_629	NR1L-RVC-075	COVERED	—	—	—
+V3	SYS-RA-VF551_V3-205	VF551_V3_P363_VF_527	NR1L-RVC-071	RD-ONLY	—	Use a multi-channel oscilloscope to probe the CAN bus (High/Low) and the RVCM physical power line. Measure the time delta between the CAN trigger and the voltage rise.	—
+V3	SYS-RA-VF551_V3-206	VF551_V3_P363_VF_549	NR1L-RVC-072	PARTIAL	[not in source] Verify Power_Down = True is sent via LVDS within the defined latency after IGN_LK || Confirm the RVCM power line remains energized for the full Tpower period after ignition is locked	Oscilloscope Measurement: Measure the time from the IGN_LK CAN frame to the physical power drop-off on the LVDS line. || Mode Switching: Test during different internal Radio states (e.g., Active, Standby)	—
+V3	SYS-RA-VF551_V3-207	VF551_V3_P363_VF_548	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-208	VF551_V3_P363_VF_531	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-209	VF551_V3_P363_VF_532	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-210	VF551_V3_P363_VF_533	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-212	VF551_V3_P363_VF_935	—	NO-TC	—	—	covered_by: V2-536 之 TC
+V3	SYS-RA-VF551_V3-213	VF551_V3_P363_VF_526	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-214	VF551_V3_P363_VF_509	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-249	VF551_V3_P363_VF_1212	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-250	VF551_V3_P363_VF_534	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-251	VF551_V3_P363_VF_507	NR1L-RVC-054;NR1L-RVC-055	PARTIAL	The message must disappear exactly after 5 seconds if the view remains active || Font size must exceed 18 arc minutes based on the defined design viewing distance, complying with ISO 15008	Use a high-speed camera or screen recording to verify the 5-second display duration. || Use design tools to confirm the text coordinates and font size against the HMI definition.	—
+V3	SYS-RA-VF551_V3-252	VF551_V3_P363_VF_505	NR1L-RVC-050	PARTIAL	Verify "Camera Not in Position" appears first for 5s || [not in source] The message must appear if and only if the Hatch status is Open during camera activation || using ISO 15008 font, with a visual size > 18 arc minutes	Visual Angle Audit: Use screen resolution, pixel pitch, and design viewing distance to calculate and confirm the 18 arc minute requirement.	—
+V3	SYS-RA-VF551_V3-253	VF551_V3_P363_VF_523	NR1L-RVC-234	PARTIAL	[not in source] The displayed warning text must change its language within a defined latency after the LanguageSelection signal value is updated || Every language option available in the IPC must have a corresponding, accurate translation for all camera warning strings || [not in source] Localized characters (e.g., Chinese, Arabic, Cyrillic) must be rendered correctly according to ISO 15008 without corruption	Cycle through all supported languages via CANoe/Simulator and take screenshots of the camera warnings to verify translation accuracy.	—
+V3	SYS-RA-VF551_V3-254	VF551_V3_P363_VF_522	NR1L-RVC-092	PARTIAL	The final displayed image must maintain the aspect ratio defined in the PDO (e.g., 16:10) without unintended stretching or squeezing	—	—
+V3	SYS-RA-VF551_V3-255	VF551_V3_P363_VF_520	NR1L-RVC-224	PARTIAL	[not in source] No black frames (0V or black pixels) shall be detected during at least 100 consecutive transition cycles || [not in source] The luminance and frame-to-frame consistency must remain stable without observable brightness fluctuations or frame repetition	Capture transitions at 120fps or higher and perform frame-by-frame analysis || Use a photodiode or light meter to measure screen luminance during transitions	—
+V3	SYS-RA-VF551_V3-257	VF551_V3_P363_VF_563	NR1L-RVC-083;NR1L-RVC-084	PARTIAL	[not in source] The value [DISP_DIGITAL_RVC_CAMERA] must appear on the CAN bus within a specified latency after the RVC image is rendered on screen || [not in source] The value [DISP_NON_CAMERA] must be transmitted immediately when the camera view is dismissed	Measure the time difference between the first RVC frame on the display and the corresponding CAN message transmission.	—
+V3	SYS-RA-VF551_V3-258	VF551_V3_P363_VF_1455	NR1L-RVC-089;NR1L-RVC-090	PARTIAL	Rear_Camera_Enable.Info must be TRUE only when the RVC video frames are being rendered; it must be FALSE in all other HMI states || [not in source] The signal transition must occur within a specific millisecond window (e.g., < 100ms) of the actual display change	Use ADB to monitor the internal system property or signal bus (e.g., D-Bus or Android System Property) while launching and closing the RVC.	—
+V3	SYS-RA-VF551_V3-260	VF551_V3_P363_VF_92	NR1L-RVC-004	PARTIAL	The system must NOT trigger the RVC display if the gear remains in REVERSE for a time shorter than Reverse_Deb	Measure the time from the CAN message to the first frame on the screen using a high-speed camera.	—
+V3	SYS-RA-VF551_V3-261	VF551_V3_P363_VF_1099	NR1L-RVC-016	PARTIAL	The image must exit immediately if: 1) Ign != RUN, 2) Speed >= c_VEHSPD_MAX, 3) Gear = Park, or 4) User presses the [X] button || [not in source] If Backup_Cam_Delay = OFF, the RVC must exit immediately upon shifting out of Reverse (no delay)	—	—
+V3	SYS-RA-VF551_V3-262	VF551_V3_P363_VF_1098	NR1L-RVC-014	PARTIAL	[not in source] If Backup_Cam_Delay = ON, the RVC must remain visible for exactly Ttimer1 after shifting from Reverse to Drive/Neutral || [not in source] The image must exit immediately if: 1) Ign != RUN, 2) Speed >= c_VEHSPD_MAX, 3) Gear = Park, or 4) User presses the [X] button	—	—
+V3	SYS-RA-VF551_V3-264	VF551_V3_P363_VF_487	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-265	VF551_V3_P363_VF_1100	NR1L-RVC-026	PARTIAL	RVC must exit immediately if Ign != RUN, Gear = PARK, or the user presses [X] || If Speed >= c_VEHSPD_MAX, the view must remain for Ttimer2 seconds before closing || If Speed drops below c_VEHSPD_MAX before Ttimer2 expires, the timer must reset to zero and the view must remain active	—	—
+V3	SYS-RA-VF551_V3-266	VF551_V3_P363_VF_484	NR1L-RVC-012	PARTIAL	The RVC image must NOT flicker, blank, or restart when the gear shifts to Reverse while a manual RVC session is already active	Use a high-speed camera to verify zero dropped frames during the mode switch.	—
+V3	SYS-RA-VF551_V3-268	VF551_V3_P363_VF_750	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-269	VF551_V3_P363_VF_594	—	NO-TC	—	—	無 plan 紀錄
+V3	SYS-RA-VF551_V3-270	VF551_V3_P363_VF_595	—	NO-TC	—	—	covered_by: V2-484 之 TC
+V3	SYS-RA-VF551_V3-271	VF551_V3_P363_VF_596	—	NO-TC	—	—	covered_by: V2-483 之 TC —— 逐字同句（Atl-Mi 本）
+V3	SYS-RA-VF551_V3-280	VF551_V3_P363_VF_616	NR1L-RVC-167;NR1L-RVC-168	PARTIAL	[not in source] When the BH-CAN vehicle speed signal becomes available again, the Head Unit shall resume transmitting the valid vehicle speed value over LVDS	—	—
+V3	SYS-RA-VF551_V3-281	VF551_V3_P363_VF_615	NR1L-RVC-169;NR1L-RVC-170	PARTIAL	[not in source] When VehicleSpeedVSOSig is available again, the Head Unit shall: Resume gating BH-CAN STATUS_CCAN5.LWSAngle to LVDS STATUS_CCAN5.LWSAngle with valid values. Clear the SNA state without requiring a system reset.	—	—
+V3	SYS-RA-VF551_V3-282	VF551_V3_P363_VF_614	NR1L-RVC-171;NR1L-RVC-172	PARTIAL	[not in source] When the BH-CAN ShiftLeverPosition signal becomes available again, the Head Unit shall resume transmitting the valid ShiftLeverPosition value on LVDS	—	—
+V3	SYS-RA-VF551_V3-283	VF551_V3_P363_VF_613	NR1L-RVC-173;NR1L-RVC-174	PARTIAL	[not in source] The SNA status shall be transmitted within the specified LVDS update cycle after the CAN signal is detected as missing || No valid or stale ReverseGearSts value shall be propagated over LVDS while the CAN signal is in a missing state	—	—
+V3	SYS-RA-VF551_V3-284	VF551_V3_P363_VF_1046	NR1L-RVC-124;NR1L-RVC-125;NR1L-RVC-126;NR1L-RVC-127	COVERED	—	—	—
+V3	SYS-RA-VF551_V3-285	VF551_V3_P363_VF_624	NR1L-RVC-165;NR1L-RVC-166	PARTIAL	[not in source] The mapping ... shall be deterministic and consistent across power cycles || [not in source] No unintended or undefined VC_Steering_Cfactor values shall be transmitted when the PROXI configuration is valid	—	—
+V3	SYS-RA-VF551_V3-286	VF551_V3_P363_VF_1102	NR1L-RVC-139;NR1L-RVC-140	COVERED	—	—	—
+V3	SYS-RA-VF551_V3-287	VF551_V3_P363_VF_629	NR1L-RVC-076;NR1L-RVC-077	COVERED	—	—	—
+V3	SYS-RA-VF551_V3-288	VF551_V3_P363_VF_1134	NR1L-RVC-141;NR1L-RVC-142	COVERED	—	—	—
+V3	SYS-RA-VF551_V3-527	VF551_V3_P363_VF_123	NR1L-RVC-186	COVERED	—	—	—
+V3	SYS-RA-VF551_V3-529	VF551_V3_P363_VF_926	NR1L-RVC-187	COVERED	—	—	—
+V3	SYS-RA-VF551_V3-531	VF551_V3_P363_VF_927	NR1L-RVC-188	COVERED	—	—	—
+V3	SYS-RA-VF551_V3-533	VF551_V3_P363_VF_931	NR1L-RVC-199	PARTIAL	When the LVDS video signal is restored under Ignition ON working conditions, the Head Unit shall: Clear the corresponding DTC. Automatically recover and resume all related camera functionalities to normal operation.	—	—

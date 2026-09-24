@@ -905,6 +905,28 @@ D 欄佔位列不得作為追溯替代。其效果：
 其與他列共引之來源**不再各自出 TC** —— 否則為 §8.2.1 之 duplicate traceability。
 CAM-26 之補生成（十列）即此範圍，無須追加。
 
+### 6-89. 生成階段結束後之第四種觸發：來源改版（CAM-28）
+
+`[DECIDED — CAM-28 下放包，Pei 2026-09-24]`
+`DELIVERY_STATUS.md` §9 之三種變更觸發（DR 結案／實機回饋／Phase 7）之外，增**第四種：來源改版** ——
+既有 TC 所引之來源出新版時，逐 `Sys-RA-Feature-ID` 比對新舊 Description，被引用者依
+(a) 只差標點／換行／`_x000D_` → NO-OP、(b) 措辭改 → verbatim 改新版逐字、(c) 語意改 → Procedure／ER 依新版重寫
+三類處置；**不生成新 TC**。
+
+**CAM-28 之實測結果**（執行層）：
+
+1. **VF551_V2**：`sources/raw/` 之既有本（`sys2_vf551_v2_sysra_v01`）其 Document ID **本即 `VF551_V2_R2`**（742 列），
+   與 REF 之 dependency 本逐列比 752/752 同 ID、錨 0 差；Description 差 **94 列（非 93）**，**全為字面 `_x000D_`／空白**
+   → (a) 94／(b) 0／(c) 0；被引用 17 ID／17 TC，**0 列須改**。A 本不重生（dryrun4 維持候選）。
+   docx 層面 R1→R2 確有實質差異（例 `EPS_FD_1.LwsAngle` → `STEERING1.LwsAngle_SCCM`），惟 SYS2 表已含 R2 內容，
+   TC 之 verbatim 出處不受影響；MANIFEST 之 `vf551_v2_spec_r1` 為舊版 docx，`vf551_v2_spec_r2` 新登。
+2. **VF551_V3**：dependency 本與既有本 747/747 全同（**無新增列**）。
+3. **CFTS092**：dependency 本 166 列、既有本 171 列（多 `SYS-RA-CAM-167`～`-171`）；4 列 Description 語意異
+   （`-001`／`-042`／`-043`／`-051`，引用寫法 `CFTS092 artifact 4781387` ↔ `CFTS092-742` 等）；**以上 9 列皆無 TC 引用**。
+   七車型欄之值基準不同（dependency `SR26_20250814-*`，既有本 `SR26_20260310-1555`）。
+4. **RD 驗證標準／方法欄非新增** —— 三本既有本即載（CFTS092 37／V2 103／V3 41 列），與 dependency 本逐列同；
+   R-CAM13(d) 已定其非來源。對帳見 `data/rd_vc_crosscheck.tsv`。
+
 ---
 
 ## Sign-off
