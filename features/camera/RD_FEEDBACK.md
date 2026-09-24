@@ -286,7 +286,11 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 
 ---
 
-## RDF-12 —— `SWE1-RVC-069` 之來源自陳 `N/A`，037 不應將其列為 leaf
+## RDF-12 —— `SWE1-RVC-069` 自陳 N/A 但仍須追溯
+
+> **改題（CAM-26，R-CAM19(c)，Pei 2026-09-24）**：原題「`SWE1-RVC-069` 之來源自陳 `N/A`，037 不應將其列為 leaf」。
+> 本 feature 之處置由「零 TC」改為「出一列 TC，以父題 §27.3 之可驗事實為驗證點」（`NR1L-RVCHMI-211`）；
+> 回 RD 之請求不變 —— 037 仍不應將自陳 `N/A` 之列列為 leaf。
 
 **觀察**：037 B 本把 `SWE1-RVC-069` 之 `Categorization` 填為需求類（非 `Heading`、非 `Out of scope`），
 使其成為一個**應出 TC 而無從出**之 leaf。
@@ -441,7 +445,7 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 | RDF-09 | `SWE-CAM-011`（`V3-283`）| `a)` 子句標的誤植 | batch03b |
 | RDF-10 | `SWE-CAM-004`（`V42-590`）| 同句誤植致缺清除側 | batch03c |
 | RDF-11 | `SWE1-RVC-024-01`（SYS1 §8.1）| 同一需求兩處位置記載相反 | A-CA34／`NR1L-RVCHMI-038` |
-| RDF-12 | `SWE1-RVC-069`（SYS1 §27.3.2）| 來源自陳 `N/A` 而 037 列為 leaf | A-CA35／R-CAM16(b) |
+| RDF-12 | `SWE1-RVC-069`（SYS1 §27.3.2）| 自陳 N/A 但仍須追溯（來源自陳 `N/A` 而 037 列為 leaf）| A-CA35／R-CAM19(c)／`NR1L-RVCHMI-211` |
 | RDF-13 | `SWE1-RVC-073`／`-078`／`-079`（SYS1 §27.4.x）| 設定名大小寫三處不一 | `NR1L-RVCHMI-063` 等 |
 | RDF-14 | `SWE1-RVC-136`／`-139`（SYS1 §34.3／§34.4）| 子列與父題皆逐字全等，僅圖不同 | A-CA36 |
 | RDF-15 | `PU0456`（Pop Up List）| 按鈕欄拼作 `<Nol>` | `NR1L-RVCHMI-137` |

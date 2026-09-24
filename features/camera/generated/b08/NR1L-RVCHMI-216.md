@@ -1,0 +1,43 @@
+# NR1L-RVCHMI-216 — SWE1-RVC-139
+
+- **Test Group**：Rear View Camera｜**Test Set**：AUX Camera Access
+- **Vehicle Model**：HDCC27=1｜DT27=1｜VF(ProMaster)637=0｜Commander (598)=0｜Regengade (5210)=0｜Toro(2261)=0｜Fastack (376)=0
+- **priority**：P2｜**design_method**：負向測試 (Negative / Invalid)
+- **specification_reference**：`SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_34.6.1`（來源列 `NRL-188174`）
+
+## test_item 上半（verbatim，SYS1 逐字）
+
+> CHMSL cam only configuration does not exist
+
+## reasoning
+
+**R-CAM19(c) 追溯補齊**（CAM-26 §2）：§34.6.1 與 §34.4.1（`SWE1-RVC-135`，**TC `NR1L-RVCHMI-087`**）逐字全等（A-CA36／RDF-14）。**父題不同** —— 本列之父為 §34.6 `Accessing Aux Cameras – Backup and Cargo Cam`（`NRL-188173`），母列之父為 §34.4 `… – Backup Cam Only`；即原 R-CAM16(c)(i) 之「父題亦全等」要件本不成立（CAM-17 之委派有誤，記上繳 CAM-26 §6）。惟本條為**配置存在性之否定命題**，其驗法（以 PROXI 佈成「只有 CHMSL」之配置後系統不提供任何相機入口）不因父節之配置而異，故依下放包 §2「其餘沿母 TC」，前提、步驟與 ER 沿 `-087`；本列之父節（含 Cargo 之配置段）記於此以資區辨。**車型依 R-CAM18(b) 判**：前提所用之 `Digital_CHMSL_Camera_Prsnt` 於 `forms/proxi/` 六本之實測（openpyxl 全格掃描，字串逐字、分大小寫）為 HDCC27 兩本／DT27 **各 1**、637／2261／376 **各 0** → 637、2261、376 判 `0`（與 `NR1L-RVCHMI-090` 相同）。母列 `-087` 之 637／2261／376 為 `1`，與本實測不合 —— 既有列不改（下放包 §0），登 **A-CA39**。
+
+## pre_conditions
+
+```
+1. The HU is in the Full-Operation state
+2. The head unit is an R1 Low head unit
+3. Only wired AUX cameras are fitted
+4. No wireless AUX feature is offered
+5. PROXI Rear_View_Camera = 0 (Absent)
+6. PROXI Digital_CHMSL_Camera_Prsnt = 1 (Present)
+```
+
+## input_test_data
+
+`NA`
+
+## test_procedure
+
+```
+1. Press "Apps" on Menu Bar to open App Drawer
+2. Read the App Drawer and check that no camera entry is offered
+```
+
+## expected_result
+
+```
+1. The App Drawer is displayed
+2. No camera entry is offered, which shows that a CHMSL camera only configuration is not supported
+```

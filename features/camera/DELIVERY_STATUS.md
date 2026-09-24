@@ -1,6 +1,6 @@
 # Camera（FW036 R1L）—— 交付狀態
 
-**一頁式閘表**，供 Pei 作 Phase 7 之依據。日期 2026-09-23（CAM-24 §4 建檔）。
+**一頁式閘表**，供 Pei 作 Phase 7 之依據。日期 2026-09-24（CAM-24 §4 建檔；CAM-26 §3 更新）。
 日後 DR 結案／bench 驗畢時由執行層更新本檔，並於該輪上繳包記其新 sha。
 
 ---
@@ -9,47 +9,50 @@
 
 | 本 | 檔（`features/camera/sandbox/`）| 列數 | TC | D 欄佔位 | sha256 |
 |---|---|---:|---:|---:|---|
-| **A** | `a_dryrun/…_RearViewCamera_A_20260923_dryrun3.xlsx` | **249** | 245 | 4 | `c11e1840a0216d53…` |
-| **B** | `b_dryrun/…_RearViewCamera_B_20260923_dryrun2.xlsx` | **216** | 210 | 6 | `7f06b61cb999b847…` |
-| | **合計** | **465** | **455** | 10 | |
+| **A** | `a_dryrun/…_RearViewCamera_A_20260924_dryrun4.xlsx` | **249** | 249 | 0 | `a4ad6cf3112d5e31…` |
+| **B** | `b_dryrun/…_RearViewCamera_B_20260924_dryrun3.xlsx` | **216** | 216 | 0 | `1d8d21b9945d4828…` |
+| | **合計** | **465** | **465** | 0 | |
 
+**工作簿列數 ＝ TC 數**（**R-CAM19(e)**：D 欄佔位列形制作廢）。
 **兩本分交**（**R-CAM1(a)**）；合併與否由 Pei 定。
 交付檔名依 workflow 模板事實：`…_SWQT_RearViewCamera_A_<YYYYMMDD>.xlsx`／`…_B_<YYYYMMDD>.xlsx`
 （`delivered/` 只放客戶檔名定稿、無 `dryrun` 尾綴，**R-G42 五**）。
-**A 本之交付候選自 dryrun2（244 列）改指 dryrun3**（DECISIONS 6-58 之更新，6-78）。
+候選沿革：A 本 dryrun2（244 列）→ dryrun3（249 列，6-78）→ **dryrun4**；B 本 dryrun2 → **dryrun3**（CAM-26）。
 
 ## 2　TC 總數與來源覆蓋
 
-| 本 | 037 列 | leaf | PRODUCED leaf | 零 TC leaf | umbrella | **TC** |
-|---|---:|---:|---:|---:|---:|---:|
-| A（SWRA_V02）| 25 | 25 | 21 | 4 | 0 | **245** |
-| B（RVC-HMI_V0.1）| 230 | 203 | 197 | 6 | 27 | **210** |
-| | | | | | | **455** |
+| 本 | 037 列 | leaf | **有 TC 之 leaf** | umbrella | **TC** |
+|---|---:|---:|---:|---:|---:|
+| A（SWRA_V02）| 25 | 25 | **25/25** | 0 | **249** |
+| B（RVC-HMI_V0.1）| 230 | 203 | **203/203** | 27 | **216** |
+| | | **228** | **228/228** | | **465** |
 
-**A 本之 1:9.8**（25 SWE 列 → 245 TC）因其拆解全在執行層；
-**B 本之 1:1.07**（197 leaf → 210 TC）因 037 已自行前拆 39.1%（**DECISIONS 6-77**）。
+**每條 leaf 需求 ≥ 1 TC：A 25/25、B 203/203**（**R-CAM19(a)**，Pei 2026-09-24「有需求就要有產出」）。
+逐列對照：`data/traceability.tsv`（228 leaf → tc_ids）；umbrella 27 列另表 `data/traceability_umbrella.tsv`
+（037 `Categorization = Heading`，不入 R-CAM19(a) 之母體，其子 leaf 皆有 TC）。
 
-### 零 TC 之四形制（**R-CAM16／16(b)／16(c)** ＋ Heading）
+**A 本之 1:10**（25 SWE 列 → 249 TC）因其拆解全在執行層；
+**B 本之 1:1.06**（203 leaf → 216 TC）因 037 已自行前拆 39.1%（**DECISIONS 6-77**）。
 
-| 形制 | 條 | A 本 | B 本 | 列 |
-|---|---|---:|---:|---|
-| 全來源委派 | R-CAM16 | 3 | 0 | `SWE-CAM-007`／`-013`／`-025` |
-| BLOCKED（缺件）| DR-CAM-a | 1 | 0 | `SWE-CAM-024` |
-| 來源自陳 `N/A` | R-CAM16(b) | 0 | 1 | `SWE1-RVC-069` |
-| 逐字重複／純交叉引用 | R-CAM16(c) | 0 | 5 | `-086`／`-091`／`-102`／`-136`／`-139` |
-| Heading（umbrella）| R-G42 一之外 | 0 | 27 | 不入工作簿（**6-73**）|
+### 原零 TC 之十列（R-CAM19 後各出一列）
 
-零 TC leaf **各補一列僅填 D 欄**，`AH` 註其形制（**6-52**／**6-73**）。
+| 原形制 | 原條（已撤銷／修訂）| 列 | 本輪之 TC |
+|---|---|---|---|
+| 全來源委派 | R-CAM16 → R-CAM19(b)(c) | `SWE-CAM-007`／`-013`／`-025` | `NR1L-RVC-246`／`-247`／`-249` |
+| BLOCKED（缺件）| 6-52 → R-CAM19(d) | `SWE-CAM-024` | `NR1L-RVC-248`（六欄 `PENDING: DR-CAM-a`）|
+| 來源自陳 `N/A` | R-CAM16(b) → R-CAM19(c) | `SWE1-RVC-069` | `NR1L-RVCHMI-211` |
+| 逐字重複／純交叉引用 | R-CAM16(c) → R-CAM19(c) | `-086`／`-091`／`-102`／`-136`／`-139` | `NR1L-RVCHMI-212`～`-216` |
 
 ## 3　PENDING ↔ DR（**Phase 7 之閘**）
 
-**11 條阻交付**，共 **77／455 列**（A 43／B 34）：
+**13 條阻交付**，共 **81／465 列**（A 46／B 35）：
 
 | DR | 題 | A 列 | B 列 | 合計 |
 |---|---|---:|---:|---:|
-| DR-CAM-f | 缺件之 DBC 三類（`BED_EXTENDER`／HDCC27 之 FD-CAN8 全本 等）| 9 | 0 | 9 |
+| DR-CAM-a | SYS2 VF617_V5 缺件 | 1 | 0 | 1 |
+| DR-CAM-f | 缺件之 DBC 三類（`BED_EXTENDER`／HDCC27 之 FD-CAN8 全本 等）| 10 | 0 | 10 |
 | DR-CAM-g | HMI 入口路徑之逐字來源（Controls page／Status bar Shortcut menu）| 5 | 7 | 12 |
-| DR-CAM-h | Pop Up List 之 camera 相關缺件（out-of-position／`connecting`）| 0 | 3 | 3 |
+| DR-CAM-h | Pop Up List 之 camera 相關缺件（out-of-position／`connecting`）| 1 | 4 | 5 |
 | DR-CAM-i | `LTM_OperationalModeSts` ↔ `CmdIgnSts` 值對應表 | 4 | 0 | 4 |
 | DR-CAM-j | Auxiliary Cameras 之訊號定義（四項）| 7 | 0 | 7 |
 | DR-CAM-k | VF664 全文件 | 1 | 0 | 1 |
@@ -58,10 +61,11 @@
 | DR-CAM-q | DTC 之識別碼 | 14 | 0 | 14 |
 | DR-CAM-r | `Camera App`／`Enhanced Camera App` 配備旗標 | 0 | 26 | 26 |
 | DR-CAM-s | 熱保護關顯示之進入法 | 0 | 1 | 1 |
-| **合計（相異 TC 列）** | | **43** | **34** | **77** |
+| DR-CAM-t | LVDS `diagnosticRequest`／`diagnosticResponse` 之訊息定義（**CAM-26 新開**）| 1 | 0 | 1 |
+| **合計（相異 TC 列）** | | **46** | **35** | **81** |
 
-另 **DR-CAM-a**（VF617_V5 缺件）阻 `SWE-CAM-024` 全條（0 TC，已佔位）。
-**未結 DR 共 19 條**（`DR-CAM-a` ～ `-s`）；其餘 8 條（b／c／d／e／l／n／o ＋ 已解消者）於現行 451 列無 PENDING。
+**DR 共 20 條**（`DR-CAM-a` ～ `-t`）；阻交付 13 條，其餘 7 條（b／c／d／e／l／n／o，含已結案者）於現行 465 列無 PENDING。
+A 本 Test Set 由 9 組增為 **10 組**（`AUX Camera` 1 列，即 `-248`）。
 逐列對照：`data/pending_by_dr.tsv`（A）／`data/pending_by_dr_b.tsv`（B）。
 
 **Pei 之裁**（三選一，可逐 DR 不同）：① 結案 ② 裁降 NA ③ 帶 PENDING 不出貨。
@@ -69,38 +73,40 @@
 
 ## 4　實機驗證
 
-`features/camera/data/bench_verify.md` —— **101 列**
-（A 本 11 ＋ batch05 4、B01a 3、B01b 8、B02a 11、B02b 12、B03 16、B04a 10、B05 20、B06 6）。
+`features/camera/data/bench_verify.md` —— **105 列**
+（A 本 11 ＋ batch05 4 ＋ batch06 2、B01a 3、B01b 8、B02a 11、B02b 12、B03 16、B04a 10、B05 20、B06 6、b08 2）。
 非缺陷清單；其 lint 與 selfcheck 皆已全綠，此處記「紙面可判、實機待證」者。
 
 ## 5　RD 回饋
 
-**RDF-01 ～ RDF-17，17 條**（`features/camera/RD_FEEDBACK.md`）。
-本階段新開：RDF-11（X 鍵位置）／-12（`N/A` 列不應為 leaf）／-13（設定名大小寫）／
--14（§34.3／§34.4 重複）／-15（`PU0456` 之 `<Nol>`）／-16（橫幅時限 5 vs 10）／
--17（`Make Favorite`／`Edit Favorite`）。**回 RD 作者為交付前置**（不阻 Phase 7）。
+**RDF-01 ～ RDF-17，17 條已登**（`features/camera/RD_FEEDBACK.md`）；**RDF-18**（SYS1 §30.1.3 `NRL-188130` 缺空格）
+經 CAM-25 審閱 §一-1 立而尚未落檔。**RDF-12** 於 CAM-26 改題「`SWE1-RVC-069` 自陳 N/A 但仍須追溯」。
+**回 RD 作者為交付前置**（不阻 Phase 7）。
 
 ## 6　全域待辦
 
-**GCB-01 ～ GCB-12，12 項**（`docs/fw036/handoff/GC_BACKLOG.md`），皆 **OPEN**。
+**GCB-01 ～ GCB-12，12 項已登**（`docs/fw036/handoff/GC_BACKLOG.md`），皆 **OPEN**；**GCB-13**
+（selfcheck 第 11 項「一列多點」）經 CAM-25 審閱 §一-4 立而尚未落檔。
 其中 **GCB-01**（`gates_tsv.py` 未登 `Z` 檢查）於註記「**Camera 交付前必須完成**」；
 **GCB-04**（`RULINGS.sha.tsv` 未重生）與 **GCB-11**（lint `X` 之入口清單）為非本線可改。
 
-## 7　品質狀態（全 455 列）
+## 7　品質狀態（全 465 列）
 
 ```
-selfcheck_camera.py   ERROR 級十項  全 0（錨 459／反查失敗 0／常數錨 2）
-                      第 10 項（WARN）候選 40（8.8%），已知以偽陽為主（6-80 不逐列覆核）
+selfcheck_camera.py   ERROR 級十項  全 0（錨 468／反查失敗 0／常數錨 2／共引錨 3／缺件佔位 1）
+                      第 10 項（WARN）候選 41（8.8%），已知以偽陽為主（6-80 不逐列覆核）
 lint036 --profile camera
-  A dryrun3（249 列）  ERROR 類全 0｜J 37（profile §5.1 逐字豁免）／U 54／I-cross 245／X 3
-  B dryrun2（216 列）  ERROR 類全 0｜J 0／U 44／I-cross 210／X 23（GCB-11）
-render_tc.py --verify  二十目錄 455 份 md 逐位元相符 455／相異 0
+  A dryrun4（249 列）  ERROR 類全 0｜J 37（profile §5.1 逐字豁免）／U 65／I-cross 249／X 3
+  B dryrun3（216 列）  ERROR 類全 0｜J 0／U 45／I-cross 216／X 23（GCB-11）
+render_tc.py --verify  二十二目錄 465 份 md 逐位元相符 465／相異 0
 ```
+
+「共引錨」（R-CAM19(b)）與「缺件佔位」（R-CAM19(d)）為 CAM-26 於 selfcheck 第 1 項新增之計數類別，非違反。
 
 ## 8　Phase 7 前置條件
 
-1. §3 之 11 條 DR **結案或裁降 NA**（**R-G42 七**）。
-2. §4 之 **101 列實機驗證**（其結果可能改寫 ER 或新增 PENDING）。
+1. §3 之 13 條 DR **結案或裁降 NA**（**R-G42 七**）。
+2. §4 之 **105 列實機驗證**（其結果可能改寫 ER 或新增 PENDING）。
 3. **GCB-01** 完成（`Z` 檢查入閘登錄簿，R-G56）。
 4. Pei 之准：`--write`／tag／寫 `features/camera/delivered/`；
    內容物依 **R-G42 六**：xlsx ＋ MANIFEST ＋ DELIVERY_NOTE ＋ 未結 DR 清單 ＋（PARTIAL）tc_id 對照表。
@@ -111,14 +117,19 @@ render_tc.py --verify  二十目錄 455 份 md 逐位元相符 455／相異 0
 - 2026-09-23 建檔（CAM-24 §4）。A 245 ＋ B 206 ＝ 451 TC；11 條 DR 阻交付。
 - 2026-09-23 更新為**終態**（CAM-25 §4）。B 本形制補正 ＋4（`b07/`，**A-CA37**），
   A 245 ＋ B 210 ＝ **455 TC**；B 候選改指 `dryrun2`。
+- 2026-09-24 **R-CAM19 追溯補齊**（CAM-26，§9 之「下放包明文指派」）。原零 TC 十列各出一列（`batch06/` 4、`b08/` 6），
+  A 249 ＋ B 216 ＝ **465 TC**，D 欄佔位 10 → 0；A 候選改指 `dryrun4`、B 改指 `dryrun3`；
+  阻交付 DR 11 → 13（DR-CAM-a 之 `-248` 由佔位列轉為 TC 列、DR-CAM-t 新開）。
+  A dryrun4 另帶入 CAM-25 已改而 dryrun3 未含之 `NR1L-RVC-245` `Remarks`（6-85）。
 
 ## 9　生成階段結束
 
-**Camera 之 TC 生成階段於 2026-09-23 結束**（下放包 CAM-01 ～ CAM-25，執行層 25 輪）。
+**Camera 之 TC 生成階段於 2026-09-23 結束**（下放包 CAM-01 ～ CAM-25，執行層 25 輪）；
+**CAM-26（2026-09-24）為其後唯一之明文指派補生成**（R-CAM19）。
 本檔自此**只因下列三者變更**：
 
-1. **DR 結案或裁降 NA** —— §3 之 11 條；結案時該列之 `PENDING` 改為實值、本檔重算；
-2. **Pei 之實機回饋** —— §4 之 101 列；其結果可能改寫 ER 或新增 PENDING；
+1. **DR 結案或裁降 NA** —— §3 之 13 條；結案時該列之 `PENDING` 改為實值、本檔重算；
+2. **Pei 之實機回饋** —— §4 之 105 列；其結果可能改寫 ER 或新增 PENDING；
 3. **Phase 7 之執行** —— §8 之五項前置齊備後，寫 `features/camera/delivered/` 並 tag。
 
 **不再因生成而變更**。任何新增 TC 須有下放包之明文指派。

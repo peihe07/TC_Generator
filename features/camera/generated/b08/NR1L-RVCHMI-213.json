@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-213",
+  "req_id": "SWE1-RVC-091",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "For details about wireless cameras connection please refer to ‘Wireless cameras connection’ pages.",
+  "source_object_id": "NRL-188087",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "a wireless AUX camera selected from the More Aux pop-up during a projection session displays the enable pop-up",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. PROXI Rear_View_Camera = 1 (Present)\n3. The head unit is a touchscreen radio\n4. The head unit has WiFi hotspot capability\n5. A MOPAR-provided wireless camera is available\n6. The \"Enable Wireless Cameras\" setting is Off\n7. A wireless projection session is active\n8. A wireless AUX camera is within range and powered on\n9. The rear view camera image is displayed",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press the \"More Aux\" button in the rear view camera image\n2. Select the wireless AUX camera button in the pop-up\n3. Read the pop-up text on the HU display",
+      "expected_result": "1. The \"More Aux\" button registers the press and a pop-up opens\n2. The wireless AUX camera button registers the selection\n3. The pop-up reads \"Do you want to disconnect Apple CarPlay and enable Wireless Cameras? Apple CarPlay can be connected using the USB port when Wireless Cameras are enabled.\" with <Yes> and <No> (PU1518)",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.8.5",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P1",
+      "split_flag": true,
+      "split_reason": "a wireless AUX camera selected from the More Aux pop-up during a projection session displays the enable pop-up",
+      "test_item": "For details about wireless cameras connection please refer to ‘Wireless cameras connection’ pages.\n\n(a wireless AUX camera selected from the More Aux pop-up during a projection session displays the enable pop-up)"
+    }
+  ],
+  "reasoning": "**R-CAM19(c) 追溯補齊**（CAM-26 §2）：§27.8.5 全文為交叉引用句（同 §27.7.3，A-CA36），標的為 §27.5／§27.6。本列之父 §27.8 為 `Accessing Aux Cameras – from Rear View Camera`（`NRL-188082`），故前提取 `Rear_View_Camera = 1` 與「後視影像顯示中」，入口取影像中之 `“More Aux”` 彈窗（§27.8.1，`NR1L-RVCHMI-077`）；行為取 **§27.6.1**（設定 OFF 且有投影時選取無線相機 → 彈窗），**被引列 TC `NR1L-RVCHMI-072`**，彈窗逐字沿其 `PU1518`（`forms/Pop Up List HMI R1 (26PI).xlsx` `Main` 分頁）。與 `-212` 之分工：兩列之父節（入口）與被引行為（§27.5.2 vs §27.6.1）皆不同。`-072` 自 `Aux Cameras` 清單選取，本列自 `More Aux` 彈窗選取（§27.6.1 之 `from any location`）。`Rear_View_Camera` 五本 PROXI 皆有（`HDCC27`／`DT27`／`637`／`2261`／`376`），R-CAM18(a) 五款全 `1`（同 `-077`）。"
+}

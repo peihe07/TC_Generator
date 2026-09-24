@@ -170,6 +170,13 @@ R-CAM10  多列共引同一來源時，SWE ID 較小者為承接列
   pilot 批實測後若有不合理之委派，重開歸 Pei。
 ```
 
+**本條之「較大者不得再以該來源作錨」經 R-CAM19(b) 撤銷**（見 R-CAM19）。原句依 R-TM13 加刪除線保留：
+
+> ~~較大者不得再以該來源作 spec_reference 錨，reasoning 註明「委派 SWE-CAM-nnn」（§8.2.1）。~~
+>
+> **撤銷，見 R-CAM19**（Pei 2026-09-24「有需求就要有產出」）：共引同一來源時兩列各自出 TC，
+> 驗證角度依各自 037 Description。「SWE ID 較小者承接」之其餘部分與 R-CAM10(b) 不受影響。
+
 ### R-CAM11 — VF 家族之 specification_reference 格式（Pei 裁，2026-09-16）
 
 ```text
@@ -343,6 +350,16 @@ R-CAM16  SWE 列之所有來源依 R-CAM10（含 (b)）委派他列者，其 TC 
 `SWE-CAM-013`（三個來源全數委派 `SWE-CAM-004`）。
 `coverage.tsv` 於本輪新建（A 本 25 列全量），兩列依本條記載。
 
+**本條（R-CAM16 之委派形制，即 R-CAM19 所稱之 (a)）經 R-CAM19(c) 撤銷**。原條依 R-TM13 加刪除線保留：
+
+> ~~R-CAM16  SWE 列之所有來源依 R-CAM10（含 (b)）委派他列者，其 TC 數為 0 而**非覆蓋缺口**。~~
+>
+> **撤銷，見 R-CAM19**：全來源委派之列亦須出至少一列 TC 掛自己的 ID。
+> **執行層更正（CAM-26）**：上段「執行層落實」之括號內容有兩處與 `data/batch03_plan.tsv` 不合 ——
+> `SWE-CAM-007` 之唯一來源為 **`SYS-RA-VF551_V42-210`**（非 `-216`）；
+> `SWE-CAM-013` 之三個來源為 `V42-592`／`-593`（委派 `SWE-CAM-006`）與 `V42-595`（委派 `SWE-CAM-004`），
+> 非「全數委派 `SWE-CAM-004`」。逐字不改（R-TM13），更正記於此（A-CA38）。
+
 
 ### R-CAM16(b)（增補，2026-09-23，Pei 裁：CAM-16 審閱 §一-1）
 
@@ -384,6 +401,12 @@ R-CAM16(c)  零 TC 之**第四種形制**（B 本專用）：B 本（SYS1 為逐
 不適用之對照：§34.6.2 與 §34.3.2 逐字全等而父題相異（`Backup and Cargo Cam` vs `Backup Cam Only`），
 各自出 TC（`NR1L-RVCHMI-090`／`-086`）。逐群實測見 **A-CA36**，RD 回饋見 **RDF-14**。
 
+**本款經 R-CAM19(c) 撤銷**。原條依 R-TM13 加刪除線保留：
+
+> ~~R-CAM16(c)  零 TC 之**第四種形制**（B 本專用）：… 由**章節號較小者**承接 …，其餘列 TC 數為 0 而非缺口。~~
+>
+> **撤銷，見 R-CAM19**：逐字重複與純交叉引用之列皆須出 TC。RDF-14 之回饋內容不變。
+
 ### R-CAM17 — 量測主張須附證據（Pei 裁，2026-09-23：CAM-12 審閱 §二-1）
 
 ```text
@@ -421,6 +444,32 @@ R-CAM18  B 本（SYS1 HMI）之條文不帶平台維度（無 `PHDCC27`／`P637M
 （`NR1L-RVCHMI-008`／`-012`／`-014`）因 `Toro_ATL_MI` 之 2019 本缺 byte 177
 （`Surround_View_Camera`／`Forward_Facing_Camera`，**DR-CAM-l**）而 `Toro(2261)` = `0`。
 DECISIONS **6-51** 由 `[PROPOSED]` 轉 `[DECIDED]`。
+
+### R-CAM19 — 每條 leaf 需求至少一 TC 掛自己的 ID（Pei 裁，2026-09-24：CAM-26 下放包 §1）
+
+```text
+R-CAM19  每條 leaf 需求至少一 TC 掛自己的 ID（Pei 2026-09-24）
+  (a) 037 之每一 leaf 列（非 umbrella）在工作簿至少有一列 TC，D 欄為該列自身之需求 ID。
+  (b) R-CAM10(a) 之「較大 SWE ID 不得再以共引來源作錨」撤銷；共引來源時兩列各自出 TC，
+      驗證角度依各自 037 Description，reasoning 互註「同源 SWE-CAM-nnn」。R-CAM10(b)
+      （IF/THEN 合一之多行錨）不受影響。
+  (c) R-CAM16(a)(c) 之零 TC 形制撤銷（全來源委派／逐字重複／純交叉引用皆須出 TC）；
+      R-CAM16(b)（來源自陳 N/A）保留，惟仍須出一列 TC 以其父題／鄰列之可驗事實為驗證點，
+      查無可驗事實時 `PENDING: RDF-12` 佔位列（非 D 欄空列）。
+  (d) 真缺件（DR-CAM-a 之 SWE-CAM-024）：出一列 `PENDING: DR-CAM-a` 之 TC 列（Test Set
+      `AUX Camera`，六欄佔位），不再以 D 欄空列處理。
+  (e) D 欄佔位列形制（DECISIONS 6-52／6-73）作廢。
+```
+
+R-G23 取號現查：本檔錨點 `R-CAM1`～`R-CAM18`（含分款），全 repo 無 `### R-CAM19`；`{live}` = 19 成立。
+「R-CAM10(a)」「R-CAM16(a)」指兩條之原條本文（兩條皆無 `(a)` 字樣，原條即其首款）。
+其刪除線依 R-TM13 各落原條標題之下，原 fenced 條文逐字不動。
+
+**執行層落實（CAM-26）**：原零 TC 十列各出一列 —— A 本 `batch06/`（`NR1L-RVC-246`～`-249`，
+含 (d) 之 `-248`）、B 本 `b08/`（`NR1L-RVCHMI-211`～`-216`）；`coverage.tsv` 25/25、`coverage_b.tsv`
+leaf 203/203 皆 `tc_count ≥ 1`；`data/traceability.tsv` 對帳無 0。`selfcheck_camera.py` 第 1 項增
+「共引錨」（(b)）與「缺件佔位」（(d)）兩類。**(b) 之射程**只落實於零 TC 之列，已有 TC 之列其被委派來源
+是否亦須各自出 TC 提請分析層裁（DECISIONS 6-87 #5）。
 
 ---
 

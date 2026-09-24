@@ -581,6 +581,8 @@ B01a 之實測結果：**19 列**五款全 `1`；**3 列**（`NR1L-RVCHMI-008`�
 `AH` 註 `No TC — all sources delegated to SWE-CAM-nnn (R-CAM10)`（前三者）／
 `BLOCKED — DR-CAM-a`（`-024`）。**交付口徑 244 列**（TC 240 ＋ 佔位 4）。
 
+> **作廢（R-CAM19(e)，CAM-26）**：D 欄佔位列形制撤銷；四列各出 TC（`NR1L-RVC-246`～`-249`），見 6-86。
+
 ### 6-53. A-CA33 之兩欄分立
 
 `[DECIDED — CAM-14 審閱 §一-3，Pei 2026-09-23]`
@@ -757,6 +759,9 @@ RVC+PAM §8.3.3 與 HeadUnitCameraSystems §6.1.2 同旨（且非逐字全等）
 037 之 umbrella（`Categorization = Heading`）非 leaf 需求，其行為在子列。
 B 本交付口徑因而為 **TC 數 ＋ 6**。
 
+> **作廢（R-CAM19(e)，CAM-26）**：六列各出 TC（`NR1L-RVCHMI-211`～`-216`），工作簿列數 = TC 數，見 6-86。
+> 「umbrella 27 列不補」不受影響（R-CAM19(a) 之母體為 leaf）。
+
 ### 6-74. 拆解審計之 H/M 六列全數補生成（追加 9 列）
 
 `[DECIDED — CAM-22 審閱 §一-1，Pei 2026-09-23]`
@@ -851,6 +856,35 @@ A 本之補列沿用 B 本之欄位表，`section`／`verbatim_section` 記 `—
 來源 `SYS-RA-VF551_V33-234` 只寫 `must be over 50%` 而**未載低於門檻時之系統行為**，
 故該列之 ER 只判「量得之值低於門檻」，**不造「影像不顯示」之判準**（§8.4.1）；
 `Remarks` 欄註「來源未載低於門檻之行為」。
+
+### 6-86. R-CAM19 —— 每條 leaf 需求至少一 TC 掛自己的 ID
+
+`[DECIDED — CAM-26 下放包 §1，Pei 2026-09-24]` **立 R-CAM19**（`RULINGS.md`；sha8 `8f741740`，fenced 本體 `a1727b36`）。
+Pei 裁定「**有需求就要有產出**」：037 每一 leaf 列在工作簿至少一列 TC 掛自己之 D 欄 ID，
+D 欄佔位列不得作為追溯替代。其效果：
+
+1. **R-CAM10 之「較大 SWE ID 不得以共引來源作錨」撤銷**（R-CAM19(b)）；R-CAM10(b) 不變。
+2. **R-CAM16（委派形制）與 R-CAM16(c)（逐字重複／純交叉引用）之零 TC 撤銷**；R-CAM16(b)（自陳 N/A）保留其成因分類，惟仍出 TC（R-CAM19(c)）。
+3. **SWE-CAM-024** 出一列 `PENDING: DR-CAM-a` 之六欄佔位 TC（R-CAM19(d)）。
+4. **6-52／6-73 之 D 欄佔位列作廢**（R-CAM19(e)）。
+5. 產物：A 本 `batch06/` 4 列（`NR1L-RVC-246`～`-249`）、B 本 `b08/` 6 列（`NR1L-RVCHMI-211`～`-216`）；
+   全案 **465 TC**（A 249／B 216），工作簿列數 = TC 數；`coverage.tsv` 25/25、`coverage_b.tsv` leaf 203/203 皆 `tc_count ≥ 1`。
+6. `selfcheck_camera.py` 第 1 項增「共引錨」（R-CAM19(b)）與「缺件佔位」（R-CAM19(d)）兩類，不判違反；
+   `req_id` 不引用該來源者仍判違反（反例實測見上繳 CAM-26 §2-3）。
+7. **RDF-12** 改題「`SWE1-RVC-069` 自陳 N/A 但仍須追溯」；**A-CA35／A-CA36** 轉 RESOLVED；新開 **DR-CAM-t**。
+
+### 6-87. CAM-26 補生成之角度與下放包之出入
+
+`[PROPOSED — CAM-26 執行層，待分析層裁]`
+
+| # | 項 | 執行層之處置 | 提請 |
+|---|---|---|---|
+| 1 | `SWE-CAM-007` 之「LVDS link 建立／握手序列」| 來源 `V42-210` 無握手（`handshake` 六本 SYS2 各 0）；改驗來源所載之「影像經 LVDS 自 RVCM 送達」之**接收**（`NR1L-RVC-246`）| 確認角度 |
+| 2 | `SWE-CAM-013` 之「`diagnosticRequest` 訊息名／值逐字」| 訊息名取 037 之題名／Description；欄位與值來源無載 → `PENDING: DR-CAM-t`（新開）；錨取 `V42-593`（鏈路正常之唯一來源）（`NR1L-RVC-247`）| 確認角度與錨；DR-CAM-t 是否列阻交付 |
+| 3 | `SWE-CAM-013`／`-025` 之委派對象 | 下放包之「全委派 `-004`」「全委派 `-023`」與 plan 不合，依 plan（A-CA38）| 知悉 |
+| 4 | `SWE1-RVC-136`／`-139` 之「前提改 R1 Low」| 母列已為 R1 Low（同在 §34），全沿母列 | 知悉 |
+| 5 | R-CAM19(b) 之射程 | 本包只補**零 TC** 之 10 列。R-CAM19(b) 之文面「共引來源時兩列各自出 TC」若及於**已有 TC 之列**之被委派來源（例：`SWE-CAM-023` 與六列之交集、`-004 ∩ -009` 20 個來源，A-CA06），則補生成量遠逾本包 | 裁其射程：只及零 TC 列，或全量 |
+| 6 | `NR1L-RVCHMI-087` 之車型（A-CA39）| 不改（§0）；新列 `-216` 依 R-CAM18(b) 實測只勾 HDCC27／DT27 | 是否補正 `-087` |
 
 ---
 

@@ -14,6 +14,12 @@ CAM-05 審閱 §三-3（Pei 2026-09-23）令 `selfcheck_r_cam10.py` 更名本檔
    分屬兩承接列時合為一個 TC，其 `specification_reference` 有兩個（以上）非常數錨。
    該情形之判準改為「`req_id` ＝ 諸錨承接列之**最小者**」，逐錨相等之要求不適用；
    另計一類「合一錨」。單錨 TC 仍逐錨相等。
+   **共引之例外（R-CAM19(b)，CAM-26）**：R-CAM10 之「較大 SWE ID 不得再以共引來源作錨」撤銷 ——
+   單錨 TC 之 `req_id` 不等於承接列、但**為 037 引用該來源之列之一**者，另計一類「共引錨」，不判違反；
+   `req_id` 根本不引用該來源者仍為違反。
+   **缺件佔位（R-CAM19(d)，CAM-26）**：`specification_reference` 之每一行皆以 `PENDING: DR-` 起首者
+   （來源文件未到，無錨可寫），不入第 1 項之反查、第 4 項之子序列與第 8b 項，另計一類「缺件佔位」；
+   其 Procedure 仍須 ≥ 2 步（第 2 項）且 `PENDING:` 仍須落於行首（第 8a 項）。
 2. **proc ≥ 2 步** —— §10.5；lint 之 `E` 只判 proc/er 對齊，不判步數
    （CAM-05 §5-2 之 `NR1L-RVC-027` 初稿即 1 步而未被 lint 攔下）。
 3. **電源態 ↔ 點火步之一致性（雙向）**（CAM-08 審閱 §二-2）——
@@ -119,6 +125,18 @@ NAV_HOP = re.compile(r'^\s*\d+\.\s*(Press "Apps"|Select "Settings"|Select "Camer
 
 def _txt(v) -> str:
     return "" if v is None else re.sub(r"\s+", " ", str(v).replace("\xa0", " ")).strip()
+
+
+RE_PEND_ANCHOR = re.compile(r"^\s*PENDING:\s*DR-")
+
+
+def citers() -> dict[str, set[str]]:
+    """SYS-RA id -> 037 中引用該來源之全部 SWE ID（R-CAM19(b) 之共引母體）。"""
+    out: dict[str, set[str]] = {}
+    with XREF.open(encoding="utf-8") as fh:
+        for row in list(csv.reader(fh, delimiter="\t"))[1:]:
+            out.setdefault(row[1], set()).add(row[0])
+    return out
 
 
 def owners() -> dict[str, str]:
@@ -243,6 +261,7 @@ def is_subsequence(short: list[str], full: list[str]) -> bool:
 def main() -> None:
     dirs = [Path(a) for a in sys.argv[1:]] or [ROOT / "features/camera/generated/pilot02"]
     own = owners()
+    cite = citers()
     a2s, desc, cat = sys2_index()
     a2p, desc1 = sys1_index()
     hit1: list[tuple] = []      # R-CAM10
@@ -252,6 +271,8 @@ def main() -> None:
     unresolved: list[tuple] = []
     constant: list[tuple] = []   # 標定常數錨（Information 且 037 未引）
     merged: list[tuple] = []     # R-CAM10(b) 合一錨
+    cocited: list[tuple] = []    # R-CAM19(b) 共引錨
+    placeholder: list[str] = []  # R-CAM19(d) 缺件佔位
     hit5: list[tuple] = []       # CAN source 行之適用條件（R-CAM3(f)）
     hit6: list[tuple] = []       # 設定操作句式（canon §5.8(e)）
     hit3b: list[tuple] = []      # Standby 首行卻無點火步
@@ -279,10 +300,14 @@ def main() -> None:
                 tcs += 1
                 # ── 1 ── R-CAM10 錨反查（含 (b) 之多錨合一）
                 is_b = bool(RE_B_REQ.match(req))
+                spec_lines = [a for a in tc["specification_reference"].split("\n") if a.strip()]
+                is_ph = bool(spec_lines) and all(RE_PEND_ANCHOR.match(a) for a in spec_lines)
+                if is_ph:
+                    placeholder.append(tc_id)
                 owned: list[tuple[str, str, str]] = []   # (anchor, sid, holder)
                 for anchor in tc["specification_reference"].split("\n"):
                     anchor = anchor.strip()
-                    if not anchor:
+                    if not anchor or is_ph:
                         continue
                     checked += 1
                     if is_b:
@@ -311,7 +336,11 @@ def main() -> None:
                         merged.append((tc_id, req, [(a, sid, h) for a, sid, h in owned]))
                 else:
                     for anchor, sid, holder in owned:
-                        if holder != req:
+                        if holder == req:
+                            continue
+                        if req in cite.get(sid, set()):
+                            cocited.append((tc_id, req, anchor, sid, holder))   # R-CAM19(b)
+                        else:
                             hit1.append((tc_id, req, anchor, sid, holder))
                 # ── 2 ── proc ≥ 2 步
                 steps = [ln for ln in tc["test_procedure"].split("\n") if RE_STEP.match(ln)]
@@ -372,7 +401,8 @@ def main() -> None:
                 er_dr = {m for ln in tc["expected_result"].split("\n") if "PENDING:" in ln
                          for m in RE_DRID.findall(ln)}
                 for dr in sorted(pre_dr & er_dr):
-                    hit8b.append((tc_id, dr))
+                    if not is_ph:
+                        hit8b.append((tc_id, dr))
                 # ── 10 ── 拆解充分性（WARN，DECISIONS 6-76）
                 sid10 = doc.get("source_object_id")
                 dmap10 = desc1 if is_b else desc
@@ -383,7 +413,9 @@ def main() -> None:
                 sid = doc.get("source_object_id")
                 verb = doc.get("test_item_verbatim", "")
                 desc_map = desc1 if is_b else desc
-                if not sid or not verb:
+                if is_ph:
+                    pass                                   # R-CAM19(d)：來源文件未到
+                elif not sid or not verb:
                     no_source.append((tc_id, sid))
                 elif sid not in desc_map:
                     no_source.append((tc_id, sid))
@@ -392,7 +424,8 @@ def main() -> None:
                                  len(desc_map[sid].split())))
 
     print(f"Camera 自檢：批次 {[str(d) for d in dirs]}（TC {tcs} 筆）")
-    print(f"  1 R-CAM10 錨反查：檢查錨 {checked} 個；無法反查 {len(unresolved)}；常數錨 {len(constant)}；**命中 {len(hit1)}**")
+    print(f"  1 R-CAM10 錨反查：檢查錨 {checked} 個；無法反查 {len(unresolved)}；常數錨 {len(constant)}；"
+          f"共引錨 {len(cocited)}；缺件佔位 {len(placeholder)}；**命中 {len(hit1)}**")
     print(f"  2 proc ≥ 2 步　　：**命中 {len(hit2)}**")
     print(f"  3a 電源態 ↔ 點火：**命中 {len(hit3)}**（Full-Operation 首行 ＋ 步 1 送 RUN）")
     print(f"  3b 電源態 ↔ 點火：**命中 {len(hit3b)}**（Standby 首行 ＋ 無點火步）")
@@ -411,6 +444,10 @@ def main() -> None:
     for tc_id, req, items in merged:
         detail = "；".join(f"{sid}→{h}" for _, sid, h in items)
         print(f"  [1 合一錨] {tc_id}（{req}）R-CAM10(b)：{detail}")
+    for tc_id, req, anchor, sid, holder in cocited:
+        print(f"  [1 共引錨] {tc_id}（{req}）錨 {anchor} = {sid}，承接列 {holder}；R-CAM19(b) 同源")
+    for tc_id in placeholder:
+        print(f"  [1 缺件佔位] {tc_id}  specification_reference 全為 PENDING: DR-（R-CAM19(d)）")
     for tc_id, req, anchor, sid, holder in hit1:
         print(f"  [1 違反] {tc_id}（{req}）錨 {anchor} = {sid}，承接列為 {holder}")
     for tc_id, n in hit2:

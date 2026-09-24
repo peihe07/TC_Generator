@@ -1,0 +1,33 @@
+{
+  "tc_id": "NR1L-RVCHMI-211",
+  "req_id": "SWE1-RVC-069",
+  "test_group": "Rear View Camera",
+  "test_set": "AUX Camera Access",
+  "test_item_verbatim": "First surface needs: N/A",
+  "source_object_id": "NRL-188058",
+  "vehicle_model": {
+    "HDCC27": "1",
+    "DT27": "1",
+    "VF(ProMaster)637": "1",
+    "Commander (598)": "0",
+    "Regengade (5210)": "0",
+    "Toro(2261)": "1",
+    "Fastack (376)": "1"
+  },
+  "tcs": [
+    {
+      "tc_title": "the Enable Wireless Cameras setting is offered on a head unit that meets the wireless camera head unit requirements",
+      "pre_conditions": "1. The HU is in the Full-Operation state\n2. The head unit is an R1 High head unit\n3. The head unit is a touchscreen radio\n4. The head unit has WiFi hotspot capability\n5. A MOPAR-provided wireless camera is available",
+      "input_test_data": "NA",
+      "test_procedure": "1. Press \"Apps\" on Menu Bar to open App Drawer\n2. Select \"Settings\" in the App Drawer\n3. Select \"Camera\"\n4. Select \"Aux Cameras\"\n5. Read the Aux Cameras list and check that the \"Enable Wireless Cameras\" setting is offered",
+      "expected_result": "1. The App Drawer is displayed\n2. The \"Settings\" screen is displayed\n3. The \"Camera\" list is displayed\n4. The \"Aux Cameras\" list is displayed\n5. The \"Enable Wireless Cameras\" setting is offered in the Aux Cameras list",
+      "specification_reference": "SYS1_HMI_HeadUnitCameraSystems_HMI_Logic_and_Flow_R1_SR24_Post_2A_v7_(February_10th,_2023)_27.3.2",
+      "design_method": "功能測試 (Functional based ; no specific technique)",
+      "priority": "P2",
+      "split_flag": true,
+      "split_reason": "the Enable Wireless Cameras setting is offered on a head unit that meets the wireless camera head unit requirements",
+      "test_item": "First surface needs: N/A\n\n(the Enable Wireless Cameras setting is offered on a head unit that meets the wireless camera head unit requirements)"
+    }
+  ],
+  "reasoning": "**R-CAM19(c) 追溯補齊**（CAM-26 §2）：§27.3.2 之 Description 全文 `First surface needs: N/A`（4 token，A-CA35）自陳無需求；依 R-CAM19(c) 仍出一列，以**父題 §27.3**（`Wireless Camera Head Unit Requirements`，`NRL-188053`）之可驗事實為驗證點 —— 其鄰列 §27.3.1（`Technical hardware requirements – (R1 High only due to architecture)`，`NRL-188054`）與其下 §27.3.1.1～§27.3.1.3（`Requires a touchscreen radio`／`Requires WiFi hotspot capability …`／`Requires MOPAR-provided wireless camera.`）為本節唯一可驗之條件（037 未收該四列為需求）。故本列驗「具備該等條件之 R1 High HU 提供無線相機功能」，其可觀察面取 `Aux Cameras` 清單中 `Enable Wireless Cameras` 設定之**出現**（路徑與設定名沿 `NR1L-RVCHMI-063`）。與 `-063`（§27.4.1）之分工：後者驗**啟用**該設定之後果，本列只驗其**因硬體條件而提供**。verbatim 為來源全文（逐字保留 `N/A`）。HU 等級無 PROXI 編碼（DECISIONS 6-64），前提以散文書寫；無線相機無 PROXI 配備旗標，依 **R-CAM18(a)** 五款全 `1`（同 `-048`／`-063`）。**RDF-12** 改題為「自陳 N/A 但仍須追溯」。查無可驗事實之升級條件（下放包 §5-1）**不成立**，故不以 `PENDING: RDF-12` 佔位。"
+}

@@ -106,6 +106,15 @@
 | `NR1L-RVC-242` | **`RVC Image` soft button 之可觸及** | `RVC_ImageDefeat.Req` 為內部訊號（四本 DBC 皆無），觸發取其 HMI 面之 `RVC Image` soft button（`SYS-RA-VF551_V2-549` 逐字）；須確認該鍵於實機之位置與可按性 | CAM-24 §2 |
 
 
+## A 本 batch06 ／ B 本 b08 —— R-CAM19 追溯補齊（CAM-26 §2）
+
+| TC | 依賴 | 待證之事 | 出處 |
+|---|---|---|---|
+| `NR1L-RVC-246` | **bus analyzer 於 LVDS 影像鏈路** | 該分析儀能否觀察 RVCM → HU 之**影像**（非僅控制訊息）確經 LVDS 送達；`-209` 之前例只觀察控制訊息 | CAM-26 §2 |
+| `NR1L-RVC-247` | **bus analyzer ＋ 診斷儀** | 以診斷儀讀 DTC 時 LVDS 上是否確有 `diagnosticRequest`／`diagnosticResponse` 可錄；訊息內容待 **DR-CAM-t** | CAM-26 §2 |
+| `NR1L-RVCHMI-214` | **可休眠之無線相機 ＋ R 檔** | 同 `-070` 之休眠治具，另須於 R 檔以 `More Cams` 選取無線相機 | CAM-26 §2 |
+| `NR1L-RVCHMI-216` | **RVC Absent ＋ CHMSL Present 之 PROXI 組合** | 同 `-087`；本列只勾 HDCC27／DT27（A-CA39）| CAM-26 §2 |
+
 ## 驗證方式
 
 1. 於實機執行該列之 Procedure 至該步。
@@ -126,3 +135,4 @@
 - 2026-09-23 加 B 本 B05 九組共 20 列（CAM-20 §2）。B 本至此 230/230 完結。
 - 2026-09-23 加 B 本 B06 三組共 6 列（CAM-23 §2）。
 - 2026-09-23 加 A 本 batch05 三組共 4 列（CAM-24 §2）。全案累計 101 列。
+- 2026-09-24 加 A 本 batch06 兩列、B 本 b08 兩列，共 4 列（CAM-26 §2）。全案累計 105 列。
