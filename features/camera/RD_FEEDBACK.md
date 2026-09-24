@@ -430,6 +430,21 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 
 ---
 
+## RDF-18 —— SYS1 §30.1.3 之 `or‘X’to` 缺空格（CAM-25 審閱 §一-1）
+
+**觀察**：「清除最愛確認畫面」之句中，`or`、`‘X’`、`to` 三個字黏成一個 token，按鍵名 `‘X’` 無法與前後文分開。
+
+**證據**：`SYS1_HMI_HeadUnitCameraSystems_…` cache 本 §30.1.3（`NRL-188130`）之 `Description` 逐字：
+`The pop-up updates to show the confirmation screen above. User presses OK or‘X’to clear, else pop-up dismissed automatically after 5 seconds.`
+以空白切分共 23 token，其中含 `‘X’` 者只有 1 個：`or‘X’to`（命令：`str.split()` 後逐項檢視）。
+
+**TC 側現行處置**：`NR1L-RVCHMI-209`（`‘X’` 清除）之 verbatim 依 §4.3.1 逐字保留該黏字 token
+（`User presses or‘X’to clear,`，只刪 `OK` 一字），reasoning 具名；**不改寫、不補空格**。
+
+**請求之動作**：請更正為 `OK or ‘X’ to clear`（兩處補空格）。
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -451,3 +466,4 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 | RDF-15 | `PU0456`（Pop Up List）| 按鈕欄拼作 `<Nol>` | `NR1L-RVCHMI-137` |
 | RDF-16 | `SWE1-RVC-026`（SYS1 §8.2）| 橫幅時限 SYS1 5 秒 vs `PU0362` 10 | `NR1L-RVCHMI-173` |
 | RDF-17 | `SWE1-RVC-151`（SYS1 §34.9.4）| 同動作於 R1 High／Low 異名 | `NR1L-RVCHMI-141`／`-162` |
+| RDF-18 | `SWE1-RVC-116`（SYS1 §30.1.3）| `or‘X’to` 缺空格（三字黏成一 token）| `NR1L-RVCHMI-209` |

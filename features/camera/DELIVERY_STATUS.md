@@ -1,6 +1,6 @@
 # Camera（FW036 R1L）—— 交付狀態
 
-**一頁式閘表**，供 Pei 作 Phase 7 之依據。日期 2026-09-24（CAM-24 §4 建檔；CAM-26 §3 更新）。
+**一頁式閘表**，供 Pei 作 Phase 7 之依據。日期 2026-09-24（CAM-24 §4 建檔；CAM-26 §3 更新；**CAM-27 §4 終態**）。
 日後 DR 結案／bench 驗畢時由執行層更新本檔，並於該輪上繳包記其新 sha。
 
 ---
@@ -10,14 +10,15 @@
 | 本 | 檔（`features/camera/sandbox/`）| 列數 | TC | D 欄佔位 | sha256 |
 |---|---|---:|---:|---:|---|
 | **A** | `a_dryrun/…_RearViewCamera_A_20260924_dryrun4.xlsx` | **249** | 249 | 0 | `a4ad6cf3112d5e31…` |
-| **B** | `b_dryrun/…_RearViewCamera_B_20260924_dryrun3.xlsx` | **216** | 216 | 0 | `1d8d21b9945d4828…` |
+| **B** | `b_dryrun/…_RearViewCamera_B_20260924_dryrun4.xlsx` | **216** | 216 | 0 | `a279e6fa2106541b…` |
 | | **合計** | **465** | **465** | 0 | |
 
 **工作簿列數 ＝ TC 數**（**R-CAM19(e)**：D 欄佔位列形制作廢）。
 **兩本分交**（**R-CAM1(a)**）；合併與否由 Pei 定。
 交付檔名依 workflow 模板事實：`…_SWQT_RearViewCamera_A_<YYYYMMDD>.xlsx`／`…_B_<YYYYMMDD>.xlsx`
 （`delivered/` 只放客戶檔名定稿、無 `dryrun` 尾綴，**R-G42 五**）。
-候選沿革：A 本 dryrun2（244 列）→ dryrun3（249 列，6-78）→ **dryrun4**；B 本 dryrun2 → **dryrun3**（CAM-26）。
+候選沿革：A 本 dryrun2（244 列）→ dryrun3（249 列，6-78）→ **dryrun4**（CAM-26）；
+B 本 dryrun2 → dryrun3（CAM-26）→ **dryrun4**（CAM-27：`NR1L-RVCHMI-087` 之車型補正，三格）。
 
 ## 2　TC 總數與來源覆蓋
 
@@ -30,6 +31,7 @@
 **每條 leaf 需求 ≥ 1 TC：A 25/25、B 203/203**（**R-CAM19(a)**，Pei 2026-09-24「有需求就要有產出」）。
 逐列對照：`data/traceability.tsv`（228 leaf → tc_ids）；umbrella 27 列另表 `data/traceability_umbrella.tsv`
 （037 `Categorization = Heading`，不入 R-CAM19(a) 之母體，其子 leaf 皆有 TC）。
+**R-CAM19(f)**：已有 TC 之需求，其與他列共引之來源不再各自出 TC（§8.2.1）—— 補生成之射程止於原零 TC 之十列。
 
 **A 本之 1:10**（25 SWE 列 → 249 TC）因其拆解全在執行層；
 **B 本之 1:1.06**（203 leaf → 216 TC）因 037 已自行前拆 39.1%（**DECISIONS 6-77**）。
@@ -61,7 +63,7 @@
 | DR-CAM-q | DTC 之識別碼 | 14 | 0 | 14 |
 | DR-CAM-r | `Camera App`／`Enhanced Camera App` 配備旗標 | 0 | 26 | 26 |
 | DR-CAM-s | 熱保護關顯示之進入法 | 0 | 1 | 1 |
-| DR-CAM-t | LVDS `diagnosticRequest`／`diagnosticResponse` 之訊息定義（**CAM-26 新開**）| 1 | 0 | 1 |
+| DR-CAM-t | LVDS `diagnosticRequest`／`diagnosticResponse` 之訊息定義（CAM-26 新開；**由 Pei 送**，CAM-26 審閱 §一-2）| 1 | 0 | 1 |
 | **合計（相異 TC 列）** | | **46** | **35** | **81** |
 
 **DR 共 20 條**（`DR-CAM-a` ～ `-t`）；阻交付 13 條，其餘 7 條（b／c／d／e／l／n／o，含已結案者）於現行 465 列無 PENDING。
@@ -79,14 +81,14 @@ A 本 Test Set 由 9 組增為 **10 組**（`AUX Camera` 1 列，即 `-248`）�
 
 ## 5　RD 回饋
 
-**RDF-01 ～ RDF-17，17 條已登**（`features/camera/RD_FEEDBACK.md`）；**RDF-18**（SYS1 §30.1.3 `NRL-188130` 缺空格）
-經 CAM-25 審閱 §一-1 立而尚未落檔。**RDF-12** 於 CAM-26 改題「`SWE1-RVC-069` 自陳 N/A 但仍須追溯」。
+**RDF-01 ～ RDF-18，18 條**（`features/camera/RD_FEEDBACK.md`）。**RDF-18**（SYS1 §30.1.3 `NRL-188130` 之 `or‘X’to` 缺空格）
+於 CAM-27 落檔；**RDF-12** 於 CAM-26 改題「`SWE1-RVC-069` 自陳 N/A 但仍須追溯」。
 **回 RD 作者為交付前置**（不阻 Phase 7）。
 
 ## 6　全域待辦
 
-**GCB-01 ～ GCB-12，12 項已登**（`docs/fw036/handoff/GC_BACKLOG.md`），皆 **OPEN**；**GCB-13**
-（selfcheck 第 11 項「一列多點」）經 CAM-25 審閱 §一-4 立而尚未落檔。
+**GCB-01 ～ GCB-13，13 項**（`docs/fw036/handoff/GC_BACKLOG.md`），皆 **OPEN**。
+**GCB-13**（selfcheck 第 11 項「一列多點／多觸發」，WARN，下一 feature pilot 前實作；Camera 不回跑）於 CAM-27 落檔。
 其中 **GCB-01**（`gates_tsv.py` 未登 `Z` 檢查）於註記「**Camera 交付前必須完成**」；
 **GCB-04**（`RULINGS.sha.tsv` 未重生）與 **GCB-11**（lint `X` 之入口清單）為非本線可改。
 
@@ -97,7 +99,7 @@ selfcheck_camera.py   ERROR 級十項  全 0（錨 468／反查失敗 0／常數
                       第 10 項（WARN）候選 41（8.8%），已知以偽陽為主（6-80 不逐列覆核）
 lint036 --profile camera
   A dryrun4（249 列）  ERROR 類全 0｜J 37（profile §5.1 逐字豁免）／U 65／I-cross 249／X 3
-  B dryrun3（216 列）  ERROR 類全 0｜J 0／U 45／I-cross 216／X 23（GCB-11）
+  B dryrun4（216 列）  ERROR 類全 0｜J 0／U 45／I-cross 216／X 23（GCB-11）
 render_tc.py --verify  二十二目錄 465 份 md 逐位元相符 465／相異 0
 ```
 
@@ -121,15 +123,17 @@ render_tc.py --verify  二十二目錄 465 份 md 逐位元相符 465／相異 0
   A 249 ＋ B 216 ＝ **465 TC**，D 欄佔位 10 → 0；A 候選改指 `dryrun4`、B 改指 `dryrun3`；
   阻交付 DR 11 → 13（DR-CAM-a 之 `-248` 由佔位列轉為 TC 列、DR-CAM-t 新開）。
   A dryrun4 另帶入 CAM-25 已改而 dryrun3 未含之 `NR1L-RVC-245` `Remarks`（6-85）。
+- 2026-09-24 **終態**（CAM-27）。6-87 落定、立 **R-CAM19(f)**（6-88）；`NR1L-RVCHMI-087` 車型補正（A-CA39 RESOLVED）；
+  B 候選改指 `dryrun4`；RDF-18／GCB-13 落檔。TC 數不變（465）。
 
 ## 9　生成階段結束
 
-**Camera 之 TC 生成階段於 2026-09-23 結束**（下放包 CAM-01 ～ CAM-25，執行層 25 輪）；
-**CAM-26（2026-09-24）為其後唯一之明文指派補生成**（R-CAM19）。
+**Camera 之 TC 生成階段結束於 2026-09-24（CAM-27）**（下放包 CAM-01 ～ CAM-27，執行層 27 輪；
+CAM-26 為 R-CAM19 之追溯補齊、CAM-27 為收尾）。**CAM-26 時開立之「下放包明文指派」例外條款自此關閉。**
 本檔自此**只因下列三者變更**：
 
 1. **DR 結案或裁降 NA** —— §3 之 13 條；結案時該列之 `PENDING` 改為實值、本檔重算；
 2. **Pei 之實機回饋** —— §4 之 105 列；其結果可能改寫 ER 或新增 PENDING；
 3. **Phase 7 之執行** —— §8 之五項前置齊備後，寫 `features/camera/delivered/` 並 tag。
 
-**不再因生成而變更**。任何新增 TC 須有下放包之明文指派。
+**不再因生成而變更。**

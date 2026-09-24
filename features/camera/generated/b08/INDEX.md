@@ -15,7 +15,7 @@ B 本原零 TC 之 **6 列**各出一列｜TC ID `NR1L-RVCHMI-211`～`-216`｜�
 
 **與下放包 §2 之出入**：`-136`／`-139` 之「前提改 R1 Low」—— 兩列與母列同在 §34（`R1 Low Wired AUX Cameras`），
 母列前提已為 R1 Low，故全沿母列。`-216` 之車型依 R-CAM18(b) 實測為 HDCC27／DT27 兩款
-（`Digital_CHMSL_Camera_Prsnt` 只在 Atl-Hi 三本），與母列 `-087` 之五款不同 —— 母列不改，登 **A-CA39**。
+（`Digital_CHMSL_Camera_Prsnt` 只在 Atl-Hi 三本），與母列 `-087` 之原勾選不同 —— 母列於 CAM-27 §2 補正為同值（**A-CA39** RESOLVED）。
 
 `coverage_b.tsv` 之 6 列改為 `PRODUCED`；B 本 210 → **216**。
 

@@ -37,7 +37,7 @@ HU 等級不同（R1 Low 只有有線 AUX）。HU 等級**無 PROXI 編碼**（�
 | `NR1L-RVCHMI-084` | `SWE1-RVC-132` | §34.1.4.1 | camera personalization settings are grouped under the Ca | 功能測試 | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | — | P2 |
 | `NR1L-RVCHMI-085` | `SWE1-RVC-133` | §34.1.5.1 | the R1 Low camera feature set is RearView Camera Cargo C | 決策表 | HDCC27, DT27 | — | P2 |
 | `NR1L-RVCHMI-086` | `SWE1-RVC-134` | §34.3.2 | the X control is not present when the view is entered by | 負向測試 | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | — | P1 |
-| `NR1L-RVCHMI-087` | `SWE1-RVC-135` | §34.4.1 | a CHMSL camera only configuration is not offered | 負向測試 | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | — | P2 |
+| `NR1L-RVCHMI-087` | `SWE1-RVC-135` | §34.4.1 | a CHMSL camera only configuration is not offered | 負向測試 | HDCC27, DT27（CAM-27 §2 補正，A-CA39）| — | P2 |
 | `NR1L-RVCHMI-088` | `SWE1-RVC-137` | §34.4.3 | the AUX Cam button always lands on the Aux 1 screen | 功能測試 | HDCC27, DT27, VF(ProMaster)637, Toro(2261), Fastack (376) | — | P1 |
 | `NR1L-RVCHMI-089` | `SWE1-RVC-138` | §34.6 | AUX cameras are accessible from the back-up and the carg | 功能測試 | HDCC27, DT27 | — | P2 |
 | `NR1L-RVCHMI-090` | `SWE1-RVC-140` | §34.6.2 | the X control is not present when the cargo configuratio | 負向測試 | HDCC27, DT27 | — | P1 |

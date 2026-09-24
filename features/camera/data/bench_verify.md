@@ -113,7 +113,7 @@
 | `NR1L-RVC-246` | **bus analyzer 於 LVDS 影像鏈路** | 該分析儀能否觀察 RVCM → HU 之**影像**（非僅控制訊息）確經 LVDS 送達；`-209` 之前例只觀察控制訊息 | CAM-26 §2 |
 | `NR1L-RVC-247` | **bus analyzer ＋ 診斷儀** | 以診斷儀讀 DTC 時 LVDS 上是否確有 `diagnosticRequest`／`diagnosticResponse` 可錄；訊息內容待 **DR-CAM-t** | CAM-26 §2 |
 | `NR1L-RVCHMI-214` | **可休眠之無線相機 ＋ R 檔** | 同 `-070` 之休眠治具，另須於 R 檔以 `More Cams` 選取無線相機 | CAM-26 §2 |
-| `NR1L-RVCHMI-216` | **RVC Absent ＋ CHMSL Present 之 PROXI 組合** | 同 `-087`；本列只勾 HDCC27／DT27（A-CA39）| CAM-26 §2 |
+| `NR1L-RVCHMI-216` | **RVC Absent ＋ CHMSL Present 之 PROXI 組合** | 同 `-087`；兩列皆只勾 HDCC27／DT27（`-087` 於 CAM-27 §2 補正，A-CA39）| CAM-26 §2 |
 
 ## 驗證方式
 
