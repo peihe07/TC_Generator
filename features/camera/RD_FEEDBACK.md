@@ -445,6 +445,90 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 
 ---
 
+## RDF-19 —— RD 驗證標準含來源未載之點；RD 驗證方法含來源未定之手段（CAM-28 審閱 §二-1／§二-2）
+
+**觀察**：SYS2 三本（CFTS092／VF551_V2／VF551_V3）之 `驗證標準 (Verification Criteria)`／`驗證方法 (Verification Method)` 兩欄，
+有若干點**不見於同列之 `Description`**（需求本文），或要求**需求本文未定之驗證手段**。依 §8.4.1 與 R-CAM13(d)（VC／VM 欄非來源），
+本 feature **不據以生成 TC**。
+
+**證據**：`features/camera/data/rd_vc_crosscheck.tsv`（CAM-28，181 列）與 `rd_partial_recheck.tsv`（CAM-29，64 點之全案重判）。
+
+### 表一　缺漏點全屬來源未載之列（25）
+
+| 本 | 來源 | 我方 TC | RD 所列、來源未載之點（逐字摘）|
+|---|---|---|---|
+| CFTS092 | `CAM-072` | -025 | When the $RVC_SK_PRSNT$ signal status is [Not Present], the RVC button shall be disabled or hidden |
+| CFTS092 | `CAM-076` | -046 | after select the softkey button, it shall launch RVC display correctly |
+| CFTS092 | `CAM-084` | -037 | When $SVC_SK_PRSNT$ = [0] -> The SVC button shall not be visible or shall remain disabled ／／ No other camera-related buttons or functions shall be unintentionally affected |
+| CFTS092 | `CAM-089` | -039 | When the Softkey is selected, the system correctly launches or switches to the Surround View Camera display. ／／ The Softkey is positioned according to UI design specifications (lay… |
+| CFTS092 | `CAM-095` | -044 | $OFFroad_Camera$ = [Absent] FFC button shall not be displayed or selectable |
+| CFTS092 | `CAM-096` | -045 | The CVPM shall correctly receive the $CameraDisplaySts$ message and update the display to the corresponding Forward Camera view (View 3) |
+| V2 | `VF551_V2-214` | -184 | remains False for at least T_healing milliseconds ／／ resetting the fault detection counter (FDC) ／／ potentially changing the status bytes (e.g., "confirmed" status bit set to False… |
+| V2 | `VF551_V2-215` | -183 | this state persists for at least T_debounce milliseconds ／／ with the correct status bytes (e.g., "confirmed" status bit set, occurrence counter incremented) |
+| V2 | `VF551_V2-217` | -182 | remains False for at least T_healing milliseconds ／／ resetting the fault detection counter (FDC) ／／ potentially changing the status bytes (e.g., "confirmed" status bit set to False… |
+| V2 | `VF551_V2-218` | -181 | this state persists for at least T_debounce milliseconds ／／ with the correct status bytes (e.g., "confirmed" status bit set, occurrence counter incremented) |
+| V2 | `VF551_V2-220` | -180 | remains False for at least T_healing milliseconds ／／ resetting the fault detection counter (FDC) ／／ potentially changing the status bytes (e.g., "confirmed" status bit set to False… |
+| V2 | `VF551_V2-221` | -179 | this state persists for at least T_debounce milliseconds ／／ with the correct status bytes (e.g., "confirmed" status bit set, occurrence counter incremented) |
+| V2 | `VF551_V2-450` | -119 | no valid message for this signal being received on the CAN bus for a period exceeding X milliseconds |
+| V2 | `VF551_V2-460` | -151 | not received by the Head Unit for a duration exceeding T_missing_timeout milliseconds |
+| V2 | `VF551_V2-489` | -029 | IGN != RUN (BCM_FD_10.CmdIgnSts != RUN) ／／ RVC image defeat button is pressed. ／／ VehicleSpeed >= c_VEHSPD_MAX and last for 10 seconds (Ttimer2) |
+| V2 | `VF551_V2-505` | -220 | The entertainment and non-entertainment features shall be functional as Audio Mode OFF behavior (TC checks non-entertainment only) |
+| V2 | `VF551_V2-539` | -196 | continuously receive a stable, correctly formatted video stream from the rear camera ／／ available for display with expected resolution and frame rate |
+| V2 | `VF551_V2-746` | -155 | within its defined timeout window (e.g., >500ms) |
+| V3 | `VF551_V3-255` | -224 | No black frames (0V or black pixels) shall be detected during at least 100 consecutive transition cycles ／／ The luminance and frame-to-frame consistency must remain stable without … |
+| V3 | `VF551_V3-257` | -083;-084 | The value [DISP_DIGITAL_RVC_CAMERA] must appear on the CAN bus within a specified latency after the RVC image is rendered on screen ／／ The value [DISP_NON_CAMERA] must be transmitt… |
+| V3 | `VF551_V3-262` | -014 | If Backup_Cam_Delay = ON, the RVC must remain visible for exactly Ttimer1 after shifting from Reverse to Drive/Neutral ／／ The image must exit immediately if: 1) Ign != RUN, 2) Spee… |
+| V3 | `VF551_V3-280` | -167;-168 | When the BH-CAN vehicle speed signal becomes available again, the Head Unit shall resume transmitting the valid vehicle speed value over LVDS |
+| V3 | `VF551_V3-281` | -169;-170 | When VehicleSpeedVSOSig is available again, the Head Unit shall: Resume gating BH-CAN STATUS_CCAN5.LWSAngle to LVDS STATUS_CCAN5.LWSAngle with valid values. Clear the SNA state wit… |
+| V3 | `VF551_V3-282` | -171;-172 | When the BH-CAN ShiftLeverPosition signal becomes available again, the Head Unit shall resume transmitting the valid ShiftLeverPosition value on LVDS |
+| V3 | `VF551_V3-285` | -165;-166 | The mapping ... shall be deterministic and consistent across power cycles ／／ No unintended or undefined VC_Steering_Cfactor values shall be transmitted when the PROXI configuration… |
+
+### 表二　混合列中經全案重判定位不到來源之點（18）
+
+| 來源 | 點 | RD 所列之點（逐字摘）|
+|---|---:|---|
+| `CAM-085` | 1 | No unintended or repeated signal transmission shall occur unless another keypress event is detected. |
+| `CAM-088` | 1 | When the system (HU) is powered ON or rebooted, the Surround View camera shall remain OFF by default. |
+| `CAM-090` | 2 | If the vehicle speed is ≥ 8 mph, pressing the SVC button shall not activate the display |
+| `VF551_V2-442` | 1 | for all defined states and ranges |
+| `VF551_V2-445` | 1 | for all defined states and ranges |
+| `VF551_V2-448` | 1 | for all defined states and ranges |
+| `VF551_V2-452` | 1 | continue to transmit LVDS vehicleUpdate_2.ASCM_Stat = [SNA] as long as the ASCM_FD_2.ASCM_Stat signal remains missing |
+| `VF551_V2-459` | 1 | precise adherence to any defined scaling factors, unit conversions, and sign conventions (e.g., degrees, radians, direction) |
+| `VF551_V2-461` | 1 | at all valid input ranges, considering any specified scaling or conversion factors |
+| `VF551_V2-491` | 1 | Precondition: Head Unit is in Manual Display mode |
+| `VF551_V2-491` | 2 | IGN != RUN (BCM_FD_10.CmdIgnSts != RUN) |
+| `VF551_V2-491` | 3 | RVC image defeat button is pressed. |
+| `VF551_V2-491` | 4 | VehicleSpeed >= c_VEHSPD_MAX and last for 10 seconds (Ttimer2) |
+| `VF551_V2-504` | 1 | App shall not interrupt the rear camera image display if Audio Mode is OFF. (anchored TC runs in Audio Mode ON) |
+| `VF551_V2-528` | 1 | (or is 'Open' upon camera activation) |
+| `VF551_V2-538` | 1 | transmit its value on the LVDS interface accurately, reflecting its internal state or the most current vehicle data (TC checks presence only, no values) |
+| `VF551_V2-745` | 1 | For every update of EPS_FD_1.LwsAngle (TC sends single value 0.0 deg) |
+| `VF551_V2-747` | 2 | every update of TRANSM_FD_4.ShiftLeverPosition (single value R only) |
+
+### 表三　驗證手段超出來源所定之列（RD-ONLY，11）
+
+| 本 | 來源 | 我方 TC | RD 驗證方法（逐字摘）|
+|---|---|---|---|
+| V2 | `VF551_V2-443` | -136 | Nominal Cases: Transmit PROXI Dual_Rear_Wheels_Present for all valid states (e.g., "Present", "Not Present"). Timing Tests ... Fault Injection (Missing) ... Fault Injection (Invalid) |
+| V2 | `VF551_V2-444` | -137 | Nominal Cases: Transmit PROXI Wheelbase values across its entire valid range, including minimum, maximum, nominal, and boundary values. Timing Tests ... Fault Injection (Missing) ... Fault Injection (… |
+| V2 | `VF551_V2-446` | -073 | Negative Test Cases: Program various other valid combinations (e.g., HDCC with different Body_Types, different Vehicle_Line_Configuration with Type 4 - DJ ...) ／／ Fault Injection (Missing) ... Fault I… |
+| V2 | `VF551_V2-447` | -074 | Negative Test Cases: Program various other valid combinations (e.g., HDCC with different Body_Types, different Vehicle_Line_Configuration with Type 1 - D2 ...) ／／ Fault Injection (Missing) ... Fault I… |
+| V2 | `VF551_V2-451` | -118 | Vary the DynamicGrid values to cover all defined states (e.g., Enabled, Disabled). Vary the transmission rate ... Simulate missing DynamicGrid messages ... Simulate invalid DynamicGrid values |
+| V2 | `VF551_V2-453` | -160 | Vary the ASCM_Stat values to cover all defined states (e.g., active, passive, fault, unavailable). Vary the transmission rate |
+| V2 | `VF551_V2-458` | -153 | Vary the duration of the "missing" period and the characteristics of the "missing" event (e.g., intermittent loss, complete loss) |
+| V2 | `VF551_V2-479` | -122 | simulate a customer selecting the "Disable Dynamic Gridlines" option on the Head Unit's HMI |
+| V2 | `VF551_V2-480` | -123 | simulate a customer selecting the "Enable Dynamic Gridlines" option on the Head Unit's HMI |
+| V2 | `VF551_V2-529` | -223 | At various precise time points before 5 seconds (e.g., 1 second, 3 seconds, 4.9 seconds), simulate a transition to a non-camera display |
+| V3 | `VF551_V3-205` | -071 | Use a multi-channel oscilloscope to probe the CAN bus (High/Low) and the RVCM physical power line. Measure the time delta between the CAN trigger and the voltage rise. |
+
+**TC 側現行處置**：表一／表二之點不補列；表三之手段登於 `data/bench_verify.md`「RD 建議手段」節，供實機階段參考（DECISIONS 6-91）。
+
+**請求之動作**：請判斷上列之點是否為**需求**。是者請寫入 SYS2 之 `Description`（或對應 VF 之條文），本 feature 即依之補列；
+否者請自驗證標準欄刪除，以免測試範圍與需求範圍不一。
+
+---
+
 ## 索引
 
 | # | 標的列 | 類 | 對應 anomaly／DR |
@@ -467,3 +551,4 @@ SYS1 內部兩處**自洽**（皆 upper right），與彈窗表相左；且 §8.
 | RDF-16 | `SWE1-RVC-026`（SYS1 §8.2）| 橫幅時限 SYS1 5 秒 vs `PU0362` 10 | `NR1L-RVCHMI-173` |
 | RDF-17 | `SWE1-RVC-151`（SYS1 §34.9.4）| 同動作於 R1 High／Low 異名 | `NR1L-RVCHMI-141`／`-162` |
 | RDF-18 | `SWE1-RVC-116`（SYS1 §30.1.3）| `or‘X’to` 缺空格（三字黏成一 token）| `NR1L-RVCHMI-209` |
+| RDF-19 | SYS2 CFTS092／V2／V3 之 VC／VM 欄 | VC 含來源未載之點 25 列＋18 點；VM 手段 11 列 | `rd_vc_crosscheck.tsv`／`rd_partial_recheck.tsv` |

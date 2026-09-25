@@ -129,6 +129,8 @@ render_tc.py --verify  二十二目錄 465 份 md 逐位元相符 465／相異 0
   V2 被引用 17 ID 之 Description 差異全為 `_x000D_`／空白（(a) NO-OP 94／(b) 0／(c) 0），**TC 0 列改動**，
   兩本候選不變（A dryrun4／B dryrun4）。RD 驗證標準對帳 `data/rd_vc_crosscheck.tsv`、七車型欄對帳 `data/vm_crosscheck.tsv`，
   其 PARTIAL／RD-ONLY 與車型差異**待 Pei 裁**，未改任何列。
+- 2026-09-24 **來源覆蓋覆核**（CAM-29，只覆核不生成）。無紀錄來源 94 與 RD PARTIAL 64 點逐一以全案配對：
+  來源 `GAP` 36（預估 49 TC）、PARTIAL `TRUE-GAP` 26 點（預估 33 TC）—— **合計 62，逾升級門檻 40，停於清單待 Pei 裁**。TC 數不變（465）。
 
 ## 9　生成階段結束
 
@@ -140,5 +142,6 @@ CAM-26 為 R-CAM19 之追溯補齊、CAM-27 為收尾）。**CAM-26 時開立之
 2. **Pei 之實機回饋** —— §4 之 105 列；其結果可能改寫 ER 或新增 PENDING；
 3. **Phase 7 之執行** —— §8 之五項前置齊備後，寫 `features/camera/delivered/` 並 tag；
 4. **來源改版**（DECISIONS **6-89**，CAM-28 增）—— 既有 TC 所引來源出新版時，依 (a) NO-OP／(b) verbatim 改新版逐字／(c) Procedure／ER 依新版重寫處置，不生成新 TC。
+5. **覆核補列**（DECISIONS **6-92**，CAM-29 增）—— 覆核包（只覆核不生成）所列之 `GAP`／`TRUE-GAP` 經 Pei 裁補列者，另開生成包。
 
 **不再因生成而變更。**

@@ -115,6 +115,25 @@
 | `NR1L-RVCHMI-214` | **可休眠之無線相機 ＋ R 檔** | 同 `-070` 之休眠治具，另須於 R 檔以 `More Cams` 選取無線相機 | CAM-26 §2 |
 | `NR1L-RVCHMI-216` | **RVC Absent ＋ CHMSL Present 之 PROXI 組合** | 同 `-087`；兩列皆只勾 HDCC27／DT27（`-087` 於 CAM-27 §2 補正，A-CA39）| CAM-26 §2 |
 
+## RD 建議手段（CAM-29 §3-2，DECISIONS 6-91）
+
+RD 驗證方法欄所要求、而本 feature 之 TC 未採之手段（CAM-28 對帳之 RD-ONLY 11 列）。**不補列**（手段超出來源所定之驗證點）；
+列此供實機階段參考 —— 如治具許可，可於實機驗證時一併採用，其結果不改 TC 之判準。逐字摘自 RD `Verification Method`。
+
+| TC | 來源 | RD 建議手段（逐字摘）|
+|---|---|---|
+| `NR1L-RVC-136` | `VF551_V2-443` | Nominal Cases: Transmit PROXI Dual_Rear_Wheels_Present for all valid states (e.g., "Present", "Not Present"). Timing Tests ... Fault Injection (Missing) ... Fault Injection (Invalid) |
+| `NR1L-RVC-137` | `VF551_V2-444` | Nominal Cases: Transmit PROXI Wheelbase values across its entire valid range, including minimum, maximum, nominal, and boundary values. Timing Tests ... Fault Injection (Missing) ... Fault Injection (Invalid) |
+| `NR1L-RVC-073` | `VF551_V2-446` | Negative Test Cases: Program various other valid combinations (e.g., HDCC with different Body_Types, different Vehicle_Line_Configuration with Type 4 - DJ ...) ／／ Fault Injection (Missing) ... Fault Injection (Invalid) |
+| `NR1L-RVC-074` | `VF551_V2-447` | Negative Test Cases: Program various other valid combinations (e.g., HDCC with different Body_Types, different Vehicle_Line_Configuration with Type 1 - D2 ...) ／／ Fault Injection (Missing) ... Fault Injection (Invalid) |
+| `NR1L-RVC-118` | `VF551_V2-451` | Vary the DynamicGrid values to cover all defined states (e.g., Enabled, Disabled). Vary the transmission rate ... Simulate missing DynamicGrid messages ... Simulate invalid DynamicGrid values |
+| `NR1L-RVC-160` | `VF551_V2-453` | Vary the ASCM_Stat values to cover all defined states (e.g., active, passive, fault, unavailable). Vary the transmission rate |
+| `NR1L-RVC-153` | `VF551_V2-458` | Vary the duration of the "missing" period and the characteristics of the "missing" event (e.g., intermittent loss, complete loss) |
+| `NR1L-RVC-122` | `VF551_V2-479` | simulate a customer selecting the "Disable Dynamic Gridlines" option on the Head Unit's HMI |
+| `NR1L-RVC-123` | `VF551_V2-480` | simulate a customer selecting the "Enable Dynamic Gridlines" option on the Head Unit's HMI |
+| `NR1L-RVC-223` | `VF551_V2-529` | At various precise time points before 5 seconds (e.g., 1 second, 3 seconds, 4.9 seconds), simulate a transition to a non-camera display |
+| `NR1L-RVC-071` | `VF551_V3-205` | Use a multi-channel oscilloscope to probe the CAN bus (High/Low) and the RVCM physical power line. Measure the time delta between the CAN trigger and the voltage rise. |
+
 ## 驗證方式
 
 1. 於實機執行該列之 Procedure 至該步。
@@ -136,3 +155,4 @@
 - 2026-09-23 加 B 本 B06 三組共 6 列（CAM-23 §2）。
 - 2026-09-23 加 A 本 batch05 三組共 4 列（CAM-24 §2）。全案累計 101 列。
 - 2026-09-24 加 A 本 batch06 兩列、B 本 b08 兩列，共 4 列（CAM-26 §2）。全案累計 105 列。
+- 2026-09-24 加「RD 建議手段」一節（RD-ONLY 11 列，CAM-29 §3-2）；**非待證列，不入 105 之計**。

@@ -927,6 +927,31 @@ CAM-26 之補生成（十列）即此範圍，無須追加。
 4. **RD 驗證標準／方法欄非新增** —— 三本既有本即載（CFTS092 37／V2 103／V3 41 列），與 dependency 本逐列同；
    R-CAM13(d) 已定其非來源。對帳見 `data/rd_vc_crosscheck.tsv`。
 
+### 6-90. RD 七車型適用欄不覆寫本 feature 之車型既裁
+
+`[DECIDED — CAM-28 審閱 §二-3，Pei 2026-09-24]`
+CFTS092 dependency 本（及既有本）之七車型欄為**功能層之適用性**；本 feature 之 Vehicle Model 為**該列之可佈性**
+（PROXI byte 存否／DBC 訊號存否／品牌 label）。二者粒度不同，**RD 欄不覆寫 R-CAM2／R-CAM3／R-CAM5／R-CAM13(c)／R-CAM18**。
+CAM-28 `data/vm_crosscheck.tsv` 之 22 TC 差異（全為「我方 0、RD 1」）**維持我方勾選**，依據逐列具名；Remarks 不加。
+
+### 6-91. RD 驗證標準 PARTIAL／RD-ONLY 之處置
+
+`[DECIDED — CAM-28 審閱 §二-1／§二-2，Pei 2026-09-24]`
+
+| 類 | 列 | 處置 |
+|---|---:|---|
+| PARTIAL，缺漏點全屬 `[not in source]` | 25 | **不補**（§8.4.1：RD 自加之點非需求）；登 **RDF-19** |
+| PARTIAL，含來源所載之點 | 53 | 以**全案 465 列**重判（CAM-29 §2，`data/rd_partial_recheck.tsv`）；仍缺者為 `TRUE-GAP`，Pei 裁補列 |
+| RD-ONLY | 11 | **不補**（手段超出來源所定之驗證點）；登 RDF-19，並於 `bench_verify.md` 加「RD 建議手段」註 |
+
+### 6-92. 來源覆蓋覆核包（CAM-29）；第五種觸發「覆核補列」
+
+`[DECIDED — CAM-28 審閱 §二-4／§二-7、§四，Pei 2026-09-24]`
+R-CAM13(a) 要求 037 所引之每一來源至少落一 TC 驗證點；**plan 未記 ≠ 未覆蓋，但無紀錄即不可證**。
+CAM-28 附帶量測之 92 個無紀錄來源（`SWE-CAM-015`／`-016`／`-018`）與 RD 對帳 NO-TC 中之無 plan 紀錄 28 個，
+去重後逐來源以內容配對全案 → `COVERED-BY`／`DUPLICATE-OF`／`EXCLUDED`／`GAP`（`data/source_coverage_review.tsv`）。
+本包只覆核不生成；`GAP`／`TRUE-GAP` 經 Pei 裁補列者另開生成包 —— `DELIVERY_STATUS.md` §9 之**第五種觸發：覆核補列**。
+
 ---
 
 ## Sign-off
